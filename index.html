@@ -6,20 +6,33 @@
     <title>ELITE VAN FITOUTS | COMMAND</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
         :root { --elite-green: #22c55e; }
-        body { background-color: #000; color: white; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .green-glow { text-shadow: 0 0 20px rgba(34, 197, 94, 0.7); }
         
-        /* Preloader */
-        #loader { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s; }
+        /* 1. LOCK THE BODY */
+        body, html { margin: 0; padding: 0; background-color: #000; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* 2. THE BACKGROUND FIX (LAYER 0) */
+        .video-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; object-fit: cover; opacity: 0.3; filter: grayscale(1);
+        }
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background: radial-gradient(circle, transparent 20%, #000 100%), 
+                        linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
+        }
+
+        /* 3. THE PRELOADER */
+        #loader { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .load-bar { width: 200px; height: 1px; background: rgba(255,255,255,0.1); }
         .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 1s ease; }
 
-        /* Background Video Lock */
-        .video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-        video { min-width: 100%; min-height: 100%; object-fit: cover; filter: brightness(0.3) grayscale(0.2); }
+        /* 4. DESIGN TWEAKS */
+        .green-glow { text-shadow: 0 0 20px rgba(34, 197, 94, 0.6); }
+        .card-mechanical { background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); transition: 0.3s; }
+        .card-mechanical:hover { border-color: var(--elite-green); box-shadow: 0 0 20px rgba(34,197,94,0.1); }
     </style>
 </head>
 <body>
@@ -29,67 +42,66 @@
         <div class="load-bar"><div class="load-fill" id="fill"></div></div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-black/80 backdrop-blur-md px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-loop-with-green-lights-43555-large.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="font-black italic text-xl uppercase tracking-tighter">ELITE <span class="text-green-500">VAN</span></div>
-            <div class="hidden md:flex gap-8 mono text-[10px] uppercase tracking-widest text-gray-400">
+            <div class="hidden md:flex gap-10 mono text-[10px] uppercase tracking-[0.2em] text-gray-400">
                 <a href="index.html" class="text-green-500">Command</a>
-                <a href="fitouts.html" class="hover:text-white transition">Van Fitouts</a>
+                <a href="fitouts.html" class="hover:text-white transition">Fitouts</a>
+                <a href="tel:0468086490" class="hover:text-white transition">0468 086 490</a>
             </div>
-            <a href="tel:0468086490" class="mono text-[10px] text-green-500 font-bold border border-green-500/30 px-4 py-2 rounded-full tracking-widest">0468 086 490</a>
         </div>
     </nav>
 
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-loop-with-green-lights-43555-large.mp4" type="video/mp4">
-        </video>
-    </div>
+    <main class="relative z-10 w-full pt-32 pb-20">
+        
+        <section class="max-w-7xl mx-auto px-6 text-center mb-32">
+            <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.6em] uppercase mb-6">Melbourne South East // Rowville</p>
+            <h1 class="text-5xl md:text-8xl lg:text-9xl font-black italic uppercase leading-[0.85] tracking-tighter mb-10">
+                ENGINEERED <br> FOR THE <span class="text-green-500 green-glow">ELITE</span>
+            </h1>
+            <a href="fitouts.html" class="inline-block bg-green-600 text-black font-black px-12 py-5 uppercase text-xs tracking-[0.2em] hover:bg-green-400 transition transform hover:scale-105">
+                Start Configurator
+            </a>
+        </section>
 
-    <section class="min-h-screen flex items-center justify-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 w-full text-center lg:text-left grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <p class="mono text-green-500 text-xs tracking-[0.5em] mb-4 uppercase">Rowville // Victoria</p>
-                <h1 class="text-5xl md:text-8xl font-black italic uppercase leading-[0.9] tracking-tighter mb-8">
-                    ENGINEERED <br> FOR THE <span class="text-green-500 green-glow">ELITE</span>
-                </h1>
-                <a href="fitouts.html" class="inline-block bg-green-600 text-black font-black px-10 py-4 uppercase text-xs tracking-widest hover:bg-green-400 transition">
-                    Launch Configurator
-                </a>
+        <section class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
+            <div class="card-mechanical p-10 rounded-3xl border-green-500/30">
+                <p class="mono text-green-500 text-[9px] mb-4">MODULE_01</p>
+                <h3 class="text-3xl font-black italic uppercase mb-4">Van Fitouts</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Bespoke drawer systems, shelving, and internal engineering for trade elite.</p>
             </div>
-            <div class="grid gap-4">
-                <div class="bg-zinc-950/90 border border-white/10 p-8 rounded-2xl text-left backdrop-blur-md">
-                    <h3 class="text-2xl font-black italic uppercase mb-2">Van Fitouts</h3>
-                    <p class="text-gray-500 text-sm">Bespoke drawer systems and internal architecture.</p>
-                </div>
-                <div class="bg-zinc-900/30 border border-white/5 p-8 rounded-2xl text-left opacity-30">
-                    <h3 class="text-2xl font-black italic uppercase text-gray-400">Signage</h3>
-                </div>
+            <div class="card-mechanical p-10 rounded-3xl opacity-30">
+                <p class="mono text-gray-400 text-[9px] mb-4">MODULE_02</p>
+                <h3 class="text-3xl font-black italic uppercase mb-4">Signage</h3>
+                <p class="text-gray-600 text-sm italic">Status: Offline</p>
             </div>
-        </div>
-    </section>
+            <div class="card-mechanical p-10 rounded-3xl opacity-30">
+                <p class="mono text-gray-400 text-[9px] mb-4">MODULE_03</p>
+                <h3 class="text-3xl font-black italic uppercase mb-4">Scaling</h3>
+                <p class="text-gray-600 text-sm italic">Status: Offline</p>
+            </div>
+        </section>
 
-    <section class="bg-black/90 py-24 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-6 leading-tight text-white">The <span class="text-green-500">Workshop</span></h2>
-                <p class="text-gray-400 mb-8 text-lg font-light">8/8 Enterprise Drive, Rowville VIC 3178</p>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mono text-[10px] text-gray-600 uppercase tracking-[0.2em]">
-                    <span>Dandenong</span> <span>Moorabbin</span> <span>Mulgrave</span> <span>Clayton</span> <span>Melbourne</span> <span>Rowville</span>
+        <section class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+                <h2 class="text-4xl md:text-6xl font-black italic uppercase mb-6 leading-tight text-white">The <span class="text-green-500">Workshop</span></h2>
+                <p class="text-gray-400 mb-8 text-lg font-light italic uppercase tracking-widest">8/8 Enterprise Drive, Rowville VIC</p>
+                <div class="grid grid-cols-2 gap-4 mono text-[10px] text-gray-600 uppercase">
+                    <span>Dandenong</span> <span>Moorabbin</span> <span>Mulgrave</span> <span>Clayton</span>
                 </div>
             </div>
-            <div class="h-[400px] w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-green-500/10">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.563456885374!2d145.2443!3d-37.9192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d3f5f67b4ef%3A0x5045675218ce5c0!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(110deg) brightness(0.7);" allowfullscreen="" loading="lazy"></iframe>
+            <div class="h-[400px] w-full rounded-3xl overflow-hidden border border-white/10 grayscale invert brightness-75">
+                <iframe src="http://googleusercontent.com/maps.google.com/7" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-zinc-950 py-12 border-t border-white/5 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="mono text-gray-500 text-[9px] uppercase tracking-widest">© 2026 ELITE VAN FITOUTS // ALL SYSTEMS NOMINAL</p>
-            <p class="mono text-green-500 text-[9px] uppercase tracking-widest">Designed for the Elite</p>
-        </div>
-    </footer>
+    </main>
 
     <script>
         window.onload = () => {
