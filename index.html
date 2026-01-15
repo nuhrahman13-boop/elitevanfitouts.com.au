@@ -3,61 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITE VAN FITOUTS</title>
+    <title>ELITE VAN FITOUTS | COMMAND CENTER</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono&display=swap');
-        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
-        .green-glow { text-shadow: 0 0 15px #22c55e; color: #22c55e; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --elite-green: #22c55e; }
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: white; margin: 0; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .glass-card { background: #0a0a0a; border: 1px solid #1a1a1a; transition: 0.3s; }
-        .glass-card:hover { border-color: #22c55e; }
+        
+        /* Loading Screen */
+        #loader { position: fixed; inset: 0; background: #000; z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .load-bar { width: 240px; height: 1px; background: rgba(255,255,255,0.1); position: relative; }
+        .load-progress { position: absolute; left: 0; top: 0; height: 100%; background: var(--elite-green); width: 0%; transition: width 1.2s cubic-bezier(0.1, 0, 0.1, 1); }
+
+        /* HUD & Visuals */
+        .green-glow { text-shadow: 0 0 15px var(--elite-green); }
+        .hud-grid { background-image: radial-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px); background-size: 30px 30px; pointer-events: none; }
+        
+        .swiper-slide { 
+            background: rgba(10, 10, 10, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(15px); width: 320px; height: 450px; border-radius: 20px;
+            display: flex; flex-direction: column; justify-content: center; padding: 40px; transition: 0.5s;
+        }
+        .swiper-slide-active { border-color: var(--elite-green); box-shadow: 0 0 30px rgba(34, 197, 94, 0.2); }
     </style>
 </head>
-<body class="bg-black">
-    <nav class="p-6 border-b border-white/5 flex justify-between items-center sticky top-0 bg-black z-50">
-        <div class="font-black italic text-xl">ELITE <span class="text-green-500">VAN</span></div>
-        <div class="mono text-[10px] text-green-500 uppercase tracking-widest">Rowville_HQ</div>
+<body>
+
+    <div id="loader">
+        <p id="boot-text" class="mono text-[10px] text-green-500 mb-4 tracking-[0.5em] uppercase">Initializing_Elite_OS...</p>
+        <div class="load-bar"><div class="load-progress" id="load-fill"></div></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 backdrop-blur-md border-b border-white/5">
+        <div class="flex items-center gap-4">
+            <img src="logo.png" alt="ELITE" class="h-8 md:h-10" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="hidden font-black italic text-2xl tracking-tighter uppercase">ELITE <span class="text-green-500">VAN</span></span>
+        </div>
+        <div class="hidden md:flex gap-10 mono text-[10px] tracking-[0.3em] font-bold uppercase text-gray-400">
+            <a href="index.html" class="text-green-500 underline underline-offset-8 decoration-2">Command</a>
+            <a href="fitouts.html" class="hover:text-green-500 transition">Van Fitouts</a>
+        </div>
+        <a href="tel:0468086490" class="mono text-[10px] text-green-500 border border-green-500/30 px-4 py-2 rounded-full">0468 086 490</a>
     </nav>
 
-    <section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6">
-        <p class="mono text-[10px] text-green-500 mb-4 tracking-[0.5em] uppercase">Engineered for the</p>
-        <h1 class="text-6xl md:text-9xl font-black italic uppercase leading-none mb-10">
-            THE <span class="green-glow">ELITE</span>
-        </h1>
-        <a href="fitouts.html" class="bg-green-500 text-black font-black px-12 py-5 uppercase text-xs tracking-widest hover:bg-green-400 transition">
-            Start Configurator
-        </a>
-    </section>
+    <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 hud-grid z-10"></div>
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-30 brightness-50">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-loop-with-green-lights-43555-large.mp4" type="video/mp4">
+        </video>
 
-    <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pb-20">
-        <div class="glass-card p-10 rounded-2xl border-green-500/50">
-            <p class="mono text-green-500 text-[9px] mb-2 uppercase tracking-widest">Module_01</p>
-            <h3 class="text-2xl font-black uppercase italic mb-4">Van Fitouts</h3>
-            <p class="text-gray-500 text-sm">Bespoke shelving, drawers, and full internal engineering.</p>
-        </div>
-        <div class="glass-card p-10 rounded-2xl opacity-30">
-            <p class="mono text-gray-500 text-[9px] mb-2 uppercase tracking-widest">Module_02</p>
-            <h3 class="text-2xl font-black uppercase italic mb-4 text-gray-500">Signage</h3>
-            <p class="text-gray-700 text-sm italic">Status: Offline</p>
-        </div>
-        <div class="glass-card p-10 rounded-2xl opacity-30">
-            <p class="mono text-gray-500 text-[9px] mb-2 uppercase tracking-widest">Module_03</p>
-            <h3 class="text-2xl font-black uppercase italic mb-4 text-gray-500">Scaling</h3>
-            <p class="text-gray-700 text-sm italic">Status: Offline</p>
-        </div>
-    </section>
-
-    <footer class="bg-zinc-950 p-12 border-t border-white/5">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <p class="mono text-green-500 text-[10px] mb-2 uppercase">Base Coordinates</p>
-                <p class="text-lg font-bold uppercase">8/8 Enterprise Drive, Rowville</p>
+        <div class="relative z-20 text-center px-6">
+            <h1 class="text-5xl md:text-[110px] font-black italic uppercase leading-none tracking-tighter mb-8" data-aos="zoom-in">
+                ENGINEERED <br> FOR THE <span class="text-green-500 green-glow">ELITE</span>
+            </h1>
+            
+            <div class="swiper mySwiper py-10">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <p class="mono text-green-500 text-[9px] mb-4 tracking-[0.3em]">MODULE_01</p>
+                        <h3 class="text-3xl font-black italic uppercase mb-4 leading-tight">Van <br> Fitouts</h3>
+                        <p class="text-gray-500 text-xs mb-8">Bespoke shelving, drawers, and full internal engineering.</p>
+                        <a href="fitouts.html" class="bg-green-600 text-black px-8 py-3 font-black text-[10px] uppercase tracking-widest hover:bg-green-400 transition">Initialize</a>
+                    </div>
+                    <div class="swiper-slide opacity-30">
+                        <p class="mono text-gray-500 text-[9px] mb-4">MODULE_02</p>
+                        <h3 class="text-3xl font-black italic uppercase mb-4">Signage</h3>
+                        <p class="text-gray-600 text-[10px] italic">Offline_Mode</p>
+                    </div>
+                    <div class="swiper-slide opacity-30">
+                        <p class="mono text-gray-500 text-[9px] mb-4">MODULE_03</p>
+                        <h3 class="text-3xl font-black italic uppercase mb-4">Scaling</h3>
+                        <p class="text-gray-600 text-[10px] italic">Offline_Mode</p>
+                    </div>
+                </div>
             </div>
-            <div class="flex gap-4 mono text-[10px] text-gray-500 uppercase flex-wrap justify-center">
-                <span>Dandenong</span> • <span>Moorabbin</span> • <span>Mulgrave</span> • <span>Clayton</span>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 px-8 border-t border-white/5 relative z-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+            <div>
+                <p class="mono text-green-500 text-[10px] mb-4 uppercase tracking-[0.5em]">Base_Coordinates</p>
+                <h3 class="text-3xl font-black uppercase italic mb-2">8/8 Enterprise Drive <br> Rowville, VIC</h3>
+                <p class="text-gray-600 mono text-[10px]">INFO@ELITEVANFITOUTS.COM.AU</p>
+            </div>
+            <div class="grid grid-cols-2 gap-x-12 gap-y-2 mono text-[10px] text-gray-700 uppercase">
+                <p>Rowville</p> <p>Dandenong</p>
+                <p>Moorabbin</p> <p>Mulgrave</p>
+                <p>Clayton</p> <p>Melbourne SE</p>
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init();
+        // Boot Loader
+        window.onload = () => {
+            document.getElementById('load-fill').style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
+            }, 1500);
+        };
+        // Slider
+        new Swiper(".mySwiper", {
+            effect: "cards",
+            grabCursor: true,
+            centeredSlides: true,
+        });
+    </script>
 </body>
 </html>
