@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE VAN FITOUTS | COMMAND CENTER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --elite-green: #22c55e; }
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Mechanical Glows */
+        .pulse-green { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { filter: drop-shadow(0 0 2px var(--elite-green)); opacity: 1; } 50% { filter: drop-shadow(0 0 12px var(--elite-green)); opacity: 0.8; } }
+        
+        /* HUD Grid Overlay */
+        .hud-grid { 
+            background-image: radial-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px); 
+            background-size: 40px 40px; 
+            pointer-events: none; 
+        }
+
+        /* Mechanical Scanline */
+        .scanline {
+            width: 100%; height: 2px; background: rgba(34, 197, 94, 0.1);
+            position: absolute; animation: scan 4s linear infinite; z-index: 5;
+        }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 backdrop-blur-xl border-b border-white/10">
+        <div class="flex items-center gap-4">
+            <img src="logo.png" alt="ELITE" class="h-10 pulse-green" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="hidden font-black italic text-2xl tracking-tighter uppercase">ELITE <span class="text-green-500">VAN</span></span>
+        </div>
+        <div class="hidden md:flex gap-10 mono text-[10px] tracking-[0.3em] font-bold uppercase text-gray-400">
+            <a href="index.html" class="text-green-500 underline decoration-2 underline-offset-8">Command</a>
+            <a href="fitouts.html" class="hover:text-green-500 transition">Van Fitouts</a>
+            <a href="#" class="hover:text-green-500 transition opacity-30">Signage (Locked)</a>
+            <a href="#" class="hover:text-green-500 transition opacity-30">Scaling (Locked)</a>
+        </div>
+        <div class="flex flex-col items-end">
+            <a href="tel:0468086490" class="mono text-[11px] text-green-500 font-bold">0468 086 490</a>
+            <span class="text-[8px] text-gray-500 uppercase mono">Rowville_HQ</span>
+        </div>
+    </nav>
+
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="scanline"></div>
+        <div class="absolute inset-0 hud-grid z-10"></div>
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 brightness-75 grayscale-[0.3]">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-loop-with-green-lights-43555-large.mp4" type="video/mp4">
+        </video>
+        
+        <div class="relative z-20 text-center px-6" data-aos="zoom-in" data-aos-duration="1500">
+            <h2 class="mono text-green-500 text-[10px] tracking-[0.8em] uppercase mb-4 pulse-green">System_Active // Verified_Nomad</h2>
+            <h1 class="text-5xl md:text-[115px] font-black italic uppercase leading-none tracking-tighter mb-8">
+                ENGINEERED <br> FOR THE <span class="text-green-500">ELITE</span>
+            </h1>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-4">
+                <a href="fitouts.html" class="bg-green-600 text-black px-12 py-5 font-black uppercase tracking-widest text-xs hover:bg-green-400 transition-all transform hover:scale-105">
+                    Launch Configurator
+                </a>
+                <a href="mailto:info@elitevanfitouts.com.au" class="border border-white/20 px-12 py-5 font-black uppercase tracking-widest text-xs hover:bg-white/10 transition">
+                    Contact Base
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-10 hidden md:block mono text-[9px] text-gray-600 space-y-1">
+            <p>LAT: 37.9192° S</p>
+            <p>LONG: 145.2443° E</p>
+            <p>UNIT_8/8_ENTERPRISE_DRIVE</p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-zinc-950 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <h3 class="mono text-green-500 text-[10px] tracking-[0.4em] uppercase mb-4">Operations_Zone</h3>
+                <h2 class="text-5xl font-black italic uppercase mb-6 leading-tight">Melbourne <br> <span class="text-green-500">South East</span></h2>
+                <p class="text-gray-500 max-w-sm mb-10 text-sm leading-relaxed">Centrally located in Rowville, we provide elite engineering to tradesmen and adventurers across Victoria's primary industrial sectors.</p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="border border-white/10 px-4 py-2 mono text-[9px] uppercase">Rowville</span>
+                    <span class="border border-white/10 px-4 py-2 mono text-[9px] uppercase">Dandenong</span>
+                    <span class="border border-white/10 px-4 py-2 mono text-[9px] uppercase">Moorabbin</span>
+                    <span class="border border-white/10 px-4 py-2 mono text-[9px] uppercase">Clayton</span>
+                </div>
+            </div>
+            <div class="relative group" data-aos="fade-left">
+                <div class="absolute -inset-4 bg-green-500/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition"></div>
+                <div class="border border-white/10 p-2 bg-black">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.68114387556!2d145.241725!3d-37.9192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6157f89b8895b%3A0xc3f090d8109d739!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1710000000000!5m2!1sen!2sau" width="100%" height="350" style="border:0; filter: invert(90%) hue-rotate(100deg) brightness(0.7);" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+</body>
+</html>
