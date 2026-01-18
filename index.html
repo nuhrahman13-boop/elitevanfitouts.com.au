@@ -1,65 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITE VAN FITOUTS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body, html { margin: 0; padding: 0; background-color: #000; color: white; height: 100%; overflow-x: hidden; }
-        
-        /* VIDEO LAYER - FORCED VISIBLE */
-        #bg-video {
-            position: fixed;
-            top: 0; 
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1; /* Puts it behind text, but in front of black background */
-            opacity: 0.6; /* Makes it slightly dark so text pops */
-        }
-
-        /* CONTENT LAYER */
-        main {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        /* BUTTON STYLE */
-        .btn-elite {
-            background-color: #22c55e;
-            color: black;
-            padding: 15px 40px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            display: inline-block;
-            cursor: pointer;
-        }
+        body { margin: 0; background: black; color: white; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; font-family: sans-serif; }
+        video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.5; }
+        h1 { font-size: 3rem; text-transform: uppercase; font-style: italic; text-align: center; }
     </style>
 </head>
 <body>
 
-    <video autoplay muted loop playsinline id="bg-video">
-        <source src="hero.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline>
+        <source src="https://cdn.coverr.co/videos/coverr-driving-at-night-5464/1080p.mp4" type="video/mp4">
     </video>
 
-    <main>
-        <h1 class="text-5xl md:text-8xl font-black italic uppercase">
-            ENGINEERED<br>FOR THE <span class="text-green-500">ELITE</span>
-        </h1>
-        
-        <div onclick="window.location.href='fitouts.html'" class="btn-elite">
-            Launch Configurator
-        </div>
-    </main>
+    <h1>Engineered for the Elite</h1>
 
 </body>
 </html>
