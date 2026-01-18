@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- FONTS --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root { --elite-green: #22c55e; }
         
@@ -18,16 +18,17 @@
         
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- HERO SECTION (ADJUSTED FOR ZOOM) --- */
+        /* --- HERO SECTION --- */
         .hero-section {
             position: relative; 
             width: 100%; 
-            /* MOBILE FIX: Dropped to 65vh so video zooms out more */
-            height: 65vh; 
+            /* MOBILE: 70% height so the next section is visible at bottom */
+            height: 70vh; 
             overflow: hidden; 
             display: flex; 
-            align-items: center; 
-            justify-content: center;
+            /* ALIGNMENT: Pushes text to the bottom left */
+            align-items: flex-end; 
+            justify-content: flex-start;
         }
 
         .hero-video {
@@ -36,50 +37,42 @@
             transition: transform 0.5s ease;
         }
 
-        /* Desktop: Full Height + Slight Zoom In */
+        /* Desktop: Full Height + Slight Zoom */
         @media (min-width: 768px) {
             .hero-section { height: 100vh; }
             .hero-video { transform: scale(1.15); }
         }
 
-        /* --- OVERLAYS --- */
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); /* 40% darkness */
+        /* --- FADE GRADIENT (Readability) --- */
+        .hero-fade {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to top, #000000 10%, rgba(0,0,0,0.6) 50%, transparent 100%);
             z-index: 2;
         }
 
-        .hero-fade {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
-            background: linear-gradient(to bottom, transparent, #000000);
-            z-index: 3;
-        }
-
-        /* --- GLOWING OUTLINE TEXT EFFECT --- */
+        /* --- CONTENT STYLING --- */
         .hero-content {
-            position: relative; z-index: 10; text-align: center; width: 100%; padding: 0 20px;
+            position: relative; 
+            z-index: 10; 
+            text-align: left; 
+            width: 100%; 
+            padding: 0 24px 40px 24px; /* Bottom padding keeps text off the very edge */
+            max-width: 900px;
         }
 
         .hero-title { 
-            font-size: clamp(3rem, 11vw, 9rem); 
+            font-size: clamp(2.5rem, 9vw, 6.5rem); 
             line-height: 0.9;
-            /* White Outline Base */
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Soft White Glow */
-        }
-
-        /* The "ELITE" Green Glow */
-        .glow-green {
-            color: transparent;
-            -webkit-text-stroke: 1.5px var(--elite-green); /* Thicker Outline */
-            text-shadow: 0 0 20px rgba(34, 197, 94, 0.6); /* Intense Green Neon Glow */
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
         }
 
         /* --- UI ELEMENTS --- */
         .glass-nav {
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
         }
         
         .glass-card {
@@ -93,6 +86,19 @@
             text-transform: uppercase; letter-spacing: 0.1em;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
             transition: 0.3s; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+
+        /* Tech Badge */
+        .tech-badge {
+            display: inline-block;
+            border-left: 3px solid var(--elite-green);
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(4px);
+            padding: 6px 12px;
+            font-size: 10px;
+            margin-bottom: 16px;
+            color: #ccc;
         }
 
         /* --- LOADER --- */
@@ -112,7 +118,7 @@
         <div class="load-bar"><div class="load-fill" id="fill"></div></div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain">
             <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400">
@@ -128,35 +134,37 @@
         <video autoplay muted loop playsinline class="hero-video">
             <source src="hero.mp4" type="video/mp4">
         </video>
-        <div class="hero-overlay"></div>
+        
         <div class="hero-fade"></div>
 
-        <div class="hero-content pt-10">
-            <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse" style="text-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">
+        <div class="hero-content">
+            <div class="tech-badge mono uppercase tracking-widest">
                 Rowville_HQ :: System_Online
-            </p>
+            </div>
             
-            <h1 class="hero-title font-black italic uppercase tracking-tighter mb-10">
-                ENGINEERED<br>
-                FOR THE <span class="glow-green">ELITE</span>
+            <h1 class="hero-title">
+                Engineered<br>
+                For The <span class="text-green-500">Elite.</span>
             </h1>
             
-            <a href="fitouts.html" class="btn-elite px-10 py-5 text-sm md:text-base inline-block hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
-                Launch_Configurator
+            <a href="fitouts.html" class="btn-elite px-8 py-4 text-xs md:text-sm">
+                Launch Configurator <span>→</span>
             </a>
         </div>
     </header>
 
     <main class="w-full pb-20 bg-black relative z-20">
-        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-20 mb-32">
+        
+        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 mb-32">
             <div onclick="window.location.href='fitouts.html'" class="glass-card p-8 rounded-2xl cursor-pointer group">
                 <div class="flex justify-between items-start mb-8">
                     <p class="mono text-green-500 text-[10px]">MODULE_01</p>
                     <div class="h-2 w-2 bg-green-500 rounded-full animate-ping"></div>
                 </div>
                 <h3 class="text-3xl font-black italic uppercase mb-2 group-hover:text-green-500 transition">Fitouts</h3>
-                <p class="text-gray-400 text-xs">Bespoke drawer systems.</p>
+                <p class="text-gray-400 text-xs leading-relaxed">Bespoke drawer systems & internal architecture.</p>
             </div>
+
             <div class="glass-card p-8 rounded-2xl opacity-50 grayscale">
                 <div class="flex justify-between items-start mb-8">
                     <p class="mono text-gray-500 text-[10px]">MODULE_02</p>
@@ -165,7 +173,8 @@
                 <h3 class="text-3xl font-black italic uppercase mb-2">Signage</h3>
                 <p class="text-gray-500 text-xs">Vehicle branding.</p>
             </div>
-             <div class="glass-card p-8 rounded-2xl opacity-50 grayscale">
+
+            <div class="glass-card p-8 rounded-2xl opacity-50 grayscale">
                 <div class="flex justify-between items-start mb-8">
                     <p class="mono text-gray-500 text-[10px]">MODULE_03</p>
                     <p class="mono text-[10px] border border-gray-500 px-1 rounded">LOCKED</p>
