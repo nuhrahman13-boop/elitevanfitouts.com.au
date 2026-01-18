@@ -6,7 +6,7 @@
     <title>ELITE VAN FITOUTS | COMMAND</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* FONTS */
+        /* --- FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root { --elite-green: #22c55e; }
@@ -16,56 +16,67 @@
             padding: 0; 
             color: white; 
             font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
-            background: #000; /* Fallback */
+            background-color: #000;
+            overflow-x: hidden;
+            height: 100%;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- VIDEO ENGINE (MOBILE FIXED) --- */
-        #video-background {
+        /* --- 1. THE VIDEO ENGINE (The Bulletproof Fix) --- */
+        .video-container {
             position: fixed;
-            top: 0; 
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 100dvh; /* FIXES IPHONE ADDRESS BAR JUMP */
-            z-index: -10;
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
+            z-index: -10; /* Locked to the back */
         }
 
         video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* CROPS SIDES OF 16:9 VIDEO TO FILL VERTICAL PHONE */
+            object-position: center; /* Keeps the middle of the van in focus */
+            display: block;
         }
 
-        /* --- DARKENING OVERLAY --- */
-        #video-overlay {
+        /* --- 2. DARK OVERLAY (Text Readability) --- */
+        .video-overlay {
             position: fixed;
-            top: 0; 
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0, 0, 0, 0.55); /* Slightly lighter for visibility */
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.65); /* 65% Black Tint */
             z-index: -5;
         }
 
-        /* --- CONTENT LAYER --- */
-        main {
-            position: relative;
-            z-index: 10;
+        /* --- 3. SYSTEM LOADER --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
         }
+        .load-bar { width: 200px; height: 2px; background: #333; margin-top: 15px; }
+        .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 1s ease-in-out; }
 
-        /* --- GLASS UI --- */
+        /* --- 4. GLASS UI COMPONENTS --- */
         .glass-nav {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .glass-card {
-            background: rgba(15, 15, 15, 0.8);
+            background: rgba(15, 15, 15, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             transition: transform 0.3s, border-color 0.3s;
@@ -86,54 +97,138 @@
             letter-spacing: 0.1em;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
             transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-elite:hover {
+            background: #4ade80;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
+
+        /* --- MOBILE TEXT SCALING --- */
+        .hero-title {
+            font-size: clamp(3rem, 13vw, 8rem); /* Scales smoothly between mobile and desktop */
+            line-height: 0.9;
         }
     </style>
 </head>
 <body>
 
-    <div id="video-background">
+    <div id="loader">
+        <p class="mono text-green-500 text-xs tracking-widest uppercase">Initializing_Elite_OS...</p>
+        <div class="load-bar"><div class="load-fill" id="fill"></div></div>
+    </div>
+
+    <div class="video-container">
         <video autoplay muted loop playsinline>
             <source src="hero.mp4" type="video/mp4">
         </video>
     </div>
 
-    <div id="video-overlay"></div>
+    <div class="video-overlay"></div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <img src="logo.png" alt="ELITE" class="h-8 md:h-12 w-auto object-contain">
+            <img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain">
             
             <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400">
-                <span class="text-white border-b border-green-500 pb-1">Command</span>
+                <span class="text-white border-b border-green-500 pb-1 cursor-default">Command</span>
                 <a href="fitouts.html" class="hover:text-green-500 transition">Fitouts</a>
                 <a href="#contact" class="hover:text-green-500 transition">Contact</a>
             </div>
             
-            <div class="md:hidden text-green-500 text-xl font-bold">///</div>
+            <div class="md:hidden text-green-500 text-2xl font-bold">///</div>
         </div>
     </nav>
 
-    <main class="w-full">
+    <main class="relative z-10 w-full pt-32 pb-20">
         
-        <section class="min-h-[85dvh] flex flex-col justify-center items-center text-center px-4 pt-20">
-            <p class="mono text-green-500 text-[10px] tracking-[0.3em] uppercase mb-4 animate-pulse">
-                Rowville_HQ :: System_Ready
+        <section class="min-h-[85vh] flex flex-col justify-center items-center text-center px-4 mb-20">
+            <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">
+                Rowville_HQ :: System_Online
             </p>
             
-            <h1 class="text-[11vw] md:text-8xl font-black italic uppercase leading-[0.9] tracking-tighter mb-8 drop-shadow-2xl">
+            <h1 class="hero-title font-black italic uppercase tracking-tighter mb-10 drop-shadow-2xl">
                 ENGINEERED<br>FOR THE <span class="text-green-500">ELITE</span>
             </h1>
             
-            <a href="fitouts.html" class="btn-elite px-10 py-4 text-xs md:text-base inline-block">
+            <a href="fitouts.html" class="btn-elite px-10 py-5 text-sm md:text-base inline-block">
                 Launch_Configurator
             </a>
         </section>
 
-        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-4 mb-24">
-            <div onclick="window.location.href='fitouts.html'" class="glass-card p-6 md:p-8 rounded-2xl cursor-pointer group">
-                <div class="flex justify-between items-start mb-4">
+        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
+            
+            <div onclick="window.location.href='fitouts.html'" class="glass-card p-8 rounded-2xl cursor-pointer group">
+                <div class="flex justify-between items-start mb-8">
                     <p class="mono text-green-500 text-[10px]">MODULE_01</p>
-                    <div class="h-1.5 w-1.5 bg-green-500 rounded-full animate-ping"></div>
+                    <div class="h-2 w-2 bg-green-500 rounded-full animate-ping"></div>
                 </div>
-                <h3 class="text-2xl md:text-3xl font-black italic uppercase mb-2 group-hover:text-green-500 transition">Fitouts</h3>
-                <p class="text-gray-400 text-xs">
+                <h3 class="text-3xl font-black italic uppercase mb-2 group-hover:text-green-500 transition">Fitouts</h3>
+                <p class="text-gray-400 text-xs leading-relaxed">Bespoke drawer systems & internal architecture.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl opacity-50 grayscale">
+                <div class="flex justify-between items-start mb-8">
+                    <p class="mono text-gray-500 text-[10px]">MODULE_02</p>
+                    <p class="mono text-[10px] border border-gray-500 px-1 rounded">LOCKED</p>
+                </div>
+                <h3 class="text-3xl font-black italic uppercase mb-2">Signage</h3>
+                <p class="text-gray-500 text-xs">Vehicle branding & vinyl wraps.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl opacity-50 grayscale">
+                <div class="flex justify-between items-start mb-8">
+                    <p class="mono text-gray-500 text-[10px]">MODULE_03</p>
+                    <p class="mono text-[10px] border border-gray-500 px-1 rounded">LOCKED</p>
+                </div>
+                <h3 class="text-3xl font-black italic uppercase mb-2">Scaling</h3>
+                <p class="text-gray-500 text-xs">Business automation & systems.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="max-w-7xl mx-auto px-6">
+            <div class="bg-black/80 border border-white/10 rounded-3xl p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center backdrop-blur-md">
+                
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-4xl font-black italic uppercase mb-6">Operational <span class="text-green-500">Base</span></h2>
+                    <div class="mono text-sm space-y-2 mb-8 text-gray-300">
+                        <p>8/8 Enterprise Drive, Rowville</p>
+                        <p>Victoria, 3178</p>
+                        <p class="text-green-500 mt-4 text-xs">STATUS: ACCEPTING NEW BUILDS</p>
+                    </div>
+                    <a href="tel:0468086490" class="inline-block border border-white/20 hover:border-green-500 hover:text-green-500 transition px-8 py-3 rounded-full mono text-lg font-bold bg-white/5">
+                        0468 086 490
+                    </a>
+                </div>
+
+                <div class="h-[300px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.473539823616!2d145.2396!3d-37.9175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d6f1f8f6f6f%3A0x1f8f6f6f1f8f6f6f!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+            </div>
+            
+            <p class="text-center text-gray-600 text-[10px] mono uppercase mt-12 mb-4">
+                © 2025 ELITE VAN FITOUTS.
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        window.onload = () => {
+            // 1. Fill the bar
+            document.getElementById('fill').style.width = '100%';
+            
+            // 2. Hide Loader after delay
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 800);
+            }, 1000);
+        };
+    </script>
+
+</body>
+</html>
