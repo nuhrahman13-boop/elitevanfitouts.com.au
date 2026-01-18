@@ -22,11 +22,11 @@
         .hero-section {
             position: relative; 
             width: 100%; 
-            height: 60vh; /* Mobile Zoom Out Fix */
+            height: 60vh; /* Mobile Height */
             overflow: hidden; 
             display: flex; 
-            align-items: flex-end; /* Pushes content to bottom */
-            justify-content: flex-start; /* Pushes content to left */
+            align-items: flex-end; 
+            justify-content: flex-start;
             background: #000; 
         }
 
@@ -48,24 +48,55 @@
             z-index: 2;
         }
 
-        /* --- ANIMATED STATUS BAR (Moved to Top Left) --- */
+        /* --- CONTENT STYLING --- */
+        .hero-content {
+            position: relative; 
+            z-index: 10; 
+            text-align: left; 
+            width: 100%; 
+            /* PADDING FIX: Enough space at bottom for Text + Bar */
+            padding: 0 24px 50px 24px; 
+            max-width: 900px;
+        }
+
+        .hero-title { 
+            font-size: clamp(2rem, 7vw, 5rem); 
+            line-height: 0.95;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            margin-bottom: 16px; /* Space between text and bar */
+        }
+
+        .elite-glow {
+            text-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+        }
+
+        /* --- ANIMATED STATUS BAR (Compact Mobile Version) --- */
         .status-terminal {
-            position: absolute;
-            top: 100px; /* Below the Navbar */
-            left: 24px;
-            z-index: 20; /* On top of everything */
-            
             display: inline-flex;
             align-items: center;
-            border-left: 3px solid var(--elite-green);
-            background: rgba(0, 0, 0, 0.6);
+            border-left: 2px solid var(--elite-green);
+            background: rgba(20, 20, 20, 0.8); /* Darker background for contrast */
             backdrop-filter: blur(8px);
-            padding: 8px 16px;
-            gap: 12px;
-            font-size: 0.7rem;
+            
+            /* COMPACT SIZING */
+            padding: 8px 16px; 
+            gap: 10px;
+            font-size: 0.65rem; /* Smaller font for mobile */
             color: #ccc;
             border-top-right-radius: 4px;
             border-bottom-right-radius: 4px;
+        }
+
+        /* Desktop Adjustments for Bar */
+        @media (min-width: 768px) {
+            .status-terminal {
+                padding: 12px 24px;
+                font-size: 0.8rem;
+            }
         }
 
         .status-dot {
@@ -84,69 +115,28 @@
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* --- MAIN TEXT (Bottom Left) --- */
-        .hero-content {
-            position: relative; 
-            z-index: 10; 
-            text-align: left; 
-            width: 100%; 
-            padding: 0 24px 50px 24px; /* Padding keeps it off the very edge */
-            max-width: 900px;
-        }
 
-        .hero-title { 
-            font-size: clamp(2rem, 7vw, 5rem); 
-            line-height: 0.95;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            letter-spacing: -0.02em;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
-        }
-
-        /* THE SOFT GLOW EFFECT */
-        .elite-glow {
-            text-shadow: 0 0 25px rgba(34, 197, 94, 0.5); /* Soft Green Halo */
-        }
-
-        /* --- EXPANDABLE CARDS --- */
+        /* --- CARDS --- */
         .glass-card {
-            background: #111; 
-            border: 1px solid #333; 
-            transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: hidden;
-            position: relative;
+            background: #111; border: 1px solid #333; transition: all 0.3s ease;
+            cursor: pointer; overflow: hidden; position: relative;
         }
         .glass-card:hover { border-color: var(--elite-green); }
         
         .card-content { padding: 32px; }
-        
         .card-details {
-            max-height: 0;
-            overflow: hidden;
-            background: rgba(34, 197, 94, 0.05);
+            max-height: 0; overflow: hidden; background: rgba(34, 197, 94, 0.05);
             transition: max-height 0.5s ease-in-out;
         }
-
-        .glass-card.active .card-details {
-            max-height: 200px;
-            border-top: 1px solid #333;
-        }
-        
+        .glass-card.active .card-details { max-height: 200px; border-top: 1px solid #333; }
         .glass-card.active .chevron { transform: rotate(180deg); }
 
         .btn-link {
-            display: inline-block;
-            margin-top: 16px;
-            color: var(--elite-green);
-            font-weight: bold;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: inline-block; margin-top: 16px; color: var(--elite-green);
+            font-weight: bold; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* --- UI ELEMENTS --- */
+        /* --- UI --- */
         .glass-nav { background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
         
         #loader {
@@ -184,23 +174,22 @@
         
         <div class="hero-fade"></div>
 
-        <div class="status-terminal mono uppercase tracking-widest">
-            <div class="status-dot"></div>
-            <div>System :: <span id="typewriter" class="text-white font-bold typewriter">ONLINE</span></div>
-        </div>
-
         <div class="hero-content">
             <h1 class="hero-title">
                 Engineered<br>
                 For The <span class="text-green-500 elite-glow">Elite.</span>
             </h1>
+            
+            <div class="status-terminal mono uppercase tracking-widest">
+                <div class="status-dot"></div>
+                <div>System :: <span id="typewriter" class="text-white font-bold typewriter">ONLINE</span></div>
+            </div>
         </div>
     </header>
 
     <main class="w-full pb-20 bg-black relative z-20">
         
         <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 mb-32">
-            
             <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
                 <div class="card-content flex justify-between items-start">
                     <div>
@@ -306,7 +295,6 @@
             }, 800);
         };
 
-        // Typewriter Animation
         const phrases = ["VAN_FITOUTS", "VEHICLE_SIGNAGE", "BUSINESS_SCALING", "SYSTEM_ONLINE"];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -341,7 +329,6 @@
         
         setTimeout(type, 1000);
 
-        // Accordion
         function toggleCard(card) {
             document.querySelectorAll('.glass-card').forEach(c => {
                 if (c !== card) c.classList.remove('active');
