@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELITE VAN FITOUTS | COMMAND</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --elite-green: #22c55e; }
+        
+        body, html { margin: 0; padding: 0; background-color: #000; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; height: 100%; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* PRELOADER */
+        #loader { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s ease; }
+        .load-bar { width: 220px; height: 1px; background: rgba(255,255,255,0.1); overflow: hidden; }
+        .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 1.2s cubic-bezier(0.1, 0, 0.1, 1); }
+
+        /* HERO VIDEO ENGINE - MOBILE OPTIMIZED */
+        .video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
+        video { 
+            width: 100vw; 
+            height: 100vh; 
+            object-fit: cover; /* THE MAGIC FIX */
+            object-position: center;
+            filter: brightness(0.4) grayscale(0.2); 
+            transition: transform 1s cubic-bezier(0.6, 0.05, 0.01, 0.99), filter 1s ease;
+        }
+        
+        /* TRANSITION TUNNEL */
+        #transition-overlay { position: fixed; inset: 0; background: #000; z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.8s ease; }
+        .zoom-active video { transform: scale(3.5); filter: blur(15px) brightness(0); }
+
+        /* UI ELEMENTS */
+        .glass-nav { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .glass-card { background: rgba(10, 10, 10, 0.85); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(12px); transition: 0.3s; }
+        .glass-card:hover { border-color: var(--elite-green); transform: translateY(-5px); }
+        .btn-elite { background: var(--elite-green); color: #000; font-weight: 900; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.1em; clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%); }
+        .btn-elite:hover { background: #4ade80; box-shadow: 0 0 25px rgba(34, 197, 94, 0.5); }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <p class="mono text-[10px] text-green-500 mb-4 tracking-[0.5em] uppercase">Initializing_Elite_OS...</p>
+        <div class="load-bar"><div class="load-fill" id="fill"></div></div>
+    </div>
+
+    <div id="transition-overlay"></div>
+
+    <div class="video-container" id="hero-container">
+        <video autoplay muted loop playsinline id="hero-video">
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <img src="logo.png" alt="Elite Van Fitouts" class="h-8 md:h-10 w-auto object-contain">
+            
+            <div class="hidden md:flex gap-10 mono text-[10px] uppercase tracking-widest text-gray-400">
+                <span class="text-green-500 border-b border-green-500 pb-1">Command</span>
+                <a href="#" onclick="eliteNavigate('fitouts.html')" class="hover:text-white transition">Fitouts</a>
+                <a href="tel:0468086490" class="hover:text-white transition">Contact</a>
+            </div>
+            <div class="md:hidden text-green-500 text-xl">///</div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 w-full pt-48 pb-20">
+        
+        <section class="max-w-7xl mx-auto px-6 text-center mb-52">
+            <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.6em] uppercase mb-8 animate-pulse">Rowville // HQ_Coordinates_Locked</p>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black italic uppercase leading-[0.85] tracking-tighter mb-12 drop-shadow-2xl">
+                ENGINEERED <br> FOR THE <span class="text-green-500">ELITE</span>
+            </h1>
+            <button onclick="eliteNavigate('fitouts.html')" class="btn-elite inline-block px-14 py-5 text-xs tracking-widest">
+                Launch_Configurator
+            </button>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 mb-40">
+            <div onclick="eliteNavigate('fitouts.html')" class="glass-card p-10 rounded-3xl cursor-pointer group">
+                <div class="flex justify-between items-start mb-6">
+                    <p class="mono text-green-500 text-[9px]">MODULE_01</p>
+                    <div class="h-2 w-2 bg-green-500 rounded-full animate-ping"></div>
+                </div>
+                <h3 class="text-3xl font-black italic uppercase mb-4 group-hover:text-green-500 transition">Fitouts</h3>
+                <p class="text-gray-400 text-xs leading-relaxed">Bespoke drawer systems and internal architecture.</p>
+            </div>
+
+            <div class="glass-card p-10 rounded-3xl opacity-40 grayscale">
+                <div class="flex justify-between items-start mb-6">
+                    <p class="mono text-gray-500 text-[9px]">MODULE_02</p>
+                    <p class="mono text-[9px] border border-gray-600 px-2 py-1 rounded">LOCKED</p>
+                </div>
+                <h3 class="text-3xl font-black italic uppercase mb-4">Signage</h3>
+                <p class="text-gray-500 text-xs">Premium vehicle branding and vinyl wraps.</p>
+            </div>
+
+            <div class="glass-card p-10 rounded-3xl opacity-40 grayscale">
+                <div class="flex justify-between items-start mb-6">
+                    <p class="mono text-gray-500 text-[9px]">MODULE_03</p>
+                    <p class="mono text-[9px] border border-gray-600 px-2 py-1 rounded">LOCKED</p>
+                </div>
+                <h3 class="text-3xl font-black italic uppercase mb-4">Scaling</h3>
+                <p class="text-gray-500 text-xs">Business automation and GHL integration.</p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center bg-black/80 py-20 rounded-[3rem] border border-white/5 backdrop-blur-md">
+            <div class="pl-0 lg:pl-12">
+                <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-6 leading-tight">Operational <br><span class="text-green-500">Base</span></h2>
+                <p class="text-white mb-2 text-lg font-bold uppercase">8/8 Enterprise Drive</p>
+                <p class="text-gray-500 mb-8 font-light mono">Rowville, VIC 3178</p>
+                
+                <a href="tel:0468086490" class="inline-block border border-white/20 hover:border-green-500 hover:text-green-500 transition px-8 py-3 rounded-full mono text-xl font-bold">
+                    0468 086 490
+                </a>
+            </div>
+            <div class="h-[350px] w-full rounded-3xl overflow-hidden border border-white/10 grayscale invert brightness-50">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.681123456789!2d145.241123456789!3d-37.915123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d4e8c1b1b1b%3A0x1b1b1b1b1b1b1b1b!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // BOOT SEQUENCE
+        window.onload = () => {
+            const fill = document.getElementById('fill');
+            const loader = document.getElementById('loader');
+            fill.style.width = '100%'; // Trigger bar animation
+            
+            setTimeout(() => {
+                loader.style.opacity = '0'; // Fade out black screen
+                setTimeout(() => loader.style.display = 'none', 600);
+            }, 1200);
+        };
+
+        // ZOOM TRANSITION LOGIC
+        function eliteNavigate(url) {
+            const container = document.getElementById('hero-container');
+            const overlay = document.getElementById('transition-overlay');
+            
+            // 1. Zoom the video container
+            container.classList.add('zoom-active');
+            
+            // 2. Fade to black slightly later
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+            }, 400);
+
+            // 3. Change page
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
