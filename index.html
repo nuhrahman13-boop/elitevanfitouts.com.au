@@ -12,86 +12,73 @@
         :root { --elite-green: #22c55e; }
         
         body, html { 
-            margin: 0; 
-            padding: 0; 
-            background-color: #000000;
-            color: white; 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden;
+            margin: 0; padding: 0; background-color: #000000;
+            color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- HERO SECTION (CALIBRATED) --- */
+        /* --- HERO SECTION --- */
         .hero-section {
-            position: relative;
-            width: 100%;
-            /* MOBILE FIX: Shorter height (80vh) means less zooming required to fill the box */
-            height: 80vh; 
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative; width: 100%; height: 80vh; 
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
 
         .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            z-index: 1;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; z-index: 1;
             transition: transform 0.5s ease;
         }
 
-        /* DESKTOP FIX: Full height + 15% Zoom In */
+        /* Desktop Zoom Effect */
         @media (min-width: 768px) {
-            .hero-section {
-                height: 100vh; /* Back to full screen for PC */
-            }
-            .hero-video {
-                transform: scale(1.15); /* Forces the "Zoomed In" look you wanted */
-            }
+            .hero-section { height: 100vh; }
+            .hero-video { transform: scale(1.15); }
         }
 
         /* --- OVERLAYS --- */
         .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); /* Reduced darkness so video pops more */
             z-index: 2;
         }
 
         .hero-fade {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 150px;
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
             background: linear-gradient(to bottom, transparent, #000000);
             z-index: 3;
         }
 
-        /* --- CONTENT --- */
+        /* --- THE TEXT EFFECT (BLUEPRINT STYLE) --- */
         .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            width: 100%;
-            padding: 0 20px;
-            margin-top: 20px;
+            position: relative; z-index: 10; text-align: center; width: 100%; padding: 0 20px;
+        }
+
+        .hero-title { 
+            font-size: clamp(3rem, 12vw, 9rem); 
+            line-height: 0.9;
+        }
+
+        /* The Hollow Effect */
+        .outline-text {
+            color: transparent; /* See-through */
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8); /* White Outline */
+            transition: color 1s ease;
+        }
+        
+        /* Optional: Fills in solid when you hover over it */
+        .hero-title:hover .outline-text {
+            color: white;
         }
 
         /* --- UI ELEMENTS --- */
         .glass-nav {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .glass-card {
-            background: #111;
-            border: 1px solid #333;
-            transition: transform 0.3s, border-color 0.3s;
+            background: #111; border: 1px solid #333; transition: transform 0.3s, border-color 0.3s;
         }
         .glass-card:hover { transform: translateY(-5px); border-color: var(--elite-green); }
 
@@ -102,8 +89,6 @@
             clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
             transition: 0.3s; cursor: pointer;
         }
-        
-        .hero-title { font-size: clamp(3rem, 12vw, 9rem); line-height: 0.9; }
 
         /* --- LOADER --- */
         #loader {
@@ -135,11 +120,9 @@
     </nav>
 
     <header class="hero-section">
-        
         <video autoplay muted loop playsinline class="hero-video">
             <source src="hero.mp4" type="video/mp4">
         </video>
-
         <div class="hero-overlay"></div>
         <div class="hero-fade"></div>
 
@@ -147,9 +130,12 @@
             <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">
                 Rowville_HQ :: System_Online
             </p>
+            
             <h1 class="hero-title font-black italic uppercase tracking-tighter mb-10 drop-shadow-2xl">
-                ENGINEERED<br>FOR THE <span class="text-green-500">ELITE</span>
+                <span class="outline-text">ENGINEERED</span><br>
+                FOR THE <span class="text-green-500">ELITE</span>
             </h1>
+            
             <a href="fitouts.html" class="btn-elite px-10 py-5 text-sm md:text-base inline-block">
                 Launch_Configurator
             </a>
@@ -157,7 +143,6 @@
     </header>
 
     <main class="w-full pb-20 bg-black relative z-20">
-        
         <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-20 mb-32">
             <div onclick="window.location.href='fitouts.html'" class="glass-card p-8 rounded-2xl cursor-pointer group">
                 <div class="flex justify-between items-start mb-8">
