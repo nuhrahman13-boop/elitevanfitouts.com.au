@@ -18,10 +18,16 @@
         
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (ADJUSTED FOR ZOOM) --- */
         .hero-section {
-            position: relative; width: 100%; height: 80vh; 
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            position: relative; 
+            width: 100%; 
+            /* MOBILE FIX: Dropped to 65vh so video zooms out more */
+            height: 65vh; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
         }
 
         .hero-video {
@@ -30,7 +36,7 @@
             transition: transform 0.5s ease;
         }
 
-        /* Desktop Zoom Effect */
+        /* Desktop: Full Height + Slight Zoom In */
         @media (min-width: 768px) {
             .hero-section { height: 100vh; }
             .hero-video { transform: scale(1.15); }
@@ -39,7 +45,7 @@
         /* --- OVERLAYS --- */
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); /* Reduced darkness so video pops more */
+            background: rgba(0,0,0,0.4); /* 40% darkness */
             z-index: 2;
         }
 
@@ -49,26 +55,25 @@
             z-index: 3;
         }
 
-        /* --- THE TEXT EFFECT (BLUEPRINT STYLE) --- */
+        /* --- GLOWING OUTLINE TEXT EFFECT --- */
         .hero-content {
             position: relative; z-index: 10; text-align: center; width: 100%; padding: 0 20px;
         }
 
         .hero-title { 
-            font-size: clamp(3rem, 12vw, 9rem); 
+            font-size: clamp(3rem, 11vw, 9rem); 
             line-height: 0.9;
+            /* White Outline Base */
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Soft White Glow */
         }
 
-        /* The Hollow Effect */
-        .outline-text {
-            color: transparent; /* See-through */
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8); /* White Outline */
-            transition: color 1s ease;
-        }
-        
-        /* Optional: Fills in solid when you hover over it */
-        .hero-title:hover .outline-text {
-            color: white;
+        /* The "ELITE" Green Glow */
+        .glow-green {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--elite-green); /* Thicker Outline */
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.6); /* Intense Green Neon Glow */
         }
 
         /* --- UI ELEMENTS --- */
@@ -126,17 +131,17 @@
         <div class="hero-overlay"></div>
         <div class="hero-fade"></div>
 
-        <div class="hero-content">
-            <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">
+        <div class="hero-content pt-10">
+            <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse" style="text-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">
                 Rowville_HQ :: System_Online
             </p>
             
-            <h1 class="hero-title font-black italic uppercase tracking-tighter mb-10 drop-shadow-2xl">
-                <span class="outline-text">ENGINEERED</span><br>
-                FOR THE <span class="text-green-500">ELITE</span>
+            <h1 class="hero-title font-black italic uppercase tracking-tighter mb-10">
+                ENGINEERED<br>
+                FOR THE <span class="glow-green">ELITE</span>
             </h1>
             
-            <a href="fitouts.html" class="btn-elite px-10 py-5 text-sm md:text-base inline-block">
+            <a href="fitouts.html" class="btn-elite px-10 py-5 text-sm md:text-base inline-block hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
                 Launch_Configurator
             </a>
         </div>
