@@ -22,7 +22,7 @@
         .hero-section {
             position: relative; 
             width: 100%; 
-            height: 70vh; /* Mobile Height */
+            height: 70vh; 
             overflow: hidden; 
             display: flex; 
             align-items: flex-end; 
@@ -32,33 +32,39 @@
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; object-position: center; z-index: 1;
+            
+            /* --- THE FIX: DEEP BLACK FILTER --- */
+            /* contrast(1.15): Crushes the blocky grey artifacts into pure black */
+            /* brightness(0.9): Slightly dims the background to hide noise */
+            /* saturate(1.1): Makes the green light pop more */
+            filter: contrast(1.15) brightness(0.9) saturate(1.1);
+            
             transition: transform 0.5s ease;
         }
 
         @media (min-width: 768px) {
             .hero-section { height: 100vh; }
-            .hero-video { transform: scale(1.15); }
+            /* REMOVED THE ZOOM (transform: scale) TO KEEP PIXELS SHARP */
         }
 
+        /* --- GRADIENT FADE --- */
         .hero-fade {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 70%;
-            background: linear-gradient(to top, #000000 10%, rgba(0,0,0,0.6) 50%, transparent 100%);
+            background: linear-gradient(to top, #000000 10%, rgba(0,0,0,0.5) 50%, transparent 100%);
             z-index: 2;
         }
 
-        /* --- CONTENT STYLING (The Fixes) --- */
+        /* --- CONTENT STYLING --- */
         .hero-content {
             position: relative; 
             z-index: 10; 
             text-align: left; 
             width: 100%; 
-            /* PADDING FIX: Increased bottom padding to 80px to push button UP */
             padding: 0 24px 80px 24px; 
             max-width: 900px;
         }
 
         .hero-title { 
-            /* SIZE FIX: Reduced clamp values for smaller text */
             font-size: clamp(2rem, 7vw, 5rem); 
             line-height: 0.95;
             font-weight: 900;
@@ -66,6 +72,7 @@
             font-style: italic;
             margin-bottom: 20px;
             letter-spacing: -0.02em;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Helps text stand out against the video */
         }
 
         /* --- UI ELEMENTS --- */
@@ -78,7 +85,6 @@
         }
         .glass-card:hover { transform: translateY(-5px); border-color: var(--elite-green); }
 
-        /* BUTTON FIX: Smaller padding and smaller font size */
         .btn-elite {
             background: var(--elite-green); color: black;
             font-family: 'JetBrains Mono', monospace; font-weight: 700;
@@ -86,10 +92,8 @@
             clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
             transition: 0.3s; cursor: pointer;
             display: inline-flex; align-items: center; gap: 8px;
-            
-            /* COMPACT SIZE */
             padding: 12px 24px; 
-            font-size: 0.7rem; /* Smaller text */
+            font-size: 0.7rem;
         }
 
         .tech-badge {
