@@ -11,49 +11,63 @@
         
         :root { --elite-green: #22c55e; }
         
-        /* CRITICAL FIX: Background MUST be transparent or it hides the video */
         body, html { 
             margin: 0; 
             padding: 0; 
-            background: transparent; /* THIS IS THE KEY FIX */
+            background-color: #000000; /* Solid Black Background for the page */
             color: white; 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden;
-            height: 100%;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- VIDEO LAYER (Fixed to Screen) --- */
-        #bg-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%; 
-            min-height: 100%;
-            width: auto; 
-            height: auto; 
-            z-index: -100; /* Way back */
-            background-size: cover;
-            object-fit: cover; /* Ensures 16:9 fills vertical screens */
+        /* --- THE HERO SECTION (Where the video lives) --- */
+        .hero-section {
+            position: relative; /* Video stays inside this box */
+            width: 100%;
+            height: 100vh; /* Full screen height */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* --- OVERLAY LAYER (Darken video for text) --- */
-        #bg-overlay {
-            position: fixed;
+        /* Video styling to fit the Hero Box */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This makes the 16:9 video fill a vertical phone screen perfectly */
+            z-index: 1;
+        }
+
+        /* Dark Overlay so text is readable */
+        .hero-overlay {
+            position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: -50;
+            background: rgba(0,0,0,0.5); /* 50% darkness */
+            z-index: 2;
         }
 
-        /* --- LOADER --- */
-        #loader {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease;
+        /* A cool gradient at the bottom so the video fades into the black page */
+        .hero-fade {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 150px;
+            background: linear-gradient(to bottom, transparent, #000000);
+            z-index: 3;
         }
-        .load-bar { width: 200px; height: 2px; background: #333; margin-top: 15px; }
-        .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 0.8s ease-in-out; }
+
+        /* --- TEXT CONTENT (Sits on top of video) --- */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+        }
 
         /* --- UI ELEMENTS --- */
         .glass-nav {
@@ -63,9 +77,8 @@
         }
         
         .glass-card {
-            background: rgba(15, 15, 15, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
+            background: #111; /* Solid dark grey/black */
+            border: 1px solid #333;
             transition: transform 0.3s, border-color 0.3s;
         }
         
@@ -81,20 +94,23 @@
         
         /* Mobile Text Sizing */
         .hero-title { font-size: clamp(3.5rem, 13vw, 9rem); line-height: 0.9; }
+        
+        /* --- LOADER --- */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .load-bar { width: 200px; height: 2px; background: #333; margin-top: 15px; }
+        .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 0.8s ease-in-out; }
     </style>
 </head>
 <body>
 
     <div id="loader">
-        <p class="mono text-green-500 text-xs tracking-widest uppercase">Initializing...</p>
+        <p class="mono text-green-500 text-xs tracking-widest uppercase">System_Initializing...</p>
         <div class="load-bar"><div class="load-fill" id="fill"></div></div>
     </div>
-
-    <video autoplay muted loop playsinline id="bg-video">
-        <source src="hero.mp4" type="video/mp4">
-    </video>
-
-    <div id="bg-overlay"></div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -108,9 +124,17 @@
         </div>
     </nav>
 
-    <main class="relative z-10 w-full pt-32 pb-20">
+    <header class="hero-section">
         
-        <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-4 mb-20">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-fade"></div>
+
+        <div class="hero-content pt-20">
             <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">
                 Rowville_HQ :: System_Online
             </p>
@@ -120,9 +144,12 @@
             <a href="fitouts.html" class="btn-elite px-10 py-5 text-sm md:text-base inline-block">
                 Launch_Configurator
             </a>
-        </section>
+        </div>
+    </header>
 
-        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
+    <main class="w-full pb-20 bg-black relative z-20">
+        
+        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-20 mb-32">
             <div onclick="window.location.href='fitouts.html'" class="glass-card p-8 rounded-2xl cursor-pointer group">
                 <div class="flex justify-between items-start mb-8">
                     <p class="mono text-green-500 text-[10px]">MODULE_01</p>
@@ -150,7 +177,7 @@
         </section>
 
         <section id="contact" class="max-w-7xl mx-auto px-6">
-            <div class="bg-black/80 border border-white/10 rounded-3xl p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center backdrop-blur-md">
+            <div class="bg-[#111] border border-[#333] rounded-3xl p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center">
                 <div class="text-left">
                     <h2 class="text-3xl font-black italic uppercase mb-6">Operational <span class="text-green-500">Base</span></h2>
                     <div class="mono text-sm space-y-2 mb-8 text-gray-300">
@@ -174,20 +201,12 @@
 
     <script>
         window.onload = () => {
-            // 1. Force Video Play (Fixes iPhone Low Power Mode issues)
-            let video = document.getElementById("bg-video");
-            video.play().catch(function(error) {
-                console.log("Video autoplay failed, likely due to Low Power Mode.");
-            });
-
-            // 2. Animate Loader
+            // Loader Animation
             document.getElementById('fill').style.width = '100%';
             setTimeout(() => {
                 const loader = document.getElementById('loader');
                 loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
             }, 800);
         };
     </script>
