@@ -14,7 +14,7 @@
         body, html { 
             margin: 0; 
             padding: 0; 
-            background-color: #000000; /* Solid Black Background for the page */
+            background-color: #000000;
             color: white; 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden;
@@ -22,37 +22,48 @@
         
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- THE HERO SECTION (Where the video lives) --- */
+        /* --- HERO SECTION (CALIBRATED) --- */
         .hero-section {
-            position: relative; /* Video stays inside this box */
+            position: relative;
             width: 100%;
-            height: 100vh; /* Full screen height */
+            /* MOBILE FIX: Shorter height (80vh) means less zooming required to fill the box */
+            height: 80vh; 
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Video styling to fit the Hero Box */
         .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* This makes the 16:9 video fill a vertical phone screen perfectly */
+            object-fit: cover;
+            object-position: center;
             z-index: 1;
+            transition: transform 0.5s ease;
         }
 
-        /* Dark Overlay so text is readable */
+        /* DESKTOP FIX: Full height + 15% Zoom In */
+        @media (min-width: 768px) {
+            .hero-section {
+                height: 100vh; /* Back to full screen for PC */
+            }
+            .hero-video {
+                transform: scale(1.15); /* Forces the "Zoomed In" look you wanted */
+            }
+        }
+
+        /* --- OVERLAYS --- */
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); /* 50% darkness */
+            background: rgba(0,0,0,0.5);
             z-index: 2;
         }
 
-        /* A cool gradient at the bottom so the video fades into the black page */
         .hero-fade {
             position: absolute;
             bottom: 0; left: 0; width: 100%; height: 150px;
@@ -60,13 +71,14 @@
             z-index: 3;
         }
 
-        /* --- TEXT CONTENT (Sits on top of video) --- */
+        /* --- CONTENT --- */
         .hero-content {
             position: relative;
             z-index: 10;
             text-align: center;
             width: 100%;
             padding: 0 20px;
+            margin-top: 20px;
         }
 
         /* --- UI ELEMENTS --- */
@@ -77,11 +89,10 @@
         }
         
         .glass-card {
-            background: #111; /* Solid dark grey/black */
+            background: #111;
             border: 1px solid #333;
             transition: transform 0.3s, border-color 0.3s;
         }
-        
         .glass-card:hover { transform: translateY(-5px); border-color: var(--elite-green); }
 
         .btn-elite {
@@ -92,9 +103,8 @@
             transition: 0.3s; cursor: pointer;
         }
         
-        /* Mobile Text Sizing */
-        .hero-title { font-size: clamp(3.5rem, 13vw, 9rem); line-height: 0.9; }
-        
+        .hero-title { font-size: clamp(3rem, 12vw, 9rem); line-height: 0.9; }
+
         /* --- LOADER --- */
         #loader {
             position: fixed; inset: 0; background: #000; z-index: 9999;
@@ -131,10 +141,9 @@
         </video>
 
         <div class="hero-overlay"></div>
-        
         <div class="hero-fade"></div>
 
-        <div class="hero-content pt-20">
+        <div class="hero-content">
             <p class="mono text-green-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">
                 Rowville_HQ :: System_Online
             </p>
@@ -201,7 +210,6 @@
 
     <script>
         window.onload = () => {
-            // Loader Animation
             document.getElementById('fill').style.width = '100%';
             setTimeout(() => {
                 const loader = document.getElementById('loader');
