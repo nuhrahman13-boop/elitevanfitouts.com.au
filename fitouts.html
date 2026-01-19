@@ -2,119 +2,281 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FITOUT CONFIGURATOR | ELITE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELITE | CONFIGURATOR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
-        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --elite-green: #22c55e; }
+        
+        body, html { 
+            background-color: #000; color: white; 
+            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            padding-bottom: 100px; /* Space for sticky footer */
+        }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.4s; position: relative; overflow: hidden; }
-        .card.active { border-color: #22c55e; background: rgba(34, 197, 94, 0.05); box-shadow: 0 0 30px rgba(34, 197, 94, 0.1); }
-        .extra-card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.2s; }
-        .extra-card.selected { border-color: #22c55e; background: #22c55e; color: #000; }
-        .sticky-bar { position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); border-top: 1px solid #22c55e; z-index: 100; }
+
+        /* --- HEADER --- */
+        .nav-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 24px; border-bottom: 1px solid #222;
+        }
+
+        /* --- PACKAGE SELECTION GRID --- */
+        .package-card {
+            background: #111; border: 1px solid #333; 
+            border-radius: 12px; padding: 24px; cursor: pointer;
+            transition: all 0.2s ease; position: relative;
+            overflow: hidden;
+        }
+        
+        /* Selected State */
+        .package-card.selected {
+            border-color: var(--elite-green);
+            background: rgba(34, 197, 94, 0.05);
+        }
+        
+        /* The "Scan Line" animation on hover */
+        .package-card::after {
+            content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(34, 197, 94, 0.2), transparent);
+            transition: top 0.5s; pointer-events: none;
+        }
+        .package-card:hover::after { top: 150%; }
+
+        /* Mozaik Image Placeholder */
+        .mozaik-view {
+            width: 100%; height: 180px; 
+            background: #000; border: 1px dashed #333;
+            margin-bottom: 16px; display: flex; align-items: center; justify-content: center;
+            color: #555; font-size: 0.7rem; text-transform: uppercase;
+        }
+        
+        .package-price { font-size: 1.5rem; font-weight: 900; color: white; }
+        .selected .package-price { color: var(--elite-green); }
+
+        /* --- ADD-ONS GRID --- */
+        .addon-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px; border-bottom: 1px solid #222;
+        }
+        .addon-control { display: flex; align-items: center; gap: 10px; }
+        
+        /* Custom Checkbox */
+        .elite-checkbox {
+            appearance: none; width: 20px; height: 20px; border: 1px solid #555;
+            background: black; cursor: pointer; display: grid; place-content: center;
+        }
+        .elite-checkbox::before {
+            content: ""; width: 12px; height: 12px; background: var(--elite-green);
+            transform: scale(0); transition: 0.2s transform;
+        }
+        .elite-checkbox:checked::before { transform: scale(1); }
+        .elite-checkbox:checked { border-color: var(--elite-green); }
+
+        /* Quantity Stepper (For Crates) */
+        .qty-btn {
+            width: 24px; height: 24px; background: #222; color: white;
+            border: none; cursor: pointer; font-weight: bold;
+        }
+        .qty-val { width: 30px; text-align: center; background: transparent; color: white; font-size: 0.9rem; }
+
+        /* --- STICKY FOOTER --- */
+        .total-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--elite-green);
+            padding: 16px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+        }
+        
+        .proceed-btn {
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-weight: 700;
+            padding: 10px 20px; text-transform: uppercase;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+        }
     </style>
 </head>
-<body class="pb-48 bg-black">
+<body>
 
-    <nav class="p-6 border-b border-white/10 bg-black sticky top-0 z-50 flex justify-between items-center">
-        <a href="index.html" class="font-black italic text-xl uppercase tracking-tighter">ELITE <span class="text-green-500">VAN</span></a>
-        <div class="mono text-[9px] text-green-500 uppercase tracking-widest animate-pulse font-bold">Config_Active</div>
-    </nav>
-
-    <div class="max-w-5xl mx-auto px-6 py-12">
-        <h1 class="text-5xl md:text-7xl font-black italic uppercase mb-12 leading-tight">Select <br> <span class="text-green-500">Chassis</span></h1>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-            <div onclick="setTier(1499, 'Core', this)" class="card p-10 rounded-[2rem]">
-                <p class="mono text-green-500 text-[9px] mb-4 uppercase tracking-widest">Spec_01</p>
-                <h3 class="text-3xl font-black uppercase italic mb-4">Core</h3>
-                <p class="text-gray-500 text-xs mb-8">Ply lining and structural foundation.</p>
-                <p class="mono text-2xl font-bold">$1,499*</p>
-            </div>
-            <div onclick="setTier(2899, 'Pro', this)" class="card p-10 rounded-[2rem]">
-                <p class="mono text-green-500 text-[9px] mb-4 uppercase tracking-widest">Spec_02</p>
-                <h3 class="text-3xl font-black uppercase italic mb-4">Pro</h3>
-                <p class="text-gray-500 text-xs mb-8">Heavy-duty drawer systems and protective lining.</p>
-                <p class="mono text-2xl font-bold">$2,899*</p>
-            </div>
-            <div onclick="setTier(4999, 'Elite', this)" class="card p-10 rounded-[2rem]">
-                <p class="mono text-green-500 text-[9px] mb-4 uppercase tracking-widest">Spec_03</p>
-                <h3 class="text-3xl font-black uppercase italic mb-4">Elite</h3>
-                <p class="text-gray-400 text-xs mb-8">Dual drawers, shelving, and premium carpet finish.</p>
-                <p class="mono text-2xl font-bold">$4,999*</p>
-            </div>
-        </div>
-
-        <h2 class="text-3xl font-black italic uppercase mb-8">Modular <span class="text-green-500">Add-ons</span></h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
-            <div onclick="toggleExtra('Silicone Holder', 99, this)" class="extra-card p-6 rounded-2xl text-center">
-                <p class="text-[10px] font-black uppercase tracking-wider mb-2">Silicone Holder</p>
-                <p class="mono text-[11px] text-green-500">+$99</p>
-            </div>
-            <div onclick="toggleExtra('Crate System', 35, this)" class="extra-card p-6 rounded-2xl text-center">
-                <p class="text-[10px] font-black uppercase tracking-wider mb-2">Crate System</p>
-                <p class="mono text-[11px] text-green-500">+$35</p>
-            </div>
-            <div onclick="toggleExtra('Window Tint', 450, this)" class="extra-card p-6 rounded-2xl text-center">
-                <p class="text-[10px] font-black uppercase tracking-wider mb-2">Window Tint</p>
-                <p class="mono text-[11px] text-green-500">+$450</p>
-            </div>
-            <div onclick="toggleExtra('Roof Rack', 1200, this)" class="extra-card p-6 rounded-2xl text-center">
-                <p class="text-[10px] font-black uppercase tracking-wider mb-2">Roof Rack</p>
-                <p class="mono text-[11px] text-green-500">+$1200</p>
-            </div>
-        </div>
+    <div class="nav-bar">
+        <img src="logo.png" alt="ELITE" class="h-6">
+        <a href="index.html" class="mono text-xs text-gray-500 hover:text-white">EXIT_BUILDER [X]</a>
     </div>
 
-    <div class="sticky-bar p-8 md:p-12">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <p class="mono text-[10px] text-gray-500 uppercase mb-2 tracking-widest">Est_Total_Investment</p>
-                <p class="text-5xl font-black text-green-500 italic mono" id="price-display">$0</p>
+    <div class="max-w-4xl mx-auto px-6 pt-8">
+        
+        <h1 class="text-3xl font-black italic uppercase mb-2">Select Loadout</h1>
+        <p class="text-gray-500 text-xs mono mb-8">STEP 01 :: CORE_SYSTEM</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            
+            <div class="package-card" onclick="selectPackage(1499, 'BASIC', this)">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="mono text-xs text-gray-500">TIER_01</span>
+                    <div class="w-3 h-3 rounded-full bg-gray-700 status-light"></div>
+                </div>
+                <div class="mozaik-view">
+                    [MOZAIK RENDER: PLY LINING]
+                </div>
+                <h3 class="text-xl font-black uppercase italic">Basic</h3>
+                <p class="package-price my-2">$1,499</p>
+                <ul class="text-xs text-gray-400 space-y-2 mb-4 mono">
+                    <li>> Full Ply Lining</li>
+                    <li>> Wheel Arch Protection</li>
+                    <li>> Basic Cargo Hooks</li>
+                </ul>
             </div>
-            <button onclick="sendToGHL()" class="w-full md:w-auto bg-green-600 text-black font-black px-12 py-5 uppercase text-xs tracking-[0.2em] hover:bg-green-400 transition transform hover:scale-105">Initialize_Quote</button>
+
+            <div class="package-card selected" onclick="selectPackage(2899, 'ESSENTIAL', this)">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="mono text-green-500 text-xs">TIER_02 // POPULAR</span>
+                    <div class="w-3 h-3 rounded-full bg-green-500 status-light"></div>
+                </div>
+                <div class="mozaik-view">
+                    [MOZAIK RENDER: FALSE FLOOR]
+                </div>
+                <h3 class="text-xl font-black uppercase italic text-white">Essential</h3>
+                <p class="package-price my-2">$2,899</p>
+                <ul class="text-xs text-gray-400 space-y-2 mb-4 mono">
+                    <li>> False Floor System</li>
+                    <li>> 2x Heavy Duty Drawers</li>
+                    <li>> Hex Anti-Skid Surface</li>
+                </ul>
+            </div>
+
+            <div class="package-card" onclick="selectPackage(4999, 'ELITE', this)">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="mono text-xs text-gray-500">TIER_03 // MAX</span>
+                    <div class="w-3 h-3 rounded-full bg-gray-700 status-light"></div>
+                </div>
+                <div class="mozaik-view">
+                    [MOZAIK RENDER: FULL SYSTEM]
+                </div>
+                <h3 class="text-xl font-black uppercase italic">Elite</h3>
+                <p class="package-price my-2">$4,999</p>
+                <ul class="text-xs text-gray-400 space-y-2 mb-4 mono">
+                    <li>> False Floor + Drawers</li>
+                    <li>> Dual Shelving Units</li>
+                    <li>> Full 12V Integration</li>
+                </ul>
+            </div>
+
         </div>
+
+        <h2 class="text-xl font-black italic uppercase mb-2">Tactical Upgrades</h2>
+        <p class="text-gray-500 text-xs mono mb-6">STEP 02 :: ACCESSORIES</p>
+
+        <div class="bg-[#111] border border-[#333] rounded-xl overflow-hidden mb-16">
+            
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Silicone Holders</p>
+                    <p class="text-xs text-gray-500">$99.00</p>
+                </div>
+                <input type="checkbox" class="elite-checkbox" onchange="toggleAddon(99, this)">
+            </div>
+
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Side Pocket Storage</p>
+                    <p class="text-xs text-gray-500">$89.00</p>
+                </div>
+                <input type="checkbox" class="elite-checkbox" onchange="toggleAddon(89, this)">
+            </div>
+
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Storage Crates</p>
+                    <p class="text-xs text-gray-500">$35.00 / unit</p>
+                </div>
+                <div class="addon-control">
+                    <button class="qty-btn" onclick="updateCrates(-1)">-</button>
+                    <span id="crate-count" class="qty-val mono">0</span>
+                    <button class="qty-btn" onclick="updateCrates(1)">+</button>
+                </div>
+            </div>
+
+            <div class="addon-item bg-gray-900/50">
+                <div>
+                    <p class="font-bold text-sm text-gray-400">Roof Rack System</p>
+                    <p class="text-xs text-green-500 mono">PRICE_ON_APPLICATION</p>
+                </div>
+                <input type="checkbox" class="elite-checkbox" disabled>
+            </div>
+
+        </div>
+
+        <div class="border border-green-500/30 bg-green-900/10 rounded-xl p-8 text-center mb-12">
+            <h3 class="text-2xl font-black italic uppercase mb-2">Need a Custom Build?</h3>
+            <p class="text-sm text-gray-400 mb-6">
+                Your requirements are unique. Book a design session and we will build your van in Mozaik live.
+            </p>
+            <button class="border border-green-500 text-green-500 px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-green-500 hover:text-black transition">
+                Request Design Lab
+            </button>
+        </div>
+
+    </div>
+
+    <div class="total-bar">
+        <div>
+            <p class="text-[10px] text-gray-500 mono uppercase">Estimated Build Cost</p>
+            <p class="text-2xl font-black text-white" id="total-price">$2,899</p>
+        </div>
+        <button class="proceed-btn" onclick="alert('Proceeding to Parts breakdown...')">
+            Next Step ->
+        </button>
     </div>
 
     <script>
-        let basePrice = 0;
-        let extrasTotal = 0;
-        let selectedTier = "";
-        let selectedExtras = [];
+        let basePrice = 2899; // Default Essential
+        let addonTotal = 0;
+        let crateCount = 0;
+        const cratePrice = 35;
 
-        function setTier(val, name, el) {
-            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-            basePrice = val;
-            selectedTier = name;
+        function updateDisplay() {
+            const total = basePrice + addonTotal + (crateCount * cratePrice);
+            // Formats number to currency (e.g., $2,899)
+            document.getElementById('total-price').innerText = '$' + total.toLocaleString();
+        }
+
+        function selectPackage(price, name, element) {
+            basePrice = price;
+            
+            // Visual Updates
+            document.querySelectorAll('.package-card').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('.status-light').classList.replace('bg-green-500', 'bg-gray-700');
+            });
+            
+            element.classList.add('selected');
+            element.querySelector('.status-light').classList.replace('bg-gray-700', 'bg-green-500');
+            
             updateDisplay();
         }
 
-        function toggleExtra(name, price, el) {
-            if (selectedExtras.includes(name)) {
-                selectedExtras = selectedExtras.filter(e => e !== name);
-                extrasTotal -= price;
-                el.classList.remove('selected');
+        function toggleAddon(price, checkbox) {
+            if (checkbox.checked) {
+                addonTotal += price;
             } else {
-                selectedExtras.push(name);
-                extrasTotal += price;
-                el.classList.add('selected');
+                addonTotal -= price;
             }
             updateDisplay();
         }
 
-        function updateDisplay() {
-            const total = basePrice + extrasTotal;
-            document.getElementById('price-display').innerText = `$${total.toLocaleString()}`;
-        }
-
-        function sendToGHL() {
-            if(!selectedTier) return alert("System Warning: Select Base Package First.");
-            const summary = `Tier: ${selectedTier}\nAdd-ons: ${selectedExtras.join(', ') || 'None'}\nTotal: $${(basePrice + extrasTotal).toLocaleString()}`;
-            alert("Transmission Initialized.\n\n" + summary);
+        function updateCrates(change) {
+            const newCount = crateCount + change;
+            if (newCount >= 0) {
+                crateCount = newCount;
+                document.getElementById('crate-count').innerText = crateCount;
+                updateDisplay();
+            }
         }
     </script>
+
 </body>
 </html>
