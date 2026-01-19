@@ -92,7 +92,7 @@
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* --- MODULE CARDS --- */
+        /* --- CARDS --- */
         .glass-card {
             background: #111; border: 1px solid #333; transition: all 0.3s ease;
             cursor: pointer; overflow: hidden; position: relative;
@@ -100,7 +100,6 @@
         .glass-card:hover { border-color: var(--elite-green); }
         
         .card-content { padding: 32px; }
-        
         .card-details {
             max-height: 0; overflow: hidden; background: rgba(34, 197, 94, 0.05);
             transition: max-height 0.6s ease-in-out;
@@ -121,7 +120,21 @@
         .feature-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .feature-list li::before { content: '>'; color: var(--elite-green); font-weight: bold; }
 
-        /* --- REVIEWS SECTION --- */
+        /* --- ALL IN ONE PACKAGE SECTION (NEW) --- */
+        .aio-section {
+            background: linear-gradient(145deg, #051005 0%, #000 100%);
+            border: 1px solid var(--elite-green);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+            position: relative; overflow: hidden;
+        }
+        .aio-badge {
+            background: var(--elite-green); color: black; font-weight: 900;
+            padding: 4px 12px; font-size: 0.7rem; text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace; display: inline-block;
+            margin-bottom: 16px;
+        }
+        
+        /* --- REVIEWS --- */
         .review-card {
             background: #0a0a0a; border: 1px solid #222; padding: 24px;
             border-radius: 12px; position: relative;
@@ -255,6 +268,63 @@
                         </ul>
                         <a href="#" class="btn-link opacity-50 cursor-not-allowed">Module Locked</a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-6 mb-20">
+            <div class="aio-section rounded-2xl p-8 md:p-12 relative">
+                
+                <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none"></div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+                    
+                    <div>
+                        <div class="aio-badge">MOST PROFITABLE</div>
+                        <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-6 leading-none">
+                            The <span class="text-green-500">Launchpad</span> Package
+                        </h2>
+                        <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8">
+                            We don't just build vans; we build empires. If you have a dream or a plan to start your own service business, we supply the entire infrastructure to take you from "Zero" to "Fully Operational" in record time.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-xs font-bold uppercase">Business Planning Strategy</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-xs font-bold uppercase">Premium Van Fitout</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-xs font-bold uppercase">Vehicle Signage & Wrap</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-xs font-bold uppercase">CRM & Automation Software</span>
+                            </div>
+                        </div>
+
+                        <a href="design-lab.html" class="inline-block bg-white text-black hover:bg-green-500 transition duration-300 font-bold uppercase px-8 py-4 text-sm tracking-widest clip-path-polygon">
+                            Launch Your Business
+                        </a>
+                    </div>
+
+                    <div class="hidden lg:flex justify-center items-center">
+                        <div class="relative w-full aspect-video bg-black/50 border border-green-500/30 rounded-xl flex flex-col items-center justify-center p-8 text-center">
+                            <p class="mono text-green-500 text-xs mb-4 animate-pulse">SYSTEM_INTEGRATION_COMPLETE</p>
+                            <div class="text-5xl font-black text-gray-800 mb-2">ALL-IN-ONE</div>
+                            <div class="text-xl font-bold text-white uppercase tracking-[0.5em]">Turnkey Solution</div>
+                            
+                            <div class="absolute -bottom-6 -right-6 bg-green-500 text-black font-bold p-4 rounded-lg shadow-lg shadow-green-500/20">
+                                <p class="text-2xl">100%</p>
+                                <p class="text-[10px] uppercase">Ready to Work</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
