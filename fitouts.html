@@ -12,7 +12,7 @@
         body, html { 
             background-color: #000; color: white; 
             font-family: 'Inter', sans-serif; overflow-x: hidden;
-            padding-bottom: 100px; /* Space for sticky footer */
+            padding-bottom: 120px; /* Space for sticky footer */
         }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
@@ -25,9 +25,10 @@
         /* --- PACKAGE SELECTION GRID --- */
         .package-card {
             background: #111; border: 1px solid #333; 
-            border-radius: 12px; padding: 24px; cursor: pointer;
+            border-radius: 12px; padding: 24px; 
             transition: all 0.2s ease; position: relative;
             overflow: hidden;
+            display: flex; flex-direction: column;
         }
         
         /* Selected State */
@@ -36,24 +37,38 @@
             background: rgba(34, 197, 94, 0.05);
         }
         
-        /* The "Scan Line" animation on hover */
-        .package-card::after {
-            content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to bottom, transparent, rgba(34, 197, 94, 0.2), transparent);
-            transition: top 0.5s; pointer-events: none;
-        }
-        .package-card:hover::after { top: 150%; }
+        /* Hover Effect */
+        .package-card:hover { border-color: #555; }
+        .package-card.selected:hover { border-color: var(--elite-green); }
 
         /* Mozaik Image Placeholder */
         .mozaik-view {
             width: 100%; height: 180px; 
-            background: #000; border: 1px dashed #333;
+            background: #050505; border: 1px dashed #333;
             margin-bottom: 16px; display: flex; align-items: center; justify-content: center;
-            color: #555; font-size: 0.7rem; text-transform: uppercase;
+            color: #444; font-size: 0.7rem; text-transform: uppercase;
         }
         
         .package-price { font-size: 1.5rem; font-weight: 900; color: white; }
         .selected .package-price { color: var(--elite-green); }
+
+        /* --- BUTTONS --- */
+        .select-btn {
+            width: 100%; padding: 12px; margin-top: auto;
+            border: 1px solid #333; background: transparent; color: white;
+            font-weight: bold; text-transform: uppercase; font-size: 0.8rem;
+            cursor: pointer; transition: 0.2s;
+        }
+        .selected .select-btn {
+            background: var(--elite-green); color: black; border-color: var(--elite-green);
+        }
+        
+        .details-link {
+            display: inline-block; width: 100%; text-align: center;
+            margin-top: 12px; font-size: 0.75rem; color: #888;
+            text-decoration: underline; cursor: pointer;
+        }
+        .details-link:hover { color: white; }
 
         /* --- ADD-ONS GRID --- */
         .addon-item {
@@ -87,7 +102,7 @@
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border-top: 1px solid var(--elite-green);
-            padding: 16px 24px;
+            padding: 20px 24px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 100;
         }
@@ -95,7 +110,7 @@
         .proceed-btn {
             background: var(--elite-green); color: black;
             font-family: 'JetBrains Mono', monospace; font-weight: 700;
-            padding: 10px 20px; text-transform: uppercase;
+            padding: 12px 24px; text-transform: uppercase;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
         }
     </style>
@@ -104,77 +119,81 @@
 
     <div class="nav-bar">
         <img src="logo.png" alt="ELITE" class="h-6">
-        <a href="index.html" class="mono text-xs text-gray-500 hover:text-white">EXIT_BUILDER [X]</a>
+        <a href="index.html" class="mono text-xs text-gray-500 hover:text-white">CLOSE_CONFIGURATOR [X]</a>
     </div>
 
-    <div class="max-w-4xl mx-auto px-6 pt-8">
+    <div class="max-w-5xl mx-auto px-6 pt-10">
         
-        <h1 class="text-3xl font-black italic uppercase mb-2">Select Loadout</h1>
-        <p class="text-gray-500 text-xs mono mb-8">STEP 01 :: CORE_SYSTEM</p>
+        <h1 class="text-3xl font-black italic uppercase mb-2">Configure Fitout</h1>
+        <p class="text-gray-500 text-xs mono mb-10">STEP 01 :: SELECT SYSTEM PACKAGE</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             
-            <div class="package-card" onclick="selectPackage(1499, 'BASIC', this)">
+            <div class="package-card" id="card-basic">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="mono text-xs text-gray-500">TIER_01</span>
-                    <div class="w-3 h-3 rounded-full bg-gray-700 status-light"></div>
+                    <span class="mono text-xs text-gray-500">OPTION 01</span>
                 </div>
-                <div class="mozaik-view">
-                    [MOZAIK RENDER: PLY LINING]
-                </div>
+                <div class="mozaik-view">[MOZAIK RENDER: PLY LINING]</div>
+                
                 <h3 class="text-xl font-black uppercase italic">Basic</h3>
                 <p class="package-price my-2">$1,499</p>
-                <ul class="text-xs text-gray-400 space-y-2 mb-4 mono">
-                    <li>> Full Ply Lining</li>
-                    <li>> Wheel Arch Protection</li>
-                    <li>> Basic Cargo Hooks</li>
+                <ul class="text-xs text-gray-400 space-y-2 mb-6 mono">
+                    <li>- Full Ply Lining</li>
+                    <li>- Wheel Arch Protection</li>
+                    <li>- Standard Cargo Hooks</li>
                 </ul>
+
+                <button class="select-btn" onclick="selectPackage(1499, 'card-basic')">Select Package</button>
+                
+                <a href="parts.html" class="details-link">View Full Specifications -></a>
             </div>
 
-            <div class="package-card selected" onclick="selectPackage(2899, 'ESSENTIAL', this)">
+            <div class="package-card selected" id="card-essential">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="mono text-green-500 text-xs">TIER_02 // POPULAR</span>
-                    <div class="w-3 h-3 rounded-full bg-green-500 status-light"></div>
+                    <span class="mono text-green-500 text-xs">OPTION 02 // POPULAR</span>
                 </div>
-                <div class="mozaik-view">
-                    [MOZAIK RENDER: FALSE FLOOR]
-                </div>
+                <div class="mozaik-view">[MOZAIK RENDER: FALSE FLOOR]</div>
+                
                 <h3 class="text-xl font-black uppercase italic text-white">Essential</h3>
                 <p class="package-price my-2">$2,899</p>
-                <ul class="text-xs text-gray-400 space-y-2 mb-4 mono">
-                    <li>> False Floor System</li>
-                    <li>> 2x Heavy Duty Drawers</li>
-                    <li>> Hex Anti-Skid Surface</li>
+                <ul class="text-xs text-gray-400 space-y-2 mb-6 mono">
+                    <li>- False Floor System</li>
+                    <li>- 2x Heavy Duty Drawers</li>
+                    <li>- Hex Anti-Skid Surface</li>
                 </ul>
+
+                <button class="select-btn" onclick="selectPackage(2899, 'card-essential')">Selected</button>
+                <a href="parts.html" class="details-link">View Full Specifications -></a>
             </div>
 
-            <div class="package-card" onclick="selectPackage(4999, 'ELITE', this)">
+            <div class="package-card" id="card-elite">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="mono text-xs text-gray-500">TIER_03 // MAX</span>
-                    <div class="w-3 h-3 rounded-full bg-gray-700 status-light"></div>
+                    <span class="mono text-xs text-gray-500">OPTION 03 // COMPLETE</span>
                 </div>
-                <div class="mozaik-view">
-                    [MOZAIK RENDER: FULL SYSTEM]
-                </div>
+                <div class="mozaik-view">[MOZAIK RENDER: FULL SYSTEM]</div>
+                
                 <h3 class="text-xl font-black uppercase italic">Elite</h3>
                 <p class="package-price my-2">$4,999</p>
-                <ul class="text-xs text-gray-400 space-y-2 mb-4 mono">
-                    <li>> False Floor + Drawers</li>
-                    <li>> Dual Shelving Units</li>
-                    <li>> Full 12V Integration</li>
+                <ul class="text-xs text-gray-400 space-y-2 mb-6 mono">
+                    <li>- False Floor + Drawers</li>
+                    <li>- Dual Shelving Units</li>
+                    <li>- Full 12V Integration</li>
                 </ul>
+
+                <button class="select-btn" onclick="selectPackage(4999, 'card-elite')">Select Package</button>
+                <a href="parts.html" class="details-link">View Full Specifications -></a>
             </div>
 
         </div>
 
-        <h2 class="text-xl font-black italic uppercase mb-2">Tactical Upgrades</h2>
-        <p class="text-gray-500 text-xs mono mb-6">STEP 02 :: ACCESSORIES</p>
+        <h2 class="text-xl font-black italic uppercase mb-2">System Accessories</h2>
+        <p class="text-gray-500 text-xs mono mb-6">STEP 02 :: OPTIONAL COMPONENTS</p>
 
         <div class="bg-[#111] border border-[#333] rounded-xl overflow-hidden mb-16">
             
             <div class="addon-item">
                 <div>
-                    <p class="font-bold text-sm">Silicone Holders</p>
+                    <p class="font-bold text-sm">Silicone & Caulk Holders</p>
                     <p class="text-xs text-gray-500">$99.00</p>
                 </div>
                 <input type="checkbox" class="elite-checkbox" onchange="toggleAddon(99, this)">
@@ -190,7 +209,7 @@
 
             <div class="addon-item">
                 <div>
-                    <p class="font-bold text-sm">Storage Crates</p>
+                    <p class="font-bold text-sm">Storage Crates (Stackable)</p>
                     <p class="text-xs text-gray-500">$35.00 / unit</p>
                 </div>
                 <div class="addon-control">
@@ -203,7 +222,7 @@
             <div class="addon-item bg-gray-900/50">
                 <div>
                     <p class="font-bold text-sm text-gray-400">Roof Rack System</p>
-                    <p class="text-xs text-green-500 mono">PRICE_ON_APPLICATION</p>
+                    <p class="text-xs text-green-500 mono">PRICE ON APPLICATION</p>
                 </div>
                 <input type="checkbox" class="elite-checkbox" disabled>
             </div>
@@ -211,9 +230,9 @@
         </div>
 
         <div class="border border-green-500/30 bg-green-900/10 rounded-xl p-8 text-center mb-12">
-            <h3 class="text-2xl font-black italic uppercase mb-2">Need a Custom Build?</h3>
+            <h3 class="text-2xl font-black italic uppercase mb-2">Need a Custom Layout?</h3>
             <p class="text-sm text-gray-400 mb-6">
-                Your requirements are unique. Book a design session and we will build your van in Mozaik live.
+                Every trade is different. Book a design consultation and we will build your exact layout in Mozaik live.
             </p>
             <button class="border border-green-500 text-green-500 px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-green-500 hover:text-black transition">
                 Request Design Lab
@@ -224,11 +243,11 @@
 
     <div class="total-bar">
         <div>
-            <p class="text-[10px] text-gray-500 mono uppercase">Estimated Build Cost</p>
+            <p class="text-[10px] text-gray-500 mono uppercase">Estimated Total</p>
             <p class="text-2xl font-black text-white" id="total-price">$2,899</p>
         </div>
-        <button class="proceed-btn" onclick="alert('Proceeding to Parts breakdown...')">
-            Next Step ->
+        <button class="proceed-btn" onclick="alert('Proceeding to Summary...')">
+            Submit Build ->
         </button>
     </div>
 
@@ -240,21 +259,21 @@
 
         function updateDisplay() {
             const total = basePrice + addonTotal + (crateCount * cratePrice);
-            // Formats number to currency (e.g., $2,899)
             document.getElementById('total-price').innerText = '$' + total.toLocaleString();
         }
 
-        function selectPackage(price, name, element) {
+        function selectPackage(price, cardId) {
             basePrice = price;
             
             // Visual Updates
             document.querySelectorAll('.package-card').forEach(el => {
                 el.classList.remove('selected');
-                el.querySelector('.status-light').classList.replace('bg-green-500', 'bg-gray-700');
+                el.querySelector('.select-btn').innerText = "Select Package";
             });
             
-            element.classList.add('selected');
-            element.querySelector('.status-light').classList.replace('bg-gray-700', 'bg-green-500');
+            const card = document.getElementById(cardId);
+            card.classList.add('selected');
+            card.querySelector('.select-btn').innerText = "Selected";
             
             updateDisplay();
         }
