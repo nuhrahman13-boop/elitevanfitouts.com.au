@@ -3,285 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE | MISSION CONTROL</title>
+    <title>ELITE | CONFIGURATOR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        :root { --elite-green: #22c55e; --elite-gold: #fbbf24; }
+        :root { --elite-green: #22c55e; }
         
         body, html { 
             background-color: #000; color: white; 
             font-family: 'Inter', sans-serif; overflow-x: hidden;
+            padding-bottom: 120px; /* Space for sticky footer */
         }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- NAV --- */
-        .nav-bar {
+        /* --- NAVIGATION (MATCHING HOME) --- */
+        .glass-nav { 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); 
+            border-bottom: 1px solid #222;
+        }
+        
+        /* DROPDOWN MENU */
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: #050505; border: 1px solid #333; min-width: 180px;
+            padding: 10px 0; z-index: 100;
+        }
+        .dropdown-link {
+            display: block; padding: 10px 20px; color: #aaa; font-size: 0.75rem; 
+            text-transform: uppercase; transition: 0.2s;
+        }
+        .dropdown-link:hover { background: #111; color: var(--elite-green); }
+
+        /* MOBILE MENU */
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: black; z-index: 40; display: none;
+            padding-top: 100px; padding-left: 40px;
+        }
+        #mobile-menu.active { display: block; }
+
+        /* --- PACKAGE SELECTION GRID --- */
+        .package-card {
+            background: #0a0a0a; border: 1px solid #333; 
+            border-radius: 12px; padding: 24px; 
+            transition: all 0.2s ease; position: relative;
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+        
+        /* Selected State */
+        .package-card.selected {
+            border-color: var(--elite-green);
+            background: rgba(34, 197, 94, 0.05);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+        }
+        
+        .package-card:hover { border-color: #555; transform: translateY(-5px); }
+        .package-card.selected:hover { border-color: var(--elite-green); }
+
+        .mozaik-view {
+            width: 100%; height: 160px; 
+            background: #050505; border: 1px dashed #333;
+            margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
+            color: #444; font-size: 0.7rem; text-transform: uppercase;
+        }
+        
+        .package-price { font-size: 2rem; font-weight: 900; color: white; line-height: 1; }
+        .selected .package-price { color: var(--elite-green); }
+
+        /* --- BUTTONS --- */
+        .select-btn {
+            width: 100%; padding: 14px; margin-top: auto;
+            border: 1px solid #333; background: transparent; color: white;
+            font-weight: bold; text-transform: uppercase; font-size: 0.8rem;
+            cursor: pointer; transition: 0.2s; font-family: 'JetBrains Mono', monospace;
+        }
+        .selected .select-btn {
+            background: var(--elite-green); color: black; border-color: var(--elite-green);
+        }
+        
+        .details-link {
+            display: inline-block; width: 100%; text-align: center;
+            margin-top: 16px; font-size: 0.7rem; color: #666;
+            text-decoration: underline; cursor: pointer; mono;
+        }
+        .details-link:hover { color: white; }
+
+        /* --- ADD-ONS GRID --- */
+        .addon-item {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 24px; border-bottom: 1px solid #222; position: sticky; top: 0;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); z-index: 50;
+            padding: 20px; border-bottom: 1px solid #222;
         }
-
-        /* --- HERO --- */
-        .hero-section {
-            padding: 60px 24px 40px 24px; text-align: center; border-bottom: 1px solid #222;
-            background: radial-gradient(circle at center, #0f150f 0%, #000 80%);
-        }
-        .hero-title {
-            font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; italic;
-            text-transform: uppercase; line-height: 0.9; margin-bottom: 20px;
-        }
-
-        /* --- TABS --- */
-        .mission-tabs {
-            display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;
-        }
-        .mission-tab {
-            background: #111; border: 1px solid #333; color: #666;
-            padding: 12px 24px; font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase; font-size: 0.75rem; cursor: pointer; transition: 0.3s;
-        }
-        .mission-tab:hover { border-color: #666; }
+        .addon-control { display: flex; align-items: center; gap: 10px; }
         
-        .mission-tab.active {
-            background: var(--elite-green); color: black; border-color: var(--elite-green); font-weight: bold;
+        /* Custom Checkbox */
+        .elite-checkbox {
+            appearance: none; width: 24px; height: 24px; border: 1px solid #444;
+            background: black; cursor: pointer; display: grid; place-content: center;
+        }
+        .elite-checkbox::before {
+            content: ""; width: 14px; height: 14px; background: var(--elite-green);
+            transform: scale(0); transition: 0.2s transform;
+        }
+        .elite-checkbox:checked::before { transform: scale(1); }
+        .elite-checkbox:checked { border-color: var(--elite-green); }
+
+        /* Quantity Stepper */
+        .qty-btn {
+            width: 24px; height: 24px; background: #222; color: white;
+            border: none; cursor: pointer; font-weight: bold;
+        }
+        .qty-val { width: 30px; text-align: center; background: transparent; color: white; font-size: 0.9rem; }
+
+        /* --- STICKY FOOTER --- */
+        .total-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--elite-green);
+            padding: 20px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
         }
         
-        /* Gold Tab for Launchpad */
-        .mission-tab.gold { border-color: #333; color: #888; }
-        .mission-tab.gold.active {
-            background: white; color: black; border-color: white;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        .proceed-btn {
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-weight: 700;
+            padding: 12px 24px; text-transform: uppercase;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+            transition: 0.2s;
         }
-
-        /* --- FORM CONTAINERS --- */
-        .form-container {
-            display: none; max-width: 900px; margin: 0 auto;
-            background: #000; border: 1px solid #222; border-radius: 12px;
-            position: relative; overflow: hidden; min-height: 600px;
-        }
-        .form-container.active { display: block; animation: fadeIn 0.5s ease; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- PRE-FLIGHT SUMMARY (Visual Confirmation) --- */
-        .preflight-summary {
-            background: rgba(34, 197, 94, 0.1); border-bottom: 1px solid var(--elite-green);
-            padding: 15px; text-align: center; display: none; /* Hidden by default */
-        }
-        .preflight-text {
-            color: var(--elite-green); font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace; text-transform: uppercase;
-        }
-
-        /* --- LAUNCHPAD LAYOUT --- */
-        .launchpad-grid { display: grid; grid-cols-1 lg:grid-cols-[1fr_1.5fr]; }
-        .launchpad-sidebar {
-            background: #0a0a0a; padding: 40px; border-right: 1px solid #222;
-        }
-        .timeline-item { position: relative; padding-left: 30px; margin-bottom: 30px; border-left: 2px solid #333; }
-        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: #333; border-radius: 50%; }
-        .timeline-item.active { border-left-color: white; }
-        .timeline-item.active::before { background: white; box-shadow: 0 0 10px white; }
-        .timeline-title { font-weight: bold; color: white; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
-        .timeline-desc { font-size: 0.75rem; color: #888; line-height: 1.4; }
+        .proceed-btn:hover { background: white; }
     </style>
 </head>
 <body>
 
-    <div class="nav-bar">
-        <img src="logo.png" alt="ELITE" class="h-6">
-        <a href="index.html" class="mono text-xs text-gray-500 hover:text-white">ABORT_MISSION [X]</a>
-    </div>
-
-    <section class="hero-section">
-        <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4">Secure_Channel :: Open</p>
-        <h1 class="hero-title">Initiate <span class="text-green-500">Project</span></h1>
-        <p class="text-gray-400 max-w-xl mx-auto text-sm mt-4">Select your mission profile below.</p>
-    </section>
-
-    <div class="max-w-7xl mx-auto px-6 py-8">
-        <div class="mission-tabs">
-            <button id="tab-launchpad" class="mission-tab gold" onclick="switchTab('launchpad')">★ THE LAUNCHPAD</button>
-            <button id="tab-fitout" class="mission-tab" onclick="switchTab('fitout')">Van Fitout</button>
-            <button id="tab-branding" class="mission-tab" onclick="switchTab('branding')">Visuals / Signage</button>
-            <button id="tab-scaling" class="mission-tab" onclick="switchTab('scaling')">Business Scaling</button>
-        </div>
-
-        <div id="form-launchpad" class="form-container" style="border-color: #fff;">
-            <div class="launchpad-grid">
-                <div class="launchpad-sidebar">
-                    <h3 class="text-2xl font-black italic uppercase text-white mb-2">Empire <span class="text-green-500">Builder</span></h3>
-                    <p class="text-xs text-gray-400 mb-8">Business Incubation Program.</p>
-                    <div class="mb-8">
-                        <div class="timeline-item active"><div class="timeline-title">Phase 1: Identity</div><div class="timeline-desc">Logo, Naming, Strategy.</div></div>
-                        <div class="timeline-item active"><div class="timeline-title">Phase 2: Digital</div><div class="timeline-desc">Website & GHL Automation.</div></div>
-                        <div class="timeline-item active"><div class="timeline-title">Phase 3: Build</div><div class="timeline-desc">Physical Fitout & Wrap.</div></div>
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+            <img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain">
+            
+            <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400 items-center">
+                <a href="index.html" class="hover:text-green-500 transition">Command</a>
+                
+                <div class="relative dropdown">
+                    <button class="text-white border-b border-green-500 pb-1 flex items-center gap-1 py-2">
+                        Systems <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="fitouts.html" class="dropdown-link text-white border-l-2 border-green-500">Fitouts</a>
+                        <a href="branding.html" class="dropdown-link border-l-2 border-transparent hover:border-green-500">Visuals</a>
+                        <a href="scaling.html" class="dropdown-link border-l-2 border-transparent hover:border-green-500">Scaling</a>
+                        <div class="h-px bg-[#222] my-2"></div>
+                        <a href="specs.html" class="dropdown-link text-gray-600">Tech Specs</a>
+                        <a href="design-lab.html" class="dropdown-link text-gray-600">Design Lab</a>
                     </div>
                 </div>
-                <div class="bg-black p-4">
-                    <iframe
-                        src="https://api.leadconnectorhq.com/widget/form/0OVCiqVakHInuwHfCZGp"
-                        style="width:100%;height:100%;border:none;border-radius:3px"
-                        id="inline-0OVCiqVakHInuwHfCZGp" 
-                        data-layout="{'id':'INLINE'}"
-                        data-trigger-type="alwaysShow"
-                        data-trigger-value=""
-                        data-activation-type="alwaysActivated"
-                        data-activation-value=""
-                        data-deactivation-type="neverDeactivate"
-                        data-deactivation-value=""
-                        data-form-name="WEB - launchpad App"
-                        data-height="1051"
-                        data-layout-iframe-id="inline-0OVCiqVakHInuwHfCZGp"
-                        data-form-id="0OVCiqVakHInuwHfCZGp"
-                        title="WEB - launchpad App"
-                            >
-                    </iframe>
-                    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-                </div>
-            </div>
-        </div>
 
-        <div id="form-fitout" class="form-container">
-            <div id="fitout-summary" class="preflight-summary">
-                <span id="fitout-summary-text" class="preflight-text"></span>
+                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
             </div>
-            
-            <div class="p-8 pb-0 text-center border-b border-gray-900">
-                <h3 class="text-xl font-bold uppercase italic text-white">Fitout Consultation</h3>
-                <p class="text-xs text-gray-500 mono mt-2">BOOK YOUR IN-PERSON DESIGN SESSION</p>
-            </div>
-            
-            <div class="p-4 bg-black">
-                <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/DHGvcQD4xgCfwCbG0Cqm"
-                    style="width:100%;height:100%;border:none;border-radius:3px"
-                    id="inline-DHGvcQD4xgCfwCbG0Cqm" 
-                    data-layout="{'id':'INLINE'}"
-                    data-trigger-type="alwaysShow"
-                    data-trigger-value=""
-                    data-activation-type="alwaysActivated"
-                    data-activation-value=""
-                    data-deactivation-type="neverDeactivate"
-                    data-deactivation-value=""
-                    data-form-name="WEB - Fitout Config."
-                    data-height="1122"
-                    data-layout-iframe-id="inline-DHGvcQD4xgCfwCbG0Cqm"
-                    data-form-id="DHGvcQD4xgCfwCbG0Cqm"
-                    title="WEB - Fitout Config."
-                        >
-                </iframe>
-                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-            </div>
-        </div>
 
-        <div id="form-branding" class="form-container">
-            <div class="p-8 pb-0 text-center border-b border-gray-900">
-                <h3 class="text-xl font-bold uppercase italic text-white">Visual Identity Brief</h3>
-            </div>
-            <div class="p-4 bg-black">
-                <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/S3bBkkK9uARPsdcESK5r"
-                    style="width:100%;height:100%;border:none;border-radius:3px"
-                    id="inline-S3bBkkK9uARPsdcESK5r" 
-                    data-layout="{'id':'INLINE'}"
-                    data-trigger-type="alwaysShow"
-                    data-trigger-value=""
-                    data-activation-type="alwaysActivated"
-                    data-activation-value=""
-                    data-deactivation-type="neverDeactivate"
-                    data-deactivation-value=""
-                    data-form-name="WEB - Branding Brief"
-                    data-height="1111"
-                    data-layout-iframe-id="inline-S3bBkkK9uARPsdcESK5r"
-                    data-form-id="S3bBkkK9uARPsdcESK5r"
-                    title="WEB - Branding Brief"
-                        >
-                </iframe>
-                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">
+                ///
+            </button>
         </div>
+    </nav>
 
-        <div id="form-scaling" class="form-container">
-            <div id="scaling-summary" class="preflight-summary">
-                <span class="preflight-text">STRATEGY VIDEO CALL (ZOOM)</span>
-            </div>
-            <div class="p-8 pb-0 text-center border-b border-gray-900">
-                <h3 class="text-xl font-bold uppercase italic text-white">Scaling Strategy Session</h3>
-                <p class="text-xs text-gray-500 mono mt-2">VIDEO CALL REQUIRED FOR QUALIFICATION</p>
-            </div>
-            <div class="p-4 bg-black">
-                <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/mupyoMMbMz9SSz4Mpd4e"
-                    style="width:100%;height:100%;border:none;border-radius:3px"
-                    id="inline-mupyoMMbMz9SSz4Mpd4e" 
-                    data-layout="{'id':'INLINE'}"
-                    data-trigger-type="alwaysShow"
-                    data-trigger-value=""
-                    data-activation-type="alwaysActivated"
-                    data-activation-value=""
-                    data-deactivation-type="neverDeactivate"
-                    data-deactivation-value=""
-                    data-form-name="WEB - Scaling Strategy"
-                    data-height="1137"
-                    data-layout-iframe-id="inline-mupyoMMbMz9SSz4Mpd4e"
-                    data-form-id="mupyoMMbMz9SSz4Mpd4e"
-                    title="WEB - Scaling Strategy"
-                        >
-                </iframe>
-                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-            </div>
+    <div id="mobile-menu">
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
+            <a href="index.html" class="text-gray-400 hover:text-green-500">Command Center</a>
+            <a href="fitouts.html" class="text-white border-l-4 border-green-500 pl-4">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Visual Identity</a>
+            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Business Scaling</a>
+            <a href="specs.html" class="text-gray-600 text-sm mono mt-4">Technical Specs</a>
         </div>
     </div>
 
-    <div class="bg-black p-8 text-center text-xs text-gray-600 mono mt-12">© 2026 ELITE VAN FITOUTS</div>
+    <div class="max-w-4xl mx-auto px-6 pt-32 pb-8 text-center mt-10">
+        <h1 class="text-4xl md:text-6xl font-black italic uppercase mb-4 leading-none">Van <span class="text-green-500">Fitouts</span></h1>
+        <h2 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-4">Maximise Space. Minimum Waste of Time.</h2>
+        <p class="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed">
+            Stop digging for tools. Our systems save you hours every day. That is billable time back in your pocket.
+        </p>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6">
+        
+        <p class="text-green-500 text-xs mono mb-6 uppercase tracking-widest">Select_Loadout ::</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            
+            <div class="package-card selected" id="card-essential">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="mono text-green-500 text-xs">OPTION 01 // FOUNDATION</span>
+                </div>
+                <div class="mozaik-view">[ FALSE FLOOR RENDER ]</div>
+                
+                <h3 class="text-2xl font-black uppercase italic text-white">Essential</h3>
+                <p class="package-price my-4">$2,899</p>
+                
+                <ul class="text-xs text-gray-400 space-y-3 mb-8 mono">
+                    <li class="flex gap-2"><span class="text-green-500">></span> False Floor System (Hex Ply)</li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Rear Drawer System (1000mm)</li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Hex Anti-Skid Surface</li>
+                </ul>
+
+                <button class="select-btn" onclick="selectPackage(2899, 'Essential', 'card-essential')">Selected</button>
+                <a href="specs.html" class="details-link">Technical Specs -></a>
+            </div>
+
+            <div class="package-card" id="card-pro">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="mono text-gray-500 text-xs">OPTION 02 // STANDARD</span>
+                </div>
+                <div class="mozaik-view">[ DRAWER + SHELF RENDER ]</div>
+                
+                <h3 class="text-2xl font-black uppercase italic">Pro</h3>
+                <p class="package-price my-4">$3,899</p>
+                
+                <ul class="text-xs text-gray-400 space-y-3 mb-8 mono">
+                    <li class="flex gap-2"><span class="text-green-500">></span> <strong>Everything in Essential</strong></li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Driver Side Shelving Unit</li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Mixed Utility Storage</li>
+                </ul>
+
+                <button class="select-btn" onclick="selectPackage(3899, 'Pro', 'card-pro')">Select Package</button>
+                <a href="specs.html" class="details-link">Technical Specs -></a>
+            </div>
+
+            <div class="package-card" id="card-elite">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="mono text-gray-500 text-xs">OPTION 03 // WORKSHOP</span>
+                </div>
+                <div class="mozaik-view">[ FULL SYSTEM RENDER ]</div>
+                
+                <h3 class="text-2xl font-black uppercase italic">Elite</h3>
+                <p class="package-price my-4">$5,999</p>
+                
+                <ul class="text-xs text-gray-400 space-y-3 mb-8 mono">
+                    <li class="flex gap-2"><span class="text-green-500">></span> <strong>Everything in Pro</strong></li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Passenger Side Shelving</li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Slide-Out Shelf (Side Door)</li>
+                    <li class="flex gap-2"><span class="text-green-500">></span> Max Capacity Layout</li>
+                </ul>
+
+                <button class="select-btn" onclick="selectPackage(5999, 'Elite', 'card-elite')">Select Package</button>
+                <a href="specs.html" class="details-link">Technical Specs -></a>
+            </div>
+
+        </div>
+
+        <h2 class="text-xl font-black italic uppercase mb-2">Tactical Upgrades</h2>
+        <p class="text-gray-500 text-xs mono mb-6">OPTIONAL COMPONENTS</p>
+
+        <div class="bg-[#0a0a0a] border border-[#333] rounded-xl overflow-hidden mb-16">
+            
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Full Ply Lining</p>
+                    <p class="text-xs text-green-500 mono">PRICE ON REQUEST</p>
+                </div>
+                <input type="checkbox" class="elite-checkbox" id="ply-lining-check">
+            </div>
+
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Silicone & Caulk Array</p>
+                    <p class="text-xs text-gray-500">$99.00</p>
+                </div>
+                <input type="checkbox" class="elite-checkbox" onchange="toggleAddon(99, this)">
+            </div>
+
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Side Pocket Storage</p>
+                    <p class="text-xs text-gray-500">$89.00</p>
+                </div>
+                <input type="checkbox" class="elite-checkbox" onchange="toggleAddon(89, this)">
+            </div>
+
+            <div class="addon-item">
+                <div>
+                    <p class="font-bold text-sm">Storage Crates (Stackable)</p>
+                    <p class="text-xs text-gray-500">$35.00 / unit</p>
+                </div>
+                <div class="addon-control">
+                    <button class="qty-btn" onclick="updateCrates(-1)">-</button>
+                    <span id="crate-count" class="qty-val mono">0</span>
+                    <button class="qty-btn" onclick="updateCrates(1)">+</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border border-green-500/30 bg-green-900/10 rounded-xl p-8 md:p-12 text-center mb-12 relative overflow-hidden group">
+            <div class="absolute inset-0 bg-green-500/5 group-hover:bg-green-500/10 transition duration-500"></div>
+            <h3 class="text-3xl font-black italic uppercase mb-2 text-white relative z-10">Custom Build</h3>
+            <p class="text-sm text-gray-300 mb-8 max-w-lg mx-auto relative z-10">
+                Need a specific trade layout? We engineer bespoke systems for specialised workflows. 
+                Book a design lab session to build it live.
+            </p>
+            <a href="design-lab.html?tab=fitout&pkg=Custom" class="relative z-10 inline-block border border-green-500 text-green-500 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-green-500 hover:text-black transition">
+                Start Custom Project
+            </a>
+        </div>
+
+    </div>
+
+    <div class="total-bar">
+        <div>
+            <p class="text-[10px] text-gray-500 mono uppercase">Estimated Total</p>
+            <p class="text-2xl font-black text-white" id="total-price">$2,899</p>
+        </div>
+        <button class="proceed-btn" onclick="goToBooking()">
+            Book Design Session ->
+        </button>
+    </div>
 
     <script>
-        // ON PAGE LOAD: Check URL Parameters
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tab = urlParams.get('tab') || 'launchpad'; // Default to Launchpad
-            const pkg = urlParams.get('pkg');
-            const est = urlParams.get('est');
-            const ply = urlParams.get('ply');
+        let basePrice = 2899;
+        let selectedPackageName = 'Essential';
+        let addonTotal = 0;
+        let crateCount = 0;
+        const cratePrice = 35;
 
-            // 1. Activate correct tab
-            switchTab(tab);
+        function updateDisplay() {
+            const total = basePrice + addonTotal + (crateCount * cratePrice);
+            document.getElementById('total-price').innerText = '$' + total.toLocaleString();
+        }
 
-            // 2. VISUAL CONFIRMATION: If Fitout Data exists
-            if(tab === 'fitout' && pkg) {
-                const summaryBox = document.getElementById('fitout-summary');
-                const summaryText = document.getElementById('fitout-summary-text');
-                summaryBox.style.display = 'block';
-                
-                let text = `PRE-SELECTED: ${pkg} PACKAGE (EST: $${est})`;
-                if(ply) text += " + PLY LINING";
-                
-                summaryText.innerText = text;
+        function selectPackage(price, name, cardId) {
+            basePrice = price;
+            selectedPackageName = name;
+            
+            // Update Visuals
+            document.querySelectorAll('.package-card').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('.select-btn').innerText = "Select Package";
+            });
+            const card = document.getElementById(cardId);
+            card.classList.add('selected');
+            card.querySelector('.select-btn').innerText = "Selected";
+            
+            updateDisplay();
+        }
+
+        function toggleAddon(price, checkbox) {
+            if (checkbox.checked) { addonTotal += price; } else { addonTotal -= price; }
+            updateDisplay();
+        }
+
+        function updateCrates(change) {
+            const newCount = crateCount + change;
+            if (newCount >= 0) {
+                crateCount = newCount;
+                document.getElementById('crate-count').innerText = crateCount;
+                updateDisplay();
             }
-            
-             // 3. VISUAL CONFIRMATION: If Scaling Data exists
-            if(tab === 'scaling' && pkg) {
-                const summaryBox = document.getElementById('scaling-summary');
-                summaryBox.style.display = 'block';
-                summaryBox.innerHTML = `<span class="preflight-text">INTERESTED IN: ${pkg} TIER // BOOK VIDEO CALL</span>`;
-            }
-        };
+        }
 
-        function switchTab(mission) {
-            // Reset
-            document.querySelectorAll('.mission-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.form-container').forEach(f => f.classList.remove('active'));
+        function goToBooking() {
+            const total = basePrice + addonTotal + (crateCount * cratePrice);
+            // Check if ply lining is selected to add a note
+            let plyNote = document.getElementById('ply-lining-check').checked ? "&ply=yes" : "";
             
-            // Activate Button
-            const btn = document.getElementById('tab-' + mission);
-            if(btn) btn.classList.add('active');
-            
-            // Activate Form
-            const form = document.getElementById('form-' + mission);
-            if(form) form.classList.add('active');
+            // Pass data to Design Lab
+            window.location.href = `design-lab.html?tab=fitout&pkg=${selectedPackageName}&est=${total}${plyNote}`;
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
         }
     </script>
+
 </body>
 </html>
