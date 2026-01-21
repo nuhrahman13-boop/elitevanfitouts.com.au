@@ -3,465 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE VAN FITOUTS | COMMAND</title>
+    <title>ELITE | OPERATE AT A HIGHER LEVEL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root { --elite-green: #22c55e; }
+        :root { --elite-green: #22c55e; --elite-gold: #fbbf24; }
         
         body, html { 
-            margin: 0; padding: 0; background-color: #000000;
-            color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
+            background-color: #000; color: white; 
+            font-family: 'Inter', sans-serif; overflow-x: hidden;
         }
-        
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- HERO SECTION --- */
+        /* --- NAV --- */
+        .nav-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 24px; border-bottom: 1px solid #222; position: sticky; top: 0;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 50;
+        }
+
+        /* --- HERO --- */
         .hero-section {
-            position: relative; 
-            width: 100%; 
-            height: 60vh; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: flex-end; 
-            justify-content: flex-start;
-            background: #000; 
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 24px; position: relative; border-bottom: 1px solid #222;
+            background: radial-gradient(circle at center, #111 0%, #000 70%);
         }
-
-        .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; object-position: center; z-index: 1;
-            filter: brightness(0.9);
-            transition: transform 0.5s ease;
-        }
-
-        @media (min-width: 768px) {
-            .hero-section { height: 100vh; }
-            .hero-video { transform: scale(1.15); } 
-        }
-
-        .hero-fade {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 80%;
-            background: linear-gradient(to top, #000000 15%, rgba(0,0,0,0.4) 60%, transparent 100%);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative; 
-            z-index: 10; 
-            text-align: left; 
-            width: 100%; 
-            padding: 0 24px 50px 24px; 
-            max-width: 900px;
-        }
-
-        .hero-title { 
-            font-size: clamp(2rem, 7vw, 5rem); 
-            line-height: 0.95;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            letter-spacing: -0.02em;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            margin-bottom: 16px; 
-        }
-
-        .elite-glow { text-shadow: 0 0 25px rgba(34, 197, 94, 0.6); }
-
-        /* --- STATUS BAR --- */
-        .status-terminal {
-            display: inline-flex; align-items: center;
-            border-left: 2px solid var(--elite-green);
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(8px);
-            padding: 8px 16px; gap: 10px;
-            font-size: 0.65rem; color: #ccc;
-            border-top-right-radius: 4px; border-bottom-right-radius: 4px;
-        }
-        @media (min-width: 768px) {
-            .status-terminal { padding: 12px 24px; font-size: 0.8rem; }
-        }
-        .status-dot {
-            width: 6px; height: 6px; background: var(--elite-green); 
-            border-radius: 50%; box-shadow: 0 0 10px var(--elite-green);
-            animation: pulse 2s infinite;
-        }
-        .typewriter::after { content: '|'; animation: blink 1s step-end infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-        /* --- CARDS --- */
-        .glass-card {
-            background: #111; border: 1px solid #333; transition: all 0.3s ease;
-            cursor: pointer; overflow: hidden; position: relative;
-        }
-        .glass-card:hover { border-color: var(--elite-green); }
-        
-        .card-content { padding: 32px; }
-        .card-details {
-            max-height: 0; overflow: hidden; background: rgba(34, 197, 94, 0.05);
-            transition: max-height 0.6s ease-in-out;
-        }
-        .glass-card.active .card-details { max-height: 500px; border-top: 1px solid #333; }
-        .glass-card.active .chevron { transform: rotate(180deg); }
-
-        .btn-link {
-            display: inline-block; margin-top: 20px; color: var(--elite-green);
-            font-weight: bold; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
-            border-bottom: 1px solid var(--elite-green); padding-bottom: 2px;
-        }
-
-        .feature-list {
-            list-style: none; padding: 0; margin: 0;
-            font-size: 0.75rem; color: #aaa; font-family: 'JetBrains Mono', monospace;
-        }
-        .feature-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .feature-list li::before { content: '>'; color: var(--elite-green); font-weight: bold; }
-
-        /* --- ALL IN ONE PACKAGE SECTION (NEW) --- */
-        .aio-section {
-            background: linear-gradient(145deg, #051005 0%, #000 100%);
-            border: 1px solid var(--elite-green);
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
-            position: relative; overflow: hidden;
-        }
-        .aio-badge {
-            background: var(--elite-green); color: black; font-weight: 900;
-            padding: 4px 12px; font-size: 0.7rem; text-transform: uppercase;
-            font-family: 'JetBrains Mono', monospace; display: inline-block;
-            margin-bottom: 16px;
+        /* Simulated Video Background Overlay */
+        .hero-bg {
+            position: absolute; top: 0; left: 0; w-full; h-full; z-index: -1; opacity: 0.3;
+            background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2727&auto=format&fit=crop'); 
+            background-size: cover; background-position: center; filter: grayscale(100%);
         }
         
-        /* --- REVIEWS --- */
-        .review-card {
-            background: #0a0a0a; border: 1px solid #222; padding: 24px;
-            border-radius: 12px; position: relative;
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 6rem); font-weight: 900; italic;
+            text-transform: uppercase; line-height: 0.9; margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
-        .star-rating { color: var(--elite-green); font-size: 0.8rem; margin-bottom: 12px; }
 
-        /* --- UI --- */
-        .glass-nav { background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
-        
-        #loader {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease;
+        /* --- MODULE CARDS --- */
+        .module-card {
+            background: #0a0a0a; border: 1px solid #222; height: 400px;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px;
+            transition: all 0.3s ease; position: relative; overflow: hidden;
         }
-        .load-bar { width: 200px; height: 2px; background: #333; margin-top: 15px; }
-        .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 0.8s ease-in-out; }
+        .module-card:hover { border-color: var(--elite-green); transform: translateY(-5px); }
+        .module-title { font-size: 2rem; font-weight: 900; italic; text-transform: uppercase; z-index: 10; }
+        .module-desc { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888; margin-top: 10px; z-index: 10; }
+        .module-btn { 
+            margin-top: 20px; text-transform: uppercase; font-weight: bold; font-size: 0.8rem; 
+            color: var(--elite-green); display: flex; align-items: center; gap: 10px; z-index: 10;
+        }
+
+        /* --- LAUNCHPAD (GOLD) --- */
+        .launchpad-section {
+            border-top: 1px solid var(--elite-gold); background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, #000 100%);
+            padding: 100px 24px; text-align: center;
+        }
+        .gold-btn {
+            background: var(--elite-gold); color: black; font-weight: 900; font-family: 'JetBrains Mono', monospace;
+            padding: 16px 32px; text-transform: uppercase; margin-top: 40px; display: inline-block;
+            transition: 0.3s; clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+        }
+        .gold-btn:hover { background: white; box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
+
+        .footer { padding: 40px 24px; border-top: 1px solid #222; text-align: center; color: #444; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body>
 
-    <div id="loader">
-        <p class="mono text-green-500 text-xs tracking-widest uppercase">System_Initializing...</p>
-        <div class="load-bar"><div class="load-fill" id="fill"></div></div>
+    <div class="nav-bar">
+        <img src="logo.png" alt="ELITE" class="h-6">
+        <div class="hidden md:flex gap-6 text-xs mono text-gray-500">
+            <span>SYSTEM_STATUS :: ONLINE</span>
+            <span>LOC :: ROWVILLE_HQ</span>
+        </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain">
-            <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400">
-                <span class="text-white border-b border-green-500 pb-1">Command</span>
-                <a href="fitouts.html" class="hover:text-green-500 transition">Fitouts</a>
-                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
-            </div>
-            <div class="md:hidden text-green-500 text-2xl font-bold">///</div>
-        </div>
-    </nav>
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">Operational_Standard</p>
+        <h1 class="hero-title">Engineered<br>For The <span class="text-green-500">Elite</span></h1>
+        <p class="text-gray-300 max-w-xl mx-auto text-sm md:text-base leading-relaxed mt-4">
+            We build the vehicles and systems that power Australia's top-tier trades. Fitouts. Branding. Automation.
+        </p>
+        <a href="#modules" class="mt-10 border border-white/20 text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:border-green-500 hover:text-green-500 transition">
+            Explore Systems ->
+        </a>
+    </section>
 
-    <header class="hero-section">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="hero.mp4" type="video/mp4">
-        </video>
+    <section id="modules" class="grid grid-cols-1 md:grid-cols-3">
+        <a href="fitouts.html" class="module-card group">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <h2 class="module-title">Fitouts</h2>
+            <p class="module-desc">Maximise Space. Minimise Waste.<br>Industrial Storage Systems.</p>
+            <span class="module-btn">Configure Build -></span>
+        </a>
         
-        <div class="hero-fade"></div>
+        <a href="branding.html" class="module-card group border-l-0 border-r-0 md:border-l md:border-r border-[#222]">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <h2 class="module-title">Visuals</h2>
+            <p class="module-desc">Signage, Wraps & Protection.<br>Dominate the Road.</p>
+            <span class="module-btn">View Gallery -></span>
+        </a>
 
-        <div class="hero-content">
-            <h1 class="hero-title">
-                Engineered<br>
-                For The <span class="text-green-500 elite-glow">Elite.</span>
-            </h1>
-            
-            <div class="status-terminal mono uppercase tracking-widest">
-                <div class="status-dot"></div>
-                <div>System :: <span id="typewriter" class="text-white font-bold typewriter">ONLINE</span></div>
-            </div>
-        </div>
-    </header>
+        <a href="scaling.html" class="module-card group">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <h2 class="module-title">Scaling</h2>
+            <p class="module-desc">Leads, Software & Growth.<br>Automate the Admin.</p>
+            <span class="module-btn">System Demo -></span>
+        </a>
+    </section>
 
-    <main class="w-full pb-20 bg-black relative z-20">
-        
-        <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 mb-20">
-            
-            <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
-                <div class="card-content flex justify-between items-start">
-                    <div>
-                        <p class="mono text-green-500 text-[10px] mb-2">MODULE_01</p>
-                        <h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Fitouts</h3>
-                        <p class="text-gray-400 text-xs mt-2">Bespoke internal architecture.</p>
-                    </div>
-                    <svg class="w-6 h-6 text-gray-500 chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-                <div class="card-details">
-                    <div class="p-8 pt-0">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Built for abuse. We utilize Hex Anti-Skid Plywood for superior grip and durability, paired with heavy-duty locking slides that won't fail under load.
-                        </p>
-                        <ul class="feature-list mb-6">
-                            <li>Hex Anti-Skid Plywood (Water Resistant)</li>
-                            <li>Heavy Duty Locking Slides</li>
-                            <li>False Floors & Custom Framing</li>
-                            <li>Integrated 12V Systems & Lighting</li>
-                        </ul>
-                        <a href="fitouts.html" class="btn-link">Launch Configurator</a>
-                    </div>
-                </div>
-            </div>
+    <section class="launchpad-section">
+        <p class="mono text-yellow-500 text-xs tracking-[0.3em] uppercase mb-4">The_Incubator_Program</p>
+        <h2 class="text-4xl md:text-6xl font-black italic uppercase text-white mb-6">Build An <span class="text-yellow-500">Empire</span>.<br>Not Just A Van.</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-sm leading-relaxed">
+            You have the trade skills. We have the infrastructure. We take you from 'Idea' to 'Operational' in <strong class="text-white">days, if not weeks.</strong> 
+            Your Van, Logo, Website, and Software—built simultaneously.
+        </p>
+        <a href="design-lab.html?tab=launchpad" class="gold-btn">
+            Start Your Build
+        </a>
+    </section>
 
-            <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
-                <div class="card-content flex justify-between items-start">
-                    <div>
-                        <p class="mono text-gray-500 text-[10px] mb-2">MODULE_02</p>
-                        <h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Signage</h3>
-                        <p class="text-gray-400 text-xs mt-2">Vehicle branding & wrap.</p>
-                    </div>
-                    <svg class="w-6 h-6 text-gray-500 chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-                <div class="card-details">
-                    <div class="p-8 pt-0">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Dominate the road. Our design team can build your brand from scratch, or we can take your existing files and apply them with precision.
-                        </p>
-                        <ul class="feature-list mb-6">
-                            <li>Full In-House Graphic Design</li>
-                            <li>We Accept External Design Files</li>
-                            <li>Premium Cast Vinyl & Laminates</li>
-                            <li>Fleet Consistency Management</li>
-                        </ul>
-                        <a href="#" class="btn-link opacity-50 cursor-not-allowed">Module Locked</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
-                <div class="card-content flex justify-between items-start">
-                    <div>
-                        <p class="mono text-gray-500 text-[10px] mb-2">MODULE_03</p>
-                        <h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Scaling</h3>
-                        <p class="text-gray-400 text-xs mt-2">Business automation.</p>
-                    </div>
-                    <svg class="w-6 h-6 text-gray-500 chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-                <div class="card-details">
-                    <div class="p-8 pt-0">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Stop chasing leads manually. We deploy automated client management systems and high-performance Elite Websites to fill your pipeline.
-                        </p>
-                        <ul class="feature-list mb-6">
-                            <li>Automated Client Management (CRM)</li>
-                            <li>High-Conversion 'Elite' Websites</li>
-                            <li>Review Generation Systems</li>
-                            <li>Missed-Call Text Back</li>
-                        </ul>
-                        <a href="#" class="btn-link opacity-50 cursor-not-allowed">Module Locked</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="max-w-6xl mx-auto px-6 mb-20">
-            <div class="aio-section rounded-2xl p-8 md:p-12 relative">
-                
-                <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none"></div>
-
-                <div class="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-                    
-                    <div>
-                        <div class="aio-badge">MOST PROFITABLE</div>
-                        <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-6 leading-none">
-                            The <span class="text-green-500">Launchpad</span> Package
-                        </h2>
-                        <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8">
-                            We don't just build vans; we build empires. If you have a dream or a plan to start your own service business, we supply the entire infrastructure to take you from "Zero" to "Fully Operational" in record time.
-                        </p>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-xs font-bold uppercase">Business Planning Strategy</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-xs font-bold uppercase">Premium Van Fitout</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-xs font-bold uppercase">Vehicle Signage & Wrap</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-xs font-bold uppercase">CRM & Automation Software</span>
-                            </div>
-                        </div>
-
-                        <a href="design-lab.html" class="inline-block bg-white text-black hover:bg-green-500 transition duration-300 font-bold uppercase px-8 py-4 text-sm tracking-widest clip-path-polygon">
-                            Launch Your Business
-                        </a>
-                    </div>
-
-                    <div class="hidden lg:flex justify-center items-center">
-                        <div class="relative w-full aspect-video bg-black/50 border border-green-500/30 rounded-xl flex flex-col items-center justify-center p-8 text-center">
-                            <p class="mono text-green-500 text-xs mb-4 animate-pulse">SYSTEM_INTEGRATION_COMPLETE</p>
-                            <div class="text-5xl font-black text-gray-800 mb-2">ALL-IN-ONE</div>
-                            <div class="text-xl font-bold text-white uppercase tracking-[0.5em]">Turnkey Solution</div>
-                            
-                            <div class="absolute -bottom-6 -right-6 bg-green-500 text-black font-bold p-4 rounded-lg shadow-lg shadow-green-500/20">
-                                <p class="text-2xl">100%</p>
-                                <p class="text-[10px] uppercase">Ready to Work</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="max-w-6xl mx-auto px-6 mb-32">
-            <h4 class="mono text-gray-500 text-xs uppercase tracking-[0.2em] mb-8 border-b border-gray-800 pb-2">Field_Reports :: Verified_Personnel</h4>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="review-card">
-                    <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 text-sm italic mb-4">"The Hex Ply they use is serious stuff. No more gear sliding around in the back. The heavy duty runners are smooth as silk even fully loaded."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs text-gray-500">SR</div>
-                        <div>
-                            <p class="text-white text-xs font-bold uppercase">Steve 'Robbo' R.</p>
-                            <p class="text-gray-600 text-[10px] mono">PLUMBING CONTRACTOR</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 text-sm italic mb-4">"Got the full package—fitout and wrap. I had my own logo but their design team tweaked it to fit the van perfectly. Looks absolute mint."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs text-gray-500">DK</div>
-                        <div>
-                            <p class="text-white text-xs font-bold uppercase">Dazza K.</p>
-                            <p class="text-gray-600 text-[10px] mono">HVAC SPECIALIST</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 text-sm italic mb-4">"The new website and automation they set up is a game changer. I'm getting qualified leads while I'm on the tools. Best investment I've made."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs text-gray-500">JP</div>
-                        <div>
-                            <p class="text-white text-xs font-bold uppercase">Jono P.</p>
-                            <p class="text-gray-600 text-[10px] mono">BUILDER & CARPENTER</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="max-w-7xl mx-auto px-6">
-            <div class="bg-[#111] border border-[#333] rounded-3xl p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center">
-                <div class="text-left">
-                    <h2 class="text-3xl font-black italic uppercase mb-6">Operational <span class="text-green-500">Base</span></h2>
-                    
-                    <div class="mono text-sm space-y-6 mb-8 text-gray-300">
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">HQ Location</p>
-                            <p class="text-white font-bold">8/8 Enterprise Drive</p>
-                            <p>Rowville, Victoria 3178</p>
-                        </div>
-                        
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Operating Hours</p>
-                            <div class="grid grid-cols-[100px_1fr] gap-y-1">
-                                <span class="text-gray-500">Mon - Fri:</span> <span class="text-white font-bold">09:00 - 17:00</span>
-                                <span class="text-gray-500">Saturday:</span> <span class="text-white font-bold">09:00 - 15:00</span>
-                                <span class="text-gray-500">Sunday:</span> <span class="text-red-500 font-bold">OFFLINE</span>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-800 pt-4 mt-4">
-                             <p class="text-green-500 text-xs">STATUS: ACCEPTING NEW BUILDS</p>
-                        </div>
-                    </div>
-
-                    <a href="tel:0468086490" class="inline-block border border-white/20 hover:border-green-500 hover:text-green-500 transition px-8 py-3 rounded-full mono text-lg font-bold bg-white/5">
-                        0468 086 490
-                    </a>
-                </div>
-                <div class="h-[300px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.473539823616!2d145.2396!3d-37.9175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d6f1f8f6f6f%3A0x1f8f6f6f1f8f6f6f!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-            <p class="text-center text-gray-600 text-[10px] mono uppercase mt-12 mb-4">
-                © 2025 ELITE VAN FITOUTS.
-            </p>
-        </section>
-    </main>
-
-    <script>
-        window.onload = () => {
-            document.getElementById('fill').style.width = '100%';
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 800);
-        };
-
-        const phrases = ["VAN_FITOUTS", "VEHICLE_SIGNAGE", "BUSINESS_SCALING", "SYSTEM_ONLINE"];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typeSpeed = 100;
-        const deleteSpeed = 50;
-        const pauseTime = 2000;
-        const typewriterElement = document.getElementById('typewriter');
-
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isDeleting = true;
-                setTimeout(type, pauseTime);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
-            }
-        }
-        
-        setTimeout(type, 1000);
-
-        function toggleCard(card) {
-            document.querySelectorAll('.glass-card').forEach(c => {
-                if (c !== card) c.classList.remove('active');
-            });
-            card.classList.toggle('active');
-        }
-    </script>
+    <footer class="footer">
+        © 2026 ELITE VAN FITOUTS. MELBOURNE.
+    </footer>
 
 </body>
 </html>
