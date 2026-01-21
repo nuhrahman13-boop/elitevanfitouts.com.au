@@ -22,10 +22,10 @@
         .hero-section {
             position: relative; 
             width: 100%; 
-            height: 90vh; /* Increased slightly for mobile spacing */
+            height: 80vh; /* Reduced height to reduce "Zoomed in" feel on mobile */
             overflow: hidden; 
             display: flex; 
-            align-items: flex-end; 
+            align-items: flex-end; /* Align text to bottom */
             justify-content: flex-start;
             background: #000; 
         }
@@ -33,18 +33,18 @@
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; object-position: center; z-index: 1;
-            filter: brightness(0.7); /* Darkened slightly for text readability */
-            transition: transform 0.5s ease;
+            filter: brightness(0.6); /* Darkened to make smaller text readable */
         }
 
         @media (min-width: 768px) {
             .hero-section { height: 100vh; }
-            .hero-video { transform: scale(1.05); } 
+            /* Zoom out slightly on desktop */
+            .hero-video { transform: scale(1); } 
         }
 
         .hero-fade {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 80%;
-            background: linear-gradient(to top, #000000 15%, rgba(0,0,0,0.6) 60%, transparent 100%);
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(to top, #000000 10%, rgba(0,0,0,0.4) 50%, transparent 100%);
             z-index: 2;
         }
 
@@ -53,44 +53,42 @@
             z-index: 10; 
             text-align: left; 
             width: 100%; 
-            padding: 0 24px 80px 24px; 
-            max-width: 1000px;
+            padding: 0 24px 60px 24px; 
+            max-width: 1200px;
         }
 
         .hero-title { 
-            font-size: clamp(2.5rem, 7vw, 6rem); 
-            line-height: 0.9;
+            /* REDUCED SIZE AS REQUESTED */
+            font-size: clamp(2rem, 5vw, 4.5rem); 
+            line-height: 1;
             font-weight: 900;
             text-transform: uppercase;
             font-style: italic;
             letter-spacing: -0.02em;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-            margin-bottom: 24px; 
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            margin-bottom: 20px; 
         }
 
         .hero-sub {
-            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-            color: #ccc;
-            max-width: 600px;
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            color: #ddd;
+            max-width: 500px;
             margin-bottom: 30px;
-            line-height: 1.5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            font-weight: 500;
         }
 
-        .elite-glow { text-shadow: 0 0 25px rgba(34, 197, 94, 0.6); }
+        .elite-glow { text-shadow: 0 0 25px rgba(34, 197, 94, 0.4); }
 
         /* --- STATUS BAR --- */
         .status-terminal {
             display: inline-flex; align-items: center;
             border-left: 2px solid var(--elite-green);
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(8px);
             padding: 8px 16px; gap: 10px;
             font-size: 0.65rem; color: #ccc;
-            border-top-right-radius: 4px; border-bottom-right-radius: 4px;
-        }
-        @media (min-width: 768px) {
-            .status-terminal { padding: 12px 24px; font-size: 0.8rem; }
         }
         .status-dot {
             width: 6px; height: 6px; background: var(--elite-green); 
@@ -129,7 +127,7 @@
         .feature-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .feature-list li::before { content: '>'; color: var(--elite-green); font-weight: bold; }
 
-        /* --- LAUNCHPAD SECTION (GOLD) --- */
+        /* --- ALL IN ONE SECTION --- */
         .aio-section {
             background: linear-gradient(145deg, #0a0500 0%, #000 100%);
             border: 1px solid var(--elite-gold);
@@ -143,13 +141,13 @@
             margin-bottom: 16px;
         }
         .gold-btn {
-            display: inline-block; bg-white; color: black; 
-            background: white;
-            hover:bg-yellow-500; transition: 0.3s;
+            display: inline-block; background: white; color: black; 
+            transition: 0.3s;
             font-weight: 900; text-transform: uppercase; padding: 16px 32px;
             font-size: 0.8rem; letter-spacing: 1px;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
         }
+        .gold-btn:hover { background: var(--elite-gold); }
         
         /* --- REVIEWS --- */
         .review-card {
@@ -158,8 +156,29 @@
         }
         .star-rating { color: var(--elite-green); font-size: 0.8rem; margin-bottom: 12px; }
 
-        /* --- UI --- */
+        /* --- UI / NAV --- */
         .glass-nav { background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); }
+        
+        /* DROPDOWN MENU */
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: #050505; border: 1px solid #333; min-width: 180px;
+            padding: 10px 0; z-index: 100;
+        }
+        .dropdown-link {
+            display: block; padding: 10px 20px; color: #aaa; font-size: 0.75rem; 
+            text-transform: uppercase; transition: 0.2s;
+        }
+        .dropdown-link:hover { background: #111; color: var(--elite-green); }
+
+        /* MOBILE MENU */
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: black; z-index: 40; display: none;
+            padding-top: 100px; padding-left: 40px;
+        }
+        #mobile-menu.active { display: block; }
         
         #loader {
             position: fixed; inset: 0; background: #000; z-index: 9999;
@@ -178,17 +197,45 @@
     </div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+            
             <img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain">
-            <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400">
-                <span class="text-white border-b border-green-500 pb-1">Command</span>
-                <a href="fitouts.html" class="hover:text-green-500 transition">Fitouts</a>
-                <a href="branding.html" class="hover:text-green-500 transition">Visuals</a>
-                <a href="scaling.html" class="hover:text-green-500 transition">Scaling</a>
+            
+            <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400 items-center">
+                <a href="index.html" class="text-white border-b border-green-500 pb-1">Command</a>
+                
+                <div class="relative dropdown">
+                    <button class="hover:text-green-500 transition flex items-center gap-1 py-2">
+                        Systems <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="fitouts.html" class="dropdown-link border-l-2 border-transparent hover:border-green-500">Fitouts</a>
+                        <a href="branding.html" class="dropdown-link border-l-2 border-transparent hover:border-green-500">Visuals</a>
+                        <a href="scaling.html" class="dropdown-link border-l-2 border-transparent hover:border-green-500">Scaling</a>
+                        <div class="h-px bg-[#222] my-2"></div>
+                        <a href="specs.html" class="dropdown-link text-gray-600">Tech Specs</a>
+                        <a href="design-lab.html" class="dropdown-link text-gray-600">Design Lab</a>
+                    </div>
+                </div>
+
+                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
             </div>
-            <div class="md:hidden text-green-500 text-2xl font-bold">///</div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">
+                ///
+            </button>
         </div>
     </nav>
+
+    <div id="mobile-menu">
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
+            <a href="index.html" class="text-white hover:text-green-500">Command Center</a>
+            <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Visual Identity</a>
+            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Business Scaling</a>
+            <a href="specs.html" class="text-gray-600 text-sm mono mt-4">Technical Specs</a>
+        </div>
+    </div>
 
     <header class="hero-section">
         <video autoplay muted loop playsinline class="hero-video">
@@ -204,7 +251,7 @@
             </h1>
             
             <p class="hero-sub font-light">
-                We build the vehicles and systems that power Australia's top-tier trades.<br>
+                We build the vehicles and systems that power Australia's top-tier trades.
                 Fitouts. Branding. Automation.
             </p>
             
@@ -304,9 +351,14 @@
                     
                     <div>
                         <div class="aio-badge">INCUBATOR PROGRAM</div>
-                        <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-6 leading-none">
-                            Build An <span class="text-yellow-500">Empire</span>.<br>Not Just A Van.
+                        
+                        <h2 class="text-5xl md:text-6xl font-black italic uppercase mb-2 leading-none text-white">
+                            ALL IN <span class="text-green-500">ONE</span>
                         </h2>
+                        <h3 class="text-xl md:text-2xl font-bold uppercase text-yellow-500 mb-6 tracking-wide">
+                            Build An Empire. Not Just A Van.
+                        </h3>
+
                         <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8">
                             You have the trade skills. We have the infrastructure. We take you from 'Idea' to 'Operational' in <strong class="text-white">days, if not weeks</strong>.
                             <br><br>
@@ -320,7 +372,7 @@
                             <div class="flex items-center gap-3"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div><span class="text-xs font-bold uppercase">CRM Software</span></div>
                         </div>
 
-                        <a href="design-lab.html?tab=launchpad" class="gold-btn bg-white hover:bg-yellow-400 text-black">
+                        <a href="design-lab.html?tab=launchpad" class="gold-btn">
                             Start Your Build
                         </a>
                     </div>
@@ -328,8 +380,8 @@
                     <div class="hidden lg:flex justify-center items-center">
                         <div class="relative w-full aspect-video bg-black/50 border border-yellow-500/30 rounded-xl flex flex-col items-center justify-center p-8 text-center">
                             <p class="mono text-yellow-500 text-xs mb-4 animate-pulse">SYSTEM_INTEGRATION_COMPLETE</p>
-                            <div class="text-5xl font-black text-gray-800 mb-2">ALL-IN-ONE</div>
-                            <div class="text-xl font-bold text-white uppercase tracking-[0.5em]">Turnkey Solution</div>
+                            <div class="text-5xl font-black text-gray-800 mb-2">TURNKEY</div>
+                            <div class="text-xl font-bold text-white uppercase tracking-[0.5em]">Solution</div>
                             
                             <div class="absolute -bottom-6 -right-6 bg-yellow-500 text-black font-bold p-4 rounded-lg shadow-lg shadow-yellow-500/20">
                                 <p class="text-2xl">100%</p>
@@ -342,40 +394,7 @@
             </div>
         </section>
 
-        <section class="max-w-6xl mx-auto px-6 mb-32">
-            <h4 class="mono text-gray-500 text-xs uppercase tracking-[0.2em] mb-8 border-b border-gray-800 pb-2">Field_Reports :: Verified_Personnel</h4>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="review-card">
-                    <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 text-sm italic mb-4">"The Hex Ply they use is serious stuff. No more gear sliding around in the back. The heavy duty runners are smooth as silk."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs text-gray-500">SR</div>
-                        <div><p class="text-white text-xs font-bold uppercase">Steve 'Robbo' R.</p><p class="text-gray-600 text-[10px] mono">PLUMBING CONTRACTOR</p></div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 text-sm italic mb-4">"Got the full package—fitout and wrap. I had my own logo but their design team tweaked it to fit the van perfectly."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs text-gray-500">DK</div>
-                        <div><p class="text-white text-xs font-bold uppercase">Dazza K.</p><p class="text-gray-600 text-[10px] mono">HVAC SPECIALIST</p></div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 text-sm italic mb-4">"The new website and automation they set up is a game changer. I'm getting qualified leads while I'm on the tools."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center font-bold text-xs text-gray-500">JP</div>
-                        <div><p class="text-white text-xs font-bold uppercase">Jono P.</p><p class="text-gray-600 text-[10px] mono">BUILDER & CARPENTER</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="max-w-7xl mx-auto px-6">
+        <section id="contact" class="max-w-7xl mx-auto px-6 mb-20">
             <div class="bg-[#0a0a0a] border border-[#222] rounded-3xl p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center">
                 <div class="text-left">
                     <h2 class="text-3xl font-black italic uppercase mb-6">Operational <span class="text-green-500">Base</span></h2>
@@ -383,7 +402,7 @@
                     <div class="mono text-sm space-y-6 mb-8 text-gray-300">
                         <div>
                             <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">HQ Location</p>
-                            <p class="text-white font-bold">8/8 Enterprise Drive</p>
+                            <p class="text-white font-bold">8 Enterprise Drive</p>
                             <p>Rowville, Victoria 3178</p>
                         </div>
                         
@@ -405,10 +424,9 @@
                         0468 086 490
                     </a>
                 </div>
-                <div class="h-[300px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
-                    <div class="w-full h-full bg-[#111] flex items-center justify-center text-gray-700 font-bold uppercase tracking-widest">
-                        [ GOOGLE MAPS EMBED ]
-                    </div>
+                
+                <div class="h-[350px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886045437812!2d145.2427843153225!3d-37.91096797973466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d6f1a8e2b2d%3A0x1c1c1c1c1c1c1c1c!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
             <p class="text-center text-gray-600 text-[10px] mono uppercase mt-12 mb-4">
@@ -466,6 +484,11 @@
                 if (c !== card) c.classList.remove('active');
             });
             card.classList.toggle('active');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
         }
     </script>
 
