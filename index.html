@@ -9,7 +9,7 @@
         /* --- FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
         
-        :root { --elite-green: #22c55e; --elite-gold: #fbbf24; }
+        :root { --elite-green: #22c55e; }
         
         body, html { 
             margin: 0; padding: 0; background-color: #000000;
@@ -22,10 +22,10 @@
         .hero-section {
             position: relative; 
             width: 100%; 
-            height: 80vh; /* Reduced height to reduce "Zoomed in" feel on mobile */
+            height: 80vh; 
             overflow: hidden; 
             display: flex; 
-            align-items: flex-end; /* Align text to bottom */
+            align-items: flex-end; 
             justify-content: flex-start;
             background: #000; 
         }
@@ -33,12 +33,11 @@
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; object-position: center; z-index: 1;
-            filter: brightness(0.6); /* Darkened to make smaller text readable */
+            filter: brightness(0.6); 
         }
 
         @media (min-width: 768px) {
             .hero-section { height: 100vh; }
-            /* Zoom out slightly on desktop */
             .hero-video { transform: scale(1); } 
         }
 
@@ -49,33 +48,20 @@
         }
 
         .hero-content {
-            position: relative; 
-            z-index: 10; 
-            text-align: left; 
-            width: 100%; 
-            padding: 0 24px 60px 24px; 
-            max-width: 1200px;
+            position: relative; z-index: 10; text-align: left; width: 100%; 
+            padding: 0 24px 60px 24px; max-width: 1200px;
         }
 
         .hero-title { 
-            /* REDUCED SIZE AS REQUESTED */
             font-size: clamp(2rem, 5vw, 4.5rem); 
-            line-height: 1;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            letter-spacing: -0.02em;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
-            margin-bottom: 20px; 
+            line-height: 1; font-weight: 900;
+            text-transform: uppercase; font-style: italic; letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9); margin-bottom: 20px; 
         }
 
         .hero-sub {
-            font-size: clamp(0.8rem, 1.2vw, 1rem);
-            color: #ddd;
-            max-width: 500px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            font-size: clamp(0.8rem, 1.2vw, 1rem); color: #ddd; max-width: 500px;
+            margin-bottom: 30px; line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,0.9);
             font-weight: 500;
         }
 
@@ -85,10 +71,8 @@
         .status-terminal {
             display: inline-flex; align-items: center;
             border-left: 2px solid var(--elite-green);
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(8px);
-            padding: 8px 16px; gap: 10px;
-            font-size: 0.65rem; color: #ccc;
+            background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(8px);
+            padding: 8px 16px; gap: 10px; font-size: 0.65rem; color: #ccc;
         }
         .status-dot {
             width: 6px; height: 6px; background: var(--elite-green); 
@@ -127,27 +111,43 @@
         .feature-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .feature-list li::before { content: '>'; color: var(--elite-green); font-weight: bold; }
 
-        /* --- ALL IN ONE SECTION --- */
+        /* --- ALL IN ONE SECTION (UPDATED) --- */
         .aio-section {
-            background: linear-gradient(145deg, #0a0500 0%, #000 100%);
-            border: 1px solid var(--elite-gold);
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.1);
+            background: linear-gradient(145deg, #0a110a 0%, #000 100%);
+            border: 1px solid var(--elite-green);
             position: relative; overflow: hidden;
+            /* THE PULSING GLOW ANIMATION */
+            animation: glow-pulse 3s infinite alternate;
         }
+
+        @keyframes glow-pulse {
+            from { box-shadow: 0 0 10px rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3); }
+            to { box-shadow: 0 0 40px rgba(34, 197, 94, 0.4); border-color: rgba(34, 197, 94, 1); }
+        }
+
         .aio-badge {
-            background: var(--elite-gold); color: black; font-weight: 900;
+            background: var(--elite-green); color: black; font-weight: 900;
             padding: 4px 12px; font-size: 0.7rem; text-transform: uppercase;
             font-family: 'JetBrains Mono', monospace; display: inline-block;
             margin-bottom: 16px;
         }
-        .gold-btn {
-            display: inline-block; background: white; color: black; 
+        
+        .action-btn {
+            display: inline-block; background: var(--elite-green); color: black; 
             transition: 0.3s;
             font-weight: 900; text-transform: uppercase; padding: 16px 32px;
             font-size: 0.8rem; letter-spacing: 1px;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+            /* Heartbeat Effect */
+            animation: btn-pulse 2s infinite;
         }
-        .gold-btn:hover { background: var(--elite-gold); }
+        .action-btn:hover { background: white; color: black; animation: none; }
+
+        @keyframes btn-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
         
         /* --- REVIEWS --- */
         .review-card {
@@ -198,7 +198,6 @@
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
-            
             <img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain">
             
             <div class="hidden md:flex gap-8 mono text-xs uppercase tracking-widest text-gray-400 items-center">
@@ -241,20 +240,16 @@
         <video autoplay muted loop playsinline class="hero-video">
             <source src="hero.mp4" type="video/mp4">
         </video>
-        
         <div class="hero-fade"></div>
-
         <div class="hero-content">
             <h1 class="hero-title">
                 Engineered<br>
                 For The <span class="text-green-500 elite-glow">Elite.</span>
             </h1>
-            
             <p class="hero-sub font-light">
                 We build the vehicles and systems that power Australia's top-tier trades.
                 Fitouts. Branding. Automation.
             </p>
-            
             <div class="status-terminal mono uppercase tracking-widest">
                 <div class="status-dot"></div>
                 <div>System :: <span id="typewriter" class="text-white font-bold typewriter">ONLINE</span></div>
@@ -265,80 +260,28 @@
     <main class="w-full pb-20 bg-black relative z-20">
         
         <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 mb-20">
-            
             <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
                 <div class="card-content flex justify-between items-start">
-                    <div>
-                        <p class="mono text-green-500 text-[10px] mb-2">MODULE_01</p>
-                        <h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Fitouts</h3>
-                        <p class="text-gray-400 text-xs mt-2">Maximise Space. Minimise Waste.</p>
-                    </div>
+                    <div><p class="mono text-green-500 text-[10px] mb-2">MODULE_01</p><h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Fitouts</h3><p class="text-gray-400 text-xs mt-2">Maximise Space. Minimise Waste.</p></div>
                     <svg class="w-6 h-6 text-gray-500 chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
-                <div class="card-details">
-                    <div class="p-8 pt-0">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Stop digging for tools. We utilize Hex Anti-Skid Plywood and heavy-duty locking slides to save you hours every day.
-                        </p>
-                        <ul class="feature-list mb-6">
-                            <li>Hex Anti-Skid Plywood</li>
-                            <li>Heavy Duty Locking Slides</li>
-                            <li>Integrated 12V Systems</li>
-                            <li>Custom Trade Layouts</li>
-                        </ul>
-                        <a href="fitouts.html" class="btn-link">Configure Build -></a>
-                    </div>
-                </div>
+                <div class="card-details"><div class="p-8 pt-0"><p class="text-gray-300 text-sm leading-relaxed mb-6">Stop digging for tools. We utilize Hex Anti-Skid Plywood and heavy-duty locking slides to save you hours every day.</p><ul class="feature-list mb-6"><li>Hex Anti-Skid Plywood</li><li>Heavy Duty Locking Slides</li><li>Integrated 12V Systems</li><li>Custom Trade Layouts</li></ul><a href="fitouts.html" class="btn-link">Configure Build -></a></div></div>
             </div>
 
             <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
                 <div class="card-content flex justify-between items-start">
-                    <div>
-                        <p class="mono text-gray-500 text-[10px] mb-2">MODULE_02</p>
-                        <h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Visuals</h3>
-                        <p class="text-gray-400 text-xs mt-2">Signage, Wraps & Protection.</p>
-                    </div>
+                    <div><p class="mono text-gray-500 text-[10px] mb-2">MODULE_02</p><h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Visuals</h3><p class="text-gray-400 text-xs mt-2">Signage, Wraps & Protection.</p></div>
                     <svg class="w-6 h-6 text-gray-500 chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
-                <div class="card-details">
-                    <div class="p-8 pt-0">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Dominate the road. From simple logos to full "Domination" colour change wraps. Plus Nano-Ceramic Tint for cabin security.
-                        </p>
-                        <ul class="feature-list mb-6">
-                            <li>Premium Cast Vinyl Wraps</li>
-                            <li>Nano-Ceramic Window Tint</li>
-                            <li>High-Density Embroidery</li>
-                            <li>Fleet Consistency</li>
-                        </ul>
-                        <a href="branding.html" class="btn-link">View Gallery -></a>
-                    </div>
-                </div>
+                <div class="card-details"><div class="p-8 pt-0"><p class="text-gray-300 text-sm leading-relaxed mb-6">Dominate the road. From simple logos to full "Domination" colour change wraps. Plus Nano-Ceramic Tint for cabin security.</p><ul class="feature-list mb-6"><li>Premium Cast Vinyl Wraps</li><li>Nano-Ceramic Window Tint</li><li>High-Density Embroidery</li><li>Fleet Consistency</li></ul><a href="branding.html" class="btn-link">View Gallery -></a></div></div>
             </div>
 
             <div class="glass-card rounded-2xl group" onclick="toggleCard(this)">
                 <div class="card-content flex justify-between items-start">
-                    <div>
-                        <p class="mono text-gray-500 text-[10px] mb-2">MODULE_03</p>
-                        <h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Scaling</h3>
-                        <p class="text-gray-400 text-xs mt-2">Leads, Software & Growth.</p>
-                    </div>
+                    <div><p class="mono text-gray-500 text-[10px] mb-2">MODULE_03</p><h3 class="text-3xl font-black italic uppercase group-hover:text-green-500 transition">Scaling</h3><p class="text-gray-400 text-xs mt-2">Leads, Software & Growth.</p></div>
                     <svg class="w-6 h-6 text-gray-500 chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
-                <div class="card-details">
-                    <div class="p-8 pt-0">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Stop chasing leads manually. We deploy automated client management systems and high-performance Elite Websites.
-                        </p>
-                        <ul class="feature-list mb-6">
-                            <li>Automated CRM & Invoicing</li>
-                            <li>High-Conversion Websites</li>
-                            <li>Review Generation Systems</li>
-                            <li>Missed-Call Text Back</li>
-                        </ul>
-                        <a href="scaling.html" class="btn-link">System Demo -></a>
-                    </div>
-                </div>
+                <div class="card-details"><div class="p-8 pt-0"><p class="text-gray-300 text-sm leading-relaxed mb-6">Stop chasing leads manually. We deploy automated client management systems and high-performance Elite Websites.</p><ul class="feature-list mb-6"><li>Automated CRM & Invoicing</li><li>High-Conversion Websites</li><li>Review Generation Systems</li><li>Missed-Call Text Back</li></ul><a href="scaling.html" class="btn-link">System Demo -></a></div></div>
             </div>
         </section>
 
@@ -355,7 +298,7 @@
                         <h2 class="text-5xl md:text-6xl font-black italic uppercase mb-2 leading-none text-white">
                             ALL IN <span class="text-green-500">ONE</span>
                         </h2>
-                        <h3 class="text-xl md:text-2xl font-bold uppercase text-yellow-500 mb-6 tracking-wide">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase text-green-500 mb-6 tracking-wide animate-pulse">
                             Build An Empire. Not Just A Van.
                         </h3>
 
@@ -366,24 +309,24 @@
                         </p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div><span class="text-xs font-bold uppercase">Business Strategy</span></div>
-                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div><span class="text-xs font-bold uppercase">Premium Fitout</span></div>
-                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div><span class="text-xs font-bold uppercase">Vehicle Wrap</span></div>
-                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div><span class="text-xs font-bold uppercase">CRM Software</span></div>
+                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-500 rounded-full"></div><span class="text-xs font-bold uppercase">Business Strategy</span></div>
+                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-500 rounded-full"></div><span class="text-xs font-bold uppercase">Premium Fitout</span></div>
+                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-500 rounded-full"></div><span class="text-xs font-bold uppercase">Vehicle Wrap</span></div>
+                            <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-500 rounded-full"></div><span class="text-xs font-bold uppercase">CRM Software</span></div>
                         </div>
 
-                        <a href="design-lab.html?tab=launchpad" class="gold-btn">
+                        <a href="design-lab.html?tab=launchpad" class="action-btn">
                             Start Your Build
                         </a>
                     </div>
 
                     <div class="hidden lg:flex justify-center items-center">
-                        <div class="relative w-full aspect-video bg-black/50 border border-yellow-500/30 rounded-xl flex flex-col items-center justify-center p-8 text-center">
-                            <p class="mono text-yellow-500 text-xs mb-4 animate-pulse">SYSTEM_INTEGRATION_COMPLETE</p>
+                        <div class="relative w-full aspect-video bg-black/50 border border-green-500/30 rounded-xl flex flex-col items-center justify-center p-8 text-center">
+                            <p class="mono text-green-500 text-xs mb-4 animate-pulse">SYSTEM_INTEGRATION_COMPLETE</p>
                             <div class="text-5xl font-black text-gray-800 mb-2">TURNKEY</div>
                             <div class="text-xl font-bold text-white uppercase tracking-[0.5em]">Solution</div>
                             
-                            <div class="absolute -bottom-6 -right-6 bg-yellow-500 text-black font-bold p-4 rounded-lg shadow-lg shadow-yellow-500/20">
+                            <div class="absolute -bottom-6 -right-6 bg-green-500 text-black font-bold p-4 rounded-lg shadow-lg shadow-green-500/20">
                                 <p class="text-2xl">100%</p>
                                 <p class="text-[10px] uppercase">Ready to Work</p>
                             </div>
@@ -426,7 +369,7 @@
                 </div>
                 
                 <div class="h-[350px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886045437812!2d145.2427843153225!3d-37.91096797973466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d6f1a8e2b2d%3A0x1c1c1c1c1c1c1c1c!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.692255746353!2d145.2427843!3d-37.9156637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d917865201d%3A0x6a2c270519f85c1!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
             <p class="text-center text-gray-600 text-[10px] mono uppercase mt-12 mb-4">
@@ -456,7 +399,6 @@
 
         function type() {
             const currentPhrase = phrases[phraseIndex];
-            
             if (isDeleting) {
                 typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
@@ -464,7 +406,6 @@
                 typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
             }
-
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
                 setTimeout(type, pauseTime);
@@ -476,7 +417,6 @@
                 setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
             }
         }
-        
         setTimeout(type, 1000);
 
         function toggleCard(card) {
@@ -491,6 +431,5 @@
             menu.classList.toggle('active');
         }
     </script>
-
 </body>
 </html>
