@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELITE | COMPONENT ARCHITECTURE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --elite-green: #22c55e; }
+        
+        body, html { 
+            background-color: #000; color: white; 
+            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            padding-bottom: 120px;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* --- NAV (Standardized) --- */
+        .glass-nav { 
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: -20px;
+            background: #0a0a0a; border: 1px solid #333; width: 240px;
+            padding: 8px; border-radius: 8px; z-index: 100;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px; color: #888; text-decoration: none;
+            border-radius: 4px; transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+        }
+        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; }
+        .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+        }
+        #mobile-menu.active { display: block; }
+
+        /* --- HERO --- */
+        .spec-hero {
+            padding: 100px 24px 60px 24px; border-bottom: 1px solid #222;
+            background: radial-gradient(circle at top right, #0a110a 0%, #000 70%);
+        }
+
+        /* --- COMPONENT BLOCKS --- */
+        .component-block {
+            background: #080808; border: 1px solid #222; margin-bottom: 24px;
+            overflow: hidden; transition: 0.3s;
+        }
+        .component-block:hover { border-color: #444; }
+        
+        .component-grid { display: grid; grid-cols-1 md:grid-cols-[1.5fr_1fr]; }
+        
+        .comp-info { padding: 30px; }
+        .comp-tech { 
+            background: #050505; border-left: 1px solid #222; padding: 30px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        .data-table { width: 100%; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888; }
+        .data-table td { padding: 8px 0; border-bottom: 1px solid #222; }
+        .data-table td:last-child { text-align: right; color: white; font-weight: bold; }
+
+        /* --- ADD BUTTON --- */
+        .add-btn {
+            width: 100%; background: transparent; border: 1px solid #333; color: #666;
+            padding: 12px; text-transform: uppercase; font-weight: bold; font-size: 0.8rem;
+            cursor: pointer; transition: 0.2s; margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .add-btn:hover { border-color: white; color: white; }
+        
+        .add-btn.added {
+            background: var(--elite-green); border-color: var(--elite-green); color: black;
+        }
+        .add-btn.added::after { content: " [ADDED]"; }
+
+        /* --- STICKY FOOTER --- */
+        .builder-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
+            border-top: 1px solid var(--elite-green); padding: 20px 24px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
+                <a href="index.html" class="hover:text-white transition">Home</a>
+                <div class="relative dropdown">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                        Systems <span class="text-[8px] transform rotate-90">></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">DEPARTMENTS</div>
+                        <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
+                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
+                        <div class="dropdown-divider"></div>
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
+                        <a href="launchpad.html" class="dropdown-item">Launchpad <span>-></span></a>
+                        <a href="specs.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Tech Specs <span>-></span></a>
+                    </div>
+                </div>
+                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
+            </div>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">///</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu">
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
+            <a href="index.html" class="text-gray-400 hover:text-green-500">Home</a>
+            <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
+            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
+            <a href="specs.html" class="text-white border-l-4 border-green-500 pl-4">Technical Specs</a>
+        </div>
+    </div>
+
+    <section class="spec-hero">
+        <div class="max-w-6xl mx-auto">
+            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4">Engineering_Data</p>
+            <h1 class="text-4xl md:text-6xl font-black italic uppercase mb-6 text-white">Component <span class="text-gray-500">Architecture</span></h1>
+            <p class="text-gray-400 max-w-2xl text-sm leading-relaxed">
+                Build your own loadout. Select the specific components you require below to generate a custom manifest. 
+                We do not use chipboard or standard runners. All materials are industrial grade.
+            </p>
+        </div>
+    </section>
+
+    <section class="px-6 py-12 max-w-6xl mx-auto">
+        
+        <h2 class="text-xl font-black uppercase italic mb-6 pl-4 border-l-4 border-green-500">01. Structural Foundation</h2>
+        
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">False Floor System</h3>
+                    <p class="text-xs text-green-500 mono mb-4">MATERIAL: HEX-PHENOLIC BIRCH PLY</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        The foundation of every Elite build. CNC-machined from 12mm Birch Core Plywood with a Phenolic Hex-Pattern face. This material is hydrophobic (water-repellant), oil-resistant, and provides R10 slip resistance.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>THICKNESS</td><td>12mm</td></tr>
+                        <tr><td>SURFACE</td><td>Anti-Skid Hex</td></tr>
+                        <tr><td>MOISTURE</td><td>Hydrophobic</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'False Floor System')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">Heavy Duty Drawers</h3>
+                    <p class="text-xs text-green-500 mono mb-4">HARDWARE: 227KG LOCKING SLIDES</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Gravity is the enemy. Standard runners fail on inclines. We utilize 227kg-rated locking slides. A trigger mechanism locks the drawer closed for transit, and locks it open for safety while working.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>LOAD RATING</td><td>227kg (Dynamic)</td></tr>
+                        <tr><td>LOCK TYPE</td><td>In / Out Lock</td></tr>
+                        <tr><td>DEPTH</td><td>900mm - 1500mm</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'HD Drawer Unit')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-xl font-black uppercase italic mb-6 mt-16 pl-4 border-l-4 border-green-500">02. Storage Modules</h2>
+
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">Skeleton Shelving</h3>
+                    <p class="text-xs text-green-500 mono mb-4">DESIGN: MORTISE & TENON</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Weight equates to fuel consumption. Our "Skeleton" design removes 40% of material weight without compromising rigidity. Shelves are bonded and screwed for a rattle-free existence.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>MATERIAL</td><td>12mm Ply</td></tr>
+                        <tr><td>JOINERY</td><td>CNC Interlock</td></tr>
+                        <tr><td>CONFIG</td><td>Custom Height</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'Skeleton Shelving')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">Organiser Racks</h3>
+                    <p class="text-xs text-green-500 mono mb-4">VARIANT: CABLE / CASE / GAS</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Specific mounts for your trade. Cable rail holders for sparkies, Freon bottle towers for HVAC, or slide-out case holders for systainers/packouts.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>FITMENT</td><td>Universal</td></tr>
+                        <tr><td>STYLE</td><td>Trade Specific</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'Trade Racks')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="builder-bar">
+        <div>
+            <p class="text-[10px] text-gray-500 mono uppercase">Custom Build Manifest</p>
+            <p class="text-xl font-bold text-white" id="build-count">0 Components Selected</p>
+        </div>
+        <button class="bg-green-500 text-black font-bold uppercase px-6 py-3 text-xs tracking-widest hover:bg-white transition" onclick="submitBuild()">
+            Submit Build List ->
+        </button>
+    </div>
+
+    <script>
+        let buildList = [];
+
+        function toggleItem(btn, itemName) {
+            if (buildList.includes(itemName)) {
+                // Remove item
+                buildList = buildList.filter(i => i !== itemName);
+                btn.classList.remove('added');
+                btn.innerText = "+ ADD TO BUILD";
+            } else {
+                // Add item
+                buildList.push(itemName);
+                btn.classList.add('added');
+                btn.innerText = "IN MANIFEST";
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const count = buildList.length;
+            const text = count === 1 ? " Component Selected" : " Components Selected";
+            document.getElementById('build-count').innerText = count + text;
+        }
+
+        function submitBuild() {
+            if (buildList.length === 0) {
+                alert("Please select at least one component.");
+                return;
+            }
+            // Create a string: "Custom: False Floor, Drawers, Racks"
+            const finalString = "Custom Build: " + buildList.join(", ");
+            
+            // Redirect to Design Lab with the list
+            window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(finalString)}`;
+        }
+    </script>
+
+</body>
+</html>
