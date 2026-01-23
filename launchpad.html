@@ -16,26 +16,26 @@
         }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- ANIMATED GRID BACKGROUND --- */
+        /* --- ANIMATED ARCHITECTURAL GRID --- */
         .grid-bg {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: 
                 linear-gradient(transparent 0%, #000 100%),
                 linear-gradient(0deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
-            background-size: 100% 100%, 60px 60px, 60px 60px;
+            background-size: 100% 100%, 80px 80px, 80px 80px;
             transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2);
             animation: gridMove 20s linear infinite;
-            z-index: -10; opacity: 0.6; pointer-events: none;
+            z-index: -10; opacity: 0.8; pointer-events: none;
         }
         @keyframes gridMove {
             0% { background-position: 0 0, 0 0, 0 0; }
             100% { background-position: 0 0, 0 400px, 0 0; }
         }
 
-        /* --- SCROLL REVEAL ANIMATIONS --- */
+        /* --- SCROLL REVEAL --- */
         .reveal {
-            opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -65,40 +65,59 @@
         }
         #mobile-menu.active { display: block; }
 
-        /* --- HERO --- */
+        /* --- HERO TEXT EFFECTS --- */
         .lp-hero {
-            min-height: 85vh; display: flex; flex-direction: column; justify-content: center;
+            min-height: 90vh; display: flex; flex-direction: column; justify-content: center;
             text-align: center; padding: 0 24px; position: relative;
         }
-        .glowing-text { text-shadow: 0 0 30px rgba(34, 197, 94, 0.3); }
-
-        /* --- INFO BOXES --- */
-        .info-box {
-            background: rgba(10, 10, 10, 0.9); border: 1px solid #333;
-            padding: 40px; backdrop-filter: blur(10px);
-            position: relative; overflow: hidden;
+        .glowing-text { 
+            text-shadow: 0 0 40px rgba(34, 197, 94, 0.4); 
         }
-        .info-box:hover { border-color: var(--elite-green); }
-        .corner-bracket {
-            position: absolute; width: 20px; height: 20px; border: 2px solid var(--elite-green);
+        .hero-border {
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            display: inline-block;
+            box-shadow: 0 0 50px rgba(34, 197, 94, 0.1);
+        }
+
+        /* --- TIMELINE ROADMAP --- */
+        .timeline-container {
+            position: relative; max-width: 800px; margin: 0 auto; padding: 40px 0;
+        }
+        .timeline-line {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--elite-green), transparent);
+            transform: translateX(-50%);
+        }
+        .timeline-step {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 80px; position: relative;
+        }
+        .timeline-step:nth-child(even) { flex-direction: row-reverse; }
+        
+        .step-content {
+            width: 45%; background: #0a0a0a; border: 1px solid #333; padding: 30px;
+            position: relative; transition: 0.3s;
+        }
+        .step-content:hover { border-color: var(--elite-green); transform: scale(1.02); }
+        
+        .step-marker {
+            width: 20px; height: 20px; background: #000; border: 4px solid var(--elite-green);
+            border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--elite-green); z-index: 10;
+        }
+
+        /* --- ANY BUSINESS GRID --- */
+        .business-grid {
+            display: grid; grid-cols-2 md:grid-cols-4 gap-4; margin-top: 40px;
+        }
+        .biz-tag {
+            background: rgba(34, 197, 94, 0.05); border: 1px solid #333;
+            padding: 15px; text-align: center; color: #888; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace;
             transition: 0.3s;
         }
-        .info-box:hover .tl { top: 0; left: 0; border-right: 0; border-bottom: 0; }
-        .info-box:hover .br { bottom: 0; right: 0; border-left: 0; border-top: 0; }
-
-        /* --- COMPARISON TABLE --- */
-        .vs-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .vs-table th { text-align: left; padding: 15px; border-bottom: 1px solid #333; color: #888; font-size: 0.8rem; }
-        .vs-table td { padding: 15px; border-bottom: 1px solid #222; font-size: 0.9rem; }
-        .vs-table .bad { color: #ef4444; } /* Red */
-        .vs-table .good { color: var(--elite-green); font-weight: bold; }
-
-        /* --- MANIFEST LIST --- */
-        .manifest-list li {
-            display: flex; justify-content: space-between; padding: 12px 0;
-            border-bottom: 1px dashed #333; color: #ccc; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
-        }
-        .manifest-list li span:last-child { color: var(--elite-green); }
+        .biz-tag:hover { border-color: var(--elite-green); color: white; background: rgba(34, 197, 94, 0.1); }
 
         /* --- CTA BUTTON --- */
         .gold-btn {
@@ -167,149 +186,124 @@
     </div>
 
     <section class="lp-hero">
-        <div class="max-w-5xl mx-auto z-10 reveal">
-            <div class="inline-block border border-green-500/30 bg-green-500/10 px-4 py-2 rounded-full mb-8">
-                <p class="mono text-green-500 text-[10px] tracking-[0.2em] uppercase animate-pulse">
-                    ● Incubator_Program :: Status_Active
+        <div class="max-w-6xl mx-auto z-10 reveal">
+            <div class="hero-border">
+                <p class="mono text-green-500 text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">Total_Systemization_Protocol</p>
+                <h1 class="text-5xl md:text-8xl font-black italic uppercase mb-6 leading-none text-white glowing-text">
+                    From Dream <br>To <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-700">Deployment.</span>
+                </h1>
+                <p class="text-gray-300 max-w-3xl mx-auto text-sm md:text-lg leading-relaxed mb-10 font-light">
+                    You have the vision. We build the engine. 
+                    <br>
+                    The Launchpad is a complete "Business in a Box" solution. We take you from zero to fully operational in one seamless process. The Van. The Brand. The Software. <strong>Done.</strong>
                 </p>
             </div>
-            <h1 class="text-5xl md:text-8xl font-black italic uppercase mb-6 leading-none text-white glowing-text">
-                Build An <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-700">Empire.</span>
-            </h1>
-            <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed mb-10">
-                The comprehensive business infrastructure package. We take you from "Idea" to "Fully Operational" in days, not weeks.
-                <br><strong class="text-white">One Team. One Invoice. Zero Friction.</strong>
-            </p>
         </div>
     </section>
 
     <section class="px-6 py-20 max-w-5xl mx-auto reveal">
-        <div class="info-box">
-            <div class="corner-bracket tl"></div>
-            <div class="corner-bracket br"></div>
-            
-            <h2 class="text-2xl font-bold uppercase mb-8 text-center">The Fragmentation Trap</h2>
-            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">
-                Most business owners lose 3 months of revenue trying to coordinate a launch. It usually looks like this:
-            </p>
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black italic uppercase text-white mb-4">Why Businesses Fail To Launch</h2>
+            <p class="text-gray-400">Coordination is the enemy of speed. Trying to build a business piece-by-piece costs you months.</p>
+        </div>
 
-            <table class="vs-table">
-                <thead>
-                    <tr>
-                        <th>PARAMETER</th>
-                        <th>THE OLD WAY</th>
-                        <th>THE ELITE LAUNCHPAD</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>VENDORS</td>
-                        <td class="bad">5+ (Shelving, Wrap, Web, CRM, Uniforms)</td>
-                        <td class="good">1 (Unified Command)</td>
-                    </tr>
-                    <tr>
-                        <td>TIMELINE</td>
-                        <td class="bad">8 - 12 Weeks (Delays & Excuses)</td>
-                        <td class="good">14 - 21 Days (Simultaneous Build)</td>
-                    </tr>
-                    <tr>
-                        <td>BRANDING</td>
-                        <td class="bad">Inconsistent (Files don't match)</td>
-                        <td class="good">Unified (Designed holistically)</td>
-                    </tr>
-                    <tr>
-                        <td>FINANCE</td>
-                        <td class="bad">5 Separate Cash Invoices</td>
-                        <td class="good">1 Bundled Finance Payment</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="p-8 border border-red-900/50 bg-red-900/10 rounded-lg">
+                <h3 class="text-red-500 font-bold uppercase mb-4 text-xl">The Old Way</h3>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li class="flex gap-3"><span class="text-red-500">X</span> Dealing with 5 different vendors (Wrap, Mechanic, Web Guy, etc).</li>
+                    <li class="flex gap-3"><span class="text-red-500">X</span> Waiting 2 weeks just for a logo design.</li>
+                    <li class="flex gap-3"><span class="text-red-500">X</span> Van sits idle in the driveway earning $0.</li>
+                    <li class="flex gap-3"><span class="text-red-500">X</span> <strong>Result:</strong> 3 Months of Lost Revenue.</li>
+                </ul>
+            </div>
+            <div class="p-8 border border-green-500 bg-green-900/10 rounded-lg relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 mono">ELITE PROTOCOL</div>
+                <h3 class="text-green-500 font-bold uppercase mb-4 text-xl">The Launchpad</h3>
+                <ul class="space-y-4 text-gray-300 text-sm">
+                    <li class="flex gap-3"><span class="text-green-500">✓</span> Single Point of Command. One Team.</li>
+                    <li class="flex gap-3"><span class="text-green-500">✓</span> Simultaneous Production (Van & Website built together).</li>
+                    <li class="flex gap-3"><span class="text-green-500">✓</span> Full Systems Training & Handover.</li>
+                    <li class="flex gap-3"><span class="text-green-500">✓</span> <strong>Result:</strong> Operational in Days, not Weeks.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section class="px-6 py-20 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-black italic uppercase text-center mb-16">The Complete Manifest</h2>
+    <section class="px-6 py-20 bg-black border-y border-[#222]">
+        <h2 class="text-4xl font-black italic uppercase text-center mb-16 text-white">The Deployment <span class="text-green-500">Roadmap</span></h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div class="reveal border-t-2 border-green-500 pt-6">
-                <h3 class="text-2xl font-black italic uppercase text-white mb-2">01. Tactical</h3>
-                <p class="text-xs text-gray-500 mono mb-6">PHYSICAL INFRASTRUCTURE</p>
-                <p class="text-sm text-gray-400 mb-6">
-                    We turn your vehicle into a mobile workshop. Engineered for your specific trade workflow.
-                </p>
-                <ul class="manifest-list">
-                    <li>Vehicle Sourcing <span>[OPTIONAL]</span></li>
-                    <li>Hex Anti-Skid False Floor <span>INCLUDED</span></li>
-                    <li>Heavy Duty Drawer Systems <span>INCLUDED</span></li>
-                    <li>Trade-Specific Shelving <span>INCLUDED</span></li>
-                    <li>12V Dual Battery System <span>INCLUDED</span></li>
-                    <li>Roof Racks & Ladders <span>INCLUDED</span></li>
-                </ul>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-step reveal">
+                <div class="step-content">
+                    <p class="mono text-green-500 text-xs mb-2">PHASE 01</p>
+                    <h3 class="text-xl font-bold uppercase text-white mb-2">The Blueprint</h3>
+                    <p class="text-sm text-gray-400">We sit down and map out your entire business model. Naming, Logo Strategy, and Service Offerings. We define exactly who you are targeting.</p>
+                </div>
+                <div class="step-marker"></div>
+                <div class="w-[45%]"></div> </div>
+
+            <div class="timeline-step reveal">
+                <div class="step-content">
+                    <p class="mono text-green-500 text-xs mb-2">PHASE 02</p>
+                    <h3 class="text-xl font-bold uppercase text-white mb-2">The Build</h3>
+                    <p class="text-sm text-gray-400">While our workshop builds your <strong>Elite Fitout</strong> and installs the <strong>Vehicle Wrap</strong>, our tech team is simultaneously coding your <strong>Website</strong> and <strong>CRM</strong>.</p>
+                </div>
+                <div class="step-marker"></div>
+                <div class="w-[45%]"></div>
             </div>
 
-            <div class="reveal border-t-2 border-white pt-6" style="transition-delay: 0.2s">
-                <h3 class="text-2xl font-black italic uppercase text-white mb-2">02. Visual</h3>
-                <p class="text-xs text-gray-500 mono mb-6">IDENTITY & WARFARE</p>
-                <p class="text-sm text-gray-400 mb-6">
-                    Dominate your local area. We build a brand that demands higher rates and trust.
-                </p>
-                <ul class="manifest-list">
-                    <li>Logo Strategy & Design <span>INCLUDED</span></li>
-                    <li>Full Premium Vehicle Wrap <span>INCLUDED</span></li>
-                    <li>Business Card Design <span>INCLUDED</span></li>
-                    <li>Uniform / Apparel Kit <span>INCLUDED</span></li>
-                    <li>Social Media Asset Kit <span>INCLUDED</span></li>
-                    <li>Site Signage Design <span>INCLUDED</span></li>
-                </ul>
+            <div class="timeline-step reveal">
+                <div class="step-content">
+                    <p class="mono text-green-500 text-xs mb-2">PHASE 03</p>
+                    <h3 class="text-xl font-bold uppercase text-white mb-2">Systemization</h3>
+                    <p class="text-sm text-gray-400">We configure your automation. Auto-Invoicing, Missed Call Text-Back, and Review Generation. We turn the software into an employee that never sleeps.</p>
+                </div>
+                <div class="step-marker"></div>
+                <div class="w-[45%]"></div>
             </div>
 
-            <div class="reveal border-t-2 border-green-500 pt-6" style="transition-delay: 0.4s">
-                <h3 class="text-2xl font-black italic uppercase text-white mb-2">03. Digital</h3>
-                <p class="text-xs text-gray-500 mono mb-6">GROWTH AUTOMATION</p>
-                <p class="text-sm text-gray-400 mb-6">
-                    The invisible engine. We automate your admin so you can focus on billable hours.
-                </p>
-                <ul class="manifest-list">
-                    <li>High-Performance Website <span>INCLUDED</span></li>
-                    <li>CRM (Client Management) <span>INCLUDED</span></li>
-                    <li>Auto-Invoicing System <span>INCLUDED</span></li>
-                    <li>Google Review Automation <span>INCLUDED</span></li>
-                    <li>Missed-Call Text Back AI <span>INCLUDED</span></li>
-                    <li>24/7 Lead Capture <span>INCLUDED</span></li>
-                </ul>
+            <div class="timeline-step reveal">
+                <div class="step-content border-green-500 shadow-[0_0_30px_rgba(34,197,94,0.1)]">
+                    <p class="mono text-green-500 text-xs mb-2">PHASE 04</p>
+                    <h3 class="text-xl font-bold uppercase text-white mb-2">Handover & Launch</h3>
+                    <p class="text-sm text-gray-400">You collect the keys. Your van is stocked. Your website is live. Your payment terminal is ready. You drive out of our HQ ready to bill your first client immediately.</p>
+                </div>
+                <div class="step-marker bg-green-500"></div>
+                <div class="w-[45%]"></div>
             </div>
 
         </div>
     </section>
 
-    <section class="py-20 bg-green-900/10 border-y border-green-900/30">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <p class="mono text-green-500 text-xs mb-4">SMART MONEY PROTOCOL</p>
-            <h2 class="text-3xl font-bold uppercase text-white mb-6">Why Pay Cash?</h2>
-            <p class="text-gray-300 mb-8 leading-relaxed">
-                By bundling your Fitout, Wrap, and Tech into one package, we can often structure the entire build under a single <strong>Business Finance</strong> plan. 
-                <br><br>
-                Instead of draining $30k of your working capital upfront, you pay a manageable monthly rate that is 100% tax-deductible as an operating expense.
-            </p>
-            <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-8">
-                <div class="bg-black p-4 border border-[#333]">
-                    <p class="text-2xl font-bold text-white">100%</p>
-                    <p class="text-[10px] text-gray-500 uppercase">Tax Deductible</p>
-                </div>
-                <div class="bg-black p-4 border border-[#333]">
-                    <p class="text-2xl font-bold text-white">$0</p>
-                    <p class="text-[10px] text-gray-500 uppercase">Upfront Capital</p>
-                </div>
-            </div>
-            <p class="text-[10px] text-gray-600 italic">*Subject to approval. Consult your accountant.</p>
+    <section class="py-20 px-6 max-w-5xl mx-auto text-center reveal">
+        <h2 class="text-3xl font-bold uppercase text-white mb-4">Any Business. Any Trade.</h2>
+        <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+            The Launchpad infrastructure adapts to your specific industry. We have built empires for:
+        </p>
+        
+        <div class="business-grid">
+            <div class="biz-tag">ELECTRICAL & DATA</div>
+            <div class="biz-tag">PLUMBING & HVAC</div>
+            <div class="biz-tag">MOBILE DETAILING</div>
+            <div class="biz-tag">LANDSCAPING</div>
+            <div class="biz-tag">MOBILE MECHANIC</div>
+            <div class="biz-tag">LOCKSMITH</div>
+            <div class="biz-tag">MOBILE DOG WASH</div>
+            <div class="biz-tag">PEST CONTROL</div>
         </div>
+        
+        <p class="mt-12 text-sm text-gray-500 mono">
+            // If it requires a vehicle and a booking system, we can build it.
+        </p>
     </section>
 
     <section class="py-32 px-6 text-center">
         <div class="reveal">
             <p class="mono text-gray-500 text-xs mb-6">CAPACITY WARNING: LIMITED SLOTS AVAILABLE</p>
-            <h2 class="text-4xl font-black italic uppercase text-white mb-10">Ready to Deploy?</h2>
+            <h2 class="text-4xl font-black italic uppercase text-white mb-10">Stop Dreaming. Start Building.</h2>
             <a href="design-lab.html?tab=launchpad" class="gold-btn">
                 Initiate Launch Sequence
             </a>
