@@ -21,13 +21,12 @@
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: 
                 linear-gradient(transparent 0%, #000 100%),
-                linear-gradient(0deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
+                linear-gradient(0deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 60px 60px, 60px 60px;
             transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2);
             animation: gridMove 20s linear infinite;
-            z-index: -10; opacity: 0.4;
-            pointer-events: none;
+            z-index: -10; opacity: 0.6; pointer-events: none;
         }
         @keyframes gridMove {
             0% { background-position: 0 0, 0 0, 0 0; }
@@ -36,7 +35,7 @@
 
         /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal {
-            opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+            opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -68,54 +67,38 @@
 
         /* --- HERO --- */
         .lp-hero {
-            min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+            min-height: 85vh; display: flex; flex-direction: column; justify-content: center;
             text-align: center; padding: 0 24px; position: relative;
         }
-        .glowing-text {
-            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
-        }
+        .glowing-text { text-shadow: 0 0 30px rgba(34, 197, 94, 0.3); }
 
-        /* --- PILLAR CARDS (HOLOGRAPHIC) --- */
-        .pillar-container {
-            display: grid; grid-cols-1 md:grid-cols-3 gap-6;
-            margin-top: -50px; position: relative; z-index: 20;
-        }
-        .pillar-card {
-            background: rgba(10, 15, 10, 0.8); 
-            border: 1px solid #333;
-            backdrop-filter: blur(10px);
-            padding: 40px;
+        /* --- INFO BOXES --- */
+        .info-box {
+            background: rgba(10, 10, 10, 0.9); border: 1px solid #333;
+            padding: 40px; backdrop-filter: blur(10px);
             position: relative; overflow: hidden;
-            transition: 0.5s;
         }
-        .pillar-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--elite-green), transparent);
-            transform: translateX(-100%); transition: 0.5s;
+        .info-box:hover { border-color: var(--elite-green); }
+        .corner-bracket {
+            position: absolute; width: 20px; height: 20px; border: 2px solid var(--elite-green);
+            transition: 0.3s;
         }
-        .pillar-card:hover { 
-            transform: translateY(-10px); 
-            border-color: var(--elite-green); 
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
-        }
-        .pillar-card:hover::before { transform: translateX(100%); transition: 1s; }
+        .info-box:hover .tl { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+        .info-box:hover .br { bottom: 0; right: 0; border-left: 0; border-top: 0; }
 
-        /* --- THE CORE (REACTOR) --- */
-        .core-section {
-            padding: 100px 24px; position: relative; overflow: hidden;
-            background: radial-gradient(circle, #0a150a 0%, #000 70%);
-            border-top: 1px solid #222; border-bottom: 1px solid #222;
+        /* --- COMPARISON TABLE --- */
+        .vs-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .vs-table th { text-align: left; padding: 15px; border-bottom: 1px solid #333; color: #888; font-size: 0.8rem; }
+        .vs-table td { padding: 15px; border-bottom: 1px solid #222; font-size: 0.9rem; }
+        .vs-table .bad { color: #ef4444; } /* Red */
+        .vs-table .good { color: var(--elite-green); font-weight: bold; }
+
+        /* --- MANIFEST LIST --- */
+        .manifest-list li {
+            display: flex; justify-content: space-between; padding: 12px 0;
+            border-bottom: 1px dashed #333; color: #ccc; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
         }
-        .reactor-ring {
-            width: 300px; height: 300px; border-radius: 50%;
-            border: 2px solid #333; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            animation: spin 10s linear infinite; opacity: 0.3;
-        }
-        .reactor-ring:nth-child(2) { width: 400px; height: 400px; animation-direction: reverse; border-color: #222; }
-        .reactor-ring:nth-child(3) { width: 200px; height: 200px; border: 1px dashed var(--elite-green); opacity: 0.5; }
-        
-        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .manifest-list li span:last-child { color: var(--elite-green); }
 
         /* --- CTA BUTTON --- */
         .gold-btn {
@@ -185,92 +168,141 @@
 
     <section class="lp-hero">
         <div class="max-w-5xl mx-auto z-10 reveal">
-            <p class="mono text-green-500 text-xs tracking-[0.4em] uppercase mb-6 animate-pulse">Classified :: Incubator_Access</p>
+            <div class="inline-block border border-green-500/30 bg-green-500/10 px-4 py-2 rounded-full mb-8">
+                <p class="mono text-green-500 text-[10px] tracking-[0.2em] uppercase animate-pulse">
+                    ● Incubator_Program :: Status_Active
+                </p>
+            </div>
             <h1 class="text-5xl md:text-8xl font-black italic uppercase mb-6 leading-none text-white glowing-text">
                 Build An <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-700">Empire.</span>
             </h1>
-            <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed mb-10 mono">
-                // SYSTEM_OVERRIDE: You have the trade skills. We have the infrastructure. 
-                We take you from 'Idea' to 'Operational' in days, not weeks.
+            <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed mb-10">
+                The comprehensive business infrastructure package. We take you from "Idea" to "Fully Operational" in days, not weeks.
+                <br><strong class="text-white">One Team. One Invoice. Zero Friction.</strong>
             </p>
         </div>
     </section>
 
-    <section class="px-6 pb-20 max-w-7xl mx-auto">
-        <div class="pillar-container">
+    <section class="px-6 py-20 max-w-5xl mx-auto reveal">
+        <div class="info-box">
+            <div class="corner-bracket tl"></div>
+            <div class="corner-bracket br"></div>
             
-            <div class="pillar-card reveal">
-                <div class="text-6xl font-black text-[#222] absolute top-2 right-4">01</div>
-                <h3 class="text-2xl font-black italic uppercase text-green-500 mb-2">Tactical</h3>
-                <p class="text-xs text-white font-bold tracking-widest mb-6">PHYSICAL INFRASTRUCTURE</p>
-                <p class="text-gray-400 text-sm mb-6">
-                    We source the vehicle, install the Elite Fitout, and equip the racking. You drive away with a mobile workshop, not a van.
+            <h2 class="text-2xl font-bold uppercase mb-8 text-center">The Fragmentation Trap</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">
+                Most business owners lose 3 months of revenue trying to coordinate a launch. It usually looks like this:
+            </p>
+
+            <table class="vs-table">
+                <thead>
+                    <tr>
+                        <th>PARAMETER</th>
+                        <th>THE OLD WAY</th>
+                        <th>THE ELITE LAUNCHPAD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VENDORS</td>
+                        <td class="bad">5+ (Shelving, Wrap, Web, CRM, Uniforms)</td>
+                        <td class="good">1 (Unified Command)</td>
+                    </tr>
+                    <tr>
+                        <td>TIMELINE</td>
+                        <td class="bad">8 - 12 Weeks (Delays & Excuses)</td>
+                        <td class="good">14 - 21 Days (Simultaneous Build)</td>
+                    </tr>
+                    <tr>
+                        <td>BRANDING</td>
+                        <td class="bad">Inconsistent (Files don't match)</td>
+                        <td class="good">Unified (Designed holistically)</td>
+                    </tr>
+                    <tr>
+                        <td>FINANCE</td>
+                        <td class="bad">5 Separate Cash Invoices</td>
+                        <td class="good">1 Bundled Finance Payment</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="px-6 py-20 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-black italic uppercase text-center mb-16">The Complete Manifest</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="reveal border-t-2 border-green-500 pt-6">
+                <h3 class="text-2xl font-black italic uppercase text-white mb-2">01. Tactical</h3>
+                <p class="text-xs text-gray-500 mono mb-6">PHYSICAL INFRASTRUCTURE</p>
+                <p class="text-sm text-gray-400 mb-6">
+                    We turn your vehicle into a mobile workshop. Engineered for your specific trade workflow.
                 </p>
-                <ul class="text-xs text-gray-500 mono space-y-2">
-                    <li>+ Custom Elite Fitout</li>
-                    <li>+ Hex Anti-Skid Flooring</li>
-                    <li>+ 12V Power Integration</li>
+                <ul class="manifest-list">
+                    <li>Vehicle Sourcing <span>[OPTIONAL]</span></li>
+                    <li>Hex Anti-Skid False Floor <span>INCLUDED</span></li>
+                    <li>Heavy Duty Drawer Systems <span>INCLUDED</span></li>
+                    <li>Trade-Specific Shelving <span>INCLUDED</span></li>
+                    <li>12V Dual Battery System <span>INCLUDED</span></li>
+                    <li>Roof Racks & Ladders <span>INCLUDED</span></li>
                 </ul>
             </div>
 
-            <div class="pillar-card reveal" style="transition-delay: 0.2s">
-                <div class="text-6xl font-black text-[#222] absolute top-2 right-4">02</div>
-                <h3 class="text-2xl font-black italic uppercase text-green-500 mb-2">Visual</h3>
-                <p class="text-xs text-white font-bold tracking-widest mb-6">IDENTITY & WARFARE</p>
-                <p class="text-gray-400 text-sm mb-6">
-                    A business without a brand is just a hobby. We design your logo, wrap the vehicle, and embroider your kit.
+            <div class="reveal border-t-2 border-white pt-6" style="transition-delay: 0.2s">
+                <h3 class="text-2xl font-black italic uppercase text-white mb-2">02. Visual</h3>
+                <p class="text-xs text-gray-500 mono mb-6">IDENTITY & WARFARE</p>
+                <p class="text-sm text-gray-400 mb-6">
+                    Dominate your local area. We build a brand that demands higher rates and trust.
                 </p>
-                <ul class="text-xs text-gray-500 mono space-y-2">
-                    <li>+ Full Brand Strategy</li>
-                    <li>+ Premium Vehicle Wrap</li>
-                    <li>+ Uniform & Apparel Kit</li>
+                <ul class="manifest-list">
+                    <li>Logo Strategy & Design <span>INCLUDED</span></li>
+                    <li>Full Premium Vehicle Wrap <span>INCLUDED</span></li>
+                    <li>Business Card Design <span>INCLUDED</span></li>
+                    <li>Uniform / Apparel Kit <span>INCLUDED</span></li>
+                    <li>Social Media Asset Kit <span>INCLUDED</span></li>
+                    <li>Site Signage Design <span>INCLUDED</span></li>
                 </ul>
             </div>
 
-            <div class="pillar-card reveal" style="transition-delay: 0.4s">
-                <div class="text-6xl font-black text-[#222] absolute top-2 right-4">03</div>
-                <h3 class="text-2xl font-black italic uppercase text-green-500 mb-2">Digital</h3>
-                <p class="text-xs text-white font-bold tracking-widest mb-6">GROWTH AUTOMATION</p>
-                <p class="text-gray-400 text-sm mb-6">
-                    Don't be a slave to the phone. We build your website, set up your CRM, and automate your lead follow-up.
+            <div class="reveal border-t-2 border-green-500 pt-6" style="transition-delay: 0.4s">
+                <h3 class="text-2xl font-black italic uppercase text-white mb-2">03. Digital</h3>
+                <p class="text-xs text-gray-500 mono mb-6">GROWTH AUTOMATION</p>
+                <p class="text-sm text-gray-400 mb-6">
+                    The invisible engine. We automate your admin so you can focus on billable hours.
                 </p>
-                <ul class="text-xs text-gray-500 mono space-y-2">
-                    <li>+ High-Speed Website</li>
-                    <li>+ Automated CRM</li>
-                    <li>+ Google Review System</li>
+                <ul class="manifest-list">
+                    <li>High-Performance Website <span>INCLUDED</span></li>
+                    <li>CRM (Client Management) <span>INCLUDED</span></li>
+                    <li>Auto-Invoicing System <span>INCLUDED</span></li>
+                    <li>Google Review Automation <span>INCLUDED</span></li>
+                    <li>Missed-Call Text Back AI <span>INCLUDED</span></li>
+                    <li>24/7 Lead Capture <span>INCLUDED</span></li>
                 </ul>
             </div>
 
         </div>
     </section>
 
-    <section class="core-section text-center">
-        <div class="reactor-ring"></div>
-        <div class="reactor-ring"></div>
-        <div class="reactor-ring"></div>
-        
-        <div class="relative z-10 max-w-4xl mx-auto reveal">
-            <h2 class="text-3xl md:text-5xl font-black italic uppercase mb-6 text-white">One Team. One Invoice. <br><span class="text-green-500">Zero Friction.</span></h2>
-            <div class="grid md:grid-cols-2 gap-8 text-left mt-12 bg-black/50 p-8 border border-[#333] backdrop-blur-sm">
-                <div>
-                    <h4 class="text-red-500 font-bold uppercase mb-2">The Old Way</h4>
-                    <ul class="text-gray-500 text-sm space-y-2 mono">
-                        <li>[X] Dealing with 5 different vendors</li>
-                        <li>[X] Delays between Fitout & Wrap</li>
-                        <li>[X] Inconsistent Branding files</li>
-                        <li>[X] No systems in place on Day 1</li>
-                    </ul>
+    <section class="py-20 bg-green-900/10 border-y border-green-900/30">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <p class="mono text-green-500 text-xs mb-4">SMART MONEY PROTOCOL</p>
+            <h2 class="text-3xl font-bold uppercase text-white mb-6">Why Pay Cash?</h2>
+            <p class="text-gray-300 mb-8 leading-relaxed">
+                By bundling your Fitout, Wrap, and Tech into one package, we can often structure the entire build under a single <strong>Business Finance</strong> plan. 
+                <br><br>
+                Instead of draining $30k of your working capital upfront, you pay a manageable monthly rate that is 100% tax-deductible as an operating expense.
+            </p>
+            <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-8">
+                <div class="bg-black p-4 border border-[#333]">
+                    <p class="text-2xl font-bold text-white">100%</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Tax Deductible</p>
                 </div>
-                <div>
-                    <h4 class="text-green-500 font-bold uppercase mb-2">The Launchpad</h4>
-                    <ul class="text-white text-sm space-y-2 mono">
-                        <li>[✓] Single Point of Contact</li>
-                        <li>[✓] Simultaneous Production</li>
-                        <li>[✓] Turnkey Handover</li>
-                        <li>[✓] 100% Tax Deductible (Finance)</li>
-                    </ul>
+                <div class="bg-black p-4 border border-[#333]">
+                    <p class="text-2xl font-bold text-white">$0</p>
+                    <p class="text-[10px] text-gray-500 uppercase">Upfront Capital</p>
                 </div>
             </div>
+            <p class="text-[10px] text-gray-600 italic">*Subject to approval. Consult your accountant.</p>
         </div>
     </section>
 
