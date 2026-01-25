@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELITE | MISSION CONTROL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --elite-green: #22c55e; }
+        
+        body, html { 
+            background-color: #000; color: white; 
+            font-family: 'Inter', sans-serif; overflow-x: hidden;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* --- NAV --- */
+        .glass-nav { 
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: -20px;
+            background: #0a0a0a; border: 1px solid #333; width: 240px;
+            padding: 8px; border-radius: 8px; z-index: 100;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px; color: #888; text-decoration: none;
+            border-radius: 4px; transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+        }
+        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; }
+        .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+        }
+        #mobile-menu.active { display: block; }
+
+        /* --- HERO CONSOLE --- */
+        .console-hero {
+            background: radial-gradient(circle at center, #0a110a 0%, #000 80%);
+            padding: 80px 24px 40px 24px; text-align: center;
+            border-bottom: 1px solid #222;
+        }
+        
+        .data-display {
+            background: rgba(0, 20, 0, 0.9); border: 1px solid var(--elite-green);
+            color: var(--elite-green); font-family: 'JetBrains Mono', monospace;
+            padding: 15px 30px; display: inline-block; font-size: 0.8rem;
+            margin-bottom: 30px; box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+            min-width: 300px;
+        }
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        /* --- TABS --- */
+        .tab-container {
+            display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;
+        }
+        .mission-tab {
+            background: #111; border: 1px solid #333; color: #666;
+            padding: 14px 28px; font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase; font-size: 0.75rem; cursor: pointer; transition: 0.3s;
+            font-weight: bold;
+        }
+        .mission-tab:hover { border-color: #666; color: white; }
+        
+        .mission-tab.active {
+            background: var(--elite-green); color: black; border-color: var(--elite-green); 
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+        }
+        
+        .mission-tab.gold { border-color: #444; color: white; }
+        .mission-tab.gold.active {
+            background: white; color: black; border-color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- FORM WRAPPERS --- */
+        .form-wrapper {
+            display: none; max-width: 900px; margin: 0 auto;
+            background: #000; border: 1px solid #333; 
+            position: relative; overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+        .form-wrapper.active { display: block; }
+        
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Sidebar for Launchpad Form */
+        .lp-layout { display: grid; grid-cols-1 lg:grid-cols-[1fr_2fr]; }
+        .lp-info { background: #0a0a0a; padding: 40px; border-right: 1px solid #222; }
+        
+        .step-list { margin-top: 30px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888; }
+        .step-list li { margin-bottom: 15px; display: flex; gap: 10px; }
+        .step-list span { color: var(--elite-green); }
+
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
+                <a href="index.html" class="hover:text-white transition">Home</a>
+                <div class="relative dropdown">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                        Systems <span class="text-[8px] transform rotate-90">></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">DEPARTMENTS</div>
+                        <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
+                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
+                        <div class="dropdown-divider"></div>
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
+                        <a href="launchpad.html" class="dropdown-item">Launchpad <span>-></span></a>
+                        <a href="specs.html" class="dropdown-item">Tech Specs <span>-></span></a>
+                    </div>
+                </div>
+                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
+            </div>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">///</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu">
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
+            <a href="index.html" class="text-gray-400 hover:text-green-500">Home</a>
+            <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
+            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
+            <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
+            <a href="specs.html" class="text-gray-600 text-sm mono mt-4">Technical Specs</a>
+        </div>
+    </div>
+
+    <section class="console-hero">
+        <h1 class="text-4xl md:text-6xl font-black italic uppercase mb-6 leading-none text-white">
+            Mission <span class="text-green-500">Control</span>
+        </h1>
+        
+        <div class="data-display">
+            > SYSTEM READY...<br>
+            > <span id="console-output">AWAITING INPUT</span><span class="blink">_</span>
+        </div>
+
+        <div class="tab-container">
+            <button id="btn-launchpad" class="mission-tab gold" onclick="switchTab('launchpad')">★ THE LAUNCHPAD</button>
+            <button id="btn-fitout" class="mission-tab" onclick="switchTab('fitout')">VAN FITOUT</button>
+            <button id="btn-branding" class="mission-tab" onclick="switchTab('branding')">BRANDING</button>
+            <button id="btn-scaling" class="mission-tab" onclick="switchTab('scaling')">SCALING</button>
+        </div>
+    </section>
+
+    <div class="px-6 pb-20">
+
+        <div id="form-launchpad" class="form-wrapper">
+            <div class="lp-layout">
+                <div class="lp-info">
+                    <h3 class="text-2xl font-black italic uppercase text-white mb-2">Empire <span class="text-green-500">Builder</span></h3>
+                    <p class="text-xs text-gray-400 mb-8 uppercase tracking-widest">Incubation Program Application</p>
+                    <ul class="step-list">
+                        <li><span>01.</span> Application Review</li>
+                        <li><span>02.</span> Strategy Call (Zoom)</li>
+                        <li><span>03.</span> Deposit & Scheduling</li>
+                        <li><span>04.</span> Production Phase</li>
+                        <li><span>05.</span> Handover & Launch</li>
+                    </ul>
+                    <div class="mt-8 border-t border-[#333] pt-4">
+                        <p class="text-[10px] text-gray-500">REQUIREMENTS:</p>
+                        <p class="text-xs text-white mt-1">• Existing Trade or Clear Business Plan</p>
+                        <p class="text-xs text-white mt-1">• Ready to Deploy in 30 Days</p>
+                    </div>
+                </div>
+                <div class="bg-white"> <iframe
+                        src="https://api.leadconnectorhq.com/widget/form/0OVCiqVakHInuwHfCZGp"
+                        style="width:100%;height:100%;border:none;border-radius:0px"
+                        id="iframe-launchpad"
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="WEB - launchpad App"
+                        data-height="1051"
+                        data-layout-iframe-id="inline-0OVCiqVakHInuwHfCZGp"
+                        data-form-id="0OVCiqVakHInuwHfCZGp"
+                        title="WEB - launchpad App"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="form-fitout" class="form-wrapper">
+            <div class="p-4 bg-[#0a0a0a] text-center border-b border-[#333]">
+                <h3 class="text-lg font-bold text-white uppercase">Fitout Consultation</h3>
+            </div>
+            <iframe
+                src="https://api.leadconnectorhq.com/widget/form/DHGvcQD4xgCfwCbG0Cqm"
+                style="width:100%;height:100%;border:none;"
+                id="iframe-fitout"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="WEB - Fitout Config."
+                data-height="1122"
+                data-layout-iframe-id="inline-DHGvcQD4xgCfwCbG0Cqm"
+                data-form-id="DHGvcQD4xgCfwCbG0Cqm"
+                title="WEB - Fitout Config."
+            ></iframe>
+        </div>
+
+        <div id="form-branding" class="form-wrapper">
+            <div class="p-4 bg-[#0a0a0a] text-center border-b border-[#333]">
+                <h3 class="text-lg font-bold text-white uppercase">Visual Identity Brief</h3>
+            </div>
+            <iframe
+                src="https://api.leadconnectorhq.com/widget/form/S3bBkkK9uARPsdcESK5r"
+                style="width:100%;height:100%;border:none;"
+                id="iframe-branding"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="WEB - Branding Brief"
+                data-height="1111"
+                data-layout-iframe-id="inline-S3bBkkK9uARPsdcESK5r"
+                data-form-id="S3bBkkK9uARPsdcESK5r"
+                title="WEB - Branding Brief"
+            ></iframe>
+        </div>
+
+        <div id="form-scaling" class="form-wrapper">
+            <div class="p-4 bg-[#0a0a0a] text-center border-b border-[#333]">
+                <h3 class="text-lg font-bold text-white uppercase">Scaling Strategy Session</h3>
+            </div>
+            <iframe
+                src="https://api.leadconnectorhq.com/widget/form/mupyoMMbMz9SSz4Mpd4e"
+                style="width:100%;height:100%;border:none;"
+                id="iframe-scaling"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="WEB - Scaling Strategy"
+                data-height="1137"
+                data-layout-iframe-id="inline-mupyoMMbMz9SSz4Mpd4e"
+                data-form-id="mupyoMMbMz9SSz4Mpd4e"
+                title="WEB - Scaling Strategy"
+            ></iframe>
+        </div>
+
+    </div>
+
+    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+    <script>
+        // --- LOGIC CONTROLLER ---
+        
+        window.onload = function() {
+            // 1. Read URL Parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab') || 'launchpad'; // Default
+            const pkg = urlParams.get('pkg');
+
+            // 2. Activate Tab
+            switchTab(tab);
+
+            // 3. Update Console & Inject Data
+            if (pkg) {
+                // Visual Update
+                const cleanPkg = decodeURIComponent(pkg).toUpperCase();
+                document.getElementById('console-output').innerHTML = `IMPORTING: <span style="color:white">${cleanPkg}</span>`;
+                
+                // DATA INJECTION (Appends to Iframe SRC so GHL can catch it)
+                // Note: You must create a Hidden Field in GHL called "package_selection" for this to capture.
+                const iframeId = 'iframe-' + tab;
+                const iframe = document.getElementById(iframeId);
+                if(iframe) {
+                    let currentSrc = iframe.src;
+                    // Append package_selection parameter
+                    // GHL standard widgets usually accept params appended to the src
+                    if(currentSrc.indexOf('?') > -1) {
+                        iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
+                    } else {
+                        iframe.src = currentSrc + '?package_selection=' + encodeURIComponent(pkg);
+                    }
+                }
+            } else {
+                // Default Message if no package selected
+                if(tab === 'launchpad') document.getElementById('console-output').innerText = "INITIALIZING LAUNCH SEQUENCE...";
+                if(tab === 'fitout') document.getElementById('console-output').innerText = "SELECT FITOUT CONFIGURATION";
+                if(tab === 'branding') document.getElementById('console-output').innerText = "AWAITING BRANDING BRIEF";
+                if(tab === 'scaling') document.getElementById('console-output').innerText = "CONNECTING TO SERVER...";
+            }
+        };
+
+        function switchTab(tabName) {
+            // Reset UI
+            document.querySelectorAll('.mission-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.form-wrapper').forEach(f => f.classList.remove('active'));
+            
+            // Activate Selection
+            const btn = document.getElementById('btn-' + tabName);
+            const form = document.getElementById('form-' + tabName);
+            
+            if(btn) btn.classList.add('active');
+            if(form) form.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
