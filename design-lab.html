@@ -168,20 +168,19 @@
                     <p class="text-xs text-gray-400 mb-8 uppercase tracking-widest">Incubation Program Application</p>
                     <ul class="step-list">
                         <li><span>01.</span> Application Review</li>
-                        <li><span>02.</span> Strategy Call (Zoom)</li>
-                        <li><span>03.</span> Deposit & Scheduling</li>
+                        <li><span>02.</span> In Person Meeting</li> <li><span>03.</span> Deposit & Scheduling</li>
                         <li><span>04.</span> Production Phase</li>
                         <li><span>05.</span> Handover & Launch</li>
                     </ul>
                     <div class="mt-8 border-t border-[#333] pt-4">
                         <p class="text-[10px] text-gray-500">REQUIREMENTS:</p>
                         <p class="text-xs text-white mt-1">• Existing Trade or Clear Business Plan</p>
-                        <p class="text-xs text-white mt-1">• Ready to Deploy in 30 Days</p>
-                    </div>
+                        <p class="text-xs text-white mt-1">• Ready to Deploy in Weeks</p> </div>
                 </div>
-                <div class="bg-white"> <iframe
+                <div class="bg-black border-l border-[#333]"> 
+                    <iframe
                         src="https://api.leadconnectorhq.com/widget/form/0OVCiqVakHInuwHfCZGp"
-                        style="width:100%;height:100%;border:none;border-radius:0px"
+                        style="width:100%;height:100%;border:none;border-radius:0px;background:#000000;"
                         id="iframe-launchpad"
                         data-layout="{'id':'INLINE'}"
                         data-trigger-type="alwaysShow"
@@ -206,7 +205,7 @@
             </div>
             <iframe
                 src="https://api.leadconnectorhq.com/widget/form/DHGvcQD4xgCfwCbG0Cqm"
-                style="width:100%;height:100%;border:none;"
+                style="width:100%;height:100%;border:none;background:#000000;"
                 id="iframe-fitout"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
@@ -229,7 +228,7 @@
             </div>
             <iframe
                 src="https://api.leadconnectorhq.com/widget/form/S3bBkkK9uARPsdcESK5r"
-                style="width:100%;height:100%;border:none;"
+                style="width:100%;height:100%;border:none;background:#000000;"
                 id="iframe-branding"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
@@ -252,7 +251,7 @@
             </div>
             <iframe
                 src="https://api.leadconnectorhq.com/widget/form/mupyoMMbMz9SSz4Mpd4e"
-                style="width:100%;height:100%;border:none;"
+                style="width:100%;height:100%;border:none;background:#000000;"
                 id="iframe-scaling"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
@@ -291,14 +290,11 @@
                 const cleanPkg = decodeURIComponent(pkg).toUpperCase();
                 document.getElementById('console-output').innerHTML = `IMPORTING: <span style="color:white">${cleanPkg}</span>`;
                 
-                // DATA INJECTION (Appends to Iframe SRC so GHL can catch it)
-                // Note: You must create a Hidden Field in GHL called "package_selection" for this to capture.
+                // DATA INJECTION
                 const iframeId = 'iframe-' + tab;
                 const iframe = document.getElementById(iframeId);
                 if(iframe) {
                     let currentSrc = iframe.src;
-                    // Append package_selection parameter
-                    // GHL standard widgets usually accept params appended to the src
                     if(currentSrc.indexOf('?') > -1) {
                         iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
                     } else {
