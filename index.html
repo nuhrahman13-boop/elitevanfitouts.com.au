@@ -22,7 +22,7 @@
         .hero-section {
             position: relative; 
             width: 100%; 
-            height: 85vh; /* Adjusted for mobile "Zoomed Out" feel */
+            height: 85vh; /* Mobile Height */
             overflow: hidden; 
             display: flex; 
             align-items: flex-end; 
@@ -32,13 +32,19 @@
 
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; object-position: center; z-index: 1;
-            filter: brightness(0.5); /* Darkened slightly more for text readability */
+            object-fit: cover; 
+            z-index: 1;
+            filter: brightness(0.5);
+            /* VIDEO POSITIONING FIX */
+            object-position: 80% center; /* Focuses on the Right (The Van) for Mobile */
         }
 
         @media (min-width: 768px) {
             .hero-section { height: 100vh; }
-            .hero-video { transform: scale(1); } 
+            .hero-video { 
+                transform: scale(1); 
+                object-position: center center; /* On desktop, center it */
+            } 
         }
 
         .hero-fade {
@@ -53,7 +59,6 @@
         }
 
         .hero-title { 
-            /* REDUCED SIZE to not cover video */
             font-size: clamp(2rem, 5vw, 4.5rem); 
             line-height: 1; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.02em;
@@ -112,7 +117,7 @@
         .feature-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .feature-list li::before { content: '>'; color: var(--elite-green); font-weight: bold; }
 
-        /* --- ALL IN ONE SECTION (Green Pulse) --- */
+        /* --- ALL IN ONE SECTION --- */
         .aio-section {
             background: linear-gradient(145deg, #0a110a 0%, #000 100%);
             border: 1px solid var(--elite-green);
@@ -146,12 +151,16 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
         
-        /* --- REVIEWS --- */
-        .review-card {
-            background: #0a0a0a; border: 1px solid #222; padding: 24px;
-            border-radius: 12px; position: relative;
+        /* --- SOCIAL LOGOS --- */
+        .social-grid { display: flex; gap: 20px; margin-top: 20px; }
+        .social-icon { 
+            width: 40px; height: 40px; background: #111; 
+            border: 1px solid #333; display: flex; align-items: center; justify-content: center;
+            transition: 0.3s; border-radius: 8px;
         }
-        .star-rating { color: var(--elite-green); font-size: 0.8rem; margin-bottom: 12px; }
+        .social-icon:hover { border-color: var(--elite-green); background: #000; fill: var(--elite-green); }
+        .social-icon svg { width: 20px; height: 20px; fill: white; transition: 0.3s; }
+        .social-icon:hover svg { fill: var(--elite-green); }
 
         /* --- NEW UI / NAV --- */
         .glass-nav { 
@@ -351,11 +360,12 @@
         </section>
 
         <section id="contact" class="max-w-7xl mx-auto px-6 mb-20">
-            <div class="bg-[#0a0a0a] border border-[#222] rounded-3xl p-8 md:p-12 grid lg:grid-cols-2 gap-10 items-center">
-                <div class="text-left">
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <div class="bg-[#0a0a0a] border border-[#222] rounded-3xl p-8 md:p-12 relative overflow-hidden">
                     <h2 class="text-3xl font-black italic uppercase mb-6">Operational <span class="text-green-500">Base</span></h2>
                     
-                    <div class="mono text-sm space-y-6 mb-8 text-gray-300">
+                    <div class="mono text-sm space-y-6 mb-8 text-gray-300 relative z-10">
                         <div>
                             <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">HQ Location</p>
                             <p class="text-white font-bold">8 Enterprise Drive</p>
@@ -363,33 +373,56 @@
                         </div>
                         
                         <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Operating Hours</p>
-                            <div class="grid grid-cols-[100px_1fr] gap-y-1">
-                                <span class="text-gray-500">Mon - Fri:</span> <span class="text-white font-bold">09:00 - 17:00</span>
-                                <span class="text-gray-500">Saturday:</span> <span class="text-white font-bold">09:00 - 15:00</span>
-                                <span class="text-gray-500">Sunday:</span> <span class="text-red-500 font-bold">OFFLINE</span>
-                            </div>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Communications</p>
+                            <a href="tel:0468086490" class="block hover:text-green-500 transition">0468 086 490</a>
+                            <a href="mailto:info@elitevanfitouts.com.au" class="block hover:text-green-500 transition">info@elitevanfitouts.com.au</a>
                         </div>
 
-                        <div class="border-t border-gray-800 pt-4 mt-4">
-                             <p class="text-green-500 text-xs">STATUS: ACCEPTING NEW BUILDS</p>
+                        <div class="social-grid">
+                            <a href="https://www.tiktok.com/@elitevanfitouts?is_from_webapp=1&sender_device=pc" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/elitevanfitouts?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.5 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                            </a>
+                            <a href="https://www.facebook.com/share/1Da7HLaCu7/?mibextid=wwXIfr" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 121.3 87.1 222.4 203.2 240.5V325.2H156v-69.2h55.2V209c0-54.7 32.4-84.3 81.8-84.3 23.7 0 48.3 4.2 48.3 4.2v53h-27.2c-27 0-35.4 16.7-35.4 34v40.3h59.6l-9.5 69.2h-50.1v171.3c116.1-18.1 203.2-119.2 203.2-240.5z"/></svg>
+                            </a>
                         </div>
                     </div>
+                </div>
 
-                    <a href="tel:0468086490" class="inline-block border border-white/20 hover:border-green-500 hover:text-green-500 transition px-8 py-3 rounded-full mono text-lg font-bold bg-white/5">
-                        0468 086 490
-                    </a>
+                <div class="bg-[#050505] border border-green-900 rounded-3xl p-8 md:p-12 relative flex flex-col justify-center items-center text-center">
+                    <p class="mono text-green-500 text-xs tracking-widest uppercase mb-4 animate-pulse">● AI_SYSTEM_ONLINE</p>
+                    <h3 class="text-2xl font-black italic uppercase text-white mb-4">Have Questions?</h3>
+                    <p class="text-gray-400 text-sm mb-8">
+                        Our AI Bot can answer questions about pricing, timelines, and package details instantly.
+                    </p>
+                    
+                    <div class="border border-green-500 text-green-500 px-6 py-3 font-bold uppercase text-xs tracking-widest">
+                        Initializing Chat Interface...
+                    </div>
+                    <p class="text-[10px] text-gray-600 mt-4 mono">
+                        [ PLEASE USE THE BUBBLE IN THE BOTTOM RIGHT ]
+                    </p>
                 </div>
-                
-                <div class="h-[350px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.5880735391583!2d145.2424883!3d-37.9167236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d6f1a8e9b0f%3A0x5045675218ce7e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+
             </div>
+
+            <div class="mt-6 h-[350px] w-full rounded-2xl overflow-hidden border border-white/10 grayscale invert brightness-75">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.673267770977!2d145.2447!3d-37.9167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d6f7f7f7f7f%3A0x!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
             <p class="text-center text-gray-600 text-[10px] mono uppercase mt-12 mb-4">
                 © 2026 ELITE VAN FITOUTS.
             </p>
         </section>
     </main>
+
+    <script src="https://widgets.leadconnectorhq.com/loader.js" 
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
+        data-widget-id="69782dff572f85b3942d8c33">
+    </script>
 
     <script>
         window.onload = () => {
