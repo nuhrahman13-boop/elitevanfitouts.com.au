@@ -22,8 +22,10 @@
         .hero-section {
             position: relative; 
             width: 100%; 
-            height: 60vh; /* Mobile Zoom Out */
-            min-height: 450px;
+            /* MOBILE HEIGHT: Reduced to 55vh. 
+               This "Zooms Out" the video by forcing the aspect ratio wider. */
+            height: 55vh; 
+            min-height: 400px;
             overflow: hidden; 
             display: flex; 
             align-items: flex-end; 
@@ -36,7 +38,9 @@
             object-fit: cover; 
             z-index: 1;
             filter: brightness(0.5);
-            object-position: 85% center; /* Focus on Van (Right) */
+            /* MOBILE POSITION: 100% locks it to the far RIGHT edge (The Van) */
+            object-position: 100% center; 
+            transition: opacity 1s ease;
         }
 
         @media (min-width: 768px) {
@@ -162,6 +166,7 @@
             position: relative; overflow: hidden;
         }
         .social-btn svg { width: 24px; height: 24px; fill: #888; transition: 0.3s; z-index: 10; }
+        
         .social-btn:hover { transform: translateY(-3px); }
         .social-btn.tiktok:hover { border-color: #00f2ea; box-shadow: 0 0 20px rgba(0, 242, 234, 0.2); }
         .social-btn.tiktok:hover svg { fill: #00f2ea; }
@@ -213,7 +218,6 @@
         .load-bar { width: 200px; height: 2px; background: #333; margin-top: 15px; }
         .load-fill { width: 0%; height: 100%; background: var(--elite-green); transition: width 0.8s ease-in-out; }
 
-        /* CONTACT LINKS */
         .contact-link-main {
             font-size: 1.8rem; font-weight: 900; color: white; 
             font-family: 'JetBrains Mono', monospace;
