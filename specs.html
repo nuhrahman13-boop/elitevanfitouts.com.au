@@ -44,8 +44,23 @@
 
         /* --- HERO --- */
         .spec-hero {
-            padding: 100px 24px 60px 24px; border-bottom: 1px solid #222;
+            padding: 120px 24px 80px 24px; border-bottom: 1px solid #222;
             background: radial-gradient(circle at top right, #0a110a 0%, #000 70%);
+        }
+
+        /* --- MATERIAL SPOTLIGHT --- */
+        .material-card {
+            background: linear-gradient(180deg, #111 0%, #050505 100%);
+            border: 1px solid #333;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .material-glow {
+            position: absolute; top: 0; right: 0; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
         }
 
         /* --- COMPONENT BLOCKS --- */
@@ -53,14 +68,39 @@
             background: #080808; border: 1px solid #222; margin-bottom: 24px;
             overflow: hidden; transition: 0.3s;
         }
-        .component-block:hover { border-color: #444; }
+        .component-block:hover { border-color: #555; }
         
-        .component-grid { display: grid; grid-cols-1 md:grid-cols-[1.5fr_1fr]; }
+        /* Revised Grid for Image support */
+        .component-grid { 
+            display: grid; 
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 1024px) {
+            .component-grid { grid-template-columns: 350px 1.5fr 1fr; }
+        }
         
+        .comp-img {
+            background: #111; 
+            position: relative;
+            border-bottom: 1px solid #222;
+        }
+        @media (min-width: 1024px) {
+            .comp-img { border-bottom: none; border-right: 1px solid #222; }
+        }
+        .comp-img img { 
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s;
+        }
+        .component-block:hover .comp-img img { opacity: 1; }
+
         .comp-info { padding: 30px; }
         .comp-tech { 
-            background: #050505; border-left: 1px solid #222; padding: 30px;
+            background: #050505; 
+            border-top: 1px solid #222;
+            padding: 30px;
             display: flex; flex-direction: column; justify-content: space-between;
+        }
+        @media (min-width: 1024px) {
+            .comp-tech { border-top: none; border-left: 1px solid #222; }
         }
 
         .data-table { width: 100%; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888; }
@@ -94,7 +134,7 @@
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
-            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            <a href="index.html" class="text-2xl font-black italic tracking-tighter">ELITE<span class="text-green-500">.</span></a>
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
@@ -103,13 +143,10 @@
                     </button>
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">DEPARTMENTS</div>
-                        <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
-                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
+                        <a href="#" class="dropdown-item">Van Fitouts <span>-></span></a>
+                        <a href="#" class="dropdown-item">Branding <span>-></span></a>
                         <div class="dropdown-divider"></div>
-                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">Launchpad <span>-></span></a>
-                        <a href="specs.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Tech Specs <span>-></span></a>
+                        <a href="#" class="dropdown-item text-green-500">Tech Specs <span>-></span></a>
                     </div>
                 </div>
                 <a href="#contact" class="hover:text-green-500 transition">Contact</a>
@@ -120,106 +157,211 @@
 
     <div id="mobile-menu">
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
-            <a href="index.html" class="text-gray-400 hover:text-green-500">Home</a>
-            <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
-            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
-            <a href="specs.html" class="text-white border-l-4 border-green-500 pl-4">Technical Specs</a>
+            <a href="#" class="text-gray-400">Home</a>
+            <a href="#" class="text-white border-l-4 border-green-500 pl-4">Components</a>
+            <a href="#" class="text-gray-400">Contact</a>
         </div>
     </div>
 
     <section class="spec-hero">
         <div class="max-w-6xl mx-auto">
-            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4">Engineering_Data</p>
+            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4">Architecture_v2.0</p>
             <h1 class="text-4xl md:text-6xl font-black italic uppercase mb-6 text-white">Component <span class="text-gray-500">Architecture</span></h1>
             <p class="text-gray-400 max-w-2xl text-sm leading-relaxed">
-                Build your own loadout. Select the specific components you require below to generate a custom manifest. 
-                We do not use chipboard or standard runners. All materials are industrial grade.
+                Configure your loadout. Select from our modular systems below to generate a custom fabrication manifest. 
+                Everything is CNC-machined in-house from our proprietary composite materials.
             </p>
         </div>
     </section>
 
-    <section class="px-6 py-12 max-w-6xl mx-auto">
+    <section class="px-6 pb-24 max-w-6xl mx-auto">
         
-        <h2 class="text-xl font-black uppercase italic mb-6 pl-4 border-l-4 border-green-500">01. Structural Foundation</h2>
+        <h2 class="text-xl font-black uppercase italic mb-6 pl-4 border-l-4 border-green-500">01. Material Science</h2>
         
+        <div class="material-card">
+            <div class="material-glow"></div>
+            <div class="grid md:grid-cols-2 gap-8 items-center relative z-10">
+                <div>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">15mm HEX-REFLECT</h3>
+                    <p class="text-green-500 mono text-xs mb-6">ANTI-SKID // WATER-RESIST // STAINLESS-SURFACE</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        We don't use raw timber. We utilize a 15mm industrial composite core featuring a Black Reflective Hex finish. 
+                        It offers the durability of stainless steel with a high-grip, anti-skid texture. It is completely hydrophobic (waterproof), oil-resistant, and engineered to withstand heavy impact without delamination.
+                    </p>
+                    <div class="flex gap-4 mono text-[10px] text-gray-500 uppercase">
+                        <span class="border border-gray-700 px-2 py-1 rounded">R11 Slip Rating</span>
+                        <span class="border border-gray-700 px-2 py-1 rounded">Chemical Safe</span>
+                    </div>
+                </div>
+                <div class="h-48 md:h-full bg-gray-900 rounded border border-gray-800 overflow-hidden">
+                    <img src="https://placehold.co/600x400/111/333?text=HEX+TEXTURE+CLOSEUP" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition duration-500">
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-xl font-black uppercase italic mb-6 mt-16 pl-4 border-l-4 border-green-500">02. Foundation Systems</h2>
+
         <div class="component-block">
             <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=FALSE+FLOOR+ONLY" alt="False Floor">
+                </div>
                 <div class="comp-info">
-                    <h3 class="text-2xl font-bold text-white mb-2">False Floor System</h3>
-                    <p class="text-xs text-green-500 mono mb-4">MATERIAL: HEX-PHENOLIC BIRCH PLY</p>
+                    <h3 class="text-2xl font-bold text-white mb-2">False Floor Platform</h3>
+                    <p class="text-xs text-green-500 mono mb-4">BASE CONFIGURATION</p>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        The foundation of every Elite build. CNC-machined from 12mm Birch Core Plywood with a Phenolic Hex-Pattern face. This material is hydrophobic (water-repellant), oil-resistant, and provides R10 slip resistance.
+                        The blank canvas. A precision CNC-cut 15mm floor tailored to your vehicle's specific wheelbase. Provides a perfectly flat, anti-skid surface that serves as the anchor point for all shelving and equipment. Includes aluminum trim entry protection.
                     </p>
                 </div>
                 <div class="comp-tech">
                     <table class="data-table">
-                        <tr><td>THICKNESS</td><td>12mm</td></tr>
-                        <tr><td>SURFACE</td><td>Anti-Skid Hex</td></tr>
-                        <tr><td>MOISTURE</td><td>Hydrophobic</td></tr>
+                        <tr><td>THICKNESS</td><td>15mm</td></tr>
+                        <tr><td>FITMENT</td><td>OEM Scribbed</td></tr>
+                        <tr><td>ANCHOR</td><td>Factory Points</td></tr>
                     </table>
-                    <button class="add-btn" onclick="toggleItem(this, 'False Floor System')">+ Add to Build</button>
+                    <button class="add-btn" onclick="toggleItem(this, 'False Floor (Base)')">+ Add to Build</button>
                 </div>
             </div>
         </div>
 
         <div class="component-block">
             <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=FLOOR+WITH+DRAWERS" alt="Drawer System">
+                </div>
                 <div class="comp-info">
-                    <h3 class="text-2xl font-bold text-white mb-2">Heavy Duty Drawers</h3>
-                    <p class="text-xs text-green-500 mono mb-4">HARDWARE: 227KG LOCKING SLIDES</p>
+                    <h3 class="text-2xl font-bold text-white mb-2">Floor w/ Drawer Integration</h3>
+                    <p class="text-xs text-green-500 mono mb-4">HEAVY DUTY STORAGE</p>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Gravity is the enemy. Standard runners fail on inclines. We utilize 227kg-rated locking slides. A trigger mechanism locks the drawer closed for transit, and locks it open for safety while working.
+                        Maximize the sub-floor utility. Raises the deck height to integrate rear-facing heavy-duty drawers. Built on 227kg locking slides, these drawers are massive, deep, and designed for heavy tools.
                     </p>
                 </div>
                 <div class="comp-tech">
                     <table class="data-table">
-                        <tr><td>LOAD RATING</td><td>227kg (Dynamic)</td></tr>
-                        <tr><td>LOCK TYPE</td><td>In / Out Lock</td></tr>
-                        <tr><td>DEPTH</td><td>900mm - 1500mm</td></tr>
+                        <tr><td>SLIDES</td><td>227kg Lockable</td></tr>
+                        <tr><td>DEPTH</td><td>1200mm - 1600mm</td></tr>
+                        <tr><td>HEIGHT</td><td>Custom Rise</td></tr>
                     </table>
-                    <button class="add-btn" onclick="toggleItem(this, 'HD Drawer Unit')">+ Add to Build</button>
+                    <button class="add-btn" onclick="toggleItem(this, 'False Floor (Drawers)')">+ Add to Build</button>
                 </div>
             </div>
         </div>
 
-        <h2 class="text-xl font-black uppercase italic mb-6 mt-16 pl-4 border-l-4 border-green-500">02. Storage Modules</h2>
+        <h2 class="text-xl font-black uppercase italic mb-6 mt-16 pl-4 border-l-4 border-green-500">03. Shelving Architecture</h2>
 
         <div class="component-block">
             <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=CRATE+STACK+SYSTEM" alt="Crate System">
+                </div>
                 <div class="comp-info">
-                    <h3 class="text-2xl font-bold text-white mb-2">Skeleton Shelving</h3>
-                    <p class="text-xs text-green-500 mono mb-4">DESIGN: MORTISE & TENON</p>
+                    <h3 class="text-2xl font-bold text-white mb-2">The Crate Stack</h3>
+                    <p class="text-xs text-green-500 mono mb-4">MODULAR BIN STORAGE</p>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Weight equates to fuel consumption. Our "Skeleton" design removes 40% of material weight without compromising rigidity. Shelves are bonded and screwed for a rattle-free existence.
+                        A dynamic column designed for rapid deployment. Utilizing Euro-standard crates on angled rails for easy visibility and access. Perfect for fittings, fasteners, and loose parts. Grab a crate, go to the job.
                     </p>
                 </div>
                 <div class="comp-tech">
                     <table class="data-table">
-                        <tr><td>MATERIAL</td><td>12mm Ply</td></tr>
-                        <tr><td>JOINERY</td><td>CNC Interlock</td></tr>
-                        <tr><td>CONFIG</td><td>Custom Height</td></tr>
+                        <tr><td>CAPACITY</td><td>4-6 Crates</td></tr>
+                        <tr><td>RETENTION</td><td>Angled Lip</td></tr>
+                        <tr><td>MATERIAL</td><td>15mm Hex</td></tr>
                     </table>
-                    <button class="add-btn" onclick="toggleItem(this, 'Skeleton Shelving')">+ Add to Build</button>
+                    <button class="add-btn" onclick="toggleItem(this, 'Crate Stack System')">+ Add to Build</button>
                 </div>
             </div>
         </div>
 
         <div class="component-block">
             <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=TOOLBOX+SHELVES" alt="Toolbox Shelf">
+                </div>
                 <div class="comp-info">
-                    <h3 class="text-2xl font-bold text-white mb-2">Organiser Racks</h3>
-                    <p class="text-xs text-green-500 mono mb-4">VARIANT: CABLE / CASE / GAS</p>
+                    <h3 class="text-2xl font-bold text-white mb-2">Toolbox Integration</h3>
+                    <p class="text-xs text-green-500 mono mb-4">CASE & PACKOUT STORAGE</p>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Specific mounts for your trade. Cable rail holders for sparkies, Freon bottle towers for HVAC, or slide-out case holders for systainers/packouts.
+                        Stop stacking cases on the floor. These reinforced open shelves are dimensioned specifically for system cases (Systainer, Packout, T-Stack). Features a 30mm lip to prevent slide-off during transit.
                     </p>
                 </div>
                 <div class="comp-tech">
                     <table class="data-table">
-                        <tr><td>FITMENT</td><td>Universal</td></tr>
-                        <tr><td>STYLE</td><td>Trade Specific</td></tr>
+                        <tr><td>LOAD</td><td>High Capacity</td></tr>
+                        <tr><td>LIP HEIGHT</td><td>30mm</td></tr>
+                        <tr><td>FIT</td><td>Universal Case</td></tr>
                     </table>
-                    <button class="add-btn" onclick="toggleItem(this, 'Trade Racks')">+ Add to Build</button>
+                    <button class="add-btn" onclick="toggleItem(this, 'Toolbox Shelving')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=DIVIDER+SHELVES" alt="Organiser Shelf">
+                </div>
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">The Organiser</h3>
+                    <p class="text-xs text-green-500 mono mb-4">FIXED DIVIDER SYSTEM</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Permanent organization for frequently used items. Features rigid vertical dividers CNC-slotted into the shelf structure. Ideal for aerosols, silicone tubes, and larger loose tools that need to stay upright.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>DIVIDERS</td><td>Fixed / Slotted</td></tr>
+                        <tr><td>CONFIG</td><td>Custom Spacing</td></tr>
+                        <tr><td>USAGE</td><td>Bottles / Tubes</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'Organiser Shelf')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-xl font-black uppercase italic mb-6 mt-16 pl-4 border-l-4 border-green-500">04. Tactical Add-ons</h2>
+
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=SILICONE+HOLDER" alt="Silicone Holder">
+                </div>
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">Silicone Grip Holders</h3>
+                    <p class="text-xs text-green-500 mono mb-4">RAPID ACCESS MOUNTS</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Precision-cut circular arrays designed to hold standard sealant and adhesive tubes. Keeps nozzles clear and tubes from rolling around the van. Mounts to end-panels or doors.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>CAPACITY</td><td>3 / 6 / 9 Tubes</td></tr>
+                        <tr><td>MOUNT</td><td>Vertical Surface</td></tr>
+                        <tr><td>TYPE</td><td>Std Cartridge</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'Silicone Holder')">+ Add to Build</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-block">
+            <div class="component-grid">
+                <div class="comp-img">
+                    <img src="https://placehold.co/400x400/111/333?text=DOOR+POCKETS" alt="Storage Pocket">
+                </div>
+                <div class="comp-info">
+                    <h3 class="text-2xl font-bold text-white mb-2">Stowage Pockets</h3>
+                    <p class="text-xs text-green-500 mono mb-4">DOOR & PANEL STORAGE</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Utilize dead space. Our slimline storage pockets attach to rear barn doors or the sides of racking units. Perfect for gloves, rags, documentation, or small hand tools.
+                    </p>
+                </div>
+                <div class="comp-tech">
+                    <table class="data-table">
+                        <tr><td>DEPTH</td><td>80mm</td></tr>
+                        <tr><td>FRONT</td><td>High Retention</td></tr>
+                        <tr><td>INSTALL</td><td>Screw / Rivet</td></tr>
+                    </table>
+                    <button class="add-btn" onclick="toggleItem(this, 'Stowage Pockets')">+ Add to Build</button>
                 </div>
             </div>
         </div>
@@ -265,11 +407,9 @@
                 alert("Please select at least one component.");
                 return;
             }
-            // Create a string: "Custom: False Floor, Drawers, Racks"
             const finalString = "Custom Build: " + buildList.join(", ");
-            
-            // Redirect to Design Lab with the list
-            window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(finalString)}`;
+            // In a real scenario, this would go to a quote form
+            alert("Manifest generated:\n\n" + finalString);
         }
     </script>
 
