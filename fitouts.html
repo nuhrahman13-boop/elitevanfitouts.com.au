@@ -3,24 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE | VAN FITOUTS</title>
+    <title>ELITE | SYSTEM CONFIGURATOR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&display=swap');
         :root { --elite-green: #22c55e; }
         
         body, html { 
             background-color: #000; color: white; 
             font-family: 'Inter', sans-serif; overflow-x: hidden;
-            padding-bottom: 120px; /* Space for sticky footer */
+            padding-bottom: 140px; /* Space for sticky footer */
+            scroll-behavior: smooth;
         }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- NAV (Matches Home) --- */
+        /* --- UI UTILITIES --- */
         .glass-nav { 
             background: rgba(0,0,0,0.9); backdrop-filter: blur(12px); 
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        
+        .tech-grid {
+            background-image: linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* --- FLIGHT PATH (PROCESS) --- */
+        .flight-path-node {
+            position: relative; padding: 20px;
+            background: #080808; border: 1px solid #222;
+            transition: 0.3s;
+        }
+        .flight-path-node:hover { border-color: var(--elite-green); }
+        .flight-arrow { color: #333; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; }
+        
+        /* --- SPECIFICATION MODULES --- */
+        .spec-card {
+            background: #050505; border: 1px solid #222;
+            display: flex; flex-direction: column; height: 100%;
+            transition: all 0.2s; position: relative; overflow: hidden;
+        }
+        .spec-card:hover { border-color: #444; }
+        .spec-card.active { border-color: var(--elite-green); background: rgba(34, 197, 94, 0.02); }
+        
+        .spec-img { height: 200px; background: #111; position: relative; border-bottom: 1px solid #222; }
+        .spec-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+        
+        .spec-toggle {
+            width: 100%; padding: 16px; margin-top: auto;
+            border-top: 1px solid #222; background: transparent; color: #666;
+            font-family: 'JetBrains Mono', monospace; text-transform: uppercase;
+            font-size: 0.75rem; font-weight: bold; cursor: pointer; transition: 0.2s;
+        }
+        .spec-toggle:hover { color: white; background: #111; }
+        .spec-card.active .spec-toggle { background: var(--elite-green); color: black; border-color: var(--elite-green); }
+
+        /* --- STICKY MANIFEST --- */
+        .manifest-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(16px);
+            border-top: 1px solid var(--elite-green);
+            padding: 20px 24px; z-index: 100;
+            display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center;
+        }
+        .submit-btn {
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-weight: 800;
+            padding: 14px 32px; text-transform: uppercase; 
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: 0.2s; width: 100%; margin-top: 12px;
+        }
+        @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
+        .submit-btn:hover { background: white; }
+
+        /* --- NAV DROPDOWN --- */
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
@@ -35,94 +92,25 @@
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
         .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; }
-        .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
+        
+        /* Mobile Menu */
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
 
-        /* --- INTRO SECTION --- */
-        .intro-text {
-            border-left: 2px solid var(--elite-green);
-            padding-left: 20px; margin-bottom: 40px;
-        }
-
-        /* --- PACKAGE CARDS --- */
-        .package-card {
-            background: #0a0a0a; border: 1px solid #333; 
-            border-radius: 12px; padding: 24px; 
-            transition: all 0.2s ease; position: relative;
-            overflow: hidden; display: flex; flex-direction: column;
-        }
-        .package-card.selected {
-            border-color: var(--elite-green);
-            background: rgba(34, 197, 94, 0.05);
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
-        }
-        .package-card:hover { border-color: #555; transform: translateY(-5px); }
-        
-        .mozaik-view {
-            width: 100%; height: 180px; 
-            background: #050505; border: 1px dashed #333;
-            margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
-            color: #444; font-size: 0.7rem; text-transform: uppercase;
-        }
-
-        .select-btn {
-            width: 100%; padding: 14px; margin-top: auto;
-            border: 1px solid #333; background: transparent; color: white;
-            font-weight: bold; text-transform: uppercase; font-size: 0.8rem;
-            cursor: pointer; transition: 0.2s; font-family: 'JetBrains Mono', monospace;
-        }
-        .selected .select-btn {
-            background: var(--elite-green); color: black; border-color: var(--elite-green);
-        }
-
-        /* --- ADD-ONS --- */
-        .addon-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px; border-bottom: 1px solid #222;
-        }
-        .elite-checkbox {
-            appearance: none; width: 24px; height: 24px; border: 1px solid #444;
-            background: black; cursor: pointer; display: grid; place-content: center;
-        }
-        .elite-checkbox::before {
-            content: ""; width: 14px; height: 14px; background: var(--elite-green);
-            transform: scale(0); transition: 0.2s transform;
-        }
-        .elite-checkbox:checked::before { transform: scale(1); }
-        .elite-checkbox:checked { border-color: var(--elite-green); }
-
-        /* --- STICKY FOOTER --- */
-        .total-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px);
-            border-top: 1px solid var(--elite-green);
-            padding: 20px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 100;
-        }
-        .proceed-btn {
-            background: var(--elite-green); color: black;
-            font-family: 'JetBrains Mono', monospace; font-weight: 700;
-            padding: 12px 24px; text-transform: uppercase;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
-            transition: 0.2s;
-        }
-        .proceed-btn:hover { background: white; }
     </style>
 </head>
-<body>
+<body class="tech-grid">
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
-            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            <a href="index.html" class="text-2xl font-black italic tracking-tighter">ELITE<span class="text-green-500">.</span></a>
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
@@ -133,7 +121,6 @@
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">Launchpad <span>-></span></a>
-                        <a href="specs.html" class="dropdown-item">Tech Specs <span>-></span></a>
                     </div>
                 </div>
                 <a href="#contact" class="hover:text-green-500 transition">Contact</a>
@@ -149,171 +136,274 @@
             <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
             <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
-            <a href="specs.html" class="text-gray-600 text-sm mono mt-4">Technical Specs</a>
         </div>
     </div>
 
-    <div class="max-w-4xl mx-auto px-6 pt-32 pb-8 text-center mt-10">
-        <h1 class="text-4xl md:text-6xl font-black italic uppercase mb-6 leading-none">Van <span class="text-green-500">Fitouts</span></h1>
-        <h2 class="text-lg md:text-xl font-bold uppercase tracking-widest mb-4">Maximise Space. Minimum Waste.</h2>
+    <div class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
+        <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4">Architecture_v2.0</p>
+        <h1 class="text-5xl md:text-7xl font-black italic uppercase mb-8 leading-none">Fitout <span class="text-gray-600">Configurator</span></h1>
+        <div class="max-w-2xl border-l-2 border-green-500 pl-6">
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                Initialize your workspace. Select a <strong>Core Profile</strong> to establish your foundation, then append <strong>Tactical Components</strong> to generate a custom fabrication manifest.
+            </p>
+        </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-6">
+    <div class="px-6 max-w-7xl mx-auto">
+
+        <h2 class="text-xl font-black uppercase italic mb-6 text-white flex items-center gap-4">
+            <span class="text-green-500 mono">01.</span> Material Science
+        </h2>
         
-        <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
-            <div class="intro-text">
-                <h3 class="text-2xl font-bold text-white mb-4">Engineered For Your Trade.</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    A Sparky needs cable rail storage. A Plumber needs drainage pipes. An HVAC tech needs Freon bottle racks.
+        <div class="grid md:grid-cols-2 bg-[#080808] border border-[#222] mb-20">
+            <div class="p-8 md:p-12">
+                <h3 class="text-2xl font-black text-white italic uppercase mb-2">15mm HEX-REFLECT</h3>
+                <p class="text-green-500 mono text-xs mb-6">ANTI-SKID // WATER-RESIST // STAINLESS-SURFACE</p>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    We utilize a 15mm industrial composite core featuring a Black Reflective Hex finish. 
+                    It offers the durability of stainless steel with a high-grip, anti-skid texture (R11 Rated). It is completely hydrophobic, oil-resistant, and engineered to withstand heavy impact.
                 </p>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    We don't sell generic "Shelving". We custom engineer every single build to match your specific workflow. 
-                    The configurations below are our <strong>Most Popular Base Loadouts</strong> to get you started.
-                </p>
+                <div class="grid grid-cols-2 gap-2 mono text-[10px] text-gray-500">
+                    <div class="border border-gray-800 p-2 text-center">R11 SLIP RATING</div>
+                    <div class="border border-gray-800 p-2 text-center">CHEMICALLY INERT</div>
+                </div>
             </div>
-            <div class="bg-[#111] p-6 border border-[#222] rounded-xl text-center">
-                <p class="mono text-green-500 text-xs mb-2">LOOKING FOR INDIVIDUAL PARTS?</p>
-                <h4 class="text-xl font-bold italic uppercase mb-4">The Component Builder</h4>
-                <p class="text-xs text-gray-500 mb-6">Select specific drawers, slides, and racks individually.</p>
-                <a href="specs.html" class="inline-block border border-white text-white px-6 py-2 text-xs font-bold uppercase hover:bg-white hover:text-black transition">
-                    Open Custom Builder ->
-                </a>
+            <div class="h-64 md:h-auto bg-gray-900 border-l border-[#222] relative overflow-hidden">
+                <img src="https://placehold.co/800x600/111/333?text=HEX+TEXTURE+CLOSEUP" class="w-full h-full object-cover opacity-60">
             </div>
         </div>
 
-        <p class="text-green-500 text-xs mono mb-6 uppercase tracking-widest">Popular_Configurations ::</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <h2 class="text-xl font-black uppercase italic mb-6 text-white flex items-center gap-4">
+            <span class="text-green-500 mono">02.</span> Core Profiles
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-20">
+            <div class="p-6 border border-[#222] bg-[#050505] hover:border-[#555] transition cursor-pointer relative" id="profile-essential" onclick="selectProfile('Essential', 'profile-essential')">
+                <span class="absolute top-4 right-4 text-[10px] mono text-gray-600">PROFILE A</span>
+                <h3 class="text-2xl font-black italic uppercase mb-2">Essential</h3>
+                <p class="text-xs text-gray-500 mono mb-6">THE FOUNDATION</p>
+                <div class="w-full h-32 bg-[#111] border border-[#222] mb-4 flex items-center justify-center text-[10px] mono text-gray-600">[ RENDER: FLOOR ]</div>
+                <ul class="text-[10px] text-gray-400 space-y-2 mono mb-6">
+                    <li>> False Floor (Hex Ply)</li>
+                    <li>> Rear Drawer System</li>
+                    <li>> Aluminium Trim</li>
+                </ul>
+                <div class="w-full py-2 text-center border border-[#333] text-[10px] mono uppercase text-gray-500 selection-indicator">Select Profile</div>
+            </div>
+
+            <div class="p-6 border border-green-500 bg-[rgba(34,197,94,0.05)] cursor-pointer relative" id="profile-pro" onclick="selectProfile('Pro', 'profile-pro')">
+                <span class="absolute top-4 right-4 text-[10px] mono text-green-500 font-bold">ACTIVE</span>
+                <h3 class="text-2xl font-black italic uppercase mb-2 text-white">Pro</h3>
+                <p class="text-xs text-green-500 mono mb-6">STANDARD DEPLOYMENT</p>
+                <div class="w-full h-32 bg-[#111] border border-[#222] mb-4 flex items-center justify-center text-[10px] mono text-gray-600">[ RENDER: RACK ]</div>
+                <ul class="text-[10px] text-gray-400 space-y-2 mono mb-6">
+                    <li>> <strong>Everything in Essential</strong></li>
+                    <li>> Driver Side Shelving</li>
+                    <li>> Mixed Utility Storage</li>
+                </ul>
+                <div class="w-full py-2 text-center bg-green-500 text-black font-bold text-[10px] mono uppercase selection-indicator">Active Profile</div>
+            </div>
+
+            <div class="p-6 border border-[#222] bg-[#050505] hover:border-[#555] transition cursor-pointer relative" id="profile-elite" onclick="selectProfile('Elite', 'profile-elite')">
+                <span class="absolute top-4 right-4 text-[10px] mono text-gray-600">PROFILE C</span>
+                <h3 class="text-2xl font-black italic uppercase mb-2">Elite</h3>
+                <p class="text-xs text-gray-500 mono mb-6">FULL WORKSHOP</p>
+                <div class="w-full h-32 bg-[#111] border border-[#222] mb-4 flex items-center justify-center text-[10px] mono text-gray-600">[ RENDER: FULL ]</div>
+                <ul class="text-[10px] text-gray-400 space-y-2 mono mb-6">
+                    <li>> <strong>Everything in Pro</strong></li>
+                    <li>> Passenger Side Shelving</li>
+                    <li>> 12V Integration Ready</li>
+                </ul>
+                <div class="w-full py-2 text-center border border-[#333] text-[10px] mono uppercase text-gray-500 selection-indicator">Select Profile</div>
+            </div>
+        </div>
+
+        <h2 class="text-xl font-black uppercase italic mb-6 text-white flex items-center gap-4">
+            <span class="text-green-500 mono">03.</span> Tactical Loadout
+        </h2>
+        <p class="text-gray-500 text-sm mb-8 max-w-2xl">Append specific storage modules to your manifest. These will be engineered into your selected core profile.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
             
-            <div class="package-card selected" id="card-essential">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="mono text-green-500 text-xs">BASE CONFIG 01</span>
+            <div class="spec-card" onclick="toggleSpec(this, 'Crate Stack')">
+                <div class="spec-img">
+                    <img src="https://placehold.co/400x400/111/333?text=CRATE+STACK" alt="Crate Stack">
                 </div>
-                <div class="mozaik-view">[ FALSE FLOOR RENDER ]</div>
-                <h3 class="text-2xl font-black uppercase italic text-white">Essential</h3>
-                <p class="text-xs text-gray-500 mono mb-4">THE FOUNDATION</p>
-                <ul class="text-xs text-gray-400 space-y-3 mb-8 mono flex-grow">
-                    <li class="flex gap-2"><span class="text-green-500">></span> False Floor System (Hex Ply)</li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> Rear Drawer System (1000mm)</li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> Hex Anti-Skid Surface</li>
-                </ul>
-                <button class="select-btn" onclick="selectPackage('Essential', 'card-essential')">Selected</button>
+                <div class="p-6">
+                    <h4 class="font-bold text-white uppercase italic mb-1">Crate Stack</h4>
+                    <p class="text-[10px] text-gray-500 mono">EURO BIN SYSTEM</p>
+                    <div class="mt-4 text-[10px] text-gray-400 mono border-t border-[#222] pt-2">
+                        <div class="flex justify-between"><span>CAPACITY</span><span>4-6 BINS</span></div>
+                        <div class="flex justify-between"><span>RETENTION</span><span>ANGLED</span></div>
+                    </div>
+                </div>
+                <button class="spec-toggle">+ ADD MODULE</button>
             </div>
 
-            <div class="package-card" id="card-pro">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="mono text-gray-500 text-xs">BASE CONFIG 02</span>
+            <div class="spec-card" onclick="toggleSpec(this, 'Toolbox Shelves')">
+                <div class="spec-img">
+                    <img src="https://placehold.co/400x400/111/333?text=TOOLBOX+RACK" alt="Toolbox Rack">
                 </div>
-                <div class="mozaik-view">[ DRAWER + SHELF RENDER ]</div>
-                <h3 class="text-2xl font-black uppercase italic">Pro</h3>
-                <p class="text-xs text-gray-500 mono mb-4">MOST COMMON</p>
-                <ul class="text-xs text-gray-400 space-y-3 mb-8 mono flex-grow">
-                    <li class="flex gap-2"><span class="text-green-500">></span> <strong>Everything in Essential</strong></li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> Driver Side Shelving Unit</li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> Mixed Utility Storage</li>
-                </ul>
-                <button class="select-btn" onclick="selectPackage('Pro', 'card-pro')">Select Config</button>
+                <div class="p-6">
+                    <h4 class="font-bold text-white uppercase italic mb-1">Case Storage</h4>
+                    <p class="text-[10px] text-gray-500 mono">PACKOUT / SYSTAINER</p>
+                    <div class="mt-4 text-[10px] text-gray-400 mono border-t border-[#222] pt-2">
+                        <div class="flex justify-between"><span>LIP HEIGHT</span><span>30MM</span></div>
+                        <div class="flex justify-between"><span>FITMENT</span><span>UNIVERSAL</span></div>
+                    </div>
+                </div>
+                <button class="spec-toggle">+ ADD MODULE</button>
             </div>
 
-            <div class="package-card" id="card-elite">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="mono text-gray-500 text-xs">BASE CONFIG 03</span>
+            <div class="spec-card" onclick="toggleSpec(this, 'Silicone Array')">
+                <div class="spec-img">
+                    <img src="https://placehold.co/400x400/111/333?text=SILICONE+HOLDER" alt="Silicone Holder">
                 </div>
-                <div class="mozaik-view">[ FULL SYSTEM RENDER ]</div>
-                <h3 class="text-2xl font-black uppercase italic">Elite</h3>
-                <p class="text-xs text-gray-500 mono mb-4">FULL WORKSHOP</p>
-                <ul class="text-xs text-gray-400 space-y-3 mb-8 mono flex-grow">
-                    <li class="flex gap-2"><span class="text-green-500">></span> <strong>Everything in Pro</strong></li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> Passenger Side Shelving</li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> Slide-Out Shelf (Side Door)</li>
-                    <li class="flex gap-2"><span class="text-green-500">></span> 12V Integration Ready</li>
-                </ul>
-                <button class="select-btn" onclick="selectPackage('Elite', 'card-elite')">Select Config</button>
+                <div class="p-6">
+                    <h4 class="font-bold text-white uppercase italic mb-1">Silicone Array</h4>
+                    <p class="text-[10px] text-gray-500 mono">CHEMICAL STORAGE</p>
+                    <div class="mt-4 text-[10px] text-gray-400 mono border-t border-[#222] pt-2">
+                        <div class="flex justify-between"><span>CAPACITY</span><span>6 TUBES</span></div>
+                        <div class="flex justify-between"><span>MOUNT</span><span>VERTICAL</span></div>
+                    </div>
+                </div>
+                <button class="spec-toggle">+ ADD MODULE</button>
+            </div>
+
+            <div class="spec-card" onclick="toggleSpec(this, 'Roof Racks')">
+                <div class="spec-img">
+                    <img src="https://placehold.co/400x400/111/333?text=ROOF+RACKS" alt="Roof Racks">
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold text-white uppercase italic mb-1">Roof Systems</h4>
+                    <p class="text-[10px] text-gray-500 mono">EXTERIOR STORAGE</p>
+                    <div class="mt-4 text-[10px] text-gray-400 mono border-t border-[#222] pt-2">
+                        <div class="flex justify-between"><span>MATERIAL</span><span>ALLOY</span></div>
+                        <div class="flex justify-between"><span>LOAD</span><span>150KG+</span></div>
+                    </div>
+                </div>
+                <button class="spec-toggle">+ ADD MODULE</button>
             </div>
 
         </div>
 
-        <h2 class="text-xl font-black italic uppercase mb-2">System Add-Ons</h2>
-        <p class="text-gray-500 text-xs mono mb-6">SELECT INTERESTS</p>
+        <h2 class="text-xl font-black uppercase italic mb-8 text-white flex items-center gap-4">
+            <span class="text-green-500 mono">04.</span> Operational Timeline
+        </h2>
 
-        <div class="bg-[#0a0a0a] border border-[#333] rounded-xl overflow-hidden mb-16">
-            <div class="addon-item">
-                <div><p class="font-bold text-sm">Full Ply Lining</p><p class="text-[10px] text-gray-500">Wall & Ceiling Protection</p></div>
-                <input type="checkbox" class="elite-checkbox" value="Ply Lining" onchange="updateSummary()">
+        <div class="grid grid-cols-1 md:grid-cols-9 gap-4 mb-20 items-stretch">
+            
+            <div class="md:col-span-2 flight-path-node">
+                <p class="text-[10px] mono text-green-500 mb-2">PHASE 01 // DATA UPLOAD</p>
+                <h4 class="text-lg font-black italic uppercase text-white mb-2">Submit Manifest</h4>
+                <p class="text-xs text-gray-400 leading-relaxed">Select your loadout on this page. Our system generates a build file.</p>
             </div>
-            <div class="addon-item">
-                <div><p class="font-bold text-sm">Silicone & Caulk Array</p><p class="text-[10px] text-gray-500">Chemical Storage</p></div>
-                <input type="checkbox" class="elite-checkbox" value="Silicone Holder" onchange="updateSummary()">
+
+            <div class="flight-arrow hidden md:flex">→</div>
+
+            <div class="md:col-span-2 flight-path-node">
+                <p class="text-[10px] mono text-gray-500 mb-2">PHASE 02 // INTEL</p>
+                <h4 class="text-lg font-black italic uppercase text-white mb-2">Strategy Call</h4>
+                <p class="text-xs text-gray-400 leading-relaxed">We quote you over the phone. We verify vehicle wheelbase and specific trade requirements.</p>
             </div>
-            <div class="addon-item">
-                <div><p class="font-bold text-sm">Side Pocket Storage</p><p class="text-[10px] text-gray-500">Door Card Replacement</p></div>
-                <input type="checkbox" class="elite-checkbox" value="Side Pockets" onchange="updateSummary()">
+
+            <div class="flight-arrow hidden md:flex">→</div>
+
+            <div class="md:col-span-2 flight-path-node">
+                <p class="text-[10px] mono text-gray-500 mb-2">PHASE 03 // EXECUTION</p>
+                <h4 class="text-lg font-black italic uppercase text-white mb-2">One Day Build</h4>
+                <p class="text-xs text-gray-400 leading-relaxed">Drop off at 0700. We execute the fitout. Extraction (Pickup) at 1600 same day.</p>
             </div>
-            <div class="addon-item">
-                <div><p class="font-bold text-sm">Roof Rack System</p><p class="text-[10px] text-gray-500">Ladder & Conduit Storage</p></div>
-                <input type="checkbox" class="elite-checkbox" value="Roof Racks" onchange="updateSummary()">
-            </div>
+            
         </div>
 
     </div>
 
-    <div class="total-bar">
-        <div>
-            <p class="text-[10px] text-gray-500 mono uppercase">Current Selection</p>
-            <p class="text-xl font-bold text-white" id="selection-display">Essential Package</p>
+    <div class="manifest-bar">
+        <div class="flex flex-col gap-1 w-full md:w-auto">
+            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Active Manifest</p>
+            <div class="flex flex-wrap items-baseline gap-2">
+                <p class="text-xl font-bold text-white italic uppercase" id="manifest-main">Pro Profile</p>
+                <p class="text-xs text-green-500 mono" id="manifest-sub"></p>
+            </div>
         </div>
-        <button class="proceed-btn" onclick="goToBooking()">
-            Request Quote ->
+        <button class="submit-btn" onclick="submitManifest()">
+            Initialize Build Sequence ->
         </button>
     </div>
 
     <script>
-        let selectedPackageName = 'Essential';
-        
-        function selectPackage(name, cardId) {
-            selectedPackageName = name;
+        // State
+        let currentProfile = "Pro";
+        let modules = [];
+
+        // Logic: Select Profile
+        function selectProfile(name, id) {
+            currentProfile = name;
             
-            // Visual Updates
-            document.querySelectorAll('.package-card').forEach(el => {
-                el.classList.remove('selected');
-                el.querySelector('.select-btn').innerText = "Select Config";
+            // Reset Styles
+            document.querySelectorAll('[id^="profile-"]').forEach(el => {
+                el.classList.remove('border-green-500', 'bg-[rgba(34,197,94,0.05)]');
+                el.classList.add('border-[#222]', 'bg-[#050505]');
+                el.querySelector('.selection-indicator').innerText = "Select Profile";
+                el.querySelector('.selection-indicator').className = "w-full py-2 text-center border border-[#333] text-[10px] mono uppercase text-gray-500 selection-indicator";
+                
+                // Hide Active Tag
+                const tag = el.querySelector('.absolute.text-green-500');
+                if(tag) tag.remove();
             });
-            const card = document.getElementById(cardId);
-            card.classList.add('selected');
-            card.querySelector('.select-btn').innerText = "Selected";
-            
-            updateSummary();
+
+            // Set Active Style
+            const card = document.getElementById(id);
+            card.classList.remove('border-[#222]', 'bg-[#050505]');
+            card.classList.add('border-green-500', 'bg-[rgba(34,197,94,0.05)]');
+            card.querySelector('.selection-indicator').innerText = "Active Profile";
+            card.querySelector('.selection-indicator').className = "w-full py-2 text-center bg-green-500 text-black font-bold text-[10px] mono uppercase selection-indicator";
+
+            // Add Active Tag
+            const tag = document.createElement('span');
+            tag.className = 'absolute top-4 right-4 text-[10px] mono text-green-500 font-bold';
+            tag.innerText = 'ACTIVE';
+            card.appendChild(tag);
+
+            updateManifest();
         }
 
-        function updateSummary() {
-            // Get Checked Addons
-            let addons = [];
-            document.querySelectorAll('.elite-checkbox:checked').forEach(box => {
-                addons.push(box.value);
-            });
-
-            let displayText = selectedPackageName + " Base";
-            if(addons.length > 0) {
-                displayText += " + " + addons.length + " Add-ons";
+        // Logic: Toggle Modules
+        function toggleSpec(card, name) {
+            if (modules.includes(name)) {
+                modules = modules.filter(m => m !== name);
+                card.classList.remove('active');
+                card.querySelector('.spec-toggle').innerText = "+ ADD MODULE";
+            } else {
+                modules.push(name);
+                card.classList.add('active');
+                card.querySelector('.spec-toggle').innerText = "MODULE LINKED";
             }
-            document.getElementById('selection-display').innerText = displayText;
+            updateManifest();
         }
 
-        function goToBooking() {
-            // Collect Data
-            let addons = [];
-            document.querySelectorAll('.elite-checkbox:checked').forEach(box => {
-                addons.push(box.value);
-            });
+        // Logic: Update Footer
+        function updateManifest() {
+            document.getElementById('manifest-main').innerText = currentProfile + " Profile";
+            const sub = document.getElementById('manifest-sub');
             
-            // Build String: "Pro Package + Roof Racks, Ply Lining"
-            let finalString = selectedPackageName + " Package";
-            if(addons.length > 0) {
-                finalString += " + " + addons.join(", ");
+            if (modules.length > 0) {
+                sub.innerText = "// " + modules.join(" + ");
+            } else {
+                sub.innerText = "";
             }
+        }
 
-            // Send to Design Lab
-            // We use 'est' parameter to pass the text string instead of a price
-            window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(finalString)}`;
+        // Logic: Submit
+        function submitManifest() {
+            let finalString = "Base: " + currentProfile;
+            if (modules.length > 0) {
+                finalString += " | Add-ons: " + modules.join(", ");
+            }
+            alert("Submitting Manifest to HQ:\n\n" + finalString);
+            // Redirect to contact form with URL param
+            // window.location.href = "contact.html?data=" + encodeURIComponent(finalString);
         }
     </script>
 
