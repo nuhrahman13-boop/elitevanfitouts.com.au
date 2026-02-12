@@ -6,7 +6,7 @@
     <title>ELITE | VAN FITOUTS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM --- */
+        /* --- CORE SYSTEM & FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
@@ -47,73 +47,101 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- HERO SECTION (FULL VIEW MODE) --- */
+        /* --- HERO SECTION --- */
         .hero-section {
             position: relative; width: 100%; 
-            background: #000; /* Black borders blend with video */
-            overflow: hidden; 
+            background: #000;
+            overflow: visible; /* Allow text to hang off */
             display: flex; 
             align-items: flex-end; 
-            justify-content: center;
+            justify-content: flex-start;
+            border-bottom: 1px solid #222;
         }
         
         .hero-video {
-            /* This ensures the WHOLE video is seen, never cropped */
-            width: 100%; height: 100%; 
-            object-fit: contain; 
-            position: absolute; top: 0; left: 0; z-index: 0;
-            filter: brightness(0.7);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; 
+            z-index: 0; 
+            filter: brightness(0.65) contrast(1.1);
+            object-position: center center;
         }
 
-        /* DESKTOP HEIGHT */
+        /* DESKTOP CONFIG */
         @media (min-width: 1024px) {
-            .hero-section { height: 85vh; }
+            .hero-section { 
+                height: 70vh; /* Reduced height = Wider Aspect Ratio = More Van visible (Zoomed out) */ 
+            }
+            .hero-content {
+                padding-bottom: 40px;
+            }
         }
         
-        /* MOBILE HEIGHT */
+        /* MOBILE CONFIG */
         @media (max-width: 1023px) {
-            .hero-section { height: 60vh; }
+            .hero-section {
+                height: 50vh; /* Cinematic strip */
+            }
+            .hero-video {
+                object-position: center center;
+            }
             .hero-content {
-                /* Push text slightly higher on mobile so it's not on the edge */
-                padding-bottom: 40px !important;
-                /* Strong gradient to make text readable over the video/black bar */
-                background: linear-gradient(to top, #000000 30%, transparent 100%);
+                /* Push text down to hang off the edge */
+                margin-bottom: -25px !important; 
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+                padding-bottom: 0 !important;
             }
             .glitch-text {
-                font-size: 2.2rem !important; 
-                margin-bottom: 5px !important;
+                font-size: 2.5rem !important; 
+                margin-bottom: 0px !important;
+                text-shadow: 0 4px 10px rgba(0,0,0,0.9); /* Heavy shadow for readability */
             }
             .hero-sub {
-                font-size: 0.8rem !important;
-                line-height: 1.3 !important;
+                font-size: 0.75rem !important;
+                max-width: 100% !important;
+                background: rgba(0,0,0,0.6); /* Backdrop for legibility */
+                padding: 10px;
+                border-left: 2px solid var(--elite-green);
+                backdrop-filter: blur(4px);
             }
         }
 
+        .hero-fade {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(to top, #000000 15%, transparent 100%);
+            z-index: 1;
+        }
         .hero-content {
             position: relative; z-index: 10; width: 100%; 
             padding: 0 40px 60px 40px; max-width: 1400px; margin: 0 auto;
-            /* Ensure text is left-aligned */
-            text-align: left;
-            pointer-events: none; /* Let clicks pass through if needed */
         }
         .glitch-text {
-            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            font-size: clamp(3.5rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
             color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
         .hero-sub {
             font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
-            border-left: 3px solid var(--elite-green); padding-left: 15px;
+            border-left: 3px solid var(--elite-green); padding-left: 15px; margin-top: 15px;
         }
 
-        /* --- SEO TICKER --- */
+        /* --- SEO TICKER (Shifted Up) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
-            height: 40px; display: flex; align-items: center; z-index: 20;
+            height: 40px; display: flex; align-items: center; z-index: 5;
             border-bottom: 1px solid #222;
             background-image: radial-gradient(#111 1px, transparent 1px);
             background-size: 4px 4px;
+            margin-top: 0; /* Reset */
         }
+        
+        @media (max-width: 768px) {
+            .led-wrap {
+                margin-top: 30px; /* Spacing to account for the hanging header */
+                border-top: 1px solid #222;
+            }
+        }
+
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
             color: var(--elite-green); font-family: 'VT323', monospace;
@@ -555,7 +583,7 @@
                     <div class="flight-dot"></div>
                     <div class="pl-4">
                         <h4 class="step-title">4. Pick Up</h4>
-                        <p class="step-desc">1600 Hours. System check complete. You drive away the same afternoon, ready to work the next morning.</p>
+                        <p class="step-desc">1600 Hours. System check complete. You drive away same day, fully operational for tomorrow.</p>
                     </div>
                 </div>
 
