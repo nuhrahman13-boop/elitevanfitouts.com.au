@@ -6,7 +6,7 @@
     <title>ELITE | VAN FITOUTS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM & FONTS --- */
+        /* --- CORE SYSTEM --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
@@ -47,52 +47,58 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- HERO SECTION (Fixed Zoom) --- */
-        .hero-wrapper {
-            position: relative; width: 100%; background: #000;
-            display: flex; align-items: flex-end;
-            border-bottom: 1px solid var(--elite-green);
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative; width: 100%; 
+            /* Desktop Height */
+            height: 90vh; 
+            overflow: hidden; display: flex; 
+            align-items: flex-end; /* Push text to bottom */
+            justify-content: flex-start; /* Push text to left */
+            background: #000;
         }
         
         .hero-video {
-            width: 100%; height: 100%; object-fit: cover;
-            position: absolute; top: 0; left: 0; z-index: 0;
-            filter: brightness(0.6);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; /* Forces fill without black bars */
+            z-index: 1; filter: brightness(0.7);
+            object-position: center center;
         }
-
-        /* DESKTOP: High impact, centered */
-        @media (min-width: 1024px) {
-            .hero-wrapper { height: 85vh; }
-            .hero-video { object-position: center center; }
-        }
-
-        /* MOBILE: Aspect Ratio Lock (No Zoom) */
-        @media (max-width: 1023px) {
-            .hero-wrapper { 
-                height: auto; 
-                aspect-ratio: 16/9; /* Forces 16:9 ratio so no cropping occurs */
-                align-items: center; /* Center text */
+        
+        /* MOBILE ADJUSTMENTS */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 65vh; /* Taller on mobile to show full van */
+            }
+            .hero-video {
+                object-position: center center; /* Keeps subject in frame */
             }
             .hero-content {
-                padding-bottom: 20px !important;
-                background: rgba(0,0,0,0.3); /* Legibility boost */
+                padding-bottom: 40px !important;
+                background: linear-gradient(to top, #000000 20%, transparent 100%);
             }
-            .glitch-text { font-size: 2rem !important; }
-            .hero-sub { font-size: 0.7rem !important; line-height: 1.2 !important; }
+            .glitch-text {
+                font-size: 2.8rem !important; 
+                margin-bottom: 5px !important;
+            }
+            .hero-sub {
+                font-size: 0.8rem !important;
+                max-width: 80% !important;
+            }
         }
 
         .hero-content {
             position: relative; z-index: 10; width: 100%; 
-            padding: 0 24px 60px 24px; max-width: 1400px; margin: 0 auto;
+            padding: 0 40px 80px 40px; max-width: 1400px;
         }
         .glitch-text {
-            font-size: clamp(2.5rem, 5vw, 5rem); line-height: 0.9; font-weight: 900;
+            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
             color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
         .hero-sub {
-            font-size: 0.9rem; line-height: 1.5; color: #ccc; max-width: 450px;
-            font-weight: 500;
+            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
+            border-left: 3px solid var(--elite-green); padding-left: 15px;
         }
 
         /* --- SEO TICKER --- */
@@ -134,7 +140,7 @@
         }
         .pkg-img { height: 250px; width: 100%; object-fit: cover; border-bottom: 1px solid #222; }
 
-        /* --- ACCORDION DROPDOWNS --- */
+        /* --- ACCORDION --- */
         .spec-item {
             background: #080808; border: 1px solid #333; margin-bottom: 16px;
             transition: all 0.3s;
@@ -157,43 +163,50 @@
         .add-btn:hover { border-color: white; color: white; }
         .add-btn.added { background: var(--elite-green); color: black; border-color: var(--elite-green); }
 
-        /* --- FLIGHT PATH ANIMATION --- */
-        .flight-container { position: relative; margin: 40px 0; padding-left: 20px; }
-        .flight-line {
-            position: absolute; left: 29px; top: 0; bottom: 0; width: 2px; background: #222;
+        /* --- FLIGHT PATH (CIRCUIT STYLE) --- */
+        .flight-container { 
+            position: relative; margin: 60px 0; 
+            border-left: 2px solid #333; padding-left: 30px;
         }
-        /* Animated Signal Line */
-        .flight-line::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to bottom, transparent, var(--elite-green), transparent);
-            animation: signalDrop 3s infinite linear;
+        /* The Pulse Line */
+        .flight-container::after {
+            content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%;
+            background: var(--elite-green);
+            box-shadow: 0 0 10px var(--elite-green);
+            animation: circuitFlow 4s ease-in-out infinite;
         }
-        @keyframes signalDrop { 0% { top: -50%; } 100% { top: 100%; } }
+        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
 
-        .flight-node { display: flex; align-items: flex-start; gap: 30px; margin-bottom: 40px; position: relative; z-index: 10; }
-        .node-icon {
-            width: 20px; height: 20px; background: #000; border: 2px solid var(--elite-green);
-            border-radius: 50%; margin-top: 5px; box-shadow: 0 0 15px rgba(34,197,94,0.4);
+        .flight-step { position: relative; margin-bottom: 50px; }
+        .flight-dot {
+            position: absolute; left: -39px; top: 0; width: 20px; height: 20px;
+            background: #000; border: 2px solid #444; border-radius: 50%;
+            z-index: 10; transition: 0.3s;
         }
-        .node-content { background: #0a0a0a; border: 1px solid #333; padding: 20px; flex: 1; transition: 0.3s; }
-        .flight-node:hover .node-content { border-color: var(--elite-green); transform: translateX(5px); }
+        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
+        
+        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
+        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- DEEP SPECS --- */
-        .deep-spec-card {
-            background: #050505; border: 1px solid #333; padding: 30px; position: relative;
-            overflow: hidden;
+        /* --- TECH SPECS (BLUEPRINT) --- */
+        .blueprint-card {
+            background: #050505; border: 1px solid #333; padding: 0; 
+            position: relative; overflow: hidden; margin-bottom: 20px;
         }
-        .blueprint-grid {
-            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+        .blueprint-header {
+            background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .data-point {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #666;
-            border-bottom: 1px solid #222; padding: 8px 0; display: flex; justify-content: space-between;
+        .blueprint-body { padding: 25px; }
+        
+        .spec-grid {
+            display: grid; grid-cols-2 gap-4 mt-6;
         }
-        .data-point span:last-child { color: white; }
+        .spec-point {
+            border-bottom: 1px solid #222; padding-bottom: 5px;
+        }
+        .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
+        .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
 
         /* --- STICKY FOOTER --- */
         .manifest-bar {
@@ -258,17 +271,17 @@
         </div>
     </div>
 
-    <header class="hero-wrapper">
+    <header class="hero-section">
         <video autoplay muted loop playsinline class="hero-video">
             <source src="fitout hero.mp4" type="video/mp4">
         </video>
         <div class="hero-fade"></div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-2">
+            <h1 class="glitch-text mb-4">
                 VAN <span class="text-green-500">FITOUTS</span>
             </h1>
-            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
+            <p class="hero-sub">
                 Turn your van into a mobile workshop. <br>
                 Stop searching for tools. Start making money.
             </p>
@@ -504,43 +517,41 @@
         </div>
 
         <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-10 text-center">
-                The <span class="text-green-500">Flight Path</span>
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
+                Mission <span class="text-green-500">Timeline</span>
             </h2>
 
-            <div class="flight-container max-w-4xl mx-auto">
-                <div class="flight-line"></div>
+            <div class="max-w-4xl mx-auto px-4 flight-container">
                 
-                <div class="flight-node">
-                    <div class="node-icon"></div>
-                    <div class="node-content">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-lg font-bold text-white uppercase">1. Request Quote</h4>
-                            <span class="mono text-green-500 text-xs">PHASE 01</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Submit your preferences. We call you to confirm the details, give you a price, and lock in the install date.</p>
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">1. Request Quote</h4>
+                        <p class="step-desc">Submit your manifest online. We call you to confirm chassis specs, discuss trade workflow, and lock in a price.</p>
                     </div>
                 </div>
 
-                <div class="flight-node">
-                    <div class="node-icon"></div>
-                    <div class="node-content">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-lg font-bold text-white uppercase">2. Drop Off</h4>
-                            <span class="mono text-green-500 text-xs">PHASE 02</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Bring the van to Rowville HQ at 07:00. We get to work immediately.</p>
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">2. Quote & Schedule</h4>
+                        <p class="step-desc">We finalize the design in 3D. You approve the loadout. We book your slot in the Rowville production queue.</p>
                     </div>
                 </div>
 
-                <div class="flight-node">
-                    <div class="node-icon"></div>
-                    <div class="node-content">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-lg font-bold text-white uppercase">3. Pick Up</h4>
-                            <span class="mono text-green-500 text-xs">PHASE 03</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Drive away the same afternoon. Ready for work the next morning.</p>
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">3. Drop Off</h4>
+                        <p class="step-desc">0700 Hours. Drop the van at HQ. Our team begins the rapid deployment install sequence immediately.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">4. Pick Up</h4>
+                        <p class="step-desc">1600 Hours. System check complete. You drive away the same afternoon, ready to work the next morning.</p>
                     </div>
                 </div>
 
@@ -549,51 +560,63 @@
 
         <div class="mb-24 max-w-5xl mx-auto">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">04.</span> Technical Specs
+                <span class="text-green-500 text-sm mono">04.</span> Engineering Data
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <div class="deep-spec-card">
-                    <div class="blueprint-grid"></div>
-                    <h3 class="text-xl font-bold text-white uppercase mb-6 relative z-10">False Floor Systems</h3>
-                    <div class="space-y-4 relative z-10">
-                        <div class="data-point"><span>Construction</span><span>Raised Sub-frame</span></div>
-                        <div class="data-point"><span>Cavity Use</span><span>Ladders / Levels / Conduit</span></div>
-                        <div class="data-point"><span>Top Surface</span><span>Hex-Grip or Carpet</span></div>
-                        <div class="data-point"><span>Edge Trim</span><span>Aluminium Step Protection</span></div>
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">False Floor Systems</h3>
+                        <span class="mono text-xs text-green-500">SPEC_01</span>
                     </div>
-                    <p class="text-xs text-gray-500 mt-6 relative z-10 leading-relaxed">
-                        We raise the floor to create a "False Floor" tunnel system. This allows you to slide long items (up to 3m) underneath your storage, keeping the walkway clear.
-                    </p>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            We raise the deck height to create massive storage tunnels. This cavity is engineered to house long ladders, 3m conduit, and spirit levels without cluttering the main cabin.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">CORE MATERIAL</span><span class="spec-val">12mm Trans-Tex Birch</span></div>
+                            <div class="spec-point"><span class="spec-label">SURFACE FACE</span><span class="spec-val">Phenolic Hex Pattern</span></div>
+                            <div class="spec-point"><span class="spec-label">SLIP RATING</span><span class="spec-val">R10 Anti-Skid</span></div>
+                            <div class="spec-point"><span class="spec-label">RESISTANCE</span><span class="spec-val">Oil / Water / Chemical</span></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="deep-spec-card">
-                    <div class="blueprint-grid"></div>
-                    <h3 class="text-xl font-bold text-white uppercase mb-6 relative z-10">Heavy Duty Drawers</h3>
-                    <div class="space-y-4 relative z-10">
-                        <div class="data-point"><span>Slide Type</span><span>Lock-In / Lock-Out</span></div>
-                        <div class="data-point"><span>Capacity</span><span>High Load Rating</span></div>
-                        <div class="data-point"><span>Operation</span><span>Trigger Release</span></div>
-                        <div class="data-point"><span>Depth</span><span>1000mm - 1800mm</span></div>
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">Heavy Duty Drawers</h3>
+                        <span class="mono text-xs text-green-500">SPEC_02</span>
                     </div>
-                    <p class="text-xs text-gray-500 mt-6 relative z-10 leading-relaxed">
-                        Our drawers are built to take a beating. The locking mechanism ensures they stay closed on corners and stay open when you're parked on a hill.
-                    </p>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            Built to survive the job site. Our drawers utilize a trigger-lock mechanism that secures them in both open and closed positions—essential for parking on hills.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">RUNNER RATING</span><span class="spec-val">227kg Dynamic Load</span></div>
+                            <div class="spec-point"><span class="spec-label">EXTENSION</span><span class="spec-val">100% Full Extension</span></div>
+                            <div class="spec-point"><span class="spec-label">LOCK TYPE</span><span class="spec-val">Trigger In/Out</span></div>
+                            <div class="spec-point"><span class="spec-label">CONSTRUCTION</span><span class="spec-val">Galvanized Steel</span></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="deep-spec-card">
-                    <div class="blueprint-grid"></div>
-                    <h3 class="text-xl font-bold text-white uppercase mb-6 relative z-10">Custom Shelving</h3>
-                    <div class="space-y-4 relative z-10">
-                        <div class="data-point"><span>Fitment</span><span>Scribed to Wall Contour</span></div>
-                        <div class="data-point"><span>Material</span><span>Structural Ply</span></div>
-                        <div class="data-point"><span>Joints</span><span>Mortise & Tenon</span></div>
-                        <div class="data-point"><span>Custom</span><span>Any Height / Width</span></div>
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">Custom Shelving</h3>
+                        <span class="mono text-xs text-green-500">SPEC_03</span>
                     </div>
-                    <p class="text-xs text-gray-500 mt-6 relative z-10 leading-relaxed">
-                        We don't use square boxes in curved vans. We scribe the shelving to the exact shape of your vehicle walls, gaining you 100-150mm of extra aisle space compared to generic metal racking.
-                    </p>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            Scribed to the exact curvature of your van walls. This technique reclaims 100mm-150mm of aisle space compared to square box shelving.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">JOINERY</span><span class="spec-val">Mortise & Tenon</span></div>
+                            <div class="spec-point"><span class="spec-label">WEIGHT REDUCTION</span><span class="spec-val">Skeletonized Uprights</span></div>
+                            <div class="spec-point"><span class="spec-label">FITMENT</span><span class="spec-val">CNC Scribed to Wall</span></div>
+                            <div class="spec-point"><span class="spec-label">SHELF LIP</span><span class="spec-val">High Retention (30mm)</span></div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
