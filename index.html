@@ -62,7 +62,10 @@
             /* Desktop Height */
             height: 90vh; 
             min-height: 500px;
-            overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start;
+            overflow: hidden; 
+            display: flex; 
+            align-items: flex-end; /* Pushes content to bottom */
+            justify-content: flex-start; /* Pushes content to left */
             background: #000;
         }
         .hero-video {
@@ -71,32 +74,32 @@
             object-position: center center;
         }
         
-        /* MOBILE HERO ADJUSTMENTS (ZOOM FIX) */
+        /* MOBILE HERO ADJUSTMENTS (Zoom Fix + Bottom Left Align) */
         @media (max-width: 768px) {
             .hero-section {
-                /* Reduce height so cover doesn't zoom in as much */
-                height: 55vh; 
+                height: 55vh; /* Reduced height to zoom out */
                 min-height: auto;
-                align-items: center; /* Center text vertically */
+                align-items: flex-end; /* Force Bottom Alignment */
+                justify-content: flex-start; /* Force Left Alignment */
             }
             .hero-video {
-                /* Center the video */
-                object-position: center center; 
+                object-position: 75% center; /* Shift video to show van */
             }
             .hero-content {
-                padding-bottom: 0 !important; /* Remove bottom padding on mobile */
+                padding-bottom: 30px !important; /* Bottom padding for mobile */
+                width: 100%;
+                text-align: left;
             }
             .glitch-text {
-                /* Smaller text on mobile so it doesn't block the van */
-                font-size: 2.2rem !important; 
+                font-size: 2.2rem !important; /* Smaller text */
                 line-height: 1 !important;
+                margin-bottom: 10px !important;
             }
             .hero-sub {
-                font-size: 0.8rem !important;
-                display: none; /* Hide subtext on mobile to show more van */
+                display: none; /* Hide description on mobile */
             }
             .hero-btns {
-                margin-top: 15px;
+                margin-top: 10px;
             }
             .btn-main, .btn-outline {
                 padding: 10px 20px !important;
