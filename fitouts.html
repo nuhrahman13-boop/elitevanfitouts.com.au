@@ -17,7 +17,7 @@
         body, html { 
             margin: 0; padding: 0; background-color: #000000; 
             color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
-            padding-bottom: 120px; /* Space for sticky footer */
+            padding-bottom: 120px;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
@@ -49,7 +49,7 @@
 
         /* --- HERO SECTION --- */
         .hero-section {
-            position: relative; width: 100%; height: 80vh; min-height: 500px;
+            position: relative; width: 100%; height: 75vh; min-height: 500px;
             overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start;
             background: #000;
         }
@@ -60,10 +60,11 @@
         }
         
         @media (max-width: 768px) {
-            .hero-section { height: 55vh; align-items: flex-end; }
-            .hero-video { object-position: 75% center; }
+            .hero-section { height: 60vh; }
+            .hero-video { object-position: center center; } /* Fixed positioning */
             .hero-content { padding-bottom: 30px !important; }
             .glitch-text { font-size: 2.5rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
+            .hero-sub { font-size: 0.8rem !important; }
         }
 
         .hero-fade {
@@ -79,6 +80,9 @@
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
             color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .hero-sub {
+            font-size: 1rem; line-height: 1.5; color: #ccc; max-width: 500px;
         }
 
         /* --- SEO TICKER --- */
@@ -120,7 +124,7 @@
         }
         .pkg-img { height: 250px; width: 100%; object-fit: cover; border-bottom: 1px solid #222; }
 
-        /* --- EXPANDABLE DROPDOWNS (Accordion) --- */
+        /* --- ACCORDION DROPDOWNS --- */
         .spec-item {
             background: #080808; border: 1px solid #333; margin-bottom: 16px;
             transition: all 0.3s;
@@ -145,6 +149,14 @@
         }
         .add-btn:hover { border-color: white; color: white; }
         .add-btn.added { background: var(--elite-green); color: black; border-color: var(--elite-green); }
+
+        /* --- SEO SPECS SECTION --- */
+        .tech-spec-box {
+            background: #080808; padding: 30px; border-left: 2px solid var(--elite-green);
+            margin-bottom: 30px;
+        }
+        .tech-title { font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 10px; text-transform: uppercase; }
+        .tech-desc { color: #888; font-size: 0.9rem; line-height: 1.6; }
 
         /* --- STICKY FOOTER --- */
         .manifest-bar {
@@ -216,10 +228,10 @@
         <div class="hero-fade"></div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-4">
+            <h1 class="glitch-text mb-2">
                 VAN <span class="text-green-500">FITOUTS</span>
             </h1>
-            <p class="hero-sub text-gray-300 max-w-lg text-lg uppercase font-bold tracking-wide leading-relaxed mb-8 border-l-2 border-green-500 pl-4">
+            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
                 Turn your van into a mobile workshop. <br>
                 Stop searching for tools. Start making money.
             </p>
@@ -233,9 +245,7 @@
             <div class="led-item">FALSE FLOORS</div>
             <div class="led-item">TOOLBOX SHELVES</div>
             <div class="led-item">SLIDE OUTS</div>
-            <div class="led-item">CABLE ORGANISERS</div>
-            <div class="led-item">GAS BOTTLE HOLDERS</div>
-            <div class="led-item">ROOF RACKS</div>
+            <div class="led-item">CUSTOM SHELVING</div>
             <div class="led-item">UTE DRAWERS</div>
             <div class="led-item">CARGO BARRIERS</div>
             <div class="led-item">PLYWOOD SHELVING</div>
@@ -245,9 +255,7 @@
             <div class="led-item">FALSE FLOORS</div>
             <div class="led-item">TOOLBOX SHELVES</div>
             <div class="led-item">SLIDE OUTS</div>
-            <div class="led-item">CABLE ORGANISERS</div>
-            <div class="led-item">GAS BOTTLE HOLDERS</div>
-            <div class="led-item">ROOF RACKS</div>
+            <div class="led-item">CUSTOM SHELVING</div>
             <div class="led-item">UTE DRAWERS</div>
             <div class="led-item">CARGO BARRIERS</div>
             <div class="led-item">PLYWOOD SHELVING</div>
@@ -300,7 +308,7 @@
                             <li>> <strong>Everything in Pro</strong></li>
                             <li>> Passenger Side Racking</li>
                             <li>> Slide-Out Shelf (Side Door)</li>
-                            <li>> 12V System Ready</li>
+                            <li>> Full Custom Layout</li>
                         </ul>
                     </div>
                 </div>
@@ -309,9 +317,9 @@
 
         <div class="mb-24">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">02.</span> Add-Ons & Shelving
+                <span class="text-green-500 text-sm mono">02.</span> Shelving & Add-Ons
             </h2>
-            <p class="text-gray-400 mb-6 text-sm">Click any item to view details and add to your build.</p>
+            <p class="text-gray-400 mb-6 text-sm">Every shelf is custom tailored to fit your specific tools.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
@@ -332,12 +340,8 @@
                         <div class="p-6">
                             <p class="text-sm text-gray-400 leading-relaxed mb-4">
                                 Angled shelving designed specifically for Euro-Crates. Perfect for plumbers and electricians who carry hundreds of small fittings. 
-                                Grab the crate, take it to the job, slide it back in.
+                                Grab the crate, take it to the job, slide it back in. Custom sizes available to fit your existing bins.
                             </p>
-                            <div class="grid grid-cols-2 gap-4 mb-4 text-[10px] mono text-gray-500">
-                                <div class="border-b border-[#333] pb-1">CAPACITY: 4-6 CRATES</div>
-                                <div class="border-b border-[#333] pb-1">RETENTION: HIGH LIP</div>
-                            </div>
                             <button class="add-btn w-full" onclick="toggleAddon('Crate Shelves', this)">+ Add to Build</button>
                         </div>
                     </div>
@@ -359,27 +363,23 @@
                     <div class="spec-content">
                         <div class="p-6">
                             <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Massive open shelves with a 30mm retention lip. Designed to hold heavy system cases like Milwaukee Packout, Makita Makpac, or DeWalt T-Stak. 
-                                Stop stacking your expensive tools on the floor.
+                                Massive open shelves with a high retention lip. Designed to hold heavy system cases like Milwaukee Packout, Makita Makpac, or DeWalt T-Stak. 
+                                We measure your specific cases and build the shelf to fit them perfectly.
                             </p>
-                            <div class="grid grid-cols-2 gap-4 mb-4 text-[10px] mono text-gray-500">
-                                <div class="border-b border-[#333] pb-1">DEPTH: 400mm - 500mm</div>
-                                <div class="border-b border-[#333] pb-1">LOAD: 80KG PER SHELF</div>
-                            </div>
                             <button class="add-btn w-full" onclick="toggleAddon('Toolbox Shelves', this)">+ Add to Build</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="spec-item group" id="spec-cable">
-                    <div class="spec-header" onclick="toggleDetails('spec-cable')">
+                <div class="spec-item group" id="spec-org">
+                    <div class="spec-header" onclick="toggleDetails('spec-org')">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">⚡</span>
+                                <span class="text-xl">🗂</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-white uppercase">Cable Organisers</h4>
-                                <p class="text-[10px] text-gray-500 mono">SPARKY ESSENTIAL</p>
+                                <h4 class="font-bold text-white uppercase">Organiser Shelves</h4>
+                                <p class="text-[10px] text-gray-500 mono">SMALL COMPARTMENTS</p>
                             </div>
                         </div>
                         <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -387,22 +387,22 @@
                     <div class="spec-content">
                         <div class="p-6">
                             <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Dedicated hook system for cable rolls and extension leads. Mounts to the end panels of your racking for easy access from the rear doors.
+                                Fixed dividers for sprays, glues, and loose tools. Keeps everything upright and easy to grab. We can space the dividers to fit your specific bottles and gear.
                             </p>
-                            <button class="add-btn w-full" onclick="toggleAddon('Cable Organiser', this)">+ Add to Build</button>
+                            <button class="add-btn w-full" onclick="toggleAddon('Organiser Shelves', this)">+ Add to Build</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="spec-item group" id="spec-gas">
-                    <div class="spec-header" onclick="toggleDetails('spec-gas')">
+                <div class="spec-item group" id="spec-tray">
+                    <div class="spec-header" onclick="toggleDetails('spec-tray')">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">🔥</span>
+                                <span class="text-xl">📏</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-white uppercase">Gas Bottle Holders</h4>
-                                <p class="text-[10px] text-gray-500 mono">HVAC / PLUMBING</p>
+                                <h4 class="font-bold text-white uppercase">Tray Shelving</h4>
+                                <p class="text-[10px] text-gray-500 mono">CUSTOM SIZE</p>
                             </div>
                         </div>
                         <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -410,48 +410,59 @@
                     <div class="spec-content">
                         <div class="p-6">
                             <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Secure vertical storage for Freon, Map Gas, or Oxygen bottles. Vented and strapped to ensure safety and compliance while driving.
+                                Long, open trays designed for weirdly shaped items. Levels, conduit, or specialized machinery. You tell us the dimensions, we build the tray to fit.
                             </p>
-                            <button class="add-btn w-full" onclick="toggleAddon('Gas Bottle Holder', this)">+ Add to Build</button>
+                            <button class="add-btn w-full" onclick="toggleAddon('Tray Shelving', this)">+ Add to Build</button>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">03.</span> Surface Composition
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="hex-card selected" id="fin-hex" onclick="selectItem('fin', 'Hex Ply (Black)', 'fin-hex')">
-                    <div class="p-6">
-                        <div class="h-12 w-12 bg-[#111] border border-gray-700 mb-4 flex items-center justify-center text-white text-xl">⬡</div>
-                        <h3 class="text-xl font-black italic uppercase text-white">Hex Ply (Black)</h3>
-                        <p class="text-xs text-green-500 mono mt-1">15MM // WATERPROOF</p>
-                        <p class="text-xs text-gray-400 mt-2">Looks the best. Grips the best. Oil resistant and easy to clean.</p>
+                <div class="spec-item group" id="spec-silicone">
+                    <div class="spec-header" onclick="toggleDetails('spec-silicone')">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
+                                <span class="text-xl">🧪</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white uppercase">Silicone Holder</h4>
+                                <p class="text-[10px] text-green-500 mono">ADD-ON</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="spec-content">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                                Stops tubes rolling around the van. Vertical storage for sealant and adhesive cartridges. Mounts to the end panel of any shelving unit.
+                            </p>
+                            <button class="add-btn w-full" onclick="toggleAddon('Silicone Holder', this)">+ Add to Build</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="hex-card" id="fin-reg" onclick="selectItem('fin', 'Regular Ply', 'fin-reg')">
-                    <div class="p-6">
-                        <div class="h-12 w-12 bg-[#c2b280] opacity-50 mb-4"></div>
-                        <h3 class="text-xl font-black italic uppercase text-white">Regular Ply</h3>
-                        <p class="text-xs text-green-500 mono mt-1">17MM // RAW</p>
-                        <p class="text-xs text-gray-400 mt-2">Standard structural plywood. Strong, functional, budget-friendly.</p>
+                <div class="spec-item group" id="spec-pockets">
+                    <div class="spec-header" onclick="toggleDetails('spec-pockets')">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
+                                <span class="text-xl">📂</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white uppercase">Storage Pockets</h4>
+                                <p class="text-[10px] text-green-500 mono">ADD-ON</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="spec-content">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                                Perfect for invoices, rags, and gloves. These slimline plywood pockets screw directly into the rear barn doors, utilizing dead space for quick-access items.
+                            </p>
+                            <button class="add-btn w-full" onclick="toggleAddon('Storage Pockets', this)">+ Add to Build</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="hex-card" id="fin-carpet" onclick="selectItem('fin', 'Carpet Finish', 'fin-carpet')">
-                    <div class="p-6">
-                        <div class="h-12 w-12 bg-gray-600 mb-4"></div>
-                        <h3 class="text-xl font-black italic uppercase text-white">Carpet</h3>
-                        <p class="text-xs text-green-500 mono mt-1">SOFT TOUCH</p>
-                        <p class="text-xs text-gray-400 mt-2">Old school vibe. Reduces road noise and stops tools rattling.</p>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -484,6 +495,44 @@
             </div>
         </div>
 
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">04.</span> Technical Breakdown
+            </h2>
+            
+            <div class="grid grid-cols-1 gap-6">
+                
+                <div class="tech-spec-box">
+                    <h3 class="tech-title">False Floor Systems</h3>
+                    <p class="tech-desc">
+                        The foundation of every Elite fitout. We raise the floor level to create massive storage tunnels underneath. This space is perfect for 
+                        <strong>long ladders, spirit levels, and conduit</strong> that usually clutter the cabin. 
+                        You can choose to leave these tunnels open for maximum versatility or fit them with our heavy-duty rear drawers. 
+                        Top surface options include our premium Hex-Anti Skid ply for grip, or carpet for sound dampening.
+                    </p>
+                </div>
+
+                <div class="tech-spec-box">
+                    <h3 class="tech-title">Custom Shelving Architecture</h3>
+                    <p class="tech-desc">
+                        We don't do "one size fits all." Our shelving units are CNC machined to fit the exact contours of your van walls, maximizing every inch of width. 
+                        Whether you run Milwaukee Packout, Festool Systainers, or just generic tubs, we adjust the height and angle of every shelf to match your gear. 
+                        <strong>Tray shelving</strong> can be built to any length to accommodate specialized tools or materials.
+                    </p>
+                </div>
+
+                <div class="tech-spec-box">
+                    <h3 class="tech-title">Tactical Add-Ons</h3>
+                    <p class="tech-desc">
+                        It's the small details that save time. Our <strong>Silicone Holders</strong> keep adhesive tubes organized and stop them rolling under seats. 
+                        <strong>Door Pockets</strong> utilize the empty space on your rear barn doors for paperwork, gloves, and rags. 
+                        Everything we build is designed to put the tools you use most often right at your fingertips.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <div class="manifest-bar">
@@ -507,11 +556,11 @@
             addons: []
         };
 
-        // Select Single Item (Package or Finish)
+        // Select Single Item (Package)
         function selectItem(category, value, elementId) {
             if (category === 'pkg') state.pkg = value;
-            if (category === 'fin') state.finish = value;
-
+            
+            // Visual Update
             const prefix = elementId.split('-')[0];
             document.querySelectorAll(`[id^="${prefix}-"]`).forEach(el => el.classList.remove('selected'));
             document.getElementById(elementId).classList.add('selected');
@@ -521,10 +570,8 @@
         // Toggle Details Accordion
         function toggleDetails(id) {
             const item = document.getElementById(id);
-            // Close others (optional - can remove if you want multiple open)
-            document.querySelectorAll('.spec-item').forEach(el => {
-                if(el !== item) el.classList.remove('active');
-            });
+            // Optional: Close others
+            // document.querySelectorAll('.spec-item').forEach(el => { if(el !== item) el.classList.remove('active'); });
             item.classList.toggle('active');
         }
 
@@ -545,19 +592,18 @@
         // Update Footer
         function updateFooter() {
             document.getElementById('summary-pkg').innerText = state.pkg + " Setup";
-            let details = state.finish;
+            let details = "";
             if (state.addons.length > 0) {
-                details += " + " + state.addons.length + " Modules";
+                details += "+ " + state.addons.length + " Modules";
             }
             document.getElementById('summary-details').innerText = details;
         }
 
         // Submit
         function submitQuote() {
-            // Encode the selection and send to Design Lab or Contact Form
-            const buildString = `Base: ${state.pkg}, Finish: ${state.finish}, Addons: ${state.addons.join(', ')}`;
-            // window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(buildString)}`;
-            alert("Redirecting to Quote Form with:\n" + buildString);
+            const buildString = `Base: ${state.pkg}, Addons: ${state.addons.join(', ')}`;
+            // alert("Redirecting to Quote Form with:\n" + buildString);
+            window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(buildString)}`;
         }
     </script>
 
