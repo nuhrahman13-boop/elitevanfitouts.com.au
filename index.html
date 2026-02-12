@@ -9,7 +9,10 @@
         /* --- CORE SYSTEM & FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
-        :root { --elite-green: #39ff14; /* Neon Cyber Green */ }
+        :root { 
+            --elite-green: #22c55e; /* The True Elite Green */ 
+            --elite-green-dim: rgba(34, 197, 94, 0.1);
+        }
         
         body, html { 
             margin: 0; padding: 0; background-color: #000000; 
@@ -50,7 +53,7 @@
             border-radius: 4px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
-        .dropdown-item:hover { background: rgba(57, 255, 20, 0.1); color: white; padding-left: 20px; }
+        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
         /* --- HERO SECTION --- */
@@ -62,18 +65,16 @@
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 1; filter: brightness(0.6) contrast(1.1);
-            /* DESKTOP DEFAULT */
             object-position: center center;
         }
         
         /* MOBILE HERO ADJUSTMENTS */
         @media (max-width: 768px) {
             .hero-video {
-                /* Shifts view to the right to center the van */
-                object-position: 70% center; 
+                object-position: 75% center; /* Push video right to center the van */
             }
             .hero-content h1 {
-                font-size: 2.8rem !important; /* Slightly smaller for mobile */
+                font-size: 2.8rem !important; 
             }
         }
 
@@ -100,12 +101,11 @@
             80% { transform: translate(0, 0); }
         }
 
-        /* --- LED MATRIX TICKER (The Train Sign) --- */
+        /* --- SEO TRAIN (Uniform Green) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 40px; display: flex; align-items: center; z-index: 20;
             border-bottom: 1px solid #222;
-            /* Mesh overlay effect for LED screen look */
             background-image: radial-gradient(#111 1px, transparent 1px);
             background-size: 4px 4px;
         }
@@ -116,7 +116,8 @@
             color: var(--elite-green); font-family: 'VT323', monospace;
             text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
             display: flex; align-items: center; letter-spacing: 2px;
-            text-shadow: 0 0 8px rgba(57, 255, 20, 0.6); /* LED Bloom */
+            /* Subtler glow to match the elite green, not neon blown out */
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
@@ -127,7 +128,6 @@
             position: relative; overflow: hidden; 
             transition: transform 0.3s, border-color 0.3s;
             height: 100%; display: flex; flex-direction: column;
-            /* Subtle Hex Pattern Background */
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
             background-size: 40px 40px;
         }
@@ -135,11 +135,9 @@
             transform: translateY(-5px); 
             border-color: var(--elite-green); 
         }
-        
-        /* The Glowing Green Underlying Layer */
         .hex-card::before {
             content: ""; position: absolute; inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(57, 255, 20, 0.15) 0%, transparent 60%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.15) 0%, transparent 60%);
             opacity: 0; transition: opacity 0.3s; pointer-events: none;
         }
         .hex-card:hover::before { opacity: 1; }
@@ -147,7 +145,7 @@
         .card-inner {
             position: relative; z-index: 10; padding: 30px; height: 100%;
             display: flex; flex-direction: column; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95)); /* Fade pattern slightly */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95)); 
         }
 
         .status-bar {
@@ -157,28 +155,41 @@
         }
         .hex-card:hover .status-bar { color: var(--elite-green); border-color: var(--elite-green); }
 
-        /* --- BUSINESS IN A BOX SECTION --- */
-        .box-section {
+        /* --- BUSINESS IN A BOX (Redesigned) --- */
+        .crate-section {
             background: #050505; border-top: 1px solid #222; border-bottom: 1px solid #222;
-            padding: 80px 24px; position: relative; overflow: hidden;
+            padding: 100px 24px; position: relative;
         }
-        .box-grid {
-            display: grid; grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto items-center relative z-10;
+        .crate-container {
+            max-width: 1200px; mx-auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
+            border: 1px solid #333; background: #000;
         }
-        .stat-card {
-            background: #111; border: 1px solid #333; padding: 24px; margin-bottom: 16px;
-            display: flex; justify-content: space-between; align-items: center;
+        /* Visual Left Side */
+        .crate-visual {
+            flex: 1; background: #0a0a0a; border-bottom: 1px solid #333; md:border-bottom: 0; md:border-r: 1px solid #333;
+            display: flex; flex-direction: column; justify-content: center; padding: 40px;
+            background-image: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05), transparent 40%);
         }
-        .stat-val { font-family: 'VT323', monospace; font-size: 1.8rem; color: var(--elite-green); text-shadow: 0 0 5px var(--elite-green); }
+        /* Content Right Side */
+        .crate-content {
+            flex: 1.2; padding: 50px; display: flex; flex-direction: column; justify-content: center;
+        }
+        
+        .manifest-list {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888;
+            border-left: 2px solid var(--elite-green); padding-left: 20px; margin: 30px 0;
+        }
+        .manifest-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .manifest-item span { color: white; }
 
         /* --- RADAR MAP --- */
         .radar-container {
-            position: relative; height: 400px; width: 100%; overflow: hidden;
+            position: relative; height: 450px; width: 100%; overflow: hidden;
             background: #000;
         }
         .radar-overlay {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 300px; height: 300px; border: 1px solid rgba(57, 255, 20, 0.3);
+            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 50%; pointer-events: none; z-index: 10;
         }
         .radar-overlay::before {
@@ -186,15 +197,24 @@
             width: 10px; height: 10px; background: var(--elite-green); border-radius: 50%;
             box-shadow: 0 0 20px var(--elite-green); animation: pulseDot 2s infinite;
         }
-        @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(57, 255, 20, 0); } 100% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); } }
+        @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
         
         .radar-scan {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent 0deg, rgba(57, 255, 20, 0.1) 60deg, transparent 60deg);
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(34, 197, 94, 0.1) 60deg, transparent 60deg);
             animation: radarSpin 4s linear infinite;
         }
         @keyframes radarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- SOCIAL ICONS --- */
+        .social-row { display: flex; gap: 15px; margin-top: 15px; }
+        .social-link {
+            width: 36px; height: 36px; border: 1px solid #444; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; color: #666;
+        }
+        .social-link:hover { border-color: var(--elite-green); color: var(--elite-green); transform: translateY(-2px); }
+        .social-link svg { width: 16px; height: 16px; fill: currentColor; }
 
         /* --- UTILS --- */
         .btn-main {
@@ -202,9 +222,9 @@
             text-transform: uppercase; padding: 14px 40px; font-size: 0.8rem;
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
             transition: 0.2s; display: inline-block; letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
         }
-        .btn-main:hover { background: white; box-shadow: 0 0 30px white; transform: scale(1.05); }
+        .btn-main:hover { background: white; box-shadow: 0 0 30px white; transform: scale(1.02); }
 
         .btn-outline {
             border: 1px solid #333; color: #888; font-weight: 700;
@@ -213,7 +233,6 @@
         }
         .btn-outline:hover { border-color: white; color: white; }
 
-        /* Mobile Menu */
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
@@ -271,10 +290,6 @@
         <div class="hero-fade"></div>
         
         <div class="hero-content">
-            <div class="mb-4 flex items-center gap-2">
-                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase">Status :: Online</p>
-            </div>
             <h1 class="glitch-text mb-6">
                 Engineered<br>For The <span class="text-green-500">Elite.</span>
             </h1>
@@ -379,36 +394,46 @@
         </div>
     </section>
 
-    <section class="box-section">
-        <div class="box-grid">
-            
-            <div>
-                <p class="mono text-green-500 text-xs tracking-widest uppercase mb-4">Total Deployment</p>
-                <h2 class="text-4xl md:text-6xl font-black italic uppercase text-white mb-6 leading-none">
-                    Business <br>In A <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">Box.</span>
-                </h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-8">
-                    Stop dealing with 5 different companies. We build your Van, your Brand, and your Software simultaneously. 
-                    <strong class="text-white">One Payment. One Provider. One Month to Launch.</strong>
-                </p>
-                <a href="launchpad.html" class="btn-main">Explore Launchpad</a>
-            </div>
+    <section class="crate-section">
+        <div class="max-w-7xl mx-auto flex justify-center">
+            <div class="crate-container w-full">
+                
+                <div class="crate-visual">
+                    <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase mb-4">Incubator Program</p>
+                    <h2 class="text-5xl font-black italic uppercase text-white mb-2 leading-none">
+                        Business <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-800">In A Box.</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mt-6">
+                        The ultimate deployment package. Stop dealing with 5 different companies. We build your Van, your Brand, and your Website simultaneously.
+                    </p>
+                </div>
 
-            <div>
-                <div class="stat-card">
-                    <span class="text-gray-400 text-sm uppercase font-bold">Lost Time / Week</span>
-                    <span class="stat-val text-red-500">5 HOURS</span>
-                </div>
-                <div class="stat-card">
-                    <span class="text-gray-400 text-sm uppercase font-bold">Revenue Leakage</span>
-                    <span class="stat-val text-red-500">-$25,000/yr</span>
-                </div>
-                <div class="stat-card border-green-500 bg-green-900/10">
-                    <span class="text-white text-sm uppercase font-bold">Elite System ROI</span>
-                    <span class="stat-val">IMMEDIATE</span>
-                </div>
-            </div>
+                <div class="crate-content">
+                    <h3 class="text-white font-bold uppercase mb-2">Manifest Payload:</h3>
+                    
+                    <div class="manifest-list">
+                        <div class="manifest-item">
+                            <span>01. Custom Vehicle Fitout</span>
+                            <span class="text-green-500">[INCLUDED]</span>
+                        </div>
+                        <div class="manifest-item">
+                            <span>02. Premium Vehicle Wrap</span>
+                            <span class="text-green-500">[INCLUDED]</span>
+                        </div>
+                        <div class="manifest-item">
+                            <span>03. High-Convert Website</span>
+                            <span class="text-green-500">[INCLUDED]</span>
+                        </div>
+                        <div class="manifest-item">
+                            <span>04. Automated Lead System</span>
+                            <span class="text-green-500">[INCLUDED]</span>
+                        </div>
+                    </div>
 
+                    <a href="launchpad.html" class="btn-main text-center">Initiate Launch</a>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -435,19 +460,30 @@
                 
                 <div class="space-y-6">
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold">Secure Line</p>
-                        <a href="tel:0468086490" class="text-2xl font-mono text-white hover:text-green-500 transition">0468 086 490</a>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-1">Secure Line</p>
+                        <div class="flex items-center gap-4">
+                            <a href="tel:0468086490" class="text-2xl font-mono text-white hover:text-green-500 transition">0468 086 490</a>
+                        </div>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold">Comms</p>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-1">Comms</p>
                         <a href="mailto:info@elitevanfitouts.com.au" class="text-lg font-mono text-gray-400 hover:text-white transition">info@elitevanfitouts.com.au</a>
                     </div>
-                </div>
-
-                <div class="mt-10 flex gap-4">
-                    <a href="https://www.facebook.com/share/1Da7HLaCu7/?mibextid=wwXIfr" target="_blank" class="w-10 h-10 border border-[#333] flex items-center justify-center hover:border-green-500 text-gray-500 hover:text-green-500 transition">FB</a>
-                    <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="w-10 h-10 border border-[#333] flex items-center justify-center hover:border-green-500 text-gray-500 hover:text-green-500 transition">IG</a>
-                    <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="w-10 h-10 border border-[#333] flex items-center justify-center hover:border-green-500 text-gray-500 hover:text-green-500 transition">TT</a>
+                    
+                    <div>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-2">Connect</p>
+                        <div class="social-row">
+                            <a href="https://www.facebook.com/share/1Da7HLaCu7/?mibextid=wwXIfr" target="_blank" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.05 3.5 3.01 1.57-.01 2.88-1.23 3.02-2.82.04-.9.04-1.79.04-2.69 0-3.3 0-6.59.03-9.89 1.29-.18 2.46-1.24 3-2.45.37-.84.54-1.79.57-2.73z"/></svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
