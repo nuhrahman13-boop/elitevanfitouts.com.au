@@ -12,20 +12,21 @@
         :root { 
             --elite-green: #22c55e; 
             --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --nav-height-desktop: 80px; /* Reduced from 88px */
-            --nav-height-mobile: 60px; /* Reduced from 72px */
+            --nav-height-desktop: 80px;
+            --nav-height-mobile: 60px;
         }
         
         body, html { 
             margin: 0; padding: 0; background-color: #000000; 
             color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
             padding-bottom: 120px;
+            scroll-behavior: smooth;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
         .led { font-family: 'VT323', monospace; }
 
-        /* --- PRELOADER (SYSTEM BOOT) --- */
+        /* --- PRELOADER --- */
         #boot-screen {
             position: fixed; inset: 0; background: #000; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -72,7 +73,8 @@
             background: #000;
         }
         @media (max-width: 768px) {
-            .nav-spacer { height: var(--nav-height-mobile); }
+            /* REDUCED MOBILE SPACER */
+            .nav-spacer { height: 60px; } 
         }
 
         /* --- HERO SECTION --- */
@@ -150,7 +152,7 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- PACKAGE CARDS --- */
+        /* --- PACKAGE CARDS (VIDEO) --- */
         .hex-card {
             background-color: #080808; border: 1px solid #333; 
             position: relative; overflow: hidden; 
@@ -180,34 +182,41 @@
         }
         .hex-card:hover .pkg-media video { opacity: 1; }
 
-        /* --- ACCORDION --- */
+        /* --- RACKING & ADD-ONS (Large Images) --- */
         .spec-item {
-            background: #080808; border: 1px solid #333; margin-bottom: 16px;
-            transition: all 0.3s;
+            background: #080808; border: 1px solid #333; margin-bottom: 24px;
+            overflow: hidden;
         }
-        .spec-item.active { border-color: var(--elite-green); }
-        .spec-header {
-            padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        .spec-img-box {
+            height: 200px; width: 100%; position: relative;
+            border-bottom: 1px solid #333;
         }
-        .spec-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-            background: #000; border-top: 1px solid #222;
+        .spec-img-box img {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
         }
-        .spec-item.active .spec-content { max-height: 500px; border-color: #333; }
-        .spec-item.active .chevron { transform: rotate(180deg); color: var(--elite-green); }
-        .add-btn {
-            background: transparent; border: 1px solid #333; color: #888;
-            padding: 8px 16px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem; transition: 0.2s;
-        }
-        .add-btn:hover { border-color: white; color: white; }
-        .add-btn.added { background: var(--elite-green); color: black; border-color: var(--elite-green); }
         
-        .thumb-img {
-            width: 60px; height: 60px; object-fit: cover; border: 1px solid #333; margin-right: 15px;
+        .spec-content { padding: 24px; }
+        
+        .spec-actions {
+            display: flex; gap: 10px; margin-top: 15px;
         }
+        
+        .add-btn {
+            flex: 1; background: var(--elite-green); color: black;
+            padding: 10px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; font-weight: bold; transition: 0.2s; text-align: center;
+        }
+        .add-btn:hover { background: white; }
+        .add-btn.added { background: #333; color: white; border: 1px solid #555; }
+        
+        .info-btn {
+            background: transparent; border: 1px solid #333; color: #888;
+            padding: 10px 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+            uppercase; cursor: pointer; transition: 0.2s;
+        }
+        .info-btn:hover { border-color: white; color: white; }
 
-        /* --- FLIGHT PATH (CIRCUIT STYLE) --- */
+        /* --- FLIGHT PATH --- */
         .flight-container { 
             position: relative; margin: 60px 0; 
             border-left: 2px solid #333; padding-left: 30px;
@@ -230,37 +239,33 @@
         .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
         .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- ENGINEERING DATA (The Blueprint) --- */
-        .blueprint-section {
-            background: #050505; border: 1px solid #333; position: relative; overflow: hidden;
+        /* --- TECHNICAL DATA (The Blueprint) --- */
+        .blueprint-card {
+            background: #050505; border: 1px solid #333; padding: 0; 
+            position: relative; overflow: hidden; margin-bottom: 30px;
+            scroll-margin-top: 120px; /* Offset for anchor links */
         }
-        .blueprint-grid-bg {
-            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+        .blueprint-header {
+            background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .blueprint-layout {
-            display: grid; grid-cols-1 lg:grid-cols-2;
-        }
-        .blueprint-visual {
-            position: relative; border-bottom: 1px solid #333; lg:border-bottom: 0; lg:border-right: 1px solid #333;
-            min-height: 400px;
-        }
-        .blueprint-video {
-            width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.8);
-        }
-        .blueprint-overlay {
-            position: absolute; inset: 0; background: radial-gradient(circle, transparent 0%, #050505 120%);
-        }
-        .blueprint-data { padding: 40px; }
+        .blueprint-layout { display: grid; grid-cols-1 lg:grid-cols-2; }
         
-        .tech-row {
-            display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding: 12px 0;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+        .blueprint-visual {
+            position: relative; border-bottom: 1px solid #333; min-height: 300px;
         }
-        .tech-label { color: #666; }
-        .tech-val { color: var(--elite-green); font-weight: bold; }
+        @media (min-width: 1024px) {
+            .blueprint-visual { border-bottom: 0; border-right: 1px solid #333; }
+        }
+        .blueprint-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .blueprint-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+
+        .blueprint-data { padding: 30px; }
+        
+        .spec-grid { display: grid; grid-cols-2 gap-4 mt-6; }
+        .spec-point { border-bottom: 1px solid #222; padding-bottom: 5px; }
+        .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
+        .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
 
         /* --- STICKY FOOTER --- */
         .manifest-bar {
@@ -341,7 +346,7 @@
             <h1 class="glitch-text mb-4">
                 VAN <span class="text-green-500">FITOUTS</span>
             </h1>
-            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
+            <p class="hero-sub">
                 Turn your van into a mobile workshop. <br>
                 Stop searching for tools. Start making money.
             </p>
@@ -441,92 +446,62 @@
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">02.</span> Racking & Components
             </h2>
-            <p class="text-gray-400 mb-6 text-sm">Custom tailored to your specific tools. No standard sizing.</p>
+            <p class="text-gray-400 mb-6 text-sm">Add modules to your build. Click "See Specs" for full engineering data.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <div class="spec-item group" id="spec-crate">
-                    <div class="spec-header" onclick="toggleDetails('spec-crate')">
-                        <div class="flex items-center gap-4">
-                            <img src="euro crates shelf.jpg" class="thumb-img" alt="Crate Shelf">
-                            <div>
-                                <h4 class="font-bold text-white uppercase">Crate Shelves</h4>
-                                <p class="text-[10px] text-gray-500 mono">FOR LOOSE PARTS</p>
-                            </div>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="spec-img-box">
+                        <img src="euro crates shelf.jpg" alt="Euro Crate Shelf">
                     </div>
                     <div class="spec-content">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Angled shelving designed specifically for Euro-Crates. Perfect for plumbers and electricians who carry hundreds of small fittings. 
-                                Grab the crate, take it to the job, slide it back in. Custom sizes available to fit your existing bins.
-                            </p>
+                        <h4 class="text-xl font-bold text-white uppercase mb-2">Crate Shelves</h4>
+                        <p class="text-sm text-gray-400 mb-4">Angled storage for standard Euro Crates. Perfect for loose fittings.</p>
+                        <div class="spec-actions">
                             <button class="add-btn w-full" onclick="toggleAddon('Crate Shelves', this)">+ Add to Build</button>
+                            <button class="info-btn" onclick="scrollToSpec('tech-crate')">See Specs</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="spec-item group" id="spec-toolbox">
-                    <div class="spec-header" onclick="toggleDetails('spec-toolbox')">
-                        <div class="flex items-center gap-4">
-                            <img src="tool shelf1.jpg" class="thumb-img" alt="Tool Shelf">
-                            <div>
-                                <h4 class="font-bold text-white uppercase">Toolbox Shelves</h4>
-                                <p class="text-[10px] text-gray-500 mono">PACKOUT / MAKPAC</p>
-                            </div>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="spec-img-box">
+                        <img src="tool shelf1.jpg" alt="Toolbox Shelf">
                     </div>
                     <div class="spec-content">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Massive open shelves with a high retention lip. Designed to hold heavy system cases like Milwaukee Packout, Makita Makpac, or DeWalt T-Stak. 
-                                We measure your specific cases and build the shelf to fit them perfectly.
-                            </p>
+                        <h4 class="text-xl font-bold text-white uppercase mb-2">Toolbox Shelves</h4>
+                        <p class="text-sm text-gray-400 mb-4">High-lip shelves custom sized for Packout, Makpac, and Systainers.</p>
+                        <div class="spec-actions">
                             <button class="add-btn w-full" onclick="toggleAddon('Toolbox Shelves', this)">+ Add to Build</button>
+                            <button class="info-btn" onclick="scrollToSpec('tech-toolbox')">See Specs</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="spec-item group" id="spec-org">
-                    <div class="spec-header" onclick="toggleDetails('spec-org')">
-                        <div class="flex items-center gap-4">
-                            <img src="seperator1.jpg" class="thumb-img" alt="Separators">
-                            <div>
-                                <h4 class="font-bold text-white uppercase">Organiser Shelves</h4>
-                                <p class="text-[10px] text-gray-500 mono">SMALL COMPARTMENTS</p>
-                            </div>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="spec-img-box">
+                        <img src="seperator1.jpg" alt="Organiser Shelf">
                     </div>
                     <div class="spec-content">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Fixed dividers for sprays, glues, and loose tools. Keeps everything upright and easy to grab. We can space the dividers to fit your specific bottles and gear.
-                            </p>
+                        <h4 class="text-xl font-bold text-white uppercase mb-2">Organiser Shelves</h4>
+                        <p class="text-sm text-gray-400 mb-4">Fixed dividers for sprays, glues, and loose tools.</p>
+                        <div class="spec-actions">
                             <button class="add-btn w-full" onclick="toggleAddon('Organiser Shelves', this)">+ Add to Build</button>
+                            <button class="info-btn" onclick="scrollToSpec('tech-org')">See Specs</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="spec-item group" id="spec-silicone">
-                    <div class="spec-header" onclick="toggleDetails('spec-silicone')">
-                        <div class="flex items-center gap-4">
-                            <img src="silicone.jpg" class="thumb-img" alt="Silicone">
-                            <div>
-                                <h4 class="font-bold text-white uppercase">Silicone Holder</h4>
-                                <p class="text-[10px] text-green-500 mono">ADD-ON</p>
-                            </div>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="spec-img-box">
+                        <img src="silicone.jpg" alt="Silicone Holder">
                     </div>
                     <div class="spec-content">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Stops tubes rolling around the van. Vertical storage for sealant and adhesive cartridges. Mounts to the end panel of any shelving unit.
-                            </p>
+                        <h4 class="text-xl font-bold text-white uppercase mb-2">Silicone Holder</h4>
+                        <p class="text-sm text-gray-400 mb-4">Vertical storage for sealant and adhesive cartridges.</p>
+                        <div class="spec-actions">
                             <button class="add-btn w-full" onclick="toggleAddon('Silicone Holder', this)">+ Add to Build</button>
+                            <button class="info-btn" onclick="scrollToSpec('tech-silicone')">See Specs</button>
                         </div>
                     </div>
                 </div>
@@ -540,98 +515,132 @@
             </h2>
 
             <div class="max-w-4xl mx-auto px-4 flight-container">
-                
                 <div class="flight-step flight-node">
                     <div class="flight-dot"></div>
                     <div class="pl-4">
-                        <h4 class="step-title">1. Request Quote</h4>
-                        <p class="step-desc">Submit your manifest online. We call you for a rapid strategy session to confirm chassis specs and lock in a price.</p>
+                        <h4 class="step-title">1. Strategy Call</h4>
+                        <p class="step-desc">Submit your manifest. We call you immediately to confirm the chassis, lock in the price, and book the slot.</p>
                     </div>
                 </div>
-
                 <div class="flight-step flight-node">
                     <div class="flight-dot"></div>
                     <div class="pl-4">
-                        <h4 class="step-title">2. Schedule & Prep</h4>
-                        <p class="step-desc">We finalize the design in 3D. Materials are CNC machined in advance at our Rowville HQ, ready for deployment.</p>
+                        <h4 class="step-title">2. Drop Off</h4>
+                        <p class="step-desc">0700 Hours. Drop the van at HQ. Our team begins the installation sequence immediately.</p>
                     </div>
                 </div>
-
                 <div class="flight-step flight-node">
                     <div class="flight-dot"></div>
                     <div class="pl-4">
-                        <h4 class="step-title">3. Drop Off</h4>
-                        <p class="step-desc">0700 Hours. Drop the van at HQ. Our team begins the rapid deployment install sequence immediately.</p>
+                        <h4 class="step-title">3. Rapid Deployment</h4>
+                        <p class="step-desc">We execute the install in a single day. Flooring, drawers, racking, and cleaning.</p>
                     </div>
                 </div>
-
                 <div class="flight-step flight-node">
                     <div class="flight-dot"></div>
                     <div class="pl-4">
-                        <h4 class="step-title">4. Pick Up</h4>
-                        <p class="step-desc">1600 Hours. System check complete. You drive away same day, fully operational for tomorrow.</p>
+                        <h4 class="step-title">4. Combat Ready</h4>
+                        <p class="step-desc">1600 Hours. Pick up your vehicle. Fully operational and ready for site the next morning.</p>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <div class="mb-24 max-w-6xl mx-auto">
+        <div class="mb-24 max-w-5xl mx-auto">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">04.</span> Engineering Data
             </h2>
             
-            <div class="blueprint-section">
-                <div class="blueprint-grid-bg"></div>
+            <div class="blueprint-card" id="tech-floor">
+                <div class="blueprint-header">
+                    <h3 class="font-bold text-white uppercase">False Floor Systems</h3>
+                    <span class="mono text-xs text-green-500">SPEC_01</span>
+                </div>
                 <div class="blueprint-layout">
-                    
                     <div class="blueprint-visual">
                         <video autoplay muted loop playsinline class="blueprint-video">
                             <source src="false floor.mov" type="video/mp4">
                         </video>
-                        <div class="blueprint-overlay"></div>
-                        <div class="absolute bottom-6 left-6 z-10">
-                            <p class="mono text-green-500 text-xs mb-1">SYSTEM_ID: FALSE_FLOOR</p>
-                            <h3 class="text-3xl font-black italic uppercase text-white">Sub-Structure</h3>
-                        </div>
                     </div>
-
                     <div class="blueprint-data">
-                        <h4 class="text-xl font-bold text-white uppercase mb-6">Technical Specifications</h4>
-                        
-                        <div class="tech-row">
-                            <span class="tech-label">CORE MATERIAL</span>
-                            <span class="tech-val">12mm Trans-Tex Birch</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">SURFACE COATING</span>
-                            <span class="tech-val">Phenolic Hex Pattern</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">SLIP RESISTANCE</span>
-                            <span class="tech-val">R10 Certified Anti-Skid</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">CHEMICAL RESISTANCE</span>
-                            <span class="tech-val">Oil / Petrol / Solvents</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">DRAWER CAPACITY</span>
-                            <span class="tech-val">227kg Dynamic Load</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">SHELVING JOINERY</span>
-                            <span class="tech-val">Mortise & Tenon Interlock</span>
-                        </div>
-
-                        <p class="text-xs text-gray-500 mt-8 leading-relaxed font-mono">
-                            // NOTES: Our False Floor system creates a dedicated tunnel cavity for ladders (up to 3m) and conduit carriers. 
-                            Shelving units are CNC-scribed to the exact curvature of the vehicle wall, gaining 15% more aisle space.
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            We raise the deck height to create massive storage tunnels. This cavity is engineered to house long ladders, 3m conduit, and spirit levels without cluttering the main cabin.
                         </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">CORE MATERIAL</span><span class="spec-val">12mm Trans-Tex Birch</span></div>
+                            <div class="spec-point"><span class="spec-label">SURFACE FACE</span><span class="spec-val">Phenolic Hex Pattern</span></div>
+                            <div class="spec-point"><span class="spec-label">SLIP RATING</span><span class="spec-val">R10 Anti-Skid</span></div>
+                            <div class="spec-point"><span class="spec-label">DRAWER LOAD</span><span class="spec-val">227kg Dynamic</span></div>
+                        </div>
                     </div>
-
                 </div>
             </div>
+
+            <div class="blueprint-card" id="tech-crate">
+                <div class="blueprint-header">
+                    <h3 class="font-bold text-white uppercase">Crate & Box Racking</h3>
+                    <span class="mono text-xs text-green-500">SPEC_02</span>
+                </div>
+                <div class="blueprint-layout">
+                    <div class="blueprint-visual">
+                        <img src="euro crates shelf.jpg" class="blueprint-img">
+                    </div>
+                    <div class="blueprint-data">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            Angled rails designed for Euro Crates. Allows rapid access to loose fittings. Gravity-fed retention ensures bins stay put during transit.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">ANGLE</span><span class="spec-val">15 Degrees</span></div>
+                            <div class="spec-point"><span class="spec-label">COMPATIBILITY</span><span class="spec-val">Standard Euro Bin</span></div>
+                            <div class="spec-point"><span class="spec-label">CONSTRUCTION</span><span class="spec-val">CNC Birch Ply</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blueprint-card" id="tech-toolbox">
+                <div class="blueprint-header">
+                    <h3 class="font-bold text-white uppercase">Toolbox Integration</h3>
+                    <span class="mono text-xs text-green-500">SPEC_03</span>
+                </div>
+                <div class="blueprint-layout">
+                    <div class="blueprint-visual">
+                        <img src="tool shelf1.jpg" class="blueprint-img">
+                    </div>
+                    <div class="blueprint-data">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            Heavy duty shelves sized specifically for system cases (Milwaukee Packout, Makita Makpac). Features a 30mm lip to prevent slide-off.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">LIP HEIGHT</span><span class="spec-val">30mm Retention</span></div>
+                            <div class="spec-point"><span class="spec-label">LOAD CAPACITY</span><span class="spec-val">80kg Per Shelf</span></div>
+                            <div class="spec-point"><span class="spec-label">CUSTOM SIZE</span><span class="spec-val">Yes - Any Brand</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blueprint-card" id="tech-silicone">
+                <div class="blueprint-header">
+                    <h3 class="font-bold text-white uppercase">Silicone Holders</h3>
+                    <span class="mono text-xs text-green-500">SPEC_04</span>
+                </div>
+                <div class="blueprint-layout">
+                    <div class="blueprint-visual">
+                        <img src="silicone.jpg" class="blueprint-img">
+                    </div>
+                    <div class="blueprint-data">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            CNC machined holders for standard adhesive and sealant tubes. Mounts to the end panel of racking for quick access from rear doors.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">DIAMETER</span><span class="spec-val">Standard 50mm Tube</span></div>
+                            <div class="spec-point"><span class="spec-label">CAPACITY</span><span class="spec-val">3, 6, or 9 Tubes</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -654,10 +663,9 @@
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
             const messages = [
-                "> SYSTEM_CHECK...",
-                "> LOADING_ASSETS...",
-                "> SECURING_CONNECTION...",
-                "> FITOUT_CONFIGURATOR_ONLINE"
+                "> LOADING_SCHEMATICS...",
+                "> CONNECTING_TO_DATABASE...",
+                "> FITOUT_CONFIGURATOR_READY"
             ];
             
             let delay = 0;
@@ -695,10 +703,15 @@
             updateFooter();
         }
 
-        // Toggle Details
-        function toggleDetails(id) {
-            const item = document.getElementById(id);
-            item.classList.toggle('active');
+        // Scroll to Specs
+        function scrollToSpec(id) {
+            const element = document.getElementById(id);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Flash effect
+                element.style.borderColor = 'var(--elite-green)';
+                setTimeout(() => element.style.borderColor = '#333', 1000);
+            }
         }
 
         // Add/Remove Addon
