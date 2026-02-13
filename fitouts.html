@@ -6,14 +6,14 @@
     <title>ELITE | VAN FITOUTS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM & FONTS --- */
+        /* --- CORE SYSTEM --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
             --elite-green: #22c55e; 
             --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --nav-height-desktop: 88px;
-            --nav-height-mobile: 72px;
+            --nav-height-desktop: 80px; /* Reduced from 88px */
+            --nav-height-mobile: 60px; /* Reduced from 72px */
         }
         
         body, html { 
@@ -24,6 +24,16 @@
         
         .mono { font-family: 'JetBrains Mono', monospace; }
         .led { font-family: 'VT323', monospace; }
+
+        /* --- PRELOADER (SYSTEM BOOT) --- */
+        #boot-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
+            transition: opacity 0.5s ease-out;
+        }
+        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; }
+        @keyframes flashText { to { opacity: 1; } }
 
         /* --- NAV --- */
         .glass-nav { 
@@ -77,7 +87,7 @@
         
         .hero-video {
             width: 100%; height: 100%; 
-            object-fit: contain; /* Shows full video with black bars if needed */
+            object-fit: contain; 
             position: absolute; top: 0; left: 0; z-index: 0;
             object-position: center center;
         }
@@ -92,29 +102,21 @@
             }
         }
         
-        /* MOBILE CONFIG (Reduced Height) */
+        /* MOBILE CONFIG */
         @media (max-width: 1023px) {
-            .hero-section {
-                /* Drastically reduced height to fix "too big" issue */
-                height: 40vh; 
-            }
+            .hero-section { height: 40vh; }
             .hero-content {
-                width: 100%;
-                padding: 15px !important;
-                /* Push text slightly off the video into the black space */
+                width: 100%; padding: 15px !important;
                 margin-bottom: 0px; 
                 background: linear-gradient(to top, black 50%, transparent 100%);
             }
             .glitch-text {
-                font-size: 1.8rem !important; /* Smaller text */
-                margin-bottom: 5px !important;
+                font-size: 1.8rem !important; margin-bottom: 5px !important;
                 text-shadow: 0 2px 10px black;
             }
             .hero-sub {
-                font-size: 0.65rem !important;
-                line-height: 1.2 !important;
-                border-left-width: 2px !important;
-                padding-left: 10px !important;
+                font-size: 0.65rem !important; line-height: 1.2 !important;
+                border-left-width: 2px !important; padding-left: 10px !important;
                 background: rgba(0,0,0,0.5);
             }
         }
@@ -168,7 +170,15 @@
             font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
             padding: 4px 8px; font-weight: bold; z-index: 20;
         }
-        .pkg-img { height: 250px; width: 100%; object-fit: cover; border-bottom: 1px solid #222; }
+        
+        .pkg-media { 
+            height: 250px; width: 100%; border-bottom: 1px solid #222; 
+            position: relative; background: black;
+        }
+        .pkg-media video {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s;
+        }
+        .hex-card:hover .pkg-media video { opacity: 1; }
 
         /* --- ACCORDION --- */
         .spec-item {
@@ -192,6 +202,10 @@
         }
         .add-btn:hover { border-color: white; color: white; }
         .add-btn.added { background: var(--elite-green); color: black; border-color: var(--elite-green); }
+        
+        .thumb-img {
+            width: 60px; height: 60px; object-fit: cover; border: 1px solid #333; margin-right: 15px;
+        }
 
         /* --- FLIGHT PATH (CIRCUIT STYLE) --- */
         .flight-container { 
@@ -213,24 +227,40 @@
             z-index: 10; transition: 0.3s;
         }
         .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
-        
         .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
         .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- TECH SPECS (BLUEPRINT) --- */
-        .blueprint-card {
-            background: #050505; border: 1px solid #333; padding: 0; 
-            position: relative; overflow: hidden; margin-bottom: 20px;
+        /* --- ENGINEERING DATA (The Blueprint) --- */
+        .blueprint-section {
+            background: #050505; border: 1px solid #333; position: relative; overflow: hidden;
         }
-        .blueprint-header {
-            background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
-            display: flex; justify-content: space-between; align-items: center;
+        .blueprint-grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
         }
-        .blueprint-body { padding: 25px; }
-        .spec-grid { display: grid; grid-cols-2 gap-4 mt-6; }
-        .spec-point { border-bottom: 1px solid #222; padding-bottom: 5px; }
-        .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
-        .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
+        .blueprint-layout {
+            display: grid; grid-cols-1 lg:grid-cols-2;
+        }
+        .blueprint-visual {
+            position: relative; border-bottom: 1px solid #333; lg:border-bottom: 0; lg:border-right: 1px solid #333;
+            min-height: 400px;
+        }
+        .blueprint-video {
+            width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.8);
+        }
+        .blueprint-overlay {
+            position: absolute; inset: 0; background: radial-gradient(circle, transparent 0%, #050505 120%);
+        }
+        .blueprint-data { padding: 40px; }
+        
+        .tech-row {
+            display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding: 12px 0;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+        }
+        .tech-label { color: #666; }
+        .tech-val { color: var(--elite-green); font-weight: bold; }
 
         /* --- STICKY FOOTER --- */
         .manifest-bar {
@@ -259,6 +289,10 @@
     </style>
 </head>
 <body>
+
+    <div id="boot-screen">
+        <div id="boot-log"></div>
+    </div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
@@ -348,7 +382,11 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="hex-card selected" id="pkg-essential" onclick="selectItem('pkg', 'Essential', 'pkg-essential')">
-                    <img src="essential.jpg" class="pkg-img" alt="Essential Fitout">
+                    <div class="pkg-media">
+                        <video autoplay muted loop playsinline>
+                            <source src="essential.mov" type="video/mp4">
+                        </video>
+                    </div>
                     <div class="p-6">
                         <h3 class="text-3xl font-black italic uppercase text-white mb-2">Essential</h3>
                         <p class="text-[10px] text-green-500 mono mb-4">FALSE FLOOR + DRAWERS</p>
@@ -362,7 +400,11 @@
                 </div>
 
                 <div class="hex-card" id="pkg-pro" onclick="selectItem('pkg', 'Pro', 'pkg-pro')">
-                    <img src="pro.jpg" class="pkg-img" alt="Pro Fitout">
+                    <div class="pkg-media">
+                        <video autoplay muted loop playsinline>
+                            <source src="pro.mp4" type="video/mp4">
+                        </video>
+                    </div>
                     <div class="p-6">
                         <h3 class="text-3xl font-black italic uppercase text-white mb-2">Pro</h3>
                         <p class="text-[10px] text-green-500 mono mb-4">MOST POPULAR</p>
@@ -376,7 +418,11 @@
                 </div>
 
                 <div class="hex-card" id="pkg-elite" onclick="selectItem('pkg', 'Elite', 'pkg-elite')">
-                    <img src="elite.jpg" class="pkg-img" alt="Elite Fitout">
+                    <div class="pkg-media">
+                        <video autoplay muted loop playsinline>
+                            <source src="elite.mp4" type="video/mp4">
+                        </video>
+                    </div>
                     <div class="p-6">
                         <h3 class="text-3xl font-black italic uppercase text-white mb-2">Elite</h3>
                         <p class="text-[10px] text-green-500 mono mb-4">FULL WORKSHOP</p>
@@ -402,9 +448,7 @@
                 <div class="spec-item group" id="spec-crate">
                     <div class="spec-header" onclick="toggleDetails('spec-crate')">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">📦</span>
-                            </div>
+                            <img src="euro crates shelf.jpg" class="thumb-img" alt="Crate Shelf">
                             <div>
                                 <h4 class="font-bold text-white uppercase">Crate Shelves</h4>
                                 <p class="text-[10px] text-gray-500 mono">FOR LOOSE PARTS</p>
@@ -426,9 +470,7 @@
                 <div class="spec-item group" id="spec-toolbox">
                     <div class="spec-header" onclick="toggleDetails('spec-toolbox')">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">🧰</span>
-                            </div>
+                            <img src="tool shelf1.jpg" class="thumb-img" alt="Tool Shelf">
                             <div>
                                 <h4 class="font-bold text-white uppercase">Toolbox Shelves</h4>
                                 <p class="text-[10px] text-gray-500 mono">PACKOUT / MAKPAC</p>
@@ -450,9 +492,7 @@
                 <div class="spec-item group" id="spec-org">
                     <div class="spec-header" onclick="toggleDetails('spec-org')">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">🗂</span>
-                            </div>
+                            <img src="seperator1.jpg" class="thumb-img" alt="Separators">
                             <div>
                                 <h4 class="font-bold text-white uppercase">Organiser Shelves</h4>
                                 <p class="text-[10px] text-gray-500 mono">SMALL COMPARTMENTS</p>
@@ -470,35 +510,10 @@
                     </div>
                 </div>
 
-                <div class="spec-item group" id="spec-tray">
-                    <div class="spec-header" onclick="toggleDetails('spec-tray')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">📏</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white uppercase">Tray Shelving</h4>
-                                <p class="text-[10px] text-gray-500 mono">CUSTOM SIZE</p>
-                            </div>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                    <div class="spec-content">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Long, open trays designed for weirdly shaped items. Levels, conduit, or specialized machinery. You tell us the dimensions, we build the tray to fit.
-                            </p>
-                            <button class="add-btn w-full" onclick="toggleAddon('Tray Shelving', this)">+ Add to Build</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="spec-item group" id="spec-silicone">
                     <div class="spec-header" onclick="toggleDetails('spec-silicone')">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">🧪</span>
-                            </div>
+                            <img src="silicone.jpg" class="thumb-img" alt="Silicone">
                             <div>
                                 <h4 class="font-bold text-white uppercase">Silicone Holder</h4>
                                 <p class="text-[10px] text-green-500 mono">ADD-ON</p>
@@ -512,29 +527,6 @@
                                 Stops tubes rolling around the van. Vertical storage for sealant and adhesive cartridges. Mounts to the end panel of any shelving unit.
                             </p>
                             <button class="add-btn w-full" onclick="toggleAddon('Silicone Holder', this)">+ Add to Build</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="spec-item group" id="spec-pockets">
-                    <div class="spec-header" onclick="toggleDetails('spec-pockets')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-[#111] border border-[#333] flex items-center justify-center">
-                                <span class="text-xl">📂</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white uppercase">Storage Pockets</h4>
-                                <p class="text-[10px] text-green-500 mono">ADD-ON</p>
-                            </div>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-500 chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                    <div class="spec-content">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 leading-relaxed mb-4">
-                                Perfect for invoices, rags, and gloves. These slimline plywood pockets screw directly into the rear barn doors, utilizing dead space for quick-access items.
-                            </p>
-                            <button class="add-btn w-full" onclick="toggleAddon('Storage Pockets', this)">+ Add to Build</button>
                         </div>
                     </div>
                 </div>
@@ -560,8 +552,8 @@
                 <div class="flight-step flight-node">
                     <div class="flight-dot"></div>
                     <div class="pl-4">
-                        <h4 class="step-title">2. Quote & Schedule</h4>
-                        <p class="step-desc">We finalize the design in 3D. You approve the loadout. We book your slot in the Rowville production queue.</p>
+                        <h4 class="step-title">2. Schedule & Prep</h4>
+                        <p class="step-desc">We finalize the design in 3D. Materials are CNC machined in advance at our Rowville HQ, ready for deployment.</p>
                     </div>
                 </div>
 
@@ -584,67 +576,61 @@
             </div>
         </div>
 
-        <div class="mb-24 max-w-5xl mx-auto">
+        <div class="mb-24 max-w-6xl mx-auto">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">04.</span> Engineering Data
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <div class="blueprint-card">
-                    <div class="blueprint-header">
-                        <h3 class="font-bold text-white uppercase">False Floor Systems</h3>
-                        <span class="mono text-xs text-green-500">SPEC_01</span>
-                    </div>
-                    <div class="blueprint-body">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            We raise the deck height to create massive storage tunnels. This cavity is engineered to house long ladders, 3m conduit, and spirit levels without cluttering the main cabin.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">CORE MATERIAL</span><span class="spec-val">12mm Trans-Tex Birch</span></div>
-                            <div class="spec-point"><span class="spec-label">SURFACE FACE</span><span class="spec-val">Phenolic Hex Pattern</span></div>
-                            <div class="spec-point"><span class="spec-label">SLIP RATING</span><span class="spec-val">R10 Anti-Skid</span></div>
-                            <div class="spec-point"><span class="spec-label">RESISTANCE</span><span class="spec-val">Oil / Water / Chemical</span></div>
+            <div class="blueprint-section">
+                <div class="blueprint-grid-bg"></div>
+                <div class="blueprint-layout">
+                    
+                    <div class="blueprint-visual">
+                        <video autoplay muted loop playsinline class="blueprint-video">
+                            <source src="false floor.mov" type="video/mp4">
+                        </video>
+                        <div class="blueprint-overlay"></div>
+                        <div class="absolute bottom-6 left-6 z-10">
+                            <p class="mono text-green-500 text-xs mb-1">SYSTEM_ID: FALSE_FLOOR</p>
+                            <h3 class="text-3xl font-black italic uppercase text-white">Sub-Structure</h3>
                         </div>
                     </div>
-                </div>
 
-                <div class="blueprint-card">
-                    <div class="blueprint-header">
-                        <h3 class="font-bold text-white uppercase">Heavy Duty Drawers</h3>
-                        <span class="mono text-xs text-green-500">SPEC_02</span>
-                    </div>
-                    <div class="blueprint-body">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            Built to survive the job site. Our drawers utilize a trigger-lock mechanism that secures them in both open and closed positions—essential for parking on hills.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">RUNNER RATING</span><span class="spec-val">227kg Dynamic Load</span></div>
-                            <div class="spec-point"><span class="spec-label">EXTENSION</span><span class="spec-val">100% Full Extension</span></div>
-                            <div class="spec-point"><span class="spec-label">LOCK TYPE</span><span class="spec-val">Trigger In/Out</span></div>
-                            <div class="spec-point"><span class="spec-label">CONSTRUCTION</span><span class="spec-val">Galvanized Steel</span></div>
+                    <div class="blueprint-data">
+                        <h4 class="text-xl font-bold text-white uppercase mb-6">Technical Specifications</h4>
+                        
+                        <div class="tech-row">
+                            <span class="tech-label">CORE MATERIAL</span>
+                            <span class="tech-val">12mm Trans-Tex Birch</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="blueprint-card">
-                    <div class="blueprint-header">
-                        <h3 class="font-bold text-white uppercase">Custom Shelving</h3>
-                        <span class="mono text-xs text-green-500">SPEC_03</span>
-                    </div>
-                    <div class="blueprint-body">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            Scribed to the exact curvature of your van walls. This technique reclaims 100mm-150mm of aisle space compared to square box shelving.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">JOINERY</span><span class="spec-val">Mortise & Tenon</span></div>
-                            <div class="spec-point"><span class="spec-label">WEIGHT REDUCTION</span><span class="spec-val">Skeletonized Uprights</span></div>
-                            <div class="spec-point"><span class="spec-label">FITMENT</span><span class="spec-val">CNC Scribed to Wall</span></div>
-                            <div class="spec-point"><span class="spec-label">SHELF LIP</span><span class="spec-val">High Retention (30mm)</span></div>
+                        <div class="tech-row">
+                            <span class="tech-label">SURFACE COATING</span>
+                            <span class="tech-val">Phenolic Hex Pattern</span>
                         </div>
-                    </div>
-                </div>
+                        <div class="tech-row">
+                            <span class="tech-label">SLIP RESISTANCE</span>
+                            <span class="tech-val">R10 Certified Anti-Skid</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-label">CHEMICAL RESISTANCE</span>
+                            <span class="tech-val">Oil / Petrol / Solvents</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-label">DRAWER CAPACITY</span>
+                            <span class="tech-val">227kg Dynamic Load</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-label">SHELVING JOINERY</span>
+                            <span class="tech-val">Mortise & Tenon Interlock</span>
+                        </div>
 
+                        <p class="text-xs text-gray-500 mt-8 leading-relaxed font-mono">
+                            // NOTES: Our False Floor system creates a dedicated tunnel cavity for ladders (up to 3m) and conduit carriers. 
+                            Shelving units are CNC-scribed to the exact curvature of the vehicle wall, gaining 15% more aisle space.
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </div>
 
@@ -664,6 +650,33 @@
     </div>
 
     <script>
+        // --- PRELOADER SEQUENCE ---
+        window.addEventListener('load', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            const messages = [
+                "> SYSTEM_CHECK...",
+                "> LOADING_ASSETS...",
+                "> SECURING_CONNECTION...",
+                "> FITOUT_CONFIGURATOR_ONLINE"
+            ];
+            
+            let delay = 0;
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'boot-text';
+                    p.innerText = msg;
+                    bootScreen.appendChild(p);
+                }, delay);
+                delay += 300;
+            });
+
+            setTimeout(() => {
+                bootScreen.style.opacity = '0';
+                setTimeout(() => bootScreen.remove(), 500);
+            }, delay + 500);
+        });
+
         // State
         let state = {
             pkg: 'Essential',
