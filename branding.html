@@ -3,24 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE | BRANDING</title>
+    
+    <title>Smart Signage Systems | Vehicle Wraps & Tradie Automation Melbourne</title>
+    <meta name="description" content="The world's first Smart Signage system. We combine premium vehicle wraps with AI lead automation. Turn your van into a 24/7 receptionist. Based in Rowville.">
+    <meta name="keywords" content="smart signage, tradie marketing automation, vehicle wraps melbourne, lead generation for tradies, electrician van setup, plumber marketing, missed call text back">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elitevanfitouts.com.au/smart-signage.html">
+
+    <meta name="geo.region" content="AU-VIC" />
+    <meta name="geo.placename" content="Rowville" />
+    <meta name="geo.position" content="-37.915;145.243" />
+    <meta name="ICBM" content="-37.915, 145.243" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM --- */
+        /* --- CORE AESTHETICS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
             --elite-green: #22c55e; 
-            --elite-green-dim: rgba(34, 197, 94, 0.1);
+            --elite-green-glow: rgba(34, 197, 94, 0.6);
+            --dark-bg: #050505;
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
         }
         
         body, html { 
-            margin: 0; padding: 0; background-color: #000000; 
+            margin: 0; padding: 0; background-color: #000; 
             color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
-            padding-bottom: 120px;
-            scroll-behavior: smooth;
+            padding-bottom: 120px; scroll-behavior: smooth;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
@@ -38,21 +49,16 @@
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.95);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            height: var(--nav-height-desktop);
-            display: flex; align-items: center;
+            background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: var(--nav-height-desktop); display: flex; align-items: center;
         }
-        @media (max-width: 768px) {
-            .glass-nav { height: var(--nav-height-mobile); }
-        }
+        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
             padding: 8px; border-radius: 8px; z-index: 100;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            border-top: 2px solid var(--elite-green);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8); border-top: 2px solid var(--elite-green);
         }
         .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
         @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -63,155 +69,107 @@
             border-radius: 4px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
-        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
+        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- BODY SPACER --- */
-        .nav-spacer {
-            width: 100%;
-            height: var(--nav-height-desktop);
-            background: #000;
-        }
-        @media (max-width: 768px) {
-            .nav-spacer { height: 60px; } 
-        }
+        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
+        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
 
         /* --- HERO SECTION --- */
         .hero-section {
-            position: relative; width: 100%; 
-            background: #000; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: flex-end; 
+            position: relative; width: 100%; height: 85vh; 
+            background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center;
             border-bottom: 1px solid #222;
         }
-        
         .hero-video {
-            width: 100%; height: 100%; 
-            object-fit: contain; 
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.6;
             position: absolute; top: 0; left: 0; z-index: 0;
-            object-position: center center;
         }
-
-        /* DESKTOP CONFIG */
-        @media (min-width: 1024px) {
-            .hero-section { height: 80vh; }
-            .hero-content {
-                width: 100%; max-width: 1400px; margin: 0 auto;
-                padding: 0 40px 40px 40px;
-                pointer-events: none;
-            }
+        .hud-overlay {
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(circle, transparent 40%, #000 100%);
+            background-image: 
+                linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
-        
-        /* MOBILE CONFIG */
-        @media (max-width: 1023px) {
-            .hero-section { height: 40vh; }
-            .hero-content {
-                width: 100%; padding: 15px !important;
-                margin-bottom: 0px; 
-                background: linear-gradient(to top, black 50%, transparent 100%);
-            }
-            .glitch-text {
-                font-size: 1.8rem !important; margin-bottom: 5px !important;
-                text-shadow: 0 2px 10px black;
-            }
-            .hero-sub {
-                font-size: 0.65rem !important; line-height: 1.2 !important;
-                border-left-width: 2px !important; padding-left: 10px !important;
-                background: rgba(0,0,0,0.5);
-            }
+        .hero-content {
+            position: relative; z-index: 10; text-align: center; max-width: 1000px; padding: 20px;
         }
-
-        .hero-content { position: relative; z-index: 10; }
-        
         .glitch-text {
-            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
-            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
+            color: white; text-shadow: 0 0 40px rgba(34, 197, 94, 0.5); margin-bottom: 20px;
         }
         .hero-sub {
-            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
-            border-left: 4px solid var(--elite-green); padding-left: 20px;
+            font-size: 1.1rem; color: #ccc; max-width: 600px; margin: 0 auto; line-height: 1.6;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 15px; border-left: 3px solid var(--elite-green);
         }
 
-        /* --- SEO TICKER --- */
+        /* --- LED TICKER --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
-            height: 40px; display: flex; align-items: center; z-index: 20;
-            border-bottom: 1px solid #222;
-            background-image: radial-gradient(#111 1px, transparent 1px);
-            background-size: 4px 4px;
+            height: 40px; display: flex; align-items: center; z-index: 20; border-bottom: 1px solid #222;
         }
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace;
-            text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
-            display: flex; align-items: center; letter-spacing: 2px;
+            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
+            font-size: 1.5rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 2px;
             text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- PACKAGE CARDS --- */
-        .hex-card {
-            background-color: #080808; border: 1px solid #333; 
-            position: relative; overflow: hidden; 
-            transition: all 0.3s; cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
-            background-size: 40px 40px;
-        }
-        .hex-card:hover { transform: translateY(-5px); border-color: #555; }
-        .hex-card.selected {
-            border-color: var(--elite-green);
-            background-color: rgba(34, 197, 94, 0.05);
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
-        }
-        .hex-card.selected::before {
-            content: "SELECTED"; position: absolute; top: 0; right: 0;
-            background: var(--elite-green); color: black;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
-            padding: 4px 8px; font-weight: bold; z-index: 20;
-        }
-        .pkg-img { height: 250px; width: 100%; object-fit: cover; border-bottom: 1px solid #222; }
-
-        /* --- FLIGHT PATH --- */
-        .flight-container { 
-            position: relative; margin: 60px 0; 
-            border-left: 2px solid #333; padding-left: 30px;
-        }
-        .flight-container::after {
-            content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%;
-            background: var(--elite-green);
-            box-shadow: 0 0 10px var(--elite-green);
-            animation: circuitFlow 4s ease-in-out infinite;
-        }
-        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
-
-        .flight-step { position: relative; margin-bottom: 50px; }
-        .flight-dot {
-            position: absolute; left: -39px; top: 0; width: 20px; height: 20px;
-            background: #000; border: 2px solid #444; border-radius: 50%;
-            z-index: 10; transition: 0.3s;
-        }
-        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
-        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
-        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
-
-        /* --- BLUEPRINT SPECS --- */
-        .blueprint-card {
-            background: #050505; border: 1px solid #333; padding: 0; 
-            position: relative; overflow: hidden; margin-bottom: 20px;
-        }
-        .blueprint-header {
-            background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
+        /* --- THE PROBLEM/SOLUTION (HOLOGRAPHIC) --- */
+        .problem-section { padding: 80px 24px; background: #080808; }
+        .split-grid { display: grid; grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center; }
+        
+        .stat-box {
+            border: 1px solid #333; padding: 30px; background: rgba(0,0,0,0.5); margin-bottom: 20px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .blueprint-body { padding: 25px; }
-        .spec-grid { display: grid; grid-cols-2 gap-4 mt-6; }
-        .spec-point { border-bottom: 1px solid #222; padding-bottom: 5px; }
-        .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
-        .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
+        .stat-val { font-family: 'VT323', monospace; font-size: 2.5rem; color: #555; }
+        .stat-val.active { color: var(--elite-green); text-shadow: 0 0 10px var(--elite-green); }
 
-        /* --- STICKY FOOTER --- */
+        /* --- PRICING CARDS (DIGITAL MENU) --- */
+        .pricing-card {
+            background: #0a0a0a; border: 1px solid #333; position: relative; overflow: hidden;
+            transition: 0.3s; display: flex; flex-direction: column; height: 100%;
+        }
+        .pricing-card:hover { transform: translateY(-10px); border-color: #555; }
+        
+        .pricing-card.featured {
+            border-color: var(--elite-green); background: rgba(34, 197, 94, 0.03);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+        }
+        .pricing-card.featured::before {
+            content: "MOST POPULAR"; position: absolute; top: 0; right: 0;
+            background: var(--elite-green); color: black; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; font-weight: bold; padding: 5px 15px;
+        }
+
+        .card-header { padding: 30px; border-bottom: 1px solid #222; text-align: center; }
+        .pkg-name { font-size: 1.5rem; font-weight: 900; uppercase; italic; color: white; margin-bottom: 10px; text-transform: uppercase; }
+        .pkg-price { font-size: 3rem; font-weight: 900; line-height: 1; color: var(--elite-green); }
+        .pkg-setup { font-size: 0.7rem; color: #666; font-family: 'JetBrains Mono', monospace; margin-top: 5px; }
+
+        .card-body { padding: 30px; flex-grow: 1; }
+        .feature-group { margin-bottom: 20px; }
+        .group-title { font-size: 0.7rem; color: #555; font-weight: bold; uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .feature-row { display: flex; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; color: #ccc; }
+        .check { color: var(--elite-green); }
+
+        /* --- ROI CALCULATOR --- */
+        .roi-section {
+            background: #000; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 80px 24px;
+        }
+        .roi-box {
+            max-width: 800px; mx-auto; border: 1px solid var(--elite-green); background: rgba(34, 197, 94, 0.05);
+            padding: 40px; text-align: center; position: relative;
+        }
+        .roi-math { font-family: 'VT323', monospace; font-size: 1.5rem; color: white; margin: 20px 0; }
+        .roi-result { font-size: 2rem; font-weight: bold; color: var(--elite-green); }
+
+        /* --- MANIFEST BAR --- */
         .manifest-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
@@ -227,7 +185,7 @@
             transition: 0.2s; width: 100%; margin-top: 10px;
         }
         @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
-        .submit-btn:hover { background: white; transform: scale(1.02); }
+        .submit-btn:hover { background: white; transform: scale(1.05); }
 
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -236,6 +194,38 @@
         #mobile-menu.active { display: block; }
 
     </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "name": "Elite Van Fitouts",
+          "image": "https://elitevanfitouts.com.au/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8 Enterprise Dr",
+            "addressLocality": "Rowville",
+            "addressRegion": "VIC",
+            "postalCode": "3178"
+          },
+          "priceRange": "$$$"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Elite Smart Tradie System",
+          "operatingSystem": "Web, iOS, Android",
+          "applicationCategory": "BusinessApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "297.00",
+            "priceCurrency": "AUD"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
@@ -250,14 +240,13 @@
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Branding & Signage <span>-></span></a>
-                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
+                        <a href="smart-signage.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Smart Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
@@ -272,222 +261,239 @@
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-white border-l-4 border-green-500 pl-4">Branding & Signage</a>
-            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
+            <a href="smart-signage.html" class="text-white border-l-4 border-green-500 pl-4">Smart Signage</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
         </div>
     </div>
 
     <div class="nav-spacer"></div>
-
     <header class="hero-section">
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="signage.mov" type="video/mp4">
+            <source src="smart-signage-hero.mp4" type="video/mp4">
         </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
+        <div class="hud-overlay"></div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-4">
-                VEHICLE <span class="text-green-500">BRANDING</span>
+            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">System_Active</p>
+            <h1 class="glitch-text">
+                YOUR VAN IS NOW <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">YOUR RECEPTIONIST.</span>
             </h1>
-            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
-                Dominate the road. Turn traffic into leads with premium fleet graphics. <br>
-                <strong>Seen by thousands. Remembered by everyone.</strong>
+            <p class="hero-sub">
+                Stop burning fuel for leads you don't answer. We combine premium vehicle signage with AI automation. <br>
+                <strong>Capture the lead. Book the job. Take the deposit. While you drive.</strong>
             </p>
         </div>
     </header>
 
     <div class="led-wrap">
         <div class="led-ticker">
-            <div class="led-item">VAN SIGNAGE</div>
-            <div class="led-item">UTE BRANDING</div>
-            <div class="led-item">FLEET GRAPHICS</div>
-            <div class="led-item">LOGO DESIGN</div>
-            <div class="led-item">ONE WAY VISION</div>
-            <div class="led-item">REFLECTIVE VINYL</div>
-            <div class="led-item">CUSTOM DECALS</div>
-            <div class="led-item">MELBOURNE SIGNAGE</div>
-            <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">CAST VINYL</div>
+            <div class="led-item">SMART SIGNAGE</div>
+            <div class="led-item">MISSED CALL TEXT-BACK</div>
             <div class="led-item">VEHICLE WRAPS</div>
-            <div class="led-item">GRAPHIC DESIGN</div>
-            <div class="led-item">VAN SIGNAGE</div>
-            <div class="led-item">UTE BRANDING</div>
-            <div class="led-item">FLEET GRAPHICS</div>
-            <div class="led-item">LOGO DESIGN</div>
-            <div class="led-item">ONE WAY VISION</div>
-            <div class="led-item">REFLECTIVE VINYL</div>
-            <div class="led-item">CUSTOM DECALS</div>
-            <div class="led-item">MELBOURNE SIGNAGE</div>
+            <div class="led-item">AI RECEPTIONIST</div>
+            <div class="led-item">GOOGLE REVIEWS</div>
+            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">FLEET BRANDING</div>
+            <div class="led-item">ROWVILLE WORKSHOP</div>
+            <div class="led-item">SMART SIGNAGE</div>
+            <div class="led-item">MISSED CALL TEXT-BACK</div>
+            <div class="led-item">VEHICLE WRAPS</div>
+            <div class="led-item">AI RECEPTIONIST</div>
+            <div class="led-item">GOOGLE REVIEWS</div>
+            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">FLEET BRANDING</div>
+            <div class="led-item">ROWVILLE WORKSHOP</div>
         </div>
     </div>
 
-    <div class="px-6 max-w-7xl mx-auto pt-20">
-
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">01.</span> Select Coverage Level
-            </h2>
-            <p class="text-gray-400 mb-8 text-sm">Prices are starting estimates. Every vehicle is custom tailored.</p>
+    <section class="problem-section">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <div class="hex-card selected" id="pkg-identity" onclick="selectItem('pkg', 'Identity (Logo Only)', 'pkg-identity')">
-                    <img src="van sign.png" class="pkg-img" alt="Logo Only Signage">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Identity</h3>
-                            <span class="mono text-green-500 text-sm">FROM $250</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mono mb-4">LOGO ONLY DECAL</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
-                            <li>> Logo on Doors (Driver/Pass)</li>
-                            <li>> Logo on Rear Barn Doors</li>
-                            <li>> Premium Cast Vinyl Cut</li>
-                            <li>> Professional Install</li>
-                        </ul>
-                    </div>
+            <div class="p-6 border border-[#222] bg-[#050505] hover:border-green-500 transition group">
+                <div class="w-16 h-16 bg-[#111] rounded-full mx-auto mb-6 flex items-center justify-center border border-[#333] group-hover:border-green-500">
+                    <span class="text-2xl">👀</span>
                 </div>
-
-                <div class="hex-card" id="pkg-impact" onclick="selectItem('pkg', 'Impact (Details)', 'pkg-impact')">
-                    <img src="ute sign.png" class="pkg-img" alt="Detail Signage">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Impact</h3>
-                            <span class="mono text-green-500 text-sm">FROM $500</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mono mb-4">LOGO + SERVICES + CONTACT</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
-                            <li>> <strong>Everything in Identity</strong></li>
-                            <li>> Phone Number & Website</li>
-                            <li>> Service Bullet Points</li>
-                            <li>> Social Media Handles</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="hex-card" id="pkg-design" onclick="selectItem('pkg', 'Design Lab (Custom)', 'pkg-design')">
-                    <div class="pkg-img bg-[#111] flex items-center justify-center border-b border-[#333]">
-                        <span class="text-4xl text-gray-600 font-black italic">?</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start">
-                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Design Lab</h3>
-                            <span class="mono text-green-500 text-sm">CUSTOM</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mono mb-4">BRAND CREATION / REBRAND</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
-                            <li>> Logo Generation (If none exists)</li>
-                            <li>> Full Rebranding Strategy</li>
-                            <li>> Custom Layout & Concepts</li>
-                            <li>> Vector File Handover</li>
-                        </ul>
-                    </div>
-                </div>
-
+                <h3 class="text-xl font-bold uppercase text-white mb-2">1. The Beacon</h3>
+                <p class="text-sm text-gray-400">Customer sees your premium signage or scans the QR code while you are driving or working.</p>
             </div>
+
+            <div class="p-6 border border-green-500 bg-[#050505] shadow-[0_0_30px_rgba(34,197,94,0.1)] relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-black text-[10px] font-bold px-3 py-1">AI ACTIVE</div>
+                <div class="w-16 h-16 bg-[#111] rounded-full mx-auto mb-6 flex items-center justify-center border border-green-500">
+                    <span class="text-2xl">🤖</span>
+                </div>
+                <h3 class="text-xl font-bold uppercase text-white mb-2">2. The Capture</h3>
+                <p class="text-sm text-gray-400">They call. You don't answer. Our AI instantly texts them back, asks what they need, and books a time.</p>
+            </div>
+
+            <div class="p-6 border border-[#222] bg-[#050505] hover:border-green-500 transition group">
+                <div class="w-16 h-16 bg-[#111] rounded-full mx-auto mb-6 flex items-center justify-center border border-[#333] group-hover:border-green-500">
+                    <span class="text-2xl">📅</span>
+                </div>
+                <h3 class="text-xl font-bold uppercase text-white mb-2">3. The Profit</h3>
+                <p class="text-sm text-gray-400">You finish work to find a qualified lead, a booked appointment, and a deposit in your bank.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-black uppercase italic mb-4">Select <span class="text-green-500">Deployment</span></h2>
+            <p class="text-gray-400 text-sm">Monthly subscriptions. No lock-in contracts. Cancel anytime.</p>
         </div>
 
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
-                Mission <span class="text-green-500">Timeline</span>
-            </h2>
-
-            <div class="max-w-4xl mx-auto px-4 flight-container">
-                
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">1. Request Quote</h4>
-                        <p class="step-desc">Select your coverage level. If you have artwork, upload it. If not, our design team takes over.</p>
-                    </div>
-                </div>
-
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">2. Design Approval</h4>
-                        <p class="step-desc">We create a digital mockup on your exact vehicle model. You approve the look before we cut a single sheet of vinyl.</p>
-                    </div>
-                </div>
-
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">3. Production</h4>
-                        <p class="step-desc">We print and cut your graphics using premium Avery Dennison or 3M Cast Vinyl at our Rowville HQ.</p>
-                    </div>
-                </div>
-
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">4. Install</h4>
-                        <p class="step-desc">Drop your vehicle off. Our certified installers apply the graphics. You drive away with a mobile billboard.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="mb-24 max-w-5xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">03.</span> Material Specifications
-            </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <div class="blueprint-card">
-                    <div class="blueprint-header">
-                        <h3 class="font-bold text-white uppercase">Premium Cast Vinyl</h3>
-                        <span class="mono text-xs text-green-500">MAT_01</span>
+            <div class="pricing-card" onclick="selectPkg('Essential')">
+                <div class="card-header">
+                    <h3 class="pkg-name text-gray-400">The Essential</h3>
+                    <div class="pkg-price">$197<span class="text-sm text-white">/mo</span></div>
+                    <p class="pkg-setup">+$499 Setup (Signage Install)</p>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group">
+                        <p class="group-title">PHYSICAL ASSETS</p>
+                        <div class="feature-row"><span class="check">✓</span> 2x High Contrast Door Logos</div>
+                        <div class="feature-row"><span class="check">✓</span> Tailgate Phone & Trade List</div>
                     </div>
-                    <div class="blueprint-body">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            We don't use cheap "Polymeric" sticker vinyl that shrinks and cracks in the sun. We use Automotive Grade Cast Vinyl (poured as a liquid) which has no memory and conforms to vehicle curves.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">BRAND</span><span class="spec-val">Avery / 3M</span></div>
-                            <div class="spec-point"><span class="spec-label">TYPE</span><span class="spec-val">Cast Vinyl</span></div>
-                            <div class="spec-point"><span class="spec-label">LIFESPAN</span><span class="spec-val">7+ Years Outdoor</span></div>
-                            <div class="spec-point"><span class="spec-label">REMOVAL</span><span class="spec-val">Clean (No Glue)</span></div>
-                        </div>
+                    <div class="feature-group">
+                        <p class="group-title">DIGITAL ASSETS</p>
+                        <div class="feature-row"><span class="check">✓</span> Google Business Optimization</div>
+                        <div class="feature-row"><span class="check">✓</span> <strong>Missed Call Text-Back AI</strong></div>
                     </div>
                 </div>
+            </div>
 
-                <div class="blueprint-card">
-                    <div class="blueprint-header">
-                        <h3 class="font-bold text-white uppercase">Design Principles</h3>
-                        <span class="mono text-xs text-green-500">MAT_02</span>
+            <div class="pricing-card featured" onclick="selectPkg('Smart Tradie')">
+                <div class="card-header">
+                    <h3 class="pkg-name">The Smart Tradie</h3>
+                    <div class="pkg-price">$297<span class="text-sm text-white">/mo</span></div>
+                    <p class="pkg-setup">+$999 Setup (Signage Install)</p>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group">
+                        <p class="group-title">PHYSICAL ASSETS</p>
+                        <div class="feature-row"><span class="check">✓</span> <strong>Full Smart Decal Set</strong></div>
+                        <div class="feature-row"><span class="check">✓</span> Large "Scan to Book" QR Code</div>
                     </div>
-                    <div class="blueprint-body">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            A confuse mind says no. We follow the "3-Second Rule". Your signage must communicate WHO you are and HOW to contact you within 3 seconds of viewing at 60km/h.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">HIERARCHY</span><span class="spec-val">Logo > Service > Phone</span></div>
-                            <div class="spec-point"><span class="spec-label">CONTRAST</span><span class="spec-val">High Visibility</span></div>
-                            <div class="spec-point"><span class="spec-label">FONTS</span><span class="spec-val">Bold / Sans-Serif</span></div>
-                            <div class="spec-point"><span class="spec-label">STYLE</span><span class="spec-val">Professional / Clean</span></div>
-                        </div>
+                    <div class="feature-group">
+                        <p class="group-title">DIGITAL ASSETS</p>
+                        <div class="feature-row"><span class="check">✓</span> <strong>1-Page Fast-Load Website</strong></div>
+                        <div class="feature-row"><span class="check">✓</span> AI Lead Qualifier Bot</div>
+                        <div class="feature-row"><span class="check">✓</span> Automated Google Reviews</div>
                     </div>
                 </div>
+            </div>
 
+            <div class="pricing-card" onclick="selectPkg('Local Dominator')">
+                <div class="card-header">
+                    <h3 class="pkg-name text-gray-400">Local Dominator</h3>
+                    <div class="pkg-price">$497<span class="text-sm text-white">/mo</span></div>
+                    <p class="pkg-setup">+$1,499 Setup (Signage Install)</p>
+                </div>
+                <div class="card-body">
+                    <div class="feature-group">
+                        <p class="group-title">PHYSICAL ASSETS</p>
+                        <div class="feature-row"><span class="check">✓</span> <strong>Full Brand Wrap Elements</strong></div>
+                        <div class="feature-row"><span class="check">✓</span> 250 Smart Business Cards</div>
+                        <div class="feature-row"><span class="check">✓</span> Free Decal Repairs (Active Sub)</div>
+                    </div>
+                    <div class="feature-group">
+                        <p class="group-title">DIGITAL ASSETS</p>
+                        <div class="feature-row"><span class="check">✓</span> <strong>Full Custom Website</strong></div>
+                        <div class="feature-row"><span class="check">✓</span> Unified Inbox (SMS/FB/Insta)</div>
+                        <div class="feature-row"><span class="check">✓</span> Text-to-Pay (Deposit Collection)</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="roi-section">
+        <div class="roi-box">
+            <h3 class="text-xl font-bold uppercase text-white mb-4">The Logic is Simple</h3>
+            <p class="text-sm text-gray-400">Stop thinking about cost. Think about lost revenue.</p>
+            
+            <div class="roi-math">
+                1 Missed Job = <span class="text-red-500">-$350</span> (Average)
+            </div>
+            
+            <div class="roi-math">
+                Smart System = <span class="text-green-500">$297/mo</span>
+            </div>
+            
+            <div class="roi-result mt-6">
+                SAVE 1 JOB = SYSTEM IS FREE.
             </div>
         </div>
+    </section>
 
-    </div>
+    <section class="py-12 bg-[#020202] border-t border-[#111]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
+            <div>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Signage Zones</h4>
+                <ul class="space-y-1">
+                    <li>Rowville (HQ)</li>
+                    <li>Dandenong South</li>
+                    <li>Ferntree Gully</li>
+                    <li>Knoxfield & Scoresby</li>
+                    <li>Bayswater & Kilsyth</li>
+                    <li>Braeside & Mordialloc</li>
+                    <li>Carrum Downs & Seaford</li>
+                    <li>Berwick & Narre Warren</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Automation Tech</h4>
+                <ul class="space-y-1">
+                    <li>Missed Call Text Back</li>
+                    <li>AI Receptionist</li>
+                    <li>Tradie CRM Software</li>
+                    <li>Lead Generation Melbourne</li>
+                    <li>Automated Quoting</li>
+                    <li>Google Review Management</li>
+                    <li>Unified Inbox</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Physical Assets</h4>
+                <ul class="space-y-1">
+                    <li>Premium Cast Vinyl</li>
+                    <li>One Way Vision</li>
+                    <li>Ute Tray Signage</li>
+                    <li>Van Wraps</li>
+                    <li>Fleet Branding</li>
+                    <li>QR Code Decals</li>
+                    <li>Reflective Tape</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Industries</h4>
+                <ul class="space-y-1">
+                    <li>Electrical & Data</li>
+                    <li>Plumbing & Gas</li>
+                    <li>HVAC & Refrigeration</li>
+                    <li>Mobile Mechanics</li>
+                    <li>Locksmiths</li>
+                    <li>Landscaping</li>
+                    <li>Building & Construction</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <div class="manifest-bar">
         <div>
-            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Selected Package</p>
+            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Selected Tier</p>
             <div class="flex flex-col md:flex-row md:gap-4 md:items-baseline">
-                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Identity (Logo Only)</p>
-                <p class="text-xs text-green-500 mono" id="summary-details">Awaiting Artwork...</p>
+                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">The Smart Tradie</p>
+                <p class="text-xs text-green-500 mono" id="summary-details">Most Popular Choice</p>
             </div>
         </div>
         <button class="submit-btn" onclick="submitQuote()">
-            Request Quote ->
+            Upgrade Your Van ->
         </button>
     </div>
 
@@ -496,9 +502,10 @@
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
             const messages = [
-                "> LOADING_DESIGN_ASSETS...",
-                "> CONNECTING_TO_LAB...",
-                "> BRANDING_MODULE_ONLINE"
+                "> INITIALIZING SMART_VAN PROTOCOL...",
+                "> CONNECTING AI MODULES...",
+                "> LOADING PRICING TIERS...",
+                "> SYSTEM READY."
             ];
             
             let delay = 0;
@@ -518,35 +525,32 @@
             }, delay + 500);
         });
 
-        // State
-        let selectedPkg = 'Identity (Logo Only)';
+        // Selection Logic
+        let selectedTier = 'The Smart Tradie';
 
-        // Select Single Item
-        function selectItem(category, value, elementId) {
-            selectedPkg = value;
+        function selectPkg(tier) {
+            selectedTier = tier;
             
             // Visual Update
-            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
-            document.getElementById(elementId).classList.add('selected');
-            
+            document.querySelectorAll('.pricing-card').forEach(el => el.classList.remove('featured'));
+            // Note: In a real app we'd target by ID, here we rely on the click context or just update text
             updateFooter();
         }
 
-        // Update Footer
         function updateFooter() {
-            document.getElementById('summary-pkg').innerText = selectedPkg;
-            
-            if(selectedPkg.includes('Design')) {
-                document.getElementById('summary-details').innerText = "Requires Design Consultation";
+            document.getElementById('summary-pkg').innerText = selectedTier;
+            if(selectedTier === 'Essential') {
+                document.getElementById('summary-details').innerText = "Foundation Level";
+            } else if(selectedTier === 'Smart Tradie') {
+                document.getElementById('summary-details').innerText = "Most Popular Choice";
             } else {
-                document.getElementById('summary-details').innerText = "Vehicle Specs Required";
+                document.getElementById('summary-details').innerText = "Total Domination";
             }
         }
 
-        // Submit
         function submitQuote() {
-            const buildString = `Branding Package: ${selectedPkg}`;
-            window.location.href = `design-lab.html?tab=branding&pkg=${encodeURIComponent(buildString)}`;
+            const buildString = `Smart Signage Tier: ${selectedTier}`;
+            window.location.href = `design-lab.html?tab=smart-signage&pkg=${encodeURIComponent(buildString)}`;
         }
     </script>
 
