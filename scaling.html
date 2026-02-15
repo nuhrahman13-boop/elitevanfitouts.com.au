@@ -6,129 +6,267 @@
     <title>ELITE | BRAND SCALING</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        :root { --elite-green: #22c55e; }
+        /* --- CORE SYSTEM & FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+        
+        :root { 
+            --elite-green: #22c55e; 
+            --elite-green-dim: rgba(34, 197, 94, 0.1);
+            --nav-height-desktop: 80px;
+            --nav-height-mobile: 60px;
+        }
         
         body, html { 
-            background-color: #000; color: white; 
-            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            margin: 0; padding: 0; background-color: #000000; 
+            color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
+            padding-bottom: 120px;
             scroll-behavior: smooth;
         }
+        
         .mono { font-family: 'JetBrains Mono', monospace; }
+        .led { font-family: 'VT323', monospace; }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
+        /* --- PRELOADER --- */
+        #boot-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
+            transition: opacity 0.5s ease-out;
+        }
+        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; }
+        @keyframes flashText { to { opacity: 1; } }
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); 
+            background: rgba(0,0,0,0.95);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: var(--nav-height-desktop);
+            display: flex; align-items: center;
         }
+        @media (max-width: 768px) {
+            .glass-nav { height: var(--nav-height-mobile); }
+        }
+
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
             padding: 8px; border-radius: 8px; z-index: 100;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-top: 2px solid var(--elite-green);
         }
-        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
+        @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 16px; color: #888; text-decoration: none;
             border-radius: 4px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
-        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; }
+        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
+        .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
+
+        /* --- BODY SPACER --- */
+        .nav-spacer {
+            width: 100%;
+            height: var(--nav-height-desktop);
+            background: #000;
+        }
+        @media (max-width: 768px) {
+            .nav-spacer { height: 60px; } 
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative; width: 100%; 
+            background: #000; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: flex-end; 
+            border-bottom: 1px solid #222;
+        }
+        
+        .hero-video {
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            position: absolute; top: 0; left: 0; z-index: 0;
+            object-position: center center;
+            opacity: 0.4; /* Darker for matrix effect */
+        }
+
+        /* DESKTOP CONFIG */
+        @media (min-width: 1024px) {
+            .hero-section { height: 80vh; }
+            .hero-content {
+                width: 100%; max-width: 1400px; margin: 0 auto;
+                padding: 0 40px 40px 40px;
+                pointer-events: none;
+            }
+        }
+        
+        /* MOBILE CONFIG */
+        @media (max-width: 1023px) {
+            .hero-section { height: 40vh; }
+            .hero-content {
+                width: 100%; padding: 15px !important;
+                margin-bottom: 0px; 
+                background: linear-gradient(to top, black 50%, transparent 100%);
+            }
+            .glitch-text {
+                font-size: 1.8rem !important; margin-bottom: 5px !important;
+                text-shadow: 0 2px 10px black;
+            }
+            .hero-sub {
+                font-size: 0.65rem !important; line-height: 1.2 !important;
+                border-left-width: 2px !important; padding-left: 10px !important;
+                background: rgba(0,0,0,0.5);
+            }
+        }
+
+        .hero-content { position: relative; z-index: 10; }
+        .matrix-overlay {
+            position: absolute; inset: 0; 
+            background: radial-gradient(circle, transparent 20%, #000 90%);
+            z-index: 1; pointer-events: none;
+        }
+        
+        .glitch-text {
+            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
+            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .hero-sub {
+            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
+            border-left: 4px solid var(--elite-green); padding-left: 20px;
+        }
+
+        /* --- SEO TICKER --- */
+        .led-wrap {
+            position: relative; background: #050505; width: 100%; overflow: hidden;
+            height: 40px; display: flex; align-items: center; z-index: 20;
+            border-bottom: 1px solid #222;
+            background-image: radial-gradient(#111 1px, transparent 1px);
+            background-size: 4px 4px;
+        }
+        .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
+        .led-item {
+            color: var(--elite-green); font-family: 'VT323', monospace;
+            text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
+            display: flex; align-items: center; letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
+        }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        /* --- PRICING CARDS --- */
+        .hex-card {
+            background-color: #080808; border: 1px solid #333; 
+            position: relative; overflow: hidden; 
+            transition: all 0.3s; cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 40px 40px;
+            display: flex; flex-direction: column;
+        }
+        .hex-card:hover { transform: translateY(-5px); border-color: #555; }
+        .hex-card.selected {
+            border-color: var(--elite-green);
+            background-color: rgba(34, 197, 94, 0.05);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+        }
+        .hex-card.selected::before {
+            content: "SELECTED"; position: absolute; top: 0; right: 0;
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+            padding: 4px 8px; font-weight: bold; z-index: 20;
+        }
+        
+        .price-header {
+            padding: 30px; border-bottom: 1px solid #222; background: rgba(0,0,0,0.5);
+        }
+        .price-amount { font-size: 2.5rem; font-weight: 900; line-height: 1; color: white; }
+        .price-sub { font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #666; }
+        
+        .feature-list { padding: 30px; flex-grow: 1; }
+        .feature-item { 
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px; 
+            font-size: 0.85rem; color: #aaa; 
+        }
+        .check { color: var(--elite-green); font-weight: bold; }
+
+        /* --- FLIGHT PATH (CIRCUIT STYLE) --- */
+        .flight-container { 
+            position: relative; margin: 60px 0; 
+            border-left: 2px solid #333; padding-left: 30px;
+        }
+        .flight-container::after {
+            content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%;
+            background: var(--elite-green);
+            box-shadow: 0 0 10px var(--elite-green);
+            animation: circuitFlow 4s ease-in-out infinite;
+        }
+        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
+
+        .flight-step { position: relative; margin-bottom: 50px; }
+        .flight-dot {
+            position: absolute; left: -39px; top: 0; width: 20px; height: 20px;
+            background: #000; border: 2px solid #444; border-radius: 50%;
+            z-index: 10; transition: 0.3s;
+        }
+        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
+        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
+        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- STICKY FOOTER --- */
+        .manifest-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
+            border-top: 1px solid var(--elite-green);
+            padding: 20px 24px; z-index: 100;
+            display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center;
+        }
+        .submit-btn {
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-weight: 800;
+            padding: 14px 40px; text-transform: uppercase; 
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: 0.2s; width: 100%; margin-top: 10px;
+        }
+        @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
+        .submit-btn:hover { background: white; transform: scale(1.02); }
+
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
 
-        /* --- MATRIX HERO --- */
-        .matrix-hero {
-            position: relative; height: 90vh; width: 100%; overflow: hidden;
-            border-bottom: 1px solid var(--elite-green);
-        }
-        .video-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.4; z-index: 0;
-        }
-        .matrix-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 20%, #000 90%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative; z-index: 10; height: 100%;
-            display: flex; flex-direction: column; justify-content: center; padding: 0 24px;
-        }
-
-        /* --- PRICING CARDS --- */
-        .price-card {
-            background: rgba(10, 10, 10, 0.8); border: 1px solid #333;
-            backdrop-filter: blur(10px); padding: 40px;
-            display: flex; flex-direction: column; transition: 0.3s;
-            position: relative; overflow: hidden;
-        }
-        .price-card:hover { border-color: var(--elite-green); transform: scale(1.02); }
-        .price-card.featured { border-color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
-        .price-card.featured::before {
-            content: "MOST POPULAR"; position: absolute; top: 0; right: 0;
-            background: var(--elite-green); color: black;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
-            padding: 4px 12px; font-weight: bold;
-        }
-        
-        .price-amount { font-size: 3rem; font-weight: 900; line-height: 1; letter-spacing: -2px; }
-        .price-setup { font-size: 0.75rem; color: #666; font-family: 'JetBrains Mono', monospace; margin-top: 8px; }
-
-        .feature-list { margin-top: 32px; flex-grow: 1; }
-        .feature-item { 
-            display: flex; align-items: center; gap: 12px; 
-            font-size: 0.85rem; color: #aaa; margin-bottom: 16px; 
-        }
-        .check { color: var(--elite-green); font-weight: bold; }
-
-        /* --- GLOW BUTTON --- */
-        .glow-btn {
-            width: 100%; padding: 16px; margin-top: 32px;
-            background: transparent; border: 1px solid var(--elite-green); color: var(--elite-green);
-            font-family: 'JetBrains Mono', monospace; font-weight: bold; text-transform: uppercase;
-            cursor: pointer; transition: 0.3s;
-        }
-        .glow-btn:hover { background: var(--elite-green); color: black; box-shadow: 0 0 20px rgba(34,197,94,0.4); }
-
-        /* --- SEO SECTION --- */
-        .seo-box {
-            border-left: 2px solid var(--elite-green); padding-left: 30px;
-        }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+    <div id="boot-screen">
+        <div id="boot-log"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
             
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Branding <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
                         <a href="scaling.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Brand Scaling <span>-></span></a>
                         <div class="dropdown-divider"></div>
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
-                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
             </div>
             <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">///</button>
         </div>
@@ -136,142 +274,237 @@
 
     <div id="mobile-menu">
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
-            <a href="index.html" class="text-gray-400 hover:text-green-500">Home</a>
+            <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
             <a href="scaling.html" class="text-white border-l-4 border-green-500 pl-4">Brand Scaling</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
         </div>
     </div>
 
-    <section class="matrix-hero">
-        <video autoplay muted loop playsinline class="video-bg">
+    <div class="nav-spacer"></div>
+
+    <header class="hero-section">
+        <video autoplay muted loop playsinline class="hero-video">
             <source src="matrix.mp4" type="video/mp4">
         </video>
         <div class="matrix-overlay"></div>
         
-        <div class="hero-content max-w-7xl mx-auto fade-in">
-            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4">System_Override_Initiated</p>
-            <h1 class="text-5xl md:text-8xl font-black italic uppercase leading-none mb-6">
-                AUTOMATE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-900">OR DIE.</span>
+        <div class="hero-content">
+            <h1 class="glitch-text mb-4">
+                SYSTEMIZE <br><span class="text-green-500">YOUR TRADE.</span>
             </h1>
-            <p class="text-gray-300 max-w-xl text-lg md:text-xl font-bold">
+            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
                 Stop playing receptionist. Start running an empire. <br>
-                The Elite Growth System handles the leads while you handle the tools.
+                <strong>We automate your leads so you can focus on the tools.</strong>
             </p>
         </div>
-    </section>
+    </header>
 
-    <section class="px-6 py-24 max-w-7xl mx-auto">
-        <div class="text-center mb-16 fade-in delay-100">
-            <h2 class="text-3xl md:text-5xl font-black uppercase italic mb-4">Choose Your <span class="text-green-500">Weapon</span></h2>
-            <p class="text-gray-500 mono text-xs uppercase tracking-widest">Monthly Subscriptions // No Lock-in Contracts</p>
+    <div class="led-wrap">
+        <div class="led-ticker">
+            <div class="led-item">AUTOMATED CRM</div>
+            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">AI RECEPTIONIST</div>
+            <div class="led-item">TRADE WEBSITES</div>
+            <div class="led-item">REVIEW MANAGEMENT</div>
+            <div class="led-item">MISSED CALL TEXT-BACK</div>
+            <div class="led-item">INSTANT QUOTING</div>
+            <div class="led-item">DATABASE REACTIVATION</div>
+            <div class="led-item">SOCIAL MEDIA ADS</div>
+            <div class="led-item">BUSINESS AUTOMATION</div>
+            <div class="led-item">AUTOMATED CRM</div>
+            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">AI RECEPTIONIST</div>
+            <div class="led-item">TRADE WEBSITES</div>
+            <div class="led-item">REVIEW MANAGEMENT</div>
+            <div class="led-item">MISSED CALL TEXT-BACK</div>
+            <div class="led-item">INSTANT QUOTING</div>
+            <div class="led-item">DATABASE REACTIVATION</div>
+            <div class="led-item">SOCIAL MEDIA ADS</div>
+            <div class="led-item">BUSINESS AUTOMATION</div>
         </div>
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in delay-200">
+    <div class="px-6 max-w-7xl mx-auto pt-20">
+
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">01.</span> Operational Scale
+            </h2>
             
-            <div class="price-card">
-                <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-2">Essentials</h3>
-                <div class="text-green-500"><span class="text-xl align-top">$</span><span class="price-amount">149</span><span class="text-sm">/mo</span></div>
-                <p class="price-setup">+$497 Setup Fee (One-off)</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <div class="feature-list">
-                    <div class="feature-item"><span class="check">✓</span> Missed Call Text Back</div>
-                    <div class="feature-item"><span class="check">✓</span> Unified Inbox (FB/Insta/SMS)</div>
-                    <div class="feature-item"><span class="check">✓</span> Review Automation</div>
-                    <div class="feature-item"><span class="check">✓</span> Instant Deposit Collection</div>
-                    <div class="feature-item"><span class="check">✓</span> Google Chat Widget</div>
+                <div class="hex-card" id="pkg-essential" onclick="selectItem('pkg', 'Core Infrastructure', 'pkg-essential')">
+                    <div class="price-header">
+                        <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-2">Core Infrastructure</h3>
+                        <div class="text-green-500 flex items-baseline gap-1">
+                            <span class="text-xl">$</span><span class="price-amount">149</span><span class="text-sm">/mo</span>
+                        </div>
+                        <p class="price-sub">+$497 Setup (One-Off)</p>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item"><span class="check">✓</span> Missed Call Text Back</div>
+                        <div class="feature-item"><span class="check">✓</span> Unified Inbox (FB/Insta/SMS)</div>
+                        <div class="feature-item"><span class="check">✓</span> Review Automation</div>
+                        <div class="feature-item"><span class="check">✓</span> Instant Deposit Collection</div>
+                        <div class="feature-item"><span class="check">✓</span> Google Chat Widget</div>
+                    </div>
                 </div>
-                <button class="glow-btn">Start Basic</button>
-            </div>
 
-            <div class="price-card featured">
-                <h3 class="text-xl font-bold uppercase italic text-white mb-2">Professional</h3>
-                <div class="text-green-500"><span class="text-xl align-top">$</span><span class="price-amount">297</span><span class="text-sm">/mo</span></div>
-                <p class="price-setup">+$997 Setup Fee (One-off)</p>
-                
-                <div class="feature-list">
-                    <div class="feature-item"><span class="check">✓</span> <strong>Everything in Essentials</strong></div>
-                    <div class="feature-item"><span class="check">✓</span> AI Smart Receptionist</div>
-                    <div class="feature-item"><span class="check">✓</span> Simple Landing Page Website</div>
-                    <div class="feature-item"><span class="check">✓</span> Social Media Planner</div>
-                    <div class="feature-item"><span class="check">✓</span> Smart Calendar Booking</div>
+                <div class="hex-card selected" id="pkg-pro" onclick="selectItem('pkg', 'Growth Vector', 'pkg-pro')">
+                    <div class="price-header">
+                        <h3 class="text-xl font-bold uppercase italic text-white mb-2">Growth Vector</h3>
+                        <div class="text-green-500 flex items-baseline gap-1">
+                            <span class="text-xl">$</span><span class="price-amount">297</span><span class="text-sm">/mo</span>
+                        </div>
+                        <p class="price-sub">+$997 Setup (One-Off)</p>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item"><span class="check">✓</span> <strong>Everything in Core</strong></div>
+                        <div class="feature-item"><span class="check">✓</span> AI Smart Receptionist</div>
+                        <div class="feature-item"><span class="check">✓</span> Landing Page Website</div>
+                        <div class="feature-item"><span class="check">✓</span> Social Media Planner</div>
+                        <div class="feature-item"><span class="check">✓</span> Smart Calendar Booking</div>
+                    </div>
                 </div>
-                <button class="glow-btn" style="background: var(--elite-green); color: black;">Start Scaling</button>
-            </div>
 
-            <div class="price-card">
-                <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-2">Empire (VIP)</h3>
-                <div class="text-green-500"><span class="text-xl align-top">$</span><span class="price-amount">497</span><span class="text-sm">/mo</span></div>
-                <p class="price-setup">+$1,997 Setup Fee (One-off)</p>
-                
-                <div class="feature-list">
-                    <div class="feature-item"><span class="check">✓</span> <strong>Everything in Professional</strong></div>
-                    <div class="feature-item"><span class="check">✓</span> Full Custom Multi-Page Website</div>
-                    <div class="feature-item"><span class="check">✓</span> CRM Pipeline Management</div>
-                    <div class="feature-item"><span class="check">✓</span> Database Reactivation</div>
-                    <div class="feature-item"><span class="check">✓</span> Priority VIP Support</div>
+                <div class="hex-card" id="pkg-empire" onclick="selectItem('pkg', 'Domination Protocol', 'pkg-empire')">
+                    <div class="price-header">
+                        <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-2">Domination Protocol</h3>
+                        <div class="text-green-500 flex items-baseline gap-1">
+                            <span class="text-xl">$</span><span class="price-amount">497</span><span class="text-sm">/mo</span>
+                        </div>
+                        <p class="price-sub">+$1,997 Setup (One-Off)</p>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item"><span class="check">✓</span> <strong>Everything in Growth</strong></div>
+                        <div class="feature-item"><span class="check">✓</span> Full Custom Website (Multi-Page)</div>
+                        <div class="feature-item"><span class="check">✓</span> CRM Pipeline Management</div>
+                        <div class="feature-item"><span class="check">✓</span> Database Reactivation</div>
+                        <div class="feature-item"><span class="check">✓</span> Priority VIP Support</div>
+                    </div>
                 </div>
-                <button class="glow-btn">Build Empire</button>
-            </div>
 
+            </div>
         </div>
-    </section>
 
-    <section class="py-20 bg-[#050505] border-t border-b border-[#222]">
-        <div class="px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            
-            <div class="fade-in">
-                <p class="mono text-green-500 text-xs mb-4">THE_PROBLEM_SET</p>
-                <h2 class="text-3xl md:text-5xl font-black italic uppercase mb-6 leading-tight">
-                    You're a Tradie,<br> Not an Admin.
-                </h2>
-                <div class="seo-box">
-                    <p class="text-gray-400 leading-relaxed mb-6">
-                        Every minute you spend replying to "Are you open?" texts or chasing up Google Reviews is a minute you aren't paid for. 
-                        The modern trade business dies by a thousand small cuts—missed calls, lost leads, and forgotten follow-ups.
-                    </p>
-                    <p class="text-white font-bold text-lg italic">
-                        We build digital employees that don't sleep.
-                    </p>
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
+                Implementation <span class="text-green-500">Cycle</span>
+            </h2>
+
+            <div class="max-w-4xl mx-auto px-4 flight-container">
+                
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">1. Audit & Strategy</h4>
+                        <p class="step-desc">We analyze your current digital footprint. We identify leaks where leads are dropping off (missed calls, slow replies).</p>
+                    </div>
                 </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">2. System Build</h4>
+                        <p class="step-desc">We construct your custom environment. AI Receptionist, Unified Inbox, and Website are configured to your brand.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">3. Deployment</h4>
+                        <p class="step-desc">We flip the switch. Your database is reactivated. Your missed-call text back goes live. You start capturing lost revenue instantly.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">4. Optimization</h4>
+                        <p class="step-desc">We don't ghost you. You get monthly reports on traffic and leads. We tweak the AI to ensure the system scales with you.</p>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="grid grid-cols-1 gap-6 fade-in delay-100">
-                <div class="bg-[#111] p-6 border border-[#222] hover:border-green-500 transition">
-                    <h4 class="font-bold text-white uppercase mb-2">The Missed Call Fix</h4>
-                    <p class="text-xs text-gray-500">62% of calls to tradies go unanswered. Our AI instantly texts them back, books the job, and secures the deposit before you even check your phone.</p>
-                </div>
-                <div class="bg-[#111] p-6 border border-[#222] hover:border-green-500 transition">
-                    <h4 class="font-bold text-white uppercase mb-2">Reputation on Autopilot</h4>
-                    <p class="text-xs text-gray-500">Stop begging for reviews. Our system automatically requests feedback the second the invoice is paid, pushing you to #1 on Google Maps.</p>
-                </div>
-                <div class="bg-[#111] p-6 border border-[#222] hover:border-green-500 transition">
-                    <h4 class="font-bold text-white uppercase mb-2">Unified Command</h4>
-                    <p class="text-xs text-gray-500">Facebook, Instagram, SMS, and Email all in one feed. Never switch apps again. Reply to everyone from one dashboard.</p>
-                </div>
-            </div>
-
         </div>
-    </section>
 
-    <div class="py-24 text-center px-6">
-        <h2 class="text-4xl md:text-6xl font-black italic uppercase text-white mb-8">Ready to <span class="text-green-500">Deploy?</span></h2>
-        <a href="#contact" class="inline-block bg-green-500 text-black font-bold uppercase px-8 py-4 text-sm tracking-widest hover:bg-white hover:scale-105 transition clip-path-polygon">
-            Book Strategy Call ->
-        </a>
+    </div>
+
+    <div class="manifest-bar">
+        <div>
+            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Selected Tier</p>
+            <div class="flex flex-col md:flex-row md:gap-4 md:items-baseline">
+                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Growth Vector</p>
+                <p class="text-xs text-green-500 mono" id="summary-details">Most Popular</p>
+            </div>
+        </div>
+        <button class="submit-btn" onclick="submitQuote()">
+            Initialize System ->
+        </button>
     </div>
 
     <script>
-        // Simple Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
+        // --- PRELOADER SEQUENCE ---
+        window.addEventListener('load', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            const messages = [
+                "> ANALYZING_MARKET_DATA...",
+                "> ESTABLISHING_UPLINK...",
+                "> SCALING_PROTOCOLS_ACTIVE"
+            ];
+            
+            let delay = 0;
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'boot-text';
+                    p.innerText = msg;
+                    bootScreen.appendChild(p);
+                }, delay);
+                delay += 300;
             });
+
+            setTimeout(() => {
+                bootScreen.style.opacity = '0';
+                setTimeout(() => bootScreen.remove(), 500);
+            }, delay + 500);
         });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // State
+        let selectedTier = 'Growth Vector';
+
+        // Select Single Item
+        function selectItem(category, value, elementId) {
+            selectedTier = value;
+            
+            // Visual Update
+            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
+            document.getElementById(elementId).classList.add('selected');
+            
+            updateFooter();
+        }
+
+        // Update Footer
+        function updateFooter() {
+            document.getElementById('summary-pkg').innerText = selectedTier;
+            
+            if(selectedTier.includes('Core')) {
+                document.getElementById('summary-details').innerText = "Foundation Level";
+            } else if(selectedTier.includes('Growth')) {
+                document.getElementById('summary-details').innerText = "Most Popular";
+            } else {
+                document.getElementById('summary-details').innerText = "VIP Support Included";
+            }
+        }
+
+        // Submit
+        function submitQuote() {
+            const buildString = `Scaling Package: ${selectedTier}`;
+            window.location.href = `design-lab.html?tab=scaling&pkg=${encodeURIComponent(buildString)}`;
+        }
     </script>
 
 </body>
