@@ -4,34 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Smart Signage Systems | Vehicle Wraps & Tradie Automation Melbourne</title>
-    <meta name="description" content="The world's first Smart Signage system. We combine premium vehicle wraps with AI lead automation. Turn your van into a 24/7 receptionist. Based in Rowville.">
-    <meta name="keywords" content="smart signage, tradie marketing automation, vehicle wraps melbourne, lead generation for tradies, electrician van setup, plumber marketing, missed call text back">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://elitevanfitouts.com.au/smart-signage.html">
-
-    <meta name="geo.region" content="AU-VIC" />
-    <meta name="geo.placename" content="Rowville" />
-    <meta name="geo.position" content="-37.915;145.243" />
-    <meta name="ICBM" content="-37.915, 145.243" />
-
+    <title>Smart Signage Systems | AI Automation & Vehicle Branding | ELITE</title>
+    <meta name="description" content="The world's first hybrid marketing system for tradies. We combine premium vehicle wraps with AI lead automation. Your van captures the lead; our software books the job.">
+    <meta name="keywords" content="smart signage, tradie ai receptionist, vehicle wraps melbourne, lead generation automation, missed call text back, electrician marketing, plumber crm">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE AESTHETICS --- */
+        /* --- CORE SYSTEM --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
             --elite-green: #22c55e; 
-            --elite-green-glow: rgba(34, 197, 94, 0.6);
-            --dark-bg: #050505;
+            --elite-green-dim: rgba(34, 197, 94, 0.1);
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
         }
         
         body, html { 
-            margin: 0; padding: 0; background-color: #000; 
+            margin: 0; padding: 0; background-color: #000000; 
             color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
-            padding-bottom: 120px; scroll-behavior: smooth;
+            padding-bottom: 120px;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
@@ -49,16 +41,21 @@
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(255,255,255,0.1);
-            height: var(--nav-height-desktop); display: flex; align-items: center;
+            background: rgba(0,0,0,0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: var(--nav-height-desktop);
+            display: flex; align-items: center;
         }
-        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
+        @media (max-width: 768px) {
+            .glass-nav { height: var(--nav-height-mobile); }
+        }
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
             padding: 8px; border-radius: 8px; z-index: 100;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8); border-top: 2px solid var(--elite-green);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-top: 2px solid var(--elite-green);
         }
         .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
         @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -69,9 +66,10 @@
             border-radius: 4px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
-        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; padding-left: 20px; }
+        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
+        /* --- BODY SPACER --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
         @media (max-width: 768px) { .nav-spacer { height: 60px; } }
 
@@ -82,16 +80,15 @@
             border-bottom: 1px solid #222;
         }
         .hero-video {
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.6;
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.5;
             position: absolute; top: 0; left: 0; z-index: 0;
         }
         .hud-overlay {
             position: absolute; inset: 0; z-index: 1; pointer-events: none;
-            background: radial-gradient(circle, transparent 40%, #000 100%);
-            background-image: 
-                linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background: radial-gradient(circle, transparent 30%, #000 100%);
+            background-image: linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
         .hero-content {
             position: relative; z-index: 10; text-align: center; max-width: 1000px; padding: 20px;
@@ -102,74 +99,104 @@
             color: white; text-shadow: 0 0 40px rgba(34, 197, 94, 0.5); margin-bottom: 20px;
         }
         .hero-sub {
-            font-size: 1.1rem; color: #ccc; max-width: 600px; margin: 0 auto; line-height: 1.6;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 15px; border-left: 3px solid var(--elite-green);
+            font-size: 1.1rem; color: #ccc; max-width: 650px; margin: 0 auto; line-height: 1.6;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); padding: 20px; 
+            border: 1px solid #333; border-left: 4px solid var(--elite-green);
         }
 
-        /* --- LED TICKER --- */
-        .led-wrap {
-            position: relative; background: #050505; width: 100%; overflow: hidden;
-            height: 40px; display: flex; align-items: center; z-index: 20; border-bottom: 1px solid #222;
-        }
-        .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
-        .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
-            font-size: 1.5rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 2px;
-            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
-        }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-        /* --- THE PROBLEM/SOLUTION (HOLOGRAPHIC) --- */
-        .problem-section { padding: 80px 24px; background: #080808; }
-        .split-grid { display: grid; grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center; }
+        /* --- THE SYSTEM ARCHITECTURE (HOW IT WORKS) --- */
+        .system-section { padding: 80px 24px; background: #080808; border-bottom: 1px solid #222; }
         
-        .stat-box {
-            border: 1px solid #333; padding: 30px; background: rgba(0,0,0,0.5); margin-bottom: 20px;
-            display: flex; justify-content: space-between; align-items: center;
+        .arch-grid {
+            display: grid; grid-cols-1 md:grid-cols-3 gap-0 max-w-6xl mx-auto border border-[#333];
         }
-        .stat-val { font-family: 'VT323', monospace; font-size: 2.5rem; color: #555; }
-        .stat-val.active { color: var(--elite-green); text-shadow: 0 0 10px var(--elite-green); }
-
-        /* --- PRICING CARDS (DIGITAL MENU) --- */
-        .pricing-card {
-            background: #0a0a0a; border: 1px solid #333; position: relative; overflow: hidden;
-            transition: 0.3s; display: flex; flex-direction: column; height: 100%;
+        .arch-col {
+            padding: 40px; border-bottom: 1px solid #333; position: relative;
+            background: #050505; transition: 0.3s;
         }
-        .pricing-card:hover { transform: translateY(-10px); border-color: #555; }
+        @media (min-width: 768px) {
+            .arch-col { border-right: 1px solid #333; border-bottom: 0; }
+            .arch-col:last-child { border-right: 0; }
+        }
+        .arch-col:hover { background: #0a0a0a; }
+        .arch-col:hover .arch-icon { color: var(--elite-green); text-shadow: 0 0 20px var(--elite-green); }
         
-        .pricing-card.featured {
-            border-color: var(--elite-green); background: rgba(34, 197, 94, 0.03);
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+        .arch-step {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #666; margin-bottom: 10px;
         }
-        .pricing-card.featured::before {
-            content: "MOST POPULAR"; position: absolute; top: 0; right: 0;
-            background: var(--elite-green); color: black; font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem; font-weight: bold; padding: 5px 15px;
+        .arch-icon {
+            font-size: 2.5rem; color: #444; margin-bottom: 20px; transition: 0.3s;
         }
-
-        .card-header { padding: 30px; border-bottom: 1px solid #222; text-align: center; }
-        .pkg-name { font-size: 1.5rem; font-weight: 900; uppercase; italic; color: white; margin-bottom: 10px; text-transform: uppercase; }
-        .pkg-price { font-size: 3rem; font-weight: 900; line-height: 1; color: var(--elite-green); }
-        .pkg-setup { font-size: 0.7rem; color: #666; font-family: 'JetBrains Mono', monospace; margin-top: 5px; }
-
-        .card-body { padding: 30px; flex-grow: 1; }
-        .feature-group { margin-bottom: 20px; }
-        .group-title { font-size: 0.7rem; color: #555; font-weight: bold; uppercase; margin-bottom: 8px; letter-spacing: 1px; }
-        .feature-row { display: flex; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; color: #ccc; }
-        .check { color: var(--elite-green); }
-
-        /* --- ROI CALCULATOR --- */
-        .roi-section {
-            background: #000; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 80px 24px;
+        
+        /* --- AI SIMULATION (CHAT VISUAL) --- */
+        .sim-section {
+            padding: 80px 24px; background: #000; position: relative; overflow: hidden;
         }
-        .roi-box {
-            max-width: 800px; mx-auto; border: 1px solid var(--elite-green); background: rgba(34, 197, 94, 0.05);
-            padding: 40px; text-align: center; position: relative;
+        .chat-container {
+            max-w-md mx-auto background: #111; border: 1px solid #333; border-radius: 20px;
+            padding: 20px; position: relative;
         }
-        .roi-math { font-family: 'VT323', monospace; font-size: 1.5rem; color: white; margin: 20px 0; }
-        .roi-result { font-size: 2rem; font-weight: bold; color: var(--elite-green); }
+        .chat-bubble {
+            padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 0.9rem; max-width: 80%;
+        }
+        .chat-left { background: #222; color: #ccc; border-bottom-left-radius: 2px; }
+        .chat-right { background: var(--elite-green); color: black; margin-left: auto; border-bottom-right-radius: 2px; font-weight: bold; }
+        
+        .scan-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--elite-green); box-shadow: 0 0 20px var(--elite-green);
+            animation: scanDown 3s infinite linear; opacity: 0.5; pointer-events: none;
+        }
+        @keyframes scanDown { 0% { top: 0; } 100% { top: 100%; } }
 
-        /* --- MANIFEST BAR --- */
+        /* --- PACKAGES (VIDEO CARDS) --- */
+        .hex-card {
+            background-color: #080808; border: 1px solid #333; 
+            position: relative; overflow: hidden; 
+            transition: all 0.3s; cursor: pointer;
+            display: flex; flex-direction: column;
+        }
+        .hex-card:hover { transform: translateY(-5px); border-color: #555; }
+        .hex-card.selected {
+            border-color: var(--elite-green);
+            background-color: rgba(34, 197, 94, 0.05);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.15);
+        }
+        .hex-card.selected::before {
+            content: "SELECTED"; position: absolute; top: 0; right: 0;
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+            padding: 4px 8px; font-weight: bold; z-index: 20;
+        }
+        
+        .pkg-media { 
+            height: 200px; width: 100%; border-bottom: 1px solid #222; 
+            position: relative; background: black;
+        }
+        .pkg-media video {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s;
+        }
+        .hex-card:hover .pkg-media video { opacity: 1; }
+
+        .price-block { padding: 20px; border-bottom: 1px solid #222; text-align: center; }
+        .price-val { font-size: 2.5rem; font-weight: 900; color: white; line-height: 1; }
+        .price-sub { font-size: 0.75rem; color: #666; font-family: 'JetBrains Mono', monospace; margin-top: 5px; }
+
+        .feature-list { padding: 20px; }
+        .feature-item { 
+            display: flex; gap: 10px; font-size: 0.8rem; color: #aaa; margin-bottom: 10px; align-items: flex-start;
+        }
+        .check { color: var(--elite-green); font-weight: bold; min-width: 15px; }
+
+        /* --- CAPABILITIES (SPECS) --- */
+        .specs-table {
+            width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+        }
+        .specs-table td { padding: 15px; border-bottom: 1px solid #222; color: #888; }
+        .specs-table td:first-child { color: white; font-weight: bold; width: 40%; }
+        .specs-table tr:last-child td { border-bottom: none; }
+
+        /* --- STICKY FOOTER --- */
         .manifest-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
@@ -185,7 +212,7 @@
             transition: 0.2s; width: 100%; margin-top: 10px;
         }
         @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
-        .submit-btn:hover { background: white; transform: scale(1.05); }
+        .submit-btn:hover { background: white; transform: scale(1.02); }
 
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -194,38 +221,6 @@
         #mobile-menu.active { display: block; }
 
     </style>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "LocalBusiness",
-          "name": "Elite Van Fitouts",
-          "image": "https://elitevanfitouts.com.au/logo.png",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "8 Enterprise Dr",
-            "addressLocality": "Rowville",
-            "addressRegion": "VIC",
-            "postalCode": "3178"
-          },
-          "priceRange": "$$$"
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "Elite Smart Tradie System",
-          "operatingSystem": "Web, iOS, Android",
-          "applicationCategory": "BusinessApplication",
-          "offers": {
-            "@type": "Offer",
-            "price": "297.00",
-            "priceCurrency": "AUD"
-          }
-        }
-      ]
-    }
-    </script>
 </head>
 <body>
 
@@ -240,7 +235,7 @@
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
@@ -274,7 +269,7 @@
         <div class="hud-overlay"></div>
         
         <div class="hero-content">
-            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">System_Active</p>
+            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">System_Online</p>
             <h1 class="glitch-text">
                 YOUR VAN IS NOW <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-800">YOUR RECEPTIONIST.</span>
             </h1>
@@ -285,53 +280,80 @@
         </div>
     </header>
 
-    <div class="led-wrap">
-        <div class="led-ticker">
-            <div class="led-item">SMART SIGNAGE</div>
-            <div class="led-item">MISSED CALL TEXT-BACK</div>
-            <div class="led-item">VEHICLE WRAPS</div>
-            <div class="led-item">AI RECEPTIONIST</div>
-            <div class="led-item">GOOGLE REVIEWS</div>
-            <div class="led-item">LEAD GENERATION</div>
-            <div class="led-item">FLEET BRANDING</div>
-            <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">SMART SIGNAGE</div>
-            <div class="led-item">MISSED CALL TEXT-BACK</div>
-            <div class="led-item">VEHICLE WRAPS</div>
-            <div class="led-item">AI RECEPTIONIST</div>
-            <div class="led-item">GOOGLE REVIEWS</div>
-            <div class="led-item">LEAD GENERATION</div>
-            <div class="led-item">FLEET BRANDING</div>
-            <div class="led-item">ROWVILLE WORKSHOP</div>
+    <section class="system-section">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-black uppercase italic text-white mb-4">System Architecture</h2>
+            <p class="text-gray-400">The first physical-digital bridge for trade businesses.</p>
         </div>
-    </div>
 
-    <section class="problem-section">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="arch-grid">
+            <div class="arch-col">
+                <p class="arch-step">NODE_01</p>
+                <div class="arch-icon">📡</div>
+                <h3 class="text-xl font-bold uppercase text-white mb-2">The Beacon</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Your van acts as the physical capture point. High-contrast vinyl and "Scan-to-Book" QR codes grab attention on site and in traffic.
+                </p>
+            </div>
+            <div class="arch-col">
+                <p class="arch-step">NODE_02</p>
+                <div class="arch-icon">🧠</div>
+                <h3 class="text-xl font-bold uppercase text-white mb-2">The Neural Core</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    When they call, you don't answer. Our AI intercepts the call, texts them back instantly, qualifies the job, and requests photos.
+                </p>
+            </div>
+            <div class="arch-col">
+                <p class="arch-step">NODE_03</p>
+                <div class="arch-icon">💎</div>
+                <h3 class="text-xl font-bold uppercase text-white mb-2">The Result</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    You finish your shift to find booked appointments and paid deposits in your calendar. No phone tag. No tyre kickers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sim-section">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
-            <div class="p-6 border border-[#222] bg-[#050505] hover:border-green-500 transition group">
-                <div class="w-16 h-16 bg-[#111] rounded-full mx-auto mb-6 flex items-center justify-center border border-[#333] group-hover:border-green-500">
-                    <span class="text-2xl">👀</span>
+            <div>
+                <h2 class="text-3xl font-black uppercase italic text-white mb-6">"Missed Call" <br><span class="text-green-500">Text Back AI</span></h2>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    62% of calls to tradies go unanswered. 80% of those people call the next guy on Google.
+                    <br><br>
+                    Our system stops the leak. It texts them back within 10 seconds: <em>"Hey, saw you called. I'm on the tools. What do you need done?"</em>
+                </p>
+                <div class="flex gap-4 text-xs font-mono text-gray-500">
+                    <div class="border border-[#333] px-3 py-1">RESPONSE: &lt;2 SEC</div>
+                    <div class="border border-[#333] px-3 py-1">UPTIME: 24/7</div>
                 </div>
-                <h3 class="text-xl font-bold uppercase text-white mb-2">1. The Beacon</h3>
-                <p class="text-sm text-gray-400">Customer sees your premium signage or scans the QR code while you are driving or working.</p>
             </div>
 
-            <div class="p-6 border border-green-500 bg-[#050505] shadow-[0_0_30px_rgba(34,197,94,0.1)] relative">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-black text-[10px] font-bold px-3 py-1">AI ACTIVE</div>
-                <div class="w-16 h-16 bg-[#111] rounded-full mx-auto mb-6 flex items-center justify-center border border-green-500">
-                    <span class="text-2xl">🤖</span>
+            <div class="relative">
+                <div class="chat-container">
+                    <div class="scan-line"></div>
+                    <p class="text-center text-xs text-gray-600 mb-4 uppercase tracking-widest">Live Simulation</p>
+                    
+                    <div class="chat-bubble chat-left">
+                        Hi, do you guys do switchboard upgrades?
+                    </div>
+                    <div class="chat-bubble chat-right">
+                        Hey! I'm currently on a job. Yes we do. What suburb are you in?
+                    </div>
+                    <div class="chat-bubble chat-left">
+                        I'm in Rowville. Need it done ASAP.
+                    </div>
+                    <div class="chat-bubble chat-right">
+                        Great. I have a slot tomorrow at 2pm. Want me to lock that in?
+                    </div>
+                    <div class="chat-bubble chat-left">
+                        Yes please.
+                    </div>
+                    <div class="chat-bubble chat-right">
+                        Done. Sending deposit link now...
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold uppercase text-white mb-2">2. The Capture</h3>
-                <p class="text-sm text-gray-400">They call. You don't answer. Our AI instantly texts them back, asks what they need, and books a time.</p>
-            </div>
-
-            <div class="p-6 border border-[#222] bg-[#050505] hover:border-green-500 transition group">
-                <div class="w-16 h-16 bg-[#111] rounded-full mx-auto mb-6 flex items-center justify-center border border-[#333] group-hover:border-green-500">
-                    <span class="text-2xl">📅</span>
-                </div>
-                <h3 class="text-xl font-bold uppercase text-white mb-2">3. The Profit</h3>
-                <p class="text-sm text-gray-400">You finish work to find a qualified lead, a booked appointment, and a deposit in your bank.</p>
             </div>
 
         </div>
@@ -345,141 +367,130 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <div class="pricing-card" onclick="selectPkg('Essential')">
-                <div class="card-header">
-                    <h3 class="pkg-name text-gray-400">The Essential</h3>
-                    <div class="pkg-price">$197<span class="text-sm text-white">/mo</span></div>
-                    <p class="pkg-setup">+$499 Setup (Signage Install)</p>
+            <div class="hex-card" onclick="selectPkg('Essential')">
+                <div class="pkg-media">
+                    <video autoplay muted loop playsinline><source src="essential-pack.mp4" type="video/mp4"></video>
                 </div>
-                <div class="card-body">
-                    <div class="feature-group">
-                        <p class="group-title">PHYSICAL ASSETS</p>
-                        <div class="feature-row"><span class="check">✓</span> 2x High Contrast Door Logos</div>
-                        <div class="feature-row"><span class="check">✓</span> Tailgate Phone & Trade List</div>
-                    </div>
-                    <div class="feature-group">
-                        <p class="group-title">DIGITAL ASSETS</p>
-                        <div class="feature-row"><span class="check">✓</span> Google Business Optimization</div>
-                        <div class="feature-row"><span class="check">✓</span> <strong>Missed Call Text-Back AI</strong></div>
-                    </div>
+                <div class="price-block">
+                    <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-1">The Essential</h3>
+                    <div class="price-val">$197<span class="text-sm text-white font-normal">/mo</span></div>
+                    <p class="price-sub">+$499 Setup (One-Off)</p>
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item"><span class="check">✓</span> 2x High Contrast Door Logos</div>
+                    <div class="feature-item"><span class="check">✓</span> Tailgate Phone & Trade List</div>
+                    <div class="feature-item"><span class="check">✓</span> <strong>Missed Call Text-Back AI</strong></div>
+                    <div class="feature-item"><span class="check">✓</span> Google Business Optimization</div>
                 </div>
             </div>
 
-            <div class="pricing-card featured" onclick="selectPkg('Smart Tradie')">
-                <div class="card-header">
-                    <h3 class="pkg-name">The Smart Tradie</h3>
-                    <div class="pkg-price">$297<span class="text-sm text-white">/mo</span></div>
-                    <p class="pkg-setup">+$999 Setup (Signage Install)</p>
+            <div class="hex-card featured selected" id="pkg-smart" onclick="selectPkg('Smart Tradie')">
+                <div class="pkg-media">
+                    <video autoplay muted loop playsinline><source src="smart-tradie-pack.mp4" type="video/mp4"></video>
                 </div>
-                <div class="card-body">
-                    <div class="feature-group">
-                        <p class="group-title">PHYSICAL ASSETS</p>
-                        <div class="feature-row"><span class="check">✓</span> <strong>Full Smart Decal Set</strong></div>
-                        <div class="feature-row"><span class="check">✓</span> Large "Scan to Book" QR Code</div>
-                    </div>
-                    <div class="feature-group">
-                        <p class="group-title">DIGITAL ASSETS</p>
-                        <div class="feature-row"><span class="check">✓</span> <strong>1-Page Fast-Load Website</strong></div>
-                        <div class="feature-row"><span class="check">✓</span> AI Lead Qualifier Bot</div>
-                        <div class="feature-row"><span class="check">✓</span> Automated Google Reviews</div>
-                    </div>
+                <div class="price-block">
+                    <h3 class="text-xl font-bold uppercase italic text-white mb-1">The Smart Tradie</h3>
+                    <div class="price-val text-green-500">$297<span class="text-sm text-white font-normal">/mo</span></div>
+                    <p class="price-sub">+$999 Setup (One-Off)</p>
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item"><span class="check">✓</span> <strong>Full Smart Decal Set</strong></div>
+                    <div class="feature-item"><span class="check">✓</span> Large "Scan to Book" QR Code</div>
+                    <div class="feature-item"><span class="check">✓</span> <strong>1-Page Fast-Load Website</strong></div>
+                    <div class="feature-item"><span class="check">✓</span> AI Lead Qualifier Bot</div>
+                    <div class="feature-item"><span class="check">✓</span> Auto Review Requests</div>
                 </div>
             </div>
 
-            <div class="pricing-card" onclick="selectPkg('Local Dominator')">
-                <div class="card-header">
-                    <h3 class="pkg-name text-gray-400">Local Dominator</h3>
-                    <div class="pkg-price">$497<span class="text-sm text-white">/mo</span></div>
-                    <p class="pkg-setup">+$1,499 Setup (Signage Install)</p>
+            <div class="hex-card" onclick="selectPkg('Local Dominator')">
+                <div class="pkg-media">
+                    <video autoplay muted loop playsinline><source src="dominator-pack.mp4" type="video/mp4"></video>
                 </div>
-                <div class="card-body">
-                    <div class="feature-group">
-                        <p class="group-title">PHYSICAL ASSETS</p>
-                        <div class="feature-row"><span class="check">✓</span> <strong>Full Brand Wrap Elements</strong></div>
-                        <div class="feature-row"><span class="check">✓</span> 250 Smart Business Cards</div>
-                        <div class="feature-row"><span class="check">✓</span> Free Decal Repairs (Active Sub)</div>
-                    </div>
-                    <div class="feature-group">
-                        <p class="group-title">DIGITAL ASSETS</p>
-                        <div class="feature-row"><span class="check">✓</span> <strong>Full Custom Website</strong></div>
-                        <div class="feature-row"><span class="check">✓</span> Unified Inbox (SMS/FB/Insta)</div>
-                        <div class="feature-row"><span class="check">✓</span> Text-to-Pay (Deposit Collection)</div>
-                    </div>
+                <div class="price-block">
+                    <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-1">Local Dominator</h3>
+                    <div class="price-val">$497<span class="text-sm text-white font-normal">/mo</span></div>
+                    <p class="price-sub">+$1,499 Setup (One-Off)</p>
+                </div>
+                <div class="feature-list">
+                    <div class="feature-item"><span class="check">✓</span> <strong>Full Brand Wrap Elements</strong></div>
+                    <div class="feature-item"><span class="check">✓</span> 250 Smart Business Cards</div>
+                    <div class="feature-item"><span class="check">✓</span> <strong>Full Custom Website</strong></div>
+                    <div class="feature-item"><span class="check">✓</span> Unified Inbox (FB/Insta/SMS)</div>
+                    <div class="feature-item"><span class="check">✓</span> Text-to-Pay (Deposits)</div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class="roi-section">
-        <div class="roi-box">
+    <section class="roi-section bg-[#050505] py-20 px-6 border-y border-[#222]">
+        <div class="max-w-4xl mx-auto text-center border border-green-500 bg-green-900/10 p-10">
             <h3 class="text-xl font-bold uppercase text-white mb-4">The Logic is Simple</h3>
-            <p class="text-sm text-gray-400">Stop thinking about cost. Think about lost revenue.</p>
+            <p class="text-sm text-gray-400 mb-6">Stop thinking about cost. Think about lost revenue.</p>
             
-            <div class="roi-math">
-                1 Missed Job = <span class="text-red-500">-$350</span> (Average)
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center font-mono text-lg">
+                <div class="text-red-500">
+                    1 Missed Job <br><span class="text-2xl font-bold">-$350</span>
+                </div>
+                <div class="text-gray-500 md:block hidden">VS</div>
+                <div class="text-green-500">
+                    Smart System <br><span class="text-2xl font-bold">$297/mo</span>
+                </div>
             </div>
             
-            <div class="roi-math">
-                Smart System = <span class="text-green-500">$297/mo</span>
-            </div>
+            <p class="mt-8 text-white font-bold uppercase">If this system saves ONE job a month, it is free.</p>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-5xl mx-auto">
+        <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+            <span class="text-green-500 text-sm mono">04.</span> System Specifications
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             
-            <div class="roi-result mt-6">
-                SAVE 1 JOB = SYSTEM IS FREE.
+            <div>
+                <h4 class="text-green-500 font-bold uppercase mb-4 text-xs tracking-widest mono">Hardware (Signage)</h4>
+                <table class="specs-table">
+                    <tr><td>MATERIAL</td><td>Premium Cast Vinyl (Avery/3M)</td></tr>
+                    <tr><td>LIFESPAN</td><td>7+ Years Outdoor Rated</td></tr>
+                    <tr><td>QR TECH</td><td>Dynamic Links (Update URL anytime)</td></tr>
+                    <tr><td>FINISH</td><td>Gloss or Matte Laminate</td></tr>
+                    <tr><td>INSTALL</td><td>Climate Controlled Facility</td></tr>
+                </table>
             </div>
+
+            <div>
+                <h4 class="text-green-500 font-bold uppercase mb-4 text-xs tracking-widest mono">Software (AI Core)</h4>
+                <table class="specs-table">
+                    <tr><td>RESPONSE TIME</td><td>&lt; 2 Seconds</td></tr>
+                    <tr><td>PLATFORMS</td><td>SMS, Facebook, Instagram, Google</td></tr>
+                    <tr><td>HOSTING</td><td>Google Cloud High-Speed Tier</td></tr>
+                    <tr><td>APP ACCESS</td><td>iOS & Android Mobile App</td></tr>
+                    <tr><td>SUPPORT</td><td>Local Australian Team</td></tr>
+                </table>
+            </div>
+
         </div>
     </section>
 
     <section class="py-12 bg-[#020202] border-t border-[#111]">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
             <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Signage Zones</h4>
-                <ul class="space-y-1">
-                    <li>Rowville (HQ)</li>
-                    <li>Dandenong South</li>
-                    <li>Ferntree Gully</li>
-                    <li>Knoxfield & Scoresby</li>
-                    <li>Bayswater & Kilsyth</li>
-                    <li>Braeside & Mordialloc</li>
-                    <li>Carrum Downs & Seaford</li>
-                    <li>Berwick & Narre Warren</li>
-                </ul>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4>
+                <ul class="space-y-1"><li>Rowville (HQ)</li><li>Dandenong South</li><li>Ferntree Gully</li><li>Knoxfield</li></ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Automation Tech</h4>
-                <ul class="space-y-1">
-                    <li>Missed Call Text Back</li>
-                    <li>AI Receptionist</li>
-                    <li>Tradie CRM Software</li>
-                    <li>Lead Generation Melbourne</li>
-                    <li>Automated Quoting</li>
-                    <li>Google Review Management</li>
-                    <li>Unified Inbox</li>
-                </ul>
+                <ul class="space-y-1"><li>Missed Call Text Back</li><li>AI Receptionist</li><li>Tradie CRM</li><li>Lead Generation</li></ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Physical Assets</h4>
-                <ul class="space-y-1">
-                    <li>Premium Cast Vinyl</li>
-                    <li>One Way Vision</li>
-                    <li>Ute Tray Signage</li>
-                    <li>Van Wraps</li>
-                    <li>Fleet Branding</li>
-                    <li>QR Code Decals</li>
-                    <li>Reflective Tape</li>
-                </ul>
+                <ul class="space-y-1"><li>Premium Cast Vinyl</li><li>One Way Vision</li><li>Ute Signage</li><li>Van Wraps</li></ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Industries</h4>
-                <ul class="space-y-1">
-                    <li>Electrical & Data</li>
-                    <li>Plumbing & Gas</li>
-                    <li>HVAC & Refrigeration</li>
-                    <li>Mobile Mechanics</li>
-                    <li>Locksmiths</li>
-                    <li>Landscaping</li>
-                    <li>Building & Construction</li>
-                </ul>
+                <ul class="space-y-1"><li>Electrical</li><li>Plumbing</li><li>HVAC</li><li>Mobile Mechanics</li></ul>
             </div>
         </div>
     </section>
@@ -530,10 +541,8 @@
 
         function selectPkg(tier) {
             selectedTier = tier;
-            
-            // Visual Update
-            document.querySelectorAll('.pricing-card').forEach(el => el.classList.remove('featured'));
-            // Note: In a real app we'd target by ID, here we rely on the click context or just update text
+            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected', 'featured'));
+            // Note: Visual selection logic simplified for this snippet
             updateFooter();
         }
 
