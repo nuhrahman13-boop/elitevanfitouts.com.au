@@ -3,165 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE | BRANDING & SIGNAGE</title>
+    <title>ELITE | BRANDING</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        :root { --elite-green: #22c55e; }
+        /* --- CORE SYSTEM --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+        
+        :root { 
+            --elite-green: #22c55e; 
+            --elite-green-dim: rgba(34, 197, 94, 0.1);
+            --nav-height-desktop: 80px;
+            --nav-height-mobile: 60px;
+        }
         
         body, html { 
-            background-color: #000; color: white; 
-            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            margin: 0; padding: 0; background-color: #000000; 
+            color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
             padding-bottom: 120px;
+            scroll-behavior: smooth;
         }
+        
         .mono { font-family: 'JetBrains Mono', monospace; }
+        .led { font-family: 'VT323', monospace; }
 
-        /* --- NAV (Standardized) --- */
-        .glass-nav { 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        /* --- PRELOADER --- */
+        #boot-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
+            transition: opacity 0.5s ease-out;
         }
+        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; }
+        @keyframes flashText { to { opacity: 1; } }
+
+        /* --- NAV --- */
+        .glass-nav { 
+            background: rgba(0,0,0,0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: var(--nav-height-desktop);
+            display: flex; align-items: center;
+        }
+        @media (max-width: 768px) {
+            .glass-nav { height: var(--nav-height-mobile); }
+        }
+
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
             padding: 8px; border-radius: 8px; z-index: 100;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-top: 2px solid var(--elite-green);
         }
-        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
+        @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 16px; color: #888; text-decoration: none;
             border-radius: 4px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
-        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; }
+        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
+
+        /* --- BODY SPACER --- */
+        .nav-spacer {
+            width: 100%;
+            height: var(--nav-height-desktop);
+            background: #000;
+        }
+        @media (max-width: 768px) {
+            .nav-spacer { height: 60px; } 
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative; width: 100%; 
+            background: #000; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: flex-end; 
+            border-bottom: 1px solid #222;
+        }
+        
+        .hero-video {
+            width: 100%; height: 100%; 
+            object-fit: contain; 
+            position: absolute; top: 0; left: 0; z-index: 0;
+            object-position: center center;
+        }
+
+        /* DESKTOP CONFIG */
+        @media (min-width: 1024px) {
+            .hero-section { height: 80vh; }
+            .hero-content {
+                width: 100%; max-width: 1400px; margin: 0 auto;
+                padding: 0 40px 40px 40px;
+                pointer-events: none;
+            }
+        }
+        
+        /* MOBILE CONFIG */
+        @media (max-width: 1023px) {
+            .hero-section { height: 40vh; }
+            .hero-content {
+                width: 100%; padding: 15px !important;
+                margin-bottom: 0px; 
+                background: linear-gradient(to top, black 50%, transparent 100%);
+            }
+            .glitch-text {
+                font-size: 1.8rem !important; margin-bottom: 5px !important;
+                text-shadow: 0 2px 10px black;
+            }
+            .hero-sub {
+                font-size: 0.65rem !important; line-height: 1.2 !important;
+                border-left-width: 2px !important; padding-left: 10px !important;
+                background: rgba(0,0,0,0.5);
+            }
+        }
+
+        .hero-content { position: relative; z-index: 10; }
+        
+        .glitch-text {
+            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
+            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .hero-sub {
+            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
+            border-left: 4px solid var(--elite-green); padding-left: 20px;
+        }
+
+        /* --- SEO TICKER --- */
+        .led-wrap {
+            position: relative; background: #050505; width: 100%; overflow: hidden;
+            height: 40px; display: flex; align-items: center; z-index: 20;
+            border-bottom: 1px solid #222;
+            background-image: radial-gradient(#111 1px, transparent 1px);
+            background-size: 4px 4px;
+        }
+        .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
+        .led-item {
+            color: var(--elite-green); font-family: 'VT323', monospace;
+            text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
+            display: flex; align-items: center; letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
+        }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        /* --- PACKAGE CARDS --- */
+        .hex-card {
+            background-color: #080808; border: 1px solid #333; 
+            position: relative; overflow: hidden; 
+            transition: all 0.3s; cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 40px 40px;
+        }
+        .hex-card:hover { transform: translateY(-5px); border-color: #555; }
+        .hex-card.selected {
+            border-color: var(--elite-green);
+            background-color: rgba(34, 197, 94, 0.05);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+        }
+        .hex-card.selected::before {
+            content: "SELECTED"; position: absolute; top: 0; right: 0;
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+            padding: 4px 8px; font-weight: bold; z-index: 20;
+        }
+        .pkg-img { height: 250px; width: 100%; object-fit: cover; border-bottom: 1px solid #222; }
+
+        /* --- FLIGHT PATH --- */
+        .flight-container { 
+            position: relative; margin: 60px 0; 
+            border-left: 2px solid #333; padding-left: 30px;
+        }
+        .flight-container::after {
+            content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%;
+            background: var(--elite-green);
+            box-shadow: 0 0 10px var(--elite-green);
+            animation: circuitFlow 4s ease-in-out infinite;
+        }
+        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
+
+        .flight-step { position: relative; margin-bottom: 50px; }
+        .flight-dot {
+            position: absolute; left: -39px; top: 0; width: 20px; height: 20px;
+            background: #000; border: 2px solid #444; border-radius: 50%;
+            z-index: 10; transition: 0.3s;
+        }
+        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
+        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
+        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- BLUEPRINT SPECS --- */
+        .blueprint-card {
+            background: #050505; border: 1px solid #333; padding: 0; 
+            position: relative; overflow: hidden; margin-bottom: 20px;
+        }
+        .blueprint-header {
+            background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .blueprint-body { padding: 25px; }
+        .spec-grid { display: grid; grid-cols-2 gap-4 mt-6; }
+        .spec-point { border-bottom: 1px solid #222; padding-bottom: 5px; }
+        .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
+        .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
+
+        /* --- STICKY FOOTER --- */
+        .manifest-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
+            border-top: 1px solid var(--elite-green);
+            padding: 20px 24px; z-index: 100;
+            display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center;
+        }
+        .submit-btn {
+            background: var(--elite-green); color: black;
+            font-family: 'JetBrains Mono', monospace; font-weight: 800;
+            padding: 14px 40px; text-transform: uppercase; 
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: 0.2s; width: 100%; margin-top: 10px;
+        }
+        @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
+        .submit-btn:hover { background: white; transform: scale(1.02); }
+
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
 
-        /* --- HERO --- */
-        .brand-hero {
-            padding: 120px 24px 80px 24px; text-align: center;
-            background: radial-gradient(circle at top, #0f150f 0%, #000 80%);
-            border-bottom: 1px solid #222;
-        }
-
-        /* --- WRAP TIERS --- */
-        .tier-card {
-            background: #080808; border: 1px solid #222; overflow: hidden;
-            transition: 0.3s; position: relative; height: 100%;
-            display: flex; flex-direction: column;
-        }
-        .tier-card.selected {
-            border-color: var(--elite-green); background: rgba(34, 197, 94, 0.05);
-        }
-        .tier-card:hover { border-color: var(--elite-green); transform: translateY(-5px); }
-        
-        .tier-visual {
-            height: 220px; background: #111; border-bottom: 1px solid #222;
-            display: flex; align-items: center; justify-content: center;
-            color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-            position: relative;
-        }
-        /* Image Placeholders */
-        .tier-visual::after {
-            content: ''; position: absolute; inset: 0; opacity: 0.4;
-            background-size: cover; background-position: center;
-        }
-        /* Update these URLs with real work later */
-        #tier-1 .tier-visual::after { background-image: url('https://images.unsplash.com/photo-1605218427306-022ba6c1158e?auto=format&fit=crop&q=80'); }
-        #tier-2 .tier-visual::after { background-image: url('https://images.unsplash.com/photo-1616423664033-630e61d8a396?auto=format&fit=crop&q=80'); }
-        #tier-3 .tier-visual::after { background-image: url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80'); }
-
-        .tier-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
-        
-        .feature-list { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
-        .feature-list li { 
-            color: #888; font-size: 0.8rem; margin-bottom: 10px; padding-left: 15px; position: relative; 
-        }
-        .feature-list li::before { 
-            content: '>'; position: absolute; left: 0; color: var(--elite-green); font-weight: bold; 
-        }
-
-        .select-btn {
-            width: 100%; background: transparent; border: 1px solid #333; color: white;
-            padding: 12px; text-transform: uppercase; font-weight: bold; font-size: 0.8rem;
-            cursor: pointer; transition: 0.2s; margin-top: auto;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .selected .select-btn { background: var(--elite-green); color: black; border-color: var(--elite-green); }
-
-        /* --- TECH SPECS --- */
-        .tech-grid {
-            display: grid; grid-cols-1 md:grid-cols-2 gap-8; margin-top: 60px;
-        }
-        .tech-box {
-            background: #111; padding: 24px; border-left: 2px solid #333;
-        }
-        .tech-box h4 { color: white; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; }
-        .tech-box p { color: #666; font-size: 0.8rem; line-height: 1.5; }
-
-        /* --- ADD-ONS --- */
-        .addon-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px; border-bottom: 1px solid #222;
-        }
-        .elite-checkbox {
-            appearance: none; width: 24px; height: 24px; border: 1px solid #444;
-            background: black; cursor: pointer; display: grid; place-content: center;
-        }
-        .elite-checkbox::before {
-            content: ""; width: 14px; height: 14px; background: var(--elite-green);
-            transform: scale(0); transition: 0.2s transform;
-        }
-        .elite-checkbox:checked::before { transform: scale(1); }
-        .elite-checkbox:checked { border-color: var(--elite-green); }
-
-        /* --- STICKY FOOTER --- */
-        .total-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px);
-            border-top: 1px solid var(--elite-green);
-            padding: 20px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 100;
-        }
-        .proceed-btn {
-            background: var(--elite-green); color: black;
-            font-family: 'JetBrains Mono', monospace; font-weight: 700;
-            padding: 12px 24px; text-transform: uppercase;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
-            transition: 0.2s;
-        }
-        .proceed-btn:hover { background: white; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+    <div id="boot-screen">
+        <div id="boot-log"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">DEPARTMENTS</div>
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
                         <a href="branding.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Branding & Signage <span>-></span></a>
                         <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">Launchpad <span>-></span></a>
-                        <a href="specs.html" class="dropdown-item">Tech Specs <span>-></span></a>
+                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
-                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
             </div>
             <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">///</button>
         </div>
@@ -169,191 +270,283 @@
 
     <div id="mobile-menu">
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
-            <a href="index.html" class="text-gray-400 hover:text-green-500">Home</a>
+            <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
             <a href="branding.html" class="text-white border-l-4 border-green-500 pl-4">Branding & Signage</a>
             <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
-            <a href="specs.html" class="text-gray-600 text-sm mono mt-4">Technical Specs</a>
         </div>
     </div>
 
-    <section class="brand-hero">
-        <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">Visual_Division</p>
-        <h1 class="text-5xl md:text-7xl font-black italic uppercase mb-6 leading-none text-white">
-            Dominate <span class="text-green-500">The Road</span>
-        </h1>
-        <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-            Your vehicle is a moving billboard generating 30,000+ impressions a day. 
-            Don't waste that asset with a cheap sticker. We design and install premium wraps that demand authority.
-        </p>
-    </section>
+    <div class="nav-spacer"></div>
 
-    <section class="py-20 px-6 max-w-6xl mx-auto">
+    <header class="hero-section">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="signage.mov" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
         
-        <div class="grid md:grid-cols-2 gap-12 mb-16">
-            <div class="border-l-2 border-green-500 pl-6">
-                <h3 class="text-2xl font-bold text-white mb-4">Not All Vinyl Is Created Equal.</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Many shops use "Polymeric" vinyl which shrinks and peels after 12 months in the Australian sun.
-                </p>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    We exclusively use <strong>Premium Cast Vinyls (Avery Dennison / 3M)</strong>. Cast vinyl is poured as a liquid, meaning it has no "memory" to shrink back. It conforms to deep recesses and stays looking painted-on for years.
-                </p>
-            </div>
-            <div class="bg-[#111] p-6 border border-[#222] rounded-xl flex flex-col justify-center">
-                <p class="mono text-green-500 text-xs mb-2">CUSTOM TAILORED DESIGNS</p>
-                <p class="text-gray-300 text-sm">
-                    Whether you have print-ready artwork or need a full brand identity built from scratch, our design team tailors the layout to the specific curves of your vehicle model.
-                </p>
-            </div>
+        <div class="hero-content">
+            <h1 class="glitch-text mb-4">
+                VEHICLE <span class="text-green-500">BRANDING</span>
+            </h1>
+            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
+                Dominate the road. Turn traffic into leads with premium fleet graphics. <br>
+                <strong>Seen by thousands. Remembered by everyone.</strong>
+            </p>
         </div>
+    </header>
 
-        <h2 class="text-2xl font-black italic uppercase mb-10 text-center">Coverage Tiers</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="led-wrap">
+        <div class="led-ticker">
+            <div class="led-item">VAN SIGNAGE</div>
+            <div class="led-item">UTE BRANDING</div>
+            <div class="led-item">FLEET GRAPHICS</div>
+            <div class="led-item">LOGO DESIGN</div>
+            <div class="led-item">ONE WAY VISION</div>
+            <div class="led-item">REFLECTIVE VINYL</div>
+            <div class="led-item">CUSTOM DECALS</div>
+            <div class="led-item">MELBOURNE SIGNAGE</div>
+            <div class="led-item">ROWVILLE WORKSHOP</div>
+            <div class="led-item">CAST VINYL</div>
+            <div class="led-item">VEHICLE WRAPS</div>
+            <div class="led-item">GRAPHIC DESIGN</div>
+            <div class="led-item">VAN SIGNAGE</div>
+            <div class="led-item">UTE BRANDING</div>
+            <div class="led-item">FLEET GRAPHICS</div>
+            <div class="led-item">LOGO DESIGN</div>
+            <div class="led-item">ONE WAY VISION</div>
+            <div class="led-item">REFLECTIVE VINYL</div>
+            <div class="led-item">CUSTOM DECALS</div>
+            <div class="led-item">MELBOURNE SIGNAGE</div>
+        </div>
+    </div>
+
+    <div class="px-6 max-w-7xl mx-auto pt-20">
+
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">01.</span> Select Coverage Level
+            </h2>
+            <p class="text-gray-400 mb-8 text-sm">Prices are starting estimates. Every vehicle is custom tailored.</p>
             
-            <div class="tier-card selected" id="tier-identity">
-                <div class="tier-visual">[ IDENTITY RENDER ]</div>
-                <div class="tier-content">
-                    <h3 class="text-2xl font-black italic uppercase">Identity</h3>
-                    <p class="text-xs text-gray-500 mono mb-4">FLEET ESSENTIALS</p>
-                    <p class="text-xs text-gray-400 mb-6 leading-relaxed">Clean, professional branding. Perfect for maintaining fleet consistency across multiple vehicles.</p>
-                    <ul class="feature-list">
-                        <li>Logo on Driver/Passenger Doors</li>
-                        <li>Logo on Rear Barn Doors</li>
-                        <li>Website & Phone Number</li>
-                        <li>Standard Vinyl Application</li>
-                    </ul>
-                    <button class="select-btn" onclick="selectBrand('Identity', 'tier-identity')">Selected</button>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="hex-card selected" id="pkg-identity" onclick="selectItem('pkg', 'Identity (Logo Only)', 'pkg-identity')">
+                    <img src="van sign.png" class="pkg-img" alt="Logo Only Signage">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Identity</h3>
+                            <span class="mono text-green-500 text-sm">FROM $250</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mono mb-4">LOGO ONLY DECAL</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
+                            <li>> Logo on Doors (Driver/Pass)</li>
+                            <li>> Logo on Rear Barn Doors</li>
+                            <li>> Premium Cast Vinyl Cut</li>
+                            <li>> Professional Install</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tier-card" id="tier-impact">
-                <div class="tier-visual">[ IMPACT RENDER ]</div>
-                <div class="tier-content">
-                    <h3 class="text-2xl font-black italic uppercase text-white">Impact</h3>
-                    <p class="text-xs text-gray-500 mono mb-4">PARTIAL WRAP</p>
-                    <p class="text-xs text-gray-400 mb-6 leading-relaxed">High visibility. Uses partial wraps (rear quarters) and bold graphics to create a moving billboard effect.</p>
-                    <ul class="feature-list">
-                        <li><strong>Everything in Identity</strong></li>
-                        <li>Partial Rear Quarter Wrap</li>
-                        <li>Bonnet Branding / Striping</li>
-                        <li>Key Service Bullet Points</li>
-                    </ul>
-                    <button class="select-btn" onclick="selectBrand('Impact', 'tier-impact')">Select Config</button>
+                <div class="hex-card" id="pkg-impact" onclick="selectItem('pkg', 'Impact (Details)', 'pkg-impact')">
+                    <img src="ute sign.png" class="pkg-img" alt="Detail Signage">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Impact</h3>
+                            <span class="mono text-green-500 text-sm">FROM $500</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mono mb-4">LOGO + SERVICES + CONTACT</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
+                            <li>> <strong>Everything in Identity</strong></li>
+                            <li>> Phone Number & Website</li>
+                            <li>> Service Bullet Points</li>
+                            <li>> Social Media Handles</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tier-card" id="tier-domination">
-                <div class="tier-visual">[ DOMINATION RENDER ]</div>
-                <div class="tier-content">
-                    <h3 class="text-2xl font-black italic uppercase text-green-500">Domination</h3>
-                    <p class="text-xs text-gray-500 mono mb-4">FULL WRAP</p>
-                    <p class="text-xs text-gray-400 mb-6 leading-relaxed">Total transformation. Full colour change or digital print wrap. Protects original paint and impossible to ignore.</p>
-                    <ul class="feature-list">
-                        <li>Full Vehicle Coverage</li>
-                        <li>Colour Change or Digital Print</li>
-                        <li>One-Way Vision Window Perfs</li>
-                        <li>Door Jambs & Detail Work</li>
-                    </ul>
-                    <button class="select-btn" onclick="selectBrand('Domination', 'tier-domination')">Select Config</button>
+                <div class="hex-card" id="pkg-design" onclick="selectItem('pkg', 'Design Lab (Custom)', 'pkg-design')">
+                    <div class="pkg-img bg-[#111] flex items-center justify-center border-b border-[#333]">
+                        <span class="text-4xl text-gray-600 font-black italic">?</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Design Lab</h3>
+                            <span class="mono text-green-500 text-sm">CUSTOM</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mono mb-4">BRAND CREATION / REBRAND</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
+                            <li>> Logo Generation (If none exists)</li>
+                            <li>> Full Rebranding Strategy</li>
+                            <li>> Custom Layout & Concepts</li>
+                            <li>> Vector File Handover</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-        </div>
-
-        <h2 class="text-xl font-black italic uppercase mb-2 mt-20">Specialty Protection</h2>
-        <p class="text-gray-500 text-xs mono mb-6">PRESERVE THE ASSET</p>
-
-        <div class="bg-[#0a0a0a] border border-[#333] rounded-xl overflow-hidden mb-16">
-            <div class="addon-item">
-                <div>
-                    <p class="font-bold text-sm">Ceramic Coating</p>
-                    <p class="text-[10px] text-gray-500">Hydrophobic layer. Keeps the wrap cleaner for longer.</p>
-                </div>
-                <input type="checkbox" class="elite-checkbox" value="Ceramic Coating" onchange="updateSummary()">
-            </div>
-            <div class="addon-item">
-                <div>
-                    <p class="font-bold text-sm">Paint Protection Film (PPF)</p>
-                    <p class="text-[10px] text-gray-500">Clear self-healing film. Protects against stone chips & scratches.</p>
-                </div>
-                <input type="checkbox" class="elite-checkbox" value="PPF" onchange="updateSummary()">
-            </div>
-            <div class="addon-item">
-                <div>
-                    <p class="font-bold text-sm">Chrome Deletes</p>
-                    <p class="text-[10px] text-gray-500">Black out badges and trim for a stealth look.</p>
-                </div>
-                <input type="checkbox" class="elite-checkbox" value="Chrome Delete" onchange="updateSummary()">
-            </div>
-            <div class="addon-item">
-                <div>
-                    <p class="font-bold text-sm">Nano-Ceramic Tint</p>
-                    <p class="text-[10px] text-gray-500">99% UV Rejection & Heat Control for the cabin.</p>
-                </div>
-                <input type="checkbox" class="elite-checkbox" value="Ceramic Tint" onchange="updateSummary()">
             </div>
         </div>
 
-    </section>
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
+                Mission <span class="text-green-500">Timeline</span>
+            </h2>
 
-    <div class="total-bar">
+            <div class="max-w-4xl mx-auto px-4 flight-container">
+                
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">1. Request Quote</h4>
+                        <p class="step-desc">Select your coverage level. If you have artwork, upload it. If not, our design team takes over.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">2. Design Approval</h4>
+                        <p class="step-desc">We create a digital mockup on your exact vehicle model. You approve the look before we cut a single sheet of vinyl.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">3. Production</h4>
+                        <p class="step-desc">We print and cut your graphics using premium Avery Dennison or 3M Cast Vinyl at our Rowville HQ.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">4. Install</h4>
+                        <p class="step-desc">Drop your vehicle off. Our certified installers apply the graphics. You drive away with a mobile billboard.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-24 max-w-5xl mx-auto">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">03.</span> Material Specifications
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">Premium Cast Vinyl</h3>
+                        <span class="mono text-xs text-green-500">MAT_01</span>
+                    </div>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            We don't use cheap "Polymeric" sticker vinyl that shrinks and cracks in the sun. We use Automotive Grade Cast Vinyl (poured as a liquid) which has no memory and conforms to vehicle curves.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">BRAND</span><span class="spec-val">Avery / 3M</span></div>
+                            <div class="spec-point"><span class="spec-label">TYPE</span><span class="spec-val">Cast Vinyl</span></div>
+                            <div class="spec-point"><span class="spec-label">LIFESPAN</span><span class="spec-val">7+ Years Outdoor</span></div>
+                            <div class="spec-point"><span class="spec-label">REMOVAL</span><span class="spec-val">Clean (No Glue)</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">Design Principles</h3>
+                        <span class="mono text-xs text-green-500">MAT_02</span>
+                    </div>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            A confuse mind says no. We follow the "3-Second Rule". Your signage must communicate WHO you are and HOW to contact you within 3 seconds of viewing at 60km/h.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">HIERARCHY</span><span class="spec-val">Logo > Service > Phone</span></div>
+                            <div class="spec-point"><span class="spec-label">CONTRAST</span><span class="spec-val">High Visibility</span></div>
+                            <div class="spec-point"><span class="spec-label">FONTS</span><span class="spec-val">Bold / Sans-Serif</span></div>
+                            <div class="spec-point"><span class="spec-label">STYLE</span><span class="spec-val">Professional / Clean</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="manifest-bar">
         <div>
-            <p class="text-[10px] text-gray-500 mono uppercase">Current Selection</p>
-            <p class="text-xl font-bold text-white" id="selection-display">Identity Package</p>
+            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Selected Package</p>
+            <div class="flex flex-col md:flex-row md:gap-4 md:items-baseline">
+                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Identity (Logo Only)</p>
+                <p class="text-xs text-green-500 mono" id="summary-details">Awaiting Artwork...</p>
+            </div>
         </div>
-        <button class="proceed-btn" onclick="goToBooking()">
+        <button class="submit-btn" onclick="submitQuote()">
             Request Quote ->
         </button>
     </div>
 
     <script>
-        let selectedTier = 'Identity';
-
-        function selectBrand(tier, cardId) {
-            selectedTier = tier;
+        // --- PRELOADER SEQUENCE ---
+        window.addEventListener('load', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            const messages = [
+                "> LOADING_DESIGN_ASSETS...",
+                "> CONNECTING_TO_LAB...",
+                "> BRANDING_MODULE_ONLINE"
+            ];
             
-            // Visual Updates
-            document.querySelectorAll('.tier-card').forEach(el => {
-                el.classList.remove('selected');
-                el.querySelector('.select-btn').innerText = "Select Config";
+            let delay = 0;
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'boot-text';
+                    p.innerText = msg;
+                    bootScreen.appendChild(p);
+                }, delay);
+                delay += 300;
             });
+
+            setTimeout(() => {
+                bootScreen.style.opacity = '0';
+                setTimeout(() => bootScreen.remove(), 500);
+            }, delay + 500);
+        });
+
+        // State
+        let selectedPkg = 'Identity (Logo Only)';
+
+        // Select Single Item
+        function selectItem(category, value, elementId) {
+            selectedPkg = value;
             
-            const card = document.getElementById(cardId);
-            if(card) {
-                card.classList.add('selected');
-                card.querySelector('.select-btn').innerText = "Selected";
-            }
-            updateSummary();
+            // Visual Update
+            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
+            document.getElementById(elementId).classList.add('selected');
+            
+            updateFooter();
         }
 
-        function updateSummary() {
-            let addons = [];
-            document.querySelectorAll('.elite-checkbox:checked').forEach(box => {
-                addons.push(box.value);
-            });
-
-            let displayText = selectedTier + " Config";
-            if(addons.length > 0) {
-                displayText += " + " + addons.length + " Extras";
+        // Update Footer
+        function updateFooter() {
+            document.getElementById('summary-pkg').innerText = selectedPkg;
+            
+            if(selectedPkg.includes('Design')) {
+                document.getElementById('summary-details').innerText = "Requires Design Consultation";
+            } else {
+                document.getElementById('summary-details').innerText = "Vehicle Specs Required";
             }
-            document.getElementById('selection-display').innerText = displayText;
         }
 
-        function goToBooking() {
-            let addons = [];
-            document.querySelectorAll('.elite-checkbox:checked').forEach(box => {
-                addons.push(box.value);
-            });
-            
-            let finalString = selectedTier + " Wrap";
-            if(addons.length > 0) {
-                finalString += " + " + addons.join(", ");
-            }
-
-            window.location.href = `design-lab.html?tab=branding&pkg=${encodeURIComponent(finalString)}`;
+        // Submit
+        function submitQuote() {
+            const buildString = `Branding Package: ${selectedPkg}`;
+            window.location.href = `design-lab.html?tab=branding&pkg=${encodeURIComponent(buildString)}`;
         }
     </script>
 
