@@ -6,46 +6,71 @@
     <title>ELITE | MISSION CONTROL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        :root { --elite-green: #22c55e; }
+        /* --- CORE SYSTEM --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+        
+        :root { 
+            --elite-green: #22c55e; 
+            --elite-green-dim: rgba(34, 197, 94, 0.1);
+            --nav-height-desktop: 80px;
+            --nav-height-mobile: 60px;
+        }
         
         body, html { 
-            background-color: #000; color: white; 
-            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            margin: 0; padding: 0; background-color: #000000; 
+            color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
         }
+        
         .mono { font-family: 'JetBrains Mono', monospace; }
+        .led { font-family: 'VT323', monospace; }
+
+        /* --- PRELOADER --- */
+        #boot-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
+            transition: opacity 0.5s ease-out;
+        }
+        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; }
+        @keyframes flashText { to { opacity: 1; } }
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(12px); 
+            background: rgba(0,0,0,0.95);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: var(--nav-height-desktop);
+            display: flex; align-items: center;
         }
+        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
+
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
             padding: 8px; border-radius: 8px; z-index: 100;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-top: 2px solid var(--elite-green);
         }
-        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
+        @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 16px; color: #888; text-decoration: none;
             border-radius: 4px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
         }
-        .dropdown-item:hover { background: rgba(34, 197, 94, 0.1); color: white; }
+        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
-        #mobile-menu {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
-        }
-        #mobile-menu.active { display: block; }
+
+        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
+        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
 
         /* --- HERO CONSOLE --- */
         .console-hero {
             background: radial-gradient(circle at center, #0a110a 0%, #000 80%);
-            padding: 80px 24px 40px 24px; text-align: center;
+            padding: 60px 24px 40px 24px; text-align: center;
             border-bottom: 1px solid #222;
+            position: relative;
         }
         
         .data-display {
@@ -53,7 +78,7 @@
             color: var(--elite-green); font-family: 'JetBrains Mono', monospace;
             padding: 15px 30px; display: inline-block; font-size: 0.8rem;
             margin-bottom: 30px; box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
-            min-width: 300px;
+            min-width: 300px; text-align: left;
         }
         .blink { animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
@@ -66,7 +91,7 @@
             background: #111; border: 1px solid #333; color: #666;
             padding: 14px 28px; font-family: 'JetBrains Mono', monospace;
             text-transform: uppercase; font-size: 0.75rem; cursor: pointer; transition: 0.3s;
-            font-weight: bold;
+            font-weight: bold; position: relative; overflow: hidden;
         }
         .mission-tab:hover { border-color: #666; color: white; }
         
@@ -83,7 +108,7 @@
 
         /* --- FORM WRAPPERS --- */
         .form-wrapper {
-            display: none; max-width: 900px; margin: 0 auto;
+            display: none; max-width: 1000px; margin: 0 auto;
             background: #000; border: 1px solid #333; 
             position: relative; overflow: hidden;
             animation: slideUp 0.5s ease-out;
@@ -100,28 +125,37 @@
         .step-list li { margin-bottom: 15px; display: flex; gap: 10px; }
         .step-list span { color: var(--elite-green); }
 
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+        }
+        #mobile-menu.active { display: block; }
+
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+    <div id="boot-screen">
+        <div id="boot-log"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">DEPARTMENTS</div>
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
                         <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
-                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">Launchpad <span>-></span></a>
-                        <a href="specs.html" class="dropdown-item">Tech Specs <span>-></span></a>
+                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
                 <a href="#contact" class="hover:text-green-500 transition">Contact</a>
@@ -132,14 +166,14 @@
 
     <div id="mobile-menu">
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
-            <a href="index.html" class="text-gray-400 hover:text-green-500">Home</a>
+            <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
             <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
-            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
-            <a href="specs.html" class="text-gray-600 text-sm mono mt-4">Technical Specs</a>
         </div>
     </div>
+
+    <div class="nav-spacer"></div>
 
     <section class="console-hero">
         <h1 class="text-4xl md:text-6xl font-black italic uppercase mb-6 leading-none text-white">
@@ -166,16 +200,20 @@
                 <div class="lp-info">
                     <h3 class="text-2xl font-black italic uppercase text-white mb-2">Empire <span class="text-green-500">Builder</span></h3>
                     <p class="text-xs text-gray-400 mb-8 uppercase tracking-widest">Incubation Program Application</p>
+                    
                     <ul class="step-list">
                         <li><span>01.</span> Application Review</li>
-                        <li><span>02.</span> In Person Meeting</li> <li><span>03.</span> Deposit & Scheduling</li>
+                        <li><span>02.</span> Strategy Session</li>
+                        <li><span>03.</span> Deposit & Scheduling</li>
                         <li><span>04.</span> Production Phase</li>
                         <li><span>05.</span> Handover & Launch</li>
                     </ul>
+
                     <div class="mt-8 border-t border-[#333] pt-4">
                         <p class="text-[10px] text-gray-500">REQUIREMENTS:</p>
                         <p class="text-xs text-white mt-1">• Existing Trade or Clear Business Plan</p>
-                        <p class="text-xs text-white mt-1">• Ready to Deploy in Weeks</p> </div>
+                        <p class="text-xs text-white mt-1">• Ready to Deploy in 3-4 Weeks</p>
+                    </div>
                 </div>
                 <div class="bg-black border-l border-[#333]"> 
                     <iframe
@@ -273,8 +311,25 @@
     <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
     <script>
+        // --- PRELOADER ---
+        window.addEventListener('load', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            const bootLog = document.getElementById('boot-log');
+            const msgs = ["> ESTABLISHING UPLINK...", "> SECURE CONNECTION ACTIVE"];
+            let d = 0;
+            msgs.forEach(m => {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'boot-text';
+                    p.innerText = m;
+                    bootLog.appendChild(p);
+                }, d);
+                d+=300;
+            });
+            setTimeout(() => { bootScreen.style.opacity='0'; setTimeout(()=>bootScreen.remove(),500); }, d+500);
+        });
+
         // --- LOGIC CONTROLLER ---
-        
         window.onload = function() {
             // 1. Read URL Parameters
             const urlParams = new URLSearchParams(window.location.search);
@@ -290,11 +345,12 @@
                 const cleanPkg = decodeURIComponent(pkg).toUpperCase();
                 document.getElementById('console-output').innerHTML = `IMPORTING: <span style="color:white">${cleanPkg}</span>`;
                 
-                // DATA INJECTION
+                // DATA INJECTION (Attempts to pass package to GHL)
                 const iframeId = 'iframe-' + tab;
                 const iframe = document.getElementById(iframeId);
                 if(iframe) {
                     let currentSrc = iframe.src;
+                    // Note: 'package_selection' is a placeholder. You must match this field name in GHL.
                     if(currentSrc.indexOf('?') > -1) {
                         iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
                     } else {
@@ -302,7 +358,7 @@
                     }
                 }
             } else {
-                // Default Message if no package selected
+                // Default Messages
                 if(tab === 'launchpad') document.getElementById('console-output').innerText = "INITIALIZING LAUNCH SEQUENCE...";
                 if(tab === 'fitout') document.getElementById('console-output').innerText = "SELECT FITOUT CONFIGURATION";
                 if(tab === 'branding') document.getElementById('console-output').innerText = "AWAITING BRANDING BRIEF";
