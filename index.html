@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Elite Van Fitouts | Custom Racking, Signage & Business Setup Melbourne</title>
-    <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom plywood racking, vehicle wraps, and 'Business in a Box' launch packages for Tradies in Dandenong & South East Melbourne.">
+    <title>Elite Van Fitouts | Custom Racking, Wraps & Fleet Branding Melbourne</title>
+    <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom plywood racking, false floors, and premium vehicle wraps for Tradies in Dandenong & South East Melbourne.">
     <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://elitevanfitouts.com.au/">
@@ -47,7 +47,7 @@
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(12px);
+            background: rgba(0,0,0,0.95); /* Solid black/glass */
             border-bottom: 1px solid rgba(255,255,255,0.1);
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
@@ -73,53 +73,55 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- NAV SPACER --- */
+        /* --- HERO SECTION --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
-        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
-
-        /* --- HERO SECTION (RESTORED SETTINGS) --- */
+        
         .hero-section {
             position: relative; width: 100%; 
-            /* Desktop Height from your snippet */
-            height: 90vh; 
-            min-height: 500px;
-            overflow: hidden; 
-            display: flex; 
-            align-items: flex-end; 
-            justify-content: flex-start;
-            background: #000;
+            background: #000; overflow: hidden; 
+            display: flex; align-items: flex-end; justify-content: flex-start;
             border-bottom: 1px solid #222;
         }
         
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; /* Fills screen */
+            object-fit: contain; /* Full video visible */
             z-index: 1; filter: brightness(0.6) contrast(1.1);
             object-position: center center;
         }
 
-        /* MOBILE ADJUSTMENTS (Restored) */
-        @media (max-width: 768px) {
-            .hero-section {
-                height: 55vh; /* Your preferred mobile height */
-                min-height: auto;
-                align-items: flex-end;
-                justify-content: flex-start;
+        /* DESKTOP CONFIG */
+        @media (min-width: 1024px) {
+            .hero-section { height: 90vh; }
+            .hero-content { 
+                padding: 0 40px 40px 40px; 
+                width: 100%; max-width: 1400px; margin: 0 auto; 
+                pointer-events: none;
             }
+        }
+        
+        /* MOBILE CONFIG (FIXED GAP) */
+        @media (max-width: 1023px) {
+            /* Remove spacer on mobile to tighten gap, use padding instead */
+            .nav-spacer { display: none; }
+            body { padding-top: var(--nav-height-mobile); }
+
+            .hero-section { height: 50vh; }
             .hero-video {
-                /* Shifts video to right so subject isn't hidden by text */
-                object-position: 75% center; 
+                /* Align top to touch navbar, shift right to center subject */
+                object-position: 75% top; 
             }
             .hero-content {
-                padding-bottom: 30px !important;
+                padding-bottom: 20px !important;
                 width: 100%; text-align: left;
+                background: linear-gradient(to top, black 20%, transparent 100%);
             }
             .glitch-text {
                 font-size: 2.2rem !important; 
                 line-height: 1 !important; 
                 margin-bottom: 10px !important;
             }
-            .hero-sub { display: none; } /* Hide subtext on mobile for cleanliness */
+            .hero-sub { display: none; }
             .hero-btns { margin-top: 10px; }
             .btn-main, .btn-outline {
                 padding: 10px 20px !important; font-size: 0.7rem !important;
@@ -206,6 +208,28 @@
         }
         .manifest-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
 
+        /* --- RADAR MAP --- */
+        .radar-container {
+            position: relative; height: 400px; width: 100%; overflow: hidden; background: #000;
+        }
+        .radar-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50%; pointer-events: none; z-index: 10;
+        }
+        .radar-overlay::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 10px; height: 10px; background: var(--elite-green); border-radius: 50%;
+            box-shadow: 0 0 20px var(--elite-green); animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+        .radar-scan {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(34, 197, 94, 0.1) 60deg, transparent 60deg);
+            animation: radarSpin 4s linear infinite;
+        }
+        @keyframes radarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
         /* --- UTILS --- */
         .btn-main {
             background: var(--elite-green); color: black; font-weight: 900;
@@ -222,6 +246,13 @@
         }
         .btn-outline:hover { border-color: white; color: white; }
 
+        .social-link {
+            width: 36px; height: 36px; border: 1px solid #444; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; color: #666;
+        }
+        .social-link:hover { border-color: var(--elite-green); color: var(--elite-green); transform: translateY(-2px); }
+        .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
@@ -233,21 +264,29 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AutoBodyShop",
-      "name": "Elite Van Fitouts",
-      "image": "https://elitevanfitouts.com.au/logo.png",
-      "url": "https://elitevanfitouts.com.au",
-      "telephone": "0468 086 490",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "8 Enterprise Dr",
-        "addressLocality": "Rowville",
-        "addressRegion": "VIC",
-        "postalCode": "3178",
-        "addressCountry": "AU"
-      },
-      "priceRange": "$$$",
-      "areaServed": ["Rowville", "Dandenong", "Melbourne South East"]
+      "@graph": [
+        {
+          "@type": "AutoBodyShop",
+          "name": "Elite Van Fitouts",
+          "image": "https://elitevanfitouts.com.au/logo.png",
+          "url": "https://elitevanfitouts.com.au",
+          "telephone": "0468 086 490",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8 Enterprise Dr",
+            "addressLocality": "Rowville",
+            "addressRegion": "VIC",
+            "postalCode": "3178"
+          },
+          "priceRange": "$$$",
+          "areaServed": ["Rowville", "Dandenong", "Melbourne South East"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "Elite Vehicle Signage",
+          "description": "Premium vehicle wraps and fleet branding for trades."
+        }
+      ]
     }
     </script>
 </head>
@@ -270,7 +309,7 @@
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
@@ -291,6 +330,7 @@
     </div>
 
     <div class="nav-spacer"></div>
+
     <header class="hero-section">
         <video autoplay muted loop playsinline class="hero-video">
             <source src="hero.mp4" type="video/mp4">
@@ -298,14 +338,14 @@
         <div class="hero-fade"></div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-6">
+            <h1 class="glitch-text mb-4">
                 ENGINEERED<br>FOR THE <span class="text-green-500">ELITE.</span>
             </h1>
-            <p class="hero-sub text-gray-300 max-w-lg text-sm md:text-base leading-relaxed mb-8 border-l-2 border-green-500 pl-4">
+            <p class="hero-sub">
                 We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
                 <strong>Get Organized. Get Paid.</strong>
             </p>
-            <div class="hero-btns flex gap-4">
+            <div class="hero-btns flex gap-4 mt-8">
                 <a href="fitouts.html" class="btn-main">Start Build</a>
                 <a href="#services" class="btn-outline">View Systems</a>
             </div>
@@ -437,59 +477,113 @@
         </div>
     </section>
 
-    <section class="py-12 bg-[#020202] border-t border-[#111]">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4>
-                <ul class="space-y-1">
-                    <li>Rowville (HQ)</li>
-                    <li>Dandenong South</li>
-                    <li>Ferntree Gully</li>
-                    <li>Knoxfield & Scoresby</li>
-                    <li>Bayswater & Kilsyth</li>
-                    <li>Braeside & Mordialloc</li>
-                    <li>Carrum Downs & Seaford</li>
-                    <li>Berwick & Narre Warren</li>
-                </ul>
+    <section id="contact" class="bg-black">
+        <div class="grid md:grid-cols-2 h-auto md:h-[500px]">
+            
+            <div class="radar-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886043236077!2d145.24156637686737!3d-37.91035763953573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d0802905555%3A0x1c37b037307024e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" 
+                    width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(1.2);" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div class="radar-overlay">
+                    <div class="radar-scan"></div>
+                </div>
+                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-4 py-2 text-xs mono text-green-500">
+                    TARGET: 8 ENTERPRISE DR, ROWVILLE
+                </div>
             </div>
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Supported Platforms</h4>
-                <ul class="space-y-1">
-                    <li>Toyota HiAce (LWB/SLWB)</li>
-                    <li>Ford Transit Custom</li>
-                    <li>Ford Ranger (Canopy)</li>
-                    <li>LDV Deliver 9 & G10</li>
-                    <li>Hyundai Staria Load</li>
-                    <li>Mercedes Vito & Sprinter</li>
-                    <li>Volkswagen Transporter</li>
-                </ul>
+
+            <div class="p-12 flex flex-col justify-center bg-[#080808] border-t md:border-t-0 md:border-l border-[#222]">
+                <p class="mono text-gray-500 text-xs tracking-widest uppercase mb-6">Workshop HQ</p>
+                <h2 class="text-4xl font-black italic uppercase text-white mb-2">Ready to <span class="text-green-500">Work?</span></h2>
+                <p class="text-gray-400 mb-8 text-sm">Deployments available Mon-Sat.</p>
+                
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-1">Secure Line</p>
+                        <div class="flex items-center gap-4">
+                            <a href="tel:0468086490" class="text-2xl font-mono text-white hover:text-green-500 transition">0468 086 490</a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-1">Comms</p>
+                        <a href="mailto:info@elitevanfitouts.com.au" class="text-lg font-mono text-gray-400 hover:text-white transition">info@elitevanfitouts.com.au</a>
+                    </div>
+                    
+                    <div>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-2">Connect</p>
+                        <div class="social-row">
+                            <a href="https://www.facebook.com/share/1Da7HLaCu7/?mibextid=wwXIfr" target="_blank" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.05 3.5 3.01 1.57-.01 2.88-1.23 3.02-2.82.04-.9.04-1.79.04-2.69 0-3.3 0-6.59.03-9.89 1.29-.18 2.46-1.24 3-2.45.37-.84.54-1.79.57-2.73z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">System Modules</h4>
-                <ul class="space-y-1">
-                    <li>CNC False Floors</li>
-                    <li>Heavy Duty Slides (227kg)</li>
-                    <li>Plywood Shelving Units</li>
-                    <li>Milwaukee Packout Mounts</li>
-                    <li>Cable & Gas Storage</li>
-                    <li>12V Dual Battery Systems</li>
-                    <li>Cargo Barriers</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Trade Specializations</h4>
-                <ul class="space-y-1">
-                    <li>Electrical Contractors</li>
-                    <li>Plumbing & Gas Fitters</li>
-                    <li>HVAC & Refrigeration</li>
-                    <li>Mobile Mechanics</li>
-                    <li>Locksmiths & Security</li>
-                    <li>Data & Communications</li>
-                    <li>Builders & Carpentry</li>
-                </ul>
-            </div>
+
         </div>
-        <div class="border-t border-[#222] mt-8 py-4 text-center">
+        
+        <section class="py-12 bg-[#020202] border-t border-[#111]">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4>
+                    <ul class="space-y-1">
+                        <li>Rowville (HQ)</li>
+                        <li>Dandenong South</li>
+                        <li>Ferntree Gully</li>
+                        <li>Knoxfield & Scoresby</li>
+                        <li>Bayswater & Kilsyth</li>
+                        <li>Braeside & Mordialloc</li>
+                        <li>Carrum Downs & Seaford</li>
+                        <li>Berwick & Narre Warren</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">Supported Platforms</h4>
+                    <ul class="space-y-1">
+                        <li>Toyota HiAce (LWB/SLWB)</li>
+                        <li>Ford Transit Custom</li>
+                        <li>Ford Ranger (Canopy)</li>
+                        <li>LDV Deliver 9 & G10</li>
+                        <li>Hyundai Staria Load</li>
+                        <li>Mercedes Vito & Sprinter</li>
+                        <li>Volkswagen Transporter</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">System Modules</h4>
+                    <ul class="space-y-1">
+                        <li>CNC False Floors</li>
+                        <li>Heavy Duty Slides (227kg)</li>
+                        <li>Plywood Shelving Units</li>
+                        <li>Milwaukee Packout Mounts</li>
+                        <li>Cable & Gas Storage</li>
+                        <li>12V Dual Battery Systems</li>
+                        <li>Cargo Barriers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">Trade Specializations</h4>
+                    <ul class="space-y-1">
+                        <li>Electrical Contractors</li>
+                        <li>Plumbing & Gas Fitters</li>
+                        <li>HVAC & Refrigeration</li>
+                        <li>Mobile Mechanics</li>
+                        <li>Locksmiths & Security</li>
+                        <li>Data & Communications</li>
+                        <li>Builders & Carpentry</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="border-t border-[#222] py-4 text-center">
             <p class="text-[10px] text-gray-700 mono uppercase">© 2026 ELITE VAN FITOUTS. SYSTEM V2.0 ONLINE.</p>
         </div>
     </section>
