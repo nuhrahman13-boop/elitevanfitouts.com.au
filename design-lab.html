@@ -152,13 +152,12 @@
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
-                <a href="#contact" class="hover:text-green-500 transition">Contact</a>
             </div>
             <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">///</button>
         </div>
@@ -168,7 +167,7 @@
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Signage</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
         </div>
     </div>
@@ -189,7 +188,6 @@
             <button id="btn-launchpad" class="mission-tab gold" onclick="switchTab('launchpad')">★ THE LAUNCHPAD</button>
             <button id="btn-fitout" class="mission-tab" onclick="switchTab('fitout')">VAN FITOUT</button>
             <button id="btn-branding" class="mission-tab" onclick="switchTab('branding')">BRANDING</button>
-            <button id="btn-scaling" class="mission-tab" onclick="switchTab('scaling')">SCALING</button>
         </div>
     </section>
 
@@ -283,29 +281,6 @@
             ></iframe>
         </div>
 
-        <div id="form-scaling" class="form-wrapper">
-            <div class="p-4 bg-[#0a0a0a] text-center border-b border-[#333]">
-                <h3 class="text-lg font-bold text-white uppercase">Scaling Strategy Session</h3>
-            </div>
-            <iframe
-                src="https://api.leadconnectorhq.com/widget/form/mupyoMMbMz9SSz4Mpd4e"
-                style="width:100%;height:100%;border:none;background:#000000;"
-                id="iframe-scaling"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="WEB - Scaling Strategy"
-                data-height="1137"
-                data-layout-iframe-id="inline-mupyoMMbMz9SSz4Mpd4e"
-                data-form-id="mupyoMMbMz9SSz4Mpd4e"
-                title="WEB - Scaling Strategy"
-            ></iframe>
-        </div>
-
     </div>
 
     <script src="https://link.msgsndr.com/js/form_embed.js"></script>
@@ -345,12 +320,11 @@
                 const cleanPkg = decodeURIComponent(pkg).toUpperCase();
                 document.getElementById('console-output').innerHTML = `IMPORTING: <span style="color:white">${cleanPkg}</span>`;
                 
-                // DATA INJECTION (Attempts to pass package to GHL)
+                // DATA INJECTION
                 const iframeId = 'iframe-' + tab;
                 const iframe = document.getElementById(iframeId);
                 if(iframe) {
                     let currentSrc = iframe.src;
-                    // Note: 'package_selection' is a placeholder. You must match this field name in GHL.
                     if(currentSrc.indexOf('?') > -1) {
                         iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
                     } else {
@@ -362,7 +336,6 @@
                 if(tab === 'launchpad') document.getElementById('console-output').innerText = "INITIALIZING LAUNCH SEQUENCE...";
                 if(tab === 'fitout') document.getElementById('console-output').innerText = "SELECT FITOUT CONFIGURATION";
                 if(tab === 'branding') document.getElementById('console-output').innerText = "AWAITING BRANDING BRIEF";
-                if(tab === 'scaling') document.getElementById('console-output').innerText = "CONNECTING TO SERVER...";
             }
         };
 
