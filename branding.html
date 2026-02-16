@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Vehicle Branding & Signage Melbourne | Elite Wraps</title>
-    <meta name="description" content="Premium vehicle signage and fleet branding in Rowville. High-impact vinyl wraps, custom decals, and logo design for tradies. Avery & 3M Certified Installers.">
-    <meta name="keywords" content="vehicle signage rowville, van wraps melbourne, ute decals, fleet branding, tradie sign writing, custom vinyl wrap">
+    <title>Vehicle Signage Rowville | Van Wraps & Ute Branding | ELITE</title>
+    <meta name="description" content="Premium vehicle signage in Rowville & Dandenong. Custom van wraps, ute tray decals, and fleet branding. We design, print, and install high-impact graphics for Melbourne tradies.">
+    <meta name="keywords" content="vehicle signage rowville, van wraps dandenong, ute signage melbourne, tradie fleet branding, custom vinyl decals, toyota hiace wrap, ford ranger signage, commercial vehicle graphics">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://elitevanfitouts.com.au/branding.html">
 
     <meta name="geo.region" content="AU-VIC" />
     <meta name="geo.placename" content="Rowville" />
-    
+    <meta name="geo.position" content="-37.915;145.243" />
+    <meta name="ICBM" content="-37.915, 145.243" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- CORE SYSTEM --- */
@@ -89,15 +91,6 @@
             position: absolute; top: 0; left: 0; z-index: 0;
             object-position: center center; filter: brightness(0.7);
         }
-        
-        /* PLACEHOLDER FOR VIDEO */
-        .video-placeholder {
-            width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0;
-            background: radial-gradient(circle at center, #111 0%, #000 90%);
-            background-image: linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
 
         @media (min-width: 1024px) {
             .hero-section { height: 85vh; }
@@ -166,9 +159,21 @@
             padding: 4px 8px; font-weight: bold; z-index: 20;
         }
         
-        .pkg-img-box { height: 250px; width: 100%; border-bottom: 1px solid #222; background: #111; position: relative; }
-        .pkg-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
-        .hex-card:hover .pkg-img { opacity: 1; }
+        /* IMAGE BOX & SLIDESHOW */
+        .pkg-img-box { 
+            height: 250px; width: 100%; border-bottom: 1px solid #222; 
+            background: #111; position: relative; overflow: hidden;
+        }
+        .pkg-img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out;
+        }
+        .pkg-img.active { opacity: 1; }
+        .placeholder-text {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; uppercase;
+            background: repeating-linear-gradient(45deg, #111, #111 10px, #1a1a1a 10px, #1a1a1a 20px);
+        }
 
         /* --- SMART UPSELL (THE BRIDGE) --- */
         .smart-section {
@@ -214,7 +219,7 @@
         .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
         .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- TECH SPECS --- */
+        /* --- TECHNICAL SPECS --- */
         .blueprint-card {
             background: #050505; border: 1px solid #333; padding: 0; 
             position: relative; overflow: hidden; margin-bottom: 20px;
@@ -254,6 +259,70 @@
         #mobile-menu.active { display: block; }
 
     </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Elite Van Fitouts",
+      "image": "https://elitevanfitouts.com.au/logo.png",
+      "url": "https://elitevanfitouts.com.au/branding.html",
+      "telephone": "0468 086 490",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "8 Enterprise Dr",
+        "addressLocality": "Rowville",
+        "addressRegion": "VIC",
+        "postalCode": "3178",
+        "addressCountry": "AU"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -37.915,
+        "longitude": 145.243
+      },
+      "priceRange": "$$$",
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": -37.915,
+          "longitude": 145.243
+        },
+        "geoRadius": "50000"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Vehicle Signage Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Identity Package",
+              "description": "Basic logo decals for van doors and rear."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Impact Package",
+              "description": "Partial wrap with services list and contact details."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Custom Fleet Branding",
+              "description": "Full vehicle wraps and custom design service."
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
 
@@ -296,7 +365,9 @@
 
     <div class="nav-spacer"></div>
     <header class="hero-section">
-        <div class="video-placeholder"></div>
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="signage.mov" type="video/mp4">
+        </video>
         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
         
         <div class="hero-content">
@@ -346,7 +417,7 @@
                 
                 <div class="hex-card selected" id="pkg-identity" onclick="selectItem('pkg', 'Identity', 'pkg-identity')">
                     <div class="pkg-img-box">
-                        <div class="w-full h-full flex items-center justify-center bg-[#111] text-gray-700 mono text-xs uppercase border-b border-[#333]">IMAGE: SIMPLE LOGO</div>
+                        <div class="placeholder-text">AWAITING_IMAGE_DATA...</div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
@@ -364,8 +435,9 @@
                 </div>
 
                 <div class="hex-card" id="pkg-impact" onclick="selectItem('pkg', 'Impact', 'pkg-impact')">
-                    <div class="pkg-img-box">
-                        <div class="w-full h-full flex items-center justify-center bg-[#111] text-gray-700 mono text-xs uppercase border-b border-[#333]">IMAGE: PARTIAL WRAP</div>
+                    <div class="pkg-img-box" id="slideshow-impact">
+                        <img src="van sign.png" class="pkg-img active" alt="Partial Van Wrap Signage Melbourne">
+                        <img src="ute sign.png" class="pkg-img" alt="Ute Tray Signage and Decals Rowville">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
@@ -384,7 +456,7 @@
 
                 <div class="hex-card" id="pkg-custom" onclick="selectItem('pkg', 'Custom', 'pkg-custom')">
                     <div class="pkg-img-box">
-                        <div class="w-full h-full flex items-center justify-center bg-[#111] text-gray-700 mono text-xs uppercase border-b border-[#333]">IMAGE: FULL WRAP</div>
+                        <div class="placeholder-text">CUSTOM_DESIGN_REQUIRED</div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
@@ -417,7 +489,7 @@
                         Turn your van into a 24/7 lead generation machine.
                     </p>
                 </div>
-                <a href="https://elitesmartsignage.com" class="smart-btn">
+                <a href="https://elitesmartsignage.com" target="_blank" class="smart-btn">
                     Visit Elite Digital ->
                 </a>
             </div>
@@ -517,19 +589,31 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4>
-                <ul class="space-y-1"><li>Rowville (HQ)</li><li>Dandenong South</li><li>Ferntree Gully</li><li>Knoxfield</li></ul>
+                <ul class="space-y-1">
+                    <li>Rowville (HQ)</li><li>Dandenong South</li><li>Ferntree Gully</li><li>Knoxfield & Scoresby</li>
+                    <li>Bayswater & Kilsyth</li><li>Braeside & Mordialloc</li><li>Carrum Downs & Seaford</li><li>Berwick & Narre Warren</li>
+                </ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Signage Types</h4>
-                <ul class="space-y-1"><li>Vehicle Wraps</li><li>Ute Tray Signage</li><li>Fleet Branding</li><li>One Way Vision</li></ul>
+                <ul class="space-y-1">
+                    <li>Vehicle Wraps</li><li>Ute Tray Signage</li><li>Fleet Branding</li><li>One Way Vision</li>
+                    <li>Rear Window Decals</li><li>Half Wraps</li><li>Bonnet Protectors</li><li>Reflective Tape</li>
+                </ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Physical Assets</h4>
-                <ul class="space-y-1"><li>Premium Cast Vinyl</li><li>Digital Print</li><li>Computer Cut Lettering</li><li>Reflective Tape</li></ul>
+                <ul class="space-y-1">
+                    <li>Premium Cast Vinyl</li><li>Digital Print</li><li>Computer Cut Lettering</li><li>Laminated Graphics</li>
+                    <li>Weatherproof Decals</li><li>3M Wrap Film</li><li>Avery Dennison</li>
+                </ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Industries</h4>
-                <ul class="space-y-1"><li>Electrical</li><li>Plumbing</li><li>HVAC</li><li>Mobile Mechanics</li></ul>
+                <ul class="space-y-1">
+                    <li>Electrical & Data</li><li>Plumbing & Gas</li><li>HVAC & Refrigeration</li><li>Mobile Mechanics</li>
+                    <li>Locksmiths</li><li>Landscaping</li><li>Building & Construction</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -571,8 +655,24 @@
             setTimeout(() => {
                 bootScreen.style.opacity = '0';
                 setTimeout(() => bootScreen.remove(), 500);
+                
+                // Start Slideshow after boot
+                startSlideshow();
             }, delay + 500);
         });
+
+        // --- SLIDESHOW LOGIC ---
+        function startSlideshow() {
+            const images = document.querySelectorAll('#slideshow-impact .pkg-img');
+            if(images.length < 2) return;
+            
+            let index = 0;
+            setInterval(() => {
+                images[index].classList.remove('active');
+                index = (index + 1) % images.length;
+                images[index].classList.add('active');
+            }, 3000); // 3 Second Rotation
+        }
 
         // State
         let selectedPkg = 'Identity';
