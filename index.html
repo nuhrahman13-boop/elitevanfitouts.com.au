@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE VAN FITOUTS | COMMAND CENTER</title>
+    
+    <title>Elite Van Fitouts | Custom Racking, Wraps & Fleet Branding Melbourne</title>
+    <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom plywood racking, false floors, and premium vehicle wraps for Tradies in Dandenong & South East Melbourne.">
+    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elitevanfitouts.com.au/">
+
+    <meta name="geo.region" content="AU-VIC" />
+    <meta name="geo.placename" content="Rowville" />
+    <meta name="geo.position" content="-37.915;145.243" />
+    <meta name="ICBM" content="-37.915, 145.243" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM & FONTS --- */
+        /* --- CORE SYSTEM --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
-            --elite-green: #22c55e; /* True Elite Green */ 
+            --elite-green: #22c55e; 
             --elite-green-dim: rgba(34, 197, 94, 0.1);
+            --nav-height-desktop: 80px;
+            --nav-height-mobile: 60px;
         }
         
         body, html { 
@@ -22,7 +35,7 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
         .led { font-family: 'VT323', monospace; }
 
-        /* --- PRELOADER (SYSTEM BOOT) --- */
+        /* --- PRELOADER --- */
         #boot-screen {
             position: fixed; inset: 0; background: #000; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -34,9 +47,13 @@
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(12px); 
+            background: rgba(0,0,0,0.95);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: var(--nav-height-desktop);
+            display: flex; align-items: center;
         }
+        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
+
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #0a0a0a; border: 1px solid #333; width: 240px;
@@ -56,81 +73,52 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- HERO SECTION --- */
+        /* --- NAV SPACER --- */
+        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
+        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
+
+        /* --- HERO --- */
         .hero-section {
-            position: relative; width: 100%; 
-            /* Desktop Height */
-            height: 90vh; 
-            min-height: 500px;
-            overflow: hidden; 
-            display: flex; 
-            align-items: flex-end; /* Pushes content to bottom */
-            justify-content: flex-start; /* Pushes content to left */
-            background: #000;
+            position: relative; width: 100%; background: #000;
+            overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start;
+            border-bottom: 1px solid #222;
         }
         .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 1; filter: brightness(0.6) contrast(1.1);
+            width: 100%; height: 100%; object-fit: contain;
+            position: absolute; top: 0; left: 0; z-index: 0;
             object-position: center center;
         }
         
-        /* MOBILE HERO ADJUSTMENTS (Zoom Fix + Bottom Left Align) */
-        @media (max-width: 768px) {
-            .hero-section {
-                height: 55vh; /* Reduced height to zoom out */
-                min-height: auto;
-                align-items: flex-end; /* Force Bottom Alignment */
-                justify-content: flex-start; /* Force Left Alignment */
-            }
-            .hero-video {
-                object-position: 75% center; /* Shift video to show van */
-            }
+        @media (min-width: 1024px) {
+            .hero-section { height: 75vh; }
+            .hero-content { padding: 0 40px 40px 40px; }
+        }
+        @media (max-width: 1023px) {
+            .hero-section { height: 45vh; }
             .hero-content {
-                padding-bottom: 30px !important; /* Bottom padding for mobile */
-                width: 100%;
-                text-align: left;
+                width: 100%; padding: 15px !important; margin-bottom: 0px; 
+                background: linear-gradient(to top, black 50%, transparent 100%);
             }
-            .glitch-text {
-                font-size: 2.2rem !important; /* Smaller text */
-                line-height: 1 !important;
-                margin-bottom: 10px !important;
-            }
+            .glitch-text { font-size: 1.8rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
             .hero-sub {
-                display: none; /* Hide description on mobile */
-            }
-            .hero-btns {
-                margin-top: 10px;
-            }
-            .btn-main, .btn-outline {
-                padding: 10px 20px !important;
-                font-size: 0.7rem !important;
+                font-size: 0.65rem !important; line-height: 1.2 !important;
+                border-left-width: 2px !important; padding-left: 10px !important;
+                background: rgba(0,0,0,0.5);
             }
         }
 
-        .hero-fade {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
-            background: linear-gradient(to top, #000000 15%, rgba(0,0,0,0.6) 60%, transparent 100%);
-            z-index: 2;
-        }
-        .hero-content {
-            position: relative; z-index: 10; width: 100%; 
-            padding: 0 24px 80px 24px; max-width: 1400px; margin: 0 auto;
-        }
+        .hero-content { position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; }
         .glitch-text {
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
             color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
-            animation: glitchEntry 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         }
-        @keyframes glitchEntry {
-            0% { transform: translate(-10px, 10px); opacity: 0; }
-            20% { transform: translate(10px, -10px); opacity: 1; }
-            40% { transform: translate(-5px, 5px); }
-            60% { transform: translate(5px, -5px); }
-            80% { transform: translate(0, 0); }
+        .hero-sub {
+            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
+            border-left: 4px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- SEO TRAIN (Uniform Green) --- */
+        /* --- LED TICKER --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 40px; display: flex; align-items: center; z-index: 20;
@@ -138,9 +126,7 @@
             background-image: radial-gradient(#111 1px, transparent 1px);
             background-size: 4px 4px;
         }
-        .led-ticker {
-            display: flex; white-space: nowrap; animation: ticker 40s linear infinite;
-        }
+        .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
             color: var(--elite-green); font-family: 'VT323', monospace;
             text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
@@ -149,33 +135,21 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- HEX MESH TILES --- */
+        /* --- HEX TILES --- */
         .hex-card {
-            background-color: #080808; 
-            border: 1px solid #333; 
+            background-color: #080808; border: 1px solid #333; 
             position: relative; overflow: hidden; 
             transition: transform 0.3s, border-color 0.3s;
             height: 100%; display: flex; flex-direction: column;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
             background-size: 40px 40px;
         }
-        .hex-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--elite-green); 
-        }
-        .hex-card::before {
-            content: ""; position: absolute; inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 197, 94, 0.15) 0%, transparent 60%);
-            opacity: 0; transition: opacity 0.3s; pointer-events: none;
-        }
-        .hex-card:hover::before { opacity: 1; }
-
+        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); }
         .card-inner {
             position: relative; z-index: 10; padding: 30px; height: 100%;
             display: flex; flex-direction: column; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95)); 
         }
-
         .status-bar {
             margin-top: auto; padding-top: 20px; border-top: 1px solid #333;
             display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace;
@@ -183,39 +157,31 @@
         }
         .hex-card:hover .status-bar { color: var(--elite-green); border-color: var(--elite-green); }
 
-        /* --- BUSINESS IN A BOX (Redesigned) --- */
+        /* --- BUSINESS IN A BOX --- */
         .crate-section {
             background: #050505; border-top: 1px solid #222; border-bottom: 1px solid #222;
-            padding: 100px 24px; position: relative;
+            padding: 80px 24px; position: relative;
         }
         .crate-container {
             max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
             border: 1px solid #333; background: #000;
         }
-        /* Visual Left Side */
         .crate-visual {
             flex: 1; background: #0a0a0a; border-bottom: 1px solid #333; 
             display: flex; flex-direction: column; justify-content: center; padding: 40px;
             background-image: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05), transparent 40%);
         }
         @media (min-width: 768px) { .crate-visual { border-bottom: 0; border-right: 1px solid #333; } }
-
-        /* Content Right Side */
-        .crate-content {
-            flex: 1.2; padding: 50px; display: flex; flex-direction: column; justify-content: center;
-        }
-        
+        .crate-content { flex: 1.2; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
         .manifest-list {
             font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888;
             border-left: 2px solid var(--elite-green); padding-left: 20px; margin: 30px 0;
         }
         .manifest-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
-        .manifest-item span { color: white; }
 
         /* --- RADAR MAP --- */
         .radar-container {
-            position: relative; height: 450px; width: 100%; overflow: hidden;
-            background: #000;
+            position: relative; height: 400px; width: 100%; overflow: hidden; background: #000;
         }
         .radar-overlay {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -228,23 +194,12 @@
             box-shadow: 0 0 20px var(--elite-green); animation: pulseDot 2s infinite;
         }
         @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
-        
         .radar-scan {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 50%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
             background: conic-gradient(from 0deg, transparent 0deg, rgba(34, 197, 94, 0.1) 60deg, transparent 60deg);
             animation: radarSpin 4s linear infinite;
         }
         @keyframes radarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* --- SOCIAL ICONS --- */
-        .social-row { display: flex; gap: 15px; margin-top: 15px; }
-        .social-link {
-            width: 36px; height: 36px; border: 1px solid #444; display: flex; align-items: center; justify-content: center;
-            transition: 0.2s; color: #666;
-        }
-        .social-link:hover { border-color: var(--elite-green); color: var(--elite-green); transform: translateY(-2px); }
-        .social-link svg { width: 16px; height: 16px; fill: currentColor; }
 
         /* --- UTILS --- */
         .btn-main {
@@ -255,13 +210,19 @@
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
         }
         .btn-main:hover { background: white; box-shadow: 0 0 30px white; transform: scale(1.02); }
-
         .btn-outline {
             border: 1px solid #333; color: #888; font-weight: 700;
             text-transform: uppercase; padding: 14px 40px; font-size: 0.8rem;
             font-family: 'JetBrains Mono', monospace; transition: 0.2s;
         }
         .btn-outline:hover { border-color: white; color: white; }
+
+        .social-link {
+            width: 36px; height: 36px; border: 1px solid #444; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; color: #666;
+        }
+        .social-link:hover { border-color: var(--elite-green); color: var(--elite-green); transform: translateY(-2px); }
+        .social-link svg { width: 16px; height: 16px; fill: currentColor; }
 
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -270,6 +231,35 @@
         #mobile-menu.active { display: block; }
 
     </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "AutoBodyShop",
+          "name": "Elite Van Fitouts",
+          "image": "https://elitevanfitouts.com.au/logo.png",
+          "url": "https://elitevanfitouts.com.au",
+          "telephone": "0468 086 490",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8 Enterprise Dr",
+            "addressLocality": "Rowville",
+            "addressRegion": "VIC",
+            "postalCode": "3178"
+          },
+          "priceRange": "$$$",
+          "areaServed": ["Rowville", "Dandenong", "Melbourne South East"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "Elite Vehicle Signage",
+          "description": "Premium vehicle wraps and fleet branding for trades."
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
@@ -277,8 +267,8 @@
         <div id="boot-log"></div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
             
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
@@ -291,8 +281,9 @@
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
                         <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
-                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
-                        <a href="launchpad.html" class="dropdown-item text-green-500">The Launchpad <span>-></span></a>
+                        <div class="dropdown-divider"></div>
+                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
+                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
             </div>
@@ -305,26 +296,27 @@
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
             <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
-            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
-            <a href="launchpad.html" class="text-green-500 border-l-4 border-green-500 pl-4">The Launchpad</a>
+            <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
         </div>
     </div>
+
+    <div class="nav-spacer"></div>
 
     <header class="hero-section">
         <video autoplay muted loop playsinline class="hero-video">
             <source src="hero.mp4" type="video/mp4">
         </video>
-        <div class="hero-fade"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-6">
-                Engineered<br>For The <span class="text-green-500">Elite.</span>
+            <h1 class="glitch-text mb-4">
+                ENGINEERED<br>FOR THE <span class="text-green-500">ELITE.</span>
             </h1>
-            <p class="hero-sub text-gray-300 max-w-lg text-sm md:text-base leading-relaxed mb-8 border-l-2 border-green-500 pl-4">
-                We build the vehicles and systems that power Australia's top-tier trades. Fitouts. Branding. Automation. <br>
+            <p class="hero-sub">
+                We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
                 <strong>Get Organized. Get Paid.</strong>
             </p>
-            <div class="hero-btns flex gap-4">
+            <div class="flex gap-4 mt-8">
                 <a href="fitouts.html" class="btn-main">Start Build</a>
                 <a href="#services" class="btn-outline">View Systems</a>
             </div>
@@ -337,28 +329,24 @@
             <div class="led-item">VAN DRAWERS</div>
             <div class="led-item">VEHICLE SIGNAGE</div>
             <div class="led-item">UTE DRAWERS</div>
-            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">FALSE FLOORS</div>
             <div class="led-item">SHELVING</div>
             <div class="led-item">FLOORING</div>
             <div class="led-item">4X4 STORAGE</div>
             <div class="led-item">ROWVILLE WORKSHOP</div>
             <div class="led-item">FLEET BRANDING</div>
             <div class="led-item">DUAL BATTERY SYSTEMS</div>
-            <div class="led-item">TRADE SOFTWARE</div>
             <div class="led-item">MELBOURNE TRADES</div>
             <div class="led-item">CUSTOM VAN RACKING</div>
             <div class="led-item">VAN DRAWERS</div>
             <div class="led-item">VEHICLE SIGNAGE</div>
             <div class="led-item">UTE DRAWERS</div>
-            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">FALSE FLOORS</div>
             <div class="led-item">SHELVING</div>
             <div class="led-item">FLOORING</div>
             <div class="led-item">4X4 STORAGE</div>
             <div class="led-item">ROWVILLE WORKSHOP</div>
             <div class="led-item">FLEET BRANDING</div>
-            <div class="led-item">DUAL BATTERY SYSTEMS</div>
-            <div class="led-item">TRADE SOFTWARE</div>
-            <div class="led-item">MELBOURNE TRADES</div>
         </div>
     </div>
 
@@ -400,19 +388,19 @@
                     </div>
                 </a>
 
-                <a href="scaling.html" class="hex-card group">
+                <a href="launchpad.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-8">
                             <span class="mono text-green-500 text-[10px]">SYSTEM_03</span>
                             <div class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-green-500 group-hover:animate-spin transition">
-                                <span class="text-white group-hover:text-green-500">⚡</span>
+                                <span class="text-white group-hover:text-green-500">🚀</span>
                             </div>
                         </div>
-                        <h3 class="text-3xl font-black italic uppercase text-white mb-2">Scaling</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">More leads. Less Admin. Automated systems to grow your empire.</p>
+                        <h3 class="text-3xl font-black italic uppercase text-white mb-2">The Launchpad</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow">New Business? Get the full deployment package: Van + Brand + Website.</p>
                         <div class="status-bar">
                             <span>[STATUS: READY]</span>
-                            <span>[AUTO: ACTIVE]</span>
+                            <span>[DEPLOY: INSTANT]</span>
                         </div>
                     </div>
                 </a>
@@ -431,7 +419,7 @@
                         Business <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-800">In A Box.</span>
                     </h2>
                     <p class="text-gray-400 text-sm leading-relaxed mt-6">
-                        The ultimate deployment package. Stop dealing with 5 different companies. We build your Van, your Brand, and your Website simultaneously.
+                        Stop dealing with 5 different companies. We build your Van, your Brand, and your Website simultaneously at our Rowville HQ.
                     </p>
                 </div>
 
@@ -448,11 +436,7 @@
                             <span class="text-green-500">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
-                            <span>03. High-Convert Website</span>
-                            <span class="text-green-500">[INCLUDED]</span>
-                        </div>
-                        <div class="manifest-item">
-                            <span>04. Automated Lead System</span>
+                            <span>03. Trade Website Setup</span>
                             <span class="text-green-500">[INCLUDED]</span>
                         </div>
                     </div>
@@ -515,6 +499,61 @@
             </div>
 
         </div>
+        
+        <section class="py-12 bg-[#020202] border-t border-[#111]">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4>
+                    <ul class="space-y-1">
+                        <li>Rowville (HQ)</li>
+                        <li>Dandenong South</li>
+                        <li>Ferntree Gully</li>
+                        <li>Knoxfield & Scoresby</li>
+                        <li>Bayswater & Kilsyth</li>
+                        <li>Braeside & Mordialloc</li>
+                        <li>Carrum Downs & Seaford</li>
+                        <li>Berwick & Narre Warren</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">Supported Platforms</h4>
+                    <ul class="space-y-1">
+                        <li>Toyota HiAce (LWB/SLWB)</li>
+                        <li>Ford Transit Custom</li>
+                        <li>Ford Ranger (Canopy)</li>
+                        <li>LDV Deliver 9 & G10</li>
+                        <li>Hyundai Staria Load</li>
+                        <li>Mercedes Vito & Sprinter</li>
+                        <li>Volkswagen Transporter</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">System Modules</h4>
+                    <ul class="space-y-1">
+                        <li>CNC False Floors</li>
+                        <li>Heavy Duty Slides (227kg)</li>
+                        <li>Plywood Shelving Units</li>
+                        <li>Milwaukee Packout Mounts</li>
+                        <li>Cable & Gas Storage</li>
+                        <li>12V Dual Battery Systems</li>
+                        <li>Cargo Barriers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-green-900 font-bold uppercase mb-2">Trade Specializations</h4>
+                    <ul class="space-y-1">
+                        <li>Electrical Contractors</li>
+                        <li>Plumbing & Gas Fitters</li>
+                        <li>HVAC & Refrigeration</li>
+                        <li>Mobile Mechanics</li>
+                        <li>Locksmiths & Security</li>
+                        <li>Data & Communications</li>
+                        <li>Builders & Carpentry</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <div class="border-t border-[#222] py-4 text-center">
             <p class="text-[10px] text-gray-700 mono uppercase">© 2026 ELITE VAN FITOUTS. SYSTEM V2.0 ONLINE.</p>
         </div>
