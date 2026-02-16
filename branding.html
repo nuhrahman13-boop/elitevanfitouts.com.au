@@ -75,7 +75,7 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- HERO SECTION (MOBILE FIX) --- */
+        /* --- HERO SECTION --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
         
         .hero-section {
@@ -87,7 +87,7 @@
         
         .hero-video {
             width: 100%; height: 100%; 
-            object-fit: cover; /* CHANGED FROM CONTAIN TO COVER TO FILL GAP */
+            object-fit: cover; /* Ensures full screen fill */
             position: absolute; top: 0; left: 0; z-index: 0;
             object-position: center center; filter: brightness(0.6);
         }
@@ -98,7 +98,7 @@
             .hero-content { padding: 0 40px 40px 40px; width: 100%; max-width: 1400px; margin: 0 auto; pointer-events: none; }
         }
         
-        /* Mobile Specifics */
+        /* Mobile Specifics (TIGHT FIT) */
         @media (max-width: 1023px) {
             .nav-spacer { height: 60px; } /* Ensures spacer matches nav height */
             .hero-section { height: 40vh; } /* Tighter mobile height */
@@ -175,11 +175,6 @@
             position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out;
         }
         .pkg-img.active { opacity: 1; }
-        .placeholder-text {
-            color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; uppercase;
-            text-align: center;
-        }
-        /* Custom Icon for Package 3 */
         .custom-icon { font-size: 4rem; opacity: 0.5; filter: grayscale(100%); }
 
         /* --- SMART UPSELL (THE BRIDGE) --- */
@@ -414,8 +409,9 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <div class="hex-card selected" id="pkg-identity" onclick="selectItem('pkg', 'Identity', 'pkg-identity')">
-                    <div class="pkg-img-box">
-                        <div class="placeholder-text">AWAITING_IMAGE_DATA...</div>
+                    <div class="pkg-img-box" id="slideshow-identity">
+                        <img src="ute 1.png" class="pkg-img active" alt="Ute Logo Branding">
+                        <img src="van 1.avif" class="pkg-img" alt="Van Logo Branding">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
@@ -434,8 +430,8 @@
 
                 <div class="hex-card" id="pkg-impact" onclick="selectItem('pkg', 'Impact', 'pkg-impact')">
                     <div class="pkg-img-box" id="slideshow-impact">
-                        <img src="van 1.avif" class="pkg-img active" alt="Partial Van Wrap Signage Melbourne">
-                        <img src="ute 1.png" class="pkg-img" alt="Ute Tray Signage and Decals Rowville">
+                        <img src="ute sign.png" class="pkg-img active" alt="Ute Impact Signage">
+                        <img src="van sign.png" class="pkg-img" alt="Van Impact Signage">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
@@ -654,14 +650,17 @@
                 bootScreen.style.opacity = '0';
                 setTimeout(() => bootScreen.remove(), 500);
                 
-                // Start Slideshow after boot
-                startSlideshow();
+                // Start Slideshows after boot
+                initSlideshow('slideshow-identity');
+                initSlideshow('slideshow-impact');
             }, delay + 500);
         });
 
-        // --- SLIDESHOW LOGIC ---
-        function startSlideshow() {
-            const images = document.querySelectorAll('#slideshow-impact .pkg-img');
+        // --- SLIDESHOW LOGIC (Generic) ---
+        function initSlideshow(containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            const images = container.querySelectorAll('.pkg-img');
             if(images.length < 2) return;
             
             let index = 0;
