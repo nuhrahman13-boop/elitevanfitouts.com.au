@@ -75,10 +75,9 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (MOBILE FIX) --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
-        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
-
+        
         .hero-section {
             position: relative; width: 100%; 
             background: #000; overflow: hidden; 
@@ -87,24 +86,30 @@
         }
         
         .hero-video {
-            width: 100%; height: 100%; object-fit: contain; 
+            width: 100%; height: 100%; 
+            object-fit: cover; /* CHANGED FROM CONTAIN TO COVER TO FILL GAP */
             position: absolute; top: 0; left: 0; z-index: 0;
-            object-position: center center; filter: brightness(0.7);
+            object-position: center center; filter: brightness(0.6);
         }
 
+        /* Desktop */
         @media (min-width: 1024px) {
             .hero-section { height: 85vh; }
             .hero-content { padding: 0 40px 40px 40px; width: 100%; max-width: 1400px; margin: 0 auto; pointer-events: none; }
         }
+        
+        /* Mobile Specifics */
         @media (max-width: 1023px) {
-            .hero-section { height: 45vh; }
+            .nav-spacer { height: 60px; } /* Ensures spacer matches nav height */
+            .hero-section { height: 40vh; } /* Tighter mobile height */
+            
             .hero-content {
                 width: 100%; padding: 15px !important; margin-bottom: 0px; 
                 background: linear-gradient(to top, black 50%, transparent 100%);
             }
-            .glitch-text { font-size: 1.8rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
+            .glitch-text { font-size: 2rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
             .hero-sub {
-                font-size: 0.65rem !important; line-height: 1.2 !important;
+                font-size: 0.7rem !important; line-height: 1.2 !important;
                 border-left-width: 2px !important; padding-left: 10px !important;
                 background: rgba(0,0,0,0.5);
             }
@@ -163,6 +168,7 @@
         .pkg-img-box { 
             height: 250px; width: 100%; border-bottom: 1px solid #222; 
             background: #111; position: relative; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
         }
         .pkg-img { 
             width: 100%; height: 100%; object-fit: cover; 
@@ -170,10 +176,11 @@
         }
         .pkg-img.active { opacity: 1; }
         .placeholder-text {
-            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
             color: #444; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; uppercase;
-            background: repeating-linear-gradient(45deg, #111, #111 10px, #1a1a1a 10px, #1a1a1a 20px);
+            text-align: center;
         }
+        /* Custom Icon for Package 3 */
+        .custom-icon { font-size: 4rem; opacity: 0.5; filter: grayscale(100%); }
 
         /* --- SMART UPSELL (THE BRIDGE) --- */
         .smart-section {
@@ -263,44 +270,35 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Elite Van Fitouts",
-      "image": "https://elitevanfitouts.com.au/logo.png",
-      "url": "https://elitevanfitouts.com.au/branding.html",
-      "telephone": "0468 086 490",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "8 Enterprise Dr",
-        "addressLocality": "Rowville",
-        "addressRegion": "VIC",
-        "postalCode": "3178",
-        "addressCountry": "AU"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -37.915,
-        "longitude": 145.243
-      },
-      "priceRange": "$$$",
-      "serviceArea": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": -37.915,
-          "longitude": 145.243
+      "@type": "Service",
+      "serviceType": "Vehicle Signage",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Elite Van Fitouts",
+        "image": "https://elitevanfitouts.com.au/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8 Enterprise Dr",
+          "addressLocality": "Rowville",
+          "addressRegion": "VIC",
+          "postalCode": "3178"
         },
-        "geoRadius": "50000"
+        "priceRange": "$$$"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Rowville"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Vehicle Signage Services",
+        "name": "Signage Packages",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
               "name": "Identity Package",
-              "description": "Basic logo decals for van doors and rear."
+              "description": "Logo decals for doors and tailgate."
             }
           },
           {
@@ -308,15 +306,15 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Impact Package",
-              "description": "Partial wrap with services list and contact details."
+              "description": "Partial wrap with services list."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Custom Fleet Branding",
-              "description": "Full vehicle wraps and custom design service."
+              "name": "Custom Full Wrap",
+              "description": "Complete vehicle coverage."
             }
           }
         ]
@@ -375,7 +373,7 @@
                 VEHICLE <span class="text-green-500">BRANDING</span>
             </h1>
             <p class="hero-sub">
-                Dominate the road. Turn traffic into leads with premium fleet graphics. <br>
+                Dominate the road. Turn traffic into leads. <br>
                 <strong>Seen by thousands. Remembered by everyone.</strong>
             </p>
         </div>
@@ -436,8 +434,8 @@
 
                 <div class="hex-card" id="pkg-impact" onclick="selectItem('pkg', 'Impact', 'pkg-impact')">
                     <div class="pkg-img-box" id="slideshow-impact">
-                        <img src="van sign.png" class="pkg-img active" alt="Partial Van Wrap Signage Melbourne">
-                        <img src="ute sign.png" class="pkg-img" alt="Ute Tray Signage and Decals Rowville">
+                        <img src="van 1.avif" class="pkg-img active" alt="Partial Van Wrap Signage Melbourne">
+                        <img src="ute 1.png" class="pkg-img" alt="Ute Tray Signage and Decals Rowville">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
@@ -456,7 +454,7 @@
 
                 <div class="hex-card" id="pkg-custom" onclick="selectItem('pkg', 'Custom', 'pkg-custom')">
                     <div class="pkg-img-box">
-                        <div class="placeholder-text">CUSTOM_DESIGN_REQUIRED</div>
+                        <span class="custom-icon">🖌️</span>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
