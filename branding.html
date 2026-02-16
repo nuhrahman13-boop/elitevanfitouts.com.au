@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Elite Operating System | Tradie CRM & AI Automation Software</title>
-    <meta name="description" content="The all-in-one operating system for high-performance trade businesses. Auto-reply to leads, book jobs, and collect deposits while you sleep. The Digital Foreman for Australian Tradies.">
-    <meta name="keywords" content="tradie crm australia, electrician quoting software, plumber lead generation, automated sms business, job management software melbourne, ai receptionist for tradies">
+    <title>Vehicle Branding & Signage Melbourne | Elite Wraps</title>
+    <meta name="description" content="Premium vehicle signage and fleet branding in Rowville. High-impact vinyl wraps, custom decals, and logo design for tradies. Avery & 3M Certified Installers.">
+    <meta name="keywords" content="vehicle signage rowville, van wraps melbourne, ute decals, fleet branding, tradie sign writing, custom vinyl wrap">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://elitevanfitouts.com.au/scaling.html">
+    <link rel="canonical" href="https://elitevanfitouts.com.au/branding.html">
 
     <meta name="geo.region" content="AU-VIC" />
     <meta name="geo.placename" content="Rowville" />
-    <meta name="geo.position" content="-37.915;145.243" />
-    <meta name="ICBM" content="-37.915, 145.243" />
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- CORE SYSTEM --- */
@@ -54,9 +52,7 @@
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
         }
-        @media (max-width: 768px) {
-            .glass-nav { height: var(--nav-height-mobile); }
-        }
+        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
@@ -77,20 +73,24 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- BODY SPACER --- */
+        /* --- HERO SECTION --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
         @media (max-width: 768px) { .nav-spacer { height: 60px; } }
 
-        /* --- HERO SECTION --- */
         .hero-section {
             position: relative; width: 100%; 
-            background: #000; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: flex-end; 
+            background: #000; overflow: hidden; 
+            display: flex; align-items: flex-end; 
             border-bottom: 1px solid #222;
         }
         
+        .hero-video {
+            width: 100%; height: 100%; object-fit: contain; 
+            position: absolute; top: 0; left: 0; z-index: 0;
+            object-position: center center; filter: brightness(0.7);
+        }
+        
+        /* PLACEHOLDER FOR VIDEO */
         .video-placeholder {
             width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0;
             background: radial-gradient(circle at center, #111 0%, #000 90%);
@@ -99,28 +99,17 @@
             background-size: 40px 40px;
         }
 
-        /* DESKTOP CONFIG */
         @media (min-width: 1024px) {
-            .hero-section { height: 80vh; }
-            .hero-content {
-                width: 100%; max-width: 1400px; margin: 0 auto;
-                padding: 0 40px 40px 40px;
-                pointer-events: none;
-            }
+            .hero-section { height: 85vh; }
+            .hero-content { padding: 0 40px 40px 40px; width: 100%; max-width: 1400px; margin: 0 auto; pointer-events: none; }
         }
-        
-        /* MOBILE CONFIG */
         @media (max-width: 1023px) {
             .hero-section { height: 45vh; }
             .hero-content {
-                width: 100%; padding: 15px !important;
-                margin-bottom: 0px; 
+                width: 100%; padding: 15px !important; margin-bottom: 0px; 
                 background: linear-gradient(to top, black 50%, transparent 100%);
             }
-            .glitch-text {
-                font-size: 1.8rem !important; margin-bottom: 5px !important;
-                text-shadow: 0 2px 10px black;
-            }
+            .glitch-text { font-size: 1.8rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
             .hero-sub {
                 font-size: 0.65rem !important; line-height: 1.2 !important;
                 border-left-width: 2px !important; padding-left: 10px !important;
@@ -129,12 +118,6 @@
         }
 
         .hero-content { position: relative; z-index: 10; }
-        .matrix-overlay {
-            position: absolute; inset: 0; 
-            background: radial-gradient(circle, transparent 20%, #000 90%);
-            z-index: 1; pointer-events: none;
-        }
-        
         .glitch-text {
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
@@ -145,7 +128,7 @@
             border-left: 4px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- LED TICKER --- */
+        /* --- SEO TICKER --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 40px; display: flex; align-items: center; z-index: 20;
@@ -162,57 +145,13 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- THE LEAKY BUCKET --- */
-        .pain-section {
-            padding: 80px 24px; background: #050505; border-bottom: 1px solid #222;
-        }
-        .stat-grid {
-            display: grid; grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-center;
-        }
-        .stat-card {
-            border: 1px solid #333; padding: 30px; background: #000;
-        }
-        .stat-big { font-size: 4rem; font-weight: 900; color: #333; line-height: 1; }
-        .stat-big.active { color: #ef4444; }
-
-        /* --- FEATURE GRID --- */
-        .feature-grid {
-            display: grid; grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6 py-20;
-        }
-        .feature-box {
-            background: #080808; border: 1px solid #222; padding: 30px;
-            transition: 0.3s;
-        }
-        .feature-box:hover { border-color: var(--elite-green); transform: translateY(-5px); }
-        .feature-icon { font-size: 2rem; margin-bottom: 20px; }
-        
-        /* --- CHAT SIMULATION --- */
-        .sim-section {
-            padding: 80px 24px; background: #000; border-top: 1px solid #222; border-bottom: 1px solid #222;
-        }
-        .phone-mockup {
-            max-width: 400px; margin: 0 auto; border: 4px solid #333; border-radius: 30px;
-            padding: 20px; background: #111; position: relative; overflow: hidden;
-        }
-        .chat-msg {
-            background: #222; color: #ccc; padding: 10px 15px; border-radius: 15px;
-            margin-bottom: 10px; font-size: 0.85rem; max-width: 85%;
-            opacity: 0; animation: msgFade 0.5s forwards;
-        }
-        .chat-ai {
-            background: var(--elite-green); color: black; margin-left: auto;
-            border-bottom-right-radius: 2px; font-weight: bold;
-        }
-        .chat-user { border-bottom-left-radius: 2px; }
-        
-        @keyframes msgFade { to { opacity: 1; transform: translateY(0); } }
-
-        /* --- PRICING CARDS --- */
+        /* --- PACKAGES --- */
         .hex-card {
             background-color: #080808; border: 1px solid #333; 
             position: relative; overflow: hidden; 
             transition: all 0.3s; cursor: pointer;
-            display: flex; flex-direction: column;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 40px 40px;
         }
         .hex-card:hover { transform: translateY(-5px); border-color: #555; }
         .hex-card.selected {
@@ -227,18 +166,68 @@
             padding: 4px 8px; font-weight: bold; z-index: 20;
         }
         
-        .price-header {
-            padding: 30px; border-bottom: 1px solid #222; background: rgba(0,0,0,0.5);
+        .pkg-img-box { height: 250px; width: 100%; border-bottom: 1px solid #222; background: #111; position: relative; }
+        .pkg-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .hex-card:hover .pkg-img { opacity: 1; }
+
+        /* --- SMART UPSELL (THE BRIDGE) --- */
+        .smart-section {
+            background: #000; border: 1px solid var(--elite-green); margin: 60px 0;
+            position: relative; overflow: hidden;
         }
-        .price-amount { font-size: 2.5rem; font-weight: 900; line-height: 1; color: white; }
-        .price-sub { font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #666; }
-        
-        .feature-list { padding: 30px; flex-grow: 1; }
-        .feature-item { 
-            display: flex; align-items: center; gap: 12px; margin-bottom: 16px; 
-            font-size: 0.85rem; color: #aaa; 
+        .smart-bg {
+            position: absolute; inset: 0; 
+            background: radial-gradient(circle at right, rgba(34, 197, 94, 0.15), transparent 60%);
+            z-index: 0;
         }
-        .check { color: var(--elite-green); font-weight: bold; }
+        .smart-content {
+            position: relative; z-index: 10; padding: 40px;
+            display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center; gap: 30px;
+        }
+        .smart-btn {
+            background: black; border: 1px solid var(--elite-green); color: white;
+            font-family: 'JetBrains Mono', monospace; padding: 15px 30px; text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); transition: 0.2s;
+        }
+        .smart-btn:hover { background: var(--elite-green); color: black; }
+
+        /* --- FLIGHT PATH --- */
+        .flight-container { 
+            position: relative; margin: 60px 0; 
+            border-left: 2px solid #333; padding-left: 30px;
+        }
+        .flight-container::after {
+            content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%;
+            background: var(--elite-green);
+            box-shadow: 0 0 10px var(--elite-green);
+            animation: circuitFlow 4s ease-in-out infinite;
+        }
+        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
+
+        .flight-step { position: relative; margin-bottom: 50px; }
+        .flight-dot {
+            position: absolute; left: -39px; top: 0; width: 20px; height: 20px;
+            background: #000; border: 2px solid #444; border-radius: 50%;
+            z-index: 10; transition: 0.3s;
+        }
+        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
+        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
+        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- TECH SPECS --- */
+        .blueprint-card {
+            background: #050505; border: 1px solid #333; padding: 0; 
+            position: relative; overflow: hidden; margin-bottom: 20px;
+        }
+        .blueprint-header {
+            background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .blueprint-body { padding: 25px; }
+        .spec-grid { display: grid; grid-cols-2 gap-4 mt-6; }
+        .spec-point { border-bottom: 1px solid #222; padding-bottom: 5px; }
+        .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
+        .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
 
         /* --- STICKY FOOTER --- */
         .manifest-bar {
@@ -265,22 +254,6 @@
         #mobile-menu.active { display: block; }
 
     </style>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Elite Operating System",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web, iOS, Android",
-      "description": "All-in-one CRM and automation platform for Australian trade businesses.",
-      "offers": {
-        "@type": "Offer",
-        "price": "197.00",
-        "priceCurrency": "AUD"
-      }
-    }
-    </script>
 </head>
 <body>
 
@@ -295,14 +268,13 @@
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
                         Systems <span class="text-[8px] transform rotate-90">></span>
                     </button>
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
-                        <a href="scaling.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Brand Scaling <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
@@ -317,8 +289,7 @@
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
-            <a href="scaling.html" class="text-white border-l-4 border-green-500 pl-4">Brand Scaling</a>
+            <a href="branding.html" class="text-white border-l-4 border-green-500 pl-4">Signage</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
         </div>
     </div>
@@ -326,167 +297,221 @@
     <div class="nav-spacer"></div>
     <header class="hero-section">
         <div class="video-placeholder"></div>
-        <div class="matrix-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
         
         <div class="hero-content">
-            <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">Operating_System_v2.0</p>
             <h1 class="glitch-text mb-4">
-                SYSTEMIZE <br><span class="text-green-500">YOUR TRADE.</span>
+                VEHICLE <span class="text-green-500">BRANDING</span>
             </h1>
-            <p class="hero-sub text-gray-300 border-l-2 border-green-500 pl-4">
-                The Digital Foreman for high-performance tradies. <br>
-                <strong>Auto-reply to leads, book jobs, and collect deposits while you sleep.</strong>
+            <p class="hero-sub">
+                Dominate the road. Turn traffic into leads with premium fleet graphics. <br>
+                <strong>Seen by thousands. Remembered by everyone.</strong>
             </p>
         </div>
     </header>
 
     <div class="led-wrap">
         <div class="led-ticker">
-            <div class="led-item">AUTOMATED CRM</div>
-            <div class="led-item">LEAD GENERATION</div>
-            <div class="led-item">AI RECEPTIONIST</div>
-            <div class="led-item">TRADE WEBSITES</div>
-            <div class="led-item">REVIEW MANAGEMENT</div>
-            <div class="led-item">MISSED CALL TEXT-BACK</div>
-            <div class="led-item">INSTANT QUOTING</div>
-            <div class="led-item">DATABASE REACTIVATION</div>
-            <div class="led-item">SOCIAL MEDIA ADS</div>
-            <div class="led-item">BUSINESS AUTOMATION</div>
-            <div class="led-item">AUTOMATED CRM</div>
-            <div class="led-item">LEAD GENERATION</div>
-            <div class="led-item">AI RECEPTIONIST</div>
-            <div class="led-item">TRADE WEBSITES</div>
-            <div class="led-item">REVIEW MANAGEMENT</div>
-            <div class="led-item">MISSED CALL TEXT-BACK</div>
-            <div class="led-item">INSTANT QUOTING</div>
-            <div class="led-item">DATABASE REACTIVATION</div>
+            <div class="led-item">VAN SIGNAGE</div>
+            <div class="led-item">UTE BRANDING</div>
+            <div class="led-item">FLEET GRAPHICS</div>
+            <div class="led-item">LOGO DESIGN</div>
+            <div class="led-item">ONE WAY VISION</div>
+            <div class="led-item">REFLECTIVE VINYL</div>
+            <div class="led-item">CUSTOM DECALS</div>
+            <div class="led-item">MELBOURNE SIGNAGE</div>
+            <div class="led-item">ROWVILLE WORKSHOP</div>
+            <div class="led-item">CAST VINYL</div>
+            <div class="led-item">VEHICLE WRAPS</div>
+            <div class="led-item">GRAPHIC DESIGN</div>
+            <div class="led-item">VAN SIGNAGE</div>
+            <div class="led-item">UTE BRANDING</div>
+            <div class="led-item">FLEET GRAPHICS</div>
+            <div class="led-item">LOGO DESIGN</div>
+            <div class="led-item">ONE WAY VISION</div>
+            <div class="led-item">REFLECTIVE VINYL</div>
+            <div class="led-item">CUSTOM DECALS</div>
+            <div class="led-item">MELBOURNE SIGNAGE</div>
         </div>
     </div>
 
-    <section class="pain-section">
-        <div class="stat-grid">
-            <div>
-                <h2 class="text-3xl font-black uppercase italic text-white mb-6">The Leaky Bucket</h2>
-                <p class="text-gray-400 mb-6 leading-relaxed">
-                    You aren't losing work to "better" tradies. You are losing work to **faster** ones.
-                    <br><br>
-                    62% of calls to trade businesses go unanswered. 85% of those callers don't leave a voicemail—they just call the next number on Google.
-                </p>
-                <p class="text-green-500 font-bold uppercase">The Elite OS plugs the holes instantly.</p>
-            </div>
-            <div class="text-center">
-                <div class="stat-card">
-                    <div class="stat-big active">62%</div>
-                    <p class="text-xs font-mono text-gray-500 uppercase mt-2">Of Calls Missed</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="px-6 max-w-7xl mx-auto pt-20">
 
-    <section class="feature-grid">
-        <div class="feature-box">
-            <div class="feature-icon">🛡️</div>
-            <h3 class="text-xl font-bold uppercase text-white mb-2">The Interceptor</h3>
-            <p class="text-xs text-green-500 mono mb-4">MISSED CALL TEXT-BACK</p>
-            <p class="text-sm text-gray-400">
-                You're under a house. The phone rings. You ignore it. The system instantly texts them: <em>"Hey, I'm on a job. What do you need?"</em> You save the lead without stopping work.
-            </p>
-        </div>
-        <div class="feature-box">
-            <div class="feature-icon">⭐</div>
-            <h3 class="text-xl font-bold uppercase text-white mb-2">Reputation Engine</h3>
-            <p class="text-xs text-green-500 mono mb-4">AUTO REVIEW REQUESTS</p>
-            <p class="text-sm text-gray-400">
-                Stop begging for reviews. The system automatically texts the client a Google Review link the second you mark the job "Complete". Watch your ranking climb.
-            </p>
-        </div>
-        <div class="feature-box">
-            <div class="feature-icon">⚡</div>
-            <h3 class="text-xl font-bold uppercase text-white mb-2">Command Center</h3>
-            <p class="text-xs text-green-500 mono mb-4">UNIFIED INBOX</p>
-            <p class="text-sm text-gray-400">
-                Facebook, Instagram, SMS, and Email. All in one feed. Stop switching apps to find that one customer message.
-            </p>
-        </div>
-    </section>
-
-    <section class="sim-section">
-        <div class="max-w-2xl mx-auto">
-            <p class="text-center text-xs text-gray-600 mb-6 font-mono uppercase">Live Simulation: While Client Sleeps</p>
-            <div class="phone-mockup">
-                <div class="chat-msg chat-user" style="animation-delay: 0s;">Hi, can I get a quote for a switchboard upgrade?</div>
-                <div class="chat-msg chat-ai" style="animation-delay: 1s;">Hey! Thanks for reaching out. I'm currently on site. Is this for a residential or commercial property?</div>
-                <div class="chat-msg chat-user" style="animation-delay: 2.5s;">Residential. In Rowville.</div>
-                <div class="chat-msg chat-ai" style="animation-delay: 4s;">Great. Could you send a photo of your current board? I can give you a rough estimate right now.</div>
-                <div class="chat-msg chat-user" style="animation-delay: 6s;">[PHOTO ATTACHED]</div>
-                <div class="chat-msg chat-ai" style="animation-delay: 7.5s;">Thanks. Looks standard. It'll be between $800-$1100. I have a slot Tuesday at 8am?</div>
-            </div>
-            <p class="text-center text-gray-500 text-xs mt-6 italic">
-                *This conversation happened automatically at 8:30 PM. The job was booked without the tradie lifting a finger.*
-            </p>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-black uppercase italic mb-4">Operational <span class="text-green-500">Scale</span></h2>
-            <p class="text-gray-400 text-sm">No lock-in contracts. Just results.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">01.</span> Select Coverage
+            </h2>
             
-            <div class="hex-card" id="pkg-essential" onclick="selectItem('pkg', 'Core Infrastructure', 'pkg-essential')">
-                <div class="price-header">
-                    <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-2">Core Infrastructure</h3>
-                    <div class="text-green-500 flex items-baseline gap-1 justify-center">
-                        <span class="text-xl">$</span><span class="price-amount">197</span><span class="text-sm">/mo</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="hex-card selected" id="pkg-identity" onclick="selectItem('pkg', 'Identity', 'pkg-identity')">
+                    <div class="pkg-img-box">
+                        <div class="w-full h-full flex items-center justify-center bg-[#111] text-gray-700 mono text-xs uppercase border-b border-[#333]">IMAGE: SIMPLE LOGO</div>
                     </div>
-                    <p class="price-sub">For the Solo Operator</p>
-                </div>
-                <div class="feature-list">
-                    <div class="feature-item"><span class="check">✓</span> Missed Call Text Back</div>
-                    <div class="feature-item"><span class="check">✓</span> Unified Inbox (FB/Insta/SMS)</div>
-                    <div class="feature-item"><span class="check">✓</span> Review Automation</div>
-                    <div class="feature-item"><span class="check">✓</span> Google Chat Widget</div>
-                </div>
-            </div>
-
-            <div class="hex-card selected" id="pkg-pro" onclick="selectItem('pkg', 'Growth Vector', 'pkg-pro')">
-                <div class="price-header">
-                    <h3 class="text-xl font-bold uppercase italic text-white mb-2">Growth Vector</h3>
-                    <div class="text-green-500 flex items-baseline gap-1 justify-center">
-                        <span class="text-xl">$</span><span class="price-amount">297</span><span class="text-sm">/mo</span>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Identity</h3>
+                            <span class="mono text-green-500 text-sm">FROM $250</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mono mb-4">LOGO ONLY DECAL</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
+                            <li>> Logo on Front Doors</li>
+                            <li>> Logo on Rear Barn Doors</li>
+                            <li>> Premium Cast Vinyl Cut</li>
+                            <li>> Professional Install</li>
+                        </ul>
                     </div>
-                    <p class="price-sub">For the Growing Team</p>
                 </div>
-                <div class="feature-list">
-                    <div class="feature-item"><span class="check">✓</span> <strong>Everything in Core</strong></div>
-                    <div class="feature-item"><span class="check">✓</span> AI Smart Receptionist</div>
-                    <div class="feature-item"><span class="check">✓</span> Landing Page Website</div>
-                    <div class="feature-item"><span class="check">✓</span> Social Media Planner</div>
-                    <div class="feature-item"><span class="check">✓</span> Smart Calendar Booking</div>
-                </div>
-            </div>
 
-            <div class="hex-card" id="pkg-empire" onclick="selectItem('pkg', 'Domination Protocol', 'pkg-empire')">
-                <div class="price-header">
-                    <h3 class="text-xl font-bold uppercase italic text-gray-400 mb-2">Domination Protocol</h3>
-                    <div class="text-green-500 flex items-baseline gap-1 justify-center">
-                        <span class="text-xl">$</span><span class="price-amount">497</span><span class="text-sm">/mo</span>
+                <div class="hex-card" id="pkg-impact" onclick="selectItem('pkg', 'Impact', 'pkg-impact')">
+                    <div class="pkg-img-box">
+                        <div class="w-full h-full flex items-center justify-center bg-[#111] text-gray-700 mono text-xs uppercase border-b border-[#333]">IMAGE: PARTIAL WRAP</div>
                     </div>
-                    <p class="price-sub">For the Empire</p>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Impact</h3>
+                            <span class="mono text-green-500 text-sm">FROM $500</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mono mb-4">LOGO + SERVICES + CONTACT</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
+                            <li>> <strong>Everything in Identity</strong></li>
+                            <li>> Phone Number & Website</li>
+                            <li>> Service Bullet Points</li>
+                            <li>> Social Media Handles</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="feature-list">
-                    <div class="feature-item"><span class="check">✓</span> <strong>Everything in Growth</strong></div>
-                    <div class="feature-item"><span class="check">✓</span> Full Custom Website</div>
-                    <div class="feature-item"><span class="check">✓</span> CRM Pipeline Management</div>
-                    <div class="feature-item"><span class="check">✓</span> Database Reactivation</div>
-                    <div class="feature-item"><span class="check">✓</span> Priority VIP Support</div>
-                </div>
-            </div>
 
+                <div class="hex-card" id="pkg-custom" onclick="selectItem('pkg', 'Custom', 'pkg-custom')">
+                    <div class="pkg-img-box">
+                        <div class="w-full h-full flex items-center justify-center bg-[#111] text-gray-700 mono text-xs uppercase border-b border-[#333]">IMAGE: FULL WRAP</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-3xl font-black italic uppercase text-white mb-2">Custom</h3>
+                            <span class="mono text-green-500 text-sm">QUOTE</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mono mb-4">FULL WRAP / UNIQUE DESIGN</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4">
+                            <li>> Full Custom Design Process</li>
+                            <li>> Partial or Full Wraps</li>
+                            <li>> One-Way Vision Glass</li>
+                            <li>> Colour Change & Digital Print</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </section>
+
+        <div class="smart-section">
+            <div class="smart-bg"></div>
+            <div class="smart-content">
+                <div>
+                    <p class="text-green-500 font-mono text-xs uppercase mb-2">System Upgrade Available</p>
+                    <h2 class="text-3xl md:text-4xl font-black italic uppercase text-white mb-4">Want more than just a sticker?</h2>
+                    <p class="text-gray-300 max-w-xl text-sm leading-relaxed">
+                        Upgrade to <strong>Smart Signage</strong>. We combine your vehicle wrap with AI automation. 
+                        Missed call text-backs, QR code booking engines, and automated Google reviews.
+                        <br><br>
+                        Turn your van into a 24/7 lead generation machine.
+                    </p>
+                </div>
+                <a href="https://elitesmartsignage.com" class="smart-btn">
+                    Visit Elite Digital ->
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
+                Mission <span class="text-green-500">Timeline</span>
+            </h2>
+
+            <div class="max-w-4xl mx-auto px-4 flight-container">
+                
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">1. Request Quote</h4>
+                        <p class="step-desc">Select your coverage level. If you have artwork, upload it. If not, our design team takes over.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">2. Design Approval</h4>
+                        <p class="step-desc">We create a digital mockup on your exact vehicle model. You approve the look before we cut a single sheet of vinyl.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">3. Production</h4>
+                        <p class="step-desc">We print and cut your graphics using premium Avery Dennison or 3M Cast Vinyl at our Rowville HQ.</p>
+                    </div>
+                </div>
+
+                <div class="flight-step flight-node">
+                    <div class="flight-dot"></div>
+                    <div class="pl-4">
+                        <h4 class="step-title">4. Install</h4>
+                        <p class="step-desc">Drop your vehicle off. Our certified installers apply the graphics. You drive away with a mobile billboard.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-24 max-w-5xl mx-auto">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">03.</span> Material Specifications
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">Premium Cast Vinyl</h3>
+                        <span class="mono text-xs text-green-500">MAT_01</span>
+                    </div>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            We don't use cheap "Polymeric" sticker vinyl that shrinks and cracks. We use Automotive Grade Cast Vinyl (poured as a liquid) which conforms to vehicle curves.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">BRAND</span><span class="spec-val">Avery / 3M</span></div>
+                            <div class="spec-point"><span class="spec-label">TYPE</span><span class="spec-val">Cast Vinyl</span></div>
+                            <div class="spec-point"><span class="spec-label">LIFESPAN</span><span class="spec-val">7+ Years Outdoor</span></div>
+                            <div class="spec-point"><span class="spec-label">REMOVAL</span><span class="spec-val">Clean (No Glue)</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blueprint-card">
+                    <div class="blueprint-header">
+                        <h3 class="font-bold text-white uppercase">Design Principles</h3>
+                        <span class="mono text-xs text-green-500">MAT_02</span>
+                    </div>
+                    <div class="blueprint-body">
+                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                            We follow the "3-Second Rule". Your signage must communicate WHO you are and HOW to contact you within 3 seconds of viewing at 60km/h.
+                        </p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">HIERARCHY</span><span class="spec-val">Logo > Service > Phone</span></div>
+                            <div class="spec-point"><span class="spec-label">CONTRAST</span><span class="spec-val">High Visibility</span></div>
+                            <div class="spec-point"><span class="spec-label">FONTS</span><span class="spec-val">Bold / Sans-Serif</span></div>
+                            <div class="spec-point"><span class="spec-label">STYLE</span><span class="spec-val">Professional / Clean</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 
     <section class="py-12 bg-[#020202] border-t border-[#111]">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
@@ -495,12 +520,12 @@
                 <ul class="space-y-1"><li>Rowville (HQ)</li><li>Dandenong South</li><li>Ferntree Gully</li><li>Knoxfield</li></ul>
             </div>
             <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Automation Tech</h4>
-                <ul class="space-y-1"><li>Missed Call Text Back</li><li>AI Receptionist</li><li>Tradie CRM</li><li>Lead Generation</li></ul>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Signage Types</h4>
+                <ul class="space-y-1"><li>Vehicle Wraps</li><li>Ute Tray Signage</li><li>Fleet Branding</li><li>One Way Vision</li></ul>
             </div>
             <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Integrations</h4>
-                <ul class="space-y-1"><li>Xero & MYOB</li><li>Stripe Payments</li><li>Google Calendar</li><li>Facebook Ads</li></ul>
+                <h4 class="text-green-900 font-bold uppercase mb-2">Physical Assets</h4>
+                <ul class="space-y-1"><li>Premium Cast Vinyl</li><li>Digital Print</li><li>Computer Cut Lettering</li><li>Reflective Tape</li></ul>
             </div>
             <div>
                 <h4 class="text-green-900 font-bold uppercase mb-2">Industries</h4>
@@ -511,14 +536,14 @@
 
     <div class="manifest-bar">
         <div>
-            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Selected System</p>
+            <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Selected Package</p>
             <div class="flex flex-col md:flex-row md:gap-4 md:items-baseline">
-                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Growth Vector</p>
-                <p class="text-xs text-green-500 mono" id="summary-details">Most Popular</p>
+                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Identity (Logo Only)</p>
+                <p class="text-xs text-green-500 mono" id="summary-details">Awaiting Artwork...</p>
             </div>
         </div>
         <button class="submit-btn" onclick="submitQuote()">
-            Initialize System ->
+            Request Quote ->
         </button>
     </div>
 
@@ -527,9 +552,9 @@
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
             const messages = [
-                "> ANALYZING WORKFLOW...",
-                "> ESTABLISHING UPLINK...",
-                "> ELITE_OS ONLINE"
+                "> LOADING_DESIGN_ASSETS...",
+                "> CONNECTING_TO_LAB...",
+                "> SIGNAGE_MODULE_ONLINE"
             ];
             
             let delay = 0;
@@ -550,33 +575,34 @@
         });
 
         // State
-        let selectedTier = 'Growth Vector';
+        let selectedPkg = 'Identity';
 
         // Select Single Item
         function selectItem(category, value, elementId) {
-            selectedTier = value;
+            selectedPkg = value;
+            
+            // Visual Update
             document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
             document.getElementById(elementId).classList.add('selected');
+            
             updateFooter();
         }
 
         // Update Footer
         function updateFooter() {
-            document.getElementById('summary-pkg').innerText = selectedTier;
+            document.getElementById('summary-pkg').innerText = selectedPkg;
             
-            if(selectedTier.includes('Core')) {
-                document.getElementById('summary-details').innerText = "Foundation Level";
-            } else if(selectedTier.includes('Growth')) {
-                document.getElementById('summary-details').innerText = "Most Popular";
+            if(selectedPkg === 'Custom') {
+                document.getElementById('summary-details').innerText = "Requires Design Consultation";
             } else {
-                document.getElementById('summary-details').innerText = "VIP Support Included";
+                document.getElementById('summary-details').innerText = "Vehicle Specs Required";
             }
         }
 
         // Submit
         function submitQuote() {
-            const buildString = `Software Package: ${selectedTier}`;
-            window.location.href = `design-lab.html?tab=scaling&pkg=${encodeURIComponent(buildString)}`;
+            const buildString = `Branding Package: ${selectedPkg}`;
+            window.location.href = `design-lab.html?tab=branding&pkg=${encodeURIComponent(buildString)}`;
         }
     </script>
 
