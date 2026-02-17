@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,14 +57,8 @@
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
         /* --- BODY SPACER --- */
-        .nav-spacer {
-            width: 100%;
-            height: var(--nav-height-desktop);
-            background: #000;
-        }
-        @media (max-width: 768px) {
-            .nav-spacer { height: 60px; } 
-        }
+        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
+        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
 
         /* --- HERO SECTION --- */
         .hero-section {
@@ -77,7 +71,6 @@
         .hero-bg-placeholder {
             position: absolute; inset: 0; 
             background: radial-gradient(circle at center, #111 0%, #000 80%);
-            /* Placeholder pattern until video arrives */
             background-image: 
                 linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
@@ -98,25 +91,12 @@
         }
 
         /* --- COMPARISON GRID --- */
-        .compare-section {
-            padding: 80px 24px; background: #050505; border-bottom: 1px solid #222;
-        }
-        .compare-grid {
-            display: grid; grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto;
-        }
-        .compare-card {
-            padding: 40px; border-radius: 8px; position: relative;
-        }
-        .card-bad {
-            background: rgba(50, 0, 0, 0.2); border: 1px solid #500;
-        }
-        .card-good {
-            background: rgba(0, 50, 0, 0.2); border: 1px solid var(--elite-green);
-        }
-        
-        .list-item {
-            display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9rem; color: #ccc;
-        }
+        .compare-section { padding: 80px 24px; background: #050505; border-bottom: 1px solid #222; }
+        .compare-grid { display: grid; grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto; }
+        .compare-card { padding: 40px; border-radius: 8px; position: relative; }
+        .card-bad { background: rgba(50, 0, 0, 0.2); border: 1px solid #500; }
+        .card-good { background: rgba(0, 50, 0, 0.2); border: 1px solid var(--elite-green); }
+        .list-item { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9rem; color: #ccc; }
 
         /* --- ROADMAP --- */
         .roadmap-section { padding: 100px 24px; position: relative; }
@@ -131,19 +111,10 @@
         }
         @keyframes pulseLine { 0% { top: -200px; } 100% { top: 100%; } }
 
-        .phase-row {
-            display: flex; justify-content: center; align-items: center; margin-bottom: 80px; position: relative; z-index: 10;
-        }
-        .phase-card {
-            width: 45%; background: #0a0a0a; border: 1px solid #333; padding: 30px;
-            transition: 0.3s;
-        }
+        .phase-row { display: flex; justify-content: center; align-items: center; margin-bottom: 80px; position: relative; z-index: 10; }
+        .phase-card { width: 45%; background: #0a0a0a; border: 1px solid #333; padding: 30px; transition: 0.3s; }
         .phase-card:hover { border-color: var(--elite-green); transform: scale(1.02); }
-        
-        .phase-dot {
-            width: 20px; height: 20px; background: #000; border: 2px solid var(--elite-green);
-            border-radius: 50%; box-shadow: 0 0 15px var(--elite-green); margin: 0 40px;
-        }
+        .phase-dot { width: 20px; height: 20px; background: #000; border: 2px solid var(--elite-green); border-radius: 50%; box-shadow: 0 0 15px var(--elite-green); margin: 0 40px; }
 
         /* Mobile Roadmap Fix */
         @media (max-width: 768px) {
@@ -154,17 +125,11 @@
         }
 
         /* --- INDUSTRIES --- */
-        .industry-grid {
-            display: grid; grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto;
-        }
-        .industry-tag {
-            background: #111; border: 1px solid #333; padding: 15px; text-align: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888;
-            transition: 0.3s; cursor: default;
-        }
+        .industry-grid { display: grid; grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto; }
+        .industry-tag { background: #111; border: 1px solid #333; padding: 15px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888; transition: 0.3s; cursor: default; }
         .industry-tag:hover { border-color: var(--elite-green); color: white; }
 
-        /* --- STICKY FOOTER --- */
+        /* --- STICKY FOOTER (LOCKED) --- */
         .manifest-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
@@ -173,14 +138,13 @@
             display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center;
         }
         .submit-btn {
-            background: var(--elite-green); color: black;
+            background: #222; color: #555; cursor: not-allowed;
             font-family: 'JetBrains Mono', monospace; font-weight: 800;
             padding: 14px 40px; text-transform: uppercase; 
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            transition: 0.2s; width: 100%; margin-top: 10px;
+            transition: 0.2s; width: 100%; margin-top: 10px; border: 1px solid #333;
         }
         @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
-        .submit-btn:hover { background: white; transform: scale(1.02); }
 
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -206,7 +170,6 @@
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
                         <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
-                        <a href="scaling.html" class="dropdown-item">Brand Scaling <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item text-green-500 border-l-2 border-green-500">The Launchpad <span>-></span></a>
@@ -222,7 +185,6 @@
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
             <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
-            <a href="scaling.html" class="text-gray-400 hover:text-green-500">Brand Scaling</a>
             <a href="launchpad.html" class="text-white border-l-4 border-green-500 pl-4">The Launchpad</a>
         </div>
     </div>
@@ -342,16 +304,10 @@
             <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Program Status</p>
             <p class="text-xl font-bold text-green-500 animate-pulse">OPEN FOR APPLICATIONS</p>
         </div>
-        <button class="submit-btn" onclick="submitApp()">
-            Initiate Launch ->
+        <button class="submit-btn">
+            🔒 LOCKED UNTIL MARCH
         </button>
     </div>
-
-    <script>
-        function submitApp() {
-            window.location.href = `design-lab.html?tab=launchpad`;
-        }
-    </script>
 
 </body>
 </html>
