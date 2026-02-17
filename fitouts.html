@@ -54,9 +54,7 @@
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
         }
-        @media (max-width: 768px) {
-            .glass-nav { height: var(--nav-height-mobile); }
-        }
+        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
@@ -77,29 +75,19 @@
         .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- BODY SPACER --- */
-        .nav-spacer {
-            width: 100%;
-            height: var(--nav-height-desktop);
-            background: #000;
-        }
-        @media (max-width: 768px) {
-            .nav-spacer { height: 60px; } 
-        }
-
         /* --- HERO SECTION --- */
+        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
+        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
+
         .hero-section {
             position: relative; width: 100%; 
-            background: #000; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: flex-end; 
+            background: #000; overflow: hidden; 
+            display: flex; align-items: flex-end; 
             border-bottom: 1px solid #222;
         }
         
         .hero-video {
-            width: 100%; height: 100%; 
-            object-fit: contain; 
+            width: 100%; height: 100%; object-fit: contain; 
             position: absolute; top: 0; left: 0; z-index: 0;
             object-position: center center;
         }
@@ -107,25 +95,17 @@
         /* DESKTOP CONFIG */
         @media (min-width: 1024px) {
             .hero-section { height: 80vh; }
-            .hero-content {
-                width: 100%; max-width: 1400px; margin: 0 auto;
-                padding: 0 40px 40px 40px;
-                pointer-events: none;
-            }
+            .hero-content { padding: 0 40px 40px 40px; width: 100%; max-width: 1400px; margin: 0 auto; pointer-events: none; }
         }
         
         /* MOBILE CONFIG */
         @media (max-width: 1023px) {
             .hero-section { height: 40vh; }
             .hero-content {
-                width: 100%; padding: 15px !important;
-                margin-bottom: 0px; 
+                width: 100%; padding: 15px !important; margin-bottom: 0px; 
                 background: linear-gradient(to top, black 50%, transparent 100%);
             }
-            .glitch-text {
-                font-size: 1.8rem !important; margin-bottom: 5px !important;
-                text-shadow: 0 2px 10px black;
-            }
+            .glitch-text { font-size: 1.8rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
             .hero-sub {
                 font-size: 0.65rem !important; line-height: 1.2 !important;
                 border-left-width: 2px !important; padding-left: 10px !important;
@@ -134,7 +114,6 @@
         }
 
         .hero-content { position: relative; z-index: 10; }
-        
         .glitch-text {
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
@@ -145,7 +124,7 @@
             border-left: 4px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- SEO TICKER --- */
+        /* --- LED TICKER --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 40px; display: flex; align-items: center; z-index: 20;
@@ -162,7 +141,7 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- PACKAGE CARDS (VIDEO) --- */
+        /* --- PACKAGE CARDS --- */
         .hex-card {
             background-color: #080808; border: 1px solid #333; 
             position: relative; overflow: hidden; 
@@ -192,7 +171,21 @@
         }
         .hex-card:hover .pkg-media video { opacity: 1; }
 
-        /* --- RACKING & ADD-ONS (Large Images) --- */
+        /* --- MATERIAL SELECTION --- */
+        .mat-card {
+            background: #080808; border: 1px solid #333; padding: 20px;
+            cursor: pointer; transition: 0.2s; position: relative;
+        }
+        .mat-card:hover { border-color: #666; }
+        .mat-card.selected { border-color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
+        .mat-card.selected::before {
+            content: "✓"; position: absolute; top: 10px; right: 10px;
+            color: var(--elite-green); font-weight: bold;
+        }
+        .mat-title { font-weight: bold; color: white; text-transform: uppercase; margin-bottom: 5px; }
+        .mat-desc { font-size: 0.75rem; color: #888; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- RACKING & ADD-ONS --- */
         .spec-item {
             background: #080808; border: 1px solid #333; margin-bottom: 24px;
             overflow: hidden;
@@ -206,18 +199,18 @@
         }
         
         .spec-content { padding: 24px; }
-        
-        .spec-actions {
-            display: flex; gap: 10px; margin-top: 15px;
-        }
+        .spec-actions { display: flex; gap: 10px; margin-top: 15px; }
         
         .add-btn {
             flex: 1; background: var(--elite-green); color: black;
             padding: 10px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem; font-weight: bold; transition: 0.2s; text-align: center;
         }
-        .add-btn:hover { background: white; }
-        .add-btn.added { background: #333; color: white; border: 1px solid #555; }
+        /* LOCKED STATE */
+        .add-btn.locked {
+            background: #222; color: #555; border: 1px solid #333; cursor: not-allowed;
+        }
+        .add-btn.locked:hover { background: #222; color: #555; }
         
         .info-btn {
             background: transparent; border: 1px solid #333; color: #888;
@@ -249,11 +242,11 @@
         .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 5px; }
         .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- TECHNICAL DATA (The Blueprint) --- */
+        /* --- TECHNICAL DATA --- */
         .blueprint-card {
             background: #050505; border: 1px solid #333; padding: 0; 
             position: relative; overflow: hidden; margin-bottom: 30px;
-            scroll-margin-top: 120px; /* Offset for anchor links */
+            scroll-margin-top: 120px;
         }
         .blueprint-header {
             background: #111; padding: 15px 20px; border-bottom: 1px solid #333;
@@ -271,13 +264,12 @@
         .blueprint-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
         .blueprint-data { padding: 30px; }
-        
         .spec-grid { display: grid; grid-cols-2 gap-4 mt-6; }
         .spec-point { border-bottom: 1px solid #222; padding-bottom: 5px; }
         .spec-label { display: block; font-size: 0.65rem; color: #555; font-family: 'JetBrains Mono', monospace; uppercase; }
         .spec-val { display: block; font-size: 0.9rem; color: white; font-weight: bold; }
 
-        /* --- STICKY FOOTER --- */
+        /* --- STICKY FOOTER (LOCKED) --- */
         .manifest-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
@@ -286,14 +278,14 @@
             display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center;
         }
         .submit-btn {
-            background: var(--elite-green); color: black;
+            background: #222; color: #555; cursor: not-allowed;
             font-family: 'JetBrains Mono', monospace; font-weight: 800;
             padding: 14px 40px; text-transform: uppercase; 
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            transition: 0.2s; width: 100%; margin-top: 10px;
+            transition: 0.2s; width: 100%; margin-top: 10px; border: 1px solid #333;
         }
         @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
-        .submit-btn:hover { background: white; transform: scale(1.02); }
+        /* No hover effect for locked button */
 
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -311,40 +303,7 @@
       "image": "https://elitevanfitouts.com.au/logo.png",
       "url": "https://elitevanfitouts.com.au/fitouts.html",
       "telephone": "0468 086 490",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "8 Enterprise Dr",
-        "addressLocality": "Rowville",
-        "addressRegion": "VIC",
-        "postalCode": "3178",
-        "addressCountry": "AU"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -37.915,
-        "longitude": 145.243
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "07:00",
-        "closes": "17:00"
-      },
-      "priceRange": "$$$",
-      "areaServed": [
-        "Rowville", "Dandenong", "Dandenong South", "Ferntree Gully", 
-        "Knoxfield", "Scoresby", "Lysterfield", "Mulgrave", 
-        "Keysborough", "Braeside", "Carrum Downs", "Frankston", 
-        "Berwick", "Narre Warren", "Hallam"
-      ],
-      "makesOffer": {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Custom Van Fitouts",
-          "description": "CNC False floors, shelving units, and drawer systems for commercial vehicles."
-        }
-      }
+      "priceRange": "$$$"
     }
     </script>
 </head>
@@ -411,40 +370,20 @@
             <div class="led-item">VAN RACKING</div>
             <div class="led-item">VAN DRAWERS</div>
             <div class="led-item">FALSE FLOORS</div>
-            <div class="led-item">TOOLBOX SHELVES</div>
-            <div class="led-item">SLIDE OUTS</div>
-            <div class="led-item">CUSTOM SHELVING</div>
-            <div class="led-item">UTE DRAWERS</div>
-            <div class="led-item">CARGO BARRIERS</div>
-            <div class="led-item">PLYWOOD SHELVING</div>
-            <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">VAN RACKING</div>
-            <div class="led-item">VAN DRAWERS</div>
-            <div class="led-item">FALSE FLOORS</div>
-            <div class="led-item">TOOLBOX SHELVES</div>
-            <div class="led-item">SLIDE OUTS</div>
-            <div class="led-item">CUSTOM SHELVING</div>
-            <div class="led-item">UTE DRAWERS</div>
-            <div class="led-item">CARGO BARRIERS</div>
-            <div class="led-item">PLYWOOD SHELVING</div>
             <div class="led-item">ROWVILLE WORKSHOP</div>
         </div>
     </div>
 
     <div class="px-6 max-w-7xl mx-auto pt-20">
 
-        <div class="mb-24">
+        <div class="mb-20">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">01.</span> Select Base Configuration
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="hex-card selected" id="pkg-essential" onclick="selectItem('pkg', 'Essential', 'pkg-essential')">
-                    <div class="pkg-media">
-                        <video autoplay muted loop playsinline>
-                            <source src="essential.mov" type="video/mp4">
-                        </video>
-                    </div>
+                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="essential.mov" type="video/mp4"></video></div>
                     <div class="p-6">
                         <h3 class="text-3xl font-black italic uppercase text-white mb-2">Essential</h3>
                         <p class="text-[10px] text-green-500 mono mb-4">FALSE FLOOR + DRAWERS</p>
@@ -456,13 +395,8 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="hex-card" id="pkg-pro" onclick="selectItem('pkg', 'Pro', 'pkg-pro')">
-                    <div class="pkg-media">
-                        <video autoplay muted loop playsinline>
-                            <source src="pro.mp4" type="video/mp4">
-                        </video>
-                    </div>
+                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="pro.mp4" type="video/mp4"></video></div>
                     <div class="p-6">
                         <h3 class="text-3xl font-black italic uppercase text-white mb-2">Pro</h3>
                         <p class="text-[10px] text-green-500 mono mb-4">MOST POPULAR</p>
@@ -474,13 +408,8 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="hex-card" id="pkg-elite" onclick="selectItem('pkg', 'Elite', 'pkg-elite')">
-                    <div class="pkg-media">
-                        <video autoplay muted loop playsinline>
-                            <source src="elite.mp4" type="video/mp4">
-                        </video>
-                    </div>
+                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="elite.mp4" type="video/mp4"></video></div>
                     <div class="p-6">
                         <h3 class="text-3xl font-black italic uppercase text-white mb-2">Elite</h3>
                         <p class="text-[10px] text-green-500 mono mb-4">FULL WORKSHOP</p>
@@ -497,68 +426,75 @@
 
         <div class="mb-24">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">02.</span> Racking & Components
+                <span class="text-green-500 text-sm mono">02.</span> Select Finish
             </h2>
-            <p class="text-gray-400 mb-6 text-sm">Add modules to your build. Click "See Specs" for full engineering data.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="mat-card selected" id="mat-hex" onclick="selectItem('fin', 'Hex Ply (Black)', 'mat-hex')">
+                    <div class="mat-title">Hex Ply (Black)</div>
+                    <p class="mat-desc">15mm Anti-Skid, Water Resistant, Reflective. The Elite Standard.</p>
+                </div>
+                <div class="mat-card" id="mat-ply" onclick="selectItem('fin', 'Plain Ply (Raw)', 'mat-ply')">
+                    <div class="mat-title">Plain Ply (Raw)</div>
+                    <p class="mat-desc">17mm Structural Plywood. Durable, paintable, classic look.</p>
+                </div>
+                <div class="mat-card" id="mat-carpet" onclick="selectItem('fin', 'Carpet Finish', 'mat-carpet')">
+                    <div class="mat-title">Marine Carpet</div>
+                    <p class="mat-desc">Charcoal automotive carpet lining. Sound deadening and premium feel.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">03.</span> Racking & Components
+            </h2>
+            <p class="text-gray-400 mb-6 text-sm">Add modules to your build. Click "See Specs" for engineering data.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
                 <div class="spec-item group" id="spec-crate">
-                    <div class="spec-img-box">
-                        <img src="euro crates shelf.jpg" alt="Euro Crate Shelf">
-                    </div>
+                    <div class="spec-img-box"><img src="euro crates shelf.jpg" alt="Euro Crate Shelf"></div>
                     <div class="spec-content">
                         <h4 class="text-xl font-bold text-white uppercase mb-2">Crate Shelves</h4>
-                        <p class="text-sm text-gray-400 mb-4">Angled storage for standard Euro Crates. Perfect for loose fittings.</p>
+                        <p class="text-sm text-gray-400 mb-4">Angled storage for standard Euro Crates.</p>
                         <div class="spec-actions">
-                            <button class="add-btn w-full" onclick="toggleAddon('Crate Shelves', this)">+ Add to Build</button>
+                            <button class="add-btn locked">🔒 LOCKED UNTIL MARCH</button>
                             <button class="info-btn" onclick="scrollToSpec('tech-crate')">See Specs</button>
                         </div>
                     </div>
                 </div>
-
                 <div class="spec-item group" id="spec-toolbox">
-                    <div class="spec-img-box">
-                        <img src="tool shelf1.jpg" alt="Toolbox Shelf">
-                    </div>
+                    <div class="spec-img-box"><img src="tool shelf1.jpg" alt="Toolbox Shelf"></div>
                     <div class="spec-content">
                         <h4 class="text-xl font-bold text-white uppercase mb-2">Toolbox Shelves</h4>
-                        <p class="text-sm text-gray-400 mb-4">High-lip shelves custom sized for Packout, Makpac, and Systainers.</p>
+                        <p class="text-sm text-gray-400 mb-4">High-lip shelves for Packout/Makpac.</p>
                         <div class="spec-actions">
-                            <button class="add-btn w-full" onclick="toggleAddon('Toolbox Shelves', this)">+ Add to Build</button>
+                            <button class="add-btn locked">🔒 LOCKED UNTIL MARCH</button>
                             <button class="info-btn" onclick="scrollToSpec('tech-toolbox')">See Specs</button>
                         </div>
                     </div>
                 </div>
-
                 <div class="spec-item group" id="spec-org">
-                    <div class="spec-img-box">
-                        <img src="seperator1.jpg" alt="Organiser Shelf">
-                    </div>
+                    <div class="spec-img-box"><img src="seperator1.jpg" alt="Organiser Shelf"></div>
                     <div class="spec-content">
                         <h4 class="text-xl font-bold text-white uppercase mb-2">Organiser Shelves</h4>
-                        <p class="text-sm text-gray-400 mb-4">Fixed dividers for sprays, glues, and loose tools.</p>
+                        <p class="text-sm text-gray-400 mb-4">Fixed dividers for sprays and glues.</p>
                         <div class="spec-actions">
-                            <button class="add-btn w-full" onclick="toggleAddon('Organiser Shelves', this)">+ Add to Build</button>
+                            <button class="add-btn locked">🔒 LOCKED UNTIL MARCH</button>
                             <button class="info-btn" onclick="scrollToSpec('tech-org')">See Specs</button>
                         </div>
                     </div>
                 </div>
-
                 <div class="spec-item group" id="spec-silicone">
-                    <div class="spec-img-box">
-                        <img src="silicone.jpg" alt="Silicone Holder">
-                    </div>
+                    <div class="spec-img-box"><img src="silicone.jpg" alt="Silicone Holder"></div>
                     <div class="spec-content">
                         <h4 class="text-xl font-bold text-white uppercase mb-2">Silicone Holder</h4>
-                        <p class="text-sm text-gray-400 mb-4">Vertical storage for sealant and adhesive cartridges.</p>
+                        <p class="text-sm text-gray-400 mb-4">Vertical storage for adhesive tubes.</p>
                         <div class="spec-actions">
-                            <button class="add-btn w-full" onclick="toggleAddon('Silicone Holder', this)">+ Add to Build</button>
+                            <button class="add-btn locked">🔒 LOCKED UNTIL MARCH</button>
                             <button class="info-btn" onclick="scrollToSpec('tech-silicone')">See Specs</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -566,169 +502,30 @@
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
                 Mission <span class="text-green-500">Timeline</span>
             </h2>
-
             <div class="max-w-4xl mx-auto px-4 flight-container">
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">1. Strategy Call</h4>
-                        <p class="step-desc">Submit your manifest. We call you immediately to confirm the chassis, lock in the price, and book the slot.</p>
-                    </div>
-                </div>
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">2. Drop Off</h4>
-                        <p class="step-desc">0700 Hours. Drop the van at HQ. Our team begins the installation sequence immediately.</p>
-                    </div>
-                </div>
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">3. Rapid Deployment</h4>
-                        <p class="step-desc">We execute the install in a single day. Flooring, drawers, racking, and cleaning.</p>
-                    </div>
-                </div>
-                <div class="flight-step flight-node">
-                    <div class="flight-dot"></div>
-                    <div class="pl-4">
-                        <h4 class="step-title">4. Combat Ready</h4>
-                        <p class="step-desc">1600 Hours. Pick up your vehicle. Fully operational and ready for site the next morning.</p>
-                    </div>
-                </div>
+                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">1. Strategy Call</h4><p class="step-desc">Submit manifest. We confirm chassis & price.</p></div></div>
+                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">2. Drop Off</h4><p class="step-desc">0700 Hours. Drop the van at HQ.</p></div></div>
+                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">3. Rapid Deployment</h4><p class="step-desc">One day install.</p></div></div>
+                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">4. Combat Ready</h4><p class="step-desc">1600 Hours. Ready for site.</p></div></div>
             </div>
         </div>
 
         <div class="mb-24 max-w-5xl mx-auto">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">04.</span> Engineering Data
+                <span class="text-green-500 text-sm mono">05.</span> Engineering Data
             </h2>
-            
             <div class="blueprint-card" id="tech-floor">
-                <div class="blueprint-header">
-                    <h3 class="font-bold text-white uppercase">False Floor Systems</h3>
-                    <span class="mono text-xs text-green-500">SPEC_01</span>
-                </div>
-                <div class="blueprint-layout">
-                    <div class="blueprint-visual">
-                        <video autoplay muted loop playsinline class="blueprint-video">
-                            <source src="false floor.mov" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            We raise the deck height to create massive storage tunnels. This cavity is engineered to house long ladders, 3m conduit, and spirit levels without cluttering the main cabin.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">CORE MATERIAL</span><span class="spec-val">12mm Trans-Tex Birch</span></div>
-                            <div class="spec-point"><span class="spec-label">SURFACE FACE</span><span class="spec-val">Phenolic Hex Pattern</span></div>
-                            <div class="spec-point"><span class="spec-label">SLIP RATING</span><span class="spec-val">R10 Anti-Skid</span></div>
-                            <div class="spec-point"><span class="spec-label">DRAWER LOAD</span><span class="spec-val">227kg Dynamic</span></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="blueprint-header"><h3 class="font-bold text-white uppercase">False Floor Systems</h3><span class="mono text-xs text-green-500">SPEC_01</span></div>
+                <div class="blueprint-layout"><div class="blueprint-visual"><video autoplay muted loop playsinline class="blueprint-video"><source src="false floor.mov" type="video/mp4"></video></div><div class="blueprint-data"><p class="text-sm text-gray-400 mb-4 leading-relaxed">Raises deck height for massive storage tunnels.</p><div class="spec-grid"><div class="spec-point"><span class="spec-label">CORE</span><span class="spec-val">12mm Trans-Tex</span></div><div class="spec-point"><span class="spec-label">FACE</span><span class="spec-val">Phenolic Hex</span></div></div></div></div>
             </div>
-
-            <div class="blueprint-card" id="tech-crate">
-                <div class="blueprint-header">
-                    <h3 class="font-bold text-white uppercase">Crate & Box Racking</h3>
-                    <span class="mono text-xs text-green-500">SPEC_02</span>
-                </div>
-                <div class="blueprint-layout">
-                    <div class="blueprint-visual">
-                        <img src="euro crates shelf.jpg" class="blueprint-img">
-                    </div>
-                    <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            Angled rails designed for Euro Crates. Allows rapid access to loose fittings. Gravity-fed retention ensures bins stay put during transit.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">ANGLE</span><span class="spec-val">15 Degrees</span></div>
-                            <div class="spec-point"><span class="spec-label">COMPATIBILITY</span><span class="spec-val">Standard Euro Bin</span></div>
-                            <div class="spec-point"><span class="spec-label">CONSTRUCTION</span><span class="spec-val">CNC Birch Ply</span></div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <div class="blueprint-card" id="tech-toolbox">
-                <div class="blueprint-header">
-                    <h3 class="font-bold text-white uppercase">Toolbox Integration</h3>
-                    <span class="mono text-xs text-green-500">SPEC_03</span>
-                </div>
-                <div class="blueprint-layout">
-                    <div class="blueprint-visual">
-                        <img src="tool shelf1.jpg" class="blueprint-img">
-                    </div>
-                    <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            Heavy duty shelves sized specifically for system cases (Milwaukee Packout, Makita Makpac). Features a 30mm lip to prevent slide-off.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">LIP HEIGHT</span><span class="spec-val">30mm Retention</span></div>
-                            <div class="spec-point"><span class="spec-label">LOAD CAPACITY</span><span class="spec-val">80kg Per Shelf</span></div>
-                            <div class="spec-point"><span class="spec-label">CUSTOM SIZE</span><span class="spec-val">Yes - Any Brand</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="blueprint-card" id="tech-silicone">
-                <div class="blueprint-header">
-                    <h3 class="font-bold text-white uppercase">Silicone Holders</h3>
-                    <span class="mono text-xs text-green-500">SPEC_04</span>
-                </div>
-                <div class="blueprint-layout">
-                    <div class="blueprint-visual">
-                        <img src="silicone.jpg" class="blueprint-img">
-                    </div>
-                    <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
-                            CNC machined holders for standard adhesive and sealant tubes. Mounts to the end panel of racking for quick access from rear doors.
-                        </p>
-                        <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">DIAMETER</span><span class="spec-val">Standard 50mm Tube</span></div>
-                            <div class="spec-point"><span class="spec-label">CAPACITY</span><span class="spec-val">3, 6, or 9 Tubes</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
 
     </div>
 
     <section class="py-12 bg-[#020202] border-t border-[#111]">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-700">
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4>
-                <ul class="space-y-1">
-                    <li>Rowville (HQ)</li><li>Dandenong South</li><li>Ferntree Gully</li><li>Knoxfield & Scoresby</li>
-                    <li>Bayswater & Kilsyth</li><li>Braeside & Mordialloc</li><li>Carrum Downs & Seaford</li><li>Berwick & Narre Warren</li>
-                </ul>
+            <div><h4 class="text-green-900 font-bold uppercase mb-2">Service Zones</h4><ul class="space-y-1"><li>Rowville</li><li>Dandenong</li></ul></div>
             </div>
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Supported Platforms</h4>
-                <ul class="space-y-1">
-                    <li>Toyota HiAce (LWB/SLWB)</li><li>Ford Transit Custom</li><li>Ford Ranger (Canopy)</li><li>LDV Deliver 9 & G10</li>
-                    <li>Hyundai Staria Load</li><li>Mercedes Vito & Sprinter</li><li>Volkswagen Transporter</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">System Modules</h4>
-                <ul class="space-y-1">
-                    <li>CNC False Floors</li><li>Heavy Duty Slides (227kg)</li><li>Plywood Shelving Units</li><li>Milwaukee Packout Mounts</li>
-                    <li>Cable & Gas Storage</li><li>12V Dual Battery Systems</li><li>Cargo Barriers</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-green-900 font-bold uppercase mb-2">Trade Specializations</h4>
-                <ul class="space-y-1">
-                    <li>Electrical Contractors</li><li>Plumbing & Gas Fitters</li><li>HVAC & Refrigeration</li><li>Mobile Mechanics</li>
-                    <li>Locksmiths & Security</li><li>Data & Communications</li><li>Builders & Carpentry</li>
-                </ul>
-            </div>
-        </div>
     </section>
 
     <div class="manifest-bar">
@@ -736,26 +533,21 @@
             <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Active Manifest</p>
             <div class="flex flex-col md:flex-row md:gap-4 md:items-baseline">
                 <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Essential Setup</p>
-                <p class="text-xs text-green-500 mono" id="summary-details">Hex Ply</p>
+                <p class="text-xs text-green-500 mono" id="summary-details">Hex Ply (Black)</p>
             </div>
         </div>
-        <button class="submit-btn" onclick="submitQuote()">
-            Confirm Loadout ->
+        <button class="submit-btn">
+            🔒 LOCKED UNTIL MARCH
         </button>
     </div>
 
     <script>
-        // --- PRELOADER SEQUENCE ---
+        // --- PRELOADER ---
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
-            const messages = [
-                "> LOADING_SCHEMATICS...",
-                "> CONNECTING_TO_DATABASE...",
-                "> FITOUT_CONFIGURATOR_READY"
-            ];
-            
+            const messages = ["> LOADING_SCHEMATICS...", "> CONNECTING_TO_DATABASE...", "> FITOUT_CONFIGURATOR_READY"];
             let delay = 0;
-            messages.forEach((msg, index) => {
+            messages.forEach((msg) => {
                 setTimeout(() => {
                     const p = document.createElement('div');
                     p.className = 'boot-text';
@@ -764,11 +556,7 @@
                 }, delay);
                 delay += 300;
             });
-
-            setTimeout(() => {
-                bootScreen.style.opacity = '0';
-                setTimeout(() => bootScreen.remove(), 500);
-            }, delay + 500);
+            setTimeout(() => { bootScreen.style.opacity = '0'; setTimeout(() => bootScreen.remove(), 500); }, delay + 500);
         });
 
         // State
@@ -778,7 +566,7 @@
             addons: []
         };
 
-        // Select Single Item
+        // Select Item
         function selectItem(category, value, elementId) {
             if (category === 'pkg') state.pkg = value;
             if (category === 'fin') state.finish = value;
@@ -789,45 +577,20 @@
             updateFooter();
         }
 
-        // Scroll to Specs
+        // Scroll
         function scrollToSpec(id) {
             const element = document.getElementById(id);
             if(element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                // Flash effect
                 element.style.borderColor = 'var(--elite-green)';
                 setTimeout(() => element.style.borderColor = '#333', 1000);
             }
         }
 
-        // Add/Remove Addon
-        function toggleAddon(name, btn) {
-            if (state.addons.includes(name)) {
-                state.addons = state.addons.filter(i => i !== name);
-                btn.classList.remove('added');
-                btn.innerText = "+ Add to Build";
-            } else {
-                state.addons.push(name);
-                btn.classList.add('added');
-                btn.innerText = "ADDED";
-            }
-            updateFooter();
-        }
-
         // Update Footer
         function updateFooter() {
             document.getElementById('summary-pkg').innerText = state.pkg + " Setup";
-            let details = "";
-            if (state.addons.length > 0) {
-                details += "+ " + state.addons.length + " Modules";
-            }
-            document.getElementById('summary-details').innerText = details;
-        }
-
-        // Submit
-        function submitQuote() {
-            const buildString = `Base: ${state.pkg}, Addons: ${state.addons.join(', ')}`;
-            window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(buildString)}`;
+            document.getElementById('summary-details').innerText = state.finish;
         }
     </script>
 
