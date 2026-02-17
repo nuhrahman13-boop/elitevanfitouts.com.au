@@ -110,15 +110,25 @@
         .form-wrapper {
             display: none; max-width: 1000px; margin: 0 auto;
             background: #000; border: 1px solid #333; 
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; min-height: 400px;
             animation: slideUp 0.5s ease-out;
         }
         .form-wrapper.active { display: block; }
         
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- LOCK SCREEN --- */
+        .lock-screen {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 400px; background: #050505; text-align: center;
+            border: 1px solid #222;
+        }
+        .lock-icon { font-size: 3rem; margin-bottom: 20px; opacity: 0.5; }
+        .lock-title { font-family: 'JetBrains Mono', monospace; font-weight: bold; color: #555; margin-bottom: 10px; font-size: 1.2rem; }
+        .lock-sub { color: #444; font-size: 0.8rem; }
+
         /* Sidebar for Launchpad Form */
-        .lp-layout { display: grid; grid-cols-1 lg:grid-cols-[1fr_2fr]; }
+        .lp-layout { display: grid; grid-cols-1 lg:grid-cols-[1fr_2fr]; height: 100%; }
         .lp-info { background: #0a0a0a; padding: 40px; border-right: 1px solid #222; }
         
         .step-list { margin-top: 30px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888; }
@@ -152,7 +162,7 @@
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
@@ -167,7 +177,7 @@
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Signage</a>
+            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
             <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
         </div>
     </div>
@@ -197,7 +207,7 @@
             <div class="lp-layout">
                 <div class="lp-info">
                     <h3 class="text-2xl font-black italic uppercase text-white mb-2">Empire <span class="text-green-500">Builder</span></h3>
-                    <p class="text-xs text-gray-400 mb-8 uppercase tracking-widest">Incubation Program Application</p>
+                    <p class="text-xs text-gray-400 mb-8 uppercase tracking-widest">Incubation Program</p>
                     
                     <ul class="step-list">
                         <li><span>01.</span> Application Review</li>
@@ -206,31 +216,13 @@
                         <li><span>04.</span> Production Phase</li>
                         <li><span>05.</span> Handover & Launch</li>
                     </ul>
-
-                    <div class="mt-8 border-t border-[#333] pt-4">
-                        <p class="text-[10px] text-gray-500">REQUIREMENTS:</p>
-                        <p class="text-xs text-white mt-1">• Existing Trade or Clear Business Plan</p>
-                        <p class="text-xs text-white mt-1">• Ready to Deploy in 3-4 Weeks</p>
-                    </div>
                 </div>
-                <div class="bg-black border-l border-[#333]"> 
-                    <iframe
-                        src="https://api.leadconnectorhq.com/widget/form/0OVCiqVakHInuwHfCZGp"
-                        style="width:100%;height:100%;border:none;border-radius:0px;background:#000000;"
-                        id="iframe-launchpad"
-                        data-layout="{'id':'INLINE'}"
-                        data-trigger-type="alwaysShow"
-                        data-trigger-value=""
-                        data-activation-type="alwaysActivated"
-                        data-activation-value=""
-                        data-deactivation-type="neverDeactivate"
-                        data-deactivation-value=""
-                        data-form-name="WEB - launchpad App"
-                        data-height="1051"
-                        data-layout-iframe-id="inline-0OVCiqVakHInuwHfCZGp"
-                        data-form-id="0OVCiqVakHInuwHfCZGp"
-                        title="WEB - launchpad App"
-                    ></iframe>
+                <div class="bg-black border-l border-[#333]">
+                    <div class="lock-screen">
+                        <div class="lock-icon">🔒</div>
+                        <h3 class="lock-title">SYSTEM LOCKED</h3>
+                        <p class="lock-sub">Applications Open March 2026</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -239,23 +231,11 @@
             <div class="p-4 bg-[#0a0a0a] text-center border-b border-[#333]">
                 <h3 class="text-lg font-bold text-white uppercase">Fitout Consultation</h3>
             </div>
-            <iframe
-                src="https://api.leadconnectorhq.com/widget/form/DHGvcQD4xgCfwCbG0Cqm"
-                style="width:100%;height:100%;border:none;background:#000000;"
-                id="iframe-fitout"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="WEB - Fitout Config."
-                data-height="1122"
-                data-layout-iframe-id="inline-DHGvcQD4xgCfwCbG0Cqm"
-                data-form-id="DHGvcQD4xgCfwCbG0Cqm"
-                title="WEB - Fitout Config."
-            ></iframe>
+            <div class="lock-screen">
+                <div class="lock-icon">🔒</div>
+                <h3 class="lock-title">CAPACITY REACHED</h3>
+                <p class="lock-sub">Bookings Re-Open March 2026</p>
+            </div>
         </div>
 
         <div id="form-branding" class="form-wrapper">
@@ -314,27 +294,26 @@
             // 2. Activate Tab
             switchTab(tab);
 
-            // 3. Update Console & Inject Data
+            // 3. Update Console & Inject Data (Only for Branding as others are locked)
             if (pkg) {
-                // Visual Update
                 const cleanPkg = decodeURIComponent(pkg).toUpperCase();
                 document.getElementById('console-output').innerHTML = `IMPORTING: <span style="color:white">${cleanPkg}</span>`;
                 
-                // DATA INJECTION
-                const iframeId = 'iframe-' + tab;
-                const iframe = document.getElementById(iframeId);
-                if(iframe) {
-                    let currentSrc = iframe.src;
-                    if(currentSrc.indexOf('?') > -1) {
-                        iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
-                    } else {
-                        iframe.src = currentSrc + '?package_selection=' + encodeURIComponent(pkg);
+                if (tab === 'branding') {
+                    const iframe = document.getElementById('iframe-branding');
+                    if(iframe) {
+                        let currentSrc = iframe.src;
+                        if(currentSrc.indexOf('?') > -1) {
+                            iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
+                        } else {
+                            iframe.src = currentSrc + '?package_selection=' + encodeURIComponent(pkg);
+                        }
                     }
                 }
             } else {
                 // Default Messages
-                if(tab === 'launchpad') document.getElementById('console-output').innerText = "INITIALIZING LAUNCH SEQUENCE...";
-                if(tab === 'fitout') document.getElementById('console-output').innerText = "SELECT FITOUT CONFIGURATION";
+                if(tab === 'launchpad') document.getElementById('console-output').innerText = "SYSTEM LOCKED (MARCH 2026)";
+                if(tab === 'fitout') document.getElementById('console-output').innerText = "SYSTEM LOCKED (MARCH 2026)";
                 if(tab === 'branding') document.getElementById('console-output').innerText = "AWAITING BRANDING BRIEF";
             }
         };
