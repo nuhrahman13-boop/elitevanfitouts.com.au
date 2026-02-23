@@ -174,7 +174,7 @@
         
         /* Default Unselected Card Title */
         .hex-card .card-title {
-            color: #ffffff; /* Ensures it is visible before clicking */
+            color: #ffffff; 
         }
         
         /* SELECTED STATE */
@@ -302,9 +302,11 @@
         }
         @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
 
+        /* MOBILE MENU OVERRIDE (WHITE BACKGROUND) */
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+            background: #ffffff; /* White Theme */
+            z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
 
@@ -315,6 +317,18 @@
         }
 
     </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoBodyShop",
+      "name": "Elite Van Fitouts",
+      "image": "https://elitevanfitouts.com.au/logo.png",
+      "url": "https://elitevanfitouts.com.au/fitouts.html",
+      "telephone": "0468 086 490",
+      "priceRange": "$$$"
+    }
+    </script>
 </head>
 <body>
 
@@ -330,7 +344,7 @@
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
             
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold border-b-2 border-green-500 pb-1">Home</a>
+                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
                 <div class="relative dropdown">
                     <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
                         MENU <span class="text-[10px]">▼</span>
@@ -345,28 +359,26 @@
                     </div>
                 </div>
             </div>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-sm tracking-widest font-bold z-50 relative">MENU ▼</button>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
         </div>
     </nav>
 
     <div id="mobile-menu">
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-white hover:text-green-500">Home</a>
-            <a href="fitouts.html" class="text-white border-l-4 border-green-500 pl-4">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Signage</a>
-            <a href="launchpad.html" class="text-gray-400 hover:text-green-500">The Launchpad</a>
+            <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
+            <a href="fitouts.html" class="text-black border-l-4 border-green-500 pl-4 transition">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
+            <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
         </div>
     </div>
 
     <div class="nav-spacer"></div>
 
     <header class="hero-section">
-        <div class="hero-video-wrapper">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="fitout hero.mp4" type="video/mp4">
-            </video>
-            <div class="hero-fade"></div>
-        </div>
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="fitout hero.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
         
         <div class="hero-content">
             <h1 class="glitch-text mb-4">
@@ -481,7 +493,7 @@
             <p class="text-gray-500 mb-6 text-sm">Add modules to your build. Click "See Specs" for engineering data.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="spec-item group">
+                <div class="spec-item group" id="spec-crate">
                     <div class="spec-img-box"><img src="euro crates shelf.jpg" alt="Euro Crate Shelf"></div>
                     <div class="spec-content">
                         <h4 class="text-2xl font-black italic text-white uppercase mb-2">Crate Shelves</h4>
@@ -492,7 +504,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="spec-item group">
+                <div class="spec-item group" id="spec-toolbox">
                     <div class="spec-img-box"><img src="tool shelf1.jpg" alt="Toolbox Shelf"></div>
                     <div class="spec-content">
                         <h4 class="text-2xl font-black italic text-white uppercase mb-2">Toolbox Shelves</h4>
@@ -503,7 +515,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="spec-item group">
+                <div class="spec-item group" id="spec-org">
                     <div class="spec-img-box"><img src="seperator1.jpg" alt="Organiser Shelf"></div>
                     <div class="spec-content">
                         <h4 class="text-2xl font-black italic text-white uppercase mb-2">Organiser Shelves</h4>
@@ -514,7 +526,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="spec-item group">
+                <div class="spec-item group" id="spec-silicone">
                     <div class="spec-img-box"><img src="silicone.jpg" alt="Silicone Holder"></div>
                     <div class="spec-content">
                         <h4 class="text-2xl font-black italic text-white uppercase mb-2">Silicone Holder</h4>
