@@ -22,7 +22,7 @@
         
         :root { 
             --elite-green: #22c55e; 
-            --elite-green-glow: rgba(34, 197, 94, 0.2); /* Soft ambient glow */
+            --elite-green-glow: rgba(34, 197, 94, 0.2); 
             --off-white: #f4f5f7; 
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
@@ -99,7 +99,7 @@
             .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
         }
         
-        /* Mobile Config (Stacked Layout with Dedicated Black Button Zone) */
+        /* Mobile Config */
         @media (max-width: 1023px) {
             .nav-spacer { display: none; }
             body { padding-top: var(--nav-height-mobile); } 
@@ -108,36 +108,45 @@
                 display: flex; flex-direction: column; height: auto;
             }
             .hero-video-wrapper {
-                position: relative; width: 100%; height: 45vh;
+                position: relative; width: 100%; height: 50vh; /* Taller to allow overlap */
             }
             .hero-video { 
                 position: absolute; width: 100%; height: 100%; object-fit: cover;
-                object-position: 75% top; filter: brightness(0.7);
+                object-position: 60% top; /* Shifted left slightly */
+                filter: brightness(0.7);
             }
             .hero-fade {
-                position: absolute; bottom: 0; left: 0; width: 100%; height: 30%;
+                position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
                 background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2;
             }
             .hero-content {
-                width: 100%; background: #000; padding: 20px 20px 40px 20px; text-align: left;
+                width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left;
                 position: relative; z-index: 10;
+                margin-top: -60px; /* PULLS TEXT UP OVER THE VIDEO */
             }
-            .hero-title { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px; }
-            .hero-sub { display: none; }
+            .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
+            .hero-sub { 
+                display: block !important; /* Visible on mobile now */
+                font-size: 0.85rem !important; 
+                line-height: 1.4 !important;
+                margin-bottom: 15px !important;
+            }
             .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
             .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
+            .btn-locked { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
         }
 
-        /* Hero Typography */
-        .hero-title {
-            font-family: 'Inter', sans-serif; font-weight: 300; 
-            font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 0.95;
-            text-transform: uppercase; font-style: italic; letter-spacing: 0.02em;
-            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.9); margin-bottom: 15px;
+        /* Hero Typography (Restored Original Heavy Glitch Style) */
+        .glitch-text {
+            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
+            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
-        .hero-title strong { font-weight: 900; color: var(--elite-green); }
+        .glitch-text strong { color: var(--elite-green); }
+        
         .hero-sub {
-            font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px;
+            font-family: 'Inter', sans-serif; font-weight: 400;
+            font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px;
             border-left: 3px solid var(--elite-green); padding-left: 20px;
         }
 
@@ -145,9 +154,9 @@
         .btn-main {
             background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
             font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; /* Curved corners */
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
             transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px var(--elite-green-glow); /* Ambient glow */
+            box-shadow: 0 0 15px var(--elite-green-glow); 
         }
         .btn-main:hover { 
             background: white; border-color: white; 
@@ -157,10 +166,19 @@
         .btn-outline {
             background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
             font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; /* Curved corners */
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
             transition: all 0.3s ease;
         }
         .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
+
+        .btn-locked {
+            background: rgba(10, 10, 12, 0.9); color: #666; font-weight: 800;
+            font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px;
+            border: 1px solid #333; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            cursor: not-allowed; pointer-events: none;
+            backdrop-filter: blur(5px);
+        }
 
         /* --- TICKER --- */
         .led-wrap {
@@ -172,26 +190,28 @@
         }
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
-            display: flex; align-items: center; letter-spacing: 2px; text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
+            color: var(--elite-green); font-family: 'VT323', monospace;
+            text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
+            display: flex; align-items: center; letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- HEX TILES (Floating + Rounded + Glow) --- */
+        /* --- HEX TILES --- */
         .hex-card {
             background-color: #080808; 
-            border: 1px solid var(--elite-green); 
-            border-radius: 16px; /* Smooth corners */
+            border: 1px solid #333; 
             position: relative; overflow: hidden; 
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             height: 100%; display: flex; flex-direction: column;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
             background-size: 40px 40px;
-            box-shadow: 0 0 25px var(--elite-green-glow); /* Permanent ambient glow */
+            border-radius: 12px;
         }
         .hex-card:hover { 
             transform: translateY(-5px); 
-            box-shadow: 0 0 40px rgba(34, 197, 94, 0.4); /* Intense hover glow */
+            border-color: var(--elite-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15); 
         }
         .card-inner {
             position: relative; z-index: 10; padding: 35px 30px; height: 100%;
@@ -204,6 +224,7 @@
         .card-desc {
             color: #aaa; font-weight: 400; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 30px;
         }
+        
         .status-bar {
             margin-top: auto; padding-top: 20px; border-top: 1px solid #333;
             display: flex; justify-content: space-between; align-items: center;
@@ -211,17 +232,19 @@
             transition: border-color 0.3s;
         }
         .hex-card:hover .status-bar { border-color: rgba(34, 197, 94, 0.4); }
+        
         .status-indicator { display: flex; align-items: center; gap: 8px; }
         .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
+        .led-dot.red { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
 
         /* --- BUSINESS IN A BOX --- */
-        .crate-section { padding: 80px 24px; position: relative; background: transparent; }
+        .crate-section { padding: 100px 24px; position: relative; background: #050505; border-top: 1px solid #111; }
         .crate-container {
             max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
-            background: #000; border: 1px solid var(--elite-green);
-            border-radius: 16px; overflow: hidden;
-            box-shadow: 0 0 30px var(--elite-green-glow); /* Outer glow */
+            background: #000; border: 1px solid #333; border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
         }
         .crate-visual {
             flex: 1; background: #0a0a0a; border-bottom: 1px solid #333; 
@@ -230,26 +253,21 @@
             background-image: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 50%);
         }
         @media (min-width: 768px) { .crate-visual { border-bottom: 0; border-right: 1px solid #333; } }
+        
         .crate-content { flex: 1.2; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
         .manifest-list {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888;
             border-left: 2px solid var(--elite-green); padding-left: 20px; margin: 30px 0; letter-spacing: 0.5px;
         }
         .manifest-item { margin-bottom: 12px; display: flex; justify-content: space-between; }
 
-        /* --- MAP / CONTACT --- */
-        #contact { padding: 80px 24px; background: transparent; }
-        .contact-wrapper {
-            max-width: 1200px; margin: 0 auto; display: grid; md:grid-cols-2 h-auto md:h-[500px];
-            background: #000; border: 1px solid var(--elite-green); border-radius: 16px; overflow: hidden;
-            box-shadow: 0 0 30px var(--elite-green-glow);
-        }
+        /* --- RADAR MAP --- */
         .radar-container {
-            position: relative; height: 100%; min-height: 400px; width: 100%; background: #000;
+            position: relative; height: 100%; min-height: 450px; width: 100%; overflow: hidden; background: #000;
         }
         .radar-overlay {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.2);
+            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.1);
             border-radius: 50%; pointer-events: none; z-index: 10;
         }
         .radar-overlay::before {
@@ -284,6 +302,12 @@
             background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
+
+        /* --- INVISIBLE SEO --- */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+        }
 
     </style>
     
@@ -366,15 +390,18 @@
         </div>
         
         <div class="hero-content">
-            <h1 class="hero-title">
+            <h1 class="glitch-text mb-4">
                 ENGINEERED<br>FOR THE <strong>ELITE.</strong>
             </h1>
             <p class="hero-sub mb-8">
                 We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
                 <span class="font-bold text-white">Get Organized. Get Paid.</span>
             </p>
-            <div class="hero-btns">
-                <a href="fitouts.html" class="btn-main">Start Build</a>
+            <div class="hero-btns mt-8">
+                <button class="btn-locked">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-8v-4z"/></svg>
+                    FITOUTS (MARCH)
+                </button>
                 <a href="#services" class="btn-outline">View Systems</a>
             </div>
         </div>
@@ -423,10 +450,10 @@
                         <p class="card-desc">Maximise Space. Custom CNC racking designed for your specific tools.</p>
                         <div class="status-bar">
                             <div class="status-indicator">
-                                <div class="led-dot green"></div>
-                                <span class="text-white">OPERATIONAL</span>
+                                <div class="led-dot red"></div>
+                                <span class="text-white">CAPACITY REACHED</span>
                             </div>
-                            <span class="text-green-500">[ONLINE]</span>
+                            <span class="text-red-500">[LOCKED]</span>
                         </div>
                     </div>
                 </a>
@@ -463,10 +490,10 @@
                         <p class="card-desc">New Business? Get the full deployment package: Van + Brand + Website.</p>
                         <div class="status-bar">
                             <div class="status-indicator">
-                                <div class="led-dot green"></div>
-                                <span class="text-white">OPERATIONAL</span>
+                                <div class="led-dot red"></div>
+                                <span class="text-white">CAPACITY REACHED</span>
                             </div>
-                            <span class="text-green-500">[ONLINE]</span>
+                            <span class="text-red-500">[LOCKED]</span>
                         </div>
                     </div>
                 </a>
@@ -480,7 +507,7 @@
             <div class="crate-container w-full">
                 
                 <div class="crate-visual">
-                    <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase mb-4">Incubator Program</p>
+                    <p class="mono text-green-500 text-[10px] tracking-[0.2em] uppercase mb-4">Incubator Program</p>
                     <h2 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-2 leading-none">
                         Business <br><span class="text-green-500">In A Box.</span>
                     </h2>
@@ -495,29 +522,29 @@
                     <div class="manifest-list">
                         <div class="manifest-item">
                             <span class="text-white">01. Custom Vehicle Fitout</span>
-                            <span class="text-gray-500">[INCLUDED]</span>
+                            <span class="text-gray-600">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
                             <span class="text-white">02. Premium Vehicle Signage</span>
-                            <span class="text-gray-500">[INCLUDED]</span>
+                            <span class="text-gray-600">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
                             <span class="text-white">03. Trade Website Setup</span>
-                            <span class="text-gray-500">[INCLUDED]</span>
+                            <span class="text-gray-600">[INCLUDED]</span>
                         </div>
                     </div>
 
-                    <a href="launchpad.html" class="btn-main mt-4">Initiate Launch</a>
+                    <a href="launchpad.html" class="btn-outline w-full text-center mt-4 border-[#333]">View System Details -></a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="contact-wrapper">
+    <section id="contact" class="py-20 px-6 bg-[#020202]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-[#222] bg-[#080808] rounded-xl overflow-hidden">
             
-            <div class="radar-container border-b md:border-b-0 md:border-r border-[#333]">
+            <div class="radar-container border-b md:border-b-0 md:border-r border-[#222]">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886043236077!2d145.24156637686737!3d-37.91035763953573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d0802905555%3A0x1c37b037307024e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" 
                     width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(1.2);" 
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -525,30 +552,30 @@
                 <div class="radar-overlay">
                     <div class="radar-scan"></div>
                 </div>
-                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-4 py-2 text-xs mono text-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]">
+                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-3 py-1.5 text-[10px] mono text-gray-400">
                     TARGET: 8 ENTERPRISE DR, ROWVILLE
                 </div>
             </div>
 
-            <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0a0a0a]">
-                <p class="mono text-gray-500 text-xs tracking-widest uppercase mb-4">Workshop HQ</p>
+            <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0a0a0c]">
+                <p class="mono text-gray-500 text-[10px] tracking-[0.2em] uppercase mb-4">Workshop HQ</p>
                 <h2 class="text-3xl md:text-4xl font-black italic uppercase text-white mb-2">Ready to <span class="text-green-500">Work?</span></h2>
-                <p class="text-gray-400 mb-10 text-sm">Deployments available Mon-Sat.</p>
+                <p class="text-gray-500 mb-10 text-sm">Deployments available Mon-Sat.</p>
                 
                 <div class="space-y-6">
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold mb-1 mono">Secure Line</p>
+                        <p class="text-[10px] text-gray-600 uppercase font-bold mb-1 mono">Secure Line</p>
                         <div class="flex items-center gap-4">
                             <a href="tel:0468086490" class="text-2xl font-mono text-white hover:text-green-500 transition">0468 086 490</a>
                         </div>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold mb-1 mono">Comms</p>
-                        <a href="mailto:info@elitevanfitouts.com.au" class="text-base font-mono text-gray-400 hover:text-white transition">info@elitevanfitouts.com.au</a>
+                        <p class="text-[10px] text-gray-600 uppercase font-bold mb-1 mono">Comms</p>
+                        <a href="mailto:info@elitevanfitouts.com.au" class="text-sm font-mono text-gray-400 hover:text-white transition">info@elitevanfitouts.com.au</a>
                     </div>
                     
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold mb-2 mono">Connect</p>
+                        <p class="text-[10px] text-gray-600 uppercase font-bold mb-2 mono">Connect</p>
                         <div class="social-row">
                             <a href="https://www.facebook.com/share/1Da7HLaCu7" target="_blank" class="social-icon">
                                 <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
@@ -567,19 +594,20 @@
     </section>
         
     <div class="sr-only">
-        <h2>Comprehensive Van Fitouts and Custom Trade Vehicle Solutions in Rowville and Melbourne</h2>
-        <p>Elite Van Fitouts is Melbourne's premier destination for custom van racking, false floors, and heavy-duty vehicle storage systems. Based in Rowville, we service the entire South East Melbourne region, including Dandenong, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, and Narre Warren.</p>
-        
-        <h3>Custom Van Racking for All Trade Platforms</h3>
-        <p>We engineer and install precision CNC plywood shelving units, heavy-duty sliding drawers (rated to 227kg), and custom false floors. Our fitout systems are perfectly calibrated for leading commercial platforms including Toyota HiAce (LWB and SLWB), Ford Transit Custom, Ford Ranger canopies, LDV Deliver 9, LDV G10, Hyundai Staria Load, Mercedes Vito, Mercedes Sprinter, and Volkswagen Transporter.</p>
-        
-        <h3>Vehicle Signage and Fleet Branding Dandenong</h3>
-        <p>Turn your commercial vehicle into a 24/7 lead generation machine with our premium vehicle wrap and signage services. We use high-grade Avery Dennison and 3M cast vinyl for ultimate durability. Our services include full vehicle wraps, partial wraps, custom ute tray decals, one-way vision rear window graphics, computer-cut lettering, reflective tape installation, and complete fleet branding design for local trade businesses.</p>
-        
-        <h3>Specialized Fitouts for Plumbers, Electricians, and Builders</h3>
-        <p>Every trade requires a unique storage setup. We provide specialized modules including Milwaukee Packout integration mounts, secure cable and gas cylinder storage, 12V dual battery electrical systems, silicone cartridge holders, and tested cargo barriers. Our layouts are optimized for Electrical Contractors, Plumbing & Gas Fitters, HVAC & Refrigeration technicians, Mobile Mechanics, Locksmiths, Security specialists, Data & Communications experts, and Building & Carpentry professionals.</p>
-        
-        <p>Stop wasting time searching for tools. Stop losing work to poor branding. The Elite Launchpad program is the ultimate "Business in a Box" solution, delivering a fully fitted van, professional vehicle branding, and trade website setup simultaneously. Transform your workflow and upgrade your business presentation with Elite Van Fitouts today.</p>
+        <h1>Elite Van Fitouts: The Premier Custom Vehicle Racking & Fleet Branding Experts in Melbourne</h1>
+        <p>Welcome to Elite Van Fitouts, the industry leader in high-performance commercial vehicle transformations. Based in the heart of Rowville, Victoria, we are the ultimate destination for tradesmen, contractors, and fleet managers across South East Melbourne seeking unparalleled organization, durability, and visual impact. Our workshop proudly services a massive geographical footprint including Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, and Oakleigh.</p>
+
+        <h2>Engineered Van Racking and CNC Plywood Shelving Systems</h2>
+        <p>Stop searching for tools and start maximizing your billable hours. We specialize in precision-engineered, heavy-duty van racking systems designed specifically for the rigorous demands of Australian trades. Our core modules include custom CNC-cut plywood shelving, massive 227kg-rated heavy-duty sliding drawers, ultra-durable false floors, and under-floor storage tunnels designed to house long materials like conduit and ladders without cluttering your main cabin space.</p>
+        <p>Our fitouts are perfectly calibrated and custom-scribed for the most popular commercial platforms on the market. Whether you drive a Toyota HiAce (LWB or SLWB), a Ford Transit Custom, a Ford Ranger canopy setup, an LDV Deliver 9, an LDV G10, a Hyundai Staria Load, a Mercedes Vito, a Mercedes Sprinter, a Volkswagen Transporter, or a Renault Trafic, our team delivers a flawless fit. We provide trade-specific layouts tailored for Electricians, Plumbing and Gas Fitters, HVAC and Air Conditioning Refrigeration technicians, Mobile Mechanics, Locksmiths, Security installers, Data and Communications experts, Builders, Carpenters, and Landscapers. Upgrades include Milwaukee Packout integration mounts, secure cable and gas cylinder storage, 12V dual battery electrical systems, silicone cartridge holders, and ADR-tested cargo barriers.</p>
+
+        <h2>High-Impact Vehicle Signage, Ute Decals, and Fleet Branding in Dandenong</h2>
+        <p>Your vehicle is a moving billboard. Elite Van Fitouts provides elite-tier vehicle signage and fleet branding services designed to turn traffic into high-paying leads. Operating out of our Rowville HQ, our graphic design and installation teams utilize only premium, automotive-grade Avery Dennison and 3M cast vinyl to ensure your brand stands the test of time, weather, and worksite abuse. We don't use cheap polymeric stickers that shrink and crack; we use premium vinyl poured as a liquid to perfectly conform to your vehicle's curves.</p>
+        <p>Our signage packages cater to every budget and marketing strategy. We offer Identity packages featuring crisp, computer-cut logo decals for front doors and rear tailgates. Our Impact packages feature partial van wraps, integrating bold service lists, contact information, and social media handles. For the ultimate presence, we provide custom full vehicle wraps, complete color changes, digital print graphics, one-way vision window mesh, custom ute tray decals, half wraps, bonnet protectors, and high-visibility reflective tape installations. From a single tradie ute to a massive corporate fleet branding rollout in Melbourne, Elite delivers unmatched visual authority.</p>
+
+        <h2>The Launchpad: Business in a Box for Melbourne Tradies</h2>
+        <p>Time is money, and coordinating multiple vendors costs you both. The Elite Launchpad is our exclusive "Business in a Box" incubation program designed for serious tradesmen launching a new venture or rapidly scaling an existing one. We eliminate the friction of dealing with five different companies by building your entire operational infrastructure simultaneously under one roof.</p>
+        <p>While our workshop engineers your custom van fitout and applies your premium vehicle signage, our digital team constructs a high-converting trade website and integrates an automated CRM system (Customer Relationship Management). We configure advanced business automation including Missed Call Text-Back, automated Google Review generation, unified inbox management (Facebook, Instagram, SMS, Email), instant quoting software, and database reactivation tools. You drop off an empty van and walk out with a fully stocked, fully branded, and digitally automated business ready to dominate the Melbourne market. Stop wasting time. Systemize your trade with Elite Van Fitouts.</p>
     </div>
 
     <div class="py-8 text-center bg-[#000] border-t border-[#111]">
@@ -587,7 +615,6 @@
     </div>
 
     <script>
-        // --- PRELOADER SEQUENCE ---
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
             const bootLog = document.getElementById('boot-log');
