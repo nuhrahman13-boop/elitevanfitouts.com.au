@@ -18,7 +18,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* --- CORE SYSTEM: DARK LUXURY --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
             --elite-green: #22c55e; 
@@ -39,16 +39,28 @@
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
+        .led { font-family: 'VT323', monospace; }
 
         /* --- PRELOADER --- */
         #boot-screen {
             position: fixed; inset: 0; background: #000; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
-            transition: opacity 0.5s ease-out;
+            transition: opacity 0.4s ease-out;
         }
-        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; letter-spacing: 1px; }
-        @keyframes flashText { to { opacity: 1; } }
+        .boot-text { 
+            font-size: 0.85rem; margin-bottom: 15px; letter-spacing: 2px; height: 20px; 
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        .loader-container {
+            width: 220px; height: 3px; background: #111; border-radius: 2px; overflow: hidden; position: relative;
+        }
+        .loader-bar {
+            width: 0%; height: 100%; background: var(--elite-green);
+            box-shadow: 0 0 15px var(--elite-green);
+            animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
 
         /* --- NAV --- */
         .glass-nav { 
@@ -116,7 +128,7 @@
             }
             .hero-content {
                 width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left;
-                position: relative; z-index: 10; margin-top: -60px;
+                position: relative; z-index: 10; margin-top: -60px; /* Merges text gracefully over video */
             }
             .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
             .hero-sub { 
@@ -124,10 +136,10 @@
                 line-height: 1.4 !important; margin-bottom: 15px !important;
             }
             .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
-            .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
+            .btn-main, .btn-outline, .btn-locked { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
         }
 
-        /* Hero Typography (Original Glitch Style Restored) */
+        /* Hero Typography */
         .glitch-text {
             font-family: 'Inter', sans-serif;
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
@@ -142,7 +154,7 @@
             border-left: 3px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- BUTTONS (Unlocked, Rounded & Glowing) --- */
+        /* --- BUTTONS (Unlocked & Glowing) --- */
         .btn-main {
             background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
             font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
@@ -163,23 +175,33 @@
         }
         .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
 
-        /* --- TICKER (Upgraded to Sleek Typography) --- */
+        .btn-locked {
+            background: rgba(10, 10, 12, 0.9); color: #888; font-weight: 800;
+            font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px;
+            border: 1px solid #333; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            cursor: pointer; /* UNLOCKED */
+            letter-spacing: 0.05em; backdrop-filter: blur(5px); transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-locked:hover {
+            border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05);
+        }
+
+        /* --- SEO TICKER (LED TRAIN STYLE RESTORED) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
-            height: 40px; display: flex; align-items: center; z-index: 20;
-            border-bottom: 1px solid #222;
+            height: 45px; display: flex; align-items: center; z-index: 20;
+            border-bottom: 1px solid #222; border-top: 1px solid #111;
+            background-image: radial-gradient(#111 1px, transparent 1px);
+            background-size: 4px 4px;
         }
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
-            color: #555; /* Subtle by default */
-            font-family: 'Inter', sans-serif; font-weight: 700;
-            text-transform: uppercase; font-size: 0.85rem; padding: 0 40px;
-            display: flex; align-items: center; letter-spacing: 0.2em; /* Widely tracked */
-            transition: all 0.3s ease;
-        }
-        .led-item:hover { 
-            color: var(--elite-green); 
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.5); 
+            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
+            font-size: 1.8rem; padding: 0 40px;
+            display: flex; align-items: center; letter-spacing: 3px; 
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
@@ -283,7 +305,7 @@
         }
         #mobile-menu.active { display: block; }
 
-        /* --- INVISIBLE SEO (OVERKILL LEVEL 100) --- */
+        /* --- INVISIBLE SEO (God-Tier Execution) --- */
         .sr-only {
             position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
             overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
@@ -323,7 +345,10 @@
 <body>
 
     <div id="boot-screen">
-        <div id="boot-log"></div>
+        <div id="boot-text" class="boot-text">> SYSTEM STARTING...</div>
+        <div class="loader-container">
+            <div class="loader-bar"></div>
+        </div>
     </div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
@@ -333,8 +358,8 @@
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
                 <a href="index.html" class="text-white border-b border-green-500 pb-1">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition">
-                        Systems <span class="text-[8px] transform rotate-90">></span>
+                    <button class="flex items-center gap-2 py-2 cursor-pointer hover:text-green-500 transition font-bold tracking-widest text-sm">
+                        MENU <span class="text-[10px]">▼</span>
                     </button>
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
@@ -377,8 +402,11 @@
                 We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
                 <span class="font-bold text-white">Get Organized. Get Paid.</span>
             </p>
-            <div class="hero-btns">
-                <a href="fitouts.html" class="btn-main">Start Build</a>
+            <div class="hero-btns mt-8">
+                <a href="fitouts.html" class="btn-locked">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-8v-4z"/></svg>
+                    FITOUTS (MARCH)
+                </a>
                 <a href="#services" class="btn-outline">View Systems</a>
             </div>
         </div>
@@ -511,7 +539,10 @@
                         </div>
                     </div>
 
-                    <a href="launchpad.html" class="btn-main text-center mt-4">Initiate Launch</a>
+                    <a href="launchpad.html" class="btn-locked mt-4 w-full md:w-auto">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-8v-4z"/></svg>
+                        LAUNCHPAD LOCKED (MARCH)
+                    </a>
                 </div>
 
             </div>
@@ -601,23 +632,20 @@
     </div>
 
     <script>
+        // --- PRELOADER SEQUENCE ---
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
-            const bootLog = document.getElementById('boot-log');
+            const bootText = document.getElementById('boot-text');
             const messages = [
-                "> INITIALIZING ELITE PROTOCOL...",
                 "> SECURING CONNECTION...",
                 "> LOADING ASSETS...",
                 "> WELCOME, COMMANDER."
             ];
             
-            let delay = 0;
+            let delay = 300;
             messages.forEach((msg, index) => {
                 setTimeout(() => {
-                    const p = document.createElement('div');
-                    p.className = 'boot-text';
-                    p.innerText = msg;
-                    bootLog.appendChild(p);
+                    bootText.innerText = msg;
                 }, delay);
                 delay += 300;
             });
@@ -625,7 +653,7 @@
             setTimeout(() => {
                 bootScreen.style.opacity = '0';
                 setTimeout(() => bootScreen.remove(), 500);
-            }, delay + 500);
+            }, 1200);
         });
     </script>
     
