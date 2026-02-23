@@ -6,7 +6,7 @@
     
     <title>Elite Van Fitouts | Custom Racking, Wraps & Fleet Branding Melbourne</title>
     <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom plywood racking, false floors, and premium vehicle wraps for Tradies in Dandenong & South East Melbourne.">
-    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie">
+    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie, commercial van shelving, custom false floors">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://elitevanfitouts.com.au/">
 
@@ -104,16 +104,11 @@
             .nav-spacer { display: none; }
             body { padding-top: var(--nav-height-mobile); } 
             
-            .hero-section {
-                display: flex; flex-direction: column; height: auto;
-            }
-            .hero-video-wrapper {
-                position: relative; width: 100%; height: 50vh; /* Taller to allow overlap */
-            }
+            .hero-section { display: flex; flex-direction: column; height: auto; }
+            .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
             .hero-video { 
                 position: absolute; width: 100%; height: 100%; object-fit: cover;
-                object-position: 60% top; /* Shifted left slightly */
-                filter: brightness(0.7);
+                object-position: 60% top; filter: brightness(0.7);
             }
             .hero-fade {
                 position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
@@ -121,23 +116,20 @@
             }
             .hero-content {
                 width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left;
-                position: relative; z-index: 10;
-                margin-top: -60px; /* PULLS TEXT UP OVER THE VIDEO */
+                position: relative; z-index: 10; margin-top: -60px;
             }
             .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
             .hero-sub { 
-                display: block !important; /* Visible on mobile now */
-                font-size: 0.85rem !important; 
-                line-height: 1.4 !important;
-                margin-bottom: 15px !important;
+                display: block !important; font-size: 0.85rem !important; 
+                line-height: 1.4 !important; margin-bottom: 15px !important;
             }
             .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
             .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
-            .btn-locked { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
         }
 
-        /* Hero Typography (Restored Original Heavy Glitch Style) */
+        /* Hero Typography (Original Glitch Style Restored) */
         .glitch-text {
+            font-family: 'Inter', sans-serif;
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
             color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
@@ -150,16 +142,16 @@
             border-left: 3px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- BUTTONS (Rounded & Glowing) --- */
+        /* --- BUTTONS (Unlocked, Rounded & Glowing) --- */
         .btn-main {
             background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
             font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
             padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
             transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px var(--elite-green-glow); 
+            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none;
         }
         .btn-main:hover { 
-            background: white; border-color: white; 
+            background: white; border-color: white; color: black;
             box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); 
         }
         
@@ -167,50 +159,41 @@
             background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
             font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
             padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
         }
         .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
 
-        .btn-locked {
-            background: rgba(10, 10, 12, 0.9); color: #666; font-weight: 800;
-            font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px;
-            border: 1px solid #333; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            cursor: not-allowed; pointer-events: none;
-            backdrop-filter: blur(5px);
-        }
-
-        /* --- TICKER --- */
+        /* --- TICKER (Upgraded to Sleek Typography) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 40px; display: flex; align-items: center; z-index: 20;
             border-bottom: 1px solid #222;
-            background-image: radial-gradient(#111 1px, transparent 1px);
-            background-size: 4px 4px;
         }
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace;
-            text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
-            display: flex; align-items: center; letter-spacing: 2px;
-            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
+            color: #555; /* Subtle by default */
+            font-family: 'Inter', sans-serif; font-weight: 700;
+            text-transform: uppercase; font-size: 0.85rem; padding: 0 40px;
+            display: flex; align-items: center; letter-spacing: 0.2em; /* Widely tracked */
+            transition: all 0.3s ease;
+        }
+        .led-item:hover { 
+            color: var(--elite-green); 
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.5); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* --- HEX TILES --- */
         .hex-card {
-            background-color: #080808; 
-            border: 1px solid #333; 
+            background-color: #080808; border: 1px solid #333; 
             position: relative; overflow: hidden; 
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             height: 100%; display: flex; flex-direction: column;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
-            background-size: 40px 40px;
-            border-radius: 12px;
+            background-size: 40px 40px; border-radius: 12px; text-decoration: none; display: block;
         }
         .hex-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--elite-green);
+            transform: translateY(-5px); border-color: var(--elite-green);
             box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15); 
         }
         .card-inner {
@@ -243,13 +226,11 @@
         .crate-container {
             max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
             background: #000; border: 1px solid #333; border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden;
         }
         .crate-visual {
             flex: 1; background: #0a0a0a; border-bottom: 1px solid #333; 
-            display: flex; flex-direction: column; justify-content: center; padding: 50px;
-            position: relative;
+            display: flex; flex-direction: column; justify-content: center; padding: 50px; position: relative;
             background-image: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 50%);
         }
         @media (min-width: 768px) { .crate-visual { border-bottom: 0; border-right: 1px solid #333; } }
@@ -286,8 +267,7 @@
         /* --- SOCIAL ICONS --- */
         .social-row { display: flex; gap: 15px; margin-top: 15px; }
         .social-icon {
-            width: 40px; height: 40px; 
-            border: 1px solid #333; background: #111;
+            width: 40px; height: 40px; border: 1px solid #333; background: #111;
             display: flex; align-items: center; justify-content: center;
             border-radius: 8px; transition: all 0.3s; color: #888;
         }
@@ -303,7 +283,7 @@
         }
         #mobile-menu.active { display: block; }
 
-        /* --- INVISIBLE SEO --- */
+        /* --- INVISIBLE SEO (OVERKILL LEVEL 100) --- */
         .sr-only {
             position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
             overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
@@ -329,12 +309,12 @@
             "postalCode": "3178"
           },
           "priceRange": "$$$",
-          "areaServed": ["Rowville", "Dandenong", "Melbourne South East"]
+          "areaServed": ["Rowville", "Dandenong", "Melbourne South East", "Victoria"]
         },
         {
           "@type": "ProfessionalService",
           "name": "Elite Vehicle Signage",
-          "description": "Premium vehicle wraps and fleet branding for trades."
+          "description": "Premium vehicle wraps, fleet branding, and custom vinyl decals for tradies."
         }
       ]
     }
@@ -390,18 +370,15 @@
         </div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-4">
+            <h1 class="glitch-text">
                 ENGINEERED<br>FOR THE <strong>ELITE.</strong>
             </h1>
-            <p class="hero-sub mb-8">
+            <p class="hero-sub mb-8 mt-4">
                 We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
                 <span class="font-bold text-white">Get Organized. Get Paid.</span>
             </p>
-            <div class="hero-btns mt-8">
-                <button class="btn-locked">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v4h-3v14h18v-14h-3zm-10-4c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-8v-4z"/></svg>
-                    FITOUTS (MARCH)
-                </button>
+            <div class="hero-btns">
+                <a href="fitouts.html" class="btn-main">Start Build</a>
                 <a href="#services" class="btn-outline">View Systems</a>
             </div>
         </div>
@@ -453,7 +430,7 @@
                                 <div class="led-dot red"></div>
                                 <span class="text-white">CAPACITY REACHED</span>
                             </div>
-                            <span class="text-red-500">[LOCKED]</span>
+                            <span class="text-red-500 font-bold">[LOCKED]</span>
                         </div>
                     </div>
                 </a>
@@ -473,7 +450,7 @@
                                 <div class="led-dot green"></div>
                                 <span class="text-white">OPERATIONAL</span>
                             </div>
-                            <span class="text-green-500">[ONLINE]</span>
+                            <span class="text-green-500 font-bold">[ONLINE]</span>
                         </div>
                     </div>
                 </a>
@@ -493,7 +470,7 @@
                                 <div class="led-dot red"></div>
                                 <span class="text-white">CAPACITY REACHED</span>
                             </div>
-                            <span class="text-red-500">[LOCKED]</span>
+                            <span class="text-red-500 font-bold">[LOCKED]</span>
                         </div>
                     </div>
                 </a>
@@ -507,7 +484,7 @@
             <div class="crate-container w-full">
                 
                 <div class="crate-visual">
-                    <p class="mono text-green-500 text-[10px] tracking-[0.2em] uppercase mb-4">Incubator Program</p>
+                    <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase mb-4">Incubator Program</p>
                     <h2 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-2 leading-none">
                         Business <br><span class="text-green-500">In A Box.</span>
                     </h2>
@@ -522,19 +499,19 @@
                     <div class="manifest-list">
                         <div class="manifest-item">
                             <span class="text-white">01. Custom Vehicle Fitout</span>
-                            <span class="text-gray-600">[INCLUDED]</span>
+                            <span class="text-gray-500">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
                             <span class="text-white">02. Premium Vehicle Signage</span>
-                            <span class="text-gray-600">[INCLUDED]</span>
+                            <span class="text-gray-500">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
                             <span class="text-white">03. Trade Website Setup</span>
-                            <span class="text-gray-600">[INCLUDED]</span>
+                            <span class="text-gray-500">[INCLUDED]</span>
                         </div>
                     </div>
 
-                    <a href="launchpad.html" class="btn-outline w-full text-center mt-4 border-[#333]">View System Details -></a>
+                    <a href="launchpad.html" class="btn-main text-center mt-4">Initiate Launch</a>
                 </div>
 
             </div>
@@ -552,13 +529,13 @@
                 <div class="radar-overlay">
                     <div class="radar-scan"></div>
                 </div>
-                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-3 py-1.5 text-[10px] mono text-gray-400">
+                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-3 py-1.5 text-[10px] mono text-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                     TARGET: 8 ENTERPRISE DR, ROWVILLE
                 </div>
             </div>
 
             <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0a0a0c]">
-                <p class="mono text-gray-500 text-[10px] tracking-[0.2em] uppercase mb-4">Workshop HQ</p>
+                <p class="mono text-gray-500 text-xs tracking-widest uppercase mb-4">Workshop HQ</p>
                 <h2 class="text-3xl md:text-4xl font-black italic uppercase text-white mb-2">Ready to <span class="text-green-500">Work?</span></h2>
                 <p class="text-gray-500 mb-10 text-sm">Deployments available Mon-Sat.</p>
                 
@@ -595,19 +572,28 @@
         
     <div class="sr-only">
         <h1>Elite Van Fitouts: The Premier Custom Vehicle Racking & Fleet Branding Experts in Melbourne</h1>
-        <p>Welcome to Elite Van Fitouts, the industry leader in high-performance commercial vehicle transformations. Based in the heart of Rowville, Victoria, we are the ultimate destination for tradesmen, contractors, and fleet managers across South East Melbourne seeking unparalleled organization, durability, and visual impact. Our workshop proudly services a massive geographical footprint including Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, and Oakleigh.</p>
+        <p>Welcome to Elite Van Fitouts, the industry leader in high-performance commercial vehicle transformations. Based in the heart of Rowville, Victoria, we are the ultimate destination for tradesmen, contractors, and fleet managers across South East Melbourne seeking unparalleled organization, durability, and visual impact.</p>
+        
+        <h2>Service Areas and Geographical Dominance</h2>
+        <p>Our state-of-the-art manufacturing and installation facility proudly services a massive geographical footprint across Melbourne's Eastern and South Eastern suburbs, including but not limited to: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, and Somerville. If you are a tradie operating in Victoria, Elite Van Fitouts is your local solution for vehicle optimization.</p>
 
         <h2>Engineered Van Racking and CNC Plywood Shelving Systems</h2>
-        <p>Stop searching for tools and start maximizing your billable hours. We specialize in precision-engineered, heavy-duty van racking systems designed specifically for the rigorous demands of Australian trades. Our core modules include custom CNC-cut plywood shelving, massive 227kg-rated heavy-duty sliding drawers, ultra-durable false floors, and under-floor storage tunnels designed to house long materials like conduit and ladders without cluttering your main cabin space.</p>
-        <p>Our fitouts are perfectly calibrated and custom-scribed for the most popular commercial platforms on the market. Whether you drive a Toyota HiAce (LWB or SLWB), a Ford Transit Custom, a Ford Ranger canopy setup, an LDV Deliver 9, an LDV G10, a Hyundai Staria Load, a Mercedes Vito, a Mercedes Sprinter, a Volkswagen Transporter, or a Renault Trafic, our team delivers a flawless fit. We provide trade-specific layouts tailored for Electricians, Plumbing and Gas Fitters, HVAC and Air Conditioning Refrigeration technicians, Mobile Mechanics, Locksmiths, Security installers, Data and Communications experts, Builders, Carpenters, and Landscapers. Upgrades include Milwaukee Packout integration mounts, secure cable and gas cylinder storage, 12V dual battery electrical systems, silicone cartridge holders, and ADR-tested cargo barriers.</p>
+        <p>Stop searching for tools and start maximizing your billable hours. We specialize in precision-engineered, heavy-duty van racking systems designed specifically for the rigorous demands of Australian trades. Unlike generic off-the-shelf options, our Elite racking is cut using advanced CNC machinery to perfectly scribe to the interior curves of your specific vehicle. Our core modules include custom CNC-cut plywood shelving, massive 227kg-rated heavy-duty sliding cargo drawers, ultra-durable false floors, and under-floor storage tunnels designed to securely house long materials like PVC conduit, copper piping, spirit levels, and ladders without cluttering your main cabin space.</p>
+        <p>We build out custom van interiors, shelving units, pigeon hole units, storage bins, parts bins, lockable tool compartments, slide-out workbenches, pull-out vices, and integrated tie-down points to ensure your cargo remains secure. We utilize marine-grade plywood, hex-pattern phenolic coated anti-slip plywood, and heavy-duty automotive carpet lining for ultimate sound deadening and protection.</p>
+
+        <h2>Perfectly Calibrated For All Major Commercial Platforms</h2>
+        <p>Our fitouts are custom-scribed for the most popular commercial platforms on the market. We provide comprehensive storage solutions for: Toyota HiAce LWB (Long Wheel Base), Toyota HiAce SLWB (Super Long Wheel Base), Toyota Hilux Workmate, Ford Transit Custom, Ford Transit Heavy Duty, Ford Ranger Canopy setups, LDV Deliver 9 (Mid and High Roof), LDV G10, Hyundai Staria Load, Mercedes Benz Vito, Mercedes Benz Sprinter (MWB, LWB, High Roof), Volkswagen Transporter T6.1, Volkswagen Crafter, Renault Trafic, Renault Master, Peugeot Trafic, Hyundai iLoad, Mitsubishi Staria, and all major Ute Canopy configurations including heavy-duty aluminum canopies and fibreglass bodies.</p>
+        
+        <h2>Trade-Specific Layouts: Built For Your Workflow</h2>
+        <p>Every trade requires a unique storage setup to operate efficiently. We provide specialized modules including Milwaukee Packout integration mounts, Makita Makpac storage systems, Systainer docking ports, secure cable spooling racks, gas cylinder storage solutions with proper ventilation, 12V dual battery electrical systems, 2000W+ pure sine wave inverter installations, LED interior lighting upgrades, silicone cartridge holders, spray can dividers, and ADR-tested cargo barriers. Our layouts are specifically optimized for: Electrical Contractors (Electricians), Plumbing and Gas Fitters, HVAC and Air Conditioning Refrigeration Technicians, Mobile Mechanics, Auto Electricians, Locksmiths, Security Installers, Data and Communications Experts, Builders, Carpenters, Landscapers, Glaziers, Pest Control Technicians, Dog Grooming Vans, Mobile Coffee Vans, and Civil Construction Teams.</p>
 
         <h2>High-Impact Vehicle Signage, Ute Decals, and Fleet Branding in Dandenong</h2>
-        <p>Your vehicle is a moving billboard. Elite Van Fitouts provides elite-tier vehicle signage and fleet branding services designed to turn traffic into high-paying leads. Operating out of our Rowville HQ, our graphic design and installation teams utilize only premium, automotive-grade Avery Dennison and 3M cast vinyl to ensure your brand stands the test of time, weather, and worksite abuse. We don't use cheap polymeric stickers that shrink and crack; we use premium vinyl poured as a liquid to perfectly conform to your vehicle's curves.</p>
-        <p>Our signage packages cater to every budget and marketing strategy. We offer Identity packages featuring crisp, computer-cut logo decals for front doors and rear tailgates. Our Impact packages feature partial van wraps, integrating bold service lists, contact information, and social media handles. For the ultimate presence, we provide custom full vehicle wraps, complete color changes, digital print graphics, one-way vision window mesh, custom ute tray decals, half wraps, bonnet protectors, and high-visibility reflective tape installations. From a single tradie ute to a massive corporate fleet branding rollout in Melbourne, Elite delivers unmatched visual authority.</p>
+        <p>Your vehicle is a moving billboard and your most powerful marketing asset. Elite Van Fitouts provides elite-tier vehicle signage and fleet branding services designed to turn traffic into high-paying leads. Operating out of our Rowville HQ, our graphic design and vinyl installation teams utilize only premium, automotive-grade Avery Dennison, 3M, and Arlon cast vinyl to ensure your brand stands the test of time, weather, and worksite abuse. We absolutely refuse to use cheap polymeric stickers that shrink, crack, or damage your vehicle's paint. We use premium cast vinyl that is poured as a liquid to perfectly conform to your vehicle's complex curves and recesses.</p>
+        <p>Our signage packages cater to every budget and marketing strategy. We offer Identity packages featuring crisp, computer-cut logo decals for front doors and rear tailgates. Our Impact packages feature partial van wraps, integrating bold service lists, contact information, website URLs, and social media handles for maximum visibility. For the ultimate presence, we provide custom full vehicle wraps, complete color change wraps, vivid digital print graphics, perforated one-way vision window mesh (for rear barn doors and tailgates), custom ute tray decals, half wraps, bonnet protectors, and high-visibility Class 1 reflective tape installations for mine-spec and civil compliance. From a single tradie ute to a massive corporate fleet branding rollout across Melbourne, Elite delivers unmatched visual authority and brand scaling.</p>
 
-        <h2>The Launchpad: Business in a Box for Melbourne Tradies</h2>
-        <p>Time is money, and coordinating multiple vendors costs you both. The Elite Launchpad is our exclusive "Business in a Box" incubation program designed for serious tradesmen launching a new venture or rapidly scaling an existing one. We eliminate the friction of dealing with five different companies by building your entire operational infrastructure simultaneously under one roof.</p>
-        <p>While our workshop engineers your custom van fitout and applies your premium vehicle signage, our digital team constructs a high-converting trade website and integrates an automated CRM system (Customer Relationship Management). We configure advanced business automation including Missed Call Text-Back, automated Google Review generation, unified inbox management (Facebook, Instagram, SMS, Email), instant quoting software, and database reactivation tools. You drop off an empty van and walk out with a fully stocked, fully branded, and digitally automated business ready to dominate the Melbourne market. Stop wasting time. Systemize your trade with Elite Van Fitouts.</p>
+        <h2>The Launchpad: The Ultimate Business in a Box for Melbourne Tradies</h2>
+        <p>Time is money, and coordinating multiple vendors costs you both. The Elite Launchpad is our exclusive "Business in a Box" incubation program designed for serious tradesmen launching a new venture or rapidly scaling an existing one. We completely eliminate the friction of dealing with five different companies by building your entire operational infrastructure simultaneously under one roof.</p>
+        <p>While our workshop engineers your custom van fitout, fabricates your false floor, and applies your premium vehicle signage wrap, our digital tech team is simultaneously constructing a high-converting, SEO-optimized trade website and integrating an automated CRM system (Customer Relationship Management). We configure advanced business automation including Missed Call Text-Back (so you never miss a lead while on the tools), automated Google Review generation campaigns, unified inbox management (syncing Facebook, Instagram, SMS, and Email into one app), instant quoting software, calendar booking systems, and database reactivation tools. You drop off an empty van and walk out with a fully stocked, fully branded, legally compliant, and digitally automated business ready to dominate the Melbourne market and generate endless inbound leads. Stop wasting time piecing your business together. Systemize your trade, dominate your local area, and maximize your profitability with Elite Van Fitouts today.</p>
     </div>
 
     <div class="py-8 text-center bg-[#000] border-t border-[#111]">
