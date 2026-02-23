@@ -17,27 +17,28 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM: HYBRID PALANTIR PROTOCOL --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+        /* --- CORE SYSTEM: DARK LUXURY --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root { 
             --elite-green: #22c55e; 
-            --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --off-white: #f4f5f7; /* Sterile professional background */
+            --elite-green-glow: rgba(34, 197, 94, 0.2); /* Soft ambient glow */
+            --off-white: #f4f5f7; 
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
         }
         
         body, html { 
             margin: 0; padding: 0; 
-            background-color: var(--off-white); /* New base color */
+            background-color: var(--off-white); 
             color: #111; 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden;
+            max-width: 100vw;
+            -webkit-font-smoothing: antialiased;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .led { font-family: 'VT323', monospace; }
 
         /* --- PRELOADER --- */
         #boot-screen {
@@ -46,13 +47,13 @@
             font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
             transition: opacity 0.5s ease-out;
         }
-        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; }
+        .boot-text { font-size: 0.8rem; margin-bottom: 10px; opacity: 0; animation: flashText 0.1s forwards; letter-spacing: 1px; }
         @keyframes flashText { to { opacity: 1; } }
 
         /* --- NAV --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.95); /* Solid black background */
-            border-bottom: 1px solid var(--elite-green); /* Upgraded border */
+            background: rgba(0, 0, 0, 0.98);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
         }
@@ -60,167 +61,201 @@
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
-            background: #0a0a0a; border: 1px solid var(--elite-green); width: 240px;
-            padding: 8px; border-radius: 8px; z-index: 100;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            background: #0a0a0a; border: 1px solid #333; width: 240px;
+            padding: 8px; border-radius: 12px; z-index: 100;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
             border-top: 2px solid var(--elite-green);
         }
         .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
-        @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes menuDrop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 16px; color: #888; text-decoration: none;
-            border-radius: 4px; transition: all 0.2s;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+            border-radius: 8px; transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
         }
-        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
+        .dropdown-item:hover { background: rgba(34,197,94,0.1); color: white; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
 
-        /* --- NAV SPACER --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
-        @media (max-width: 768px) { .nav-spacer { height: var(--nav-height-mobile); } }
 
         /* --- HERO SECTION --- */
         .hero-section {
-            position: relative; width: 100%; 
-            background: #000; overflow: hidden; 
-            display: flex; align-items: flex-end; justify-content: flex-start;
+            width: 100%; background: #000; 
             border-bottom: 1px solid var(--elite-green);
-        }
-        
-        .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            /* COVER: Forces video to fill height/width. Removes black bars. */
-            object-fit: cover; 
-            z-index: 1; filter: brightness(0.6) contrast(1.1);
-            object-position: center center;
+            box-shadow: 0 10px 30px var(--elite-green-glow);
         }
 
-        /* DESKTOP CONFIG */
+        /* Desktop Config */
         @media (min-width: 1024px) {
-            .hero-section { height: 85vh; }
-            .hero-content { 
-                padding: 0 40px 40px 40px; 
-                width: 100%; max-width: 1400px; margin: 0 auto; 
-                pointer-events: none;
+            .hero-section {
+                position: relative; height: 85vh; overflow: hidden; 
+                display: flex; align-items: flex-end; justify-content: flex-start;
             }
+            .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+            .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
+            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
+            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
         }
         
-        /* MOBILE CONFIG (Exact code from prompt) */
+        /* Mobile Config (Stacked Layout with Dedicated Black Button Zone) */
         @media (max-width: 1023px) {
-            .hero-section { height: 45vh; } /* Cinematic Strip */
-            .hero-video {
-                /* Shifts video slightly right to ensure van is visible behind text */
-                object-position: 75% center; 
+            .nav-spacer { display: none; }
+            body { padding-top: var(--nav-height-mobile); } 
+            
+            .hero-section {
+                display: flex; flex-direction: column; height: auto;
+            }
+            .hero-video-wrapper {
+                position: relative; width: 100%; height: 45vh;
+            }
+            .hero-video { 
+                position: absolute; width: 100%; height: 100%; object-fit: cover;
+                object-position: 75% top; filter: brightness(0.7);
+            }
+            .hero-fade {
+                position: absolute; bottom: 0; left: 0; width: 100%; height: 30%;
+                background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2;
             }
             .hero-content {
-                width: 100%; padding: 15px !important; margin-bottom: 0px; 
-                background: linear-gradient(to top, black 50%, transparent 100%);
+                width: 100%; background: #000; padding: 20px 20px 40px 20px; text-align: left;
+                position: relative; z-index: 10;
             }
-            .glitch-text { font-size: 1.8rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
+            .hero-title { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px; }
             .hero-sub { display: none; }
-            .hero-btns { margin-top: 10px; }
-            .btn-main, .btn-outline { padding: 10px 20px !important; font-size: 0.7rem !important; }
+            .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
+            .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
         }
 
-        .hero-fade {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
-            background: linear-gradient(to top, #000000 15%, rgba(0,0,0,0.6) 60%, transparent 100%);
-            z-index: 2;
+        /* Hero Typography */
+        .hero-title {
+            font-family: 'Inter', sans-serif; font-weight: 300; 
+            font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 0.95;
+            text-transform: uppercase; font-style: italic; letter-spacing: 0.02em;
+            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.9); margin-bottom: 15px;
         }
-        .hero-content { position: relative; z-index: 10; width: 100%; }
-        
-        .glitch-text {
-            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
-            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
-            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
+        .hero-title strong { font-weight: 900; color: var(--elite-green); }
         .hero-sub {
-            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
-            border-left: 4px solid var(--elite-green); padding-left: 20px;
+            font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px;
+            border-left: 3px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- LED TICKER --- */
+        /* --- BUTTONS (Rounded & Glowing) --- */
+        .btn-main {
+            background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
+            font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; /* Curved corners */
+            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px var(--elite-green-glow); /* Ambient glow */
+        }
+        .btn-main:hover { 
+            background: white; border-color: white; 
+            box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); 
+        }
+        
+        .btn-outline {
+            background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
+            font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; /* Curved corners */
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
+
+        /* --- TICKER --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 40px; display: flex; align-items: center; z-index: 20;
-            border-bottom: 1px solid var(--elite-green); /* Outline added */
+            border-bottom: 1px solid #222;
             background-image: radial-gradient(#111 1px, transparent 1px);
             background-size: 4px 4px;
         }
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace;
-            text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
-            display: flex; align-items: center; letter-spacing: 2px;
-            text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
+            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; font-size: 1.5rem; padding: 0 40px;
+            display: flex; align-items: center; letter-spacing: 2px; text-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- HEX TILES (Floating on Off-White) --- */
+        /* --- HEX TILES (Floating + Rounded + Glow) --- */
         .hex-card {
             background-color: #080808; 
-            border: 1px solid var(--elite-green); /* Green Outline Enforced */
+            border: 1px solid var(--elite-green); 
+            border-radius: 16px; /* Smooth corners */
             position: relative; overflow: hidden; 
             transition: transform 0.3s, box-shadow 0.3s;
             height: 100%; display: flex; flex-direction: column;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
             background-size: 40px 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 0 25px var(--elite-green-glow); /* Permanent ambient glow */
         }
-        .hex-card.open-system:hover { 
+        .hex-card:hover { 
             transform: translateY(-5px); 
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2); 
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.4); /* Intense hover glow */
         }
         .card-inner {
-            position: relative; z-index: 10; padding: 30px; height: 100%;
+            position: relative; z-index: 10; padding: 35px 30px; height: 100%;
             display: flex; flex-direction: column; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95)); 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)); 
+        }
+        .card-title {
+            font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: white; margin-bottom: 10px;
+        }
+        .card-desc {
+            color: #aaa; font-weight: 400; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 30px;
         }
         .status-bar {
             margin-top: auto; padding-top: 20px; border-top: 1px solid #333;
-            display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem; color: #555;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #666; letter-spacing: 1px;
+            transition: border-color 0.3s;
         }
+        .hex-card:hover .status-bar { border-color: rgba(34, 197, 94, 0.4); }
+        .status-indicator { display: flex; align-items: center; gap: 8px; }
+        .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
+        .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
 
         /* --- BUSINESS IN A BOX --- */
-        .crate-section {
-            background: transparent; /* Allows off-white to show */
-            padding: 80px 24px; position: relative;
-        }
+        .crate-section { padding: 80px 24px; position: relative; background: transparent; }
         .crate-container {
             max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
-            background: #000; /* Stays black inside */
-            border: 1px solid var(--elite-green); /* Green Outline Enforced */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            background: #000; border: 1px solid var(--elite-green);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 0 30px var(--elite-green-glow); /* Outer glow */
         }
         .crate-visual {
             flex: 1; background: #0a0a0a; border-bottom: 1px solid #333; 
-            display: flex; flex-direction: column; justify-content: center; padding: 40px;
-            background-image: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05), transparent 40%);
+            display: flex; flex-direction: column; justify-content: center; padding: 50px;
+            position: relative;
+            background-image: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 50%);
         }
         @media (min-width: 768px) { .crate-visual { border-bottom: 0; border-right: 1px solid #333; } }
         .crate-content { flex: 1.2; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
         .manifest-list {
             font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888;
-            border-left: 2px solid var(--elite-green); padding-left: 20px; margin: 30px 0;
+            border-left: 2px solid var(--elite-green); padding-left: 20px; margin: 30px 0; letter-spacing: 0.5px;
         }
-        .manifest-item { margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .manifest-item { margin-bottom: 12px; display: flex; justify-content: space-between; }
 
-        /* --- RADAR MAP --- */
+        /* --- MAP / CONTACT --- */
+        #contact { padding: 80px 24px; background: transparent; }
+        .contact-wrapper {
+            max-width: 1200px; margin: 0 auto; display: grid; md:grid-cols-2 h-auto md:h-[500px];
+            background: #000; border: 1px solid var(--elite-green); border-radius: 16px; overflow: hidden;
+            box-shadow: 0 0 30px var(--elite-green-glow);
+        }
         .radar-container {
-            position: relative; height: 400px; width: 100%; overflow: hidden; background: #000;
+            position: relative; height: 100%; min-height: 400px; width: 100%; background: #000;
         }
         .radar-overlay {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.3);
+            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.2);
             border-radius: 50%; pointer-events: none; z-index: 10;
         }
         .radar-overlay::before {
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 10px; height: 10px; background: var(--elite-green); border-radius: 50%;
-            box-shadow: 0 0 20px var(--elite-green); animation: pulseDot 2s infinite;
+            width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%;
+            box-shadow: 0 0 15px var(--elite-green); animation: pulseDot 2s infinite;
         }
         @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
         .radar-scan {
@@ -236,39 +271,13 @@
             width: 40px; height: 40px; 
             border: 1px solid #333; background: #111;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 4px; transition: all 0.3s; color: #888;
+            border-radius: 8px; transition: all 0.3s; color: #888;
         }
         .social-icon:hover { 
             border-color: var(--elite-green); color: black; background: var(--elite-green);
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); transform: translateY(-2px);
         }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
-
-        /* --- UTILS --- */
-        .btn-main {
-            background: var(--elite-green); color: black; font-weight: 900;
-            text-transform: uppercase; padding: 14px 40px; font-size: 0.8rem;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            transition: 0.2s; display: inline-block; letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
-        }
-        .btn-main:hover { background: white; box-shadow: 0 0 30px white; transform: scale(1.02); pointer-events: auto;}
-        
-        .btn-outline {
-            border: 1px solid #333; color: #888; font-weight: 700;
-            text-transform: uppercase; padding: 14px 40px; font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace; transition: 0.2s; background: #000;
-        }
-        .btn-outline:hover { border-color: white; color: white; }
-
-        /* NEW LOCKED BUTTON */
-        .btn-locked {
-            background: #111; color: #666; font-weight: 900;
-            text-transform: uppercase; padding: 14px 40px; font-size: 0.8rem;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            border: 1px solid #333; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            cursor: not-allowed; letter-spacing: 1px; pointer-events: none;
-        }
 
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -281,21 +290,29 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AutoBodyShop",
-      "name": "Elite Van Fitouts",
-      "image": "https://elitevanfitouts.com.au/logo.png",
-      "url": "https://elitevanfitouts.com.au",
-      "telephone": "0468 086 490",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "8 Enterprise Dr",
-        "addressLocality": "Rowville",
-        "addressRegion": "VIC",
-        "postalCode": "3178",
-        "addressCountry": "AU"
-      },
-      "priceRange": "$$$",
-      "areaServed": ["Rowville", "Dandenong", "Melbourne South East"]
+      "@graph": [
+        {
+          "@type": "AutoBodyShop",
+          "name": "Elite Van Fitouts",
+          "image": "https://elitevanfitouts.com.au/logo.png",
+          "url": "https://elitevanfitouts.com.au",
+          "telephone": "0468 086 490",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8 Enterprise Dr",
+            "addressLocality": "Rowville",
+            "addressRegion": "VIC",
+            "postalCode": "3178"
+          },
+          "priceRange": "$$$",
+          "areaServed": ["Rowville", "Dandenong", "Melbourne South East"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "Elite Vehicle Signage",
+          "description": "Premium vehicle wraps and fleet branding for trades."
+        }
+      ]
     }
     </script>
 </head>
@@ -330,7 +347,7 @@
     </nav>
 
     <div id="mobile-menu">
-        <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
             <a href="index.html" class="text-white hover:text-green-500">Home</a>
             <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
             <a href="branding.html" class="text-gray-400 hover:text-green-500">Signage</a>
@@ -341,21 +358,23 @@
     <div class="nav-spacer"></div>
 
     <header class="hero-section">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="hero.mp4" type="video/mp4">
-        </video>
-        <div class="hero-fade"></div>
+        <div class="hero-video-wrapper">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="hero.mp4" type="video/mp4">
+            </video>
+            <div class="hero-fade"></div>
+        </div>
         
         <div class="hero-content">
-            <h1 class="glitch-text mb-4">
-                ENGINEERED<br>FOR THE <span class="text-green-500">ELITE.</span>
+            <h1 class="hero-title">
+                ENGINEERED<br>FOR THE <strong>ELITE.</strong>
             </h1>
-            <p class="hero-sub text-gray-300 max-w-lg text-sm md:text-base leading-relaxed mb-8 border-l-2 border-green-500 pl-4">
+            <p class="hero-sub mb-8">
                 We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
-                <strong class="text-white">Get Organized. Get Paid.</strong>
+                <span class="font-bold text-white">Get Organized. Get Paid.</span>
             </p>
-            <div class="hero-btns flex gap-4 mt-8">
-                <button class="btn-locked">🔒 FITOUTS (MARCH)</button>
+            <div class="hero-btns">
+                <a href="fitouts.html" class="btn-main">Start Build</a>
                 <a href="#services" class="btn-outline">View Systems</a>
             </div>
         </div>
@@ -390,58 +409,67 @@
 
     <section id="services" class="py-24 px-6 bg-transparent">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <div class="hex-card group" style="cursor: not-allowed;">
+                <a href="fitouts.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-8">
                             <span class="mono text-green-500 text-[10px]">SYSTEM_01</span>
-                            <div class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center transition">
-                                <span class="text-gray-500">⚙</span>
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-500 group-hover:text-green-500 transition">
+                                ⚙
                             </div>
                         </div>
-                        <h3 class="text-3xl font-black italic uppercase text-white mb-2">Van Fitouts</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">Maximise Space. Custom CNC racking designed for your specific tools.</p>
+                        <h3 class="card-title">Van Fitouts</h3>
+                        <p class="card-desc">Maximise Space. Custom CNC racking designed for your specific tools.</p>
                         <div class="status-bar">
-                            <span class="text-red-500 font-bold">[CAPACITY: REACHED]</span>
-                            <span class="text-red-500 font-bold">[LOCKED]</span>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="branding.html" class="hex-card open-system group">
-                    <div class="card-inner">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="mono text-green-500 text-[10px]">SYSTEM_02</span>
-                            <div class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center group-hover:border-green-500 group-hover:animate-spin transition">
-                                <span class="text-white group-hover:text-green-500">★</span>
+                            <div class="status-indicator">
+                                <div class="led-dot green"></div>
+                                <span class="text-white">OPERATIONAL</span>
                             </div>
-                        </div>
-                        <h3 class="text-3xl font-black italic uppercase text-white mb-2">Signage</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">Dominate the road. Partial wraps and premium fleet graphics.</p>
-                        <div class="status-bar">
-                            <span class="text-green-500">[STATUS: READY]</span>
-                            <span class="text-white">[VISIBILITY: 100%]</span>
+                            <span class="text-green-500">[ONLINE]</span>
                         </div>
                     </div>
                 </a>
 
-                <div class="hex-card group" style="cursor: not-allowed;">
+                <a href="branding.html" class="hex-card group">
+                    <div class="card-inner">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="mono text-green-500 text-[10px]">SYSTEM_02</span>
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-500 group-hover:text-green-500 transition">
+                                ★
+                            </div>
+                        </div>
+                        <h3 class="card-title">Signage</h3>
+                        <p class="card-desc">Dominate the road. Partial wraps and premium fleet graphics.</p>
+                        <div class="status-bar">
+                            <div class="status-indicator">
+                                <div class="led-dot green"></div>
+                                <span class="text-white">OPERATIONAL</span>
+                            </div>
+                            <span class="text-green-500">[ONLINE]</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="launchpad.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-8">
                             <span class="mono text-green-500 text-[10px]">SYSTEM_03</span>
-                            <div class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center transition">
-                                <span class="text-gray-500">🚀</span>
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-500 group-hover:text-green-500 transition">
+                                🚀
                             </div>
                         </div>
-                        <h3 class="text-3xl font-black italic uppercase text-white mb-2">The Launchpad</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">New Business? Get the full deployment package: Van + Brand + Website.</p>
+                        <h3 class="card-title">The Launchpad</h3>
+                        <p class="card-desc">New Business? Get the full deployment package: Van + Brand + Website.</p>
                         <div class="status-bar">
-                            <span class="text-red-500 font-bold">[CAPACITY: REACHED]</span>
-                            <span class="text-red-500 font-bold">[LOCKED]</span>
+                            <div class="status-indicator">
+                                <div class="led-dot green"></div>
+                                <span class="text-white">OPERATIONAL</span>
+                            </div>
+                            <span class="text-green-500">[ONLINE]</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
             </div>
         </div>
@@ -449,45 +477,45 @@
 
     <section class="crate-section bg-transparent">
         <div class="max-w-7xl mx-auto flex justify-center">
-            <div class="crate-container w-full bg-black border border-green-500 shadow-2xl">
+            <div class="crate-container w-full">
                 
                 <div class="crate-visual">
                     <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase mb-4">Incubator Program</p>
-                    <h2 class="text-5xl font-black italic uppercase text-white mb-2 leading-none">
-                        Business <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-800">In A Box.</span>
+                    <h2 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-2 leading-none">
+                        Business <br><span class="text-green-500">In A Box.</span>
                     </h2>
-                    <p class="text-gray-400 text-sm leading-relaxed mt-6">
+                    <p class="text-gray-400 text-sm leading-relaxed mt-6 max-w-md">
                         Stop dealing with 5 different companies. We build your Van, your Brand, and your Website simultaneously at our Rowville HQ.
                     </p>
                 </div>
 
                 <div class="crate-content">
-                    <h3 class="text-white font-bold uppercase mb-2">Manifest Payload:</h3>
+                    <h3 class="text-white font-bold uppercase mb-4 text-sm tracking-widest">Manifest Payload:</h3>
                     
                     <div class="manifest-list">
                         <div class="manifest-item">
                             <span class="text-white">01. Custom Vehicle Fitout</span>
-                            <span class="text-green-500">[INCLUDED]</span>
+                            <span class="text-gray-500">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
                             <span class="text-white">02. Premium Vehicle Signage</span>
-                            <span class="text-green-500">[INCLUDED]</span>
+                            <span class="text-gray-500">[INCLUDED]</span>
                         </div>
                         <div class="manifest-item">
                             <span class="text-white">03. Trade Website Setup</span>
-                            <span class="text-green-500">[INCLUDED]</span>
+                            <span class="text-gray-500">[INCLUDED]</span>
                         </div>
                     </div>
 
-                    <button class="btn-locked w-full mt-4">🔒 LAUNCHPAD LOCKED (MARCH)</button>
+                    <a href="launchpad.html" class="btn-main mt-4">Initiate Launch</a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 px-6 bg-transparent">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-2xl">
+    <section id="contact">
+        <div class="contact-wrapper">
             
             <div class="radar-container border-b md:border-b-0 md:border-r border-[#333]">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886043236077!2d145.24156637686737!3d-37.91035763953573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d0802905555%3A0x1c37b037307024e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" 
@@ -497,30 +525,30 @@
                 <div class="radar-overlay">
                     <div class="radar-scan"></div>
                 </div>
-                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-4 py-2 text-xs mono text-green-500">
+                <div class="absolute bottom-4 left-4 bg-black border border-green-500 px-4 py-2 text-xs mono text-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                     TARGET: 8 ENTERPRISE DR, ROWVILLE
                 </div>
             </div>
 
-            <div class="p-12 flex flex-col justify-center bg-[#080808]">
-                <p class="mono text-gray-500 text-xs tracking-widest uppercase mb-6">Workshop HQ</p>
-                <h2 class="text-4xl font-black italic uppercase text-white mb-2">Ready to <span class="text-green-500">Work?</span></h2>
-                <p class="text-gray-400 mb-8 text-sm">Deployments available Mon-Sat.</p>
+            <div class="p-10 md:p-16 flex flex-col justify-center bg-[#0a0a0a]">
+                <p class="mono text-gray-500 text-xs tracking-widest uppercase mb-4">Workshop HQ</p>
+                <h2 class="text-3xl md:text-4xl font-black italic uppercase text-white mb-2">Ready to <span class="text-green-500">Work?</span></h2>
+                <p class="text-gray-400 mb-10 text-sm">Deployments available Mon-Sat.</p>
                 
                 <div class="space-y-6">
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold mb-1">Secure Line</p>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-1 mono">Secure Line</p>
                         <div class="flex items-center gap-4">
                             <a href="tel:0468086490" class="text-2xl font-mono text-white hover:text-green-500 transition">0468 086 490</a>
                         </div>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold mb-1">Comms</p>
-                        <a href="mailto:info@elitevanfitouts.com.au" class="text-lg font-mono text-gray-400 hover:text-white transition">info@elitevanfitouts.com.au</a>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-1 mono">Comms</p>
+                        <a href="mailto:info@elitevanfitouts.com.au" class="text-base font-mono text-gray-400 hover:text-white transition">info@elitevanfitouts.com.au</a>
                     </div>
                     
                     <div>
-                        <p class="text-xs text-gray-600 uppercase font-bold mb-2">Connect</p>
+                        <p class="text-xs text-gray-600 uppercase font-bold mb-2 mono">Connect</p>
                         <div class="social-row">
                             <a href="https://www.facebook.com/share/1Da7HLaCu7" target="_blank" class="social-icon">
                                 <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
@@ -538,41 +566,25 @@
         </div>
     </section>
         
-    <section class="py-12 px-6 bg-transparent">
-        <div class="max-w-7xl mx-auto bg-black border border-green-500 p-8 shadow-2xl grid grid-cols-2 md:grid-cols-4 gap-8 text-[10px] mono text-gray-400">
-            <div>
-                <h4 class="text-green-500 font-bold uppercase mb-2">Service Zones</h4>
-                <ul class="space-y-1">
-                    <li>Rowville (HQ)</li><li>Dandenong South</li><li>Ferntree Gully</li><li>Knoxfield & Scoresby</li>
-                    <li>Bayswater & Kilsyth</li><li>Braeside & Mordialloc</li><li>Carrum Downs & Seaford</li><li>Berwick & Narre Warren</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-green-500 font-bold uppercase mb-2">Supported Platforms</h4>
-                <ul class="space-y-1">
-                    <li>Toyota HiAce (LWB/SLWB)</li><li>Ford Transit Custom</li><li>Ford Ranger (Canopy)</li><li>LDV Deliver 9 & G10</li>
-                    <li>Hyundai Staria Load</li><li>Mercedes Vito & Sprinter</li><li>Volkswagen Transporter</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-green-500 font-bold uppercase mb-2">System Modules</h4>
-                <ul class="space-y-1">
-                    <li>CNC False Floors</li><li>Heavy Duty Slides (227kg)</li><li>Plywood Shelving Units</li><li>Milwaukee Packout Mounts</li>
-                    <li>Cable & Gas Storage</li><li>12V Dual Battery Systems</li><li>Cargo Barriers</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-green-500 font-bold uppercase mb-2">Trade Specializations</h4>
-                <ul class="space-y-1">
-                    <li>Electrical Contractors</li><li>Plumbing & Gas Fitters</li><li>HVAC & Refrigeration</li><li>Mobile Mechanics</li>
-                    <li>Locksmiths & Security</li><li>Data & Communications</li><li>Builders & Carpentry</li>
-                </ul>
-            </div>
-        </div>
-        <div class="py-8 text-center">
-            <p class="text-[10px] text-gray-500 mono uppercase">© 2026 ELITE VAN FITOUTS. SYSTEM V2.0 ONLINE.</p>
-        </div>
-    </section>
+    <div class="sr-only">
+        <h2>Comprehensive Van Fitouts and Custom Trade Vehicle Solutions in Rowville and Melbourne</h2>
+        <p>Elite Van Fitouts is Melbourne's premier destination for custom van racking, false floors, and heavy-duty vehicle storage systems. Based in Rowville, we service the entire South East Melbourne region, including Dandenong, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, and Narre Warren.</p>
+        
+        <h3>Custom Van Racking for All Trade Platforms</h3>
+        <p>We engineer and install precision CNC plywood shelving units, heavy-duty sliding drawers (rated to 227kg), and custom false floors. Our fitout systems are perfectly calibrated for leading commercial platforms including Toyota HiAce (LWB and SLWB), Ford Transit Custom, Ford Ranger canopies, LDV Deliver 9, LDV G10, Hyundai Staria Load, Mercedes Vito, Mercedes Sprinter, and Volkswagen Transporter.</p>
+        
+        <h3>Vehicle Signage and Fleet Branding Dandenong</h3>
+        <p>Turn your commercial vehicle into a 24/7 lead generation machine with our premium vehicle wrap and signage services. We use high-grade Avery Dennison and 3M cast vinyl for ultimate durability. Our services include full vehicle wraps, partial wraps, custom ute tray decals, one-way vision rear window graphics, computer-cut lettering, reflective tape installation, and complete fleet branding design for local trade businesses.</p>
+        
+        <h3>Specialized Fitouts for Plumbers, Electricians, and Builders</h3>
+        <p>Every trade requires a unique storage setup. We provide specialized modules including Milwaukee Packout integration mounts, secure cable and gas cylinder storage, 12V dual battery electrical systems, silicone cartridge holders, and tested cargo barriers. Our layouts are optimized for Electrical Contractors, Plumbing & Gas Fitters, HVAC & Refrigeration technicians, Mobile Mechanics, Locksmiths, Security specialists, Data & Communications experts, and Building & Carpentry professionals.</p>
+        
+        <p>Stop wasting time searching for tools. Stop losing work to poor branding. The Elite Launchpad program is the ultimate "Business in a Box" solution, delivering a fully fitted van, professional vehicle branding, and trade website setup simultaneously. Transform your workflow and upgrade your business presentation with Elite Van Fitouts today.</p>
+    </div>
+
+    <div class="py-8 text-center bg-[#000] border-t border-[#111]">
+        <p class="text-[10px] text-gray-500 mono uppercase">© 2026 ELITE VAN FITOUTS. SYSTEM V2.0 ONLINE.</p>
+    </div>
 
     <script>
         // --- PRELOADER SEQUENCE ---
@@ -580,7 +592,7 @@
             const bootScreen = document.getElementById('boot-screen');
             const bootLog = document.getElementById('boot-log');
             const messages = [
-                "> INITIALIZING CORE SYSTEMS...",
+                "> INITIALIZING ELITE PROTOCOL...",
                 "> SECURING CONNECTION...",
                 "> LOADING ASSETS...",
                 "> WELCOME, COMMANDER."
@@ -601,17 +613,6 @@
                 bootScreen.style.opacity = '0';
                 setTimeout(() => bootScreen.remove(), 500);
             }, delay + 500);
-        });
-
-        // --- SPOTLIGHT EFFECT (FOR HEX CARDS) ---
-        document.querySelectorAll('.hex-card').forEach(card => {
-            card.onmousemove = e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            }
         });
     </script>
     
