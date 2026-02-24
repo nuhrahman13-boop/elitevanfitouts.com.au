@@ -95,56 +95,69 @@
         .dropdown-item:hover { background: rgba(34,197,94,0.1); color: black; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #eee; margin: 6px 0; }
 
-        /* --- HERO SECTION --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
-        
+
+        /* --- HERO SECTION --- */
         .hero-section {
-            position: relative; width: 100%; 
-            background: #000; overflow: hidden; 
-            display: flex; align-items: flex-end; 
+            width: 100%; background: #000; 
             border-bottom: 1px solid var(--elite-green);
-        }
-        
-        .hero-video {
-            width: 100%; height: 100%; object-fit: contain; 
-            position: absolute; top: 0; left: 0; z-index: 0;
-            object-position: center center;
+            box-shadow: 0 10px 30px var(--elite-green-glow);
         }
 
+        /* Desktop Config */
         @media (min-width: 1024px) {
-            .hero-section { height: 80vh; }
-            .hero-content { padding: 0 40px 40px 40px; width: 100%; max-width: 1400px; margin: 0 auto; pointer-events: none; }
+            .hero-section {
+                position: relative; height: 85vh; overflow: hidden; 
+                display: flex; align-items: flex-end; justify-content: flex-start;
+            }
+            .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+            .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
+            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
+            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
         }
         
+        /* Mobile Config */
         @media (max-width: 1023px) {
             .nav-spacer { display: none; }
             body { padding-top: var(--nav-height-mobile); } 
-
-            .hero-section { height: 40vh; margin-top: -1px; }
-            .hero-content {
-                width: 100%; padding: 15px !important; margin-bottom: 0px; 
-                background: linear-gradient(to top, black 50%, transparent 100%);
+            
+            .hero-section { display: flex; flex-direction: column; height: auto; }
+            .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
+            .hero-video { 
+                position: absolute; width: 100%; height: 100%; object-fit: cover;
+                object-position: 60% top; filter: brightness(0.7);
             }
-            .glitch-text { font-size: 1.8rem !important; margin-bottom: 5px !important; text-shadow: 0 2px 10px black; }
-            .hero-sub {
-                font-size: 0.65rem !important; line-height: 1.2 !important;
-                border-left-width: 2px !important; padding-left: 10px !important;
-                background: rgba(0,0,0,0.5);
+            .hero-fade {
+                position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+                background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2;
+            }
+            .hero-content {
+                width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left;
+                position: relative; z-index: 10; margin-top: -60px; /* Merges text gracefully over video */
+            }
+            .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
+            .hero-sub { 
+                display: block !important; font-size: 0.85rem !important; 
+                line-height: 1.4 !important; margin-bottom: 15px !important;
             }
         }
 
-        .hero-content { position: relative; z-index: 10; }
+        /* Hero Typography */
         .glitch-text {
+            font-family: 'Inter', sans-serif;
             font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
             color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
+        .glitch-text strong, .glitch-text span { color: var(--elite-green); }
+        
         .hero-sub {
-            font-size: 1.1rem; line-height: 1.4; color: #ccc; max-width: 500px;
-            border-left: 4px solid var(--elite-green); padding-left: 20px;
+            font-family: 'Inter', sans-serif; font-weight: 400;
+            font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px;
+            border-left: 3px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- SEO TICKER (GREEN TRAIN) --- */
+        /* --- SEO TICKER (LED TRAIN STYLE) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 45px; display: flex; align-items: center; z-index: 20;
@@ -161,7 +174,7 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- TACTICAL TILES (PACKAGES) --- */
+        /* --- TACTICAL TILES (Black Cards on Off-White) --- */
         .hex-card {
             background-color: #080808; border: 1px solid var(--elite-green); 
             border-radius: 12px; position: relative; overflow: hidden; 
@@ -173,9 +186,7 @@
         .hex-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3); }
         
         /* Default Unselected Card Title */
-        .hex-card .card-title {
-            color: #ffffff; 
-        }
+        .hex-card .card-title { color: #ffffff; }
         
         /* SELECTED STATE */
         .hex-card.selected {
@@ -266,7 +277,7 @@
         .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: #111; margin-bottom: 5px; }
         .step-desc { font-size: 0.9rem; color: #555; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- TECHNICAL DATA (BLUEPRINTS) --- */
+        /* --- TECHNICAL DATA --- */
         .blueprint-card {
             background: #080808; border: 1px solid var(--elite-green); padding: 0; 
             position: relative; overflow: hidden; margin-bottom: 30px; border-radius: 12px;
@@ -375,14 +386,16 @@
     <div class="nav-spacer"></div>
 
     <header class="hero-section">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="fitout hero.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
+        <div class="hero-video-wrapper">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="fitout hero.mp4" type="video/mp4">
+            </video>
+            <div class="hero-fade"></div>
+        </div>
         
         <div class="hero-content">
             <h1 class="glitch-text mb-4">
-                VAN <strong>FITOUTS</strong>
+                VAN <span class="text-green-500">FITOUTS</span>
             </h1>
             <p class="hero-sub">
                 Turn your van into a mobile workshop. <br>
