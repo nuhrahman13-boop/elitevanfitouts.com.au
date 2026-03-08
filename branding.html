@@ -95,10 +95,10 @@
             display: flex; align-items: flex-end; border-bottom: 1px solid var(--elite-green);
             box-shadow: 0 10px 30px var(--elite-green-glow);
         }
-        .hero-video { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 0; object-position: center center; }
+        .hero-video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 0; object-position: center center; filter: brightness(0.4) contrast(1.2); }
 
         @media (min-width: 1024px) {
-            .hero-section { height: 80vh; display: flex; align-items: flex-end; justify-content: flex-start; }
+            .hero-section { height: 85vh; display: flex; align-items: flex-end; justify-content: flex-start; }
             .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
             .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
         }
@@ -108,7 +108,7 @@
             body { padding-top: var(--nav-height-mobile); } 
             .hero-section { display: flex; flex-direction: column; height: auto; }
             .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
-            .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 60% top; filter: brightness(0.7); }
+            .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center center; filter: brightness(0.5); }
             .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2; }
             .hero-content { width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left; position: relative; z-index: 10; margin-top: -60px; }
             .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
@@ -120,17 +120,7 @@
             text-transform: uppercase; font-style: italic; letter-spacing: -0.04em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
         .glitch-text strong { color: var(--elite-green); }
-        .hero-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 500px; border-left: 3px solid var(--elite-green); padding-left: 20px; }
-
-        /* --- BUTTONS --- */
-        .btn-main {
-            background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
-            font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; pointer-events: auto;
-        }
-        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
+        .hero-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 600px; border-left: 3px solid var(--elite-green); padding-left: 20px; }
 
         /* --- SEO TICKER --- */
         .led-wrap {
@@ -209,6 +199,16 @@
             position: relative; z-index: 10; padding: 50px; display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center; gap: 30px;
         }
 
+        /* --- BUTTONS --- */
+        .btn-main {
+            background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
+            font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
+            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none;
+        }
+        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
+
         /* --- FLIGHT PATH --- */
         .flight-container { position: relative; margin: 60px 0; border-left: 2px solid #ccc; padding-left: 30px; }
         .flight-container::after {
@@ -273,6 +273,7 @@
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
                 <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
                 <div class="relative dropdown">
@@ -307,7 +308,7 @@
     <header class="hero-section">
         <div class="hero-video-wrapper">
             <video autoplay muted loop playsinline class="hero-video">
-                <source src="signage.mov" type="video/mp4">
+                <source src="matrix.mp4" type="video/mp4">
             </video>
             <div class="hero-fade"></div>
         </div>
@@ -363,7 +364,7 @@
                 
                 <div id="branding-extra-text" class="hidden md:block">
                     <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
-                        Need a fully custom wrap or a massive fleet rollout? We specialize in bespoke vehicle branding. Give our design team a call for a free strategy session over the phone to map out your perfect mobile billboard.
+                        Need a fully custom wrap or a massive fleet rollout? We specialize in bespoke vehicle branding using premium Avery Dennison and 3M Cast Vinyl. Give our design team a call for a free strategy session over the phone to map out your perfect mobile billboard.
                     </p>
                 </div>
                 
