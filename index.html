@@ -65,7 +65,7 @@
 
         /* --- NAV (WHITE THEME) --- */
         .glass-nav { 
-            background: #ffffff;
+            background: #ffffff; 
             border-bottom: 2px solid var(--elite-green);
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
@@ -111,7 +111,7 @@
             .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
             .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
             .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
-            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
+            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
         }
         
         @media (max-width: 1023px) {
@@ -155,13 +155,13 @@
             border-left: 3px solid var(--elite-green); padding-left: 20px;
         }
 
-        /* --- BUTTONS --- */
+        /* --- BUTTONS (Unlocked & Glowing) --- */
         .btn-main {
             background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
             font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
             padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
             transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none;
+            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; pointer-events: auto;
         }
         .btn-main:hover { 
             background: white; border-color: white; color: black;
@@ -172,11 +172,11 @@
             background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
             font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
             padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; pointer-events: auto;
         }
         .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
 
-        /* --- SEO TICKER --- */
+        /* --- SEO TICKER (LED TRAIN STYLE) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 45px; display: flex; align-items: center; z-index: 20;
@@ -193,31 +193,23 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- OUR WORK (PHOTO MARQUEE TRAINS) --- */
-        .gallery-section {
-            background: #000; padding: 60px 0; border-bottom: 1px solid #222;
-        }
+        /* --- SPLIT SECTION: OUR WORK & PHOTO MARQUEE --- */
         .marquee-wrapper {
-            width: 100%; overflow: hidden; white-space: nowrap; display: flex; margin-bottom: 20px;
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            width: 100%; overflow: hidden; white-space: nowrap; display: flex; margin-bottom: 15px;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
-        .marquee-track { display: flex; gap: 20px; padding-left: 20px; width: max-content; }
+        .marquee-track { display: flex; gap: 15px; padding-left: 15px; width: max-content; }
         
-        .track-slow { animation: scrollLeft 60s linear infinite; }
-        .track-fast { animation: scrollRight 45s linear infinite; }
+        /* Sped up animation */
+        .track-slow { animation: scrollLeft 30s linear infinite; }
+        .track-fast { animation: scrollRight 20s linear infinite; }
         
-        @keyframes scrollLeft {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); } 
-        }
-        @keyframes scrollRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0%); } 
-        }
+        @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
         
         .marquee-img {
-            height: 220px; width: 320px; object-fit: cover; border-radius: 8px;
+            height: 150px; width: 220px; object-fit: cover; border-radius: 8px;
             border: 1px solid #333; transition: 0.3s;
         }
         .marquee-img:hover { border-color: var(--elite-green); transform: scale(1.02); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
@@ -245,14 +237,14 @@
             font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: white; margin-bottom: 10px;
         }
         .card-desc {
-            color: #aaa; font-weight: 400; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 30px;
+            color: #aaa; font-weight: 400; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 20px;
         }
         
         /* EXPLICIT CALL TO ACTION BUTTON INSIDE CARD */
         .select-indicator {
-            margin-top: 10px; margin-bottom: 25px; text-align: center; padding: 12px 0; border: 1px solid #444; border-radius: 6px;
+            margin-top: auto; margin-bottom: 25px; text-align: center; padding: 12px 0; border: 1px solid #444; border-radius: 8px;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: bold; color: #888;
-            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; background: #111;
         }
         .hex-card:hover .select-indicator { 
             border-color: var(--elite-green); color: black; background: var(--elite-green); 
@@ -260,7 +252,7 @@
         }
 
         .status-bar {
-            margin-top: auto; padding-top: 20px; border-top: 1px solid #333;
+            padding-top: 20px; border-top: 1px solid #333;
             display: flex; justify-content: space-between; align-items: center;
             font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #666; letter-spacing: 1px;
             transition: border-color 0.3s;
@@ -270,10 +262,9 @@
         .status-indicator { display: flex; align-items: center; gap: 8px; }
         .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
-        .led-dot.red { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
 
         /* --- BUSINESS IN A BOX --- */
-        .crate-section { padding: 100px 24px; position: relative; background: transparent; }
+        .crate-section { padding: 80px 24px; position: relative; background: transparent; }
         .crate-container {
             max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
             background: #000; border: 1px solid #333; border-radius: 12px;
@@ -469,47 +460,66 @@
         </div>
     </div>
 
-    <section class="gallery-section">
-        <h2 class="text-center text-white text-3xl md:text-4xl font-black italic uppercase mb-12">Our <span class="text-green-500">Work</span></h2>
-        
-        <div class="marquee-wrapper">
-            <div class="marquee-track track-slow">
-                <img src="elite 2.jpeg" class="marquee-img" alt="Custom Van Fitout Work">
-                <img src="elitevf.jpeg" class="marquee-img" alt="Van Racking Installation">
-                <img src="vf.jpeg" class="marquee-img" alt="Ute Drawer System">
-                <img src="WhatsApp Image 2026-03-06 at 1.44.39 PM.jpeg" class="marquee-img" alt="Custom False Floor">
-                <img src="WhatsApp Image 2026-03-06 at 1.44.38 PM.jpeg" class="marquee-img" alt="Precision Shelving">
-                <img src="WhatsApp Image 2026-03-08 at 5.01.20 PM.jpeg" class="marquee-img" alt="Toolbox Integration">
-                <img src="b fitout.jpg" class="marquee-img" alt="Plumbing Van Setup">
-                <img src="elite 2.jpeg" class="marquee-img" alt="Custom Van Fitout Work">
-                <img src="elitevf.jpeg" class="marquee-img" alt="Van Racking Installation">
-                <img src="vf.jpeg" class="marquee-img" alt="Ute Drawer System">
-                <img src="WhatsApp Image 2026-03-06 at 1.44.39 PM.jpeg" class="marquee-img" alt="Custom False Floor">
-                <img src="WhatsApp Image 2026-03-06 at 1.44.38 PM.jpeg" class="marquee-img" alt="Precision Shelving">
-                <img src="WhatsApp Image 2026-03-08 at 5.01.20 PM.jpeg" class="marquee-img" alt="Toolbox Integration">
-                <img src="b fitout.jpg" class="marquee-img" alt="Plumbing Van Setup">
+    <section class="py-20 px-6 bg-transparent" id="our-work">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row bg-[#080808] border border-[var(--elite-green)] rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(34,197,94,0.2)]">
+            
+            <div class="flex-1 p-10 md:p-16 flex flex-col justify-center relative z-10 bg-gradient-to-br from-[#0a0a0a] to-[#050505]">
+                <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase mb-4 font-bold">The Standard</p>
+                <h2 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-6 leading-none">
+                    Engineered <br><span class="text-green-500">For Action.</span>
+                </h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-10 max-w-md">
+                    We don't build generic timber shelves. We engineer high-performance mobile workspaces. From custom false floors to heavy-duty drawers and premium vehicle branding, every element is designed to maximize your efficiency, protect your assets, and elevate your professional image.
+                </p>
+                <div>
+                    <a href="fitouts.html" class="btn-outline border-[var(--elite-green)] text-[var(--elite-green)]">Check Out Builds -></a>
+                </div>
             </div>
-        </div>
-        
-        <div class="marquee-wrapper mt-6">
-            <div class="marquee-track track-fast">
-                <img src="fitout.jpg" class="marquee-img" alt="Electrical Van Shelving">
-                <img src="vfs.jpg" class="marquee-img" alt="Commercial Vehicle Fitout">
-                <img src="e fitout.jpg" class="marquee-img" alt="Slide Out Drawers">
-                <img src="y fitout.jpg" class="marquee-img" alt="Cargo Barrier Install">
-                <img src="s fitout.jpg" class="marquee-img" alt="Custom Van Setup">
-                <img src="WhatsApp Image 2026-03-08 at 2.26.19 PM.jpeg" class="marquee-img" alt="Heavy Duty Van Shelving">
-                <img src="fitout.jpg" class="marquee-img" alt="Electrical Van Shelving">
-                <img src="vfs.jpg" class="marquee-img" alt="Commercial Vehicle Fitout">
-                <img src="e fitout.jpg" class="marquee-img" alt="Slide Out Drawers">
-                <img src="y fitout.jpg" class="marquee-img" alt="Cargo Barrier Install">
-                <img src="s fitout.jpg" class="marquee-img" alt="Custom Van Setup">
-                <img src="WhatsApp Image 2026-03-08 at 2.26.19 PM.jpeg" class="marquee-img" alt="Heavy Duty Van Shelving">
+
+            <div class="flex-1 bg-black border-t lg:border-t-0 lg:border-l border-[#222] py-12 flex flex-col justify-center overflow-hidden">
+                <div class="marquee-wrapper">
+                    <div class="marquee-track track-slow">
+                        <img src="elite 2.jpeg" class="marquee-img" alt="Custom Van Fitout Work">
+                        <img src="elitevf.jpeg" class="marquee-img" alt="Van Racking Installation">
+                        <img src="vf.jpeg" class="marquee-img" alt="Ute Drawer System">
+                        <img src="WhatsApp Image 2026-03-06 at 1.44.39 PM.jpeg" class="marquee-img" alt="Custom False Floor">
+                        <img src="WhatsApp Image 2026-03-06 at 1.44.38 PM.jpeg" class="marquee-img" alt="Precision Shelving">
+                        <img src="WhatsApp Image 2026-03-08 at 5.01.20 PM.jpeg" class="marquee-img" alt="Toolbox Integration">
+                        <img src="b fitout.jpg" class="marquee-img" alt="Plumbing Van Setup">
+                        <img src="elite 2.jpeg" class="marquee-img" alt="Custom Van Fitout Work">
+                        <img src="elitevf.jpeg" class="marquee-img" alt="Van Racking Installation">
+                        <img src="vf.jpeg" class="marquee-img" alt="Ute Drawer System">
+                        <img src="WhatsApp Image 2026-03-06 at 1.44.39 PM.jpeg" class="marquee-img" alt="Custom False Floor">
+                        <img src="WhatsApp Image 2026-03-06 at 1.44.38 PM.jpeg" class="marquee-img" alt="Precision Shelving">
+                        <img src="WhatsApp Image 2026-03-08 at 5.01.20 PM.jpeg" class="marquee-img" alt="Toolbox Integration">
+                        <img src="b fitout.jpg" class="marquee-img" alt="Plumbing Van Setup">
+                    </div>
+                </div>
+                
+                <div class="marquee-wrapper">
+                    <div class="marquee-track track-fast">
+                        <img src="fitout.jpg" class="marquee-img" alt="Electrical Van Shelving">
+                        <img src="vfs.jpg" class="marquee-img" alt="Commercial Vehicle Fitout">
+                        <img src="e fitout.jpg" class="marquee-img" alt="Slide Out Drawers">
+                        <img src="y fitout.jpg" class="marquee-img" alt="Cargo Barrier Install">
+                        <img src="s fitout.jpg" class="marquee-img" alt="Custom Van Setup">
+                        <img src="WhatsApp Image 2026-03-08 at 2.26.19 PM.jpeg" class="marquee-img" alt="Heavy Duty Van Shelving">
+                        <img src="elite 2.jpeg" class="marquee-img" alt="Custom Van Fitout Work">
+                        <img src="fitout.jpg" class="marquee-img" alt="Electrical Van Shelving">
+                        <img src="vfs.jpg" class="marquee-img" alt="Commercial Vehicle Fitout">
+                        <img src="e fitout.jpg" class="marquee-img" alt="Slide Out Drawers">
+                        <img src="y fitout.jpg" class="marquee-img" alt="Cargo Barrier Install">
+                        <img src="s fitout.jpg" class="marquee-img" alt="Custom Van Setup">
+                        <img src="WhatsApp Image 2026-03-08 at 2.26.19 PM.jpeg" class="marquee-img" alt="Heavy Duty Van Shelving">
+                        <img src="elite 2.jpeg" class="marquee-img" alt="Custom Van Fitout Work">
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <section id="services" class="py-24 px-6 bg-transparent">
+    <section id="services" class="py-20 px-6 bg-transparent">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
@@ -627,8 +637,15 @@
         </div>
     </section>
 
+    <section class="py-16 px-6 bg-transparent">
+        <div class="max-w-7xl mx-auto">
+            <script type='text/javascript' src='https://reputationhub.site/reputation/assets/review-widget.js'></script>
+            <iframe class='lc_reviews_widget' src='https://reputationhub.site/reputation/widgets/review_widget/Im9YMPbjBNSaUJy5qIeg?widgetId=69acee42cc4984200173e2a9' frameborder='0' scrolling='no' style='min-width: 100%; width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);'></iframe>
+        </div>
+    </section>
+
     <section id="contact" class="py-20 px-6 bg-transparent">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-2xl rounded-xl overflow-hidden">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-[0_10px_30px_rgba(34,197,94,0.2)] rounded-xl overflow-hidden">
             
             <div class="radar-container border-b md:border-b-0 md:border-r border-[#333]">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886043236077!2d145.24156637686737!3d-37.91035763953573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d0802905555%3A0x1c37b037307024e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" 
