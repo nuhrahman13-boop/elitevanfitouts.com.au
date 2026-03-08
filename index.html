@@ -65,8 +65,8 @@
 
         /* --- NAV (WHITE THEME) --- */
         .glass-nav { 
-            background: #ffffff;
-            border-bottom: 2px solid var(--elite-green);
+            background: #ffffff; /* Solid White */
+            border-bottom: 2px solid var(--elite-green); /* Sharp green border */
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -76,7 +76,7 @@
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
             background: #ffffff; border: 1px solid #ddd; width: 240px;
-            padding: 8px; border-radius: 12px; z-index: 100;
+            padding: 8px; border-radius: 8px; z-index: 100;
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             border-top: 2px solid var(--elite-green);
         }
@@ -85,9 +85,9 @@
 
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 16px; color: #333; 
+            padding: 12px 16px; color: #333; /* Dark text for white background */
             text-decoration: none;
-            border-radius: 8px; transition: all 0.2s;
+            border-radius: 6px; transition: all 0.2s;
             font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
             font-weight: bold;
         }
@@ -112,7 +112,7 @@
             .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
             .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
             .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
-            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; }
+            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
         }
         
         /* Mobile Config */
@@ -132,7 +132,7 @@
             }
             .hero-content {
                 width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left;
-                position: relative; z-index: 10; margin-top: -60px; /* Pulls text over video */
+                position: relative; z-index: 10; margin-top: -60px; /* Pulls text gracefully over video */
             }
             .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
             .hero-sub { 
@@ -140,7 +140,7 @@
                 line-height: 1.4 !important; margin-bottom: 15px !important;
             }
             .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
-            .btn-outline, .btn-locked { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
+            .btn-main, .btn-outline, .btn-locked { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
         }
 
         /* Hero Typography */
@@ -180,11 +180,11 @@
             border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05);
         }
 
-        /* --- SEO TICKER (LED GREEN TRAIN) --- */
+        /* --- SEO TICKER (LED TRAIN STYLE) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 45px; display: flex; align-items: center; z-index: 20;
-            border-bottom: 1px solid var(--elite-green); border-top: 1px solid #111;
+            border-bottom: 1px solid #222; border-top: 1px solid #111;
             background-image: radial-gradient(#111 1px, transparent 1px);
             background-size: 4px 4px;
         }
@@ -199,16 +199,17 @@
 
         /* --- TACTICAL TILES (Black Cards on Off-White) --- */
         .hex-card {
-            background-color: #080808; border: 1px solid var(--elite-green); 
-            border-radius: 12px; position: relative; overflow: hidden; 
-            transition: all 0.3s; cursor: pointer;
+            background-color: #080808; border: 1px solid #333; 
+            position: relative; overflow: hidden; 
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            height: 100%; display: flex; flex-direction: column;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
-            background-size: 40px 40px;
-            box-shadow: 0 10px 30px var(--elite-green-glow);
-            text-decoration: none; display: block;
+            background-size: 40px 40px; border-radius: 12px; text-decoration: none; display: block;
         }
-        .hex-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3); }
-        
+        .hex-card:hover { 
+            transform: translateY(-5px); border-color: var(--elite-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15); 
+        }
         .card-inner {
             position: relative; z-index: 10; padding: 35px 30px; height: 100%;
             display: flex; flex-direction: column; 
@@ -235,7 +236,7 @@
         .led-dot.red { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
 
         /* --- BUSINESS IN A BOX --- */
-        .crate-section { padding: 100px 24px; position: relative; background: transparent; }
+        .crate-section { padding: 100px 24px; position: relative; background: #050505; border-top: 1px solid #111; }
         .crate-container {
             max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 0;
             background: #000; border: 1px solid #333; border-radius: 12px;
@@ -293,7 +294,7 @@
         /* --- MOBILE MENU OVERRIDE (WHITE THEME) --- */
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #ffffff; 
+            background: #ffffff; /* White Theme */
             z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
@@ -370,7 +371,7 @@
 
     <div id="mobile-menu">
         <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
+            <a href="index.html" class="text-black border-l-4 border-green-500 pl-4 transition">Home</a>
             <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Van Fitouts</a>
             <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
             <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
@@ -542,10 +543,10 @@
         </div>
     </section>
 
-    <section id="contact" class="py-20 px-6 bg-transparent">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-2xl rounded-xl overflow-hidden">
+    <section id="contact" class="py-20 px-6 bg-[#020202]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-[#222] bg-[#080808] rounded-xl overflow-hidden">
             
-            <div class="radar-container border-b md:border-b-0 md:border-r border-[#333]">
+            <div class="radar-container border-b md:border-b-0 md:border-r border-[#222]">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886043236077!2d145.24156637686737!3d-37.91035763953573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d0802905555%3A0x1c37b037307024e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" 
                     width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(1.2);" 
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
