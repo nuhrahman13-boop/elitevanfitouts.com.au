@@ -6,7 +6,7 @@
     
     <title>Elite Van Fitouts | Custom Racking, Wraps & Fleet Branding Melbourne</title>
     <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom precision plywood racking, false floors, and premium vehicle wraps for Tradies in Dandenong & South East Melbourne.">
-    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie, commercial van shelving, custom false floors, heavy duty van drawers">
+    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie, commercial van shelving, custom false floors">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://elitevanfitouts.com.au/">
 
@@ -22,9 +22,8 @@
         
         :root { 
             --elite-green: #22c55e; 
-            --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --elite-green-glow: rgba(34, 197, 94, 0.2); 
-            --off-white: #f4f5f7; 
+            --elite-green-glow: rgba(34, 197, 94, 0.4); 
+            --off-white: #ffffff; 
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
         }
@@ -42,26 +41,20 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
         .led { font-family: 'VT323', monospace; }
 
-        /* --- PRELOADER --- */
+        /* --- PRELOADER (LOGO + BAR) --- */
         #boot-screen {
             position: fixed; inset: 0; background: #000; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            font-family: 'JetBrains Mono', monospace; color: var(--elite-green);
             transition: opacity 0.4s ease-out;
         }
-        .boot-text { 
-            font-size: 0.85rem; margin-bottom: 15px; letter-spacing: 2px; height: 20px; 
-            text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
-        }
-        .loader-container {
-            width: 220px; height: 3px; background: #111; border-radius: 2px; overflow: hidden; position: relative;
-        }
+        .loader-logo { height: 60px; margin-bottom: 30px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .loader-container { width: 220px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
         .loader-bar {
-            width: 0%; height: 100%; background: var(--elite-green);
-            box-shadow: 0 0 15px var(--elite-green);
+            width: 0%; height: 100%; background: var(--elite-green); box-shadow: 0 0 15px var(--elite-green);
             animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
 
         /* --- NAV (WHITE THEME) --- */
         .glass-nav { 
@@ -86,10 +79,8 @@
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 16px; color: #333; 
-            text-decoration: none;
-            border-radius: 6px; transition: all 0.2s;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-            font-weight: bold;
+            text-decoration: none; border-radius: 6px; transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
         }
         .dropdown-item:hover { background: rgba(34,197,94,0.1); color: black; padding-left: 20px; }
         .dropdown-divider { height: 1px; background: #eee; margin: 6px 0; }
@@ -104,10 +95,7 @@
         }
 
         @media (min-width: 1024px) {
-            .hero-section {
-                position: relative; height: 85vh; overflow: hidden; 
-                display: flex; align-items: flex-end; justify-content: flex-start;
-            }
+            .hero-section { position: relative; height: 85vh; overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start; }
             .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
             .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
             .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
@@ -117,43 +105,23 @@
         @media (max-width: 1023px) {
             .nav-spacer { display: none; }
             body { padding-top: var(--nav-height-mobile); } 
-            
             .hero-section { display: flex; flex-direction: column; height: auto; }
             .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
-            .hero-video { 
-                position: absolute; width: 100%; height: 100%; object-fit: cover;
-                object-position: 60% top; filter: brightness(0.7);
-            }
-            .hero-fade {
-                position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
-                background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2;
-            }
-            .hero-content {
-                width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left;
-                position: relative; z-index: 10; margin-top: -60px;
-            }
+            .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 60% top; filter: brightness(0.7); }
+            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2; }
+            .hero-content { width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left; position: relative; z-index: 10; margin-top: -60px; }
             .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
-            .hero-sub { 
-                display: block !important; font-size: 0.85rem !important; 
-                line-height: 1.4 !important; margin-bottom: 15px !important;
-            }
+            .hero-sub { display: block !important; font-size: 0.85rem !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
             .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
             .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
         }
 
         .glitch-text {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
-            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
-            color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
+            font-family: 'Inter', sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
         .glitch-text strong { color: var(--elite-green); }
-        
-        .hero-sub {
-            font-family: 'Inter', sans-serif; font-weight: 400;
-            font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px;
-            border-left: 3px solid var(--elite-green); padding-left: 20px;
-        }
+        .hero-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px; border-left: 3px solid var(--elite-green); padding-left: 20px; }
 
         /* --- BUTTONS --- */
         .btn-main {
@@ -163,10 +131,7 @@
             transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
             box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; pointer-events: auto;
         }
-        .btn-main:hover { 
-            background: white; border-color: white; color: black;
-            box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); 
-        }
+        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
         
         .btn-outline {
             background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
@@ -181,51 +146,48 @@
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 45px; display: flex; align-items: center; z-index: 20;
             border-bottom: 1px solid #222; border-top: 1px solid #111;
-            background-image: radial-gradient(#111 1px, transparent 1px);
-            background-size: 4px 4px;
+            background-image: radial-gradient(#111 1px, transparent 1px); background-size: 4px 4px;
         }
         .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .led-item {
             color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
-            font-size: 1.8rem; padding: 0 40px;
-            display: flex; align-items: center; letter-spacing: 3px; 
+            font-size: 1.8rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 3px; 
             text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4); 
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- OUR FITOUTS SPLIT SECTION --- */
-        .fitout-showcase {
-            background: #000; border-bottom: 1px solid var(--elite-green);
-            overflow: hidden;
-        }
+        /* --- SPLIT SECTION: OUR FITOUTS (WHITE BG) --- */
+        .fitout-showcase { background: #ffffff; border-bottom: 1px solid #ddd; overflow: hidden; }
+        
+        /* Fast Marquee */
         .marquee-wrapper {
             width: 100%; overflow: hidden; white-space: nowrap; display: flex; margin-bottom: 15px;
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         .marquee-track { display: flex; gap: 15px; padding-left: 15px; width: max-content; }
-        
-        .track-slow { animation: scrollLeft 35s linear infinite; }
-        .track-fast { animation: scrollRight 25s linear infinite; }
+        .track-slow { animation: scrollLeft 20s linear infinite; } /* Sped up */
+        .track-fast { animation: scrollRight 15s linear infinite; } /* Sped up */
         
         @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
         @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
         
         .marquee-img {
             height: 160px; width: 240px; object-fit: cover; border-radius: 8px;
-            border: 1px solid #333; transition: 0.3s;
+            border: 1px solid #ddd; transition: 0.3s;
         }
         .marquee-img:hover { border-color: var(--elite-green); transform: scale(1.02); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
 
-        /* --- TRADE SOLUTIONS SEO GRID --- */
+        /* --- TRADE SOLUTIONS SEO GRID (BLACK TILES, GREEN TEXT) --- */
         .trade-tag {
-            background: #111; border: 1px solid #333; color: #888; font-family: 'JetBrains Mono', monospace;
-            padding: 10px 15px; border-radius: 6px; text-transform: uppercase; font-size: 0.75rem;
-            transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); 
+            font-family: 'JetBrains Mono', monospace; font-weight: bold;
+            padding: 12px 20px; border-radius: 8px; text-transform: uppercase; font-size: 0.8rem;
+            transition: all 0.3s; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
         }
-        .trade-tag:hover { background: var(--elite-green-dim); border-color: var(--elite-green); color: white; transform: translateY(-2px);}
-        .trade-dot { width: 6px; height: 6px; background: #444; border-radius: 50%; }
-        .trade-tag:hover .trade-dot { background: var(--elite-green); box-shadow: 0 0 8px var(--elite-green); }
+        .trade-tag:hover { box-shadow: 0 0 20px var(--elite-green); transform: translateY(-3px); color: white;}
+        .trade-dot { width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%; box-shadow: 0 0 8px var(--elite-green); }
 
         /* --- TACTICAL TILES (SERVICES) --- */
         .hex-card {
@@ -236,30 +198,21 @@
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
             background-size: 40px 40px; text-decoration: none; display: block;
         }
-        .hex-card:hover { 
-            transform: translateY(-5px); border-color: var(--elite-green);
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15); 
-        }
+        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
         
-        /* FITOUTS DOMINANT TILE */
         .hex-card.dominant {
-            border-color: var(--elite-green);
-            box-shadow: 0 0 30px var(--elite-green-glow);
+            border-color: var(--elite-green); box-shadow: 0 0 30px var(--elite-green-glow);
             background: linear-gradient(to bottom right, #080808, #111811);
         }
-        .hex-card.dominant:hover { box-shadow: 0 10px 40px rgba(34,197,94,0.3); }
+        .hex-card.dominant:hover { box-shadow: 0 10px 40px rgba(34,197,94,0.4); }
 
         .card-inner {
             position: relative; z-index: 10; padding: 40px; height: 100%;
             display: flex; flex-direction: column; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)); 
         }
-        .card-title {
-            font-size: 2.2rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: white; margin-bottom: 10px;
-        }
-        .card-desc {
-            color: #aaa; font-weight: 400; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 20px;
-        }
+        .card-title { font-size: 2.2rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .card-desc { color: #aaa; font-weight: 400; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
         
         .action-button {
             margin-top: auto; margin-bottom: 25px; text-align: center; padding: 14px 0; 
@@ -267,46 +220,51 @@
             font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: bold; color: white;
             text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
         }
-        .hex-card:hover .action-button { 
-            border-color: var(--elite-green); color: black; background: var(--elite-green); 
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
-        }
+        .hex-card:hover .action-button { border-color: var(--elite-green); color: black; background: var(--elite-green); box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
 
         .status-bar {
-            padding-top: 20px; border-top: 1px solid #333;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #666; letter-spacing: 1px;
-            transition: border-color 0.3s;
+            padding-top: 20px; border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #666; letter-spacing: 1px; transition: border-color 0.3s;
         }
         .hex-card:hover .status-bar { border-color: rgba(34, 197, 94, 0.4); }
         .status-indicator { display: flex; align-items: center; gap: 8px; }
         .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
 
-        /* --- WHY CHOOSE ELITE --- */
-        .why-card {
-            background: #080808; border: 1px solid #333; padding: 30px; border-radius: 12px;
-            transition: 0.3s;
+        /* --- 4 GRID IMAGE CROSS-FADE --- */
+        .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(34,197,94,0.3); }
+        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+        
+        .fade-1 { animation: fadeCycle 8s infinite; }
+        .fade-2 { animation: fadeCycle 8s infinite; animation-delay: 4s; opacity: 0; }
+        @keyframes fadeCycle {
+            0%, 45% { opacity: 1; }
+            50%, 95% { opacity: 0; }
+            100% { opacity: 1; }
         }
-        .why-card:hover { border-color: var(--elite-green); transform: translateY(-3px); }
-        .why-icon { color: var(--elite-green); font-size: 2rem; margin-bottom: 15px; }
+
+        /* --- WHY CHOOSE ELITE (WHITE BG / BLACK CARDS) --- */
+        .why-card {
+            background: #000; border: 1px solid var(--elite-green); padding: 30px; border-radius: 12px;
+            transition: 0.3s; box-shadow: 0 5px 20px rgba(34, 197, 94, 0.1);
+        }
+        .why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
+        .why-icon { color: var(--elite-green); font-size: 2.5rem; margin-bottom: 15px; text-shadow: 0 0 15px var(--elite-green-glow); }
 
         /* --- LOCATION DOMINATION --- */
-        .loc-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .loc-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
         .loc-tag {
-            background: transparent; border: 1px solid #ddd; color: #555; font-family: 'JetBrains Mono', monospace;
-            padding: 8px 16px; border-radius: 4px; font-size: 0.7rem; text-transform: uppercase; transition: 0.2s;
+            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); font-family: 'JetBrains Mono', monospace;
+            padding: 10px 20px; border-radius: 6px; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s; font-weight: bold;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.1);
         }
-        .loc-tag:hover { background: #000; color: var(--elite-green); border-color: #000; }
+        .loc-tag:hover { background: var(--elite-green); color: black; box-shadow: 0 0 20px var(--elite-green); transform: scale(1.05); }
 
         /* --- MAP --- */
-        .radar-container {
-            position: relative; height: 100%; min-height: 450px; width: 100%; overflow: hidden; background: #000;
-        }
+        .radar-container { position: relative; height: 100%; min-height: 450px; width: 100%; overflow: hidden; background: #000; }
         .radar-overlay {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 300px; height: 300px; border: 1px solid rgba(34, 197, 94, 0.1);
-            border-radius: 50%; pointer-events: none; z-index: 10;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; 
+            border: 1px solid rgba(34, 197, 94, 0.1); border-radius: 50%; pointer-events: none; z-index: 10;
         }
         .radar-overlay::before {
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -321,16 +279,29 @@
         }
         @keyframes radarSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+        /* --- BRANDED SOCIAL ICONS --- */
+        .social-row { display: flex; gap: 15px; margin-top: 15px; }
         .social-icon {
             width: 40px; height: 40px; border: 1px solid #333; background: #111;
-            display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: all 0.3s; color: #888;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; transition: all 0.3s;
         }
-        .social-icon:hover { border-color: var(--elite-green); color: black; background: var(--elite-green); box-shadow: 0 0 15px rgba(34, 197, 94, 0.5); transform: translateY(-2px); }
+        .social-fb { color: #1877F2; }
+        .social-fb:hover { border-color: #1877F2; background: rgba(24,119,242,0.1); box-shadow: 0 0 15px rgba(24,119,242,0.5); transform: translateY(-2px); }
+        
+        .social-ig { color: #E1306C; }
+        .social-ig:hover { border-color: #E1306C; background: rgba(225,48,108,0.1); box-shadow: 0 0 15px rgba(225,48,108,0.5); transform: translateY(-2px); }
+        
+        .social-tt { color: #00f2fe; } /* Cyan glow for TikTok */
+        .social-tt:hover { border-color: #00f2fe; background: rgba(0,242,254,0.1); box-shadow: 0 0 15px rgba(0,242,254,0.5); transform: translateY(-2px); }
+        
+        .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
-        /* --- MOBILE MENU OVERRIDE --- */
+        /* --- MOBILE MENU OVERRIDE (WHITE BACKGROUND) --- */
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+            background: #ffffff; 
+            z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
 
@@ -345,7 +316,7 @@
 <body>
 
     <div id="boot-screen">
-        <div id="boot-text" class="boot-text">> SYSTEM STARTING...</div>
+        <img src="logo.png" alt="ELITE" class="loader-logo">
         <div class="loader-container">
             <div class="loader-bar"></div>
         </div>
@@ -423,6 +394,8 @@
             <div class="led-item">4X4 STORAGE</div>
             <div class="led-item">ROWVILLE WORKSHOP</div>
             <div class="led-item">FLEET BRANDING</div>
+            <div class="led-item">DUAL BATTERY SYSTEMS</div>
+            <div class="led-item">MELBOURNE TRADES</div>
             <div class="led-item">CUSTOM VAN RACKING</div>
             <div class="led-item">VAN DRAWERS</div>
             <div class="led-item">VEHICLE SIGNAGE</div>
@@ -436,28 +409,28 @@
         </div>
     </div>
 
-    <section class="fitout-showcase">
-        <div class="flex flex-col lg:flex-row w-full">
+    <section class="fitout-showcase bg-white py-20">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row w-full gap-12 px-6 items-center">
             
-            <div class="flex-1 p-10 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-[#0a0a0a] to-[#050505]">
-                <p class="mono text-green-500 text-xs tracking-[0.2em] uppercase mb-4 font-bold">Premium Storage Solutions</p>
-                <h2 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-6 leading-tight">
+            <div class="flex-1 flex flex-col justify-center">
+                <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">Premium Storage Solutions</p>
+                <h2 class="text-4xl md:text-5xl font-black italic uppercase text-black mb-6 leading-tight">
                     The Best Van Fitouts <br>in <span class="text-green-500">Melbourne.</span>
                 </h2>
-                <p class="text-gray-400 text-base leading-relaxed mb-6">
-                    Elite Van Fitouts engineers the highest quality custom van racking and storage systems in Australia. Maximize your cargo space with precision-machined raised false floors, heavy-duty 227kg sliding drawers, and trade-specific shelving units.
+                <p class="text-gray-700 text-base leading-relaxed mb-6 font-medium">
+                    Elite Van Fitouts engineers the highest quality custom van racking and storage systems in Australia. Maximize your cargo space with advanced machine-cut raised false floors, heavy-duty 227kg sliding drawers, and trade-specific shelving units.
                 </p>
-                <p class="text-gray-400 text-base leading-relaxed mb-10">
-                    From durable hex-ply protective lining to specialized add-ons like Euro crate racks, Packout docking stations, and silicone holders, our modular systems are completely customizable to every trade and every van. Stop searching for lost tools. Systemize your workflow and dominate your trade.
+                <p class="text-gray-600 text-base leading-relaxed mb-10">
+                    From extremely durable, anti-scratch Hex-Ply protective lining to specialized add-ons like perfectly angled Euro Crate racks, Packout docking stations, and silicone holders, our modular systems are 100% customizable to every specific trade and every van model. Stop searching for lost tools. Systemize your workflow and dominate your trade.
                 </p>
                 <div>
-                    <a href="fitouts.html" class="btn-outline border-[var(--elite-green)] text-[var(--elite-green)] hover:bg-[var(--elite-green)] hover:text-black">
-                        Build Your Fitout ->
+                    <a href="fitouts.html" class="btn-main shadow-none border-2 border-green-500">
+                        Design Your Fitout ->
                     </a>
                 </div>
             </div>
 
-            <div class="flex-1 border-t lg:border-t-0 lg:border-l border-[#222] py-12 flex flex-col justify-center overflow-hidden bg-black">
+            <div class="flex-1 w-full overflow-hidden">
                 <div class="marquee-wrapper">
                     <div class="marquee-track track-slow">
                         <img src="drawer system and flooring melbourne.jpg" class="marquee-img" alt="Drawer System and Flooring Melbourne">
@@ -493,9 +466,9 @@
         </div>
     </section>
 
-    <section class="py-12 bg-[#050505] border-bottom border-[#222]">
+    <section class="py-16 bg-white border-y border-[#ddd]">
         <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-white text-lg font-bold uppercase tracking-widest mb-6 text-center">Trade Specific Fitouts</h3>
+            <h3 class="text-black text-3xl font-black italic uppercase tracking-widest mb-10 text-center">Trade Specific <span class="text-green-500">Fitouts</span></h3>
             <div class="flex flex-wrap justify-center gap-4">
                 <div class="trade-tag"><div class="trade-dot"></div> Electricians</div>
                 <div class="trade-tag"><div class="trade-dot"></div> Plumbing & Gas</div>
@@ -504,11 +477,22 @@
                 <div class="trade-tag"><div class="trade-dot"></div> Mobile Mechanics</div>
                 <div class="trade-tag"><div class="trade-dot"></div> Locksmiths</div>
                 <div class="trade-tag"><div class="trade-dot"></div> Data & Comms</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Painters</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Glaziers</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Landscapers</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Pest Control</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Roofers</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Tilers & Plasterers</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Concreters</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Dog Groomers</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Coffee Vans</div>
+                <div class="trade-tag"><div class="trade-dot"></div> Delivery Couriers</div>
+                <div class="trade-tag"><div class="trade-dot"></div> NBN Technicians</div>
             </div>
         </div>
     </section>
 
-    <section id="systems" class="py-24 px-6 bg-transparent">
+    <section id="systems" class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
@@ -516,24 +500,41 @@
                     <div class="card-inner flex flex-col md:flex-row gap-8 items-center">
                         <div class="flex-1">
                             <div class="flex justify-between items-start mb-4">
-                                <span class="mono text-green-500 text-[10px] tracking-widest">SYSTEM_01</span>
+                                <span class="mono text-green-500 text-[10px] tracking-widest font-bold">SYSTEM_01</span>
                             </div>
                             <h3 class="text-5xl font-black italic uppercase text-white mb-4">Van Fitouts</h3>
                             <p class="text-gray-300 text-base line-height-relaxed max-w-xl mb-8">
-                                The ultimate storage solution. Precision-machined false floors, heavy duty sliding drawers, protective ply lining, and perfectly angled toolbox shelving. Turn your cargo space into a high-performance workflow.
+                                The ultimate commercial storage solution. Precision-machined false floors, heavy-duty sliding drawers, protective marine carpet lining, and perfectly angled toolbox shelving. Turn your cargo space into a highly organized, high-performance workflow.
                             </p>
                             <div class="action-button w-full md:w-64">DESIGN YOUR FITOUT -></div>
                         </div>
-                        <div class="hidden md:block w-1/3">
-                            <img src="van tradie set up rowville.jpg" alt="Premium Van Racking" class="rounded-xl border border-green-500/30 shadow-[0_0_20px_rgba(34,197,94,0.2)]">
+                        
+                        <div class="hidden md:grid grid-cols-2 gap-2 w-[400px] h-[400px]">
+                            <div class="fade-img-wrap">
+                                <img src="elite 2.jpeg" class="fade-img fade-1" alt="Van Fitout">
+                                <img src="b fitout.jpg" class="fade-img fade-2" alt="Van Shelving">
+                            </div>
+                            <div class="fade-img-wrap">
+                                <img src="elitevf.jpeg" class="fade-img fade-2" alt="Drawer System">
+                                <img src="fitout.jpg" class="fade-img fade-1" alt="False Floor">
+                            </div>
+                            <div class="fade-img-wrap">
+                                <img src="vf.jpeg" class="fade-img fade-1" alt="Ute Drawers">
+                                <img src="e fitout.jpg" class="fade-img fade-2" alt="Custom Racking">
+                            </div>
+                            <div class="fade-img-wrap">
+                                <img src="WhatsApp Image 2026-03-08 at 5.01.20 PM.jpeg" class="fade-img fade-2" alt="Toolbox Integration">
+                                <img src="y fitout.jpg" class="fade-img fade-1" alt="Van Setup">
+                            </div>
                         </div>
+
                     </div>
                 </a>
 
                 <a href="branding.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-6">
-                            <span class="mono text-green-500 text-[10px]">SYSTEM_02</span>
+                            <span class="mono text-green-500 text-[10px] font-bold">SYSTEM_02</span>
                         </div>
                         <h3 class="card-title">Signage</h3>
                         <p class="card-desc">Dominate the road. Partial wraps, custom decals, and premium fleet graphics utilizing cast vinyl.</p>
@@ -548,7 +549,7 @@
                 <a href="launchpad.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-6">
-                            <span class="mono text-green-500 text-[10px]">SYSTEM_03</span>
+                            <span class="mono text-green-500 text-[10px] font-bold">SYSTEM_03</span>
                         </div>
                         <h3 class="card-title">Launchpad</h3>
                         <p class="card-desc">Business in a Box. Get your Van Fitout, Vehicle Wrap, and SEO Website built simultaneously.</p>
@@ -564,11 +565,11 @@
         </div>
     </section>
 
-    <section class="py-24 bg-[#050505] border-y border-[#222]">
+    <section class="py-24 bg-white border-y border-[#ddd]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-black italic uppercase text-white">Why Choose <span class="text-green-500">Elite</span></h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">We don't build generic timber boxes. We build precision-engineered commercial storage systems designed to outlast your vehicle.</p>
+                <h2 class="text-3xl md:text-5xl font-black italic uppercase text-black">Why Choose <span class="text-green-500">Elite</span></h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto font-medium">We don't build generic timber boxes. We build precision-engineered commercial storage systems designed to outlast your vehicle.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -596,20 +597,20 @@
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-transparent">
+    <section class="py-20 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-white text-3xl font-black italic uppercase mb-12">Commander <span class="text-green-500">Feedback</span></h2>
             <script type='text/javascript' src='https://reputationhub.site/reputation/assets/review-widget.js'></script>
             <iframe class='lc_reviews_widget' src='https://reputationhub.site/reputation/widgets/review_widget/Im9YMPbjBNSaUJy5qIeg?widgetId=69acee42cc4984200173e2a9' frameborder='0' scrolling='no' style='min-width: 100%; width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);'></iframe>
         </div>
     </section>
 
-    <section class="py-16 bg-[#ffffff] border-y-4 border-[var(--elite-green)]">
+    <section class="py-20 bg-white border-t border-[#ddd]">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h3 class="text-black text-2xl font-black uppercase italic mb-6">Serving South East Melbourne & Beyond</h3>
+            <h3 class="text-black text-3xl font-black uppercase italic mb-8">Serving South East Melbourne & Beyond</h3>
             <div class="loc-grid">
                 <span class="loc-tag">Rowville</span>
                 <span class="loc-tag">Dandenong</span>
+                <span class="loc-tag">Dandenong South</span>
                 <span class="loc-tag">Knoxfield</span>
                 <span class="loc-tag">Ferntree Gully</span>
                 <span class="loc-tag">Bayswater</span>
@@ -620,12 +621,38 @@
                 <span class="loc-tag">Narre Warren</span>
                 <span class="loc-tag">Cranbourne</span>
                 <span class="loc-tag">Mordialloc</span>
+                <span class="loc-tag">Moorabbin</span>
+                <span class="loc-tag">Cheltenham</span>
+                <span class="loc-tag">Oakleigh</span>
+                <span class="loc-tag">Springvale</span>
+                <span class="loc-tag">Clayton</span>
+                <span class="loc-tag">Keysborough</span>
+                <span class="loc-tag">Seaford</span>
+                <span class="loc-tag">Ringwood</span>
+                <span class="loc-tag">Croydon</span>
+                <span class="loc-tag">Lilydale</span>
+                <span class="loc-tag">Boronia</span>
+                <span class="loc-tag">Wantirna</span>
+                <span class="loc-tag">Lysterfield</span>
+                <span class="loc-tag">Endeavour Hills</span>
+                <span class="loc-tag">Hallam</span>
+                <span class="loc-tag">Mentone</span>
+                <span class="loc-tag">Mornington</span>
+                <span class="loc-tag">Mount Eliza</span>
+                <span class="loc-tag">Somerville</span>
+                <span class="loc-tag">Pakenham</span>
+                <span class="loc-tag">Officer</span>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 px-6 bg-transparent">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-2xl rounded-xl overflow-hidden">
+    <section id="contact" class="pt-10 pb-20 px-6 bg-white">
+        
+        <div class="max-w-4xl mx-auto mb-16 text-center">
+            <a href="fitouts.html" class="btn-main text-xl py-6 px-16 w-full md:w-auto shadow-[0_0_30px_rgba(34,197,94,0.4)]">GET YOUR VAN FITOUT QUOTE -></a>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-[0_10px_30px_rgba(34,197,94,0.2)] rounded-xl overflow-hidden">
             
             <div class="radar-container border-b md:border-b-0 md:border-r border-[#333]">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.886043236077!2d145.24156637686737!3d-37.91035763953573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d0802905555%3A0x1c37b037307024e0!2s8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1709600000000!5m2!1sen!2sau" 
@@ -658,23 +685,19 @@
                     <div>
                         <p class="text-[10px] text-gray-600 uppercase font-bold mb-2 mono">Connect</p>
                         <div class="social-row">
-                            <a href="https://www.facebook.com/share/1Da7HLaCu7" target="_blank" class="social-icon">
+                            <a href="https://www.facebook.com/share/1Da7HLaCu7" target="_blank" class="social-icon social-fb">
                                 <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                             </a>
-                            <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="social-icon">
+                            <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="social-icon social-ig">
                                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             </a>
-                            <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="social-icon">
+                            <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="social-icon social-tt">
                                 <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.05 3.5 3.01 1.57-.01 2.88-1.23 3.02-2.82.04-.9.04-1.79.04-2.69 0-3.3 0-6.59.03-9.89 1.29-.18 2.46-1.24 3-2.45.37-.84.54-1.79.57-2.73z"/></svg>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="max-w-4xl mx-auto mt-12 text-center">
-            <a href="fitouts.html" class="btn-main text-xl py-6 px-16 w-full md:w-auto shadow-[0_0_30px_rgba(34,197,94,0.4)]">GET YOUR VAN FITOUT QUOTE -></a>
         </div>
     </section>
         
@@ -689,7 +712,7 @@
         <p>We do not use cheap materials. Our van setups are constructed using premium 15mm Hex Plywood, which features a highly anti-scratch, water-resistant, and reflective phenolic coating. This ensures your racking can withstand the daily abuse of a harsh worksite. We also offer full vehicle ply lining and high-grade charcoal automotive marine carpet to provide essential sound deadening, insulation, and interior protection for your van.</p>
 
         <h2>Trade-Specific Van Setups</h2>
-        <p>A mobile mechanic has completely different workflow needs compared to a locksmith or HVAC technician. Our modular systems are 100% customizable. Add on specific components such as Milwaukee Packout docking stations, Makita Makpac shelves, angled Euro Crate shelving, silicone cartridge holders, spray can dividers, secure gas cylinder ventilation enclosures, 12V dual battery systems, pure sine wave inverters, LED interior strip lighting, and ADR-tested cargo barriers. We provide the best setups for Electricians, Plumbers, Gas Fitters, Air Conditioning Techs, Builders, Carpenters, Data and Communications experts, Security Installers, and Civil Contractors.</p>
+        <p>A mobile mechanic has completely different workflow needs compared to a locksmith or HVAC technician. Our modular systems are 100% customizable. Add on specific components such as Milwaukee Packout docking stations, Makita Makpac shelves, angled Euro Crate shelving, silicone cartridge holders, spray can dividers, secure gas cylinder ventilation enclosures, 12V dual battery systems, pure sine wave inverters, LED interior strip lighting, and ADR-tested cargo barriers. We provide the best setups for Electricians, Plumbers, Gas Fitters, Air Conditioning Techs, Builders, Carpenters, Data and Communications experts, Security Installers, Roofers, Glaziers, Painters, and Civil Contractors.</p>
 
         <h2>Vehicle Compatibility</h2>
         <p>Our racking systems are perfectly engineered for every major commercial van and ute canopy on the Australian market. We provide fitouts for Toyota HiAce LWB and SLWB, Ford Transit Custom, Ford Ranger Canopies, LDV Deliver 9, LDV G10, Hyundai Staria Load, Mercedes Benz Vito, Mercedes Benz Sprinter (MWB, LWB, High Roof), Volkswagen Transporter T6.1, Volkswagen Crafter, Renault Trafic, Renault Master, Peugeot Trafic, Hyundai iLoad, Mitsubishi Staria, Isuzu D-Max, and Nissan Navara service bodies.</p>
@@ -698,7 +721,7 @@
         <p>Beyond internal storage, Elite Van Fitouts is also Dandenong and Rowville's premier vehicle signage and fleet branding specialist. Turn your van into a 24/7 lead generation machine. We only use premium cast vinyl from Avery Dennison and 3M, guaranteeing your wrap conforms to deep vehicle recesses without shrinking or peeling. We offer computer-cut logo decals, high-visibility partial wraps, full custom vehicle wraps, color changes, digital print graphics, one-way vision window mesh, custom ute tray decals, half wraps, and Class 1 reflective tape installations.</p>
 
         <h2>Service Areas</h2>
-        <p>We provide van racking, custom flooring, and vehicle wrapping to tradesmen and fleet managers across: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, and Somerville.</p>
+        <p>We provide van racking, custom flooring, and vehicle wrapping to tradesmen and fleet managers across: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, Officer, and Somerville.</p>
     </div>
 
     <div class="py-8 text-center bg-[#000] border-t border-[#111]">
@@ -708,21 +731,6 @@
     <script>
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
-            const bootText = document.getElementById('boot-text');
-            const messages = [
-                "> SECURING CONNECTION...",
-                "> LOADING ASSETS...",
-                "> WELCOME, COMMANDER."
-            ];
-            
-            let delay = 300;
-            messages.forEach((msg, index) => {
-                setTimeout(() => {
-                    bootText.innerText = msg;
-                }, delay);
-                delay += 300;
-            });
-
             setTimeout(() => {
                 bootScreen.style.opacity = '0';
                 setTimeout(() => bootScreen.remove(), 500);
