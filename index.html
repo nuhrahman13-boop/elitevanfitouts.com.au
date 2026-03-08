@@ -6,7 +6,7 @@
     
     <title>Elite Van Fitouts | Custom Racking, Wraps & Fleet Branding Melbourne</title>
     <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom precision plywood racking, false floors, and premium vehicle wraps for Tradies in Dandenong & South East Melbourne.">
-    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, commercial van shelving, custom false floors, heavy duty van drawers, ply lining">
+    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie, commercial van shelving, custom false floors, heavy duty van drawers, ply lining">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://elitevanfitouts.com.au/">
 
@@ -23,7 +23,7 @@
         :root { 
             --elite-green: #22c55e; 
             --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --elite-green-glow: rgba(34, 197, 94, 0.5); 
+            --elite-green-glow: rgba(34, 197, 94, 0.4); 
             --off-white: #ffffff; 
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
@@ -48,8 +48,8 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 0.4s ease-out;
         }
-        .loader-logo { height: 60px; margin-bottom: 30px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        .loader-container { width: 220px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
+        .loader-logo { height: 60px; margin-bottom: 30px; animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .loader-container { width: 240px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
         .loader-bar {
             width: 0%; height: 100%; background: var(--elite-green); box-shadow: 0 0 15px var(--elite-green);
             animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -142,14 +142,14 @@
         }
         .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
 
-        /* --- SEO TICKER --- */
+        /* --- SEO TICKER (MASSIVE UPGRADE) --- */
         .led-wrap {
             position: relative; background: #050505; width: 100%; overflow: hidden;
             height: 45px; display: flex; align-items: center; z-index: 20;
             border-bottom: 1px solid #222; border-top: 1px solid #111;
             background-image: radial-gradient(#111 1px, transparent 1px); background-size: 4px 4px;
         }
-        .led-ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
+        .led-ticker { display: flex; white-space: nowrap; animation: ticker 60s linear infinite; }
         .led-item {
             color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
             font-size: 1.8rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 3px; 
@@ -157,19 +157,19 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- OUR FITOUTS (WHITE BG & GLOWING MARQUEE) --- */
-        .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 80px; padding-bottom: 40px; }
+        /* --- SPLIT SECTION: OUR FITOUTS --- */
+        .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 80px; padding-bottom: 40px; position: relative; }
         
         .marquee-wrapper {
             width: 100%; overflow: hidden; white-space: nowrap; display: flex; margin-bottom: 20px;
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            /* Fade edges on desktop to look like it slides out of the text block */
+            mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
         }
         .marquee-track { display: flex; gap: 20px; padding-left: 20px; width: max-content; }
         
-        /* Fast Animation for Trains sliding off screen */
-        .track-slow { animation: scrollLeft 18s linear infinite; } 
-        .track-fast { animation: scrollRight 14s linear infinite; } 
+        .track-slow { animation: scrollLeft 25s linear infinite; } 
+        .track-fast { animation: scrollRight 20s linear infinite; } 
         
         @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
         @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
@@ -177,12 +177,12 @@
         .marquee-img {
             height: 180px; width: 280px; object-fit: cover; border-radius: 8px;
             border: 2px solid var(--elite-green); 
-            box-shadow: 0 0 15px rgba(34,197,94,0.4); /* Glowing green edges */
+            box-shadow: 0 0 15px rgba(34,197,94,0.3);
             transition: transform 0.3s;
         }
-        .marquee-img:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.8); }
+        .marquee-img:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.6); z-index: 10; position: relative; }
 
-        /* --- HORIZONTAL SCROLL CONTAINERS (FOR MOBILE) --- */
+        /* MOBILE HORIZONTAL SCROLL CONTAINERS */
         .mobile-scroll-row {
             display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px;
             -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory;
@@ -246,21 +246,18 @@
 
         /* --- 4 GRID IMAGE CROSS-FADE --- */
         .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(34,197,94,0.3); }
-        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; opacity: 0; animation: crossFade 20s infinite; }
+        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; opacity: 0; animation: crossFade 16s infinite; }
         
         .fade-delay-1 { animation-delay: 0s; }
-        .fade-delay-2 { animation-delay: 4s; }
-        .fade-delay-3 { animation-delay: 8s; }
-        .fade-delay-4 { animation-delay: 12s; }
-        .fade-delay-5 { animation-delay: 16s; }
+        .fade-delay-2 { animation-delay: 8s; } /* Two phases for 2 images */
 
         @keyframes crossFade {
-            0%, 15% { opacity: 1; }
-            20%, 95% { opacity: 0; }
-            100% { opacity: 1; }
+            0%, 45% { opacity: 1; z-index: 2; }
+            50%, 95% { opacity: 0; z-index: 1; }
+            100% { opacity: 1; z-index: 2; }
         }
 
-        /* --- WHY CHOOSE ELITE (WHITE BG / BLACK CARDS) --- */
+        /* --- WHY CHOOSE ELITE (BLACK CARDS) --- */
         .why-card {
             background: #000; border: 1px solid var(--elite-green); padding: 30px; border-radius: 12px;
             transition: 0.3s; box-shadow: 0 5px 20px rgba(34, 197, 94, 0.1);
@@ -299,15 +296,23 @@
         .social-fb:hover { border-color: #1877F2; background: rgba(24,119,242,0.1); box-shadow: 0 0 15px rgba(24,119,242,0.5); transform: translateY(-2px); }
         .social-ig { color: #E1306C; }
         .social-ig:hover { border-color: #E1306C; background: rgba(225,48,108,0.1); box-shadow: 0 0 15px rgba(225,48,108,0.5); transform: translateY(-2px); }
-        .social-tt { color: #00f2fe; } 
+        .social-tt { color: #00f2fe; } /* Cyan glow for TikTok */
         .social-tt:hover { border-color: #00f2fe; background: rgba(0,242,254,0.1); box-shadow: 0 0 15px rgba(0,242,254,0.5); transform: translateY(-2px); }
         .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
         /* --- MOBILE MENU OVERRIDE --- */
-        #mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px; }
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+        }
         #mobile-menu.active { display: block; }
 
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+        /* --- INVISIBLE SEO --- */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -322,6 +327,7 @@
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
                 <a href="index.html" class="text-black font-bold border-b-2 border-green-500 pb-1">Home</a>
                 <div class="relative dropdown">
@@ -378,84 +384,108 @@
 
     <div class="led-wrap">
         <div class="led-ticker">
-            <div class="led-item">CUSTOM VAN RACKING</div>
-            <div class="led-item">VAN DRAWERS</div>
-            <div class="led-item">VEHICLE SIGNAGE</div>
-            <div class="led-item">UTE DRAWERS</div>
-            <div class="led-item">FALSE FLOORS</div>
-            <div class="led-item">SHELVING</div>
-            <div class="led-item">FLOORING</div>
-            <div class="led-item">4X4 STORAGE</div>
+            <div class="led-item">VAN RACKING MELBOURNE</div>
+            <div class="led-item">CUSTOM FALSE FLOORS</div>
+            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
+            <div class="led-item">COMMERCIAL VAN SHELVING</div>
+            <div class="led-item">TRADE VEHICLE FITOUTS</div>
+            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
+            <div class="led-item">TOOLBOX SHELVING</div>
+            <div class="led-item">PLYWOOD LINING</div>
+            <div class="led-item">FLEET VEHICLE WRAPS</div>
+            <div class="led-item">VAN STORAGE SYSTEMS</div>
+            <div class="led-item">SLIDE OUT WORKBENCHES</div>
+            <div class="led-item">UTE CANOPY FITOUTS</div>
+            <div class="led-item">PACKOUT DOCKING STATIONS</div>
+            <div class="led-item">PLUMBER VAN SETUPS</div>
+            <div class="led-item">ELECTRICIAN FITOUTS</div>
             <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">FLEET BRANDING</div>
-            <div class="led-item">CUSTOM VAN RACKING</div>
-            <div class="led-item">VAN DRAWERS</div>
-            <div class="led-item">VEHICLE SIGNAGE</div>
-            <div class="led-item">UTE DRAWERS</div>
-            <div class="led-item">FALSE FLOORS</div>
-            <div class="led-item">SHELVING</div>
-            <div class="led-item">FLOORING</div>
-            <div class="led-item">4X4 STORAGE</div>
+            <div class="led-item">DANDENONG SIGNAGE</div>
+            <div class="led-item">VAN RACKING MELBOURNE</div>
+            <div class="led-item">CUSTOM FALSE FLOORS</div>
+            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
+            <div class="led-item">COMMERCIAL VAN SHELVING</div>
+            <div class="led-item">TRADE VEHICLE FITOUTS</div>
+            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
+            <div class="led-item">TOOLBOX SHELVING</div>
+            <div class="led-item">PLYWOOD LINING</div>
+            <div class="led-item">FLEET VEHICLE WRAPS</div>
+            <div class="led-item">VAN STORAGE SYSTEMS</div>
+            <div class="led-item">SLIDE OUT WORKBENCHES</div>
+            <div class="led-item">UTE CANOPY FITOUTS</div>
+            <div class="led-item">PACKOUT DOCKING STATIONS</div>
+            <div class="led-item">PLUMBER VAN SETUPS</div>
+            <div class="led-item">ELECTRICIAN FITOUTS</div>
             <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">FLEET BRANDING</div>
+            <div class="led-item">DANDENONG SIGNAGE</div>
         </div>
     </div>
 
     <section class="fitout-showcase">
-        <div class="max-w-7xl mx-auto px-6 mb-12 text-center md:text-left">
-            <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">Premium Storage Solutions</p>
-            <h2 class="text-4xl md:text-5xl font-black italic uppercase text-black mb-6 leading-tight">
-                The Best Van Fitouts <br>in <span class="text-green-500">Melbourne.</span>
-            </h2>
-            <div class="max-w-3xl">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row w-full relative z-10 lg:gap-10">
+            
+            <div class="w-full lg:w-5/12 flex flex-col justify-center bg-white relative z-20 px-6 py-4 lg:py-0 lg:pr-10">
+                <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">Premium Storage Solutions</p>
+                <h2 class="text-4xl md:text-5xl font-black italic uppercase text-black mb-6 leading-tight">
+                    The Best Van Fitouts <br>in <span class="text-green-500">Melbourne.</span>
+                </h2>
+                
                 <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-4 font-medium">
-                    Elite Van Fitouts engineers the highest quality custom van racking and storage systems in Australia. Maximize your cargo space with advanced machine-cut raised false floors, heavy-duty 227kg sliding drawers, full ply lining, and trade-specific shelving units perfectly tailored to your workflow.
+                    Elite Van Fitouts engineers the highest quality custom van racking and storage systems in Australia. Maximize your cargo space with advanced precision-machined raised false floors, heavy-duty 227kg sliding drawers, full ply lining, and trade-specific shelving units tailored perfectly to your workflow.
                 </p>
+                
                 <div id="fitout-extra-text" class="hidden md:block">
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
                         From highly durable, anti-scratch Hex-Ply protective flooring to specialized add-ons like perfectly angled Euro Crate racks, Packout docking stations, and custom silicone holders, our modular systems are completely customizable to every specific trade and every van model. Stop searching for lost tools. Systemize your vehicle and dominate your trade.
                     </p>
                 </div>
+                
                 <button id="fitout-read-more" class="md:hidden text-green-600 text-xs font-bold uppercase tracking-widest mb-6 border border-green-500 px-4 py-2 rounded text-center w-full block" onclick="toggleFitoutText()">+ Read More</button>
-                <a href="fitouts.html" class="btn-main shadow-[0_0_15px_rgba(34,197,94,0.3)] w-full md:w-auto py-4 md:py-3 mt-2">Design Your Fitout -></a>
-            </div>
-        </div>
 
-        <div class="w-full mt-10">
-            <div class="marquee-wrapper">
-                <div class="marquee-track track-fast">
-                    <img src="drawer system and flooring melbourne.jpg" class="marquee-img marquee-glow-img" alt="Drawer System and Flooring Melbourne">
-                    <img src="van tradie set up rowville.jpg" class="marquee-img marquee-glow-img" alt="Van Tradie Setup Rowville">
-                    <img src="false floor and shelving bayswater.jpg" class="marquee-img marquee-glow-img" alt="False Floor and Shelving Bayswater">
-                    <img src="van shelving knox.jpg" class="marquee-img marquee-glow-img" alt="Van Shelving Knox">
-                    <img src="van shelving and drawers rowville.jpg" class="marquee-img marquee-glow-img" alt="Van Shelving and Drawers Rowville">
-                    <img src="van flooring dandenong.jpg" class="marquee-img marquee-glow-img" alt="Van Flooring Dandenong">
-                    <img src="drawer system and flooring melbourne.jpg" class="marquee-img marquee-glow-img" alt="Drawer System and Flooring Melbourne">
-                    <img src="van tradie set up rowville.jpg" class="marquee-img marquee-glow-img" alt="Van Tradie Setup Rowville">
-                    <img src="false floor and shelving bayswater.jpg" class="marquee-img marquee-glow-img" alt="False Floor and Shelving Bayswater">
-                    <img src="van shelving knox.jpg" class="marquee-img marquee-glow-img" alt="Van Shelving Knox">
-                    <img src="van shelving and drawers rowville.jpg" class="marquee-img marquee-glow-img" alt="Van Shelving and Drawers Rowville">
-                    <img src="van flooring dandenong.jpg" class="marquee-img marquee-glow-img" alt="Van Flooring Dandenong">
+                <div class="w-full md:w-auto">
+                    <a href="fitouts.html" class="btn-main shadow-[0_0_15px_rgba(34,197,94,0.3)] w-full md:w-auto py-4 md:py-3 text-sm md:text-sm text-center block">
+                        Design Your Fitout ->
+                    </a>
                 </div>
             </div>
-            <div class="marquee-wrapper mt-6">
-                <div class="marquee-track track-slow">
-                    <img src="van storage system.jpeg" class="marquee-img marquee-glow-img" alt="Van Storage System">
-                    <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="marquee-img marquee-glow-img" alt="Van Drawers False Floor Carpet Campbellfield">
-                    <img src="van drawers lysterfeild.jpeg" class="marquee-img marquee-glow-img" alt="Van Drawers Lysterfield">
-                    <img src="van fitout melbourne.jpeg" class="marquee-img marquee-glow-img" alt="Van Fitout Melbourne">
-                    <img src="plumber van set up.jpeg" class="marquee-img marquee-glow-img" alt="Plumber Van Setup">
-                    <img src="van storage system.jpeg" class="marquee-img marquee-glow-img" alt="Van Storage System">
-                    <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="marquee-img marquee-glow-img" alt="Van Drawers False Floor Carpet Campbellfield">
-                    <img src="van drawers lysterfeild.jpeg" class="marquee-img marquee-glow-img" alt="Van Drawers Lysterfield">
-                    <img src="van fitout melbourne.jpeg" class="marquee-img marquee-glow-img" alt="Van Fitout Melbourne">
-                    <img src="plumber van set up.jpeg" class="marquee-img marquee-glow-img" alt="Plumber Van Setup">
+
+            <div class="w-full lg:w-7/12 overflow-hidden relative z-10 mt-10 lg:mt-0">
+                <div class="marquee-wrapper">
+                    <div class="marquee-track track-fast">
+                        <img src="drawer system and flooring melbourne.jpg" class="marquee-img" alt="Drawer System and Flooring Melbourne">
+                        <img src="van tradie set up rowville.jpg" class="marquee-img" alt="Van Tradie Setup Rowville">
+                        <img src="false floor and shelving bayswater.jpg" class="marquee-img" alt="False Floor and Shelving Bayswater">
+                        <img src="van shelving knox.jpg" class="marquee-img" alt="Van Shelving Knox">
+                        <img src="van shelving and drawers rowville.jpg" class="marquee-img" alt="Van Shelving and Drawers Rowville">
+                        <img src="van flooring dandenong.jpg" class="marquee-img" alt="Van Flooring Dandenong">
+                        <img src="drawer system and flooring melbourne.jpg" class="marquee-img" alt="Drawer System and Flooring Melbourne">
+                        <img src="van tradie set up rowville.jpg" class="marquee-img" alt="Van Tradie Setup Rowville">
+                        <img src="false floor and shelving bayswater.jpg" class="marquee-img" alt="False Floor and Shelving Bayswater">
+                        <img src="van shelving knox.jpg" class="marquee-img" alt="Van Shelving Knox">
+                        <img src="van shelving and drawers rowville.jpg" class="marquee-img" alt="Van Shelving and Drawers Rowville">
+                        <img src="van flooring dandenong.jpg" class="marquee-img" alt="Van Flooring Dandenong">
+                    </div>
+                </div>
+                <div class="marquee-wrapper">
+                    <div class="marquee-track track-slow">
+                        <img src="van storage system.jpeg" class="marquee-img" alt="Van Storage System">
+                        <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="marquee-img" alt="Van Drawers False Floor Carpet Campbellfield">
+                        <img src="van drawers lysterfeild.jpeg" class="marquee-img" alt="Van Drawers Lysterfield">
+                        <img src="van fitout melbourne.jpeg" class="marquee-img" alt="Van Fitout Melbourne">
+                        <img src="plumber van set up.jpeg" class="marquee-img" alt="Plumber Van Setup">
+                        <img src="van storage system.jpeg" class="marquee-img" alt="Van Storage System">
+                        <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="marquee-img" alt="Van Drawers False Floor Carpet Campbellfield">
+                        <img src="van drawers lysterfeild.jpeg" class="marquee-img" alt="Van Drawers Lysterfield">
+                        <img src="van fitout melbourne.jpeg" class="marquee-img" alt="Van Fitout Melbourne">
+                        <img src="plumber van set up.jpeg" class="marquee-img" alt="Plumber Van Setup">
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <section class="py-16 bg-white border-y border-[#ddd]">
+    <section class="py-12 bg-white border-y border-[#ddd]">
         <div class="w-full overflow-hidden">
             <div class="max-w-7xl mx-auto">
                 <h3 class="text-black text-2xl md:text-3xl font-black italic uppercase tracking-widest mb-8 text-center px-6">Trade Specific <span class="text-green-500">Fitouts</span></h3>
@@ -475,7 +505,6 @@
                     <div class="trade-tag"><div class="trade-dot"></div> Tilers & Plasterers</div>
                     <div class="trade-tag"><div class="trade-dot"></div> Concreters</div>
                     <div class="trade-tag"><div class="trade-dot"></div> Dog Groomers</div>
-                    <div class="trade-tag"><div class="trade-dot"></div> Coffee Vans</div>
                     <div class="trade-tag"><div class="trade-dot"></div> Delivery Couriers</div>
                     <div class="trade-tag"><div class="trade-dot"></div> NBN Technicians</div>
                 </div>
@@ -507,19 +536,19 @@
                         
                         <div class="hidden md:grid grid-cols-2 gap-2 w-[400px] h-[400px]">
                             <div class="fade-img-wrap">
-                                <img src="elite 2.jpeg" class="fade-img fade-delay-1" alt="Van Fitout">
-                                <img src="b fitout.jpg" class="fade-img fade-delay-3" alt="Van Shelving">
+                                <img src="van tradie set up rowville.jpg" class="fade-img fade-delay-1" alt="Van Fitout">
+                                <img src="van storage system.jpeg" class="fade-img fade-delay-2" alt="Van Shelving">
                             </div>
                             <div class="fade-img-wrap">
-                                <img src="elitevf.jpeg" class="fade-img fade-delay-2" alt="Drawer System">
-                                <img src="drawer system and flooring melbourne.jpg" class="fade-img fade-delay-4" alt="Flooring Melbourne">
+                                <img src="drawer system and flooring melbourne.jpg" class="fade-img fade-delay-2" alt="Drawer System">
+                                <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="fade-img fade-delay-1" alt="False Floor">
                             </div>
                             <div class="fade-img-wrap">
-                                <img src="vf.jpeg" class="fade-img fade-delay-3" alt="Ute Drawers">
-                                <img src="e fitout.jpg" class="fade-img fade-delay-5" alt="Custom Racking">
+                                <img src="false floor and shelving bayswater.jpg" class="fade-img fade-delay-1" alt="Ute Drawers">
+                                <img src="van drawers lysterfeild.jpeg" class="fade-img fade-delay-2" alt="Custom Racking">
                             </div>
                             <div class="fade-img-wrap">
-                                <img src="WhatsApp Image 2026-03-08 at 5.01.20 PM.jpeg" class="fade-img fade-delay-4" alt="Toolbox Integration">
+                                <img src="van shelving and drawers rowville.jpg" class="fade-img fade-delay-2" alt="Toolbox Integration">
                                 <img src="plumber van set up.jpeg" class="fade-img fade-delay-1" alt="Plumber Setup">
                             </div>
                         </div>
@@ -647,8 +676,8 @@
 
     <section id="contact" class="pt-16 pb-20 px-6 bg-white">
         
-        <div class="max-w-4xl mx-auto mb-16 text-center">
-            <a href="fitouts.html" class="btn-main text-xl py-6 px-10 w-full md:w-auto shadow-[0_0_30px_rgba(34,197,94,0.4)]">GET YOUR VAN FITOUT QUOTE -></a>
+        <div class="max-w-4xl mx-auto mb-16 text-center px-4">
+            <a href="fitouts.html" class="btn-main text-lg md:text-xl py-5 md:py-6 px-10 w-full md:w-auto shadow-[0_0_30px_rgba(34,197,94,0.4)] block md:inline-block">GET YOUR VAN FITOUT QUOTE -></a>
         </div>
 
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 h-auto md:h-[500px] border border-green-500 bg-black shadow-[0_10px_30px_rgba(34,197,94,0.2)] rounded-xl overflow-hidden">
@@ -701,26 +730,26 @@
     </section>
         
     <div class="sr-only">
-        <h1>The Best Custom Van Fitouts in Melbourne | Racking, Drawers & Flooring</h1>
-        <p>Elite Van Fitouts is the ultimate destination for premium, highly durable commercial vehicle storage systems. Located in Rowville, Victoria, we service all trades across Melbourne's Eastern and South Eastern suburbs. Whether you are an electrician needing secure cable storage, a plumber requiring heavy-duty tool drawers, or a builder needing massive false floors for timber and ladder storage, we engineer the best custom van fitouts in the industry.</p>
+        <h1>The Best Custom Van Fitouts in Melbourne | Professional Van Racking, Heavy Duty Drawers & Raised Flooring</h1>
+        <p>Elite Van Fitouts is the ultimate destination for premium, highly durable commercial vehicle storage systems and tradie van setups. Located in Rowville, Victoria, we service all trades across Melbourne's Eastern and South Eastern suburbs. Whether you are a commercial electrician needing secure cable reel storage, a licensed plumber requiring heavy-duty tool drawers and pipe storage, or a residential builder needing massive raised false floors for timber, conduit, and ladder storage, we engineer and manufacture the best custom van fitouts in the industry.</p>
         
-        <h2>Custom Van Shelving, Drawers, and Raised False Floors</h2>
-        <p>Stop wasting time digging through a messy van. We maximize your cargo space with precision-machined storage solutions. We design, manufacture, and install ultra-heavy-duty sliding drawers (rated to 227kg dynamics), raised false floors with hidden under-floor tunnels for 3m PVC conduit and spirit levels, and custom plywood shelving units. Every build is cut using advanced computer-guided precision machinery to perfectly scribe to the unique interior curves of your specific vehicle, ensuring a flawless, rattle-free fit every single time.</p>
+        <h2>Custom Van Shelving, Slide Out Workbenches, and Raised False Floors</h2>
+        <p>Stop wasting billable hours digging through a messy, unorganized van. We maximize your commercial cargo space with precision-machined storage solutions. We design, manufacture, and install ultra-heavy-duty sliding drawers (rated to a massive 227kg dynamic load capacity), raised false floors with hidden under-floor tunnels designed specifically for 3m PVC conduit, copper pipes, and long spirit levels, alongside fully custom plywood shelving units. Every build is cut using advanced computer-guided precision machinery to perfectly scribe to the unique interior body curves and wheel arches of your specific vehicle, ensuring a flawless, rattle-free fit every single time.</p>
         
-        <h2>Premium Materials: 15mm Hex Plywood, Ply Lining, and Marine Carpet</h2>
-        <p>We do not use cheap materials. Our van setups are constructed using premium 15mm Hex Plywood, which features a highly anti-scratch, water-resistant, and reflective phenolic coating. This ensures your racking can withstand the daily abuse of a harsh worksite. We also offer full vehicle interior ply lining and high-grade charcoal automotive marine carpet to provide essential sound deadening, thermal insulation, and interior panel protection for your van.</p>
+        <h2>Premium Construction Materials: 15mm Hex Plywood, Ply Lining, and Marine Carpet</h2>
+        <p>We do not use cheap, flimsy materials that warp or snap under pressure. Our heavy-duty van setups are constructed using premium 15mm Hex Plywood, which features a highly anti-scratch, water-resistant, and reflective phenolic coating. This ensures your commercial racking can withstand the daily abuse of a harsh construction worksite. We also offer full vehicle interior ply lining, wall paneling, and high-grade charcoal automotive marine carpet to provide essential road sound deadening, thermal insulation, and interior panel protection for your expensive work van.</p>
 
-        <h2>Trade-Specific Van Setups: Custom Layouts for Every Workflow</h2>
-        <p>A mobile mechanic has completely different workflow needs compared to a locksmith or HVAC technician. Our modular systems are 100% customizable. Add on specific components such as Milwaukee Packout docking stations, Makita Makpac shelves, perfectly angled Euro Crate shelving, silicone cartridge holders, spray can dividers, secure gas cylinder ventilation enclosures, 12V dual battery systems, pure sine wave inverters, LED interior strip lighting, and ADR-tested cargo barriers. We provide the best professional setups for: Electricians, Plumbers, Gas Fitters, Air Conditioning Techs, Builders, Carpenters, Data and Communications experts, Security Installers, Roofers, Glaziers, Painters, Mobile Dog Grooming Vans, and Civil Contractors.</p>
+        <h2>Trade-Specific Van Setups: Custom Storage Layouts for Every Workflow</h2>
+        <p>A mobile mechanic has completely different workflow needs compared to an emergency locksmith, an NBN technician, or an HVAC installation crew. Our modular storage systems are 100% customizable to your exact operational requirements. Add on specific organizational components such as Milwaukee Packout docking stations, Makita Makpac transport shelves, perfectly angled Euro Crate shelving for small plumbing fittings, vertical silicone cartridge holders, spray paint can dividers, secure gas cylinder ventilation enclosures, comprehensive 12V dual battery setups, high-wattage pure sine wave inverters, LED interior strip lighting for night work, and ADR-tested safety cargo barriers. We provide the absolute best professional setups for: Electricians, Plumbers, Gas Fitters, Air Conditioning Techs (HVAC), Builders, Carpenters, Data and Communications experts, Security Installers, Roofers, Glaziers, Painters, Mobile Dog Grooming Vans, Mobile Coffee Vans, Delivery Couriers, and Civil Contractors.</p>
 
-        <h2>Vehicle Compatibility: Toyota HiAce, Ford Transit, LDV & More</h2>
-        <p>Our racking systems are perfectly engineered for every major commercial van and ute canopy on the Australian market. We provide fitouts for Toyota HiAce LWB and SLWB, Ford Transit Custom, Ford Ranger Canopies, LDV Deliver 9, LDV G10, Hyundai Staria Load, Mercedes Benz Vito, Mercedes Benz Sprinter (MWB, LWB, High Roof), Volkswagen Transporter T6.1, Volkswagen Crafter, Renault Trafic, Renault Master, Peugeot Trafic, Hyundai iLoad, Mitsubishi Staria, Isuzu D-Max, and Nissan Navara service bodies.</p>
+        <h2>Vehicle Compatibility: Toyota HiAce, Ford Transit, LDV, Hyundai & More</h2>
+        <p>Our racking systems, shelving units, and false floors are perfectly engineered for every major commercial van and ute canopy on the Australian market. We provide bespoke fitouts for the Toyota HiAce LWB (Long Wheelbase) and SLWB (Super Long Wheelbase), Ford Transit Custom, Ford Transit Heavy Duty, Ford Ranger Canopies, LDV Deliver 9 (Mid Roof and High Roof), LDV G10, Hyundai Staria Load, Hyundai iLoad, Mercedes Benz Vito, Mercedes Benz Sprinter (MWB, LWB, Extra Long), Volkswagen Transporter T6.1, Volkswagen Crafter, Renault Trafic, Renault Master, Peugeot Trafic, Mitsubishi Staria, Isuzu D-Max service bodies, and Nissan Navara service bodies.</p>
 
-        <h2>Vehicle Signage and Fleet Branding in Dandenong and Rowville</h2>
-        <p>Beyond internal storage, Elite Van Fitouts is also Dandenong and Rowville's premier vehicle signage and fleet branding specialist. Turn your van into a 24/7 lead generation machine. We only use premium cast vinyl from Avery Dennison and 3M, guaranteeing your wrap conforms to deep vehicle recesses without shrinking or peeling in the Australian sun. We offer computer-cut logo decals, high-visibility partial wraps, full custom vehicle wraps, color changes, digital print graphics, one-way vision window mesh, custom ute tray decals, half wraps, and Class 1 reflective tape installations.</p>
+        <h2>Vehicle Signage, Custom Decals, and Fleet Branding in Dandenong and Rowville</h2>
+        <p>Beyond internal cargo storage, Elite Van Fitouts is also Dandenong and Rowville's premier commercial vehicle signage and fleet branding specialist. Turn your work van into a 24/7 lead generation machine. We only use premium, automotive-grade cast vinyl from Avery Dennison and 3M, guaranteeing your custom vehicle wrap conforms to deep panel recesses without shrinking, cracking, or peeling in the harsh Australian sun. We offer crisp computer-cut logo decals, high-visibility partial wraps, full custom vehicle color change wraps, vivid digital print graphics, perforated one-way vision window mesh (for rear barn doors and tailgates), custom ute tray branding decals, half wraps, bonnet protectors, and high-visibility Class 1 reflective tape installations (Chapter 8 compliance) for mine-spec and civil construction vehicles.</p>
 
         <h2>Local Service Areas: South East Melbourne Dominance</h2>
-        <p>We provide van racking, custom flooring, and vehicle wrapping to tradesmen and fleet managers across all major South East Melbourne suburbs including: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, Officer, and Somerville. No matter where your job site is, Elite Van Fitouts is your trusted local partner for vehicle optimization.</p>
+        <p>We proudly design, build, and install custom van racking, structural flooring, and vehicle wrapping to tradesmen, business owners, and corporate fleet managers across all major South East Melbourne suburbs including: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, Officer, and Somerville. No matter where your daily job site is located, Elite Van Fitouts is your trusted local partner for complete vehicle optimization.</p>
     </div>
 
     <div class="py-8 text-center bg-[#000] border-t border-[#111]">
