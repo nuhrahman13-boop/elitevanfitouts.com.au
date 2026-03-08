@@ -3,106 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE | THE LAUNCHPAD</title>
+    
+    <title>The Launchpad | Business In A Box For Melbourne Tradies | ELITE</title>
+    <meta name="description" content="The ultimate Business-in-a-Box for tradesmen. We build your custom van fitout, premium vehicle wrap, and SEO trade website simultaneously in Rowville.">
+    <meta name="keywords" content="tradie business in a box, tradie website design melbourne, custom van fitouts rowville, tradie seo, start a plumbing business melbourne, start an electrical business, tradie crm, vehicle signage dandenong">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elitevanfitouts.com.au/launchpad.html">
+
+    <meta name="geo.region" content="AU-VIC" />
+    <meta name="geo.placename" content="Rowville" />
+    <meta name="geo.position" content="-37.915;145.243" />
+    <meta name="ICBM" content="-37.915, 145.243" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CORE SYSTEM --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+        /* --- CORE SYSTEM: DARK LUXURY HYBRID --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
         
         :root { 
             --elite-green: #22c55e; 
             --elite-green-dim: rgba(34, 197, 94, 0.1);
+            --elite-green-glow: rgba(34, 197, 94, 0.4); 
+            --off-white: #ffffff; 
             --nav-height-desktop: 80px;
             --nav-height-mobile: 60px;
         }
         
         body, html { 
-            margin: 0; padding: 0; background-color: #000000; 
-            color: white; font-family: 'Inter', sans-serif; overflow-x: hidden;
+            margin: 0; padding: 0; 
+            background-color: var(--off-white); 
+            color: #111; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
             padding-bottom: 120px;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
         
         .mono { font-family: 'JetBrains Mono', monospace; }
         .led { font-family: 'VT323', monospace; }
 
-        /* --- NAV --- */
+        /* --- PRELOADER (LOGO + BAR) --- */
+        #boot-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.4s ease-out;
+        }
+        .loader-logo { height: 60px; margin-bottom: 30px; animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .loader-container { width: 240px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
+        .loader-bar {
+            width: 0%; height: 100%; background: var(--elite-green); box-shadow: 0 0 15px var(--elite-green);
+            animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+        /* --- NAV (WHITE THEME) --- */
         .glass-nav { 
-            background: rgba(0,0,0,0.95);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: #ffffff;
+            border-bottom: 2px solid var(--elite-green);
             height: var(--nav-height-desktop);
             display: flex; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        @media (max-width: 768px) {
-            .glass-nav { height: var(--nav-height-mobile); }
-        }
+        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px;
-            background: #0a0a0a; border: 1px solid #333; width: 240px;
+            background: #ffffff; border: 1px solid #ddd; width: 240px;
             padding: 8px; border-radius: 8px; z-index: 100;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             border-top: 2px solid var(--elite-green);
         }
         .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
-        @keyframes menuDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes menuDrop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
         .dropdown-item {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 16px; color: #888; text-decoration: none;
-            border-radius: 4px; transition: all 0.2s;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase;
+            padding: 12px 16px; color: #333; 
+            text-decoration: none; border-radius: 6px; transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
         }
-        .dropdown-item:hover { background: var(--elite-green-dim); color: white; padding-left: 20px; }
-        .dropdown-divider { height: 1px; background: #222; margin: 6px 0; }
+        .dropdown-item:hover { background: rgba(34,197,94,0.1); color: black; padding-left: 20px; }
+        .dropdown-divider { height: 1px; background: #eee; margin: 6px 0; }
 
-        /* --- BODY SPACER --- */
         .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
-        @media (max-width: 768px) { .nav-spacer { height: 60px; } }
 
         /* --- HERO SECTION --- */
         .hero-section {
-            position: relative; width: 100%; height: 85vh; 
-            background: #000; overflow: hidden; 
-            display: flex; align-items: center; justify-content: center;
-            border-bottom: 1px solid #222;
+            position: relative; width: 100%; background: #000; overflow: hidden; 
+            display: flex; align-items: flex-end; border-bottom: 1px solid var(--elite-green);
+            box-shadow: 0 10px 30px var(--elite-green-glow);
+        }
+        .hero-video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 0; object-position: center center; filter: brightness(0.4) contrast(1.2); }
+
+        @media (min-width: 1024px) {
+            .hero-section { height: 85vh; display: flex; align-items: flex-end; justify-content: flex-start; }
+            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
+            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
         }
         
-        .hero-bg-placeholder {
-            position: absolute; inset: 0; 
-            background: radial-gradient(circle at center, #111 0%, #000 80%);
-            background-image: 
-                linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
+        @media (max-width: 1023px) {
+            .nav-spacer { display: none; }
+            body { padding-top: var(--nav-height-mobile); } 
+            .hero-section { display: flex; flex-direction: column; height: auto; }
+            .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
+            .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center center; filter: brightness(0.5); }
+            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2; }
+            .hero-content { width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left; position: relative; z-index: 10; margin-top: -60px; }
+            .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
+            .hero-sub { display: block !important; font-size: 0.85rem !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
         }
 
-        .hero-content {
-            position: relative; z-index: 10; width: 100%; 
-            padding: 0 24px; max-width: 1000px; margin: 0 auto; text-center: center;
-        }
         .glitch-text {
-            font-size: clamp(3rem, 7vw, 6rem); line-height: 0.9; font-weight: 900;
-            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em;
-            color: white; text-shadow: 0 0 30px rgba(34, 197, 94, 0.3); margin-bottom: 30px;
+            font-family: 'Inter', sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
+            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
-        .hero-sub {
-            font-size: 1.1rem; line-height: 1.6; color: #ccc; max-width: 600px; margin: 0 auto;
-        }
+        .glitch-text strong { color: var(--elite-green); }
+        .hero-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 600px; border-left: 3px solid var(--elite-green); padding-left: 20px; }
 
-        /* --- COMPARISON GRID --- */
-        .compare-section { padding: 80px 24px; background: #050505; border-bottom: 1px solid #222; }
+        /* --- SEO TICKER --- */
+        .led-wrap {
+            position: relative; background: #050505; width: 100%; overflow: hidden;
+            height: 45px; display: flex; align-items: center; z-index: 20;
+            border-bottom: 1px solid #222; border-top: 1px solid #111;
+            background-image: radial-gradient(#111 1px, transparent 1px); background-size: 4px 4px;
+        }
+        .led-ticker { display: flex; white-space: nowrap; animation: ticker 60s linear infinite; }
+        .led-item {
+            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
+            font-size: 1.8rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 3px; 
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4); 
+        }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        /* --- COMPARISON GRID (REDESIGNED FOR WHITE THEME) --- */
+        .compare-section { padding: 100px 24px; background: #ffffff; border-bottom: 1px solid #ddd; }
         .compare-grid { display: grid; grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto; }
-        .compare-card { padding: 40px; border-radius: 8px; position: relative; }
-        .card-bad { background: rgba(50, 0, 0, 0.2); border: 1px solid #500; }
-        .card-good { background: rgba(0, 50, 0, 0.2); border: 1px solid var(--elite-green); }
-        .list-item { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9rem; color: #ccc; }
+        .compare-card { padding: 40px; border-radius: 12px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .card-bad { background: #0a0a0a; border: 1px solid #500; }
+        .card-good { background: #000000; border: 2px solid var(--elite-green); box-shadow: 0 10px 30px var(--elite-green-glow); transform: scale(1.02);}
+        .list-item { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.95rem; color: #ccc; }
 
-        /* --- ROADMAP --- */
-        .roadmap-section { padding: 100px 24px; position: relative; }
+        /* --- ROADMAP (WHITE THEME COMPATIBLE) --- */
+        .roadmap-section { padding: 100px 24px; position: relative; background: #ffffff; }
         .roadmap-line {
             position: absolute; left: 50%; top: 100px; bottom: 100px; width: 2px;
-            background: #222; transform: translateX(-50%);
+            background: #ddd; transform: translateX(-50%);
         }
         .roadmap-line::after {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 200px;
@@ -112,137 +159,199 @@
         @keyframes pulseLine { 0% { top: -200px; } 100% { top: 100%; } }
 
         .phase-row { display: flex; justify-content: center; align-items: center; margin-bottom: 80px; position: relative; z-index: 10; }
-        .phase-card { width: 45%; background: #0a0a0a; border: 1px solid #333; padding: 30px; transition: 0.3s; }
-        .phase-card:hover { border-color: var(--elite-green); transform: scale(1.02); }
-        .phase-dot { width: 20px; height: 20px; background: #000; border: 2px solid var(--elite-green); border-radius: 50%; box-shadow: 0 0 15px var(--elite-green); margin: 0 40px; }
+        .phase-card { width: 45%; background: #080808; border: 1px solid #333; padding: 30px; transition: 0.3s; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .phase-card:hover { border-color: var(--elite-green); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(34,197,94,0.3); }
+        .phase-dot { width: 20px; height: 20px; background: #fff; border: 3px solid var(--elite-green); border-radius: 50%; box-shadow: 0 0 15px var(--elite-green); margin: 0 40px; }
 
         /* Mobile Roadmap Fix */
         @media (max-width: 768px) {
             .roadmap-line { left: 20px; }
             .phase-row { flex-direction: column; align-items: flex-start; margin-left: 50px; }
             .phase-card { width: 100%; margin-top: 10px; }
-            .phase-dot { position: absolute; left: -40px; top: 0; margin: 0; }
+            .phase-dot { position: absolute; left: -42px; top: 0; margin: 0; }
         }
 
-        /* --- INDUSTRIES --- */
-        .industry-grid { display: grid; grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto; }
-        .industry-tag { background: #111; border: 1px solid #333; padding: 15px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #888; transition: 0.3s; cursor: default; }
-        .industry-tag:hover { border-color: var(--elite-green); color: white; }
+        /* --- MOBILE HORIZONTAL SCROLL CONTAINERS --- */
+        .mobile-scroll-row {
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory;
+        }
+        .mobile-scroll-row::-webkit-scrollbar { display: none; }
+        @media (min-width: 768px) {
+            .mobile-scroll-row { flex-wrap: wrap; justify-content: center; overflow-x: visible; scroll-snap-type: none; padding-bottom: 0; }
+        }
 
-        /* --- STICKY FOOTER (LOCKED) --- */
+        /* --- TRADE SOLUTIONS SEO GRID (BLACK TILES, GREEN TEXT) --- */
+        .trade-tag {
+            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); 
+            font-family: 'JetBrains Mono', monospace; font-weight: bold;
+            padding: 12px 20px; border-radius: 8px; text-transform: uppercase; font-size: 0.8rem;
+            transition: all 0.3s; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.15); flex-shrink: 0; scroll-snap-align: center;
+        }
+        .trade-tag:hover { box-shadow: 0 0 20px var(--elite-green); transform: translateY(-3px); color: white;}
+        .trade-dot { width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%; box-shadow: 0 0 8px var(--elite-green); }
+
+        /* --- STICKY FOOTER (UNLOCKED) --- */
         .manifest-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
             border-top: 1px solid var(--elite-green);
-            padding: 20px 24px; z-index: 100;
+            padding: 15px 24px; z-index: 100;
             display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center;
         }
         .submit-btn {
-            background: #222; color: #555; cursor: not-allowed;
+            background: var(--elite-green); color: black; cursor: pointer;
             font-family: 'JetBrains Mono', monospace; font-weight: 800;
-            padding: 14px 40px; text-transform: uppercase; 
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            transition: 0.2s; width: 100%; margin-top: 10px; border: 1px solid #333;
+            padding: 14px 40px; text-transform: uppercase; border-radius: 8px;
+            transition: all 0.3s ease; width: 100%; margin-top: 10px; border: 1px solid var(--elite-green);
+            box-shadow: 0 0 15px var(--elite-green-glow);
         }
+        .submit-btn:hover { background: white; border-color: white; transform: translateY(-2px); box-shadow: 0 0 25px rgba(255,255,255,0.4);}
         @media (min-width: 768px) { .submit-btn { width: auto; margin-top: 0; } }
 
+        /* --- MOBILE MENU OVERRIDE --- */
         #mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: black; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
+            background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
         }
         #mobile-menu.active { display: block; }
+
+        /* --- INVISIBLE SEO --- */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+        }
 
     </style>
 </head>
 <body>
 
+    <div id="boot-screen">
+        <img src="logo.png" alt="ELITE" class="loader-logo">
+        <div class="loader-container">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
             
-            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-400 items-center">
-                <a href="index.html" class="hover:text-white transition">Home</a>
+            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
+                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition">
-                        Systems <span class="text-[8px] transform rotate-90">></span>
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
+                        MENU <span class="text-[10px]">▼</span>
                     </button>
                     <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Branding & Signage <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
-                        <div class="text-[10px] text-gray-600 px-4 py-2 font-bold">RESOURCES</div>
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold">RESOURCES</div>
                         <a href="launchpad.html" class="dropdown-item text-green-500 border-l-2 border-green-500">The Launchpad <span>-></span></a>
                     </div>
                 </div>
             </div>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-green-500 text-2xl font-bold z-50 relative">///</button>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
         </div>
     </nav>
 
     <div id="mobile-menu">
-        <div class="flex flex-col gap-8 text-xl font-black italic uppercase">
-            <a href="index.html" class="text-white hover:text-green-500">Home</a>
-            <a href="fitouts.html" class="text-gray-400 hover:text-green-500">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-400 hover:text-green-500">Branding & Signage</a>
-            <a href="launchpad.html" class="text-white border-l-4 border-green-500 pl-4">The Launchpad</a>
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
+            <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
+            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
+            <a href="launchpad.html" class="text-black border-l-4 border-green-500 pl-4 transition">The Launchpad</a>
         </div>
     </div>
 
     <div class="nav-spacer"></div>
 
     <header class="hero-section">
-        <div class="hero-bg-placeholder"></div>
+        <div class="hero-video-wrapper">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="matrix.mp4" type="video/mp4">
+            </video>
+            <div class="hero-fade"></div>
+        </div>
         
         <div class="hero-content">
             <p class="mono text-green-500 text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">Total_System_Integration</p>
-            <h1 class="glitch-text">
-                FROM DREAM <br>TO <span class="text-green-500">DEPLOYMENT.</span>
+            <h1 class="glitch-text mb-4">
+                FROM DREAM <br>TO <strong>DEPLOYMENT.</strong>
             </h1>
             <p class="hero-sub">
                 The Launchpad is a complete "Business in a Box" solution. We take you from zero to fully operational in one seamless process. <br>
-                <strong>The Van. The Brand. The Software. Done.</strong>
+                <span class="font-bold text-white">The Van. The Brand. The Software. Done.</span>
             </p>
         </div>
     </header>
 
+    <div class="led-wrap">
+        <div class="led-ticker">
+            <div class="led-item">BUSINESS IN A BOX</div>
+            <div class="led-item">TRADIE WEBSITES MELBOURNE</div>
+            <div class="led-item">CUSTOM VAN FITOUTS</div>
+            <div class="led-item">FLEET BRANDING ROWVILLE</div>
+            <div class="led-item">AUTOMATED CRM SYSTEMS</div>
+            <div class="led-item">VEHICLE WRAPS DANDENONG</div>
+            <div class="led-item">SEO FOR TRADES</div>
+            <div class="led-item">GOOGLE REVIEWS AUTOMATION</div>
+            <div class="led-item">LEAD GENERATION</div>
+            <div class="led-item">BUSINESS IN A BOX</div>
+            <div class="led-item">TRADIE WEBSITES MELBOURNE</div>
+            <div class="led-item">CUSTOM VAN FITOUTS</div>
+            <div class="led-item">FLEET BRANDING ROWVILLE</div>
+            <div class="led-item">AUTOMATED CRM SYSTEMS</div>
+            <div class="led-item">VEHICLE WRAPS DANDENONG</div>
+            <div class="led-item">SEO FOR TRADES</div>
+            <div class="led-item">GOOGLE REVIEWS AUTOMATION</div>
+            <div class="led-item">LEAD GENERATION</div>
+        </div>
+    </div>
+
     <section class="compare-section">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-black italic uppercase text-white mb-4">The Speed of Execution</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Coordination is the enemy of speed. Trying to piece together a business using 5 different vendors costs you months of lost revenue.</p>
+        <div class="text-center mb-16">
+            <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">The Friction of Scaling</p>
+            <h2 class="text-4xl md:text-5xl font-black italic uppercase text-black mb-6">The Speed of <span class="text-green-500">Execution</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto font-medium">Coordination is the enemy of speed. Trying to piece together a new business or expand a fleet using 5 different vendors costs you months of lost revenue.</p>
         </div>
 
         <div class="compare-grid">
             <div class="compare-card card-bad">
-                <h3 class="text-red-500 font-bold uppercase mb-6 text-xl">The Old Way</h3>
-                <div class="list-item"><span class="text-red-500 font-bold">X</span> Dealing with 5 different vendors.</div>
-                <div class="list-item"><span class="text-red-500 font-bold">X</span> Waiting weeks for logo designs.</div>
-                <div class="list-item"><span class="text-red-500 font-bold">X</span> Van sits idle earning $0.</div>
-                <div class="list-item"><span class="text-red-500 font-bold">X</span> <strong>Result: 3 Months Lost.</strong></div>
+                <h3 class="text-red-500 font-bold uppercase mb-6 text-2xl italic">The Old Way</h3>
+                <div class="list-item"><span class="text-red-500 font-bold">X</span> Dealing with 5 different disjointed companies.</div>
+                <div class="list-item"><span class="text-red-500 font-bold">X</span> Waiting 6 weeks for custom logo designs.</div>
+                <div class="list-item"><span class="text-red-500 font-bold">X</span> A separate web developer who doesn't understand your trade.</div>
+                <div class="list-item"><span class="text-red-500 font-bold">X</span> Van sits idle earning $0 while getting fitout and wrapped at different shops.</div>
+                <div class="list-item mt-8 pt-4 border-t border-[#333]"><span class="text-red-500 font-bold text-xl">X</span> <strong class="text-xl text-white">Result: 3 Months Lost.</strong></div>
             </div>
 
             <div class="compare-card card-good">
-                <div class="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 mono">ELITE PROTOCOL</div>
-                <h3 class="text-green-500 font-bold uppercase mb-6 text-xl">The Launchpad</h3>
-                <div class="list-item"><span class="text-green-500 font-bold">✓</span> Single Point of Command.</div>
-                <div class="list-item"><span class="text-green-500 font-bold">✓</span> Simultaneous Production.</div>
-                <div class="list-item"><span class="text-green-500 font-bold">✓</span> Full Systems Handover.</div>
-                <div class="list-item"><span class="text-green-500 font-bold">✓</span> <strong>Result: Ready in Days.</strong></div>
+                <div class="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 mono border-bl-lg">ELITE PROTOCOL</div>
+                <h3 class="text-green-500 font-bold uppercase mb-6 text-2xl italic">The Launchpad</h3>
+                <div class="list-item"><span class="text-green-500 font-bold">✓</span> Single Point of Command. One invoice, one manager.</div>
+                <div class="list-item"><span class="text-green-500 font-bold">✓</span> Simultaneous Production at our Rowville HQ.</div>
+                <div class="list-item"><span class="text-green-500 font-bold">✓</span> We build your Brand, Website, Fitout, and Wrap at the same time.</div>
+                <div class="list-item"><span class="text-green-500 font-bold">✓</span> Full Systems Handover (CRM, Quoting, Missed-Call Text Back).</div>
+                <div class="list-item mt-8 pt-4 border-t border-[#333]"><span class="text-green-500 font-bold text-xl">✓</span> <strong class="text-xl text-white">Result: Ready in Days.</strong></div>
             </div>
         </div>
     </section>
 
     <section class="roadmap-section">
-        <h2 class="text-4xl font-black italic uppercase text-center mb-16 text-white">Execution <span class="text-green-500">Plan</span></h2>
+        <h2 class="text-4xl md:text-5xl font-black italic uppercase text-center mb-20 text-black">Execution <span class="text-green-500">Plan</span></h2>
         
         <div class="max-w-4xl mx-auto relative">
             <div class="roadmap-line"></div>
 
             <div class="phase-row">
-                <div class="phase-card text-right">
-                    <p class="mono text-green-500 text-xs mb-2">PHASE 01</p>
-                    <h3 class="text-xl font-bold uppercase text-white mb-2">The Blueprint</h3>
-                    <p class="text-sm text-gray-400">We map out your entire business model. Naming, Strategy, and Service Offerings. We define exactly who you are targeting.</p>
+                <div class="phase-card text-right md:text-right text-left">
+                    <p class="mono text-green-500 text-xs mb-2 font-bold">PHASE 01</p>
+                    <h3 class="text-2xl font-black italic uppercase text-white mb-3">The Blueprint</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">We map out your entire business model. Naming, Strategy, Logo Design, and Service Offerings. We define exactly who you are targeting in the Melbourne market.</p>
                 </div>
                 <div class="phase-dot"></div>
                 <div class="w-[45%] hidden md:block"></div>
@@ -252,17 +361,17 @@
                 <div class="w-[45%] hidden md:block"></div>
                 <div class="phase-dot"></div>
                 <div class="phase-card">
-                    <p class="mono text-green-500 text-xs mb-2">PHASE 02</p>
-                    <h3 class="text-xl font-bold uppercase text-white mb-2">Simultaneous Build</h3>
-                    <p class="text-sm text-gray-400">While our workshop builds your <strong>Fitout</strong> and installs the <strong>Signage</strong>, our tech team is coding your <strong>Website</strong> and <strong>CRM</strong>.</p>
+                    <p class="mono text-green-500 text-xs mb-2 font-bold">PHASE 02</p>
+                    <h3 class="text-2xl font-black italic uppercase text-white mb-3">Simultaneous Build</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">While our engineering workshop builds your <strong>Custom Van Fitout</strong> and installs the <strong>Vehicle Signage</strong>, our digital tech team is simultaneously coding your <strong>SEO Trade Website</strong> and <strong>CRM</strong>.</p>
                 </div>
             </div>
 
             <div class="phase-row">
-                <div class="phase-card text-right">
-                    <p class="mono text-green-500 text-xs mb-2">PHASE 03</p>
-                    <h3 class="text-xl font-bold uppercase text-white mb-2">Systemization</h3>
-                    <p class="text-sm text-gray-400">We configure your automation. Auto-Invoicing, Missed Call Text-Back, and Review Generation. Your business runs on autopilot.</p>
+                <div class="phase-card text-right md:text-right text-left">
+                    <p class="mono text-green-500 text-xs mb-2 font-bold">PHASE 03</p>
+                    <h3 class="text-2xl font-black italic uppercase text-white mb-3">Systemization</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">We configure your backend automation. Instant Auto-Invoicing, Missed Call Text-Back (so you never lose a lead while on the tools), and Automated Review Generation. Your business runs on autopilot.</p>
                 </div>
                 <div class="phase-dot"></div>
                 <div class="w-[45%] hidden md:block"></div>
@@ -270,44 +379,75 @@
 
             <div class="phase-row">
                 <div class="w-[45%] hidden md:block"></div>
-                <div class="phase-dot bg-green-500"></div>
-                <div class="phase-card border-green-500">
-                    <p class="mono text-green-500 text-xs mb-2">PHASE 04</p>
-                    <h3 class="text-xl font-bold uppercase text-white mb-2">Handover & Launch</h3>
-                    <p class="text-sm text-gray-400">You collect the keys. Your van is stocked. Your website is live. You drive out ready to bill your first client immediately.</p>
+                <div class="phase-dot bg-green-500 border-white shadow-[0_0_20px_rgba(34,197,94,0.8)]"></div>
+                <div class="phase-card border-green-500 bg-[#000] shadow-[0_10px_30px_rgba(34,197,94,0.15)]">
+                    <p class="mono text-green-500 text-xs mb-2 font-bold">PHASE 04</p>
+                    <h3 class="text-2xl font-black italic uppercase text-white mb-3">Handover & Launch</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">You collect the keys. Your van is stocked and branded. Your website is live and ranking. You drive out of our HQ ready to bill your first client immediately.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-[#050505] border-t border-[#222]">
-        <div class="text-center mb-10">
-            <h2 class="text-2xl font-bold uppercase text-white mb-4">Built For Any Trade</h2>
-            <p class="text-gray-400 text-sm">Our infrastructure adapts to your specific industry.</p>
-        </div>
-
-        <div class="industry-grid">
-            <div class="industry-tag">ELECTRICAL</div>
-            <div class="industry-tag">PLUMBING</div>
-            <div class="industry-tag">HVAC</div>
-            <div class="industry-tag">LANDSCAPING</div>
-            <div class="industry-tag">DETAILING</div>
-            <div class="industry-tag">LOCKSMITH</div>
-            <div class="industry-tag">MECHANIC</div>
-            <div class="industry-tag">BUILDING</div>
+    <section class="py-16 bg-white border-y border-[#ddd]">
+        <div class="w-full overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <h3 class="text-black text-2xl md:text-3xl font-black italic uppercase tracking-widest mb-8 text-center px-6">Built For Any <span class="text-green-500">Trade</span></h3>
+                <div class="mobile-scroll-row px-6 md:px-0">
+                    <div class="trade-tag"><div class="trade-dot"></div> Electricians</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Plumbing & Gas</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> HVAC & Refrigeration</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Builders & Carpenters</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Mobile Mechanics</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Locksmiths</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Data & Comms</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Painters</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Glaziers</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Landscapers</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Pest Control</div>
+                    <div class="trade-tag"><div class="trade-dot"></div> Roofers</div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <div class="sr-only">
+        <h1>The Ultimate Business in a Box for Melbourne Tradies | Launchpad by Elite Van Fitouts</h1>
+        <p>Welcome to The Launchpad by Elite Van Fitouts, the industry's first true "Business in a Box" incubation program designed exclusively for Australian tradesmen. Located in Rowville, Victoria, we service ambitious contractors, solo operators, and scaling fleet managers across Melbourne's Eastern and South Eastern suburbs. If you are starting a new plumbing business, launching an electrical contracting company, or scaling a mobile mechanic fleet, we build your entire operational infrastructure simultaneously under one roof.</p>
+        
+        <h2>Simultaneous Production: Van Fitouts, Fleet Branding, and SEO Trade Websites</h2>
+        <p>Stop wasting months trying to coordinate five different vendors. The Launchpad eliminates the friction of scaling. While our precision-machining workshop engineers your heavy-duty custom van fitout and fabricates your raised false floor, our graphic design team is printing and installing your premium Avery Dennison vehicle wrap. Simultaneously, our digital tech department is constructing your high-converting, heavily SEO-optimized trade website. You drop off an empty commercial van and walk out with a fully branded, legally compliant, and digitally automated business ready to dominate the Melbourne market and generate endless inbound leads.</p>
+        
+        <h2>Advanced Tradie CRM and Business Automation</h2>
+        <p>A website without a system is useless. Every Launchpad deployment includes a fully integrated Customer Relationship Management (CRM) system explicitly configured for tradesmen. We build out advanced business automation including Missed Call Text-Back routing (so you never lose a lead to a competitor when you are busy on the tools), automated Google Review generation campaigns to build local trust, unified inbox management (syncing Facebook, Instagram, SMS, and Email into one single app), instant quoting software, calendar booking engines, and database reactivation tools. We systemize your trade so you can focus on billable hours.</p>
+
+        <h2>Trade-Specific Setups: Custom Layouts for Every Workflow</h2>
+        <p>Your physical and digital infrastructure is 100% customizable to your exact operational requirements. We provide the absolute best professional physical storage setups and digital marketing funnels for: Electricians, Plumbers, Gas Fitters, Air Conditioning Techs (HVAC), Builders, Carpenters, Data and Communications experts, Security Installers, Roofers, Glaziers, Painters, Mobile Dog Grooming Vans, Mobile Coffee Vans, Delivery Couriers, and Civil Contractors.</p>
+
+        <h2>Local Service Areas: South East Melbourne Dominance</h2>
+        <p>We proudly design, build, and deploy our Launchpad "Business in a Box" systems to tradesmen and business owners across all major South East Melbourne suburbs including: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, Officer, and Somerville.</p>
+    </div>
 
     <div class="manifest-bar">
         <div>
             <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Program Status</p>
             <p class="text-xl font-bold text-green-500 animate-pulse">OPEN FOR APPLICATIONS</p>
         </div>
-        <button class="submit-btn">
-            🔒 LOCKED UNTIL MARCH
+        <button class="submit-btn" onclick="window.location.href='index.html#contact'">
+            APPLY FOR LAUNCHPAD ->
         </button>
     </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const bootScreen = document.getElementById('boot-screen');
+            setTimeout(() => {
+                bootScreen.style.opacity = '0';
+                setTimeout(() => bootScreen.remove(), 500);
+            }, 1200);
+        });
+    </script>
 
 </body>
 </html>
