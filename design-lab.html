@@ -223,10 +223,11 @@
                 <h3 class="text-xl font-black italic text-white uppercase tracking-widest">Fitout Configuration</h3>
                 <p class="text-green-500 mono text-[10px] mt-1">SYS_01_ACTIVE</p>
             </div>
+            
             <iframe
-                src="https://api.leadconnectorhq.com/widget/form/S3bBkkK9uARPsdcESK5r"
-                style="width:100%;height:100%;border:none;background:#080808; min-height: 600px;"
-                id="iframe-fitout"
+                src="https://links.elitebrandscaling.com/widget/form/DHGvcQD4xgCfwCbG0Cqm"
+                style="width:100%;height:100%;border:none;background:transparent; min-height:800px;"
+                id="inline-DHGvcQD4xgCfwCbG0Cqm" 
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
@@ -234,11 +235,11 @@
                 data-activation-value=""
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
-                data-form-name="WEB - Fitout Brief"
-                data-height="800"
-                data-layout-iframe-id="inline-fitout-S3bBkkK9uARPsdcESK5r"
-                data-form-id="S3bBkkK9uARPsdcESK5r"
-                title="WEB - Fitout Brief"
+                data-form-name="WEB - Fitout Config."
+                data-height="985"
+                data-layout-iframe-id="inline-DHGvcQD4xgCfwCbG0Cqm"
+                data-form-id="DHGvcQD4xgCfwCbG0Cqm"
+                title="WEB - Fitout Config."
             ></iframe>
         </div>
 
@@ -249,8 +250,7 @@
             </div>
             <iframe
                 src="https://api.leadconnectorhq.com/widget/form/S3bBkkK9uARPsdcESK5r"
-                style="width:100%;height:100%;border:none;background:#080808; min-height: 600px;"
-                id="iframe-branding"
+                style="width:100%;height:100%;border:none;background:transparent; min-height: 800px;"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
@@ -260,8 +260,8 @@
                 data-deactivation-value=""
                 data-form-name="WEB - Branding Brief"
                 data-height="800"
-                data-layout-iframe-id="inline-branding-S3bBkkK9uARPsdcESK5r"
-                data-form-id="S3bBkkK9uARPsdcESK5r"
+                data-layout-iframe-id="inline-branding-placeholder"
+                data-form-id="placeholder"
                 title="WEB - Branding Brief"
             ></iframe>
         </div>
@@ -271,10 +271,11 @@
                 <h3 class="text-xl font-black italic text-white uppercase tracking-widest">Incubation Application</h3>
                 <p class="text-green-500 mono text-[10px] mt-1">SYS_03_ACTIVE</p>
             </div>
+            
             <iframe
-                src="https://api.leadconnectorhq.com/widget/form/S3bBkkK9uARPsdcESK5r"
-                style="width:100%;height:100%;border:none;background:#080808; min-height: 600px;"
-                id="iframe-launchpad"
+                src="https://links.elitebrandscaling.com/widget/form/0OVCiqVakHInuwHfCZGp"
+                style="width:100%;height:100%;border:none;background:transparent; min-height: 800px;"
+                id="inline-0OVCiqVakHInuwHfCZGp" 
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
@@ -282,17 +283,17 @@
                 data-activation-value=""
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
-                data-form-name="WEB - Launchpad Brief"
-                data-height="800"
-                data-layout-iframe-id="inline-launchpad-S3bBkkK9uARPsdcESK5r"
-                data-form-id="S3bBkkK9uARPsdcESK5r"
-                title="WEB - Launchpad Brief"
+                data-form-name="WEB - launchpad App"
+                data-height="1017"
+                data-layout-iframe-id="inline-0OVCiqVakHInuwHfCZGp"
+                data-form-id="0OVCiqVakHInuwHfCZGp"
+                title="WEB - launchpad App"
             ></iframe>
         </div>
 
     </div>
 
-    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+    <script src="https://links.elitebrandscaling.com/js/form_embed.js"></script>
 
     <script>
         // --- PRELOADER ---
@@ -319,13 +320,14 @@
                 const cleanPkg = decodeURIComponent(pkg);
                 document.getElementById('console-output').innerHTML = `IMPORTING: <br><span style="color:white; font-size:0.75rem; line-height: 1.5; display:inline-block; margin-top:5px;">${cleanPkg}</span>`;
                 
-                // Inject the package data into the active iframe URL
-                // Note: The field name in GHL needs to match 'package_selection' or whatever custom field key you use.
-                const iframeId = 'iframe-' + tab;
-                const iframe = document.getElementById(iframeId);
+                // Target the specific iframe inside the active form wrapper
+                const formContainer = document.getElementById('form-' + tab);
+                const iframe = formContainer ? formContainer.querySelector('iframe') : null;
                 
                 if(iframe) {
                     let currentSrc = iframe.src;
+                    // Standard GHL convention: pass the data as a parameter 
+                    // Make sure your custom field key inside GHL catches "package_selection" or whatever you named it.
                     if(currentSrc.indexOf('?') > -1) {
                         iframe.src = currentSrc + '&package_selection=' + encodeURIComponent(pkg);
                     } else {
