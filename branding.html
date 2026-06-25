@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -324,6 +325,321 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
             overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
         }
 
+
+        /* ================================================
+           AI DESIGN TOOL OVERLAY
+        ================================================ */
+        #ai-tool {
+            position: fixed; inset: 0; z-index: 9000;
+            background: #000; display: none; flex-direction: column;
+        }
+        #ai-tool.open { display: flex; }
+        .at-top {
+            background: #0a0a0a; border-bottom: 1px solid var(--elite-green);
+            padding: 16px 32px; display: flex; align-items: center;
+            justify-content: space-between; flex-shrink: 0;
+        }
+        .at-top img { height: 28px; }
+        .at-prog { display: flex; gap: 6px; }
+        .at-pip { width: 32px; height: 3px; background: #222; border-radius: 2px; transition: background 0.3s; }
+        .at-pip.on  { background: var(--elite-green); box-shadow: 0 0 8px var(--elite-green-glow); }
+        .at-pip.done { background: rgba(34,197,94,0.3); }
+        .at-exit { background: none; border: 1px solid #333; color: #666; padding: 7px 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .at-exit:hover { border-color: var(--elite-green); color: var(--elite-green); }
+        .at-mid { flex: 1; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center; padding: 48px 32px; }
+        .at-step { display: none; width: 100%; max-width: 620px; }
+        .at-step.on { display: block; }
+        #at-results { max-width: 900px; }
+        #at-loading  { max-width: 480px; text-align: center; }
+        .at-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--elite-green); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+        .at-title { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; font-style: italic; text-transform: uppercase; line-height: 0.92; margin-bottom: 12px; color: #fff; }
+        .at-title strong { color: var(--elite-green); }
+        .at-desc { font-size: 0.88rem; color: #aaa; margin-bottom: 32px; line-height: 1.7; }
+        .at-fg { margin-bottom: 20px; }
+        .at-fg label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
+        .at-fg input, .at-fg select, .at-fg textarea { width: 100%; background: #0d0d0d; border: 1px solid #222; color: #fff; padding: 12px 14px; font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; border-radius: 6px; }
+        .at-fg input:focus, .at-fg select:focus, .at-fg textarea:focus { border-color: var(--elite-green); }
+        .at-fg textarea { min-height: 80px; resize: vertical; }
+        .at-fg select option { background: #0d0d0d; }
+        .van-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 16px; }
+        .van-opt { background: #0d0d0d; border: 1px solid #222; padding: 12px 8px; text-align: center; cursor: pointer; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; color: #555; transition: all 0.2s; line-height: 1.4; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .van-opt:hover, .van-opt.on { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34,197,94,0.05); }
+        .at-drop { background: #0d0d0d; border: 2px dashed #222; padding: 32px 20px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; border-radius: 8px; }
+        .at-drop:hover { border-color: var(--elite-green); }
+        .at-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+        .at-drop .dz-icon { font-size: 24px; margin-bottom: 8px; }
+        .at-drop p { font-size: 0.78rem; color: #555; font-family: 'JetBrains Mono', monospace; }
+        .at-drop p strong { color: var(--elite-green); }
+        .at-prev { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 8px; }
+        .at-prev img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid #222; border-radius: 4px; }
+        .q-row { background: #0d0d0d; border: 1px solid #222; padding: 16px 18px; cursor: pointer; display: flex; align-items: center; gap: 12px; margin-bottom: 6px; transition: all 0.2s; border-radius: 8px; }
+        .q-row:hover, .q-row.on { border-color: var(--elite-green); background: rgba(34,197,94,0.05); }
+        .q-dot { width: 11px; height: 11px; border: 2px solid #333; border-radius: 50%; flex-shrink: 0; transition: all 0.2s; }
+        .q-row.on .q-dot { background: var(--elite-green); border-color: var(--elite-green); }
+        .q-row span { font-size: 0.78rem; color: #666; font-family: 'JetBrains Mono', monospace; }
+        .at-spinner { width: 48px; height: 48px; border: 2px solid #222; border-top-color: var(--elite-green); border-radius: 50%; animation: atSpin 0.7s linear infinite; margin: 0 auto 24px; }
+        @keyframes atSpin { to { transform: rotate(360deg); } }
+        .at-load-list { list-style: none; text-align: left; display: inline-block; margin-top: 24px; }
+        .at-load-list li { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #333; padding: 6px 0; letter-spacing: 0.05em; display: flex; align-items: center; gap: 10px; }
+        .at-load-list li::before { content: '[ ]'; font-size: 0.7rem; }
+        .at-load-list li.ll-done { color: var(--elite-green); }
+        .at-load-list li.ll-done::before { content: '[+]'; color: var(--elite-green); }
+        .at-load-list li.ll-now { color: #fff; }
+        .at-load-list li.ll-now::before { content: '[>]'; }
+        .designs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+        .design-card { background: #080808; border: 1px solid #222; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; border-radius: 10px; }
+        .design-card:hover, .design-card.on { border-color: var(--elite-green); box-shadow: 0 0 20px var(--elite-green-dim); }
+        .design-card.on::after { content: 'SELECTED'; position: absolute; top: 10px; right: 10px; background: var(--elite-green); color: black; padding: 4px 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; border-radius: 3px; }
+        .design-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .design-info { padding: 16px; }
+        .design-dtag { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--elite-green); letter-spacing: 0.18em; margin-bottom: 4px; }
+        .design-info h4 { font-weight: 900; font-style: italic; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 4px; color: #fff; }
+        .design-info p { font-size: 0.75rem; color: #555; font-family: 'JetBrains Mono', monospace; }
+        .at-disclaimer { background: #0a0a0a; border: 1px solid #222; border-left: 3px solid var(--elite-green); padding: 12px 16px; margin-bottom: 20px; }
+        .at-disclaimer p { font-size: 0.72rem; color: #555; line-height: 1.6; font-family: 'JetBrains Mono', monospace; }
+        .at-disclaimer strong { color: var(--elite-green); }
+        .at-bot { background: #0a0a0a; border-top: 1px solid #1a1a1a; padding: 18px 32px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        .at-bot .at-ind { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #333; letter-spacing: 0.1em; }
+        .at-btn-row { display: flex; gap: 8px; }
+        .at-btn-back { background: none; border: 1px solid #333; color: #555; padding: 10px 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; text-transform: uppercase; border-radius: 6px; }
+        .at-btn-back:hover { border-color: var(--elite-green); color: var(--elite-green); }
+        .at-btn-next { background: var(--elite-green); color: black; border: none; padding: 10px 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; text-transform: uppercase; border-radius: 6px; box-shadow: 0 0 15px var(--elite-green-glow); }
+        .at-btn-next:hover { background: white; }
+        .at-btn-next:disabled { background: #222; color: #555; box-shadow: none; cursor: not-allowed; }
+        #at-success { text-align: center; }
+        .at-success-icon { font-size: 52px; margin-bottom: 16px; }
+        /* ================================================
+           MOBILE — FULL PHONE OPTIMISATION
+        ================================================ */
+
+        /* Touch: kill 300ms tap delay on all buttons/interactive */
+        button, .van-opt, .q-row, .design-card, .hex-card, .at-exit, .at-btn-next, .at-btn-back, .at-drop {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Safe-area support for iPhone X+ home bar */
+        #ai-tool {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .at-bot {
+            padding-bottom: calc(14px + env(safe-area-inset-bottom));
+        }
+        .manifest-bar {
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+
+        @media (max-width: 768px) {
+
+            /* TOP BAR ─────────────────────────────── */
+            .at-top { padding: 10px 14px; gap: 8px; }
+            .at-top img { height: 20px; }
+            .at-pip { width: 20px; height: 3px; }
+            .at-prog { gap: 4px; }
+            .at-exit { padding: 6px 11px; font-size: 0.58rem; letter-spacing: 0.06em; }
+
+            /* MIDDLE SCROLL AREA ───────────────────── */
+            .at-mid {
+                padding: 20px 16px 28px;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                align-items: flex-start;
+            }
+
+            /* STEP full width on mobile */
+            .at-step { max-width: 100%; }
+            #at-results { max-width: 100%; }
+            #at-loading { max-width: 100%; padding: 12px 0; }
+
+            /* TYPOGRAPHY ───────────────────────────── */
+            .at-title {
+                font-size: clamp(1.65rem, 7.5vw, 2.4rem);
+                line-height: 0.94;
+                margin-bottom: 8px;
+            }
+            .at-desc { font-size: 0.82rem; margin-bottom: 18px; line-height: 1.6; }
+            .at-tag { font-size: 0.58rem; letter-spacing: 0.15em; margin-bottom: 6px; }
+            .at-fg { margin-bottom: 16px; }
+            .at-fg label { font-size: 0.6rem; margin-bottom: 6px; }
+
+            /* INPUTS — min 16px to stop iOS auto-zoom on focus */
+            .at-fg input,
+            .at-fg select,
+            .at-fg textarea {
+                font-size: 16px !important;
+                padding: 13px 13px;
+                border-radius: 6px;
+            }
+            .at-fg textarea { min-height: 72px; }
+            .at-other-input { font-size: 16px !important; padding: 13px 13px; }
+
+            /* VAN GRID ─────────────────────────────── */
+            .van-grid { grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 14px; }
+            .van-opt {
+                padding: 13px 6px;
+                font-size: 0.62rem;
+                min-height: 48px;           /* 44px+ tap target */
+                display: flex; align-items: center; justify-content: center;
+                line-height: 1.3;
+                letter-spacing: 0.03em;
+            }
+
+            /* PHOTO GUIDE ──────────────────────────── */
+            .at-photo-guide { padding: 12px; margin-bottom: 4px; }
+            .at-guide-row { grid-template-columns: 1fr; gap: 8px; }
+            .at-guide-item { padding: 10px; }
+            .at-guide-icon { font-size: 1rem; margin-bottom: 6px; }
+            .at-guide-shots { gap: 4px; margin-bottom: 6px; }
+            .at-guide-shot { font-size: 0.5rem; padding: 2px 5px; }
+            .at-guide-item p { font-size: 0.62rem; line-height: 1.45; }
+
+            /* DROP ZONES ───────────────────────────── */
+            .at-drop { padding: 22px 14px; border-radius: 8px; }
+            .at-drop .dz-icon { font-size: 20px; margin-bottom: 6px; }
+            .at-drop p { font-size: 0.72rem; }
+
+            /* PREFERENCE ROWS ──────────────────────── */
+            .q-row {
+                padding: 13px 13px;
+                min-height: 48px;
+                gap: 10px;
+                border-radius: 7px;
+                margin-bottom: 7px;
+            }
+            .q-row span { font-size: 0.7rem; line-height: 1.45; }
+            .q-dot { width: 10px; height: 10px; flex-shrink: 0; }
+
+            /* LOADING SCREEN ───────────────────────── */
+            .at-spinner { width: 38px; height: 38px; margin-bottom: 18px; }
+            .at-load-list { padding-left: 0; margin-top: 18px; width: 100%; }
+            .at-load-list li { font-size: 0.68rem; padding: 5px 0; }
+
+            /* DESIGN CONCEPTS ──────────────────────── */
+            .designs-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 16px; }
+            .design-card { border-radius: 8px; }
+            .design-card img { aspect-ratio: 16/9; }
+            .design-info { padding: 12px 14px; }
+            .design-dtag { font-size: 0.58rem; }
+            .design-info h4 { font-size: 0.95rem; margin-bottom: 3px; }
+            .design-info p { font-size: 0.68rem; }
+            .design-card.on::after { font-size: 0.55rem; padding: 3px 6px; }
+
+            /* DISCLAIMER ───────────────────────────── */
+            .at-disclaimer { padding: 10px 12px; margin-bottom: 14px; }
+            .at-disclaimer p { font-size: 0.66rem; line-height: 1.55; }
+
+            /* RETRY BLOCK ──────────────────────────── */
+            #at-retry-block { margin-top: 14px; padding: 14px; border-radius: 6px; }
+            #at-credits-msg { font-size: 0.62rem !important; margin-bottom: 10px !important; }
+            #at-retry-btn {
+                width: 100% !important;
+                text-align: center;
+                padding: 14px 16px !important;
+                font-size: 0.72rem !important;
+                display: block !important;
+                border-radius: 6px !important;
+            }
+            #at-no-credits a {
+                display: block !important;
+                text-align: center;
+                padding: 13px 16px !important;
+                font-size: 0.7rem !important;
+                border-radius: 6px !important;
+            }
+
+            /* BOTTOM BAR ───────────────────────────── */
+            .at-bot {
+                padding: 12px 14px;
+                padding-bottom: calc(12px + env(safe-area-inset-bottom));
+                gap: 8px;
+            }
+            .at-ind { font-size: 0.6rem; letter-spacing: 0.06em; }
+            .at-btn-next {
+                padding: 13px 20px;
+                font-size: 0.68rem;
+                min-height: 44px;
+            }
+            .at-btn-back {
+                padding: 12px 14px;
+                font-size: 0.65rem;
+                min-height: 44px;
+            }
+
+            /* CONTACT STEP ─────────────────────────── */
+            .at-success-icon { font-size: 40px; margin-bottom: 12px; }
+
+            /* MAIN PAGE PACKAGE CARDS ──────────────── */
+            .pkg-media { height: 170px; }
+            .card-inner { padding: 18px; }
+            .card-title { font-size: 1.45rem; margin-bottom: 6px; }
+            .select-indicator { padding: 10px 0; font-size: 0.68rem; margin-top: 10px; }
+
+            /* STICKY FOOTER ────────────────────────── */
+            .manifest-bar {
+                padding: 12px 16px;
+                padding-bottom: calc(12px + env(safe-area-inset-bottom));
+                flex-direction: column;
+                gap: 8px;
+                align-items: stretch;
+            }
+            .submit-btn { width: 100%; justify-content: center; padding: 15px 20px; font-size: 0.72rem; }
+        }
+
+        /* Extra small (iPhone SE, 375px) */
+        @media (max-width: 390px) {
+            .at-title { font-size: 1.45rem; }
+            .van-opt { font-size: 0.58rem; padding: 11px 4px; }
+            .at-pip { width: 16px; }
+            .at-top img { height: 18px; }
+            .at-exit { padding: 5px 9px; font-size: 0.55rem; }
+        }
+
+
+        /* Vehicle step extras */
+        .at-other-input {
+            width: 100%; background: #0d0d0d; border: 1px solid var(--elite-green);
+            color: #fff; padding: 12px 14px; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem; outline: none; border-radius: 6px;
+            letter-spacing: 0.05em; text-transform: uppercase;
+        }
+        .at-photo-guide {
+            background: #0a0a0a; border: 1px solid #1e1e1e;
+            border-left: 3px solid var(--elite-green);
+            padding: 16px; border-radius: 6px; margin-bottom: 4px;
+        }
+        .at-guide-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .at-guide-item { padding: 12px; border-radius: 6px; }
+        .at-guide-good { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); }
+        .at-guide-bad  { background: rgba(255,60,60,0.04); border: 1px solid rgba(255,60,60,0.15); }
+        .at-guide-icon { font-size: 1.2rem; margin-bottom: 8px; }
+        .at-guide-good .at-guide-icon { color: var(--elite-green); }
+        .at-guide-bad  .at-guide-icon { color: #f44; }
+        .at-guide-shots { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+        .at-guide-shot {
+            background: var(--elite-green); color: #000; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.55rem; font-weight: 700; padding: 3px 7px; border-radius: 3px;
+            letter-spacing: 0.08em;
+        }
+        .at-guide-item p { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; line-height: 1.5; }
+        .at-guide-good p { color: #4a7a4a; }
+        .at-guide-bad  p { color: #7a4a4a; }
+        
+
+
+        /* Sticky footer confirm button */
+        .submit-btn {
+            background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
+            font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;
+            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none;
+            letter-spacing: 0.08em;
+        }
+        .submit-btn:hover {
+            background: white; border-color: white; color: black;
+            box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px);
+        }
+
     </style>
     
     <script type="application/ld+json">
@@ -482,7 +798,7 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                 <span class="text-green-500 text-sm mono">01.</span> Select Coverage
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
                 <div class="hex-card selected" id="pkg-identity" onclick="selectItem('pkg', 'Identity', 'pkg-identity')">
                     <div class="pkg-media" id="slideshow-identity">
@@ -491,7 +807,7 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                     </div>
                     <div class="card-inner">
                         <h3 class="card-title">Identity</h3>
-                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">LOGO ONLY DECAL</p>
+                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">LOGO DECAL ONLY</p>
                         <ul class="text-sm text-gray-400 space-y-2 mono mb-4 flex-grow">
                             <li>> Logo on Front Doors</li>
                             <li>> Logo on Rear Barn Doors</li>
@@ -509,29 +825,47 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                     </div>
                     <div class="card-inner">
                         <h3 class="card-title">Impact</h3>
-                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">LOGO + SERVICES</p>
+                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">PARTIAL WRAP</p>
                         <ul class="text-sm text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> <strong>Everything in Identity</strong></li>
-                            <li>> Phone Number & Website</li>
+                            <li>> Rear &amp; Side Panel Wrap</li>
+                            <li>> Logo + Phone + Website</li>
                             <li>> Service Bullet Points</li>
-                            <li>> Social Media Handles</li>
+                            <li>> Cast Vinyl Print &amp; Install</li>
                         </ul>
                         <div class="select-indicator">TAP TO SELECT</div>
                     </div>
                 </div>
 
-                <div class="hex-card" id="pkg-custom" onclick="selectItem('pkg', 'Custom', 'pkg-custom')">
+                <div class="hex-card" id="pkg-halfwrap" onclick="selectItem('pkg', 'Half Wrap', 'pkg-halfwrap')">
                     <div class="pkg-media">
-                        <span class="custom-icon">🖌️</span>
+                        <img src="van sign.png" class="pkg-img active" alt="Half Wrap">
+                        <img src="ute sign.png" class="pkg-img" alt="Half Wrap Ute">
                     </div>
                     <div class="card-inner">
-                        <h3 class="card-title">Custom</h3>
-                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">FULL WRAP / UNIQUE DESIGN</p>
+                        <h3 class="card-title">Half</h3>
+                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">HALF WRAP</p>
                         <ul class="text-sm text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Full Custom Design Process</li>
-                            <li>> Partial or Full Wraps</li>
+                            <li>> Lower Half of Vehicle</li>
+                            <li>> Full Digital Print</li>
+                            <li>> Bold Graphic Coverage</li>
+                            <li>> Maximum Road Impact</li>
+                        </ul>
+                        <div class="select-indicator">TAP TO SELECT</div>
+                    </div>
+                </div>
+
+                <div class="hex-card" id="pkg-fullwrap" onclick="selectItem('pkg', 'Full Wrap', 'pkg-fullwrap')">
+                    <div class="pkg-media">
+                        <span class="custom-icon">&#127775;</span>
+                    </div>
+                    <div class="card-inner">
+                        <h3 class="card-title">Full</h3>
+                        <p class="text-[10px] text-gray-500 mono mb-4 font-bold tracking-widest">FULL WRAP</p>
+                        <ul class="text-sm text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> Entire Vehicle Wrapped</li>
+                            <li>> Full Colour Change Option</li>
                             <li>> One-Way Vision Glass</li>
-                            <li>> Colour Change & Digital Print</li>
+                            <li>> Premium Cast Vinyl Only</li>
                         </ul>
                         <div class="select-indicator">TAP TO SELECT</div>
                     </div>
@@ -699,16 +1033,15 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         function updateFooter() {
             document.getElementById('summary-pkg').innerText = selectedPkg + " Package";
             const submitBtn = document.querySelector('.submit-btn');
-
-            if(selectedPkg === 'Custom') {
-                document.getElementById('summary-details').innerText = "Call for Free Design Session";
-                submitBtn.innerText = "CALL TO BOOK ->";
-                submitBtn.setAttribute('onclick', "window.location.href='tel:0468086490'");
-            } else {
-                document.getElementById('summary-details').innerText = "Awaiting Artwork/Specs";
-                submitBtn.innerText = "CONFIRM COVERAGE ->";
-                submitBtn.setAttribute('onclick', "submitQuote()");
-            }
+            const details = {
+                'Identity':  'Logo Decal — Doors &amp; Rear',
+                'Impact':    'Partial Wrap — Sides &amp; Rear',
+                'Half Wrap': 'Half Wrap — Lower Vehicle',
+                'Full Wrap': 'Full Vehicle Wrap'
+            };
+            document.getElementById('summary-details').innerText = details[selectedPkg] || 'Design with AI';
+            submitBtn.innerText = "DESIGN YOUR WRAP ->";
+            submitBtn.setAttribute('onclick', "submitQuote()");
         }
 
         // Submit
@@ -718,5 +1051,516 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         }
     </script>
 
+
+<div id="ai-tool">
+    <div class="at-top">
+        <img src="logo.png" alt="ELITE">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <span id="at-pkg-badge" style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#000;background:var(--elite-green);padding:4px 10px;border-radius:4px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;"></span>
+            <div class="at-prog">
+                <div class="at-pip on" id="ap1"></div>
+                <div class="at-pip" id="ap2"></div>
+                <div class="at-pip" id="ap3"></div>
+                <div class="at-pip" id="ap4"></div>
+                <div class="at-pip" id="ap5"></div>
+            </div>
+        </div>
+        <button class="at-exit" onclick="closeTool()">[ EXIT ]</button>
+    </div>
+    <div class="at-mid">
+        <div class="at-step on" id="at1">
+            <div class="at-tag">STEP 01 / 05 &mdash; VEHICLE</div>
+            <h2 class="at-title">What vehicle are<br><strong>you driving?</strong></h2>
+            <p class="at-desc">Select your vehicle type, then upload photos. Our AI uses your photos to match the right design template.</p>
+            <div class="at-fg">
+                <label>Select Vehicle Type *</label>
+                <div class="van-grid">
+                    <div class="van-opt" onclick="atPickVan(this,'Toyota HiAce LWB')">HIACE LWB</div>
+                    <div class="van-opt" onclick="atPickVan(this,'Toyota HiAce SLWB')">HIACE SLWB</div>
+                    <div class="van-opt" onclick="atPickVan(this,'Ford Transit Custom')">TRANSIT CUSTOM</div>
+                    <div class="van-opt" onclick="atPickVan(this,'Ford Transit HD')">TRANSIT HD</div>
+                    <div class="van-opt" onclick="atPickVan(this,'LDV Deliver 9')">LDV DELIVER 9</div>
+                    <div class="van-opt" onclick="atPickVan(this,'Mercedes Sprinter')">SPRINTER</div>
+                    <div class="van-opt" onclick="atPickVan(this,'VW Transporter')">VW TRANSPORTER</div>
+                    <div class="van-opt" onclick="atPickVan(this,'Hyundai Staria')">STARIA LOAD</div>
+                    <div class="van-opt" onclick="atPickVan(this,'Ute / Canopy')">UTE / CANOPY</div>
+                    <div class="van-opt" onclick="atPickVan(this,'__other__')">OTHER</div>
+                </div>
+                <div id="at-other-wrap" style="display:none;margin-top:8px;">
+                    <input type="text" id="atOtherVehicle" class="at-other-input" placeholder="e.g. Iveco Daily, Nissan Navara, Trailer..." oninput="AT.van=this.value">
+                </div>
+            </div>
+            <div class="at-fg">
+                <label>Upload Vehicle Photos (up to 3) *</label>
+                <div class="at-photo-guide">
+                    <div class="at-tag" style="margin-bottom:8px;">BEST RESULTS — PHOTO TIPS</div>
+                    <div class="at-guide-row">
+                        <div class="at-guide-item at-guide-good">
+                            <div class="at-guide-icon">&#9745;</div>
+                            <div class="at-guide-shots">
+                                <div class="at-guide-shot">DRIVER SIDE</div>
+                                <div class="at-guide-shot">PASSENGER SIDE</div>
+                                <div class="at-guide-shot">REAR / BACK</div>
+                            </div>
+                            <p>Straight-on shots, good daylight, whole vehicle in frame</p>
+                        </div>
+                        <div class="at-guide-item at-guide-bad">
+                            <div class="at-guide-icon">&#9746;</div>
+                            <p>Avoid: angled shots, dark/blurry, too close, objects blocking the vehicle</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="at-drop" style="margin-top:10px;">
+                    <input type="file" id="atVanFiles" accept="image/*" multiple onchange="atPreviewVan(event)">
+                    <div class="dz-icon">&#128247;</div>
+                    <p><strong>Click to upload</strong> or drag &amp; drop</p>
+                </div>
+                <div class="at-prev" id="at-van-prev"></div>
+            </div>
+        </div>
+        <div class="at-step" id="at2">
+            <div class="at-tag">STEP 02 / 05 &mdash; BRAND</div>
+            <h2 class="at-title">Tell us about<br><strong>your business.</strong></h2>
+            <p class="at-desc">Upload your logo and enter your website. Our AI will scan it for brand colours automatically.</p>
+            <div class="at-fg">
+                <label>Upload Your Logo *</label>
+                <div class="at-drop">
+                    <input type="file" id="atLogoFile" accept="image/*,.svg,.pdf" onchange="atPreviewLogo(event)">
+                    <div class="dz-icon" id="at-logo-ico">&#128444;&#65039;</div>
+                    <p id="at-logo-txt"><strong>Click to upload logo</strong> &mdash; PNG, SVG, PDF preferred</p>
+                </div>
+            </div>
+            <div class="at-fg">
+                <label>Your Business Website (optional &mdash; helps AI detect brand colours)</label>
+                <input type="url" id="atSiteUrl" placeholder="https://yourwebsite.com.au">
+            </div>
+            <div class="at-fg">
+                <label>Business Name *</label>
+                <input type="text" id="atBizName" placeholder="e.g. Smith Plumbing">
+            </div>
+            <div class="at-fg">
+                <label>Your Trade / Industry *</label>
+                <select id="atTrade">
+                    <option value="">Select your trade...</option>
+                    <option>Electrician</option>
+                    <option>Plumber / Gas Fitter</option>
+                    <option>HVAC / Air Conditioning</option>
+                    <option>Builder / Carpenter</option>
+                    <option>Mobile Mechanic</option>
+                    <option>Locksmith</option>
+                    <option>Data &amp; Communications</option>
+                    <option>Painter</option>
+                    <option>Landscaper</option>
+                    <option>Pest Control</option>
+                    <option>Roofer</option>
+                    <option>Glazier</option>
+                    <option>Security Installer</option>
+                    <option>Delivery / Courier</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+        <div class="at-step" id="at3">
+            <div class="at-tag">STEP 03 / 05 &mdash; PREFERENCES</div>
+            <h2 class="at-title">What's your<br><strong>style?</strong></h2>
+            <p class="at-desc">Quick questions so we nail the direction on the first go.</p>
+            <div class="at-fg">
+                <label>Design Style *</label>
+                <div class="q-row" onclick="atPick(this,'style','Bold and Aggressive')"><div class="q-dot"></div><span>BOLD &amp; AGGRESSIVE &mdash; high contrast, big text, dominate the road</span></div>
+                <div class="q-row" onclick="atPick(this,'style','Clean and Professional')"><div class="q-dot"></div><span>CLEAN &amp; PROFESSIONAL &mdash; minimal, corporate, trust-building</span></div>
+                <div class="q-row" onclick="atPick(this,'style','Modern and Sleek')"><div class="q-dot"></div><span>MODERN &amp; SLEEK &mdash; premium, sharp lines, sophisticated</span></div>
+            </div>
+            <div class="at-fg">
+                <label>Colour Approach *</label>
+                <div class="q-row" onclick="atPick(this,'colour','Strict brand colours')"><div class="q-dot"></div><span>STICK STRICTLY TO MY BRAND COLOURS</span></div>
+                <div class="q-row" onclick="atPick(this,'colour','Brand colours + bold black')"><div class="q-dot"></div><span>MY BRAND COLOURS WITH BOLD BLACK ACCENTS</span></div>
+                <div class="q-row" onclick="atPick(this,'colour','Brand colours + clean white')"><div class="q-dot"></div><span>MY BRAND COLOURS WITH CLEAN WHITE ACCENTS</span></div>
+            </div>
+            <div class="at-fg">
+                <label>What must appear on the van? (optional)</label>
+                <textarea id="atMustHave" placeholder="e.g. 0412 345 678 | yourwebsite.com.au | Licensed Electrician | Solar Specialist"></textarea>
+            </div>
+        </div>
+        <div class="at-step" id="at-loading">
+            <div class="at-spinner"></div>
+            <div class="at-tag">AI PROCESSING</div>
+            <h2 class="at-title">Building your<br><strong>designs...</strong></h2>
+            <ul class="at-load-list">
+                <li id="all1">Scanning your website &amp; brand</li>
+                <li id="all2">Analysing brand colours &amp; identity</li>
+                <li id="all3">Generating Concept A &mdash; <span id="all3-pkg">design</span></li>
+                <li id="all4">Generating Concept B &mdash; <span id="all4-pkg">bolder take</span></li>
+                <li id="all5">Finalising your design brief</li>
+            </ul>
+        </div>
+        <div class="at-step" id="at-results">
+            <div class="at-tag">STEP 04 / 05 &mdash; YOUR DESIGNS</div>
+            <h2 class="at-title">Your two<br><strong>concepts.</strong></h2>
+            <div class="at-disclaimer">
+                <p><strong>[ CONCEPT NOTE ]</strong> These are AI-generated directions to communicate your vision to our team. Your final wrap will be professionally crafted based on this brief.</p>
+            </div>
+            <div class="designs-row">
+                <div class="design-card" id="at-dc-a" onclick="atPickDesign('A')">
+                    <img id="at-img-a" src="https://placehold.co/800x450/080808/22c55e?text=CONCEPT+A" alt="Design A">
+                    <div class="design-info"><div class="design-dtag">OPTION A</div><h4 id="at-ttl-a">Design A</h4><p id="at-dsc-a">Generating...</p></div>
+                </div>
+                <div class="design-card" id="at-dc-b" onclick="atPickDesign('B')">
+                    <img id="at-img-b" src="https://placehold.co/800x450/080808/22c55e?text=CONCEPT+B" alt="Design B">
+                    <div class="design-info"><div class="design-dtag">OPTION B</div><h4 id="at-ttl-b">Design B</h4><p id="at-dsc-b">Generating...</p></div>
+                </div>
+            </div>
+            <div class="at-fg">
+                <label>Notes or tweaks? (optional)</label>
+                <textarea id="atNotes" placeholder="e.g. Love Design A but want blue instead of dark. Can we add our tagline?"></textarea>
+            </div>
+            <div id="at-retry-block" style="margin-top:20px;padding:16px;border:1px solid #1e3a1e;border-radius:8px;background:#0a1a0a;">
+                <div id="at-credits-msg" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#22c55e;letter-spacing:.08em;margin-bottom:12px;"></div>
+                <button id="at-retry-btn" onclick="atRetry()" style="background:#22c55e;color:#000;border:none;padding:12px 28px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.1em;cursor:pointer;border-radius:4px;display:inline-block;">REGENERATE WITH MY NOTES -></button>
+                <div id="at-no-credits" style="display:none;">
+                    <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#888;margin-bottom:12px;">No retries left for today — resets tomorrow.</p>
+                    <a href="tel:0468086490" style="display:inline-block;background:transparent;color:#22c55e;border:1px solid #22c55e;padding:12px 28px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:4px;">CALL US NOW &rarr; 0468 086 490</a>
+                </div>
+            </div>
+        </div>
+        <div class="at-step" id="at-contact">
+            <div class="at-tag">STEP 05 / 05 &mdash; GET YOUR QUOTE</div>
+            <h2 class="at-title">Almost there.<br><strong>We'll call you.</strong></h2>
+            <p class="at-desc">Leave your details and we'll call with a firm quote &mdash; usually within a few hours during business hours.</p>
+            <div class="at-fg"><label>Your Name *</label><input type="text" id="atCName" placeholder="First name"></div>
+            <div class="at-fg"><label>Mobile Number *</label><input type="tel" id="atCPhone" placeholder="04XX XXX XXX"></div>
+            <div class="at-fg"><label>Suburb</label><input type="text" id="atCSuburb" placeholder="e.g. Dandenong"></div>
+            <div class="at-fg"><label>Best Time to Call</label>
+                <select id="atCTime"><option>Morning (8am-12pm)</option><option>Afternoon (12pm-5pm)</option><option>Anytime</option></select>
+            </div>
+        </div>
+        <div class="at-step" id="at-success">
+            <div class="at-success-icon">&#9989;</div>
+            <div class="at-tag">LEAD SUBMITTED</div>
+            <h2 class="at-title">You're in the<br><strong>system.</strong></h2>
+            <p class="at-desc">We received your design brief and contact details. Our team will call you shortly to lock in your quote. Get ready to dominate the road.</p>
+            <br><br>
+            <button class="btn-main" onclick="closeTool()">BACK TO SITE -></button>
+        </div>
+    </div>
+    <div class="at-bot" id="at-bot">
+        <span class="at-ind" id="at-ind">STEP 1 OF 5</span>
+        <div class="at-btn-row">
+            <button class="at-btn-back" id="at-back" onclick="atPrev()" style="display:none">[ BACK ]</button>
+            <button class="at-btn-next" id="at-next" onclick="atNext()">NEXT -></button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+        // ================================================
+        // AI DESIGN TOOL
+        // UPDATE THIS LINE AFTER DEPLOYING THE BACKEND:
+        const AT_API = 'https://elite-signage-website.vercel.app';
+        // ================================================
+
+        const AT = {
+            step:1, pkg:'identity',
+            van:'', vanPhotos:[], logoFile:null,
+            siteUrl:'', bizName:'', trade:'',
+            style:'', colour:'', mustHave:'',
+            chosenDesign:'', designAUrl:'', designBUrl:'',
+            notes:'', brief:'',
+            name:'', phone:'', suburb:'', callTime:''
+        };
+        const AT_STEPS  = [null,'at1','at2','at3','at-loading','at-results','at-contact','at-success'];
+        const AT_LABELS = [null,'STEP 1 OF 5','STEP 2 OF 5','STEP 3 OF 5','GENERATING...','STEP 4 OF 5','STEP 5 OF 5','DONE'];
+
+        function openTool(pkg) {
+            AT.pkg = (pkg||'identity').toLowerCase();
+            // Set package badge in top bar
+            var labels = { identity: 'IDENTITY — Logo Decal', impact: 'IMPACT — Partial Wrap', 'half wrap': 'HALF WRAP', 'full wrap': 'FULL WRAP' };
+            var badge = document.getElementById('at-pkg-badge');
+            if(badge) badge.textContent = labels[AT.pkg] || AT.pkg.toUpperCase();
+            document.getElementById('ai-tool').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            atGoTo(1);
+        }
+        function closeTool() {
+            document.getElementById('ai-tool').classList.remove('open');
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+        }
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeTool(); });
+        // Close mobile nav when a link is tapped
+        document.querySelectorAll('#mobile-menu a').forEach(function(a){
+            a.addEventListener('click', function(){ document.getElementById('mobile-menu').classList.remove('active'); });
+        });
+
+        function atGoTo(n) {
+            AT_STEPS.forEach(function(id){ if(id) document.getElementById(id).classList.remove('on'); });
+            document.getElementById(AT_STEPS[n]).classList.add('on');
+            AT.step = n;
+            // Dismiss keyboard + scroll to top of content on mobile
+            if(document.activeElement) document.activeElement.blur();
+            var mid = document.querySelector('.at-mid');
+            if(mid) mid.scrollTop = 0;
+            for(var i=1;i<=5;i++){
+                var pip=[null,1,2,3,3,4,5,5];
+                var el=document.getElementById('ap'+i);
+                el.className='at-pip';
+                if(i<pip[n]) el.classList.add('done');
+                else if(i===pip[n]) el.classList.add('on');
+            }
+            document.getElementById('at-ind').textContent = AT_LABELS[n]||'';
+            document.getElementById('at-bot').style.display = n===7?'none':'flex';
+            var bb=document.getElementById('at-back');
+            var bn=document.getElementById('at-next');
+            bb.style.display=(n>1&&n<4)?'block':'none';
+            bn.style.display=(n===4||n===5)?'none':'block';
+            bn.textContent=n===6?'GET MY QUOTE ->':'NEXT ->';
+            bn.disabled=false;
+        }
+        function atNext(){
+            if(!atValidate(AT.step)) return;
+            if(AT.step===3){ var cr=atGetCredits(); if(cr<=0){ alert("No design credits left today. Try again tomorrow or call 0468 086 490."); return; } atUseCredit(); atGoTo(4); atGenerate(); }
+            else if(AT.step===5){ if(!AT.chosenDesign){alert('Please select a design to continue.');return;} AT.notes=document.getElementById('atNotes').value; atGoTo(6); }
+            else if(AT.step===6){ atSubmit(); }
+            else { atGoTo(AT.step+1); }
+        }
+        function atPrev(){ if(AT.step>1&&AT.step<4) atGoTo(AT.step-1); }
+        function atValidate(n){
+            if(n===1){
+                var otherInput=document.getElementById('atOtherVehicle');
+                if(otherInput && otherInput.style && document.getElementById('at-other-wrap').style.display!=='none'){
+                    AT.van=otherInput.value.trim();
+                }
+                if(!AT.van){alert('Please select or enter your vehicle type.');return false;}
+                if(AT.vanPhotos.length===0){
+                    if(!confirm('No vehicle photos uploaded. The AI will use your vehicle type to generate designs, but photos give better results. Continue without photos?')) return false;
+                }
+            }
+            if(n===2){
+                AT.bizName=document.getElementById('atBizName').value.trim();
+                AT.trade=document.getElementById('atTrade').value;
+                AT.siteUrl=document.getElementById('atSiteUrl').value.trim();
+                if(!AT.logoFile){alert('Please upload your logo.');return false;}
+                if(!AT.bizName){alert('Please enter your business name.');return false;}
+                if(!AT.trade){alert('Please select your trade.');return false;}
+            }
+            if(n===3){
+                AT.mustHave=document.getElementById('atMustHave').value;
+                if(!AT.style){alert('Please select a design style.');return false;}
+                if(!AT.colour){alert('Please select a colour approach.');return false;}
+            }
+            if(n===6){
+                AT.name=document.getElementById('atCName').value.trim();
+                AT.phone=document.getElementById('atCPhone').value.trim();
+                AT.suburb=document.getElementById('atCSuburb').value.trim();
+                AT.callTime=document.getElementById('atCTime').value;
+                if(!AT.name){alert('Please enter your name.');return false;}
+                if(!AT.phone){alert('Please enter your mobile number.');return false;}
+            }
+            return true;
+        }
+        function atPickVan(el,model){
+            document.querySelectorAll('.van-opt').forEach(function(o){o.classList.remove('on');});
+            el.classList.add('on');
+            var otherWrap = document.getElementById('at-other-wrap');
+            if(model==='__other__'){
+                AT.van='';
+                otherWrap.style.display='block';
+                document.getElementById('atOtherVehicle').focus();
+            } else {
+                AT.van=model;
+                otherWrap.style.display='none';
+            }
+        }
+        function atPick(el,group,val){
+            el.closest('.at-fg').querySelectorAll('.q-row').forEach(function(o){o.classList.remove('on');});
+            el.classList.add('on');
+            if(group==='style') AT.style=val;
+            if(group==='colour') AT.colour=val;
+        }
+        function atPickDesign(letter){
+            document.getElementById('at-dc-a').classList.remove('on');
+            document.getElementById('at-dc-b').classList.remove('on');
+            document.getElementById('at-dc-'+letter.toLowerCase()).classList.add('on');
+            AT.chosenDesign=letter;
+            document.getElementById('at-next').style.display='block';
+        }
+        function atPreviewVan(e){
+            var files=Array.from(e.target.files).slice(0,3);
+            AT.vanPhotos=files;
+            var prev=document.getElementById('at-van-prev');
+            prev.innerHTML='';
+            files.forEach(function(f){var img=document.createElement('img');img.src=URL.createObjectURL(f);prev.appendChild(img);});
+        }
+        function atPreviewLogo(e){
+            var f=e.target.files[0]; if(!f) return;
+            AT.logoFile=f;
+            if(f.type.startsWith('image/')){
+                document.getElementById('at-logo-ico').innerHTML='<img src="'+URL.createObjectURL(f)+'" style="height:48px;object-fit:contain;">';
+            } else { document.getElementById('at-logo-ico').textContent='[OK]'; }
+            document.getElementById('at-logo-txt').textContent=f.name+' uploaded';
+        }
+        function atAnimLoad(){
+            var ids=['all1','all2','all3','all4','all5'];
+            ids.forEach(function(id){document.getElementById(id).className='';});
+            ids.forEach(function(id,i){
+                setTimeout(function(){
+                    ids.forEach(function(x){document.getElementById(x).className='';});
+                    for(var j=0;j<i;j++) document.getElementById(ids[j]).className='ll-done';
+                    document.getElementById(id).className='ll-now';
+                },i*2800);
+            });
+        }
+        // ─── CREDIT SYSTEM ───────────────────────────────────────────
+        var AT_MAX_TRIES = 3;
+        function atGetCredits(){
+            var raw = localStorage.getItem('eliteCredits');
+            var reset = parseInt(localStorage.getItem('eliteCreditReset')||'0');
+            var now = Date.now();
+            if(!raw || now >= reset){
+                localStorage.setItem('eliteCredits', AT_MAX_TRIES);
+                localStorage.setItem('eliteCreditReset', now + 24*60*60*1000);
+                return AT_MAX_TRIES;
+            }
+            return parseInt(raw);
+        }
+        function atUseCredit(){
+            var c = atGetCredits() - 1;
+            localStorage.setItem('eliteCredits', Math.max(0,c));
+            return Math.max(0,c);
+        }
+        function atUpdateCreditsUI(){
+            var c = atGetCredits();
+            var msg = document.getElementById('at-credits-msg');
+            var btn = document.getElementById('at-retry-btn');
+            var noc = document.getElementById('at-no-credits');
+            if(!msg) return;
+            if(c > 0){
+                var retries = c - 1; // first gen used 1, show retries remaining
+                // if already on results screen, they've used at least 1
+                // c remaining includes future retries
+                msg.textContent = '[ ' + c + ' of ' + AT_MAX_TRIES + ' generations left today — resets tomorrow ]';
+                if(btn) btn.style.display = 'inline-block';
+                if(noc) noc.style.display = 'none';
+            } else {
+                msg.textContent = '[ No generations left today ]';
+                if(btn) btn.style.display = 'none';
+                if(noc) noc.style.display = 'block';
+            }
+        }
+        function atRetry(){
+            var c = atGetCredits();
+            if(c <= 0){
+                atUpdateCreditsUI(); return;
+            }
+            AT.notes = document.getElementById('atNotes').value;
+            atUseCredit();
+            atGoTo(4);
+            atGenerate();
+        }
+        function atRepopulateNotes(){
+            var ta = document.getElementById('atNotes');
+            if(ta && AT.notes) ta.value = AT.notes;
+        }
+        // ─── PACKAGE-AWARE LOADING LABELS ────────────────────────────
+        function atSetLoadLabels(){
+            var pkgLabels = {
+                'identity':  ['Decal placement concept','Alternate decal layout'],
+                'impact':    ['Partial wrap concept','Bolder partial wrap'],
+                'half wrap': ['Half wrap concept A','Half wrap — bold variant'],
+                'full wrap': ['Full wrap concept A','Full wrap — bold variant']
+            };
+            var labels = pkgLabels[AT.pkg] || ['Concept A design','Concept B design'];
+            var el3 = document.getElementById('all3-pkg');
+            var el4 = document.getElementById('all4-pkg');
+            if(el3) el3.textContent = labels[0];
+            if(el4) el4.textContent = labels[1];
+        }
+
+        async function atGenerate(){
+            // Reset design pick state for fresh generation
+            AT.chosenDesign = '';
+            document.getElementById('at-dc-a').classList.remove('on');
+            document.getElementById('at-dc-b').classList.remove('on');
+            document.getElementById('at-next').style.display = 'none';
+            atSetLoadLabels();
+            atAnimLoad();
+            try {
+                var fd=new FormData();
+                AT.vanPhotos.forEach(function(f,i){fd.append('van_photo_'+i,f);});
+                if(AT.logoFile) fd.append('logo',AT.logoFile);
+                fd.append('package',AT.pkg); fd.append('van_model',AT.van);
+                fd.append('site_url',AT.siteUrl); fd.append('biz_name',AT.bizName);
+                fd.append('trade',AT.trade); fd.append('style',AT.style);
+                fd.append('colour',AT.colour); fd.append('must_have',AT.mustHave);
+                if(AT.notes) fd.append('notes',AT.notes);
+                var res=await fetch(AT_API+'/api/generate',{method:'POST',body:fd});
+                if(res.status===429){
+                    // Force credit display to zero and go to results if we have designs, else go back
+                    localStorage.setItem('eliteCredits','0');
+                    if(AT.designAUrl){
+                        atGoTo(5); atUpdateCreditsUI();
+                    } else {
+                        atGoTo(3);
+                        alert("You\'ve used all your free design generations for today. Try again tomorrow or call 0468 086 490.");
+                    }
+                    return;
+                }
+                if(!res.ok) throw new Error('API '+res.status);
+                var data=await res.json();
+                AT.designAUrl=data.design_a_url; AT.designBUrl=data.design_b_url; AT.brief=data.brief||'';
+                document.getElementById('at-img-a').src=data.design_a_url;
+                document.getElementById('at-img-b').src=data.design_b_url;
+                document.getElementById('at-ttl-a').textContent=data.design_a_title||'Design A - Decal';
+                document.getElementById('at-ttl-b').textContent=data.design_b_title||'Design B - Partial Wrap';
+                document.getElementById('at-dsc-a').textContent=data.design_a_desc||'';
+                document.getElementById('at-dsc-b').textContent=data.design_b_desc||'';
+                setTimeout(function(){atGoTo(5); atUpdateCreditsUI(); atRepopulateNotes();},15000);
+            } catch(err){
+                console.error('Generate error:',err);
+                AT.designAUrl='placeholder-a'; AT.designBUrl='placeholder-b';
+                document.getElementById('at-img-a').src='https://placehold.co/800x450/080808/22c55e?text=CONCEPT+A';
+                document.getElementById('at-img-b').src='https://placehold.co/800x450/080808/22c55e?text=CONCEPT+B';
+                var pkgFallback = {
+                    'identity':  ['Clean Logo Decal','Bold Decal Layout'],
+                    'impact':    ['Partial Wrap — Clean','Partial Wrap — Bold'],
+                    'half wrap': ['Half Wrap Concept A','Half Wrap — Bold'],
+                    'full wrap': ['Full Wrap — Sleek','Full Wrap — Maximum Impact']
+                };
+                var fb = pkgFallback[AT.pkg] || ['Concept A','Concept B'];
+                document.getElementById('at-ttl-a').textContent = fb[0];
+                document.getElementById('at-ttl-b').textContent = fb[1];
+                document.getElementById('at-dsc-a').textContent = 'AI direction for your ' + AT.pkg + ' wrap';
+                document.getElementById('at-dsc-b').textContent = 'Bold alternative direction';
+                setTimeout(function(){atGoTo(5); atUpdateCreditsUI(); atRepopulateNotes();},15000);
+            }
+        }
+        async function atSubmit(){
+            var btn=document.getElementById('at-next');
+            btn.textContent='SUBMITTING...'; btn.disabled=true;
+            try {
+                var res=await fetch(AT_API+'/api/submit-lead',{
+                    method:'POST', headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        name:AT.name, phone:AT.phone, suburb:AT.suburb, call_time:AT.callTime,
+                        package:AT.pkg, van_model:AT.van, biz_name:AT.bizName, trade:AT.trade,
+                        design:'Design '+AT.chosenDesign,
+                        design_link:AT.chosenDesign==='A'?AT.designAUrl:AT.designBUrl,
+                        notes:AT.notes, brief:AT.brief, style:AT.style, must_have:AT.mustHave
+                    })
+                });
+                if(!res.ok) throw new Error();
+                atGoTo(7);
+            } catch(err){ atGoTo(7); }
+        }
+
+        // Override existing submitQuote to open the AI tool
+        function submitQuote() {
+            openTool(selectedPkg.toLowerCase());
+        }
+
+    </script>
 </body>
 </html>
