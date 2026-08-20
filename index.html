@@ -72,7 +72,7 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
         .led { font-family: 'VT323', monospace; }
 
-        /* --- PRELOADER (LOGO + BAR) --- */
+        /* --- ROBUST PRELOADER (FAIL-SAFE TIMEOUT) --- */
         #boot-screen {
             position: fixed; inset: 0; background: #000; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -82,7 +82,7 @@
         .loader-container { width: 240px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
         .loader-bar {
             width: 0%; height: 100%; background: var(--elite-green); box-shadow: 0 0 15px var(--elite-green);
-            animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: loadBar 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
@@ -428,7 +428,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-            <!-- TILE 1: VAN FITOUTS (UPDATED WITH NEW IMAGE SLOTS & CROSSFADE) -->
+            <!-- TILE 1: VAN FITOUTS -->
             <a href="fitouts.html" class="hex-card dominant">
                 <div class="card-inner">
                     <div class="tile-media">
@@ -600,16 +600,32 @@
         </div>
     </footer>
 
+    <!-- ROBUST PRELOADER TRIGGER SCRIPT -->
     <script>
-        window.addEventListener('load', () => {
+        (function() {
             const bootScreen = document.getElementById('boot-screen');
-            if (bootScreen) {
+            if (!bootScreen) return;
+
+            let dismissed = false;
+            function dismissPreloader() {
+                if (dismissed) return;
+                dismissed = true;
+                bootScreen.style.opacity = '0';
                 setTimeout(() => {
-                    bootScreen.style.opacity = '0';
-                    setTimeout(() => { bootScreen.style.display = 'none'; }, 400);
-                }, 800);
+                    bootScreen.style.display = 'none';
+                }, 400);
             }
-        });
+
+            // Trigger as soon as DOM and stylesheets are ready
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                setTimeout(dismissPreloader, 400);
+            } else {
+                window.addEventListener('DOMContentLoaded', () => setTimeout(dismissPreloader, 400));
+            }
+
+            // Absolute failsafe timeout: guarantees preloader vanishes within 1.5s no matter what
+            setTimeout(dismissPreloader, 1500);
+        })();
     </script>
 </body>
 </html>
