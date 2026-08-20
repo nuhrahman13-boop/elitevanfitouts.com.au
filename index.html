@@ -1,409 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NDKGGJ22');</script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18000790657"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-18000790657');
-    </script>
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '953020550981020');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>Elite Van Fitouts | Custom van floors, drawers and shelving Melbourne</title>
-    <meta name="description" content="The #1 Van Fitout workshop in Rowville. We build custom precision plywood racking, false floors, heavy-duty drawers, and ply lining for Tradies in Dandenong & South East Melbourne.">
-    <meta name="keywords" content="van fitouts rowville, custom van racking, tradie van setup, commercial van shelving, custom false floors, heavy duty van drawers, ply lining melbourne, cargo barriers">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://elitevanfitouts.com.au/">
-
-    <meta name="geo.region" content="AU-VIC" />
-    <meta name="geo.placename" content="Rowville" />
-    <meta name="geo.position" content="-37.915;145.243" />
-    <meta name="ICBM" content="-37.915, 145.243" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Fitouts | ELITE</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
-        
-        :root { 
-            --elite-green: #22c55e; 
-            --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --elite-green-glow: rgba(34, 197, 94, 0.4); 
-            --off-white: #ffffff; 
-            --nav-height-desktop: 80px;
-            --nav-height-mobile: 60px;
+        :root {
+            --elite-green: #22c55e;
+            --elite-green-glow: rgba(34, 197, 94, 0.4);
         }
-        
-        body, html { 
-            margin: 0; padding: 0; 
-            background-color: var(--off-white); 
-            color: #111; 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden;
-            max-width: 100vw;
-            -webkit-font-smoothing: antialiased;
-        }
-        
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; padding-bottom: 120px; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        .led { font-family: 'VT323', monospace; }
-
-        /* --- ROBUST PRELOADER --- */
-        #boot-screen {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.4s ease-out;
-        }
-        .loader-logo { height: 60px; margin-bottom: 30px; animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        .loader-container { width: 240px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
-        .loader-bar {
-            width: 0%; height: 100%; background: var(--elite-green); box-shadow: 0 0 15px var(--elite-green);
-            animation: loadBar 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-
-        /* --- NAV --- */
-        .glass-nav { 
-            background: #ffffff;
-            border-bottom: 2px solid var(--elite-green);
-            height: var(--nav-height-desktop);
-            display: flex; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
-
+        
+        /* --- NAVIGATION --- */
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 80px; display: flex; align-items: center; }
+        .dropdown { position: relative; display: inline-block; }
         .dropdown-menu {
-            display: none; position: absolute; top: 100%; right: 0;
-            background: #ffffff; border: 1px solid #ddd; width: 280px;
-            padding: 8px; border-radius: 8px; z-index: 100;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border-top: 2px solid var(--elite-green);
+            display: none; position: absolute; top: 100%; left: -20px; background: white; min-width: 240px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #eee; border-radius: 0 0 8px 8px; z-index: 100; padding: 10px 0;
         }
-        .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
-        @keyframes menuDrop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown:hover .dropdown-menu { display: block; animation: dropIn 0.2s ease forwards; }
+        @keyframes dropIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-item { display: block; padding: 12px 24px; color: #000; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.2s; display: flex; justify-content: space-between; }
+        .dropdown-item:hover { background: #f8f9fa; color: var(--elite-green); padding-left: 28px; }
+        .dropdown-divider { height: 1px; background: #eee; margin: 8px 0; }
+        .nav-spacer { height: 80px; }
 
-        .dropdown-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 16px; color: #333; 
-            text-decoration: none; border-radius: 6px; transition: all 0.2s;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
-        }
-        .dropdown-item:hover { background: rgba(34,197,94,0.1); color: black; padding-left: 20px; }
-        .dropdown-divider { height: 1px; background: #eee; margin: 6px 0; }
+        /* --- HERO --- */
+        .hero-section { position: relative; height: 60vh; min-height: 500px; display: flex; align-items: flex-end; padding: 40px 6% 80px; overflow: hidden; background: #000; }
+        .hero-video-wrapper { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: hidden; }
+        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .hero-content { position: relative; z-index: 10; max-width: 7xl; margin: 0 auto; width: 100%; }
+        .glitch-text { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1; text-transform: uppercase; font-style: italic; text-shadow: 2px 2px 0px rgba(34,197,94,0.5); margin-bottom: 10px; }
+        .hero-sub { font-family: 'JetBrains Mono', monospace; font-size: clamp(0.8rem, 2vw, 1.1rem); color: #ccc; max-width: 600px; line-height: 1.6; }
 
-        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
+        /* --- LED TICKER --- */
+        .led-wrap { background: #000; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 12px 0; overflow: hidden; position: relative; }
+        .led-ticker { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+        .led-item { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #22c55e; margin: 0 30px; text-transform: uppercase; letter-spacing: 2px; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- HERO SECTION --- */
-        .hero-section {
-            width: 100%; background: #000; 
-            border-bottom: 1px solid var(--elite-green);
-            box-shadow: 0 10px 30px var(--elite-green-glow);
-        }
-
-        @media (min-width: 1024px) {
-            .hero-section { position: relative; height: 85vh; overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start; }
-            .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-            .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
-            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
-            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
-        }
-        
-        @media (max-width: 1023px) {
-            .nav-spacer { display: none; }
-            body { padding-top: var(--nav-height-mobile); } 
-            .hero-section { display: flex; flex-direction: column; height: auto; }
-            .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
-            .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 60% top; filter: brightness(0.7); }
-            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2; }
-            .hero-content { width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left; position: relative; z-index: 10; margin-top: -60px; }
-            .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
-            .hero-sub { display: block !important; font-size: 0.85rem !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
-            .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
-            .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
-        }
-
-        .glitch-text {
-            font-family: 'Inter', sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
-            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-        .glitch-text strong { color: var(--elite-green); }
-        .hero-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px; border-left: 3px solid var(--elite-green); padding-left: 20px; }
-
-        /* --- BUTTONS --- */
-        .btn-main {
-            background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
-            font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; pointer-events: auto;
-        }
-        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
-        
-        .btn-outline {
-            background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
-            font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; pointer-events: auto;
-        }
-        .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
-
-        /* --- SEO TICKER --- */
-        .led-wrap {
-            position: relative; background: #050505; width: 100%; overflow: hidden;
-            height: 45px; display: flex; align-items: center; z-index: 20;
-            border-bottom: 1px solid #222; border-top: 1px solid #111;
-            background-image: radial-gradient(#111 1px, transparent 1px); background-size: 4px 4px;
-        }
-        .led-ticker { display: flex; white-space: nowrap; animation: ticker 60s linear infinite; }
-        .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
-            font-size: 1.8rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 3px; 
-            text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4); 
-        }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-        /* --- SEO GALLERY SHOWCASE (NO BLACK BOX PADDING, GLOWING GREEN BORDER) --- */
-        .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 70px; padding-bottom: 50px; position: relative; }
-        
-        .marquee-wrapper {
-            width: 100%; overflow: hidden; white-space: nowrap; display: flex; margin-bottom: 20px;
-            mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
-        }
-        .marquee-track { display: flex; gap: 20px; padding-left: 20px; width: max-content; }
-        
-        .track-slow { animation: scrollLeft 35s linear infinite; } 
-        .track-fast { animation: scrollRight 30s linear infinite; } 
-        
-        @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
-        
-        .marquee-img-card {
-            display: inline-flex; width: auto; flex-shrink: 0; height: 180px;
-            border: 2px solid var(--elite-green); border-radius: 8px; overflow: hidden; background: #ffffff;
-            box-shadow: 0 0 15px rgba(34,197,94,0.4); transition: transform 0.3s;
-        }
-        .marquee-img-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.8); z-index: 10; position: relative; }
-        .marquee-img { height: 100%; width: auto; object-fit: cover; background: #ffffff; }
-
-        /* MOBILE HORIZONTAL SCROLL CONTAINERS */
-        .mobile-scroll-row {
-            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory;
-        }
-        .mobile-scroll-row::-webkit-scrollbar { display: none; }
-        @media (min-width: 768px) {
-            .mobile-scroll-row { flex-wrap: wrap; justify-content: center; overflow-x: visible; scroll-snap-type: none; padding-bottom: 0; }
-        }
-
-        /* --- TRADE SOLUTIONS SEO PILLS --- */
-        .trade-tag {
-            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); 
-            font-family: 'JetBrains Mono', monospace; font-weight: bold;
-            padding: 12px 20px; border-radius: 8px; text-transform: uppercase; font-size: 0.8rem;
-            transition: all 0.3s; display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.15); flex-shrink: 0; scroll-snap-align: center;
-        }
-        .trade-tag:hover { box-shadow: 0 0 20px var(--elite-green); transform: translateY(-3px); color: white;}
-        .trade-dot { width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%; box-shadow: 0 0 8px var(--elite-green); }
-
-        /* --- TACTICAL TILES --- */
-        .hex-card {
-            background-color: #080808; border: 1px solid #333; 
-            border-radius: 12px; position: relative; overflow: hidden; 
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-            height: 100%; display: flex; flex-direction: column;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
-            background-size: 40px 40px; text-decoration: none;
-        }
-        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
-        
-        .hex-card.dominant {
-            border-color: var(--elite-green); box-shadow: 0 0 30px var(--elite-green-glow);
-            background: linear-gradient(to bottom right, #080808, #111811);
-        }
-        .hex-card.dominant:hover { box-shadow: 0 10px 40px rgba(34,197,94,0.4); }
-
-        .card-inner {
-            position: relative; z-index: 10; padding: 30px; height: 100%; display: flex; flex-direction: column; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)); 
-        }
-        .card-title { font-size: 1.8rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: white; margin-bottom: 10px; }
-        .card-desc { color: #aaa; font-weight: 400; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
-        
-        .action-button {
-            margin-top: auto; margin-bottom: 20px; text-align: center; padding: 12px 0; 
-            border: 1px solid #444; border-radius: 8px; background: #111;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: bold; color: white;
-            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
-        }
-        .hex-card:hover .action-button { border-color: var(--elite-green); color: black; background: var(--elite-green); box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
-
-        .status-bar {
-            padding-top: 15px; border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #666; letter-spacing: 1px; transition: border-color 0.3s;
-        }
-        .hex-card:hover .status-bar { border-color: rgba(34, 197, 94, 0.4); }
-        .status-indicator { display: flex; align-items: center; gap: 8px; }
-        .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
-        .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
-
-        /* --- TILE MEDIA & 4-PHOTO ROTATION FADE --- */
-        .tile-media { height: 200px; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px; position: relative; border: 1px solid #222; background: #000; }
-        .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; background: #000; }
-        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; animation: crossFade4 16s infinite; background: #000; }
+        /* --- IMAGE GRID --- */
+        .fade-img-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 8px; background: #111; }
+        .fade-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossfade 8s infinite; }
         .fade-delay-1 { animation-delay: 0s; }
         .fade-delay-2 { animation-delay: 4s; }
-        .fade-delay-3 { animation-delay: 8s; }
-        .fade-delay-4 { animation-delay: 12s; }
+        @keyframes crossfade { 0%, 45% { opacity: 1; } 50%, 95% { opacity: 0; } 100% { opacity: 1; } }
 
-        @keyframes crossFade4 {
-            0%, 20% { opacity: 1; z-index: 2; }
-            25%, 95% { opacity: 0; z-index: 1; }
-            100% { opacity: 1; z-index: 2; }
-        }
+        /* --- TACTICAL TILES --- */
+        .sys-toggle { display: flex; gap: 10px; background: #111; padding: 8px; border-radius: 12px; border: 1px solid #333; margin-bottom: 40px; }
+        .sys-btn { flex: 1; text-align: center; padding: 16px; font-family: 'JetBrains Mono', monospace; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; border-radius: 8px; transition: 0.3s; color: #888; border: 1px solid transparent; }
+        .sys-btn.active { background: #ffffff; color: #000; border-color: var(--elite-green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
+        .sys-btn:hover:not(.active) { color: white; border-color: #555; }
 
-        /* --- WHY CHOOSE ELITE --- */
-        .why-card {
-            background: #000; border: 1px solid var(--elite-green); padding: 30px; border-radius: 12px;
-            transition: 0.3s; box-shadow: 0 5px 20px rgba(34, 197, 94, 0.1);
+        .hex-card {
+            background-color: #080808; border: 1px solid #333; border-radius: 12px; position: relative; overflow: hidden; 
+            transition: 0.3s; height: 100%; display: flex; flex-direction: column; cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 40px 40px;
         }
-        .why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
-        .why-icon { color: var(--elite-green); font-size: 2.5rem; margin-bottom: 15px; text-shadow: 0 0 15px var(--elite-green-glow); }
+        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
+        .hex-card .card-title { color: #ffffff; }
+        
+        .hex-card.selected { background-color: #ffffff; background-image: none; border-width: 2px; border-color: var(--elite-green); box-shadow: 0 20px 50px rgba(34, 197, 94, 0.3); }
+        .hex-card.selected::before {
+            content: "SELECTED"; position: absolute; top: 0; right: 0; background: var(--elite-green); color: black; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+            padding: 6px 12px; font-weight: bold; z-index: 20; border-bottom-left-radius: 8px;
+        }
+        .hex-card.selected .card-title { color: #000000; }
+        .hex-card.selected .text-gray-400 { color: var(--elite-green) !important; font-weight: 700; }
 
-        /* --- LOCATION DOMINATION --- */
-        .loc-tag {
-            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); font-family: 'JetBrains Mono', monospace;
-            padding: 10px 20px; border-radius: 6px; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s; font-weight: bold;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.1); flex-shrink: 0; scroll-snap-align: center;
-        }
-        .loc-tag:hover { background: var(--elite-green); color: black; box-shadow: 0 0 20px var(--elite-green); transform: scale(1.05); }
+        .pkg-media { height: 200px; width: 100%; border-bottom: 1px solid #222; position: relative; background: black; display: flex; justify-content: center; align-items: center; }
+        .pkg-media video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+        .hex-card:hover .pkg-media video, .hex-card.selected .pkg-media video { opacity: 1; }
+        .card-inner { padding: 30px; display: flex; flex-direction: column; height: 100%; }
+        .card-title { font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; margin-bottom: 5px; transition: 0.3s;}
 
-        /* --- MAP --- */
-        .radar-container { position: relative; height: 100%; min-height: 450px; width: 100%; overflow: hidden; background: #000; }
-        .radar-overlay {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; 
-            border: 1px solid rgba(34, 197, 94, 0.1); border-radius: 50%; pointer-events: none; z-index: 10;
-        }
-        .radar-overlay::before {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%;
-            box-shadow: 0 0 15px var(--elite-green); animation: pulseDot 2s infinite;
-        }
-        @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+        /* --- MATERIAL SELECTION --- */
+        .mat-card { background: #080808; border: 1px solid #333; padding: 25px; cursor: pointer; transition: 0.2s; position: relative; border-radius: 12px; }
+        .mat-card:hover { border-color: var(--elite-green); }
+        .mat-card.selected { background: #ffffff; border: 2px solid var(--elite-green); box-shadow: 0 10px 40px rgba(34, 197, 94, 0.25); }
+        .mat-card.selected::before { content: "✓"; position: absolute; top: 15px; right: 15px; color: var(--elite-green); font-weight: bold; font-size: 1.2rem; }
+        .mat-card.selected .mat-title { color: #000000; }
+        .mat-card.selected .mat-desc { color: var(--elite-green); font-weight: 600; }
+        .mat-title { font-weight: 900; color: white; text-transform: uppercase; margin-bottom: 5px; font-style: italic; font-size: 1.2rem;}
+        .mat-desc { font-size: 0.75rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- BUILD DRAWER SYSTEM --- */
-        #build-drawer {
-            position: fixed; bottom: 30px; right: 30px; z-index: 90; background: #080808;
-            border: 2px solid var(--elite-green); border-radius: 12px; width: 320px; max-width: calc(100vw - 40px);
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        #build-drawer.minimized .drawer-body { display: none; }
-        #build-drawer.minimized { width: auto; }
-        .drawer-header {
-            background: #111; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #222; border-radius: 10px 10px 0 0; cursor: pointer;
-        }
-        .drawer-body { padding: 16px; max-height: 250px; overflow-y: auto; }
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace; padding: 8px 0; border-bottom: 1px solid #1a1a1a; color: #ccc;
-        }
-        .cart-item button { color: #ef4444; background: none; border: none; cursor: pointer; font-weight: bold; padding: 2px 6px; }
+        /* --- RACKING & QUANTITY CONTROLS --- */
+        .spec-item { background: #080808; border: 1px solid #333; margin-bottom: 24px; overflow: hidden; border-radius: 12px; transition: 0.3s; }
+        .spec-item.locked { opacity: 0.4; pointer-events: none; border-color: #222; filter: grayscale(1); }
+        .spec-img-box { height: 180px; width: 100%; position: relative; border-bottom: 1px solid #333; }
+        .spec-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .spec-content { padding: 25px; }
+        .spec-actions { display: flex; gap: 10px; margin-top: 15px; align-items: center; }
+        
+        .qty-controls { display: flex; align-items: center; justify-content: space-between; background: #111; border: 1px solid #444; border-radius: 6px; padding: 4px; flex: 1; }
+        .qty-btn { background: #222; color: var(--elite-green); border: none; width: 34px; height: 34px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+        .qty-btn:hover:not(:disabled) { background: var(--elite-green); color: black; }
+        .qty-btn:disabled { color: #555; cursor: not-allowed; }
+        .qty-val { color: white; font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: bold; width: 30px; text-align: center; }
 
-        /* --- FIXED SOCIAL ICONS --- */
-        .social-row { display: flex; gap: 15px; margin-top: 15px; }
-        .social-icon {
-            width: 40px; height: 40px; border: 1px solid #333; background: #111;
-            display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: all 0.3s;
-            text-decoration: none;
-        }
-        .social-fb { color: #1877F2; }
-        .social-fb:hover { border-color: #1877F2; background: rgba(24,119,242,0.1); box-shadow: 0 0 15px rgba(24,119,242,0.5); transform: translateY(-2px); }
-        .social-ig { color: #E1306C; }
-        .social-ig:hover { border-color: #E1306C; background: rgba(225,48,108,0.1); box-shadow: 0 0 15px rgba(225,48,108,0.5); transform: translateY(-2px); }
-        .social-tt { color: #00f2fe; }
-        .social-tt:hover { border-color: #00f2fe; background: rgba(0,242,254,0.1); box-shadow: 0 0 15px rgba(0,242,254,0.5); transform: translateY(-2px); }
-        .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
+        /* --- BUTTONS --- */
+        .btn-main { background: var(--elite-green); color: black; border: 1px solid var(--elite-green); font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; }
+        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
 
-        /* --- MOBILE MENU --- */
-        #mobile-menu {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
-        }
+        /* --- FLIGHT PATH --- */
+        .flight-container { position: relative; margin: 40px 0; border-left: 2px solid #333; padding-left: 30px; }
+        .flight-container::after { content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%; background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); animation: circuitFlow 4s ease-in-out infinite; }
+        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
+        .flight-step { position: relative; margin-bottom: 40px; }
+        .flight-dot { position: absolute; left: -39px; top: 0; width: 20px; height: 20px; background: #000; border: 2px solid #555; border-radius: 50%; z-index: 10; transition: 0.3s; }
+        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
+        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 5px; }
+        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- STICKY FOOTER MANIFEST BAR --- */
+        .manifest-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--elite-green); padding: 15px 24px; z-index: 100; display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+        @media (min-width: 768px) { .manifest-bar { flex-direction: row; } }
+        
+        /* MOBILE MENU OVERRIDE */
+        #mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px; }
         #mobile-menu.active { display: block; }
     </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
-    <div id="boot-screen">
-        <img src="logo.png" alt="ELITE" class="loader-logo">
-        <div class="loader-container">
-            <div class="loader-bar"></div>
-        </div>
-    </div>
 
-    <!-- PERSISTENT BUILD CART DRAWER -->
-    <div id="build-drawer" class="minimized">
-        <div class="drawer-header" onclick="toggleBuildDrawer()">
-            <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="mono text-xs uppercase tracking-wider font-bold text-white">Your Build (<span id="cart-count">0</span>)</span>
-            </div>
-            <span class="mono text-xs text-green-400 font-bold" id="drawer-toggle-text">[+] EXPAND</span>
-        </div>
-        <div class="drawer-body">
-            <div id="cart-items-container" class="mb-4">
-                <p class="mono text-xs text-gray-500 italic text-center py-4">No components selected yet.</p>
-            </div>
-            <a href="quote.html" onclick="passCartToForm()" class="btn-main w-full text-center block text-xs">PROCEED TO QUOTE →</a>
-        </div>
-    </div>
-
-    <!-- NAV WITH CLEAN DROPDOWN CATEGORIES (NO NUMBERS) -->
+    <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
-            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold border-b-2 border-green-500 pb-1">Home</a>
+                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
                 <div class="relative dropdown">
                     <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
-                        SERVICES <span class="text-[10px]">▼</span>
+                        MENU <span class="text-[10px]">▼</span>
                     </button>
                     <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
-                        <a href="fitouts.html" class="dropdown-item">Drawers & Shelving <span>-></span></a>
-                        <a href="protection.html" class="dropdown-item">Protection & Ply Line Barriers <span>-></span></a>
-                        <a href="services.html" class="dropdown-item">Other Services <span>-></span></a>
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
+                        <a href="fitouts.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Van Fitouts <span>-></span></a>
+                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
-                        <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold">RESOURCES</div>
+                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
             </div>
@@ -412,350 +152,427 @@
     </nav>
 
     <div id="mobile-menu">
-        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-black border-l-4 border-green-500 pl-4 transition">Home</a>
-            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Drawers & Shelving Systems</a>
-            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">Protection & Ply Line Barriers</a>
-            <a href="services.html" class="text-gray-500 hover:text-green-500 transition">Other Services</a>
-            <a href="about.html" class="text-gray-500 hover:text-green-500 transition">About Us</a>
+        <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
+            <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
+            <a href="fitouts.html" class="text-black border-l-4 border-green-500 pl-4 transition">Van Fitouts</a>
+            <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
+            <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
         </div>
     </div>
-
     <div class="nav-spacer"></div>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <header class="hero-section">
         <div class="hero-video-wrapper">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="hero.mp4" type="video/mp4">
-            </video>
-            <div class="hero-fade"></div>
+            <video autoplay muted loop playsinline class="hero-video"><source src="fitout hero.mp4" type="video/mp4"></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
         </div>
-        
         <div class="hero-content">
-            <h1 class="glitch-text">
-                ENGINEERED<br>FOR THE <strong>ELITE.</strong>
-            </h1>
-            <p class="hero-sub mb-8 mt-4">
-                We build the vehicles that power Australia's top-tier trades. Drawers, shelving, and heavy-duty protection. <br>
-                <span class="font-bold text-white">Get Organized. Get Paid.</span>
-            </p>
-            <div class="hero-btns mt-8 flex gap-4">
-                <a href="fitouts.html" class="btn-main">EXPLORE FITOUTS</a>
-                <a href="about.html" class="btn-outline">ABOUT US</a>
-            </div>
+            <h1 class="glitch-text mb-4">VAN <span class="text-green-500">FITOUTS</span></h1>
+            <p class="hero-sub">Turn your van into a mobile workshop. <br>Stop searching for tools. Start making money.</p>
         </div>
     </header>
 
-    <!-- SEO TICKER -->
+    <!-- TICKER -->
     <div class="led-wrap">
         <div class="led-ticker">
-            <div class="led-item">CUSTOM VAN RACKING • CNC FALSE FLOORS • COMMERCIAL SHELVING • PLY LINING • CARGO BARRIERS • ROWVILLE WORKSHOP • FAST TURNAROUND • DANDENONG SOUTH • MELBOURNE TRADIE SETUPS • </div>
-            <div class="led-item">CUSTOM VAN RACKING • CNC FALSE FLOORS • COMMERCIAL SHELVING • PLY LINING • CARGO BARRIERS • ROWVILLE WORKSHOP • FAST TURNAROUND • DANDENONG SOUTH • MELBOURNE TRADIE SETUPS • </div>
+            <div class="led-item">VAN RACKING MELBOURNE</div>
+            <div class="led-item">CUSTOM FALSE FLOORS</div>
+            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
+            <div class="led-item">COMMERCIAL VAN SHELVING</div>
+            <div class="led-item">TRADE VEHICLE FITOUTS</div>
+            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
+            <div class="led-item">TOOLBOX SHELVING</div>
+            <div class="led-item">PLYWOOD LINING</div>
+            <!-- Duplicated for seamless loop -->
+            <div class="led-item">VAN RACKING MELBOURNE</div>
+            <div class="led-item">CUSTOM FALSE FLOORS</div>
+            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
+            <div class="led-item">COMMERCIAL VAN SHELVING</div>
+            <div class="led-item">TRADE VEHICLE FITOUTS</div>
+            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
         </div>
     </div>
 
-    <!-- TACTICAL TILES (UPDATED WITH REQUESTED IMAGES) -->
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight text-black mb-4">TACTICAL FITOUT SYSTEMS</h2>
-            <p class="mono text-xs uppercase tracking-widest text-gray-500">Rowville Workshop • Engineered Tough For Aussie Trades</p>
+    <!-- CONFIGURATOR -->
+    <div class="px-6 max-w-7xl mx-auto pt-20">
+
+        <!-- SYSTEM TYPE TOGGLE -->
+        <div class="mb-12 max-w-2xl mx-auto">
+            <h2 class="text-center font-black italic uppercase text-2xl mb-4">Select Build Architecture</h2>
+            <div class="sys-toggle">
+                <button class="sys-btn active" id="btn-type-drawer" onclick="setSystemType('Drawer System')">Drawer System<br><span class="text-[10px] font-normal">(False Floor Included)</span></button>
+                <button class="sys-btn" id="btn-type-shelving" onclick="setSystemType('Shelving Only')">Shelving Only<br><span class="text-[10px] font-normal">(No False Floor)</span></button>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-            <!-- TILE 1: DRAWERS & SHELVING (WITH 4-PHOTO CROSS-FADING SEQUENCE) -->
-            <a href="fitouts.html" class="hex-card dominant">
-                <div class="card-inner">
-                    <div class="tile-media">
-                        <div class="fade-img-wrap">
-                            <img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" alt="Van Shelving Melbourne" class="fade-img fade-delay-1">
-                            <img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" alt="Van Drawers Melbourne" class="fade-img fade-delay-2">
-                            <img src="van slideout system.jpeg" onerror="this.src='fitouts.jpg'" alt="Van Slideout System" class="fade-img fade-delay-3">
-                            <img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" alt="Van Slide Out Shelving" class="fade-img fade-delay-4">
+        <!-- 01. PACKAGES -->
+        <div class="mb-20">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">01.</span> Select Base Configuration
+            </h2>
+            
+            <!-- DRAWER PACKAGES -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="packages-drawer">
+                <div class="hex-card selected" id="pkg-essential" onclick="setPackage('Essential', 0, 'pkg-essential')">
+                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="essential.mov" type="video/mp4"></video></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Essential</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">FALSE FLOOR + DRAWERS</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> Custom False Floor</li>
+                            <li>> Rear HD Drawers</li>
+                            <li>> Side Sliding Drawers</li>
+                            <li>> Alum. Trim Protection</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hex-card" id="pkg-pro" onclick="setPackage('Pro', 3, 'pkg-pro')">
+                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="pro.mp4" type="video/mp4"></video></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Pro</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">INCLUDES 3 MODULES</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> <strong>Essential Setup</strong></li>
+                            <li>> Driver Side Racking</li>
+                            <li>> Adjustable Dividers</li>
+                            <li>> Choose up to 3 Shelves</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hex-card" id="pkg-elite" onclick="setPackage('Elite', 7, 'pkg-elite')">
+                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="elite.mp4" type="video/mp4"></video></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Elite</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">INCLUDES 7 MODULES</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> <strong>Pro Setup</strong></li>
+                            <li>> Passenger Racking</li>
+                            <li>> Side Slide-Out Shelf</li>
+                            <li>> Choose up to 7 Shelves</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hex-card" id="pkg-custom-draw" onclick="setPackage('Custom Design', 99, 'pkg-custom-draw')">
+                    <div class="pkg-media"><span class="text-4xl">🛠️</span></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Custom</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">BESPOKE BUILD</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> 100% Tailored Layout</li>
+                            <li>> Unique Trade Needs</li>
+                            <li>> Auto Electrical</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHELVING ONLY PACKAGES -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="packages-shelving">
+                <div class="hex-card" id="pkg-shelf-basic" onclick="setPackage('Single Side Shelving', 3, 'pkg-shelf-basic')">
+                    <div class="pkg-media"><span class="text-4xl">🗄️</span></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Single Side</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">DRIVER SIDE RACKING</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> CNC Cut Frame</li>
+                            <li>> Secure Wall Mounting</li>
+                            <li>> Choose up to 3 Shelves</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hex-card" id="pkg-shelf-pro" onclick="setPackage('Dual Side Shelving', 7, 'pkg-shelf-pro')">
+                    <div class="pkg-media"><span class="text-4xl">🗄️🗄️</span></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Dual Side</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">MAXIMUM STORAGE</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> Driver & Passenger Racking</li>
+                            <li>> Heavy Duty Brackets</li>
+                            <li>> Choose up to 7 Shelves</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hex-card" id="pkg-shelf-custom" onclick="setPackage('Custom Shelving', 99, 'pkg-shelf-custom')">
+                    <div class="pkg-media"><span class="text-4xl">🛠️</span></div>
+                    <div class="card-inner">
+                        <h3 class="card-title text-2xl">Custom</h3>
+                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">BESPOKE BUILD</p>
+                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
+                            <li>> Slide out workbenches</li>
+                            <li>> Unique Configurations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02. MATERIALS -->
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">02.</span> Select Finish
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="mat-card selected" id="mat-hex" onclick="setFinish('12mm Hex (Base)', 'mat-hex')">
+                    <div class="mat-title">12mm Hex Base</div>
+                    <p class="mat-desc">Premium anti-scratch, anti-slip, waterproof gloss finish. The Elite Standard.</p>
+                </div>
+                <div class="mat-card" id="mat-rubber" onclick="setFinish('Rubber Overlay', 'mat-rubber')">
+                    <div class="mat-title">Rubber Finish</div>
+                    <p class="mat-desc">12mm Hex base topped with heavy-duty rubber for extreme grip and durability.</p>
+                </div>
+                <div class="mat-card" id="mat-carpet" onclick="setFinish('Charcoal Carpet', 'mat-carpet')">
+                    <div class="mat-title">Charcoal Carpet</div>
+                    <p class="mat-desc">12mm Hex base topped with automotive carpet. Best for fragile cargo & comfort.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03. MODULES -->
+        <div class="mb-24">
+            <div class="flex justify-between items-end mb-4">
+                <h2 class="text-2xl md:text-4xl font-black uppercase italic flex items-center gap-3">
+                    <span class="text-green-500 text-sm mono">03.</span> Configure Modules
+                </h2>
+            </div>
+            <div class="bg-gray-900 border border-green-500/50 p-4 rounded-lg mb-8 inline-block">
+                <p class="mono text-sm font-bold text-white">MODULE CAPACITY: <span id="mod-counter" class="text-green-500 text-lg">0 / 0</span></p>
+                <p class="text-gray-400 text-xs mt-1" id="mod-helper-text">Essential package selected. Shelving modules are locked.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="spec-item locked" id="mod-card-crate">
+                    <div class="spec-img-box"><img src="euro crates shelf.jpg" alt="Euro Crate Shelf"></div>
+                    <div class="spec-content">
+                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Crate Shelves</h4>
+                        <div class="spec-actions">
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateAddon('Crate Shelves', -1)">-</button>
+                                <span class="qty-val" id="qty-CrateShelves">0</span>
+                                <button class="qty-btn btn-plus" onclick="updateAddon('Crate Shelves', 1)">+</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">DRAWERS & SHELVING SYSTEMS</div>
-                    <h3 class="card-title">Drawers & Shelving Systems</h3>
-                    <p class="card-desc">Heavy-duty drawer slides, custom modular racking, slide-out workbenches, and precision shelving built to endure the punishing demands of Australian job sites.</p>
-                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Drawers & Shelving System');">ADD TO BUILD +</div>
-                    <div class="status-bar">
-                        <span class="status-indicator"><span class="led-dot green"></span> ACTIVE PRODUCTION</span>
-                        <span>ROWVILLE HQ</span>
+                </div>
+                <div class="spec-item locked" id="mod-card-toolbox">
+                    <div class="spec-img-box"><img src="tool shelf1.jpg" alt="Toolbox Shelf"></div>
+                    <div class="spec-content">
+                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Toolbox Shelves</h4>
+                        <div class="spec-actions">
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', -1)">-</button>
+                                <span class="qty-val" id="qty-ToolboxShelves">0</span>
+                                <button class="qty-btn btn-plus" onclick="updateAddon('Toolbox Shelves', 1)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </a>
-
-            <!-- TILE 2: PROTECTION & PLY LINE BARRIERS (USING PLY LINING AND FLOORING IMAGE) -->
-            <a href="protection.html" class="hex-card">
-                <div class="card-inner">
-                    <div class="tile-media">
-                        <img src="ply lining and fooring .jpeg" onerror="this.src='branding.jpg'" alt="Ply Lining & Cargo Barriers" class="w-full h-full object-contain bg-black">
-                    </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">PROTECTION, FLOORING PLY LINING & CARGOBARRIERS</div>
-                    <h3 class="card-title">Protection, Flooring Ply Lining & Cargobarriers</h3>
-                    <p class="card-desc">CNC-machined wall ply lining, heavy-duty marine-grade flooring, false floors, and secure plywood cargo barriers engineered to protect your vehicle's interior.</p>
-                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Protection & Ply Line Barriers Pack');">ADD TO BUILD +</div>
-                    <div class="status-bar">
-                        <span class="status-indicator"><span class="led-dot green"></span> CNC PRECISION</span>
-                        <span>PLY BARRIERS</span>
+                <div class="spec-item locked" id="mod-card-org">
+                    <div class="spec-img-box"><img src="seperator1.jpg" alt="Organiser Shelf"></div>
+                    <div class="spec-content">
+                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Organiser Shelf</h4>
+                        <div class="spec-actions">
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateAddon('Organiser Shelves', -1)">-</button>
+                                <span class="qty-val" id="qty-OrganiserShelves">0</span>
+                                <button class="qty-btn btn-plus" onclick="updateAddon('Organiser Shelves', 1)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </a>
-
-            <!-- TILE 3: OTHER SERVICES (USING SIGNAGE AND OTHER SERVICES IMAGE) -->
-            <a href="services.html" class="hex-card">
-                <div class="card-inner">
-                    <div class="tile-media">
-                        <img src="signage and other services.jpeg" onerror="this.src='launchpad.jpg'" alt="Other Services and Custom Addons" class="w-full h-full object-contain bg-black">
-                    </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">OTHER SERVICES</div>
-                    <h3 class="card-title">Other Services</h3>
-                    <p class="card-desc">Specialist custom modifications, campervan conversions, electrical mounting boards, roof rack installations, and bespoke fabrication requests tailored to your exact rig.</p>
-                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Other Services');">ADD TO BUILD +</div>
-                    <div class="status-bar">
-                        <span class="status-indicator"><span class="led-dot green"></span> CUSTOM BUILDS</span>
-                        <span>BESPOKE FITOUTS</span>
+                <div class="spec-item locked" id="mod-card-silicone">
+                    <div class="spec-img-box"><img src="silicone.jpg" alt="Silicone Holder"></div>
+                    <div class="spec-content">
+                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Silicone Holder</h4>
+                        <div class="spec-actions">
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="updateAddon('Silicone Holder', -1)">-</button>
+                                <span class="qty-val" id="qty-SiliconeHolder">0</span>
+                                <button class="qty-btn btn-plus" onclick="updateAddon('Silicone Holder', 1)">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- SEO GALLERY SHOWCASE & ABOUT US BRIDGE (NO BLACK PADDING, ORIGINAL IMAGE SIZES) -->
-    <section class="fitout-showcase">
-        <div class="max-w-4xl mx-auto px-6 text-center mb-12">
-            <span class="mono text-xs text-green-400 font-bold tracking-widest uppercase">THE ELITE STANDARD</span>
-            <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight text-black mt-2 mb-6">BUILT IN AUSTRALIA, FOR AUSTRALIAN TRADIES</h2>
-            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-                At Elite Van Fitouts, we believe your commercial vehicle shouldn’t just be a box on wheels—it should be your most productive asset. Utilizing advanced <strong>CNC machining for flawless precision cuts</strong> and premium hardware, our custom designs eliminate rattles, maximize cargo capacity, and withstand the harshest daily site abuse. Recognized for delivering the <strong>best fitouts in australia</strong>, every setup is built to order right here in our Rowville workshop.
-            </p>
-            <a href="about.html" class="btn-outline text-xs">LEARN MORE ABOUT OUR WORKSHOP →</a>
-        </div>
-        
-        <!-- Marquee Track 1 -->
-        <div class="marquee-wrapper">
-            <div class="marquee-track track-slow">
-                <div class="marquee-img-card"><img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 1"></div>
-                <div class="marquee-img-card"><img src="melbournes best van set ups.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 2"></div>
-                <div class="marquee-img-card"><img src="better than van fitouts melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 3"></div>
-                <div class="marquee-img-card"><img src="van fitouts melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 4"></div>
-                <div class="marquee-img-card"><img src="melbourne van set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 5"></div>
-                <div class="marquee-img-card"><img src="van slideout system.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 6"></div>
-                <div class="marquee-img-card"><img src="van storage systems.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 7"></div>
-                <div class="marquee-img-card"><img src="van slide outs.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 8"></div>
-                <!-- Duplicate for seamless loop -->
-                <div class="marquee-img-card"><img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 1"></div>
-                <div class="marquee-img-card"><img src="melbournes best van set ups.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 2"></div>
             </div>
         </div>
 
-        <!-- Marquee Track 2 -->
-        <div class="marquee-wrapper">
-            <div class="marquee-track track-fast">
-                <div class="marquee-img-card"><img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 9"></div>
-                <div class="marquee-img-card"><img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 10"></div>
-                <div class="marquee-img-card"><img src="campervan set up melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 11"></div>
-                <div class="marquee-img-card"><img src="ply lining and fooring .jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 12"></div>
-                <div class="marquee-img-card"><img src="signage and other services.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 13"></div>
-                <div class="marquee-img-card"><img src="melbourne tradie set up.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 14"></div>
-                <div class="marquee-img-card"><img src="melbourne tradie set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 15"></div>
-                <div class="marquee-img-card"><img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 16"></div>
-                <!-- Duplicate for seamless loop -->
-                <div class="marquee-img-card"><img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 9"></div>
-                <div class="marquee-img-card"><img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 10"></div>
+        <!-- PROCESS / FLIGHT PATH SECTION -->
+        <div class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+                <span class="text-green-500 text-sm mono">04.</span> The Build Process
+            </h2>
+            <div class="flight-container max-w-3xl">
+                <div class="flight-step">
+                    <div class="flight-dot"></div>
+                    <div class="step-title">1. CAD Scan & Design</div>
+                    <div class="step-desc">We laser-scan your specific van model to achieve exact factory-contour tolerances before a single panel is cut.</div>
+                </div>
+                <div class="flight-step">
+                    <div class="flight-dot"></div>
+                    <div class="step-title">2. CNC Precision Fabrication</div>
+                    <div class="step-desc">All marine-grade structural plywood and aluminum profiles are precision machined on industrial CNC routers.</div>
+                </div>
+                <div class="flight-step">
+                    <div class="flight-dot"></div>
+                    <div class="step-title">3. Modular Assembly & Quality Check</div>
+                    <div class="step-desc">Components are pre-assembled and rigorously stress-tested for load rating, rattle resistance, and smooth drawer action.</div>
+                </div>
+                <div class="flight-step">
+                    <div class="flight-dot"></div>
+                    <div class="step-title">4. Professional Installation</div>
+                    <div class="step-desc">Your custom system is securely bolted into factory mounting points by our specialist team in Melbourne.</div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- TRADE SOLUTIONS PILLS (GENERAL TRADE NAMES) -->
-    <section class="py-16 px-6 bg-gray-50 border-y border-gray-200">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-10">
-                <span class="mono text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">CUSTOM TRADE CONFIGURATIONS</span>
-                <h2 class="text-2xl md:text-4xl font-black uppercase italic text-black">BUILT SPECIFICALLY FOR YOUR TRADE</h2>
-            </div>
-            <div class="mobile-scroll-row">
-                <div class="trade-tag"><span class="trade-dot"></span> Electrician</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Plumber</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Carpenter</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Builder</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Mobile Mechanic</div>
-                <div class="trade-tag"><span class="trade-dot"></span> HVAC Technician</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Locksmith</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Glazier</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Landscaper</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Painter</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Solar Installer</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Security Technician</div>
+        <!-- CONTACT / INQUIRY SECTION -->
+        <div id="contact" class="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 md:p-12 mb-16">
+            <div class="max-w-2xl">
+                <span class="mono text-green-500 text-xs font-bold uppercase tracking-widest block mb-2">READY TO DEPLOY?</span>
+                <h2 class="text-3xl md:text-4xl font-black italic uppercase mb-4">Request Your Build Quote</h2>
+                <p class="text-gray-400 mono text-sm mb-8">Submit your specifications and our team will get back to you with a custom timeline and accurate pricing matrix.</p>
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Quote request generated successfully!');">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="YOUR NAME" required class="bg-black border border-neutral-700 p-4 rounded-lg text-sm mono text-white focus:border-green-500 outline-none w-full">
+                        <input type="email" placeholder="EMAIL ADDRESS" required class="bg-black border border-neutral-700 p-4 rounded-lg text-sm mono text-white focus:border-green-500 outline-none w-full">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="tel" placeholder="PHONE NUMBER" required class="bg-black border border-neutral-700 p-4 rounded-lg text-sm mono text-white focus:border-green-500 outline-none w-full">
+                        <input type="text" placeholder="VAN MAKE & MODEL (e.g. Ford Transit LWB)" required class="bg-black border border-neutral-700 p-4 rounded-lg text-sm mono text-white focus:border-green-500 outline-none w-full">
+                    </div>
+                    <textarea rows="4" placeholder="ADDITIONAL NOTES / REQUIREMENTS" class="bg-black border border-neutral-700 p-4 rounded-lg text-sm mono text-white focus:border-green-500 outline-none w-full"></textarea>
+                    <button type="submit" class="btn-main w-full py-4 text-center justify-center">Submit Build Manifest -></button>
+                </form>
             </div>
         </div>
-    </section>
 
-    <!-- WHY CHOOSE ELITE -->
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight text-black mb-4">THE ELITE DIFFERENCE</h2>
-            <p class="mono text-xs uppercase tracking-widest text-gray-500">Commercial Rigidity • Zero Rattle • CNC Precision</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="why-card">
-                <div class="why-icon">⚡</div>
-                <h4 class="text-xl font-bold uppercase text-white mb-2">CNC Precision Joinery</h4>
-                <p class="text-gray-400 text-sm leading-relaxed">CAD designed and CNC routed for a tight contour fit along factory ribs, maximising cargo volume without sacrificing space.</p>
-            </div>
-            <div class="why-card">
-                <div class="why-icon">🔒</div>
-                <h4 class="text-xl font-bold uppercase text-white mb-2">Heavy Duty Lockable Hardware</h4>
-                <p class="text-gray-400 text-sm leading-relaxed">227kg industrial drawer runners, slam-locks, and tamper-resistant tie-down points keep your thousand-dollar packouts secure.</p>
-            </div>
-            <div class="why-card">
-                <div class="why-icon">🚀</div>
-                <h4 class="text-xl font-bold uppercase text-white mb-2">Rapid Turnarounds</h4>
-                <p class="text-gray-400 text-sm leading-relaxed">Pre-machined kits ready for rapid drop-in installation at our Rowville workshop so you spend less time off the tools.</p>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- REVIEWS SECTION (WITH REAL GHL REPUTATIONHUB WIDGET) -->
-    <section class="py-20 px-6 bg-black text-white border-t border-gray-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="mono text-xs text-green-400 font-bold tracking-widest">VERIFIED TRADIE REVIEWS</span>
-                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight mt-2 mb-4">TRUSTED BY MELBOURNE'S BEST</h2>
-                <p class="mono text-xs uppercase tracking-widest text-gray-500">See what local contractors have to say about our Rowville workshop</p>
-            </div>
-            
-            <!-- Real GHL Review Widget Integration -->
-            <div class="mb-8">
-                <script type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js"></script>
-                <iframe class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/Im9YMPbjBNSaUJy5qIeg?widgetId=69acee42cc4984200173e2a9" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- LOCATION & MAP SECTION (ELITE VAN FITOUTS 8/8 ENTERPRISE DRIVE) -->
-    <section class="py-16 px-6 bg-black text-white border-t border-green-500">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- STICKY MANIFEST FOOTER BAR -->
+    <div class="manifest-bar">
+        <div class="flex flex-col md:flex-row gap-6 items-center mb-4 md:mb-0">
             <div>
-                <span class="mono text-xs text-green-400 font-bold tracking-widest">HQ & WORKSHOP</span>
-                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight mt-2 mb-6">SERVING ALL OF SOUTH-EAST MELBOURNE</h2>
-                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4 font-bold text-white">
-                    Elite Van Fitouts<br>8/8 Enterprise Drive, Rowville VIC 3178
-                </p>
-                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
-                    Conveniently based in Rowville right near EastLink and the Monash Freeway. We build robust storage solutions for tradies across Dandenong, Knox, Bayswater, Frankston, Hallam, Ringwood, and greater Victoria.
-                </p>
-                <div class="mobile-scroll-row mb-8">
-                    <span class="loc-tag">Rowville</span>
-                    <span class="loc-tag">Dandenong South</span>
-                    <span class="loc-tag">Bayswater</span>
-                    <span class="loc-tag">Frankston</span>
-                    <span class="loc-tag">Knoxfield</span>
-                    <span class="loc-tag">Carrum Downs</span>
-                </div>
-                <a href="https://maps.google.com/?q=8/8+Enterprise+Drive+Rowville+VIC+3178" target="_blank" class="btn-main">GET DIRECTIONS →</a>
+                <span class="mono text-[10px] text-gray-400 block tracking-widest">ARCHITECTURE</span>
+                <span class="mono text-sm font-bold text-white uppercase" id="bar-sys">Drawer System</span>
             </div>
-            <div class="radar-container rounded-xl border border-gray-800">
-                <div class="radar-overlay"></div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d145.243000!3d-37.915000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d3d65c368d5%3A0x5045675218ce520!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER WITH FIXED SOCIAL LINKS -->
-    <footer class="bg-[#050505] text-gray-400 py-12 px-6 border-t border-gray-900">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div class="hidden md:block text-gray-700">|</div>
             <div>
-                <img src="logo.png" alt="Elite Van Fitouts" class="h-8 mb-3 mx-auto md:mx-0">
-                <p class="mono text-xs text-gray-500">© 2026 Elite Van Fitouts. All rights reserved.</p>
+                <span class="mono text-[10px] text-gray-400 block tracking-widest">BASE PACKAGE</span>
+                <span class="mono text-sm font-bold text-green-500 uppercase" id="bar-pkg">Essential</span>
             </div>
-            <div class="flex gap-6 mono text-xs uppercase tracking-wider font-bold">
-                <a href="index.html" class="hover:text-green-500 transition">Home</a>
-                <a href="fitouts.html" class="hover:text-green-500 transition">Drawers & Shelving</a>
-                <a href="protection.html" class="hover:text-green-500 transition">Protection</a>
-                <a href="services.html" class="hover:text-green-500 transition">Other Services</a>
+            <div class="hidden md:block text-gray-700">|</div>
+            <div>
+                <span class="mono text-[10px] text-gray-400 block tracking-widest">FINISH</span>
+                <span class="mono text-sm font-bold text-white uppercase" id="bar-mat">12mm Hex (Base)</span>
             </div>
-            <div class="social-row">
-                <a href="https://www.facebook.com/p/Elite-Van-Fitouts-61572133991242/" target="_blank" rel="noopener noreferrer" class="social-icon social-fb" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.6 5H18V0h-3.8C10.5 0 9 1.458 9 4.333V8z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/elitevanfitouts/" target="_blank" rel="noopener noreferrer" class="social-icon social-ig" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" rel="noopener noreferrer" class="social-icon social-tt" aria-label="TikTok">
-                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01v8.83c-.02 1.34-.44 2.68-1.21 3.78-1.12 1.6-2.9 2.65-4.83 2.87-1.93.22-3.9-.38-5.38-1.65-1.55-1.33-2.39-3.32-2.3-5.35.09-2.03 1.07-3.94 2.71-5.17 1.64-1.23 3.77-1.57 5.68-.92.01 1.49.01 2.98.01 4.47-.85-.39-1.85-.37-2.67.06-.82.43-1.37 1.25-1.48 2.17-.11.92.24 1.86.92 2.49.68.63 1.65.85 2.55.59.9-.26 1.63-.99 1.87-1.9.08-.34.12-.69.12-1.04V.02z"/></svg>
-                </a>
+            <div class="hidden md:block text-gray-700">|</div>
+            <div>
+                <span class="mono text-[10px] text-gray-400 block tracking-widest">MODULES ALLOCATED</span>
+                <span class="mono text-sm font-bold text-green-500 uppercase" id="bar-mods">0 / 0</span>
             </div>
         </div>
-    </footer>
+        <a href="#contact" class="btn-main">Request Build Quote -></a>
+    </div>
 
-    <!-- SCRIPT LOGIC -->
+    <!-- CONFIGURATOR SCRIPT -->
     <script>
-        (function() {
-            const bootScreen = document.getElementById('boot-screen');
-            if (!bootScreen) return;
-            let dismissed = false;
-            function dismissPreloader() {
-                if (dismissed) return;
-                dismissed = true;
-                bootScreen.style.opacity = '0';
-                setTimeout(() => { bootScreen.style.display = 'none'; }, 400);
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-                setTimeout(dismissPreloader, 400);
-            } else {
-                window.addEventListener('DOMContentLoaded', () => setTimeout(dismissPreloader, 400));
-            }
-            setTimeout(dismissPreloader, 1500);
-        })();
+        let currentSystem = 'Drawer System';
+        let currentPackageName = 'Essential';
+        let maxAllowedModules = 0;
+        let currentFinish = '12mm Hex (Base)';
+        
+        let addons = {
+            'Crate Shelves': 0,
+            'Toolbox Shelves': 0,
+            'Organiser Shelves': 0,
+            'Silicone Holder': 0
+        };
 
-        function getCart() {
-            try { return JSON.parse(localStorage.getItem('elite_build_cart')) || []; } catch(e) { return []; }
-        }
-        function saveCart(cart) {
-            localStorage.setItem('elite_build_cart', JSON.stringify(cart));
-            renderCart();
-        }
-        function addToBuild(itemName) {
-            let cart = getCart();
-            if (!cart.includes(itemName)) {
-                cart.push(itemName);
-                saveCart(cart);
+        function setSystemType(sysName) {
+            currentSystem = sysName;
+            document.getElementById('bar-sys').innerText = sysName;
+            
+            document.getElementById('btn-type-drawer').classList.remove('active');
+            document.getElementById('btn-type-shelving').classList.remove('active');
+            
+            if(sysName === 'Drawer System') {
+                document.getElementById('btn-type-drawer').classList.add('active');
+                document.getElementById('packages-drawer').classList.remove('hidden');
+                document.getElementById('packages-shelving').classList.add('hidden');
+                setPackage('Essential', 0, 'pkg-essential');
+            } else {
+                document.getElementById('btn-type-shelving').classList.add('active');
+                document.getElementById('packages-shelving').classList.remove('hidden');
+                document.getElementById('packages-drawer').classList.add('hidden');
+                setPackage('Single Side Shelving', 3, 'pkg-shelf-basic');
             }
-            const drawer = document.getElementById('build-drawer');
-            if (drawer.classList.contains('minimized')) { toggleBuildDrawer(); }
         }
-        function removeFromBuild(index) {
-            let cart = getCart();
-            cart.splice(index, 1);
-            saveCart(cart);
+
+        function setPackage(pkgName, limit, cardId) {
+            currentPackageName = pkgName;
+            maxAllowedModules = limit;
+            
+            document.getElementById('bar-pkg').innerText = pkgName;
+
+            const cards = document.querySelectorAll('.hex-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            
+            const activeCard = document.getElementById(cardId);
+            if(activeCard) activeCard.classList.add('selected');
+
+            Object.keys(addons).forEach(k => addons[k] = 0);
+            updateAllQtysDisplay();
+            updateModuleStateUI();
         }
-        function toggleBuildDrawer() {
-            const drawer = document.getElementById('build-drawer');
-            const toggleText = document.getElementById('drawer-toggle-text');
-            drawer.classList.toggle('minimized');
-            toggleText.textContent = drawer.classList.contains('minimized') ? '[+] EXPAND' : '[-] MINIMIZE';
+
+        function setFinish(matName, cardId) {
+            currentFinish = matName;
+            document.getElementById('bar-mat').innerText = matName;
+
+            const cards = document.querySelectorAll('.mat-card');
+            cards.forEach(c => c.classList.remove('selected'));
+            document.getElementById(cardId).classList.add('selected');
         }
-        function renderCart() {
-            let cart = getCart();
-            const container = document.getElementById('cart-items-container');
-            const countEl = document.getElementById('cart-count');
-            countEl.textContent = cart.length;
-            if (cart.length === 0) {
-                container.innerHTML = '<p class="mono text-xs text-gray-500 italic text-center py-4">No components selected yet.</p>';
-                return;
+
+        function updateAddon(addonKey, change) {
+            const currentTotal = Object.values(addons).reduce((a, b) => a + b, 0);
+            const targetVal = addons[addonKey] + change;
+
+            if(targetVal >= 0) {
+                if(change > 0 && currentTotal >= maxAllowedModules) {
+                    return;
+                }
+                addons[addonKey] = targetVal;
+                updateAllQtysDisplay();
+                updateModuleStateUI();
             }
-            let html = '';
-            cart.forEach((item, index) => {
-                html += `<div class="cart-item"><span>• ${item}</span><button onclick="removeFromBuild(${index})">✕</button></div>`;
-            });
-            container.innerHTML = html;
         }
-        function passCartToForm() {
-            let cart = getCart();
-            sessionStorage.setItem('elite_quote_summary', JSON.stringify(cart));
+
+        function updateAllQtysDisplay() {
+            document.getElementById('qty-CrateShelves').innerText = addons['Crate Shelves'];
+            document.getElementById('qty-ToolboxShelves').innerText = addons['Toolbox Shelves'];
+            document.getElementById('qty-OrganiserShelves').innerText = addons['Organiser Shelves'];
+            document.getElementById('qty-SiliconeHolder').innerText = addons['Silicone Holder'];
         }
-        document.addEventListener('DOMContentLoaded', renderCart);
+
+        function updateModuleStateUI() {
+            const totalUsed = Object.values(addons).reduce((a, b) => a + b, 0);
+            document.getElementById('mod-counter').innerText = `${totalUsed} / ${maxAllowedModules}`;
+            document.getElementById('bar-mods').innerText = `${totalUsed} / ${maxAllowedModules}`;
+
+            const modCards = ['mod-card-crate', 'mod-card-toolbox', 'mod-card-org', 'mod-card-silicone'];
+            
+            if(maxAllowedModules === 0) {
+                modCards.forEach(id => document.getElementById(id).classList.add('locked'));
+                document.getElementById('mod-helper-text').innerText = "Selected package has no shelving modules included/allowed.";
+            } else if(maxAllowedModules === 99) {
+                modCards.forEach(id => document.getElementById(id).classList.remove('locked'));
+                document.getElementById('mod-helper-text').innerText = "Custom build architecture: Unlimited module allocation active.";
+            } else {
+                modCards.forEach(id => document.getElementById(id).classList.remove('locked'));
+                document.getElementById('mod-helper-text').innerText = `Configure up to ${maxAllowedModules} total shelving modules for your layout.`;
+            }
+        }
     </script>
 </body>
 </html>
