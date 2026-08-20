@@ -1,561 +1,440 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Van Fitouts | ELITE</title>
+    <title>Drawers & Shelving Systems | Elite Van Fitouts</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --elite-green: #22c55e;
-            --elite-green-glow: rgba(34, 197, 94, 0.4);
-        }
-        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; padding-bottom: 90px; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0b0b; color: #f3f4f6; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* --- NAVIGATION --- */
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 80px; display: flex; align-items: center; }
-        .dropdown { position: relative; display: inline-block; }
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(11, 11, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #222;
+        }
+
+        /* Dropdown Menu Styles */
         .dropdown-menu {
-            display: none; position: absolute; top: 100%; left: -20px; background: white; min-width: 240px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #eee; border-radius: 0 0 8px 8px; z-index: 100; padding: 10px 0;
+            position: absolute;
+            top: 100%;
+            left: -20px;
+            width: 280px;
+            background: #111;
+            border: 1px solid #222;
+            border-top: 2px solid #22c55e;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease-in-out;
+            z-index: 100;
         }
-        .dropdown:hover .dropdown-menu { display: block; animation: dropIn 0.2s ease forwards; }
-        @keyframes dropIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .dropdown-item { display: block; padding: 12px 24px; color: #000; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.2s; display: flex; justify-content: space-between; }
-        .dropdown-item:hover { background: #f8f9fa; color: var(--elite-green); padding-left: 28px; }
-        .dropdown-divider { height: 1px; background: #eee; margin: 8px 0; }
-        .nav-spacer { height: 80px; }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.2s;
+        }
+        .dropdown-item:hover {
+            background: #1a1a1a;
+            color: #22c55e;
+            padding-left: 24px;
+        }
+        .dropdown-divider {
+            height: 1px;
+            background: #222;
+            margin: 4px 0;
+        }
 
-        /* --- HERO --- */
-        .hero-section { position: relative; height: 60vh; min-height: 500px; display: flex; align-items: flex-end; padding: 40px 6% 80px; overflow: hidden; background: #000; }
-        .hero-video-wrapper { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: hidden; }
-        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .hero-content { position: relative; z-index: 10; max-w: 7xl; margin: 0 auto; width: 100%; }
-        .glitch-text { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1; text-transform: uppercase; font-style: italic; text-shadow: 2px 2px 0px rgba(34,197,94,0.5); margin-bottom: 10px; }
-        .hero-sub { font-family: 'JetBrains Mono', monospace; font-size: clamp(0.8rem, 2vw, 1.1rem); color: #ccc; max-width: 600px; line-height: 1.6; }
+        /* Mobile Menu */
+        #mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: #0b0b0b;
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
 
-        /* --- LED TICKER --- */
-        .led-wrap { background: #000; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 12px 0; overflow: hidden; position: relative; }
-        .led-ticker { display: flex; width: max-content; animation: ticker 30s linear infinite; }
-        .led-item { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: #22c55e; margin: 0 30px; text-transform: uppercase; letter-spacing: 2px; }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        /* Cards & Selectors */
+        .hex-card, .mat-card {
+            background: #141414;
+            border: 1px solid #262626;
+            transition: all 0.2s ease;
+        }
+        .hex-card:hover, .mat-card:hover {
+            border-color: #666;
+        }
+        .hex-card.selected, .mat-card.selected {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.05);
+        }
 
-        /* --- IMAGE GRID --- */
-        .fade-img-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 8px; background: #111; }
-        .fade-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossfade 8s infinite; }
+        /* Fade Image Crossfade Track */
+        .fade-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #141414;
+            border-radius: 0.5rem;
+        }
+        .fade-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: crossfade 10s infinite;
+        }
         .fade-delay-1 { animation-delay: 0s; }
-        .fade-delay-2 { animation-delay: 4s; }
-        @keyframes crossfade { 0%, 45% { opacity: 1; } 50%, 95% { opacity: 0; } 100% { opacity: 1; } }
+        .fade-delay-2 { animation-delay: 5s; }
 
-        /* --- TACTICAL TILES (PACKAGES & SYSTEM TOGGLE) --- */
-        .sys-toggle { display: flex; gap: 10px; background: #111; padding: 8px; border-radius: 12px; border: 1px solid #333; margin-bottom: 40px; }
-        .sys-btn { flex: 1; text-align: center; padding: 16px; font-family: 'JetBrains Mono', monospace; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; border-radius: 8px; transition: 0.3s; color: #888; border: 1px solid transparent; }
-        .sys-btn.active { background: #ffffff; color: #000; border-color: var(--elite-green); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
-        .sys-btn:hover:not(.active) { color: white; border-color: #555; }
-
-        .hex-card {
-            background-color: #080808; border: 1px solid #333; border-radius: 12px; position: relative; overflow: hidden; 
-            transition: 0.3s; height: 100%; display: flex; flex-direction: column; cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
-            background-size: 40px 40px;
+        @keyframes crossfade {
+            0% { opacity: 0; }
+            8% { opacity: 1; }
+            45% { opacity: 1; }
+            53% { opacity: 0; }
+            100% { opacity: 0; }
         }
-        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
-        .hex-card .card-title { color: #ffffff; }
-        
-        .hex-card.selected { background-color: #ffffff; background-image: none; border-width: 2px; border-color: var(--elite-green); box-shadow: 0 20px 50px rgba(34, 197, 94, 0.3); }
-        .hex-card.selected::before {
-            content: "SELECTED"; position: absolute; top: 0; right: 0; background: var(--elite-green); color: black; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
-            padding: 6px 12px; font-weight: bold; z-index: 20; border-bottom-left-radius: 8px;
+
+        /* Button Main */
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #22c55e;
+            color: #000;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 1rem 2rem;
+            transition: background 0.2s;
         }
-        .hex-card.selected .card-title { color: #000000; }
-        .hex-card.selected .text-gray-400 { color: var(--elite-green) !important; font-weight: 700; }
+        .btn-main:hover {
+            background: #16a34a;
+        }
 
-        .pkg-media { height: 200px; width: 100%; border-bottom: 1px solid #222; position: relative; background: black; display: flex; justify-content: center; align-items: center; }
-        .pkg-media video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
-        .hex-card:hover .pkg-media video, .hex-card.selected .pkg-media video { opacity: 1; }
-        .card-inner { padding: 30px; display: flex; flex-direction: column; height: 100%; }
-        .card-title { font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; margin-bottom: 5px; transition: 0.3s;}
-
-        /* --- MATERIAL SELECTION --- */
-        .mat-card { background: #080808; border: 1px solid #333; padding: 25px; cursor: pointer; transition: 0.2s; position: relative; border-radius: 12px; }
-        .mat-card:hover { border-color: var(--elite-green); }
-        .mat-card.selected { background: #ffffff; border: 2px solid var(--elite-green); box-shadow: 0 10px 40px rgba(34, 197, 94, 0.25); }
-        .mat-card.selected::before { content: "✓"; position: absolute; top: 15px; right: 15px; color: var(--elite-green); font-weight: bold; font-size: 1.2rem; }
-        .mat-card.selected .mat-title { color: #000000; }
-        .mat-card.selected .mat-desc { color: var(--elite-green); font-weight: 600; }
-        .mat-title { font-weight: 900; color: white; text-transform: uppercase; margin-bottom: 5px; font-style: italic; font-size: 1.2rem;}
-        .mat-desc { font-size: 0.75rem; color: #888; font-family: 'JetBrains Mono', monospace; }
-
-        /* --- RACKING & QUANTITY CONTROLS --- */
-        .spec-item { background: #080808; border: 1px solid #333; margin-bottom: 24px; overflow: hidden; border-radius: 12px; transition: 0.3s; }
-        .spec-item.locked { opacity: 0.5; pointer-events: none; border-color: #222; }
-        .spec-img-box { height: 220px; width: 100%; position: relative; border-bottom: 1px solid #333; }
-        .spec-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .spec-content { padding: 30px; }
-        .spec-actions { display: flex; gap: 10px; margin-top: 15px; align-items: center; }
-        
-        .qty-controls { display: flex; align-items: center; justify-content: space-between; background: #111; border: 1px solid #444; border-radius: 6px; padding: 4px; flex: 1; }
-        .qty-btn { background: #222; color: var(--elite-green); border: none; width: 34px; height: 34px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
-        .qty-btn:hover:not(:disabled) { background: var(--elite-green); color: black; }
-        .qty-btn:disabled { color: #555; cursor: not-allowed; }
-        .qty-val { color: white; font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: bold; width: 30px; text-align: center; }
-
-        /* --- BUTTONS --- */
-        .btn-main { background: var(--elite-green); color: black; border: 1px solid var(--elite-green); font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; }
-        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
-
-        /* --- FLIGHT PATH --- */
-        .flight-container { position: relative; margin: 40px 0; border-left: 2px solid #333; padding-left: 30px; }
-        .flight-container::after { content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 30%; background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); animation: circuitFlow 4s ease-in-out infinite; }
-        @keyframes circuitFlow { 0% { top: 0; height: 0; opacity: 0;} 20% { opacity: 1; } 100% { top: 100%; height: 0; opacity: 0; } }
-        .flight-step { position: relative; margin-bottom: 40px; }
-        .flight-dot { position: absolute; left: -39px; top: 0; width: 20px; height: 20px; background: #000; border: 2px solid #555; border-radius: 50%; z-index: 10; transition: 0.3s; }
-        .flight-step:hover .flight-dot { border-color: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
-        .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 5px; }
-        .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
-
-        /* --- STICKY FOOTER --- */
-        .manifest-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--elite-green); padding: 15px 24px; z-index: 100; display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
-        @media (min-width: 768px) { .manifest-bar { flex-direction: row; } }
-        
-        /* MOBILE MENU OVERRIDE */
-        #mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px; }
-        #mobile-menu.active { display: block; }
+        /* Spec Item Lock State */
+        .spec-item.locked {
+            opacity: 0.4;
+            pointer-events: none;
+        }
     </style>
 </head>
-<body>
+<body class="pt-24">
 
     <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full h-20">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
+                <a href="index.html" class="text-gray-400 hover:text-green-500 transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
-                        MENU <span class="text-[10px]">▼</span>
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition font-bold tracking-widest text-sm border-b-2 border-green-500 pb-1">
+                        SERVICES <span class="text-[10px]">▼</span>
                     </button>
                     <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
-                        <a href="fitouts.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
+                        <a href="fitouts.html" class="dropdown-item text-green-500 bg-green-50/50">Drawers & Shelving <span>-></span></a>
+                        <a href="protection.html" class="dropdown-item">Protection & Ply Line Barriers <span>-></span></a>
+                        <a href="services.html" class="dropdown-item">Other Services <span>-></span></a>
                         <div class="dropdown-divider"></div>
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
+                        <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
                     </div>
                 </div>
             </div>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-white text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
         </div>
     </nav>
 
+    <!-- MOBILE MENU -->
     <div id="mobile-menu">
-        <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
-            <a href="fitouts.html" class="text-black border-l-4 border-green-500 pl-4 transition">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
-            <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
+        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
+            <a href="index.html" class="text-gray-400 hover:text-green-500 transition">Home</a>
+            <a href="fitouts.html" class="text-green-500 border-l-4 border-green-500 pl-4 transition">Drawers & Shelving Systems</a>
+            <a href="protection.html" class="text-gray-400 hover:text-green-500 transition">Protection & Ply Line Barriers</a>
+            <a href="services.html" class="text-gray-400 hover:text-green-500 transition">Other Services</a>
+            <a href="about.html" class="text-gray-400 hover:text-green-500 transition">About Us</a>
         </div>
     </div>
-    <div class="nav-spacer"></div>
 
-    <!-- HERO -->
-    <header class="hero-section">
-        <div class="hero-video-wrapper">
-            <video autoplay muted loop playsinline class="hero-video"><source src="fitout hero.mp4" type="video/mp4"></video>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
+    <!-- MAIN HEADER SECTION -->
+    <header class="max-w-7xl mx-auto px-6 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+            <span class="mono text-xs text-green-500 font-bold tracking-widest uppercase mb-4 block">// CONFIGURATOR SYSTEM v2.6</span>
+            <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tight mb-6">Build Your <span class="text-green-500">Ultimate</span> Rig</h1>
+            <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-8">Engineer your workspace for maximum efficiency. Choose your architecture, dial in your configurations, and let our Melbourne team construct your custom setup.</p>
+            
+            <!-- System Type Toggles -->
+            <div class="flex gap-4 p-1.5 bg-[#141414] border border-[#262626] rounded-lg max-w-md">
+                <button id="btn-type-drawer" onclick="setSystemType('Drawer System')" class="flex-1 py-3 px-4 text-xs font-bold mono uppercase tracking-wider rounded transition active text-black bg-green-500">Drawer System</button>
+                <button id="btn-type-shelving" onclick="setSystemType('Shelving Only')" class="flex-1 py-3 px-4 text-xs font-bold mono uppercase tracking-wider rounded transition text-gray-400 hover:text-white">Shelving Only</button>
+            </div>
         </div>
-        <div class="hero-content">
-            <h1 class="glitch-text mb-4">VAN <span class="text-green-500">FITOUTS</span></h1>
-            <p class="hero-sub">Turn your van into a mobile workshop. <br>Stop searching for tools. Start making money.</p>
+
+        <!-- Dynamic Visual Grid -->
+        <div class="flex justify-center">
+            <div class="grid grid-cols-2 gap-2 w-full max-w-[320px] md:max-w-[400px] aspect-square">
+                <div class="fade-img-wrap">
+                    <img src="van shelving melbourne.jpeg" class="fade-img fade-delay-1" alt="Van shelving">
+                    <img src="van slideout system.jpeg" class="fade-img fade-delay-2" alt="Van slideout">
+                </div>
+                <div class="fade-img-wrap">
+                    <img src="melbournes best van set ups.jpeg" class="fade-img fade-delay-2" alt="Van set up">
+                    <img src="van drawers melbourne.jpeg" class="fade-img fade-delay-1" alt="Van drawers">
+                </div>
+                <div class="fade-img-wrap">
+                    <img src="better than van fitouts melbourne.jpeg" class="fade-img fade-delay-1" alt="Fitouts">
+                    <img src="ply lining and fooring .jpeg" class="fade-img fade-delay-2" alt="Ply lining">
+                </div>
+                <div class="fade-img-wrap">
+                    <img src="van slide out shelving.jpeg" class="fade-img fade-delay-2" alt="Slide out shelving">
+                    <img src="melbourne tradie set up.jpeg" class="fade-img fade-delay-1" alt="Tradie set up">
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- TICKER -->
-    <div class="led-wrap">
-        <div class="led-ticker">
-            <div class="led-item">VAN RACKING MELBOURNE</div>
-            <div class="led-item">CUSTOM FALSE FLOORS</div>
-            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
-            <div class="led-item">COMMERCIAL VAN SHELVING</div>
-            <div class="led-item">TRADE VEHICLE FITOUTS</div>
-            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
-            <div class="led-item">TOOLBOX SHELVING</div>
-            <div class="led-item">PLYWOOD LINING</div>
-            <!-- Duplicated for smooth loop -->
-            <div class="led-item">VAN RACKING MELBOURNE</div>
-            <div class="led-item">CUSTOM FALSE FLOORS</div>
-            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
-            <div class="led-item">COMMERCIAL VAN SHELVING</div>
-            <div class="led-item">TRADE VEHICLE FITOUTS</div>
-            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
-        </div>
-    </div>
-
-    <!-- INTRO GRID -->
-    <section class="py-20 bg-white text-black border-b border-[#ddd]">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center">
-            <div class="flex-1">
-                <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">100% Bespoke Systems</p>
-                <h2 class="text-3xl md:text-5xl font-black italic uppercase text-black mb-6 leading-tight">
-                    Custom to your <span class="text-green-500">Van.</span> <br> Custom to your <span class="text-green-500">Trade.</span>
-                </h2>
-                <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-6 font-medium">
-                    No two trades operate the same way. Elite Van Fitouts builds high-performance commercial storage tailored precisely to your specific vehicle chassis and daily workflow. 
-                </p>
-                <div id="fitout-extra-text" class="hidden md:block">
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
-                        Need a custom setup not listed below? We specialize in fully bespoke builds. Give our engineering team a call for a rapid, free design session over the phone to map out your perfect loadout.
-                    </p>
-                </div>
-                <button id="fitout-read-more" class="md:hidden text-green-600 text-xs font-bold uppercase tracking-widest mb-6 border border-green-500 px-4 py-2 rounded text-center w-full block" onclick="document.getElementById('fitout-extra-text').classList.toggle('hidden'); this.style.display='none';">+ Read More</button>
-            </div>
+    <!-- CONFIGURATOR WORKSPACE -->
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        
+        <!-- STEP 1: PACKAGE SELECTION -->
+        <section class="mb-16">
+            <h2 class="text-xl font-black italic uppercase mb-6 tracking-wide text-white"><span class="text-green-500 mono not-italic mr-2">01.</span> Select Package Tier</h2>
             
-            <div class="flex-1 flex justify-center w-full">
-                <div class="grid grid-cols-2 gap-2 w-full max-w-[320px] md:max-w-[400px] aspect-square">
-                    <div class="fade-img-wrap"><img src="drawer system and flooring melbourne.jpg" class="fade-img fade-delay-1"><img src="van tradie set up rowville.jpg" class="fade-img fade-delay-2"></div>
-                    <div class="fade-img-wrap"><img src="false floor and shelving bayswater.jpg" class="fade-img fade-delay-2"><img src="van shelving knox.jpg" class="fade-img fade-delay-1"></div>
-                    <div class="fade-img-wrap"><img src="van shelving and drawers rowville.jpg" class="fade-img fade-delay-1"><img src="van flooring dandenong.jpg" class="fade-img fade-delay-2"></div>
-                    <div class="fade-img-wrap"><img src="plumber van set up.jpeg" class="fade-img fade-delay-2"><img src="van drawers lysterfeild.jpeg" class="fade-img fade-delay-1"></div>
+            <!-- Drawer Packages -->
+            <div id="packages-drawer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div id="pkg-essential" onclick="setPackage('Essential', 0, 'pkg-essential')" class="hex-card p-6 rounded-xl cursor-pointer relative selected">
+                    <div class="mono text-xs text-green-500 font-bold mb-2">TIER 01</div>
+                    <h3 class="text-xl font-bold uppercase mb-3">Essential System</h3>
+                    <p class="text-sm text-gray-400 mb-6">Dual heavy-duty locking drawers with a clean flush top deck. Built for raw floor security.</p>
+                    <div class="mono text-xs text-gray-500">0 Shelving Modules Included</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONFIGURATOR -->
-    <div class="px-6 max-w-7xl mx-auto pt-20">
-
-        <!-- SYSTEM TYPE TOGGLE -->
-        <div class="mb-12 max-w-2xl mx-auto">
-            <h2 class="text-center font-black italic uppercase text-2xl mb-4">Select Build Architecture</h2>
-            <div class="sys-toggle">
-                <button class="sys-btn active" id="btn-type-drawer" onclick="setSystemType('Drawer System')">Drawer System<br><span class="text-[10px] font-normal">(False Floor Included)</span></button>
-                <button class="sys-btn" id="btn-type-shelving" onclick="setSystemType('Shelving Only')">Shelving Only<br><span class="text-[10px] font-normal">(No False Floor)</span></button>
-            </div>
-        </div>
-
-        <!-- 01. PACKAGES -->
-        <div class="mb-20">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">01.</span> Select Base Configuration
-            </h2>
-            
-            <!-- DRAWER PACKAGES -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="packages-drawer">
-                <div class="hex-card selected" id="pkg-essential" onclick="setPackage('Essential', 0, 'pkg-essential')">
-                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="essential.mov" type="video/mp4"></video></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Essential</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">FALSE FLOOR + DRAWERS</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Custom False Floor</li>
-                            <li>> Rear HD Drawers</li>
-                            <li>> Side Sliding Drawers</li>
-                            <li>> Alum. Trim Protection</li>
-                        </ul>
-                    </div>
+                <div id="pkg-pro" onclick="setPackage('Pro Tradie', 2, 'pkg-pro')" class="hex-card p-6 rounded-xl cursor-pointer relative">
+                    <div class="mono text-xs text-green-500 font-bold mb-2">TIER 02</div>
+                    <h3 class="text-xl font-bold uppercase mb-3">Pro Tradie Rig</h3>
+                    <p class="text-sm text-gray-400 mb-6">Dual drawers + integrated side storage wing. Includes capacity for up to 2 specialty modules.</p>
+                    <div class="mono text-xs text-green-500">Up to 2 Modules Included</div>
                 </div>
-                <div class="hex-card" id="pkg-pro" onclick="setPackage('Pro', 3, 'pkg-pro')">
-                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="pro.mp4" type="video/mp4"></video></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Pro</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">INCLUDES 3 MODULES</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> <strong>Essential Setup</strong></li>
-                            <li>> Driver Side Racking</li>
-                            <li>> Adjustable Dividers</li>
-                            <li>> Choose up to 3 Shelves</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-elite" onclick="setPackage('Elite', 7, 'pkg-elite')">
-                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="elite.mp4" type="video/mp4"></video></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Elite</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">INCLUDES 7 MODULES</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> <strong>Pro Setup</strong></li>
-                            <li>> Passenger Racking</li>
-                            <li>> Side Slide-Out Shelf</li>
-                            <li>> Choose up to 7 Shelves</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-custom-draw" onclick="setPackage('Custom Design', 99, 'pkg-custom-draw')">
-                    <div class="pkg-media"><span class="text-4xl">🛠️</span></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Custom</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">BESPOKE BUILD</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> 100% Tailored Layout</li>
-                            <li>> Unique Trade Needs</li>
-                            <li>> Auto Electrical</li>
-                        </ul>
-                    </div>
+                <div id="pkg-ultimate" onclick="setPackage('Ultimate Command', 4, 'pkg-ultimate')" class="hex-card p-6 rounded-xl cursor-pointer relative">
+                    <div class="mono text-xs text-green-500 font-bold mb-2">TIER 03</div>
+                    <h3 class="text-xl font-bold uppercase mb-3">Ultimate Command</h3>
+                    <p class="text-sm text-gray-400 mb-6">Full perimeter architecture. Maximum drawer sizing coupled with up to 4 modular storage racks.</p>
+                    <div class="mono text-xs text-green-500">Up to 4 Modules Included</div>
                 </div>
             </div>
 
-            <!-- SHELVING ONLY PACKAGES (Hidden by default) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="packages-shelving">
-                <div class="hex-card" id="pkg-shelf-basic" onclick="setPackage('Single Side Shelving', 3, 'pkg-shelf-basic')">
-                    <div class="pkg-media"><span class="text-4xl">🗄️</span></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Single Side</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">DRIVER SIDE RACKING</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> CNC Cut Frame</li>
-                            <li>> Secure Wall Mounting</li>
-                            <li>> Choose up to 3 Shelves</li>
-                        </ul>
+            <!-- Shelving Packages (Hidden by default) -->
+            <div id="packages-shelving" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                <div id="pkg-shelf-basic" onclick="setPackage('Single Side Shelving', 3, 'pkg-shelf-basic')" class="hex-card p-6 rounded-xl cursor-pointer relative">
+                    <div class="mono text-xs text-green-500 font-bold mb-2">SHELF 01</div>
+                    <h3 class="text-xl font-bold uppercase mb-3">Single Side Array</h3>
+                    <p class="text-sm text-gray-400 mb-6">Open floor space on one flank, heavy-duty adjustable shelving frame on the other.</p>
+                    <div class="mono text-xs text-green-500">Up to 3 Modules Included</div>
+                </div>
+                <div id="pkg-shelf-dual" onclick="setPackage('Dual Wall Build', 99, 'pkg-shelf-dual')" class="hex-card p-6 rounded-xl cursor-pointer relative">
+                    <div class="mono text-xs text-green-500 font-bold mb-2">SHELF 02</div>
+                    <h3 class="text-xl font-bold uppercase mb-3">Dual Wall Build</h3>
+                    <p class="text-sm text-gray-400 mb-6">Complete dual-wall shelving installation configured specifically around your trade inventory.</p>
+                    <div class="mono text-xs text-green-500">Unlimited Modular Capacity</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: MODULE ADD-ONS -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-2">
+                <div>
+                    <h2 class="text-xl font-black italic uppercase tracking-wide text-white"><span class="text-green-500 mono not-italic mr-2">02.</span> Configure Modules</h2>
+                    <p id="mod-helper-text" class="text-xs mono text-gray-400 mt-1">Select up to 0 modules for your Essential setup.</p>
+                </div>
+                <div class="mono text-xs font-bold bg-[#141414] border border-[#262626] px-4 py-2 rounded">
+                    LOAD: <span id="mod-counter" class="text-green-500">0 / 0</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Module 1 -->
+                <div class="spec-item hex-card p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm uppercase mb-1">Crate Shelves</h4>
+                        <p class="text-xs text-gray-400 mb-4">Tilt-lock modular bin alignment slots.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-[#222] pt-4">
+                        <span class="mono text-xs text-gray-500">QTY: <strong id="qty-CrateShelves" class="text-white">0</strong></span>
+                        <div class="flex gap-2">
+                            <button onclick="updateAddon('Crate Shelves', -1)" class="w-8 h-8 bg-[#222] text-white font-mono font-bold rounded hover:bg-[#333]">-</button>
+                            <button onclick="updateAddon('Crate Shelves', 1)" class="btn-plus w-8 h-8 bg-green-500 text-black font-mono font-bold rounded hover:bg-green-400">+</button>
+                        </div>
                     </div>
                 </div>
-                <div class="hex-card" id="pkg-shelf-pro" onclick="setPackage('Dual Side Shelving', 7, 'pkg-shelf-pro')">
-                    <div class="pkg-media"><span class="text-4xl">🗄️🗄️</span></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Dual Side</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">MAXIMUM STORAGE</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Driver & Passenger Racking</li>
-                            <li>> Heavy Duty Brackets</li>
-                            <li>> Choose up to 7 Shelves</li>
-                        </ul>
+                <!-- Module 2 -->
+                <div class="spec-item hex-card p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm uppercase mb-1">Toolbox Shelves</h4>
+                        <p class="text-xs text-gray-400 mb-4">Secure recessed anchor base for heavy gear cases.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-[#222] pt-4">
+                        <span class="mono text-xs text-gray-500">QTY: <strong id="qty-ToolboxShelves" class="text-white">0</strong></span>
+                        <div class="flex gap-2">
+                            <button onclick="updateAddon('Toolbox Shelves', -1)" class="w-8 h-8 bg-[#222] text-white font-mono font-bold rounded hover:bg-[#333]">-</button>
+                            <button onclick="updateAddon('Toolbox Shelves', 1)" class="btn-plus w-8 h-8 bg-green-500 text-black font-mono font-bold rounded hover:bg-green-400">+</button>
+                        </div>
                     </div>
                 </div>
-                <div class="hex-card" id="pkg-shelf-custom" onclick="setPackage('Custom Shelving', 99, 'pkg-shelf-custom')">
-                    <div class="pkg-media"><span class="text-4xl">🛠️</span></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Custom</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">BESPOKE BUILD</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Slide out workbenches</li>
-                            <li>> Unique Configurations</li>
-                        </ul>
+                <!-- Module 3 -->
+                <div class="spec-item hex-card p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm uppercase mb-1">Organiser Shelves</h4>
+                        <p class="text-xs text-gray-400 mb-4">Divided bins optimized for fittings, fasteners, and stock.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-[#222] pt-4">
+                        <span class="mono text-xs text-gray-500">QTY: <strong id="qty-OrganiserShelves" class="text-white">0</strong></span>
+                        <div class="flex gap-2">
+                            <button onclick="updateAddon('Organiser Shelves', -1)" class="w-8 h-8 bg-[#222] text-white font-mono font-bold rounded hover:bg-[#333]">-</button>
+                            <button onclick="updateAddon('Organiser Shelves', 1)" class="btn-plus w-8 h-8 bg-green-500 text-black font-mono font-bold rounded hover:bg-green-400">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Module 4 -->
+                <div class="spec-item hex-card p-5 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm uppercase mb-1">Silicone Holder</h4>
+                        <p class="text-xs text-gray-400 mb-4">Dedicated vertical tube bays for fast grab access.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-[#222] pt-4">
+                        <span class="mono text-xs text-gray-500">QTY: <strong id="qty-SiliconeHolder" class="text-white">0</strong></span>
+                        <div class="flex gap-2">
+                            <button onclick="updateAddon('Silicone Holder', -1)" class="w-8 h-8 bg-[#222] text-white font-mono font-bold rounded hover:bg-[#333]">-</button>
+                            <button onclick="updateAddon('Silicone Holder', 1)" class="btn-plus w-8 h-8 bg-green-500 text-black font-mono font-bold rounded hover:bg-green-400">+</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 02. MATERIALS -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">02.</span> Select Finish
-            </h2>
+        <!-- STEP 3: FINISH & MATERIALS -->
+        <section class="mb-16">
+            <h2 class="text-xl font-black italic uppercase mb-6 tracking-wide text-white"><span class="text-green-500 mono not-italic mr-2">03.</span> Select Finish & Decking</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="mat-card selected" id="mat-hex" onclick="setFinish('12mm Hex (Base)', 'mat-hex')">
-                    <div class="mat-title">12mm Hex Base</div>
-                    <p class="mat-desc">Premium anti-scratch, anti-slip, waterproof gloss finish. The Elite Standard.</p>
+                <div id="mat-hex" onclick="setFinish('12mm Hex (Base)', 'mat-hex')" class="mat-card p-6 rounded-xl cursor-pointer selected">
+                    <h3 class="font-bold uppercase mb-2">12mm Hex Decking</h3>
+                    <p class="text-xs text-gray-400">Industrial anti-slip hexagonal overlay. Maximum scratch resilience.</p>
                 </div>
-                <div class="mat-card" id="mat-rubber" onclick="setFinish('Rubber Overlay', 'mat-rubber')">
-                    <div class="mat-title">Rubber Finish</div>
-                    <p class="mat-desc">12mm Hex base topped with heavy-duty rubber for extreme grip and durability.</p>
+                <div id="mat-rubber" onclick="setFinish('Rubber Overlay', 'mat-rubber')" class="mat-card p-6 rounded-xl cursor-pointer">
+                    <h3 class="font-bold uppercase mb-2">Rubber Overlay</h3>
+                    <p class="text-xs text-gray-400">Heavy-duty cushioned impact dampening sheet for heavy tool drop zones.</p>
                 </div>
-                <div class="mat-card" id="mat-carpet" onclick="setFinish('Charcoal Carpet', 'mat-carpet')">
-                    <div class="mat-title">Charcoal Carpet</div>
-                    <p class="mat-desc">12mm Hex base topped with automotive carpet. Best for fragile cargo & comfort.</p>
+                <div id="mat-carpet" onclick="setFinish('Charcoal Carpet', 'mat-carpet')" class="mat-card p-6 rounded-xl cursor-pointer">
+                    <h3 class="font-bold uppercase mb-2">Charcoal Carpet</h3>
+                    <p class="text-xs text-gray-400">Automotive-grade marine lining for a clean, non-abrasive finish.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROTECTION INVITE UPGRADE -->
+        <div class="mb-12 max-w-5xl mx-auto bg-black border border-[#333] hover:border-green-500/50 transition-colors duration-300 rounded-xl p-8 md:p-12 relative overflow-hidden group">
+            <!-- Glow effect -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition duration-500"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
+                <div class="flex-1 text-center md:text-left">
+                    <span class="mono text-xs text-green-500 font-bold tracking-widest uppercase mb-2 block">Defend Your Rig</span>
+                    <h3 class="text-3xl md:text-4xl font-black italic uppercase mb-4 text-white">Protect Your <span class="text-green-500">Investment</span></h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Before dropping in a high-performance storage unit, secure the core of your chassis. Shield your van against aggressive daily site abuse, cargo impacts, and road noise.</p>
+                    
+                    <ul class="text-sm font-bold text-white mono mb-8 space-y-3">
+                        <li class="flex items-center gap-3 justify-center md:justify-start"><span class="text-green-500 text-lg">✓</span> CNC-Machined Ply Cargo Barrier Systems</li>
+                        <li class="flex items-center gap-3 justify-center md:justify-start"><span class="text-green-500 text-lg">✓</span> Precision Wall Ply Lining</li>
+                        <li class="flex items-center gap-3 justify-center md:justify-start"><span class="text-green-500 text-lg">✓</span> Heavy-Duty Marine-Grade Flooring</li>
+                    </ul>
+                    
+                    <a href="protection.html" class="btn-main">VIEW PROTECTION PACKAGES →</a>
+                </div>
+                <div class="w-full md:w-1/3 aspect-square border border-[#222] rounded-lg overflow-hidden bg-[#111] relative">
+                    <img src="ply lining and fooring .jpeg" alt="Ply Lining and Flooring" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-300">
                 </div>
             </div>
         </div>
 
-        <!-- 03. MODULES -->
-        <div class="mb-24">
-            <div class="flex justify-between items-end mb-4">
-                <h2 class="text-2xl md:text-4xl font-black uppercase italic flex items-center gap-3">
-                    <span class="text-green-500 text-sm mono">03.</span> Configure Modules
-                </h2>
-            </div>
-            <div class="bg-gray-900 border border-green-500/50 p-4 rounded-lg mb-8 inline-block">
-                <p class="mono text-sm font-bold text-white">MODULE CAPACITY: <span id="mod-counter" class="text-green-500 text-lg">0 / 0</span></p>
-                <p class="text-gray-400 text-xs mt-1" id="mod-helper-text">Essential package selected. Shelving modules are locked.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Crate -->
-                <div class="spec-item locked" id="mod-card-crate">
-                    <div class="spec-img-box"><img src="euro crates shelf.jpg" alt="Euro Crate Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Crate Shelves</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Crate Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-CrateShelves">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Crate Shelves', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Toolbox -->
-                <div class="spec-item locked" id="mod-card-toolbox">
-                    <div class="spec-img-box"><img src="tool shelf1.jpg" alt="Toolbox Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Toolbox Shelves</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-ToolboxShelves">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Toolbox Shelves', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Organiser -->
-                <div class="spec-item locked" id="mod-card-org">
-                    <div class="spec-img-box"><img src="seperator1.jpg" alt="Organiser Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Organiser Shelf</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Organiser Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-OrganiserShelves">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Organiser Shelves', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Silicone -->
-                <div class="spec-item locked" id="mod-card-silicone">
-                    <div class="spec-img-box"><img src="silicone.jpg" alt="Silicone Holder"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Silicone Holder</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Silicone Holder', -1)">-</button>
-                                <span class="qty-val" id="qty-SiliconeHolder">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Silicone Holder', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
+        <!-- SUMMARY MANIFEST BANNER -->
+        <div class="bg-[#141414] border border-[#262626] rounded-xl p-6 md:p-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+            <div>
+                <span class="mono text-xs text-green-500 font-bold tracking-widest uppercase block mb-1">Active Configuration Manifest</span>
+                <div class="flex flex-wrap gap-4 text-sm mono text-gray-300 mt-2">
+                    <div>System: <strong id="man-system" class="text-white">Drawer System</strong></div>
+                    <div>•</div>
+                    <div>Package: <strong id="man-pkg" class="text-white">Essential</strong></div>
+                    <div>•</div>
+                    <div>Finish: <strong id="man-fin" class="text-white">12mm Hex (Base)</strong></div>
+                    <div>•</div>
+                    <div id="man-mods" class="text-green-400">Modules: None Selected</div>
                 </div>
             </div>
+            <button onclick="saveAndProceed()" class="btn-main w-full lg:w-auto">SAVE BUILD MANIFEST →</button>
         </div>
 
-        <!-- TIMELINE -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
-                Mission <span class="text-green-500">Timeline</span>
-            </h2>
-            <div class="max-w-4xl mx-auto px-4 flight-container">
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">1. Strategy Call</h4><p class="step-desc">Submit manifest. We confirm chassis & requirements.</p></div></div>
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">2. Drop Off</h4><p class="step-desc">Drop your empty van at our Rowville HQ.</p></div></div>
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">3. Rapid Deployment</h4><p class="step-desc">Our manufacturing team rapidly executes your build.</p></div></div>
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">4. Pick Up</h4><p class="step-desc">Pick up your fully outfitted vehicle. Ready for site.</p></div></div>
-            </div>
-        </div>
+    </main>
 
-        <!-- SPECS & FINISHES (Replacing Engineering) -->
-        <div class="mb-24 max-w-5xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">04.</span> Specs & Finishes
-            </h2>
-            
-            <!-- Video Section -->
-            <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden mb-12">
-                <video autoplay muted loop playsinline class="w-full h-64 md:h-96 object-cover border-b border-[#333]">
-                    <source src="false floor.mov" type="video/mp4">
-                </video>
-                <div class="p-8">
-                    <h3 class="font-black text-2xl uppercase italic mb-4">Completely Customisable Floors</h3>
-                    <p class="text-gray-400 font-medium">Our false floors are completely customisable. Have empty massive storage cavities for long conduit and ladders, or seamlessly integrate stacked heavy-duty sliding drawers. It is all completely built to your exact workflow.</p>
-                </div>
-            </div>
-
-            <!-- Material Breakdowns -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 12mm Hex -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden">
-                    <div class="h-48 bg-[#111] relative">
-                        <!-- PLACEHOLDER FOR HEX IMAGE -->
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-700 text-xs mono uppercase border-b border-[#333]">Image: 12mm Hex Close Up</div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-black uppercase text-xl mb-2 text-white">12mm Hex Anti-Slip</h4>
-                        <p class="text-sm text-gray-400">Waterproof, fire-resistant, anti-scratch, and anti-slip. Finished in a premium gloss look that is easily wipeable and cleanable from any type of stain or chemical spill.</p>
-                    </div>
-                </div>
-                <!-- Rubber -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden">
-                    <div class="h-48 bg-[#111] relative">
-                        <!-- PLACEHOLDER FOR RUBBER IMAGE -->
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-700 text-xs mono uppercase border-b border-[#333]">Image: Rubber Finish Close Up</div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-black uppercase text-xl mb-2 text-white">Rubber Finish</h4>
-                        <p class="text-sm text-gray-400">Layered on top of our sturdy hex base, this heavy-duty rubber finish provides unparalleled extreme grip and heavy impact durability for throwing in massive tools.</p>
-                    </div>
-                </div>
-                <!-- Carpet -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden">
-                    <div class="h-48 bg-[#111] relative">
-                        <!-- PLACEHOLDER FOR CARPET IMAGE -->
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-700 text-xs mono uppercase border-b border-[#333]">Image: Carpet Finish Close Up</div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-black uppercase text-xl mb-2 text-white">Charcoal Carpet</h4>
-                        <p class="text-sm text-gray-400">A premium automotive charcoal carpet lining. Perfect for fragile cargo, reducing road noise, and providing a clean, comfortable aesthetic to the rear cabin.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROTECTION INVITE -->
-        <div class="mb-12 max-w-5xl mx-auto bg-gradient-to-r from-[#111] to-[#080808] border border-green-500/30 rounded-xl p-8 md:p-12 text-center">
-            <h3 class="text-3xl font-black italic uppercase mb-4 text-white">Protect Your <span class="text-green-500">Investment</span></h3>
-            <p class="text-gray-400 max-w-2xl mx-auto mb-8">Before you install high-end storage, ensure the core of your van is protected. We offer premium flooring, wall paneling, and insulation packages to protect your chassis from dents, rust, and noise.</p>
-            <a href="protection.html" class="inline-block bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded hover:bg-white hover:text-black transition uppercase text-sm tracking-widest mono">View Protection Packages</a>
-        </div>
-
-    </div>
-
-    <!-- MANIFEST BAR -->
-    <div class="manifest-bar">
-        <div class="text-left w-full md:w-auto mb-4 md:mb-0">
-            <div class="text-[10px] text-green-500 mono font-bold uppercase mb-1">Current Manifest:</div>
-            <div class="text-white font-bold text-sm md:text-base flex items-center gap-3">
-                <span id="man-system">Drawer System</span>
-                <span class="text-gray-600">/</span>
-                <span id="man-pkg" class="text-green-400">Essential</span>
-                <span class="text-gray-600">/</span>
-                <span id="man-fin" class="text-gray-300">12mm Hex (Base)</span>
-            </div>
-            <div class="text-xs text-gray-500 mono mt-1" id="man-mods">Modules: 0</div>
-        </div>
-        <button onclick="saveAndProceed()" class="btn-main w-full md:w-auto text-center justify-center">PROCEED TO CHECKOUT -></button>
-    </div>
-
+    <!-- SCRIPT (LOCALSTORAGE SYNC) -->
     <script>
-        // --- STATE MANAGEMENT ---
-        let state = {
+        // --- STATE MANAGEMENT (WITH LOCALSTORAGE SYNC) ---
+        let state = JSON.parse(localStorage.getItem('elite_build_manifest')) || {
             systemType: 'Drawer System',
             pkg: 'Essential',
             maxModules: 0,
             finish: '12mm Hex (Base)',
-            addons: {
-                'Crate Shelves': 0,
-                'Toolbox Shelves': 0,
-                'Organiser Shelves': 0,
-                'Silicone Holder': 0
-            }
+            addons: { 'Crate Shelves': 0, 'Toolbox Shelves': 0, 'Organiser Shelves': 0, 'Silicone Holder': 0 }
         };
+
+        function autoSave() {
+            localStorage.setItem('elite_build_manifest', JSON.stringify(state));
+        }
 
         // --- 1. SYSTEM TYPE TOGGLE ---
         function setSystemType(type) {
             state.systemType = type;
-            
-            // UI Toggle Classes
             document.getElementById('btn-type-drawer').classList.toggle('active', type === 'Drawer System');
             document.getElementById('btn-type-shelving').classList.toggle('active', type === 'Shelving Only');
             
-            // Show/Hide Packages
             if (type === 'Drawer System') {
                 document.getElementById('packages-drawer').classList.remove('hidden');
                 document.getElementById('packages-shelving').classList.add('hidden');
-                setPackage('Essential', 0, 'pkg-essential'); // Default for Drawer
+                setPackage('Essential', 0, 'pkg-essential'); 
             } else {
                 document.getElementById('packages-drawer').classList.add('hidden');
                 document.getElementById('packages-shelving').classList.remove('hidden');
-                setPackage('Single Side Shelving', 3, 'pkg-shelf-basic'); // Default for Shelving
+                setPackage('Single Side Shelving', 3, 'pkg-shelf-basic'); 
             }
+            autoSave();
         }
 
         // --- 2. PACKAGE SELECTION ---
@@ -563,18 +442,16 @@
             state.pkg = pkgName;
             state.maxModules = maxMods;
             
-            // Remove 'selected' from all hex-cards
             document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
-            // Add 'selected' to clicked
             if(document.getElementById(elementId)) {
                 document.getElementById(elementId).classList.add('selected');
             }
 
-            // Reset addons when switching packages to keep logic clean
             for (let key in state.addons) { state.addons[key] = 0; }
             
             updateModuleUI();
             updateManifest();
+            autoSave();
         }
 
         // --- 3. FINISH SELECTION ---
@@ -583,18 +460,19 @@
             document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));
             document.getElementById(elementId).classList.add('selected');
             updateManifest();
+            autoSave();
         }
 
         // --- 4. MODULE LOGIC ---
         function updateAddon(name, change) {
             let currentTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
-            
-            if (change > 0 && currentTotal >= state.maxModules) return; // Reached limit
-            if (change < 0 && state.addons[name] <= 0) return; // Can't go below 0
+            if (change > 0 && currentTotal >= state.maxModules) return; 
+            if (change < 0 && state.addons[name] <= 0) return; 
             
             state.addons[name] += change;
             updateModuleUI();
             updateManifest();
+            autoSave();
         }
 
         function updateModuleUI() {
@@ -602,7 +480,6 @@
             let limitReached = currentTotal >= state.maxModules;
             let locked = state.maxModules === 0;
 
-            // Update Counter Text
             document.getElementById('mod-counter').innerText = `${currentTotal} / ${state.maxModules === 99 ? '∞' : state.maxModules}`;
             
             let helperText = document.getElementById('mod-helper-text');
@@ -614,7 +491,6 @@
                 helperText.innerText = `Select up to ${state.maxModules} modules for your ${state.pkg} setup.`;
             }
 
-            // Update DOM Values & Button States
             for (let key in state.addons) {
                 let safeKey = key.replace(/\s/g, '');
                 if (document.getElementById(`qty-${safeKey}`)) {
@@ -622,7 +498,6 @@
                 }
             }
 
-            // Lock/Unlock visual cards and plus buttons
             document.querySelectorAll('.spec-item').forEach(el => {
                 if (locked) el.classList.add('locked');
                 else el.classList.remove('locked');
@@ -645,16 +520,41 @@
         }
 
         function saveAndProceed() {
-            localStorage.setItem('elite_build_manifest', JSON.stringify(state));
-            // Usually this would go to a quote/checkout page. 
-            // Replace '#' with your actual GHL form page URL when ready.
+            autoSave();
             window.location.href = "#"; 
             alert("Manifest Saved! Ready to pass to GHL.\n\n" + JSON.stringify(state, null, 2));
         }
 
-        // Initialize on load
-        updateModuleUI();
-        updateManifest();
+        // --- 6. INITIALIZE UI ON LOAD BASED ON LOCALSTORAGE ---
+        function initializeUI() {
+            // Restore System Type styling
+            document.getElementById('btn-type-drawer').classList.toggle('active', state.systemType === 'Drawer System');
+            document.getElementById('btn-type-shelving').classList.toggle('active', state.systemType === 'Shelving Only');
+            
+            // Restore Package Selection UI
+            if (state.systemType === 'Drawer System') {
+                document.getElementById('packages-drawer').classList.remove('hidden');
+                document.getElementById('packages-shelving').classList.add('hidden');
+                if(state.pkg === 'Essential') document.querySelectorAll('.hex-card')[0].classList.add('selected');
+                else if(state.pkg === 'Pro Tradie') document.querySelectorAll('.hex-card')[1].classList.add('selected');
+                else if(state.pkg === 'Ultimate Command') document.querySelectorAll('.hex-card')[2].classList.add('selected');
+            } else {
+                document.getElementById('packages-drawer').classList.add('hidden');
+                document.getElementById('packages-shelving').classList.remove('hidden');
+            }
+
+            // Restore Finish styling
+            document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));
+            if(state.finish === 'Rubber Overlay') document.getElementById('mat-rubber').classList.add('selected');
+            else if(state.finish === 'Charcoal Carpet') document.getElementById('mat-carpet').classList.add('selected');
+            else document.getElementById('mat-hex').classList.add('selected');
+
+            updateModuleUI();
+            updateManifest();
+        }
+
+        // Run Initialization
+        initializeUI();
     </script>
 </body>
 </html>
