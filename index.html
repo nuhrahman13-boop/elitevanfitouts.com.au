@@ -186,7 +186,7 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- SEO GALLERY SHOWCASE (16 PHOTOS, NO LABELS) --- */
+        /* --- SEO GALLERY SHOWCASE (16 PHOTOS, UN-CROPPED FULL VIEW, NO LABELS) --- */
         .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 70px; padding-bottom: 50px; position: relative; }
         
         .marquee-wrapper {
@@ -208,7 +208,8 @@
             box-shadow: 0 0 15px rgba(34,197,94,0.2); transition: transform 0.3s;
         }
         .marquee-img-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.6); z-index: 10; position: relative; }
-        .marquee-img { height: 100%; width: 100%; object-fit: cover; }
+        /* Changed object-fit to contain so photos are never cropped and show original dimensions */
+        .marquee-img { height: 100%; width: 100%; object-fit: contain; background: #000; }
 
         /* MOBILE HORIZONTAL SCROLL CONTAINERS */
         .mobile-scroll-row {
@@ -272,10 +273,10 @@
         .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
 
-        /* --- TILE MEDIA & 4-PHOTO ROTATION FADE --- */
-        .tile-media { height: 200px; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px; position: relative; border: 1px solid #222; }
-        .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; }
-        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossFade4 16s infinite; }
+        /* --- TILE MEDIA & 4-PHOTO ROTATION FADE (CONTAIN FOR NO CROP) --- */
+        .tile-media { height: 200px; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px; position: relative; border: 1px solid #222; background: #000; }
+        .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; background: #000; }
+        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; animation: crossFade4 16s infinite; background: #000; }
         .fade-delay-1 { animation-delay: 0s; }
         .fade-delay-2 { animation-delay: 4s; }
         .fade-delay-3 { animation-delay: 8s; }
@@ -294,14 +295,6 @@
         }
         .why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
         .why-icon { color: var(--elite-green); font-size: 2.5rem; margin-bottom: 15px; text-shadow: 0 0 15px var(--elite-green-glow); }
-
-        /* --- REVIEWS SECTION --- */
-        .review-card {
-            background: #080808; border: 1px solid #222; border-radius: 12px; padding: 30px;
-            position: relative; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .review-card:hover { border-color: var(--elite-green); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(34,197,94,0.2); }
-        .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 15px; }
 
         /* --- LOCATION DOMINATION --- */
         .loc-tag {
@@ -407,9 +400,9 @@
                     </button>
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
-                        <a href="fitouts.html" class="dropdown-item">Drawers & Shelving <span>-></span></a>
-                        <a href="protection.html" class="dropdown-item">Protection & Ply Lining <span>-></span></a>
-                        <a href="services.html" class="dropdown-item">Other Services <span>-></span></a>
+                        <a href="fitouts.html" class="dropdown-item">1. Drawers & Shelving <span>-></span></a>
+                        <a href="protection.html" class="dropdown-item">2. Protection & Ply Line Barriers <span>-></span></a>
+                        <a href="services.html" class="dropdown-item">3. Other Services <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
                     </div>
@@ -482,7 +475,7 @@
                             <img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" alt="Van Slide Out Shelving" class="fade-img fade-delay-4">
                         </div>
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">01 / MODULAR STORAGE</div>
+                    <div class="mono text-xs text-green-400 font-bold mb-2">01 / DRAWERS & SHELVING SYSTEMS</div>
                     <h3 class="card-title">Drawers & Shelving Systems</h3>
                     <p class="card-desc">Heavy-duty drawer slides, custom modular racking, slide-out workbenches, and precision shelving built to endure the punishing demands of Australian job sites.</p>
                     <div class="action-button" onclick="event.preventDefault(); addToBuild('Drawers & Shelving System');">ADD TO BUILD +</div>
@@ -497,15 +490,15 @@
             <a href="protection.html" class="hex-card">
                 <div class="card-inner">
                     <div class="tile-media">
-                        <img src="van ply lining melbourne.jpeg" onerror="this.src='branding.jpg'" alt="Ply Lining & Cargo Barriers" class="w-full h-full object-cover">
+                        <img src="van ply lining melbourne.jpeg" onerror="this.src='branding.jpg'" alt="Ply Lining & Cargo Barriers" class="w-full h-full object-contain bg-black">
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">02 / CARGO DEFENCE</div>
-                    <h3 class="card-title">Protection, Flooring & Ply Barriers</h3>
-                    <p class="card-desc">CNC-machined wall ply lining, heavy-duty marine-grade flooring, false floors, and secure steel cargo barriers engineered to protect your vehicle's interior.</p>
-                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Protection & Ply Lining Pack');">ADD TO BUILD +</div>
+                    <div class="mono text-xs text-green-400 font-bold mb-2">02 / PROTECTION, FLOORING PLY LINING & CARGOBARRIERS</div>
+                    <h3 class="card-title">Protection, Flooring Ply Lining & Cargobarriers</h3>
+                    <p class="card-desc">CNC-machined wall ply lining, heavy-duty marine-grade flooring, false floors, and secure plywood cargo barriers engineered to protect your vehicle's interior.</p>
+                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Protection & Ply Line Barriers Pack');">ADD TO BUILD +</div>
                     <div class="status-bar">
                         <span class="status-indicator"><span class="led-dot green"></span> CNC PRECISION</span>
-                        <span>TOUGH LINING</span>
+                        <span>PLY BARRIERS</span>
                     </div>
                 </div>
             </a>
@@ -514,12 +507,12 @@
             <a href="services.html" class="hex-card">
                 <div class="card-inner">
                     <div class="tile-media">
-                        <img src="campervan set up melbourne.jpeg" onerror="this.src='launchpad.jpg'" alt="Other Services and Custom Addons" class="w-full h-full object-cover">
+                        <img src="campervan set up melbourne.jpeg" onerror="this.src='launchpad.jpg'" alt="Other Services and Custom Addons" class="w-full h-full object-contain bg-black">
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">03 / SPECIALIST MODS</div>
+                    <div class="mono text-xs text-green-400 font-bold mb-2">03 / OTHER SERVICES</div>
                     <h3 class="card-title">Other Services</h3>
                     <p class="card-desc">Specialist custom modifications, campervan conversions, electrical mounting boards, roof rack installations, and bespoke fabrication requests tailored to your exact rig.</p>
-                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Specialist Custom Addons');">ADD TO BUILD +</div>
+                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Other Services');">ADD TO BUILD +</div>
                     <div class="status-bar">
                         <span class="status-indicator"><span class="led-dot green"></span> CUSTOM BUILDS</span>
                         <span>BESPOKE FITOUTS</span>
@@ -529,13 +522,13 @@
         </div>
     </section>
 
-    <!-- SEO GALLERY SHOWCASE & ABOUT US BRIDGE (NO LABELS ON PHOTOS) -->
+    <!-- SEO GALLERY SHOWCASE & ABOUT US BRIDGE (NO LABELS ON PHOTOS, UN-CROPPED FULL VIEW) -->
     <section class="fitout-showcase">
         <div class="max-w-4xl mx-auto px-6 text-center mb-12">
             <span class="mono text-xs text-green-400 font-bold tracking-widest uppercase">THE ELITE STANDARD</span>
             <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight text-black mt-2 mb-6">BUILT IN AUSTRALIA, FOR AUSTRALIAN TRADIES</h2>
             <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-                At Elite Van Fitouts, we believe your commercial vehicle shouldn’t just be a box on wheels—it should be your most productive asset. Utilizing advanced <strong>CNC machining for flawless precision cuts</strong> and premium hardware, our custom designs eliminate rattles, maximize cargo capacity, and withstand the harshest daily site abuse. Recognized for delivering the <strong>best van fitouts in Australia</strong>, every setup is built to order right here in our Rowville workshop.
+                At Elite Van Fitouts, we believe your commercial vehicle shouldn’t just be a box on wheels—it should be your most productive asset. Utilizing advanced <strong>CNC machining for flawless precision cuts</strong> and premium hardware, our custom designs eliminate rattles, maximize cargo capacity, and withstand the harshest daily site abuse. Recognized for delivering the <strong>best fitouts in australia</strong>, every setup is built to order right here in our Rowville workshop.
             </p>
             <a href="about.html" class="btn-outline text-xs">LEARN MORE ABOUT OUR WORKSHOP →</a>
         </div>
@@ -575,7 +568,7 @@
         </div>
     </section>
 
-    <!-- TRADE SOLUTIONS PILLS (ENHANCED TRADE SPECIFIC PROTOCOLS) -->
+    <!-- TRADE SOLUTIONS PILLS (GENERAL TRADE NAMES) -->
     <section class="py-16 px-6 bg-gray-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10">
@@ -583,18 +576,18 @@
                 <h2 class="text-2xl md:text-4xl font-black uppercase italic text-black">BUILT SPECIFICALLY FOR YOUR TRADE</h2>
             </div>
             <div class="mobile-scroll-row">
-                <div class="trade-tag"><span class="trade-dot"></span> Electrician Parts Racks</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Plumber Pipe & Fittings Storage</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Carpenter Tool Bay Systems</div>
-                <div class="trade-tag"><span class="trade-dot"></span> HVAC & Gas Cylinder Security</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Mobile Mechanic Workbench Rigs</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Locksmith Precision Cabinets</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Builder False Floors</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Glazier Long-Item Racks</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Landscaper Gear Lockers</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Painter Bucket & Ladder Trays</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Solar Installer Battery Mounts</div>
-                <div class="trade-tag"><span class="trade-dot"></span> Security Technician Cases</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Electrician</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Plumber</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Carpenter</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Builder</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Mobile Mechanic</div>
+                <div class="trade-tag"><span class="trade-dot"></span> HVAC Technician</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Locksmith</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Glazier</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Landscaper</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Painter</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Solar Installer</div>
+                <div class="trade-tag"><span class="trade-dot"></span> Security Technician</div>
             </div>
         </div>
     </section>
@@ -624,7 +617,7 @@
         </div>
     </section>
 
-    <!-- REVIEWS SECTION (WITH REAL GHL REVIEW LINK) -->
+    <!-- REVIEWS SECTION (WITH REAL GHL REPUTATIONHUB WIDGET) -->
     <section class="py-20 px-6 bg-black text-white border-t border-gray-900">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -632,41 +625,24 @@
                 <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight mt-2 mb-4">TRUSTED BY MELBOURNE'S BEST</h2>
                 <p class="mono text-xs uppercase tracking-widest text-gray-500">See what local contractors have to say about our Rowville workshop</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="review-card">
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"Absolute game changer for my HiAce. The false floor and heavy-duty drawers hold all my gear with zero rattles on site. Fast turnaround too!"</p>
-                    </div>
-                    <div class="mono text-xs font-bold text-green-400">— Brad M., Sparkie (Dandenong)</div>
-                </div>
-                <div class="review-card">
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"The ply lining and shelving setup look incredible. Elite turned my van into a proper organised workspace. Already saving me 20 minutes every morning."</p>
-                    </div>
-                    <div class="mono text-xs font-bold text-green-400">— Dave T., Builder (Rowville)</div>
-                </div>
-                <div class="review-card">
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"Cleanest ply lining and drawer setup in Melbourne. You can tell these guys actually understand how tradies work out of their vans."</p>
-                    </div>
-                    <div class="mono text-xs font-bold text-green-400">— Mick S., Plumber (Bayswater)</div>
-                </div>
-            </div>
-            <div class="text-center">
-                <a href="https://api.leadconnectorhq.com/widget/form/review" target="_blank" class="btn-outline text-xs">VIEW ALL VERIFIED REVIEWS ON GHL →</a>
+            
+            <!-- Real GHL Review Widget Integration -->
+            <div class="mb-8">
+                <script type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js"></script>
+                <iframe class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/Im9YMPbjBNSaUJy5qIeg?widgetId=69acee42cc4984200173e2a9" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- LOCATION & MAP SECTION -->
+    <!-- LOCATION & MAP SECTION (UPDATED TO ELITE VAN FITOUTS 8/8 ENTERPRISE DRIVE) -->
     <section class="py-16 px-6 bg-black text-white border-t border-green-500">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
                 <span class="mono text-xs text-green-400 font-bold tracking-widest">HQ & WORKSHOP</span>
                 <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight mt-2 mb-6">SERVING ALL OF SOUTH-EAST MELBOURNE</h2>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4 font-bold text-white">
+                    Elite Van Fitouts<br>8/8 Enterprise Drive, Rowville VIC 3178
+                </p>
                 <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
                     Conveniently based in Rowville right near EastLink and the Monash Freeway. We build robust storage solutions for tradies across Dandenong, Knox, Bayswater, Frankston, Hallam, Ringwood, and greater Victoria.
                 </p>
@@ -678,11 +654,11 @@
                     <span class="loc-tag">Knoxfield</span>
                     <span class="loc-tag">Carrum Downs</span>
                 </div>
-                <a href="https://maps.google.com/?q=Rowville+VIC" target="_blank" class="btn-main">GET DIRECTIONS →</a>
+                <a href="https://maps.google.com/?q=8/8+Enterprise+Drive+Rowville+VIC+3178" target="_blank" class="btn-main">GET DIRECTIONS →</a>
             </div>
             <div class="radar-container rounded-xl border border-gray-800">
                 <div class="radar-overlay"></div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50361.34139886326!2d145.2132336!3d-37.9189679!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d3d65c368d5%3A0x5045675218ce520!2sRowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d145.243000!3d-37.915000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d3d65c368d5%3A0x5045675218ce520!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -701,13 +677,13 @@
                 <a href="services.html" class="hover:text-green-500 transition">Other Services</a>
             </div>
             <div class="social-row">
-                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon social-fb" aria-label="Facebook">
+                <a href="https://www.facebook.com/p/Elite-Van-Fitouts-61572133991242/" target="_blank" rel="noopener noreferrer" class="social-icon social-fb" aria-label="Facebook">
                     <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.6 5H18V0h-3.8C10.5 0 9 1.458 9 4.333V8z"/></svg>
                 </a>
-                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon social-ig" aria-label="Instagram">
+                <a href="https://www.instagram.com/elitevanfitouts/" target="_blank" rel="noopener noreferrer" class="social-icon social-ig" aria-label="Instagram">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-icon social-tt" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" rel="noopener noreferrer" class="social-icon social-tt" aria-label="TikTok">
                     <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01v8.83c-.02 1.34-.44 2.68-1.21 3.78-1.12 1.6-2.9 2.65-4.83 2.87-1.93.22-3.9-.38-5.38-1.65-1.55-1.33-2.39-3.32-2.3-5.35.09-2.03 1.07-3.94 2.71-5.17 1.64-1.23 3.77-1.57 5.68-.92.01 1.49.01 2.98.01 4.47-.85-.39-1.85-.37-2.67.06-.82.43-1.37 1.25-1.48 2.17-.11.92.24 1.86.92 2.49.68.63 1.65.85 2.55.59.9-.26 1.63-.99 1.87-1.9.08-.34.12-.69.12-1.04V.02z"/></svg>
                 </a>
             </div>
