@@ -98,7 +98,7 @@
 
         .dropdown-menu {
             display: none; position: absolute; top: 100%; right: 0;
-            background: #ffffff; border: 1px solid #ddd; width: 260px;
+            background: #ffffff; border: 1px solid #ddd; width: 280px;
             padding: 8px; border-radius: 8px; z-index: 100;
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             border-top: 2px solid var(--elite-green);
@@ -186,7 +186,7 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- SEO GALLERY SHOWCASE (16 PHOTOS, UN-CROPPED FULL VIEW, NO LABELS) --- */
+        /* --- SEO GALLERY SHOWCASE (NO BLACK BOX PADDING, GLOWING GREEN BORDER) --- */
         .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 70px; padding-bottom: 50px; position: relative; }
         
         .marquee-wrapper {
@@ -203,13 +203,12 @@
         @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
         
         .marquee-img-card {
-            display: inline-flex; width: 300px; flex-shrink: 0; height: 180px;
-            border: 2px solid var(--elite-green); border-radius: 8px; overflow: hidden; background: #000;
-            box-shadow: 0 0 15px rgba(34,197,94,0.2); transition: transform 0.3s;
+            display: inline-flex; width: auto; flex-shrink: 0; height: 180px;
+            border: 2px solid var(--elite-green); border-radius: 8px; overflow: hidden; background: #ffffff;
+            box-shadow: 0 0 15px rgba(34,197,94,0.4); transition: transform 0.3s;
         }
-        .marquee-img-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.6); z-index: 10; position: relative; }
-        /* Changed object-fit to contain so photos are never cropped and show original dimensions */
-        .marquee-img { height: 100%; width: 100%; object-fit: contain; background: #000; }
+        .marquee-img-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.8); z-index: 10; position: relative; }
+        .marquee-img { height: 100%; width: auto; object-fit: cover; background: #ffffff; }
 
         /* MOBILE HORIZONTAL SCROLL CONTAINERS */
         .mobile-scroll-row {
@@ -232,7 +231,7 @@
         .trade-tag:hover { box-shadow: 0 0 20px var(--elite-green); transform: translateY(-3px); color: white;}
         .trade-dot { width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%; box-shadow: 0 0 8px var(--elite-green); }
 
-        /* --- TACTICAL TILES (UPDATED 3 CATEGORIES) --- */
+        /* --- TACTICAL TILES --- */
         .hex-card {
             background-color: #080808; border: 1px solid #333; 
             border-radius: 12px; position: relative; overflow: hidden; 
@@ -273,7 +272,7 @@
         .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
 
-        /* --- TILE MEDIA & 4-PHOTO ROTATION FADE (CONTAIN FOR NO CROP) --- */
+        /* --- TILE MEDIA & 4-PHOTO ROTATION FADE --- */
         .tile-media { height: 200px; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px; position: relative; border: 1px solid #222; background: #000; }
         .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; background: #000; }
         .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; animation: crossFade4 16s infinite; background: #000; }
@@ -387,7 +386,7 @@
         </div>
     </div>
 
-    <!-- NAV WITH UPDATED DROPDOWN CATEGORIES -->
+    <!-- NAV WITH CLEAN DROPDOWN CATEGORIES (NO NUMBERS) -->
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
@@ -400,9 +399,9 @@
                     </button>
                     <div class="dropdown-menu">
                         <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
-                        <a href="fitouts.html" class="dropdown-item">1. Drawers & Shelving <span>-></span></a>
-                        <a href="protection.html" class="dropdown-item">2. Protection & Ply Line Barriers <span>-></span></a>
-                        <a href="services.html" class="dropdown-item">3. Other Services <span>-></span></a>
+                        <a href="fitouts.html" class="dropdown-item">Drawers & Shelving <span>-></span></a>
+                        <a href="protection.html" class="dropdown-item">Protection & Ply Line Barriers <span>-></span></a>
+                        <a href="services.html" class="dropdown-item">Other Services <span>-></span></a>
                         <div class="dropdown-divider"></div>
                         <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
                     </div>
@@ -415,9 +414,9 @@
     <div id="mobile-menu">
         <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
             <a href="index.html" class="text-black border-l-4 border-green-500 pl-4 transition">Home</a>
-            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">1. Drawers & Shelving Systems</a>
-            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">2. Protection & Ply Line Barriers</a>
-            <a href="services.html" class="text-gray-500 hover:text-green-500 transition">3. Other Services</a>
+            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Drawers & Shelving Systems</a>
+            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">Protection & Ply Line Barriers</a>
+            <a href="services.html" class="text-gray-500 hover:text-green-500 transition">Other Services</a>
             <a href="about.html" class="text-gray-500 hover:text-green-500 transition">About Us</a>
         </div>
     </div>
@@ -456,7 +455,7 @@
         </div>
     </div>
 
-    <!-- TACTICAL TILES (UPDATED CATEGORIES) -->
+    <!-- TACTICAL TILES (UPDATED WITH REQUESTED IMAGES) -->
     <section class="py-20 px-6 max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight text-black mb-4">TACTICAL FITOUT SYSTEMS</h2>
@@ -475,7 +474,7 @@
                             <img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" alt="Van Slide Out Shelving" class="fade-img fade-delay-4">
                         </div>
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">01 / DRAWERS & SHELVING SYSTEMS</div>
+                    <div class="mono text-xs text-green-400 font-bold mb-2">DRAWERS & SHELVING SYSTEMS</div>
                     <h3 class="card-title">Drawers & Shelving Systems</h3>
                     <p class="card-desc">Heavy-duty drawer slides, custom modular racking, slide-out workbenches, and precision shelving built to endure the punishing demands of Australian job sites.</p>
                     <div class="action-button" onclick="event.preventDefault(); addToBuild('Drawers & Shelving System');">ADD TO BUILD +</div>
@@ -486,13 +485,13 @@
                 </div>
             </a>
 
-            <!-- TILE 2: PROTECTION & PLY LINE BARRIERS -->
+            <!-- TILE 2: PROTECTION & PLY LINE BARRIERS (USING PLY LINING AND FLOORING IMAGE) -->
             <a href="protection.html" class="hex-card">
                 <div class="card-inner">
                     <div class="tile-media">
-                        <img src="van ply lining melbourne.jpeg" onerror="this.src='branding.jpg'" alt="Ply Lining & Cargo Barriers" class="w-full h-full object-contain bg-black">
+                        <img src="ply lining and fooring .jpeg" onerror="this.src='branding.jpg'" alt="Ply Lining & Cargo Barriers" class="w-full h-full object-contain bg-black">
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">02 / PROTECTION, FLOORING PLY LINING & CARGOBARRIERS</div>
+                    <div class="mono text-xs text-green-400 font-bold mb-2">PROTECTION, FLOORING PLY LINING & CARGOBARRIERS</div>
                     <h3 class="card-title">Protection, Flooring Ply Lining & Cargobarriers</h3>
                     <p class="card-desc">CNC-machined wall ply lining, heavy-duty marine-grade flooring, false floors, and secure plywood cargo barriers engineered to protect your vehicle's interior.</p>
                     <div class="action-button" onclick="event.preventDefault(); addToBuild('Protection & Ply Line Barriers Pack');">ADD TO BUILD +</div>
@@ -503,13 +502,13 @@
                 </div>
             </a>
 
-            <!-- TILE 3: OTHER SERVICES -->
+            <!-- TILE 3: OTHER SERVICES (USING SIGNAGE AND OTHER SERVICES IMAGE) -->
             <a href="services.html" class="hex-card">
                 <div class="card-inner">
                     <div class="tile-media">
-                        <img src="campervan set up melbourne.jpeg" onerror="this.src='launchpad.jpg'" alt="Other Services and Custom Addons" class="w-full h-full object-contain bg-black">
+                        <img src="signage and other services.jpeg" onerror="this.src='launchpad.jpg'" alt="Other Services and Custom Addons" class="w-full h-full object-contain bg-black">
                     </div>
-                    <div class="mono text-xs text-green-400 font-bold mb-2">03 / OTHER SERVICES</div>
+                    <div class="mono text-xs text-green-400 font-bold mb-2">OTHER SERVICES</div>
                     <h3 class="card-title">Other Services</h3>
                     <p class="card-desc">Specialist custom modifications, campervan conversions, electrical mounting boards, roof rack installations, and bespoke fabrication requests tailored to your exact rig.</p>
                     <div class="action-button" onclick="event.preventDefault(); addToBuild('Other Services');">ADD TO BUILD +</div>
@@ -522,7 +521,7 @@
         </div>
     </section>
 
-    <!-- SEO GALLERY SHOWCASE & ABOUT US BRIDGE (NO LABELS ON PHOTOS, UN-CROPPED FULL VIEW) -->
+    <!-- SEO GALLERY SHOWCASE & ABOUT US BRIDGE (NO BLACK PADDING, ORIGINAL IMAGE SIZES) -->
     <section class="fitout-showcase">
         <div class="max-w-4xl mx-auto px-6 text-center mb-12">
             <span class="mono text-xs text-green-400 font-bold tracking-widest uppercase">THE ELITE STANDARD</span>
@@ -533,7 +532,7 @@
             <a href="about.html" class="btn-outline text-xs">LEARN MORE ABOUT OUR WORKSHOP →</a>
         </div>
         
-        <!-- Marquee Track 1 (First 8 images) -->
+        <!-- Marquee Track 1 -->
         <div class="marquee-wrapper">
             <div class="marquee-track track-slow">
                 <div class="marquee-img-card"><img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 1"></div>
@@ -550,14 +549,14 @@
             </div>
         </div>
 
-        <!-- Marquee Track 2 (Second 8 images - reverse direction) -->
+        <!-- Marquee Track 2 -->
         <div class="marquee-wrapper">
             <div class="marquee-track track-fast">
                 <div class="marquee-img-card"><img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 9"></div>
                 <div class="marquee-img-card"><img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 10"></div>
                 <div class="marquee-img-card"><img src="campervan set up melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 11"></div>
-                <div class="marquee-img-card"><img src="van ply lining melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 12"></div>
-                <div class="marquee-img-card"><img src="van flooring melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 13"></div>
+                <div class="marquee-img-card"><img src="ply lining and fooring .jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 12"></div>
+                <div class="marquee-img-card"><img src="signage and other services.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 13"></div>
                 <div class="marquee-img-card"><img src="melbourne tradie set up.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 14"></div>
                 <div class="marquee-img-card"><img src="melbourne tradie set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 15"></div>
                 <div class="marquee-img-card"><img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 16"></div>
@@ -634,7 +633,7 @@
         </div>
     </section>
 
-    <!-- LOCATION & MAP SECTION (UPDATED TO ELITE VAN FITOUTS 8/8 ENTERPRISE DRIVE) -->
+    <!-- LOCATION & MAP SECTION (ELITE VAN FITOUTS 8/8 ENTERPRISE DRIVE) -->
     <section class="py-16 px-6 bg-black text-white border-t border-green-500">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
