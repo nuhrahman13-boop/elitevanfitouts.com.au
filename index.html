@@ -1,459 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NDKGGJ22');</script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18000790657"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-18000790657');
-    </script>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '953020550981020');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Van Fitouts Melbourne | Commercial Trade Van Setups & Vehicle Protection</title>
+    <meta name="description" content="Melbourne's premier commercial van fitout specialists. Custom false floors, heavy-duty drawer systems, protective Hex-Ply flooring, ply lining, and ADR safety cargo barriers.">
     
-    <title>Elite Van Fitouts | Custom van floors,drawers and shelving Melbourne</title>
-    <meta name="description" content="The #1 Van Fitout & Signage workshop in Rowville. We build custom precision plywood racking, false floors, and premium vehicle wraps for Tradies in Dandenong & South East Melbourne.">
-    <meta name="keywords" content="van fitouts rowville, vehicle signage dandenong, custom van racking, tradie van setup, fleet branding melbourne, toyota hiace racking, ford ranger canopy setup, elite van fitouts, business in a box tradie, commercial van shelving, custom false floors, heavy duty van drawers, ply lining">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://elitevanfitouts.com.au/">
-
-    <meta name="geo.region" content="AU-VIC" />
-    <meta name="geo.placename" content="Rowville" />
-    <meta name="geo.position" content="-37.915;145.243" />
-    <meta name="ICBM" content="-37.915, 145.243" />
-
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* --- CORE SYSTEM: DARK LUXURY HYBRID --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
-        
-        :root { 
-            --elite-green: #22c55e; 
-            --elite-green-dim: rgba(34, 197, 94, 0.1);
-            --elite-green-glow: rgba(34, 197, 94, 0.4); 
-            --off-white: #ffffff; 
-            --nav-height-desktop: 80px;
-            --nav-height-mobile: 60px;
+        :root {
+            --elite-green: #22c55e;
+            --elite-green-glow: rgba(34, 197, 94, 0.4);
+            --dark-surface: #0a0a0c;
+            --card-surface: #111114;
+            --border-dark: #222226;
         }
-        
-        body, html { 
-            margin: 0; padding: 0; 
-            background-color: var(--off-white); 
-            color: #111; 
-            font-family: 'Inter', sans-serif; 
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #111114;
             overflow-x: hidden;
-            max-width: 100vw;
-            -webkit-font-smoothing: antialiased;
         }
-        
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .led { font-family: 'VT323', monospace; }
 
-        /* --- PRELOADER (LOGO + BAR) --- */
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- PRELOADER --- */
         #boot-screen {
-            position: fixed; inset: 0; background: #000; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.4s ease-out;
-        }
-        .loader-logo { height: 60px; margin-bottom: 30px; animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        .loader-container { width: 240px; height: 3px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
-        .loader-bar {
-            width: 0%; height: 100%; background: var(--elite-green); box-shadow: 0 0 15px var(--elite-green);
-            animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        @keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-
-        /* --- NAV (WHITE THEME) --- */
-        .glass-nav { 
-            background: #ffffff;
-            border-bottom: 2px solid var(--elite-green);
-            height: var(--nav-height-desktop);
-            display: flex; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        @media (max-width: 768px) { .glass-nav { height: var(--nav-height-mobile); } }
-
-        .dropdown-menu {
-            display: none; position: absolute; top: 100%; left: -20px;
-            background: #ffffff; border: 1px solid #ddd; width: 240px;
-            padding: 8px; border-radius: 8px; z-index: 100;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border-top: 2px solid var(--elite-green);
-        }
-        .dropdown:hover .dropdown-menu { display: block; animation: menuDrop 0.2s ease-out; }
-        @keyframes menuDrop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
-        .dropdown-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 16px; color: #333; 
-            text-decoration: none; border-radius: 6px; transition: all 0.2s;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
-        }
-        .dropdown-item:hover { background: rgba(34,197,94,0.1); color: black; padding-left: 20px; }
-        .dropdown-divider { height: 1px; background: #eee; margin: 6px 0; }
-
-        .nav-spacer { width: 100%; height: var(--nav-height-desktop); background: #000; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            width: 100%; background: #000; 
-            border-bottom: 1px solid var(--elite-green);
-            box-shadow: 0 10px 30px var(--elite-green-glow);
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
         }
 
-        @media (min-width: 1024px) {
-            .hero-section { position: relative; height: 85vh; overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start; }
-            .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-            .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.1); object-position: center center; }
-            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 40%, transparent 100%); z-index: 2; }
-            .hero-content { padding: 0 40px 60px 40px; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 10; pointer-events: none; }
-        }
-        
-        @media (max-width: 1023px) {
-            .nav-spacer { display: none; }
-            body { padding-top: var(--nav-height-mobile); } 
-            .hero-section { display: flex; flex-direction: column; height: auto; }
-            .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
-            .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 60% top; filter: brightness(0.7); }
-            .hero-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index: 2; }
-            .hero-content { width: 100%; background: #000; padding: 0 20px 40px 20px; text-align: left; position: relative; z-index: 10; margin-top: -60px; }
-            .glitch-text { font-size: 2.2rem !important; line-height: 1 !important; margin-bottom: 10px !important; }
-            .hero-sub { display: block !important; font-size: 0.85rem !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
-            .hero-btns { margin-top: 15px !important; display: flex; gap: 10px; width: 100%; }
-            .btn-main, .btn-outline { flex: 1; text-align: center; padding: 12px 10px !important; font-size: 0.65rem !important; }
+        .boot-spinner {
+            width: 46px;
+            height: 46px;
+            border: 3px solid #222;
+            border-top: 3px solid var(--elite-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
-        .glitch-text {
-            font-family: 'Inter', sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 0.9; font-weight: 900;
-            text-transform: uppercase; font-style: italic; letter-spacing: -0.04em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.8);
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .glitch-text strong { color: var(--elite-green); }
-        .hero-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: #ccc; max-width: 550px; border-left: 3px solid var(--elite-green); padding-left: 20px; }
 
         /* --- BUTTONS --- */
         .btn-main {
-            background: var(--elite-green); color: black; border: 1px solid var(--elite-green);
-            font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px var(--elite-green-glow); cursor: pointer; text-decoration: none; pointer-events: auto;
+            background-color: var(--elite-green);
+            color: #000000;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 12px 28px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
         }
-        .btn-main:hover { background: white; border-color: white; color: black; box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: translateY(-2px); }
-        
-        .btn-outline {
-            background: rgba(0,0,0,0.8); color: white; border: 1px solid #444;
-            font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; 
-            padding: 14px 32px; font-size: 0.75rem; border-radius: 8px; 
-            transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; pointer-events: auto;
-        }
-        .btn-outline:hover { border-color: var(--elite-green); color: var(--elite-green); background: rgba(34, 197, 94, 0.05); }
 
-        /* --- SEO TICKER (MASSIVE UPGRADE) --- */
-        .led-wrap {
-            position: relative; background: #050505; width: 100%; overflow: hidden;
-            height: 45px; display: flex; align-items: center; z-index: 20;
-            border-bottom: 1px solid #222; border-top: 1px solid #111;
-            background-image: radial-gradient(#111 1px, transparent 1px); background-size: 4px 4px;
+        .btn-main:hover {
+            background-color: #16a34a;
+            box-shadow: 0 0 25px var(--elite-green-glow);
+            transform: translateY(-2px);
         }
-        .led-ticker { display: flex; white-space: nowrap; animation: ticker 60s linear infinite; }
-        .led-item {
-            color: var(--elite-green); font-family: 'VT323', monospace; text-transform: uppercase; 
-            font-size: 1.8rem; padding: 0 40px; display: flex; align-items: center; letter-spacing: 3px; 
-            text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4); 
-        }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- SPLIT SECTION: OUR FITOUTS --- */
-        .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 80px; padding-bottom: 40px; position: relative; }
-        
+        .btn-secondary {
+            background: #18181b;
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--elite-green);
+            color: var(--elite-green);
+            background: #202025;
+        }
+
+        /* --- MARQUEE --- */
         .marquee-wrapper {
-            width: 100%; overflow: hidden; white-space: nowrap; display: flex; margin-bottom: 20px;
-            /* Fade edges on desktop to look like it slides out of the text block */
-            mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 12px;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
-        .marquee-track { display: flex; gap: 20px; padding-left: 20px; width: max-content; }
-        
-        .track-slow { animation: scrollLeft 25s linear infinite; } 
-        .track-fast { animation: scrollRight 20s linear infinite; } 
-        
-        @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
-        
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 14px;
+        }
+
+        .track-fast {
+            animation: scrollFast 32s linear infinite;
+        }
+
+        .track-slow {
+            animation: scrollSlow 42s linear infinite reverse;
+        }
+
+        .marquee-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollFast {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollSlow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         .marquee-img {
-            height: 180px; width: 280px; object-fit: cover; border-radius: 8px;
-            border: 2px solid var(--elite-green); 
-            box-shadow: 0 0 15px rgba(34,197,94,0.3);
-            transition: transform 0.3s;
+            width: 260px;
+            height: 175px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        .marquee-img:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.6); z-index: 10; position: relative; }
 
-        /* MOBILE HORIZONTAL SCROLL CONTAINERS */
+        .marquee-img:hover {
+            transform: scale(1.03);
+            border-color: var(--elite-green);
+        }
+
+        /* --- TRADE TAGS & LOCATION PILLS --- */
         .mobile-scroll-row {
-            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory;
-        }
-        .mobile-scroll-row::-webkit-scrollbar { display: none; }
-        @media (min-width: 768px) {
-            .mobile-scroll-row { flex-wrap: wrap; justify-content: center; overflow-x: visible; scroll-snap-type: none; padding-bottom: 0; }
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
         }
 
-        /* --- TRADE SOLUTIONS SEO GRID (BLACK TILES, GREEN TEXT) --- */
+        .mobile-scroll-row::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .mobile-scroll-row::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
         .trade-tag {
-            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); 
-            font-family: 'JetBrains Mono', monospace; font-weight: bold;
-            padding: 12px 20px; border-radius: 8px; text-transform: uppercase; font-size: 0.8rem;
-            transition: all 0.3s; display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.15); flex-shrink: 0; scroll-snap-align: center;
+            background: #f4f4f5;
+            border: 1px solid #e4e4e7;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #18181b;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
         }
-        .trade-tag:hover { box-shadow: 0 0 20px var(--elite-green); transform: translateY(-3px); color: white;}
-        .trade-dot { width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%; box-shadow: 0 0 8px var(--elite-green); }
 
-        /* --- TACTICAL TILES (SERVICES) --- */
+        .trade-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--elite-green);
+            border-radius: 50%;
+        }
+
+        .loc-tag {
+            background: #09090b;
+            color: #a1a1aa;
+            border: 1px solid #27272a;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+            flex-shrink: 0;
+        }
+
+        /* --- HEX CARDS (SYSTEMS) --- */
         .hex-card {
-            background-color: #080808; border: 1px solid #333; 
-            border-radius: 12px; position: relative; overflow: hidden; 
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-            height: 100%; display: flex; flex-direction: column;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
-            background-size: 40px 40px; text-decoration: none; display: block;
+            background: var(--dark-surface);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
-        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
-        
-        .hex-card.dominant {
-            border-color: var(--elite-green); box-shadow: 0 0 30px var(--elite-green-glow);
-            background: linear-gradient(to bottom right, #080808, #111811);
+
+        .hex-card:hover {
+            border-color: var(--elite-green);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.15);
+            transform: translateY(-3px);
         }
-        .hex-card.dominant:hover { box-shadow: 0 10px 40px rgba(34,197,94,0.4); }
 
         .card-inner {
-            position: relative; z-index: 10; padding: 40px; height: 100%; display: flex; flex-direction: column; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95)); 
+            background: var(--card-surface);
+            border-radius: 10px;
+            padding: 32px 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .card-title { font-size: 2.2rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: white; margin-bottom: 10px; }
-        .card-desc { color: #aaa; font-weight: 400; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
-        
+
+        .card-title {
+            font-size: 1.85rem;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .card-desc {
+            color: #a1a1aa;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
         .action-button {
-            margin-top: auto; margin-bottom: 25px; text-align: center; padding: 14px 0; 
-            border: 1px solid #444; border-radius: 8px; background: #111;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: bold; color: white;
-            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+            background: #1e1e24;
+            color: #ffffff;
+            border: 1px solid #33333d;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
         }
-        .hex-card:hover .action-button { border-color: var(--elite-green); color: black; background: var(--elite-green); box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
+
+        .hex-card:hover .action-button {
+            background: var(--elite-green);
+            color: #000000;
+            border-color: var(--elite-green);
+        }
 
         .status-bar {
-            padding-top: 20px; border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #666; letter-spacing: 1px; transition: border-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1f1f24;
+            padding-top: 14px;
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
         }
-        .hex-card:hover .status-bar { border-color: rgba(34, 197, 94, 0.4); }
-        .status-indicator { display: flex; align-items: center; gap: 8px; }
-        .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
-        .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
 
-        /* --- 4 GRID IMAGE CROSS-FADE --- */
-        .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(34,197,94,0.3); }
-        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; opacity: 0; animation: crossFade 16s infinite; }
-        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .led-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .led-dot.green {
+            background-color: var(--elite-green);
+            box-shadow: 0 0 8px var(--elite-green);
+        }
+
+        /* --- FADE IMAGE GALLERY --- */
+        .fade-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1a1a1e;
+        }
+
+        .fade-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: crossFade 8s infinite alternate;
+        }
+
         .fade-delay-1 { animation-delay: 0s; }
-        .fade-delay-2 { animation-delay: 8s; } /* Two phases for 2 images */
+        .fade-delay-2 { animation-delay: 4s; }
 
         @keyframes crossFade {
-            0%, 45% { opacity: 1; z-index: 2; }
-            50%, 95% { opacity: 0; z-index: 1; }
-            100% { opacity: 1; z-index: 2; }
+            0%, 45% { opacity: 1; }
+            55%, 100% { opacity: 0; }
         }
 
-        /* --- WHY CHOOSE ELITE (BLACK CARDS) --- */
+        /* --- WHY CARDS --- */
         .why-card {
-            background: #000; border: 1px solid var(--elite-green); padding: 30px; border-radius: 12px;
-            transition: 0.3s; box-shadow: 0 5px 20px rgba(34, 197, 94, 0.1);
+            background: #0a0a0c;
+            border: 1px solid #222226;
+            border-radius: 10px;
+            padding: 24px;
+            transition: border-color 0.2s ease;
         }
-        .why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
-        .why-icon { color: var(--elite-green); font-size: 2.5rem; margin-bottom: 15px; text-shadow: 0 0 15px var(--elite-green-glow); }
 
-        /* --- LOCATION DOMINATION --- */
-        .loc-tag {
-            background: #000; border: 1px solid var(--elite-green); color: var(--elite-green); font-family: 'JetBrains Mono', monospace;
-            padding: 10px 20px; border-radius: 6px; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s; font-weight: bold;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.1); flex-shrink: 0; scroll-snap-align: center;
+        .why-card:hover {
+            border-color: var(--elite-green);
         }
-        .loc-tag:hover { background: var(--elite-green); color: black; box-shadow: 0 0 20px var(--elite-green); transform: scale(1.05); }
 
-        /* --- MAP --- */
-        .radar-container { position: relative; height: 100%; min-height: 450px; width: 100%; overflow: hidden; background: #000; }
+        .why-icon {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        /* --- RADAR MAP --- */
+        .radar-container {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            min-height: 320px;
+        }
+
         .radar-overlay {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; 
-            border: 1px solid rgba(34, 197, 94, 0.1); border-radius: 50%; pointer-events: none; z-index: 10;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.6) 90%);
         }
-        .radar-overlay::before {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 8px; height: 8px; background: var(--elite-green); border-radius: 50%;
-            box-shadow: 0 0 15px var(--elite-green); animation: pulseDot 2s infinite;
-        }
-        @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-        /* --- BRANDED SOCIAL ICONS (GLOWING) --- */
-        .social-row { display: flex; gap: 15px; margin-top: 15px; }
+        .radar-scan {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: conic-gradient(from 0deg, rgba(34, 197, 94, 0.2) 0deg, transparent 60deg, transparent 360deg);
+            transform: translate(-50%, -50%);
+            animation: radarRotate 6s linear infinite;
+        }
+
+        @keyframes radarRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- SOCIAL LINKS --- */
+        .social-row {
+            display: flex;
+            gap: 12px;
+        }
+
         .social-icon {
-            width: 40px; height: 40px; border: 1px solid #333; background: #111;
-            display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: all 0.3s;
-        }
-        .social-fb { color: #1877F2; }
-        .social-fb:hover { border-color: #1877F2; background: rgba(24,119,242,0.1); box-shadow: 0 0 15px rgba(24,119,242,0.5); transform: translateY(-2px); }
-        .social-ig { color: #E1306C; }
-        .social-ig:hover { border-color: #E1306C; background: rgba(225,48,108,0.1); box-shadow: 0 0 15px rgba(225,48,108,0.5); transform: translateY(-2px); }
-        .social-tt { color: #00f2fe; } /* Cyan glow for TikTok */
-        .social-tt:hover { border-color: #00f2fe; background: rgba(0,242,254,0.1); box-shadow: 0 0 15px rgba(0,242,254,0.5); transform: translateY(-2px); }
-        .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
-
-        /* --- MOBILE MENU OVERRIDE --- */
-        #mobile-menu {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px;
-        }
-        #mobile-menu.active { display: block; }
-
-        /* --- INVISIBLE SEO --- */
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+            width: 38px;
+            height: 38px;
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            fill: #a1a1aa;
+            transition: all 0.2s ease;
         }
 
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .social-icon:hover {
+            border-color: var(--elite-green);
+            fill: var(--elite-green);
+            background: #202025;
+            transform: translateY(-2px);
+        }
+
+        /* --- PERSISTENT BUILD DRAWER UI --- */
+        #build-drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #build-drawer-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #build-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 440px;
+            background: #0d0d10;
+            border-left: 1px solid #26262b;
+            z-index: 9999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+        }
+
+        #build-drawer.active {
+            transform: translateX(0);
+        }
+
+        .build-item-pill {
+            background: #141418;
+            border: 1px solid #27272f;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
-<body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body class="bg-white text-gray-900">
+
+    <!-- PRELOADER -->
     <div id="boot-screen">
-        <img src="logo.png" alt="ELITE" class="loader-logo">
-        <div class="loader-container">
-            <div class="loader-bar"></div>
+        <div class="boot-spinner mb-4"></div>
+        <div class="mono text-green-500 text-xs tracking-widest uppercase font-bold">Initializing System V2.0...</div>
+    </div>
+
+    <!-- PERSISTENT FLOATING BUILD TRIGGER -->
+    <button onclick="toggleBuildDrawer()" class="fixed bottom-6 right-6 z-50 bg-[#0a0a0c] text-white border-2 border-green-500 rounded-full px-5 py-3.5 flex items-center gap-3 shadow-[0_0_25px_rgba(34,197,94,0.35)] hover:scale-105 transition active:scale-95 group">
+        <div class="led-dot green"></div>
+        <span class="mono text-xs font-bold uppercase tracking-wider">YOUR BUILD</span>
+        <span id="floating-build-count" class="bg-green-500 text-black text-xs font-black px-2 py-0.5 rounded-full mono">0</span>
+    </button>
+
+    <!-- SLIDE-OVER BUILD DRAWER -->
+    <div id="build-drawer-backdrop" onclick="toggleBuildDrawer()"></div>
+    <div id="build-drawer">
+        <div class="p-6 border-b border-[#222228] flex justify-between items-center bg-[#070709]">
+            <div class="flex items-center gap-3">
+                <div class="led-dot green"></div>
+                <h3 class="mono text-white text-sm font-bold uppercase tracking-widest">Active Van Build</h3>
+            </div>
+            <button onclick="toggleBuildDrawer()" class="text-gray-400 hover:text-white mono text-sm px-2 py-1 rounded bg-[#16161b]">✕</button>
+        </div>
+
+        <div id="build-items-container" class="p-6 overflow-y-auto flex-1">
+            <!-- Dynamic JavaScript Content Injected Here -->
+        </div>
+
+        <div class="p-6 border-t border-[#222228] bg-[#070709] space-y-4">
+            <div class="flex justify-between items-center mono text-xs">
+                <span class="text-gray-400">CONFIGURED ITEMS:</span>
+                <span id="drawer-item-total" class="text-green-500 font-bold">0</span>
+            </div>
+            <a href="fitouts.html" id="proceed-quote-btn" class="btn-main w-full py-4 text-sm font-black text-center shadow-[0_0_20px_rgba(34,197,94,0.3)] block">
+                FINALIZE VAN QUOTE ->
+            </a>
+            <button onclick="clearBuild()" class="w-full text-center mono text-[11px] text-gray-500 hover:text-red-400 uppercase tracking-widest">
+                [ Clear Active Build ]
+            </button>
         </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
-            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             
-            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold border-b-2 border-green-500 pb-1">Home</a>
-                <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
-                        MENU <span class="text-[10px]">▼</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
-                        <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
-                        <div class="dropdown-divider"></div>
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
-                    </div>
-                </div>
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl font-black italic tracking-tighter uppercase text-black">
+                    ELITE <span class="text-green-500">VAN FITOUTS</span>
+                </span>
+            </a>
+
+            <!-- DESKTOP NAV -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="fitouts.html" class="text-xs font-extrabold uppercase tracking-widest text-gray-800 hover:text-green-600 transition">Fitouts & Racking</a>
+                <a href="protection.html" class="text-xs font-extrabold uppercase tracking-widest text-gray-800 hover:text-green-600 transition">Van Protection</a>
+                <a href="other-services.html" class="text-xs font-extrabold uppercase tracking-widest text-gray-800 hover:text-green-600 transition">Other Services</a>
+                <a href="about.html" class="text-xs font-extrabold uppercase tracking-widest text-gray-800 hover:text-green-600 transition">About</a>
+                <a href="#contact" class="text-xs font-extrabold uppercase tracking-widest text-gray-800 hover:text-green-600 transition">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:0468086490" class="hidden sm:inline-flex btn-secondary text-xs mono">
+                    0468 086 490
+                </a>
+                <button onclick="toggleBuildDrawer()" class="btn-main text-xs mono py-2.5 px-4 hidden md:flex items-center gap-2">
+                    <span>BUILD</span>
+                    <span id="nav-build-count" class="bg-black text-white px-1.5 py-0.2 rounded text-[10px]">0</span>
+                </button>
             </div>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
-        </div>
-    </nav>
 
-    <div id="mobile-menu">
-        <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-black border-l-4 border-green-500 pl-4 transition">Home</a>
-            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
-            <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
-        </div>
-    </div>
-
-    <div class="nav-spacer"></div>
-
-    <header class="hero-section">
-        <div class="hero-video-wrapper">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="hero.mp4" type="video/mp4">
-            </video>
-            <div class="hero-fade"></div>
-        </div>
-        
-        <div class="hero-content">
-            <h1 class="glitch-text">
-                ENGINEERED<br>FOR THE <strong>ELITE.</strong>
-            </h1>
-            <p class="hero-sub mb-8 mt-4">
-                We build the vehicles that power Australia's top-tier trades. Fitouts. Branding. Launch Support. <br>
-                <span class="font-bold text-white">Get Organized. Get Paid.</span>
-            </p>
-            <div class="hero-btns mt-8">
-                <a href="fitouts.html" class="btn-main">FITOUT SYSTEMS -></a>
-                <a href="#systems" class="btn-outline">View Modules</a>
-            </div>
         </div>
     </header>
 
-    <div class="led-wrap">
-        <div class="led-ticker">
-            <div class="led-item">VAN RACKING MELBOURNE</div>
-            <div class="led-item">CUSTOM FALSE FLOORS</div>
-            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
-            <div class="led-item">COMMERCIAL VAN SHELVING</div>
-            <div class="led-item">TRADE VEHICLE FITOUTS</div>
-            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
-            <div class="led-item">TOOLBOX SHELVING</div>
-            <div class="led-item">PLYWOOD LINING</div>
-            <div class="led-item">FLEET VEHICLE WRAPS</div>
-            <div class="led-item">VAN STORAGE SYSTEMS</div>
-            <div class="led-item">SLIDE OUT WORKBENCHES</div>
-            <div class="led-item">UTE CANOPY FITOUTS</div>
-            <div class="led-item">PACKOUT DOCKING STATIONS</div>
-            <div class="led-item">PLUMBER VAN SETUPS</div>
-            <div class="led-item">ELECTRICIAN FITOUTS</div>
-            <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">DANDENONG SIGNAGE</div>
-            <div class="led-item">VAN RACKING MELBOURNE</div>
-            <div class="led-item">CUSTOM FALSE FLOORS</div>
-            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
-            <div class="led-item">COMMERCIAL VAN SHELVING</div>
-            <div class="led-item">TRADE VEHICLE FITOUTS</div>
-            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
-            <div class="led-item">TOOLBOX SHELVING</div>
-            <div class="led-item">PLYWOOD LINING</div>
-            <div class="led-item">FLEET VEHICLE WRAPS</div>
-            <div class="led-item">VAN STORAGE SYSTEMS</div>
-            <div class="led-item">SLIDE OUT WORKBENCHES</div>
-            <div class="led-item">UTE CANOPY FITOUTS</div>
-            <div class="led-item">PACKOUT DOCKING STATIONS</div>
-            <div class="led-item">PLUMBER VAN SETUPS</div>
-            <div class="led-item">ELECTRICIAN FITOUTS</div>
-            <div class="led-item">ROWVILLE WORKSHOP</div>
-            <div class="led-item">DANDENONG SIGNAGE</div>
-        </div>
-    </div>
+    <!-- HERO SECTION -->
+    <section class="py-16 md:py-24 px-6 bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-green-50 border border-green-200 rounded-full mb-6">
+                    <div class="trade-dot"></div>
+                    <span class="mono text-green-700 text-xs font-bold uppercase tracking-wider">Rowville, Melbourne Workshop HQ</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-6xl font-black italic uppercase text-black leading-[1.05] mb-6">
+                    ENGINEERED FOR <br><span class="text-green-500">TRADES.</span> BUILT TO LAST.
+                </h1>
+                
+                <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-medium">
+                    Precision-machined commercial false floors, 227kg heavy-duty sliding drawers, 15mm Hex-Ply flooring, wall ply lining, and ADR-rated safety cargo barriers.
+                </p>
 
-    <section class="fitout-showcase">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="fitouts.html" class="btn-main text-sm text-center">
+                        BUILD YOUR VAN FITOUT ->
+                    </a>
+                    <a href="protection.html" class="btn-secondary text-sm text-center text-black border-gray-300 hover:border-black">
+                        EXPLORE VAN PROTECTION
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 relative">
+                <div class="bg-black rounded-2xl p-2 shadow-2xl border border-gray-800">
+                    <img src="melbournes best van set ups.jpeg" alt="Elite Van Fitouts Setup" class="rounded-xl w-full h-[380px] object-cover">
+                    <div class="p-4 flex justify-between items-center mono text-xs text-gray-400">
+                        <span class="text-white font-bold">[ SYSTEM SPEC: 227KG DRAWER + HEX FLOOR ]</span>
+                        <span class="text-green-500">ROWVILLE_HQ</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FITOUT SHOWCASE WITH DUAL INFINITE MARQUEES -->
+    <section class="fitout-showcase py-16 bg-white">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row w-full relative z-10 lg:gap-10">
             
             <div class="w-full lg:w-5/12 flex flex-col justify-center bg-white relative z-20 px-6 py-4 lg:py-0 lg:pr-10">
@@ -463,12 +592,12 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                 </h2>
                 
                 <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-4 font-medium">
-                    Elite Van Fitouts engineers the highest quality custom van racking and storage systems in Australia. Maximize your cargo space with advanced precision-machined raised false floors, heavy-duty 227kg sliding drawers, full ply lining, and trade-specific shelving units tailored perfectly to your workflow.
+                    Elite Van Fitouts engineers the highest quality custom van racking and storage systems in Australia. Maximize your cargo space with precision-machined raised false floors, heavy-duty 227kg sliding drawers, full ply lining, and trade-specific shelving units tailored perfectly to your workflow.
                 </p>
                 
                 <div id="fitout-extra-text" class="hidden md:block">
                     <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
-                        From highly durable, anti-scratch Hex-Ply protective flooring to specialized add-ons like perfectly angled Euro Crate racks, Packout docking stations, and custom silicone holders, our modular systems are completely customizable to every specific trade and every van model. Stop searching for lost tools. Systemize your vehicle and dominate your trade.
+                        From highly durable, anti-scratch Hex-Ply protective flooring to specialized add-ons like perfectly angled Euro Crate racks, Packout docking stations, and custom silicone holders, our modular systems are completely customizable to every trade and van model. Stop searching for lost tools. Systemize your vehicle and dominate your job site.
                     </p>
                 </div>
                 
@@ -484,32 +613,46 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
             <div class="w-full lg:w-7/12 overflow-hidden relative z-10 mt-10 lg:mt-0">
                 <div class="marquee-wrapper">
                     <div class="marquee-track track-fast">
-                        <img src="drawer system and flooring melbourne.jpg" class="marquee-img" alt="Drawer System and Flooring Melbourne">
-                        <img src="van tradie set up rowville.jpg" class="marquee-img" alt="Van Tradie Setup Rowville">
-                        <img src="false floor and shelving bayswater.jpg" class="marquee-img" alt="False Floor and Shelving Bayswater">
-                        <img src="van shelving knox.jpg" class="marquee-img" alt="Van Shelving Knox">
-                        <img src="van shelving and drawers rowville.jpg" class="marquee-img" alt="Van Shelving and Drawers Rowville">
-                        <img src="van flooring dandenong.jpg" class="marquee-img" alt="Van Flooring Dandenong">
-                        <img src="drawer system and flooring melbourne.jpg" class="marquee-img" alt="Drawer System and Flooring Melbourne">
-                        <img src="van tradie set up rowville.jpg" class="marquee-img" alt="Van Tradie Setup Rowville">
-                        <img src="false floor and shelving bayswater.jpg" class="marquee-img" alt="False Floor and Shelving Bayswater">
-                        <img src="van shelving knox.jpg" class="marquee-img" alt="Van Shelving Knox">
-                        <img src="van shelving and drawers rowville.jpg" class="marquee-img" alt="Van Shelving and Drawers Rowville">
-                        <img src="van flooring dandenong.jpg" class="marquee-img" alt="Van Flooring Dandenong">
+                        <a href="about.html"><img src="van shelving melbourne.jpeg" class="marquee-img" alt="Van Shelving Melbourne"></a>
+                        <a href="about.html"><img src="melbournes best van set ups.jpeg" class="marquee-img" alt="Melbournes Best Van Set Ups"></a>
+                        <a href="about.html"><img src="better than van fitouts melbourne.jpeg" class="marquee-img" alt="Better Than Van Fitouts Melbourne"></a>
+                        <a href="about.html"><img src="van fitouts melbourne.jpeg" class="marquee-img" alt="Van Fitouts Melbourne"></a>
+                        <a href="about.html"><img src="melbourne van set ups.jpeg" class="marquee-img" alt="Melbourne Van Set Ups"></a>
+                        <a href="about.html"><img src="van slideout system.jpeg" class="marquee-img" alt="Van Slideout System"></a>
+                        <a href="about.html"><img src="van storage systems.jpeg" class="marquee-img" alt="Van Storage Systems"></a>
+                        <a href="about.html"><img src="van slide outs.jpeg" class="marquee-img" alt="Van Slide Outs"></a>
+                        
+                        <!-- Duplicated for seamless continuous scroll -->
+                        <a href="about.html"><img src="van shelving melbourne.jpeg" class="marquee-img" alt="Van Shelving Melbourne"></a>
+                        <a href="about.html"><img src="melbournes best van set ups.jpeg" class="marquee-img" alt="Melbournes Best Van Set Ups"></a>
+                        <a href="about.html"><img src="better than van fitouts melbourne.jpeg" class="marquee-img" alt="Better Than Van Fitouts Melbourne"></a>
+                        <a href="about.html"><img src="van fitouts melbourne.jpeg" class="marquee-img" alt="Van Fitouts Melbourne"></a>
+                        <a href="about.html"><img src="melbourne van set ups.jpeg" class="marquee-img" alt="Melbourne Van Set Ups"></a>
+                        <a href="about.html"><img src="van slideout system.jpeg" class="marquee-img" alt="Van Slideout System"></a>
+                        <a href="about.html"><img src="van storage systems.jpeg" class="marquee-img" alt="Van Storage Systems"></a>
+                        <a href="about.html"><img src="van slide outs.jpeg" class="marquee-img" alt="Van Slide Outs"></a>
                     </div>
                 </div>
                 <div class="marquee-wrapper">
                     <div class="marquee-track track-slow">
-                        <img src="van storage system.jpeg" class="marquee-img" alt="Van Storage System">
-                        <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="marquee-img" alt="Van Drawers False Floor Carpet Campbellfield">
-                        <img src="van drawers lysterfeild.jpeg" class="marquee-img" alt="Van Drawers Lysterfield">
-                        <img src="van fitout melbourne.jpeg" class="marquee-img" alt="Van Fitout Melbourne">
-                        <img src="plumber van set up.jpeg" class="marquee-img" alt="Plumber Van Setup">
-                        <img src="van storage system.jpeg" class="marquee-img" alt="Van Storage System">
-                        <img src="van drawers and false floor with carpet campbellfeild.jpeg" class="marquee-img" alt="Van Drawers False Floor Carpet Campbellfield">
-                        <img src="van drawers lysterfeild.jpeg" class="marquee-img" alt="Van Drawers Lysterfield">
-                        <img src="van fitout melbourne.jpeg" class="marquee-img" alt="Van Fitout Melbourne">
-                        <img src="plumber van set up.jpeg" class="marquee-img" alt="Plumber Van Setup">
+                        <a href="about.html"><img src="melbourne van storage.jpeg" class="marquee-img" alt="Melbourne Van Storage"></a>
+                        <a href="about.html"><img src="van drawers melbourne.jpeg" class="marquee-img" alt="Van Drawers Melbourne"></a>
+                        <a href="about.html"><img src="campervan set up melbourne.jpeg" class="marquee-img" alt="Campervan Set Up Melbourne"></a>
+                        <a href="about.html"><img src="van ply lining melbourne.jpeg" class="marquee-img" alt="Van Ply Lining Melbourne"></a>
+                        <a href="about.html"><img src="van flooring melbourne.jpeg" class="marquee-img" alt="Van Flooring Melbourne"></a>
+                        <a href="about.html"><img src="melbourne tradie set up.jpeg" class="marquee-img" alt="Melbourne Tradie Set Up"></a>
+                        <a href="about.html"><img src="melbourne tradie set ups.jpeg" class="marquee-img" alt="Melbourne Tradie Set Ups"></a>
+                        <a href="about.html"><img src="van slide out shelving.jpeg" class="marquee-img" alt="Van Slide Out Shelving"></a>
+                        
+                        <!-- Duplicated for seamless continuous scroll -->
+                        <a href="about.html"><img src="melbourne van storage.jpeg" class="marquee-img" alt="Melbourne Van Storage"></a>
+                        <a href="about.html"><img src="van drawers melbourne.jpeg" class="marquee-img" alt="Van Drawers Melbourne"></a>
+                        <a href="about.html"><img src="campervan set up melbourne.jpeg" class="marquee-img" alt="Campervan Set Up Melbourne"></a>
+                        <a href="about.html"><img src="van ply lining melbourne.jpeg" class="marquee-img" alt="Van Ply Lining Melbourne"></a>
+                        <a href="about.html"><img src="van flooring melbourne.jpeg" class="marquee-img" alt="Van Flooring Melbourne"></a>
+                        <a href="about.html"><img src="melbourne tradie set up.jpeg" class="marquee-img" alt="Melbourne Tradie Set Up"></a>
+                        <a href="about.html"><img src="melbourne tradie set ups.jpeg" class="marquee-img" alt="Melbourne Tradie Set Ups"></a>
+                        <a href="about.html"><img src="van slide out shelving.jpeg" class="marquee-img" alt="Van Slide Out Shelving"></a>
                     </div>
                 </div>
             </div>
@@ -517,6 +660,7 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         </div>
     </section>
 
+    <!-- TRADE-SPECIFIC BADGES TICKER -->
     <section class="py-12 bg-white border-y border-[#ddd]">
         <div class="w-full overflow-hidden">
             <div class="max-w-7xl mx-auto">
@@ -544,23 +688,25 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         </div>
     </section>
 
+    <!-- CORE RESTRUCTURED SYSTEMS GRID -->
     <section id="systems" class="py-20 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
+                <!-- SYSTEM 01: HERO CARD (VAN FITOUTS & FALSE FLOORS) -->
                 <a href="fitouts.html" class="hex-card dominant group md:col-span-2">
                     <div class="card-inner flex flex-col md:flex-row gap-8 items-center">
                         <div class="flex-1">
                             <div class="flex justify-between items-start mb-4">
                                 <span class="mono text-green-500 text-[10px] tracking-widest font-bold">SYSTEM_01</span>
                             </div>
-                            <h3 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-4">Van Fitouts</h3>
+                            <h3 class="text-4xl md:text-5xl font-black italic uppercase text-white mb-4">Van Fitouts & False Floors</h3>
                             
                             <p class="text-gray-300 text-sm leading-relaxed mb-6 md:hidden">
-                                The ultimate commercial storage solution. Turn your cargo space into a highly organized, high-performance workflow.
+                                The ultimate commercial storage system. Heavy-duty 227kg drawers, raised false floors with pipe tunnels, and custom racking.
                             </p>
-                            <p class="hidden md:block text-gray-300 text-base line-height-relaxed max-w-xl mb-8">
-                                The ultimate commercial storage solution. Precision-machined false floors, heavy-duty sliding drawers, and protective marine carpet lining. Perfectly angled toolbox shelving designed specifically for your tools. Turn your cargo space into a highly organized, high-performance workflow.
+                            <p class="hidden md:block text-gray-300 text-base leading-relaxed max-w-xl mb-8">
+                                Complete commercial storage engineering. Precision-machined raised false floors with integrated copper and conduit tunnels, ultra-heavy 227kg sliding drawers, Packout docking integration, and custom tool racking tailored to your trade.
                             </p>
                             
                             <div class="action-button w-full md:w-64">DESIGN YOUR FITOUT -></div>
@@ -587,14 +733,15 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                     </div>
                 </a>
 
-                <a href="branding.html" class="hex-card group">
+                <!-- SYSTEM 02: VAN PROTECTION (FLOORING, PLY LINING, CARGO BARRIERS) -->
+                <a href="protection.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-6">
                             <span class="mono text-green-500 text-[10px] font-bold">SYSTEM_02</span>
                         </div>
-                        <h3 class="card-title">Signage</h3>
-                        <p class="card-desc">Dominate the road. Partial wraps, custom decals, and premium fleet graphics utilizing cast vinyl.</p>
-                        <div class="action-button">EXPLORE SIGNAGE -></div>
+                        <h3 class="card-title">Van Protection</h3>
+                        <p class="card-desc">15mm heavy-duty anti-scratch Hex-Ply protective flooring, full internal ply wall lining to eliminate body dents, and ADR-tested safety cargo barriers.</p>
+                        <div class="action-button">EXPLORE PROTECTION -></div>
                         <div class="status-bar">
                             <div class="status-indicator"><div class="led-dot green"></div><span class="text-white">OPERATIONAL</span></div>
                             <span class="text-green-500 font-bold">[ONLINE]</span>
@@ -602,17 +749,18 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                     </div>
                 </a>
 
-                <a href="launchpad.html" class="hex-card group">
+                <!-- SYSTEM 03: OTHER SERVICES (SIGNAGE & FLEET PORTAL) -->
+                <a href="other-services.html" class="hex-card group">
                     <div class="card-inner">
                         <div class="flex justify-between items-start mb-6">
                             <span class="mono text-green-500 text-[10px] font-bold">SYSTEM_03</span>
                         </div>
-                        <h3 class="card-title">Launchpad</h3>
-                        <p class="card-desc">Business in a Box. Get your Van Fitout, Vehicle Wrap, and SEO Website built simultaneously.</p>
-                        <div class="action-button">VIEW LAUNCHPAD -></div>
+                        <h3 class="card-title">Other Services</h3>
+                        <p class="card-desc">Access our dedicated Vehicle Signage, Wrap Division, and upcoming specialized commercial vehicle fleet services.</p>
+                        <div class="action-button">VIEW ALL SERVICES -></div>
                         <div class="status-bar">
                             <div class="status-indicator"><div class="led-dot green"></div><span class="text-white">OPERATIONAL</span></div>
-                            <span class="text-green-500 font-bold">[ONLINE]</span>
+                            <span class="text-green-500 font-bold">[PORTAL]</span>
                         </div>
                     </div>
                 </a>
@@ -621,38 +769,40 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         </div>
     </section>
 
+    <!-- WHY CHOOSE ELITE VALUE MATRIX -->
     <section class="py-24 bg-white border-y border-[#ddd]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-black italic uppercase text-black">Why Choose <span class="text-green-500">Elite</span></h2>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto font-medium">We don't build generic timber boxes. We build precision-engineered commercial storage systems designed to outlast your vehicle.</p>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto font-medium">We don't build generic timber boxes. We engineer precision commercial vehicle storage systems designed to outlast your vehicle.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="why-card">
                     <div class="why-icon">📐</div>
                     <h4 class="text-white font-bold uppercase mb-2">100% Custom Designs</h4>
-                    <p class="text-sm text-gray-400">Advanced machine-cut precision. Every drawer, false floor, and shelf is perfectly scribed to your specific van model to maximize every millimeter of cargo space.</p>
+                    <p class="text-sm text-gray-400">Advanced machine-cut precision. Every drawer, false floor, and shelf is scribed to your specific van model to maximize every millimeter of cargo volume.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">🛡️</div>
                     <h4 class="text-white font-bold uppercase mb-2">Elite Materials</h4>
-                    <p class="text-sm text-gray-400">We use premium 15mm Hex Plywood. It is highly anti-scratch, water-resistant, and features a reflective surface for extreme durability and easy cleaning.</p>
+                    <p class="text-sm text-gray-400">We use premium 15mm Hex Plywood. It is highly anti-scratch, water-resistant, and structural for extreme durability under harsh job site conditions.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">⚡</div>
                     <h4 class="text-white font-bold uppercase mb-2">Fast Turnarounds</h4>
-                    <p class="text-sm text-gray-400">Time off the tools is money lost. Our streamlined manufacturing process ensures rapid deployment so you get your van back and ready for work instantly.</p>
+                    <p class="text-sm text-gray-400">Time off the tools is money lost. Our streamlined manufacturing process ensures rapid deployment so you get back on the road fast.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">🛠️</div>
                     <h4 class="text-white font-bold uppercase mb-2">Trade Specific</h4>
-                    <p class="text-sm text-gray-400">Plumbers need pipes. Sparkies need cable racks. We specialize in building tailored layouts that perfectly match the daily workflow of your specific trade.</p>
+                    <p class="text-sm text-gray-400">Plumbers need pipes. Sparkies need cable racks. We specialize in building tailored layouts that perfectly match the physical workflow of your trade.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- REPUTATION REVIEWS WIDGET -->
     <section class="py-16 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <script type='text/javascript' src='https://reputationhub.site/reputation/assets/review-widget.js'></script>
@@ -660,6 +810,7 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         </div>
     </section>
 
+    <!-- SUBURBS SERVICE AREA ROW -->
     <section class="py-16 bg-white border-y-4 border-[var(--elite-green)]">
         <div class="w-full overflow-hidden">
             <div class="max-w-7xl mx-auto text-center">
@@ -706,6 +857,7 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         </div>
     </section>
 
+    <!-- CONTACT & RADAR WORKSHOP HQ -->
     <section id="contact" class="pt-16 pb-20 px-6 bg-white">
         
         <div class="max-w-4xl mx-auto mb-16 text-center px-4">
@@ -745,13 +897,13 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                     <div>
                         <p class="text-[10px] text-gray-600 uppercase font-bold mb-2 mono">Connect</p>
                         <div class="social-row">
-                            <a href="https://www.facebook.com/share/1Da7HLaCu7" target="_blank" class="social-icon social-fb">
+                            <a href="https://www.facebook.com/share/1Da7HLaCu7" target="_blank" class="social-icon">
                                 <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                             </a>
-                            <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="social-icon social-ig">
+                            <a href="https://www.instagram.com/elitevanfitouts" target="_blank" class="social-icon">
                                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             </a>
-                            <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="social-icon social-tt">
+                            <a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" class="social-icon">
                                 <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.05 3.5 3.01 1.57-.01 2.88-1.23 3.02-2.82.04-.9.04-1.79.04-2.69 0-3.3 0-6.59.03-9.89 1.29-.18 2.46-1.24 3-2.45.37-.84.54-1.79.57-2.73z"/></svg>
                             </a>
                         </div>
@@ -761,47 +913,39 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         </div>
     </section>
         
+    <!-- SEMANTIC HIDDEN SEO KEYWORDS -->
     <div class="sr-only">
-        <h1>The Best Custom Van Fitouts in Melbourne | Professional Van Racking, Heavy Duty Drawers & Raised Flooring</h1>
-        <p>Elite Van Fitouts is the ultimate destination for premium, highly durable commercial vehicle storage systems and tradie van setups. Located in Rowville, Victoria, we service all trades across Melbourne's Eastern and South Eastern suburbs. Whether you are a commercial electrician needing secure cable reel storage, a licensed plumber requiring heavy-duty tool drawers and pipe storage, or a residential builder needing massive raised false floors for timber, conduit, and ladder storage, we engineer and manufacture the best custom van fitouts in the industry.</p>
+        <h1>The Best Custom Van Fitouts, Flooring, Ply Lining & Cargo Barriers in Melbourne</h1>
+        <p>Elite Van Fitouts is Melbourne's specialist in commercial vehicle storage systems, heavy-duty false floors, 227kg drawer slides, protective 15mm Hex-Ply flooring, wall ply lining, and ADR safety cargo barriers. Located in Rowville, Victoria, we service commercial trades across Melbourne's Eastern and South Eastern suburbs.</p>
         
-        <h2>Custom Van Shelving, Slide Out Workbenches, and Raised False Floors</h2>
-        <p>Stop wasting billable hours digging through a messy, unorganized van. We maximize your commercial cargo space with precision-machined storage solutions. We design, manufacture, and install ultra-heavy-duty sliding drawers (rated to a massive 227kg dynamic load capacity), raised false floors with hidden under-floor tunnels designed specifically for 3m PVC conduit, copper pipes, and long spirit levels, alongside fully custom plywood shelving units. Every build is cut using advanced computer-guided precision machinery to perfectly scribe to the unique interior body curves and wheel arches of your specific vehicle, ensuring a flawless, rattle-free fit every single time.</p>
+        <h2>Commercial False Floors & Under-Floor Conduit Tunnels</h2>
+        <p>We manufacture precision false floors with heavy-load surface decks and built-in conduits for 3m pipes, timber, and ladders. Compatible with Toyota HiAce LWB / SLWB, Ford Transit Custom, LDV Deliver 9, Hyundai Staria Load, Mercedes Benz Sprinter, and dual cab ute canopies.</p>
         
-        <h2>Premium Construction Materials: 15mm Hex Plywood, Ply Lining, and Marine Carpet</h2>
-        <p>We do not use cheap, flimsy materials that warp or snap under pressure. Our heavy-duty van setups are constructed using premium 15mm Hex Plywood, which features a highly anti-scratch, water-resistant, and reflective phenolic coating. This ensures your commercial racking can withstand the daily abuse of a harsh construction worksite. We also offer full vehicle interior ply lining, wall paneling, and high-grade charcoal automotive marine carpet to provide essential road sound deadening, thermal insulation, and interior panel protection for your expensive work van.</p>
-
-        <h2>Trade-Specific Van Setups: Custom Storage Layouts for Every Workflow</h2>
-        <p>A mobile mechanic has completely different workflow needs compared to an emergency locksmith, an NBN technician, or an HVAC installation crew. Our modular storage systems are 100% customizable to your exact operational requirements. Add on specific organizational components such as Milwaukee Packout docking stations, Makita Makpac transport shelves, perfectly angled Euro Crate shelving for small plumbing fittings, vertical silicone cartridge holders, spray paint can dividers, secure gas cylinder ventilation enclosures, comprehensive 12V dual battery setups, high-wattage pure sine wave inverters, LED interior strip lighting for night work, and ADR-tested safety cargo barriers. We provide the absolute best professional setups for: Electricians, Plumbers, Gas Fitters, Air Conditioning Techs (HVAC), Builders, Carpenters, Data and Communications experts, Security Installers, Roofers, Glaziers, Painters, Mobile Dog Grooming Vans, Mobile Coffee Vans, Delivery Couriers, and Civil Contractors.</p>
-
-        <h2>Vehicle Compatibility: Toyota HiAce, Ford Transit, LDV, Hyundai & More</h2>
-        <p>Our racking systems, shelving units, and false floors are perfectly engineered for every major commercial van and ute canopy on the Australian market. We provide bespoke fitouts for the Toyota HiAce LWB (Long Wheelbase) and SLWB (Super Long Wheelbase), Ford Transit Custom, Ford Transit Heavy Duty, Ford Ranger Canopies, LDV Deliver 9 (Mid Roof and High Roof), LDV G10, Hyundai Staria Load, Hyundai iLoad, Mercedes Benz Vito, Mercedes Benz Sprinter (MWB, LWB, Extra Long), Volkswagen Transporter T6.1, Volkswagen Crafter, Renault Trafic, Renault Master, Peugeot Trafic, Mitsubishi Staria, Isuzu D-Max service bodies, and Nissan Navara service bodies.</p>
-
-        <h2>Vehicle Signage, Custom Decals, and Fleet Branding in Dandenong and Rowville</h2>
-        <p>Beyond internal cargo storage, Elite Van Fitouts is also Dandenong and Rowville's premier commercial vehicle signage and fleet branding specialist. Turn your work van into a 24/7 lead generation machine. We only use premium, automotive-grade cast vinyl from Avery Dennison and 3M, guaranteeing your custom vehicle wrap conforms to deep panel recesses without shrinking, cracking, or peeling in the harsh Australian sun. We offer crisp computer-cut logo decals, high-visibility partial wraps, full custom vehicle color change wraps, vivid digital print graphics, perforated one-way vision window mesh (for rear barn doors and tailgates), custom ute tray branding decals, half wraps, bonnet protectors, and high-visibility Class 1 reflective tape installations (Chapter 8 compliance) for mine-spec and civil construction vehicles.</p>
-
-        <h2>Local Service Areas: South East Melbourne Dominance</h2>
-        <p>We proudly design, build, and install custom van racking, structural flooring, and vehicle wrapping to tradesmen, business owners, and corporate fleet managers across all major South East Melbourne suburbs including: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, Officer, and Somerville. No matter where your daily job site is located, Elite Van Fitouts is your trusted local partner for complete vehicle optimization.</p>
+        <h2>Hex-Ply Flooring, Ply Lining & ADR Cargo Barriers</h2>
+        <p>Protect your investment with 15mm non-slip Hex flooring, precision CNC vehicle ply lining for walls and ceilings, and ADR impact-tested cargo barriers.</p>
     </div>
 
-    <div class="py-8 text-center bg-[#000] border-t border-[#111]">
+    <!-- COPYRIGHT FOOTER -->
+    <footer class="py-8 text-center bg-[#000] border-t border-[#111]">
         <p class="text-[10px] text-gray-500 mono uppercase">© 2026 ELITE VAN FITOUTS. SYSTEM V2.0 ONLINE.</p>
-    </div>
+    </footer>
 
+    <!-- GLOBAL CLIENT SCRIPTS & SITEWIDE BUILD STORAGE MANAGER -->
     <script>
-        // --- PRELOADER ---
+        // --- PRELOADER REMOVAL ---
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
             setTimeout(() => {
                 bootScreen.style.opacity = '0';
                 setTimeout(() => bootScreen.remove(), 500);
-            }, 1200);
+            }, 800);
+            EliteBuild.init();
         });
 
-        // --- MOBILE TEXT TOGGLE ---
+        // --- MOBILE SHOWCASE TEXT ACCORDION ---
         function toggleFitoutText() {
-            var text = document.getElementById("fitout-extra-text");
-            var btn = document.getElementById("fitout-read-more");
+            const text = document.getElementById("fitout-extra-text");
+            const btn = document.getElementById("fitout-read-more");
             if (text.classList.contains("hidden")) {
                 text.classList.remove("hidden");
                 btn.innerHTML = "- Show Less";
@@ -810,8 +954,111 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                 btn.innerHTML = "+ Read More";
             }
         }
+
+        // --- GLOBAL "YOUR BUILD" LOCALSTORAGE CONTROLLER ---
+        const EliteBuild = {
+            storageKey: 'elite_van_build_v1',
+            
+            getBuild() {
+                try {
+                    return JSON.parse(localStorage.getItem(this.storageKey)) || [];
+                } catch(e) {
+                    return [];
+                }
+            },
+
+            saveBuild(items) {
+                localStorage.setItem(this.storageKey, JSON.stringify(items));
+                this.updateUI();
+            },
+
+            addItem(item) {
+                // item: { id: 'flr_01', category: 'Flooring', name: '15mm Hex-Ply Floor', vehicle: 'Toyota HiAce LWB' }
+                let items = this.getBuild();
+                const exists = items.some(i => i.id === item.id);
+                if (!exists) {
+                    items.push(item);
+                    this.saveBuild(items);
+                }
+                toggleBuildDrawer(true);
+            },
+
+            removeItem(id) {
+                let items = this.getBuild().filter(item => item.id !== id);
+                this.saveBuild(items);
+            },
+
+            clear() {
+                localStorage.removeItem(this.storageKey);
+                this.updateUI();
+            },
+
+            init() {
+                this.updateUI();
+            },
+
+            updateUI() {
+                const items = this.getBuild();
+                const totalCount = items.length;
+
+                // Update counters
+                const navCount = document.getElementById('nav-build-count');
+                const floatingCount = document.getElementById('floating-build-count');
+                const drawerTotal = document.getElementById('drawer-item-total');
+
+                if (navCount) navCount.innerText = totalCount;
+                if (floatingCount) floatingCount.innerText = totalCount;
+                if (drawerTotal) drawerTotal.innerText = totalCount;
+
+                // Render items in slide-over drawer
+                const container = document.getElementById('build-items-container');
+                if (!container) return;
+
+                if (items.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-12">
+                            <p class="text-gray-500 mono text-xs mb-4 uppercase">[ No Items in Active Build ]</p>
+                            <p class="text-gray-600 text-sm">Explore our Fitouts, False Floors, or Protection packages to configure your setup.</p>
+                            <a href="fitouts.html" class="inline-block mt-6 text-green-500 mono text-xs font-bold uppercase underline">Explore Fitouts -></a>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = items.map(item => `
+                        <div class="build-item-pill">
+                            <div>
+                                <span class="mono text-[10px] text-green-500 uppercase font-bold tracking-wider">${item.category || 'SYSTEM'}</span>
+                                <h4 class="text-white text-sm font-bold uppercase mt-0.5">${item.name}</h4>
+                                ${item.vehicle ? `<p class="mono text-gray-500 text-[11px] mt-1">VEHICLE: ${item.vehicle}</p>` : ''}
+                            </div>
+                            <button onclick="EliteBuild.removeItem('${item.id}')" class="text-gray-500 hover:text-red-400 text-xs mono px-2 py-1 bg-[#1a1a22] rounded">✕</button>
+                        </div>
+                    `).join('');
+                }
+            }
+        };
+
+        // --- DRAWER TOGGLE FUNCTION ---
+        function toggleBuildDrawer(forceOpen = false) {
+            const drawer = document.getElementById('build-drawer');
+            const backdrop = document.getElementById('build-drawer-backdrop');
+            
+            if (forceOpen) {
+                drawer.classList.add('active');
+                backdrop.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.toggle('active');
+                backdrop.classList.toggle('active');
+                document.body.style.overflow = drawer.classList.contains('active') ? 'hidden' : 'auto';
+            }
+        }
+
+        function clearBuild() {
+            EliteBuild.clear();
+        }
     </script>
     
+    <!-- LEADCONNECTOR LIVE CHAT WIDGET -->
     <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69782dff572f85b3942d8c33"></script>
 
 </body>
