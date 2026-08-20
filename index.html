@@ -187,7 +187,7 @@
         }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* --- SPLIT SECTION: OUR FITOUTS --- */
+        /* --- SEO GALLERY SHOWCASE (16 PHOTOS) --- */
         .fitout-showcase { background: #ffffff; overflow: hidden; padding-top: 80px; padding-bottom: 40px; position: relative; }
         
         .marquee-wrapper {
@@ -197,19 +197,24 @@
         }
         .marquee-track { display: flex; gap: 20px; padding-left: 20px; width: max-content; }
         
-        .track-slow { animation: scrollLeft 25s linear infinite; } 
-        .track-fast { animation: scrollRight 20s linear infinite; } 
+        .track-slow { animation: scrollLeft 35s linear infinite; } 
+        .track-fast { animation: scrollRight 30s linear infinite; } 
         
         @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
         @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
         
-        .marquee-img {
-            height: 180px; width: 280px; object-fit: cover; border-radius: 8px;
-            border: 2px solid var(--elite-green); 
-            box-shadow: 0 0 15px rgba(34,197,94,0.3);
-            transition: transform 0.3s;
+        .marquee-img-card {
+            display: inline-flex; flex-direction: column; align-items: center; width: 280px; flex-shrink: 0;
+            border: 2px solid var(--elite-green); border-radius: 8px; overflow: hidden; background: #000;
+            box-shadow: 0 0 15px rgba(34,197,94,0.2); transition: transform 0.3s;
         }
-        .marquee-img:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.6); z-index: 10; position: relative; }
+        .marquee-img-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.6); z-index: 10; position: relative; }
+        .marquee-img { height: 160px; width: 100%; object-fit: cover; }
+        .marquee-caption {
+            background: #050505; color: var(--elite-green); font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; font-weight: bold; text-transform: uppercase; padding: 8px 10px; width: 100%;
+            text-align: center; letter-spacing: 1px; border-top: 1px solid #222;
+        }
 
         /* MOBILE HORIZONTAL SCROLL CONTAINERS */
         .mobile-scroll-row {
@@ -273,16 +278,18 @@
         .led-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
         .led-dot.green { background: var(--elite-green); box-shadow: 0 0 10px var(--elite-green); }
 
-        /* --- TILE MEDIA & IMAGE FADE --- */
+        /* --- TILE MEDIA & 4-PHOTO ROTATION FADE --- */
         .tile-media { height: 200px; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px; position: relative; border: 1px solid #222; }
         .fade-img-wrap { position: relative; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; }
-        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossFade 10s infinite; }
+        .fade-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: crossFade4 16s infinite; }
         .fade-delay-1 { animation-delay: 0s; }
-        .fade-delay-2 { animation-delay: 5s; }
+        .fade-delay-2 { animation-delay: 4s; }
+        .fade-delay-3 { animation-delay: 8s; }
+        .fade-delay-4 { animation-delay: 12s; }
 
-        @keyframes crossFade {
-            0%, 45% { opacity: 1; z-index: 2; }
-            50%, 95% { opacity: 0; z-index: 1; }
+        @keyframes crossFade4 {
+            0%, 20% { opacity: 1; z-index: 2; }
+            25%, 95% { opacity: 0; z-index: 1; }
             100% { opacity: 1; z-index: 2; }
         }
 
@@ -293,6 +300,14 @@
         }
         .why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
         .why-icon { color: var(--elite-green); font-size: 2.5rem; margin-bottom: 15px; text-shadow: 0 0 15px var(--elite-green-glow); }
+
+        /* --- REVIEWS SECTION --- */
+        .review-card {
+            background: #080808; border: 1px solid #222; border-radius: 12px; padding: 30px;
+            position: relative; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .review-card:hover { border-color: var(--elite-green); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(34,197,94,0.2); }
+        .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 15px; }
 
         /* --- LOCATION DOMINATION --- */
         .loc-tag {
@@ -314,6 +329,25 @@
             box-shadow: 0 0 15px var(--elite-green); animation: pulseDot 2s infinite;
         }
         @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+
+        /* --- BUILD DRAWER SYSTEM (LOCALSTORAGE CART) --- */
+        #build-drawer {
+            position: fixed; bottom: 30px; right: 30px; z-index: 90; background: #080808;
+            border: 2px solid var(--elite-green); border-radius: 12px; width: 320px; max-width: calc(100vw - 40px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        #build-drawer.minimized .drawer-body { display: none; }
+        #build-drawer.minimized { width: auto; }
+        .drawer-header {
+            background: #111; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #222; border-radius: 10px 10px 0 0; cursor: pointer;
+        }
+        .drawer-body { padding: 16px; max-height: 250px; overflow-y: auto; }
+        .cart-item {
+            display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace; padding: 8px 0; border-bottom: 1px solid #1a1a1a; color: #ccc;
+        }
+        .cart-item button { color: #ef4444; background: none; border: none; cursor: pointer; font-weight: bold; padding: 2px 6px; }
 
         /* --- BRANDED SOCIAL ICONS --- */
         .social-row { display: flex; gap: 15px; margin-top: 15px; }
@@ -350,6 +384,23 @@
         <img src="logo.png" alt="ELITE" class="loader-logo">
         <div class="loader-container">
             <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- PERSISTENT BUILD CART DRAWER -->
+    <div id="build-drawer" class="minimized">
+        <div class="drawer-header" onclick="toggleBuildDrawer()">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="mono text-xs uppercase tracking-wider font-bold text-white">Your Build (<span id="cart-count">0</span>)</span>
+            </div>
+            <span class="mono text-xs text-green-400 font-bold" id="drawer-toggle-text">[+] EXPAND</span>
+        </div>
+        <div class="drawer-body">
+            <div id="cart-items-container" class="mb-4">
+                <p class="mono text-xs text-gray-500 italic text-center py-4">No components selected yet.</p>
+            </div>
+            <a href="quote.html" onclick="passCartToForm()" class="btn-main w-full text-center block text-xs">PROCEED TO QUOTE →</a>
         </div>
     </div>
 
@@ -428,19 +479,21 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-            <!-- TILE 1: VAN FITOUTS -->
+            <!-- TILE 1: VAN FITOUTS (WITH 4-PHOTO CROSS-FADING SEQUENCE) -->
             <a href="fitouts.html" class="hex-card dominant">
                 <div class="card-inner">
                     <div class="tile-media">
                         <div class="fade-img-wrap">
-                            <img src="fitout-new-1.jpg" onerror="this.src='fitouts.jpg'" alt="Custom Ply Van Racking and Drawers" class="fade-img fade-delay-1">
-                            <img src="fitout-new-2.jpg" onerror="this.src='fitouts2.jpg'" alt="Precision False Floor Setup" class="fade-img fade-delay-2">
+                            <img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" alt="Van Shelving Melbourne" class="fade-img fade-delay-1">
+                            <img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" alt="Van Drawers Melbourne" class="fade-img fade-delay-2">
+                            <img src="van ply lining melbourne.jpeg" onerror="this.src='fitouts.jpg'" alt="Van Ply Lining Melbourne" class="fade-img fade-delay-3">
+                            <img src="van flooring melbourne.jpeg" onerror="this.src='fitouts2.jpg'" alt="Van Flooring Melbourne" class="fade-img fade-delay-4">
                         </div>
                     </div>
                     <div class="mono text-xs text-green-400 font-bold mb-2">01 / COMMERCIAL VEHICLES</div>
                     <h3 class="card-title">Van Fitouts</h3>
                     <p class="card-desc">CNC precision-cut plywood false floors, heavy-duty drawer slides, custom racking, and composite shelving built specifically for Toyota HiAce, Hyundai Staria, Ford Transit, and LDV Deliver 9.</p>
-                    <div class="action-button">EXPLORE FITOUTS →</div>
+                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Custom Van Fitout System');">ADD TO BUILD +</div>
                     <div class="status-bar">
                         <span class="status-indicator"><span class="led-dot green"></span> ACTIVE PRODUCTION</span>
                         <span>ROWVILLE HQ</span>
@@ -452,12 +505,12 @@
             <a href="branding.html" class="hex-card">
                 <div class="card-inner">
                     <div class="tile-media">
-                        <img src="branding.jpg" alt="Commercial Vehicle Wrap Signage" class="w-full h-full object-cover">
+                        <img src="melbournes best van set ups.jpeg" onerror="this.src='branding.jpg'" alt="Commercial Vehicle Wrap Signage" class="w-full h-full object-cover">
                     </div>
                     <div class="mono text-xs text-green-400 font-bold mb-2">02 / FLEET BRANDING</div>
                     <h3 class="card-title">Vehicle Signage</h3>
                     <p class="card-desc">Turn your trade vehicle into a mobile billboard. High-impact commercial wraps, reflective safety vinyl, one-way vision rear glass, and spot branding engineered for maximum road presence.</p>
-                    <div class="action-button">VIEW SIGNAGE →</div>
+                    <div class="action-button" onclick="event.preventDefault(); addToBuild('Commercial Vehicle Signage Pack');">ADD TO BUILD +</div>
                     <div class="status-bar">
                         <span class="status-indicator"><span class="led-dot green"></span> READY TO PRINT</span>
                         <span>PREMIUM VINYL</span>
@@ -469,12 +522,12 @@
             <a href="launchpad.html" class="hex-card">
                 <div class="card-inner">
                     <div class="tile-media">
-                        <img src="launchpad.jpg" onerror="this.src='hero.jpg'" alt="Business In A Box Tradie Launchpad" class="w-full h-full object-cover">
+                        <img src="melbourne tradie set up.jpeg" onerror="this.src='launchpad.jpg'" alt="Business In A Box Tradie Launchpad" class="w-full h-full object-cover">
                     </div>
                     <div class="mono text-xs text-green-400 font-bold mb-2">03 / TRADIE GROWTH</div>
                     <h3 class="card-title">The Launchpad</h3>
                     <p class="card-desc">Complete business-in-a-box solutions for contractors stepping up. Streamlined turnkey van setups, branding assets, website packs, and digital infrastructure so you start earning fast.</p>
-                    <div class="action-button">LAUNCH YOUR RIG →</div>
+                    <div class="action-button" onclick="event.preventDefault(); addToBuild('The Launchpad Turnkey Rig');">ADD TO BUILD +</div>
                     <div class="status-bar">
                         <span class="status-indicator"><span class="led-dot green"></span> TURNKEY RIGS</span>
                         <span>VIP ENROLMENT</span>
@@ -484,22 +537,104 @@
         </div>
     </section>
 
-    <!-- FITOUT SHOWCASE CAROUSEL -->
+    <!-- SEO GALLERY SHOWCASE (ALL 16 SPECIFIC FILES) -->
     <section class="fitout-showcase">
         <div class="max-w-7xl mx-auto px-6 mb-8 text-center md:text-left">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic tracking-tight text-black">RECENT MELBOURNE BUILDS</h2>
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic tracking-tight text-black">RECENT MELBOURNE BUILDS GALLERY</h2>
             <p class="mono text-xs uppercase tracking-widest text-gray-500">Precision Plywood • High Load Capacities • Lockable Storage</p>
         </div>
+        
+        <!-- Marquee Track 1 (First 8 images) -->
         <div class="marquee-wrapper">
             <div class="marquee-track track-slow">
-                <img src="fitout-new-1.jpg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout Build 1">
-                <img src="fitout-new-2.jpg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout Build 2">
-                <img src="fitout-new-3.jpg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout Build 3">
-                <img src="fitout-new-4.jpg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout Build 4">
-                <img src="fitout-new-1.jpg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout Build 1">
-                <img src="fitout-new-2.jpg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout Build 2">
-                <img src="fitout-new-3.jpg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout Build 3">
-                <img src="fitout-new-4.jpg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout Build 4">
+                <div class="marquee-img-card">
+                    <img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Van Shelving Melbourne">
+                    <div class="marquee-caption">Van Shelving Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="melbournes best van set ups.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Melbournes Best Van Set Ups">
+                    <div class="marquee-caption">Melbournes Best Van Set Ups</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="better than van fitouts melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Better Than Van Fitouts Melbourne">
+                    <div class="marquee-caption">Elite Build Standards</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van fitouts melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Fitouts Melbourne">
+                    <div class="marquee-caption">Van Fitouts Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="melbourne van set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Melbourne Van Set Ups">
+                    <div class="marquee-caption">Melbourne Van Set Ups</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van slideout system.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Slideout System">
+                    <div class="marquee-caption">Van Slideout System</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van storage systems.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Van Storage Systems">
+                    <div class="marquee-caption">Van Storage Systems</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van slide outs.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Slide Outs">
+                    <div class="marquee-caption">Van Slide Outs</div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-img-card">
+                    <img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Van Shelving Melbourne">
+                    <div class="marquee-caption">Van Shelving Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="melbournes best van set ups.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Melbournes Best Van Set Ups">
+                    <div class="marquee-caption">Melbournes Best Van Set Ups</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marquee Track 2 (Second 8 images - reverse direction) -->
+        <div class="marquee-wrapper">
+            <div class="marquee-track track-fast">
+                <div class="marquee-img-card">
+                    <img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Melbourne Van Storage">
+                    <div class="marquee-caption">Melbourne Van Storage</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Drawers Melbourne">
+                    <div class="marquee-caption">Van Drawers Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="campervan set up melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Campervan Set Up Melbourne">
+                    <div class="marquee-caption">Campervan Set Up Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van ply lining melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Ply Lining Melbourne">
+                    <div class="marquee-caption">Van Ply Lining Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van flooring melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Van Flooring Melbourne">
+                    <div class="marquee-caption">Van Flooring Melbourne</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="melbourne tradie set up.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Melbourne Tradie Set Up">
+                    <div class="marquee-caption">Melbourne Tradie Set Up</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="melbourne tradie set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Melbourne Tradie Set Ups">
+                    <div class="marquee-caption">Melbourne Tradie Set Ups</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Slide Out Shelving">
+                    <div class="marquee-caption">Van Slide Out Shelving</div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-img-card">
+                    <img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Melbourne Van Storage">
+                    <div class="marquee-caption">Melbourne Van Storage</div>
+                </div>
+                <div class="marquee-img-card">
+                    <img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Van Drawers Melbourne">
+                    <div class="marquee-caption">Van Drawers Melbourne</div>
+                </div>
             </div>
         </div>
     </section>
@@ -543,6 +678,34 @@
                 <div class="why-icon">🚀</div>
                 <h4 class="text-xl font-bold uppercase text-white mb-2">1-Day Rapid Turnarounds</h4>
                 <p class="text-gray-400 text-sm leading-relaxed">Pre-machined kits ready for rapid drop-in installation at our Rowville workshop so you spend less time off the tools.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="py-20 px-6 bg-black text-white border-t border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="mono text-xs text-green-400 font-bold tracking-widest">VERIFIED TRADIE REVIEWS</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tight mt-2 mb-4">TRUSTED BY MELBOURNE'S BEST</h2>
+                <p class="mono text-xs uppercase tracking-widest text-gray-500">See what local contractors have to say about our Rowville workshop</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"Absolute game changer for my HiAce. The false floor and heavy-duty drawers hold all my gear with zero rattles on site. Fast turnaround too!"</p>
+                    <div class="mono text-xs font-bold text-green-400">— Brad M., Sparkie (Dandenong)</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"The vehicle wrap and side signage look incredible. Elite turned my van into a proper mobile billboard. Already picked up two new jobs from it."</p>
+                    <div class="mono text-xs font-bold text-green-400">— Dave T., Builder (Rowville)</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 italic">"Cleanest ply lining and shelving setup in Melbourne. You can tell these guys actually understand how tradies work out of their vans."</p>
+                    <div class="mono text-xs font-bold text-green-400">— Mick S., Plumber (Bayswater)</div>
+                </div>
             </div>
         </div>
     </section>
@@ -600,8 +763,9 @@
         </div>
     </footer>
 
-    <!-- ROBUST PRELOADER TRIGGER SCRIPT -->
+    <!-- ROBUST PRELOADER & BUILD CART SYSTEM SCRIPT -->
     <script>
+        // Preloader Failsafe Logic
         (function() {
             const bootScreen = document.getElementById('boot-screen');
             if (!bootScreen) return;
@@ -616,16 +780,89 @@
                 }, 400);
             }
 
-            // Trigger as soon as DOM and stylesheets are ready
             if (document.readyState === 'complete' || document.readyState === 'interactive') {
                 setTimeout(dismissPreloader, 400);
             } else {
                 window.addEventListener('DOMContentLoaded', () => setTimeout(dismissPreloader, 400));
             }
 
-            // Absolute failsafe timeout: guarantees preloader vanishes within 1.5s no matter what
             setTimeout(dismissPreloader, 1500);
         })();
+
+        // Persistent Build Cart (localStorage) Logic
+        function getCart() {
+            try {
+                return JSON.parse(localStorage.getItem('elite_build_cart')) || [];
+            } catch(e) {
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('elite_build_cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function addToBuild(itemName) {
+            let cart = getCart();
+            if (!cart.includes(itemName)) {
+                cart.push(itemName);
+                saveCart(cart);
+            }
+            // Auto expand drawer when item is added
+            const drawer = document.getElementById('build-drawer');
+            if (drawer.classList.contains('minimized')) {
+                toggleBuildDrawer();
+            }
+        }
+
+        function removeFromBuild(index) {
+            let cart = getCart();
+            cart.splice(index, 1);
+            saveCart(cart);
+        }
+
+        function toggleBuildDrawer() {
+            const drawer = document.getElementById('build-drawer');
+            const toggleText = document.getElementById('drawer-toggle-text');
+            drawer.classList.toggle('minimized');
+            if (drawer.classList.contains('minimized')) {
+                toggleText.textContent = '[+] EXPAND';
+            } else {
+                toggleText.textContent = '[-] MINIMIZE';
+            }
+        }
+
+        function renderCart() {
+            let cart = getCart();
+            const container = document.getElementById('cart-items-container');
+            const countEl = document.getElementById('cart-count');
+            
+            countEl.textContent = cart.length;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="mono text-xs text-gray-500 italic text-center py-4">No components selected yet.</p>';
+                return;
+            }
+
+            let html = '';
+            cart.forEach((item, index) => {
+                html += `<div class="cart-item">
+                    <span>• ${item}</span>
+                    <button onclick="removeFromBuild(${index})">✕</button>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function passCartToForm() {
+            // Hand off cart summary to quote form page if needed via URL params or session storage
+            let cart = getCart();
+            sessionStorage.setItem('elite_quote_summary', JSON.stringify(cart));
+        }
+
+        // Initialize cart render on load
+        document.addEventListener('DOMContentLoaded', renderCart);
     </script>
 </body>
 </html>
