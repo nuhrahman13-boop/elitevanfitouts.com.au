@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Van Fitout Configurator | Rowville Racking & Shelving | ELITE</title>
+    <title>Custom Tradie Van Fitouts Melbourne | Commercial Shelving & False Floors</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --elite-green: #22c55e;
-            --elite-dark: #0a0a0a;
-            --elite-card: #141414;
-            --elite-border: #262626;
+            --dark-surface: #0f172a;
+            --card-surface: #1e293b;
         }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+            background-color: #0b0f17;
+            color: #f8fafc;
             overflow-x: hidden;
+            padding-bottom: 100px;
         }
+
         .mono {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains+Mono', monospace;
         }
-        /* Boot Screen Animation */
+
+        /* Preloader */
         #boot-screen {
             position: fixed;
             inset: 0;
@@ -32,543 +36,609 @@
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             transition: opacity 0.5s ease;
         }
-        .boot-bar {
-            width: 200px;
-            height: 2px;
-            background: #333;
-            position: relative;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-        .boot-bar::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--elite-green);
-            animation: loadBar 1s ease forwards;
-        }
-        @keyframes loadBar {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(0); }
-        }
-        /* Navigation & Dropdown Styling */
-        .nav-dropdown {
-            position: relative;
-        }
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--elite-border);
-            min-width: 220px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.2s ease;
-            z-index: 50;
-        }
-        .nav-dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        /* Card Selection System */
-        .mat-card {
-            background: #ffffff;
-            border: 2px solid #e2e8f0;
+
+        /* Tactical UI Card Styles */
+        .system-toggle-btn {
+            background: #18181b;
+            border: 2px solid #27272a;
+            padding: 1rem 2rem;
             border-radius: 0.75rem;
-            padding: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #a1a1aa;
+            transition: all 0.25s ease;
             cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
         }
-        .mat-card:hover {
-            border-color: #cbd5e1;
-        }
-        .mat-card.selected {
+        .system-toggle-btn.active {
             border-color: var(--elite-green);
-            background: #f0fdf4;
+            background: rgba(34, 197, 94, 0.1);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.25);
         }
-        .mat-card.selected::after {
-            content: 'SELECTED';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 700;
-            background: var(--elite-green);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-        }
-        /* Spec Card Dark Styling */
-        .spec-item {
-            background: var(--elite-card);
-            border: 1px solid var(--elite-border);
+
+        .config-card {
+            background: #121824;
+            border: 2px solid #1e293b;
             border-radius: 1rem;
+            transition: all 0.25s ease;
+            position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        .spec-item:hover {
+        .config-card:hover {
+            border-color: #334155;
+            transform: translateY(-2px);
+        }
+        .config-card.selected {
             border-color: var(--elite-green);
+            background: #152238;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.2);
         }
-        .spec-img-box {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: #000;
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
         }
-        .spec-img-box img, .spec-img-box video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        @media(min-width: 768px) {
+            .spec-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
-        .spec-item:hover .spec-img-box img, .spec-item:hover .spec-img-box video {
-            transform: scale(1.05);
-        }
-        .spec-content {
-            padding: 1.5rem;
+        .spec-point {
+            background: #090d14;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border-left: 2px solid var(--elite-green);
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
         }
-        .spec-actions {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--elite-border);
+        .spec-label {
+            font-size: 0.65rem;
+            color: #64748b;
+            font-family: 'JetBrains+Mono', monospace;
+            font-weight: 700;
         }
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            background: #1f2937;
-            border-radius: 0.375rem;
-            overflow: hidden;
+        .spec-val {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #f8fafc;
         }
-        .qty-btn {
-            background: #374151;
-            color: white;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-        .qty-btn:hover {
-            background: var(--elite-green);
-            color: black;
-        }
-        .qty-val {
-            color: white;
-            width: 40px;
-            text-align: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-        }
-        .info-btn {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: #9ca3af;
-            background: transparent;
-            border: 1px solid #374151;
-            padding: 0.375rem 0.75rem;
-            border-radius: 0.375rem;
-            transition: all 0.2s;
-        }
-        .info-btn:hover {
-            color: white;
-            border-color: white;
-        }
-        /* Blueprint Box Style */
+
         .blueprint-card {
-            background: var(--elite-card);
-            border: 1px solid var(--elite-border);
+            background: #111827;
+            border: 1px solid #1f2937;
             border-radius: 1rem;
             overflow: hidden;
             margin-bottom: 2rem;
+            transition: border-color 0.4s ease;
         }
         .blueprint-header {
-            background: #000;
+            background: #0b0f17;
             padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--elite-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #1f2937;
         }
         .blueprint-layout {
             display: grid;
             grid-template-columns: 1fr;
         }
-        @media(min-width: 768px) {
+        @media (min-width: 768px) {
             .blueprint-layout {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1.2fr 1.8fr;
             }
         }
         .blueprint-visual {
-            background: #000;
-            min-height: 280px;
-            position: relative;
+            background: #030712;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+            overflow: hidden;
         }
         .blueprint-video, .blueprint-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            max-height: 320px;
         }
         .blueprint-data {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 1.75rem;
         }
-        .spec-grid {
+
+        .flight-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 1rem;
         }
-        .spec-point {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
+        @media(min-width: 768px) {
+            .flight-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
-        .spec-label {
-            display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: #6b7280;
-            margin-bottom: 0.25rem;
-        }
-        .spec-val {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            color: white;
-            font-weight: 700;
-        }
-        /* Flight Steps */
-        .flight-container {
-            position: relative;
-            border-left: 2px dashed #374151;
-            margin-left: 1rem;
-            padding-left: 2rem;
-        }
-        .flight-step {
-            position: relative;
-            margin-bottom: 2.5rem;
-        }
-        .flight-dot {
-            position: absolute;
-            left: -2.45rem;
-            top: 0;
-            width: 1rem;
-            height: 1rem;
-            background: var(--elite-green);
-            border-radius: 50%;
-            border: 3px solid #f8fafc;
+        .flight-node {
+            background: #111827;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border-top: 3px solid var(--elite-green);
         }
         .step-title {
-            font-size: 1.125rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #f8fafc;
+            margin-bottom: 0.25rem;
         }
         .step-desc {
-            font-size: 0.875rem;
-            color: #64748b;
-            line-height: 1.5;
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
-        /* Manifest Sticky Bar */
+
+        .qty-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #090d14;
+            padding: 0.35rem 0.6rem;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1e293b;
+            color: #fff;
+            border-radius: 0.25rem;
+            font-weight: 800;
+            transition: all 0.2s;
+        }
+        .qty-btn:hover {
+            background: var(--elite-green);
+            color: #000;
+        }
+
+        .info-btn {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-family: 'JetBrains+Mono', monospace;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            cursor: pointer;
+        }
+        .info-btn:hover {
+            background: rgba(56, 189, 248, 0.25);
+        }
+
+        /* Sticky Bottom Manifest */
         .manifest-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: #0a0a0a;
-            border-top: 1px solid var(--elite-border);
+            background: rgba(11, 15, 23, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #1e293b;
             padding: 1rem 1.5rem;
-            z-index: 40;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            z-index: 50;
         }
         .submit-btn {
             background: var(--elite-green);
-            color: black;
+            color: #000;
             font-weight: 900;
-            text-transform: uppercase;
-            font-style: italic;
-            padding: 0.75rem 2rem;
+            padding: 0.85rem 1.75rem;
             border-radius: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
             letter-spacing: 0.05em;
-            transition: opacity 0.2s;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
         .submit-btn:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
         }
     </style>
 </head>
-<body class="pb-32">
+<body>
 
-    <!-- BOOT SCREEN -->
+    <!-- BOOT / PRELOADER -->
     <div id="boot-screen">
-        <div class="text-white font-black italic tracking-widest text-xl mb-2">ROWVILLE RACKING & SHELVING | <span class="text-green-500">ELITE</span></div>
-        <div class="text-xs mono text-gray-500 uppercase">INITIALIZING FITOUT CONFIGURATOR v3.4...</div>
-        <div class="boot-bar"></div>
+        <div class="mono text-green-500 text-lg tracking-widest animate-pulse font-bold">SYSTEM BOOT // ELITE VAN FITOUTS</div>
+        <p class="text-xs text-gray-500 mono mt-2">Loading CAD modules & vehicle frameworks...</p>
     </div>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="bg-black text-white border-b border-neutral-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <span class="font-black italic text-xl tracking-tighter uppercase">ROWVILLE RACKING <span class="text-green-500">| ELITE</span></span>
-            </a>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider mono">
-                <a href="index.html" class="hover:text-green-500 transition-colors">Home</a>
-                <div class="nav-dropdown">
-                    <a href="fitouts.html" class="text-green-500 flex items-center gap-1 cursor-pointer">Fitouts & Racking ▾</a>
-                    <div class="dropdown-menu p-2 rounded-lg">
-                        <a href="fitouts.html" class="block px-4 py-2 text-xs text-gray-300 hover:text-white hover:bg-neutral-900 rounded">Van Racking Builder</a>
-                        <a href="protection.html" class="block px-4 py-2 text-xs text-gray-300 hover:text-white hover:bg-neutral-900 rounded">Protection & Lining</a>
-                    </div>
-                </div>
-                <a href="protection.html" class="hover:text-green-500 transition-colors">Protection</a>
-                <a href="index.html#contact" class="hover:text-green-500 transition-colors">Contact</a>
-            </nav>
-            <div class="flex items-center gap-4">
-                <a href="tel:0468086490" class="hidden sm:inline-block text-xs mono text-green-500 border border-green-500 px-3 py-2 rounded font-bold hover:bg-green-500 hover:text-black transition-colors">0468 086 490</a>
+    <!-- NAVIGATION -->
+    <nav class="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-40 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-3 bg-green-500 rounded-full animate-ping"></span>
+                <span class="font-black text-xl tracking-tighter uppercase italic text-white">ELITE <span class="text-green-500">FITOUTS</span></span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="protection.html" class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-green-400 transition">Vehicle Lining & Protection -></a>
+                <a href="tel:0468086490" class="mono text-xs font-bold text-green-400 bg-green-500/10 border border-green-500/30 px-3 py-1.5 rounded">0468 086 490</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- VEHICLE PROTECTION CROSS-LINK BANNER -->
+    <aside class="bg-gradient-to-r from-green-950/40 via-zinc-900 to-green-950/40 border-b border-green-500/20 py-2.5 px-4 text-center">
+        <p class="text-xs font-medium text-gray-300">
+            Need Wall Lining, Cargo Barriers, or Dual Battery Systems? 
+            <a href="protection.html" class="text-green-400 font-bold underline ml-1 hover:text-green-300">View Interior Protection & 12V Systems &rarr;</a>
+        </p>
+    </aside>
+
+    <!-- HERO SECTION -->
+    <header class="py-16 md:py-24 px-4 text-center relative overflow-hidden">
+        <div class="max-w-5xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span> 2026 PRECISION CNC ARCHITECTURE
+            </div>
+            <h1 class="text-4xl md:text-7xl font-black italic uppercase tracking-tight text-white mb-6">
+                ENGINEERED FOR <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">TRADES</span>
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base mb-8 leading-relaxed">
+                Heavy-duty false floor systems, precision-machined packout racking, and rattle-free Euro Crate storage. Built exclusively with 15mm phenolic hex ply in Rowville, Victoria.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#build-matrix" class="submit-btn text-sm">CONFIGURE YOUR LOADOUT</a>
+                <button onclick="toggleFitoutText()" id="fitout-read-more" class="px-6 py-3 rounded-lg border border-zinc-700 bg-zinc-900 text-sm font-bold text-gray-300 hover:border-gray-500 transition">
+                    + Read Overview
+                </button>
+            </div>
+            <div id="fitout-extra-text" class="hidden max-w-3xl mx-auto text-left bg-zinc-900/90 border border-zinc-800 p-6 rounded-xl mt-8 text-xs text-gray-400 leading-relaxed">
+                Stop losing billable hours searching for misplaced fittings. Elite Van Fitouts engineers bespoke, high-density vehicle storage solutions scribed precisely to the CAD wheel-arch profiles of your Toyota HiAce, Ford Transit Custom, LDV Deliver 9, Hyundai Staria Load, or Mercedes Sprinter. Built to withstand punishing Australian worksites with extreme 227kg drawer slides and R10 anti-skid surfaces.
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="bg-black text-white py-20 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <div class="inline-block text-[10px] mono text-green-500 bg-green-500/10 px-3 py-1 rounded-full uppercase tracking-widest mb-4 border border-green-500/20">
-                Interactive Configurator
+    <!-- BUILT FOR YOUR TRADE / GALLERY -->
+    <section class="max-w-7xl mx-auto px-4 mb-24">
+        <div class="text-center mb-12">
+            <p class="text-xs font-bold text-green-500 mono uppercase tracking-widest mb-2">FIELD TESTED WORKFLOWS</p>
+            <h2 class="text-3xl md:text-4xl font-black uppercase italic text-white">Built For Your Trade</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden group">
+                <div class="h-48 bg-zinc-950 relative overflow-hidden">
+                    <img src="euro crates shelf.jpg" alt="Electrical Fitout" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-black/80 px-2 py-1 rounded text-[10px] mono text-green-400 border border-green-500/30">SPARKIES</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-white text-lg mb-2">Electrical Contractors</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">3-meter internal conduit tunnels, high-density Euro bins for breakers and GPOs, dedicated cable spool carriers, and Packout tool docks.</p>
+                </div>
             </div>
-            <h1 class="text-4xl md:text-6xl font-black uppercase italic tracking-tight mb-6">
-                Configure Your <span class="text-green-500">Work Van</span>
-            </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed mb-8">
-                Build your structural flooring, choose your configuration path, select storage modules, and submit your live build manifest directly to our Rowville workshop.
-            </p>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden group">
+                <div class="h-48 bg-zinc-950 relative overflow-hidden">
+                    <img src="tool shelf1.jpg" alt="Plumbing Fitout" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-black/80 px-2 py-1 rounded text-[10px] mono text-green-400 border border-green-500/30">PLUMBERS</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-white text-lg mb-2">Plumbing & Gasfitters</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Deep pull-out underfloor drawers for copper coils, gravity-retention brassware shelving, and ventilated gas-bottle security enclosures.</p>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden group">
+                <div class="h-48 bg-zinc-950 relative overflow-hidden">
+                    <img src="seperator1.jpg" alt="Carpentry Fitout" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-black/80 px-2 py-1 rounded text-[10px] mono text-green-400 border border-green-500/30">BUILDERS</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-white text-lg mb-2">Builders & Carpenters</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Massive flat deck payload zones for sheet timber and plaster, slide-out workbenches, level tubes, and universal Systainer/Makpac storage.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- MAIN CONFIGURATOR CONTAINER -->
-    <main class="max-w-7xl mx-auto px-6 pt-16">
+    <!-- CONFIGURATOR MATRIX -->
+    <main class="max-w-6xl mx-auto px-4 mb-24" id="build-matrix">
+        
+        <!-- STEP 1: SYSTEM TYPE SELECTION -->
+        <section class="mb-16 text-center">
+            <span class="mono text-xs text-green-500 font-bold tracking-widest block mb-2">STEP 01</span>
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic text-white mb-8">Select Architecture</h2>
+            
+            <div class="inline-flex p-1.5 bg-zinc-900 border border-zinc-800 rounded-xl gap-2">
+                <button id="system-drawers-btn" class="system-toggle-btn active" onclick="setSystemType('drawers')">
+                    Drawer System + Shelving
+                </button>
+                <button id="system-shelving-btn" class="system-toggle-btn" onclick="setSystemType('shelving')">
+                    Only Shelving (No Floor Drawers)
+                </button>
+            </div>
+        </section>
 
-        <!-- STEP 01: CHOOSE SYSTEM PATH -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3 text-gray-900">
-                <span class="text-green-500 text-sm mono">01.</span> Select Core Architecture
-            </h2>
+        <!-- STEP 2: PACKAGE SELECTION -->
+        <section class="mb-20">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-green-500 text-sm mono">02.</span>
+                <h3 class="text-xl md:text-2xl font-black uppercase italic text-white">Select Base Configuration</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="packages-container">
+                
+                <!-- DRAWER BASED PACKAGES -->
+                <div class="config-card selected pkg-drawers p-6 flex flex-col justify-between" id="pkg-essential" onclick="selectItem('pkg', 'Essential', 'pkg-essential')">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="mono text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">ENTRY BUILD</span>
+                            <span class="mono text-xs text-gray-400">FLOOR + BASE</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase italic text-white mb-2">Essential Setup</h4>
+                        <div class="mb-4 rounded-lg overflow-hidden bg-black/50 aspect-video flex items-center justify-center">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="false floor.mov" type="video/mp4"></video>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">Full raised false floor with 1x ultra-heavy 227kg drawer slide and full-length open conduit tunnel. Clean, uninhibited deck storage.</p>
+                        <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> 15mm Trans-Tex False Floor</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> 1x Rear/Side Out Drawer (227kg)</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> 3m Long Conduit Tunnel</li>
+                            <li class="flex items-center gap-2 text-gray-500"><span>•</span> Add modular racking separately</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs font-bold text-green-400 mono">ACTIVE SELECTION</div>
+                </div>
+
+                <div class="config-card pkg-drawers p-6 flex flex-col justify-between" id="pkg-pro" onclick="selectItem('pkg', 'Pro', 'pkg-pro')">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="mono text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">MOST POPULAR</span>
+                            <span class="mono text-xs text-gray-400">COMPLETE FITOUT</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase italic text-white mb-2">Pro Tradie Setup</h4>
+                        <div class="mb-4 rounded-lg overflow-hidden bg-black/50 aspect-video flex items-center justify-center">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="false floor.mov" type="video/mp4"></video>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">Raised floor system combined with integrated single-side racking. Includes 3 modular shelf units of your choice.</p>
+                        <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Heavy Duty False Floor System</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Single Wall Modular Racking Frame</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> <strong>Includes 3 Modules</strong></li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> R10 Hex Phenolic Anti-Skid Deck</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs font-bold text-gray-500 mono select-prompt">CLICK TO SELECT</div>
+                </div>
+
+                <div class="config-card pkg-drawers p-6 flex flex-col justify-between" id="pkg-elite" onclick="selectItem('pkg', 'Elite', 'pkg-elite')">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="mono text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">MAX DENSITY</span>
+                            <span class="mono text-xs text-gray-400">DUAL WALL + FLOOR</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase italic text-white mb-2">Elite Workshop</h4>
+                        <div class="mb-4 rounded-lg overflow-hidden bg-black/50 aspect-video flex items-center justify-center">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="false floor.mov" type="video/mp4"></video>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">Dual-side full racking plus twin drawer underfloor system. Engineered for mobile workshops with zero wasted space.</p>
+                        <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Twin 227kg Underfloor Drawers</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Passenger + Driver Wall Racking</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> <strong>Includes 7 Modules</strong></li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Max Storage Configuration</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs font-bold text-gray-500 mono select-prompt">CLICK TO SELECT</div>
+                </div>
+
+                <!-- PURE SHELVING PACKAGES (ONLY VISIBLE WHEN "ONLY SHELVING" IS TOGGLED) -->
+                <div class="config-card pkg-shelving hidden p-6 flex flex-col justify-between" id="pkg-shelving-single" onclick="selectItem('pkg', 'Single Wall Shelving', 'pkg-shelving-single')">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="mono text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">SHELVING ONLY</span>
+                            <span class="mono text-xs text-gray-400">DRIVER OR PASSENGER</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase italic text-white mb-2">Single Wall Racking</h4>
+                        <div class="mb-4 rounded-lg overflow-hidden bg-black/50 aspect-video flex items-center justify-center">
+                            <img src="tool shelf1.jpg" class="w-full h-full object-cover" alt="Single Wall Racking">
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">Precision CNC scribed shelving mounted direct to vehicle factory mounting points. No raised floor required.</p>
+                        <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Floor-to-Roof Modular Tower</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Includes 3 Custom Shelving Bays</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Retains 100% Van Floor Clearance</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs font-bold text-gray-500 mono select-prompt">CLICK TO SELECT</div>
+                </div>
+
+                <div class="config-card pkg-shelving hidden p-6 flex flex-col justify-between" id="pkg-shelving-dual" onclick="selectItem('pkg', 'Dual Wall Shelving', 'pkg-shelving-dual')">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="mono text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">SHELVING ONLY</span>
+                            <span class="mono text-xs text-gray-400">BOTH WALLS</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase italic text-white mb-2">Dual Wall Racking</h4>
+                        <div class="mb-4 rounded-lg overflow-hidden bg-black/50 aspect-video flex items-center justify-center">
+                            <img src="euro crates shelf.jpg" class="w-full h-full object-cover" alt="Dual Wall Racking">
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">Full driver and passenger side floor-to-ceiling modular shelving. Leaves central floor walkway clear for pallets or machinery.</p>
+                        <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Left & Right Wall Towers</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Includes 6 Custom Modular Bays</li>
+                            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Massive Vertical Organization</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs font-bold text-gray-500 mono select-prompt">CLICK TO SELECT</div>
+                </div>
+
+                <!-- BESPOKE CUSTOM CARD (AVAILABLE ACROSS BOTH) -->
+                <div class="config-card p-6 flex flex-col justify-between" id="pkg-custom" onclick="selectItem('pkg', 'Custom', 'pkg-custom')">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="mono text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded border border-blue-500/20">100% BESPOKE</span>
+                            <span class="mono text-xs text-gray-400">CAD DESIGN</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase italic text-white mb-2">Full Custom Build</h4>
+                        <div class="mb-4 rounded-lg overflow-hidden bg-black/50 aspect-video flex items-center justify-center border border-dashed border-zinc-700">
+                            <div class="text-center p-4">
+                                <span class="mono text-xs text-blue-400 block mb-1">[ 3D CAD SUITE ]</span>
+                                <span class="text-xs text-gray-400">Custom Engineering Session</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">Have unique tooling, extreme sizing, or fleet specific requirements? Work 1-on-1 with our head design engineer.</p>
+                        <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Custom CAD 3D Design Session</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Tailored Drawer & Racking Geometry</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Direct Engineer Consultation</li>
+                        </ul>
+                    </div>
+                    <div class="text-xs font-bold text-blue-400 mono">FREE CONSULTATION</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STEP 3: FINISH SELECTION -->
+        <section class="mb-20">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-green-500 text-sm mono">03.</span>
+                <h3 class="text-xl md:text-2xl font-black uppercase italic text-white">Select Material Finish</h3>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="mat-card selected" id="sys-drawers" onclick="selectSystem('drawer', 'sys-drawers')">
-                    <h3 class="mat-title text-xl font-black uppercase italic mb-2">Drawer System + Floor & Racking</h3>
-                    <p class="mat-desc text-sm text-gray-600">Heavy duty under-floor sliding drawers with robust structural false floor platform and side racking capability.</p>
+                <div class="config-card selected p-6 flex items-center justify-between" id="fin-hex" onclick="selectItem('fin', 'Hex Ply (Black)', 'fin-hex')">
+                    <div>
+                        <span class="mono text-xs text-green-400">COMMERCIAL GRADE</span>
+                        <h4 class="text-lg font-bold text-white uppercase italic">15mm Hex Ply (Black Phenolic)</h4>
+                        <p class="text-xs text-gray-400 mt-1">Water resistant, R10 anti-skid face, scratch-proof coating.</p>
+                    </div>
+                    <span class="w-4 h-4 rounded-full border-2 border-green-500 bg-green-500"></span>
                 </div>
-                <div class="mat-card" id="sys-shelving" onclick="selectSystem('shelving', 'sys-shelving')">
-                    <h3 class="mat-title text-xl font-black uppercase italic mb-2">Only Shelving & Lining</h3>
-                    <p class="mat-desc text-sm text-gray-600">Pure modular racking bays and internal paneling without heavy under-deck drawer assemblies.</p>
+
+                <div class="config-card p-6 flex items-center justify-between" id="fin-birch" onclick="selectItem('fin', 'Raw Birch Ply', 'fin-birch')">
+                    <div>
+                        <span class="mono text-xs text-gray-400">NATURAL TIMBER</span>
+                        <h4 class="text-lg font-bold text-white uppercase italic">15mm Premium Hardwood Birch</h4>
+                        <p class="text-xs text-gray-400 mt-1">Clean natural timber grain, light reflective, sanded raw finish.</p>
+                    </div>
+                    <span class="w-4 h-4 rounded-full border-2 border-zinc-700"></span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- STEP 02: SELECT PACKAGE LEVEL -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3 text-gray-900">
-                <span class="text-green-500 text-sm mono">02.</span> Select Layout Package
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="spec-item group selected" id="pkg-essential" onclick="selectItem('pkg', 'Essential', 'pkg-essential')">
-                    <div class="spec-img-box"><video autoplay muted loop playsinline class="blueprint-video"><source src="false floor.mov" type="video/mp4"></video></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Essential Setup</h4>
-                        <p class="text-xs text-gray-400 mb-6">Core structural false floor and baseline setup. No module slots included (Shelving locked).</p>
-                        <ul class="text-xs mono text-gray-400 space-y-1 mb-4">
-                            <li>> 12mm Hex Anti-Slip Deck</li>
-                            <li>> Solid Frame Anchor</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="spec-item group" id="pkg-pro" onclick="selectItem('pkg', 'Pro', 'pkg-pro')">
-                    <div class="spec-img-box"><video autoplay muted loop playsinline class="blueprint-video"><source src="false floor.mov" type="video/mp4"></video></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Pro Setup</h4>
-                        <p class="text-xs text-gray-400 mb-6">Optimized mid-tier configuration. Includes up to 3 complimentary module slots.</p>
-                        <ul class="text-xs mono text-gray-400 space-y-1 mb-4">
-                            <li>> Heavy Duty Racking</li>
-                            <li>> Max 3 Shelving Modules</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="spec-item group" id="pkg-elite" onclick="selectItem('pkg', 'Elite', 'pkg-elite')">
-                    <div class="spec-img-box"><video autoplay muted loop playsinline class="blueprint-video"><source src="false floor.mov" type="video/mp4"></video></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Elite Setup</h4>
-                        <p class="text-xs text-gray-400 mb-6">Maximum build capacity. Includes up to 7 complimentary module slots for total fleet output.</p>
-                        <ul class="text-xs mono text-gray-400 space-y-1 mb-4">
-                            <li>> Full Cabin Optimization</li>
-                            <li>> Max 7 Shelving Modules</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="spec-item group" id="pkg-custom" onclick="selectItem('pkg', 'Custom', 'pkg-custom')">
-                    <div class="spec-img-box"><video autoplay muted loop playsinline class="blueprint-video"><source src="false floor.mov" type="video/mp4"></video></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Custom Build</h4>
-                        <p class="text-xs text-gray-400 mb-6">Fully bespoke engineering consultation required. Tailored completely to unique trade specs.</p>
-                        <ul class="text-xs mono text-gray-400 space-y-1 mb-4">
-                            <li>> Fully Tailored Layout</li>
-                            <li>> Requires Call Session</li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- STEP 4: MODULAR ADDONS -->
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-green-500 text-sm mono">04.</span>
+                <h3 class="text-xl md:text-2xl font-black uppercase italic text-white">Configure Modular Components</h3>
             </div>
-        </div>
 
-        <!-- STEP 03: SELECT FINISH LAYER -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3 text-gray-900">
-                <span class="text-green-500 text-sm mono">03.</span> Select Finish Layer
-            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="mat-card selected" id="fin-rubber" onclick="selectItem('fin', 'Rubber Surface', 'fin-rubber')">
-                    <h3 class="mat-title text-xl font-black uppercase italic mb-2">Rubber Surface Layer</h3>
-                    <p class="mat-desc text-sm text-gray-600">Extra grip and extreme daily wear resistance against heavy moving equipment and sliding crates.</p>
+                
+                <!-- Crate Shelving -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Euro Crate Shelves</h4>
+                        <p class="text-xs text-gray-400 mb-3">15° angled retention racking for small parts bins.</p>
+                        <button class="info-btn" onclick="scrollToSpec('tech-crate')">Specs &rarr;</button>
+                    </div>
+                    <div class="qty-counter">
+                        <button class="qty-btn" onclick="updateAddon('Crate Shelves', -1)">-</button>
+                        <span class="mono text-sm font-bold w-6 text-center" id="qty-CrateShelves">0</span>
+                        <button class="qty-btn" onclick="updateAddon('Crate Shelves', 1)">+</button>
+                    </div>
                 </div>
-                <div class="mat-card" id="fin-carpet" onclick="selectItem('fin', 'Charcoal Carpet', 'fin-carpet')">
-                    <h3 class="mat-title text-xl font-black uppercase italic mb-2">Charcoal Carpet Layer</h3>
-                    <p class="mat-desc text-sm text-gray-600">Acoustic sound deadening, soft thermal comfort, and premium protection for delicate gear or fragile cargo.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- STEP 04: CONFIGURE MODULES -->
-        <div class="mb-24" id="modules-section">
-            <div class="flex justify-between items-end mb-8">
-                <h2 class="text-2xl md:text-4xl font-black uppercase italic flex items-center gap-3 text-gray-900">
-                    <span class="text-green-500 text-sm mono">04.</span> Configure Modules
-                </h2>
-            </div>
-            <p class="text-gray-500 mb-6 text-sm" id="addon-instruction">Select your shelving modules based on your selected package allocation rules.</p>
+                <!-- Toolbox Shelving -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Toolbox Racking</h4>
+                        <p class="text-xs text-gray-400 mb-3">Docks Packout, Makpac, and Festool Systainers.</p>
+                        <button class="info-btn" onclick="scrollToSpec('tech-toolbox')">Specs &rarr;</button>
+                    </div>
+                    <div class="qty-counter">
+                        <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', -1)">-</button>
+                        <span class="mono text-sm font-bold w-6 text-center" id="qty-ToolboxShelves">0</span>
+                        <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', 1)">+</button>
+                    </div>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="modules-grid">
-                <div class="spec-item group" id="mod-crate">
-                    <div class="spec-img-box"><img src="euro crates shelf.jpg" alt="Euro Crate Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-2xl font-black italic text-white uppercase mb-2">Crate Shelves</h4>
-                        <p class="text-sm text-gray-400 mb-6">Angled storage for standard Euro Crates.</p>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Crate Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-CrateShelves">0</span>
-                                <button class="qty-btn" onclick="updateAddon('Crate Shelves', 1)">+</button>
-                            </div>
-                            <button class="info-btn" onclick="scrollToSpec('tech-crate')">Specs</button>
-                        </div>
+                <!-- Organiser Shelving -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Aerosol & Glues Shelves</h4>
+                        <p class="text-xs text-gray-400 mb-3">Anti-rattle dividers for sprays, solvents, and tools.</p>
+                        <button class="info-btn" onclick="scrollToSpec('tech-org')">Specs &rarr;</button>
+                    </div>
+                    <div class="qty-counter">
+                        <button class="qty-btn" onclick="updateAddon('Organiser Shelves', -1)">-</button>
+                        <span class="mono text-sm font-bold w-6 text-center" id="qty-OrganiserShelves">0</span>
+                        <button class="qty-btn" onclick="updateAddon('Organiser Shelves', 1)">+</button>
                     </div>
                 </div>
-                <div class="spec-item group" id="mod-toolbox">
-                    <div class="spec-img-box"><img src="tool shelf1.jpg" alt="Toolbox Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-2xl font-black italic text-white uppercase mb-2">Toolbox Shelves</h4>
-                        <p class="text-sm text-gray-400 mb-6">High-lip shelves for Packout/Makpac.</p>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-ToolboxShelves">0</span>
-                                <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', 1)">+</button>
-                            </div>
-                            <button class="info-btn" onclick="scrollToSpec('tech-toolbox')">Specs</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="spec-item group" id="mod-org">
-                    <div class="spec-img-box"><img src="seperator1.jpg" alt="Organiser Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-2xl font-black italic text-white uppercase mb-2">Organiser Shelves</h4>
-                        <p class="text-sm text-gray-400 mb-6">Fixed dividers for sprays and glues.</p>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Organiser Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-OrganiserShelves">0</span>
-                                <button class="qty-btn" onclick="updateAddon('Organiser Shelves', 1)">+</button>
-                            </div>
-                            <button class="info-btn" onclick="scrollToSpec('tech-org')">Specs</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="spec-item group" id="mod-silicone">
-                    <div class="spec-img-box"><img src="silicone.jpg" alt="Silicone Holder"></div>
-                    <div class="spec-content">
-                        <h4 class="text-2xl font-black italic text-white uppercase mb-2">Silicone Holder</h4>
-                        <p class="text-sm text-gray-400 mb-6">Vertical storage for adhesive tubes.</p>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Silicone Holder', -1)">-</button>
-                                <span class="qty-val" id="qty-SiliconeHolder">0</span>
-                                <button class="qty-btn" onclick="updateAddon('Silicone Holder', 1)">+</button>
-                            </div>
-                            <button class="info-btn" onclick="scrollToSpec('tech-silicone')">Specs</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- CROSS-LINK TO PROTECTION PAGE -->
-        <div class="mb-24 bg-black text-white p-10 rounded-2xl border border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div>
-                <div class="text-[10px] mono text-green-500 uppercase tracking-widest mb-2">Fleet Body Shielding</div>
-                <h3 class="text-2xl md:text-3xl font-black uppercase italic mb-3">Looking for Wall Linings & Armor Protection?</h3>
-                <p class="text-gray-400 text-sm max-w-xl">Complete your van build with our precision CNC side wall paneling, wheel arch protectors, honeycomb ceiling liners, and door trim kits engineered specifically to prevent dents and rust.</p>
+                <!-- Silicone Holders -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Silicone Tube Holders</h4>
+                        <p class="text-xs text-gray-400 mb-3">Door and end-panel vertical 50mm cartridge docks.</p>
+                        <button class="info-btn" onclick="scrollToSpec('tech-silicone')">Specs &rarr;</button>
+                    </div>
+                    <div class="qty-counter">
+                        <button class="qty-btn" onclick="updateAddon('Silicone Holder', -1)">-</button>
+                        <span class="mono text-sm font-bold w-6 text-center" id="qty-SiliconeHolder">0</span>
+                        <button class="qty-btn" onclick="updateAddon('Silicone Holder', 1)">+</button>
+                    </div>
+                </div>
+
             </div>
-            <a href="protection.html" class="submit-btn whitespace-nowrap text-center">EXPLORE PROTECTION -></a>
-        </div>
+        </section>
 
         <!-- MISSION TIMELINE -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center text-gray-900">
+        <section class="mb-24">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center text-white">
                 Mission <span class="text-green-500">Timeline</span>
             </h2>
-            <div class="max-w-4xl mx-auto px-4 flight-container">
-                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">1. Strategy Call</h4><p class="step-desc">Submit your manifest. We review specifications and lock in your module allowances.</p></div></div>
-                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">2. Drop Off</h4><p class="step-desc">Drop your clean commercial van at our Rowville workshop facility.</p></div></div>
-                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">3. Rapid Deployment</h4><p class="step-desc">Our master technicians CNC-machine and assemble your custom loadout.</p></div></div>
-                <div class="flight-step flight-node"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">4. Pick Up</h4><p class="step-desc">Drive away fully outfitted and ready for site deployment.</p></div></div>
+            <div class="flight-container">
+                <div class="flight-node">
+                    <span class="mono text-xs text-green-400 block mb-1">01 // CALL</span>
+                    <h4 class="step-title">Strategy Call</h4>
+                    <p class="step-desc">Submit manifest. We confirm chassis & confirm your module limits.</p>
+                </div>
+                <div class="flight-node">
+                    <span class="mono text-xs text-green-400 block mb-1">02 // INTAKE</span>
+                    <h4 class="step-title">Drop Off</h4>
+                    <p class="step-desc">Drop your empty van at our Rowville HQ.</p>
+                </div>
+                <div class="flight-node">
+                    <span class="mono text-xs text-green-400 block mb-1">03 // CNC BUILD</span>
+                    <h4 class="step-title">Rapid Deployment</h4>
+                    <p class="step-desc">Our manufacturing team rapidly executes your build.</p>
+                </div>
+                <div class="flight-node">
+                    <span class="mono text-xs text-green-400 block mb-1">04 // HANDOFF</span>
+                    <h4 class="step-title">Pick Up</h4>
+                    <p class="step-desc">Pick up your fully outfitted vehicle. Ready for site.</p>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ENGINEERING DATA & FINISHES SPECS -->
-        <div class="mb-24 max-w-5xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3 text-gray-900">
-                <span class="text-green-500 text-sm mono">05.</span> Engineering Specs & Finishes
+        <!-- STEP 5: ENGINEERING DATA / SPECS -->
+        <section class="mb-24 max-w-5xl mx-auto">
+            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3 text-white">
+                <span class="text-green-500 text-sm mono">05.</span> Engineering Data
             </h2>
             
-            <!-- FALSE FLOOR VIDEO SPECS -->
             <div class="blueprint-card" id="tech-floor">
                 <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">False Floor Systems</h3><span class="mono text-xs text-green-500">SPEC_01</span></div>
                 <div class="blueprint-layout">
@@ -576,88 +646,162 @@
                         <video autoplay muted loop playsinline class="blueprint-video"><source src="false floor.mov" type="video/mp4"></video>
                     </div>
                     <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Our false floors are completely customisable. Choose between an empty heavy-duty cavity underneath, single slide-out drawers, or stacked drawer configurations tailored entirely to your workflow.</p>
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">We raise the deck height to create massive, customizable storage cavities. Engineered to perfectly house long ladders, spirit levels, and 3m conduit without cluttering the main cabin. Seamlessly integrate heavy-duty sliding drawers or pull-out trays under the deck for maximum hidden storage.</p>
                         <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">CORE</span><span class="spec-val">12mm Hex Core</span></div>
-                            <div class="spec-point"><span class="spec-label">FACE</span><span class="spec-val">Anti-Scratch Gloss</span></div>
-                            <div class="spec-point"><span class="spec-label">SLIP RATING</span><span class="spec-val">R10 Anti-Slip</span></div>
-                            <div class="spec-point"><span class="spec-label">DRAWERS</span><span class="spec-val">Fully Customisable</span></div>
+                            <div class="spec-point"><span class="spec-label">CORE</span><span class="spec-val">15mm Trans-Tex</span></div>
+                            <div class="spec-point"><span class="spec-label">FACE</span><span class="spec-val">Phenolic Hex</span></div>
+                            <div class="spec-point"><span class="spec-label">SLIP RATING</span><span class="spec-val">R10 Anti-Skid</span></div>
+                            <div class="spec-point"><span class="spec-label">DRAWER LOAD</span><span class="spec-val">227kg Dynamic</span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 12MM HEX SPEC -->
-            <div class="blueprint-card" id="tech-12mm-hex">
-                <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">12mm Hex Core Material</h3><span class="mono text-xs text-green-500">SPEC_02</span></div>
+            <div class="blueprint-card" id="tech-crate">
+                <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">Euro Crate Shelving</h3><span class="mono text-xs text-green-500">SPEC_02</span></div>
                 <div class="blueprint-layout">
                     <div class="blueprint-visual">
-                        <img src="euro crates shelf.jpg" class="blueprint-img" alt="12mm Hex Material Placeholder">
+                        <img src="euro crates shelf.jpg" class="blueprint-img" alt="Euro Crate Shelving System">
                     </div>
                     <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Engineered using industrial-grade 12mm hex structural composite. Waterproof, fire-resistant, anti-scratch, and anti-slip. Finished with a high-gloss premium look that wipes clean effortlessly from oils, chemicals, and everyday job site stains.</p>
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Precision-machined angled racking designed specifically to house standard Euro Crates. The optimal gradient ensures gravity-fed retention, preventing bins from sliding or spilling during transit. High-density storage for plumbing fittings, electrical components, and hardware. Easy grab-and-go functionality.</p>
                         <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">THICKNESS</span><span class="spec-val">12mm Structural</span></div>
-                            <div class="spec-point"><span class="spec-label">PROTECTION</span><span class="spec-val">Water & Fire Proof</span></div>
-                            <div class="spec-point"><span class="spec-label">FINISH</span><span class="spec-val">High-Gloss Hex</span></div>
-                            <div class="spec-point"><span class="spec-label">MAINTENANCE</span><span class="spec-val">Easy Wipe Clean</span></div>
+                            <div class="spec-point"><span class="spec-label">ANGLE</span><span class="spec-val">15 Degrees</span></div>
+                            <div class="spec-point"><span class="spec-label">COMPATIBILITY</span><span class="spec-val">Standard Euro Bin</span></div>
+                            <div class="spec-point"><span class="spec-label">RETENTION</span><span class="spec-val">Gravity Fed</span></div>
+                            <div class="spec-point"><span class="spec-label">MATERIAL</span><span class="spec-val">15mm Hex Ply</span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- FINISH LAYERS SPEC -->
-            <div class="blueprint-card" id="tech-finishes">
-                <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">Surface Finish Options</h3><span class="mono text-xs text-green-500">SPEC_03</span></div>
+            <div class="blueprint-card" id="tech-toolbox">
+                <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">Universal Toolbox Racking</h3><span class="mono text-xs text-green-500">SPEC_03</span></div>
                 <div class="blueprint-layout">
                     <div class="blueprint-visual">
-                        <img src="tool shelf1.jpg" class="blueprint-img" alt="Surface Finishes Placeholder">
+                        <img src="tool shelf1.jpg" class="blueprint-img" alt="Toolbox Racking System">
                     </div>
                     <div class="blueprint-data">
-                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Choose your top finish layer: high-durability rubber matting designed for heavy grip under harsh sliding equipment, or charcoal acoustic carpet providing sound dampening and gentle padding for fragile cargo.</p>
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Engineered to perfectly dock Milwaukee Packout, Makita Makpac, and Festool Systainer boxes. The shelves feature a precision-angled pitch and a heavy-duty front retention lip, ensuring your expensive tools never fall while driving. Grab-and-go convenience combined with massive load-bearing capacity.</p>
                         <div class="spec-grid">
-                            <div class="spec-point"><span class="spec-label">OPTION A</span><span class="spec-val">Rubber (Extra Grip)</span></div>
-                            <div class="spec-point"><span class="spec-label">OPTION B</span><span class="spec-val">Charcoal Carpet</span></div>
-                            <div class="spec-point"><span class="spec-label">BENEFIT A</span><span class="spec-val">Extreme Durability</span></div>
-                            <div class="spec-point"><span class="spec-label">BENEFIT B</span><span class="spec-val">Fragile Cargo Safety</span></div>
+                            <div class="spec-point"><span class="spec-label">LIP HEIGHT</span><span class="spec-val">30mm Retention</span></div>
+                            <div class="spec-point"><span class="spec-label">LOAD CAPACITY</span><span class="spec-val">80kg Per Shelf</span></div>
+                            <div class="spec-point"><span class="spec-label">COMPATIBILITY</span><span class="spec-val">All Major Brands</span></div>
+                            <div class="spec-point"><span class="spec-label">PITCH</span><span class="spec-val">Angled Base</span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
+            <div class="blueprint-card" id="tech-org">
+                <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">Consumables & Organiser</h3><span class="mono text-xs text-green-500">SPEC_04</span></div>
+                <div class="blueprint-layout">
+                    <div class="blueprint-visual">
+                        <img src="seperator1.jpg" class="blueprint-img" alt="Organiser Shelving System">
+                    </div>
+                    <div class="blueprint-data">
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Machine-cut fixed dividers designed to securely hold spray paint, adhesives, silicone sealants, and loose hand tools. Eliminates transit rattles and keeps your high-use items upright, categorized, and instantly accessible from the van doors.</p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">DIVIDER SPACING</span><span class="spec-val">Customizable</span></div>
+                            <div class="spec-point"><span class="spec-label">USE CASE</span><span class="spec-val">Sprays & Glues</span></div>
+                            <div class="spec-point"><span class="spec-label">ACCESS</span><span class="spec-val">Rapid Visual</span></div>
+                            <div class="spec-point"><span class="spec-label">STABILITY</span><span class="spec-val">Anti-Rattle Fit</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blueprint-card" id="tech-silicone">
+                <div class="blueprint-header"><h3 class="font-bold text-white uppercase tracking-widest">Silicone Holders</h3><span class="mono text-xs text-green-500">SPEC_05</span></div>
+                <div class="blueprint-layout">
+                    <div class="blueprint-visual">
+                        <img src="silicone.jpg" class="blueprint-img" alt="Silicone Cartridge Holder">
+                    </div>
+                    <div class="blueprint-data">
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">Space-saving vertical storage docks for standard 50mm sealant and adhesive tubes. Mounts directly to the racking end-panels for rapid access at the rear or side doors. Keeps your van interior organized, prevents crushed tubes, and allows instant inventory checks.</p>
+                        <div class="spec-grid">
+                            <div class="spec-point"><span class="spec-label">DIAMETER</span><span class="spec-val">Standard 50mm Tube</span></div>
+                            <div class="spec-point"><span class="spec-label">CAPACITY</span><span class="spec-val">3, 6, or 9 Tubes</span></div>
+                            <div class="spec-point"><span class="spec-label">MOUNTING</span><span class="spec-val">End Panel / Door</span></div>
+                            <div class="spec-point"><span class="spec-label">MATERIAL</span><span class="spec-val">15mm Hex Ply</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
 
     </main>
 
-    <!-- STICKY MANIFEST BAR -->
-    <div class="manifest-bar">
+    <!-- SEO KEYWORD REPOSITORY -->
+    <div class="sr-only">
+        <h1>The Best Custom Van Fitouts in Melbourne | Professional Van Racking, Heavy Duty Drawers & Raised Flooring</h1>
+        <p>Elite Van Fitouts is the ultimate destination for premium, highly durable commercial vehicle storage systems and tradie van setups. Located in Rowville, Victoria, we service all trades across Melbourne's Eastern and South Eastern suburbs. Whether you are a commercial electrician needing secure cable reel storage, a licensed plumber requiring heavy-duty tool drawers and pipe storage, or a residential builder needing massive raised false floors for timber, conduit, and ladder storage, we engineer and manufacture the best custom van fitouts in the industry.</p>
+        
+        <h2>Custom Van Shelving, Slide Out Workbenches, and Raised False Floors</h2>
+        <p>Stop wasting billable hours digging through a messy, unorganized van. We maximize your commercial cargo space with precision-machined storage solutions. We design, manufacture, and install ultra-heavy-duty sliding drawers (rated to a massive 227kg dynamic load capacity), raised false floors with hidden under-floor tunnels designed specifically for 3m PVC conduit, copper pipes, and long spirit levels, alongside fully custom plywood shelving units. Every build is cut using advanced computer-guided precision machinery to perfectly scribe to the unique interior body curves and wheel arches of your specific vehicle, ensuring a flawless, rattle-free fit every single time.</p>
+        
+        <h2>Premium Construction Materials: 15mm Hex Plywood, Ply Lining, and Marine Carpet</h2>
+        <p>We do not use cheap, flimsy materials that warp or snap under pressure. Our heavy-duty van setups are constructed using premium 15mm Hex Plywood, which features a highly anti-scratch, water-resistant, and reflective phenolic coating. This ensures your commercial racking can withstand the daily abuse of a harsh construction worksite. We also offer full vehicle interior ply lining, wall paneling, and high-grade charcoal automotive marine carpet to provide essential road sound deadening, thermal insulation, and interior panel protection for your expensive work van.</p>
+
+        <h2>Trade-Specific Van Setups: Custom Storage Layouts for Every Workflow</h2>
+        <p>A mobile mechanic has completely different workflow needs compared to an emergency locksmith, an NBN technician, or an HVAC installation crew. Our modular storage systems are 100% customizable to your exact operational requirements. Add on specific organizational components such as Milwaukee Packout docking stations, Makita Makpac transport shelves, perfectly angled Euro Crate shelving for small plumbing fittings, vertical silicone cartridge holders, spray paint can dividers, secure gas cylinder ventilation enclosures, comprehensive 12V dual battery setups, high-wattage pure sine wave inverters, LED interior strip lighting for night work, and ADR-tested safety cargo barriers. We provide the absolute best professional setups for: Electricians, Plumbers, Gas Fitters, Air Conditioning Techs (HVAC), Builders, Carpenters, Data and Communications experts, Security Installers, Roofers, Glaziers, Painters, Mobile Dog Grooming Vans, Mobile Coffee Vans, Delivery Couriers, and Civil Contractors.</p>
+
+        <h2>Vehicle Compatibility: Toyota HiAce, Ford Transit, LDV, Hyundai & More</h2>
+        <p>Our racking systems, shelving units, and false floors are perfectly engineered for every major commercial van and ute canopy on the Australian market. We provide bespoke fitouts for the Toyota HiAce LWB (Long Wheelbase) and SLWB (Super Long Wheelbase), Ford Transit Custom, Ford Transit Heavy Duty, Ford Ranger Canopies, LDV Deliver 9 (Mid Roof and High Roof), LDV G10, Hyundai Staria Load, Hyundai iLoad, Mercedes Benz Vito, Mercedes Benz Sprinter (MWB, LWB, Extra Long), Volkswagen Transporter T6.1, Volkswagen Crafter, Renault Trafic, Renault Master, Peugeot Trafic, Mitsubishi Staria, Isuzu D-Max service bodies, and Nissan Navara service bodies.</p>
+
+        <h2>Vehicle Signage, Custom Decals, and Fleet Branding in Dandenong and Rowville</h2>
+        <p>Beyond internal cargo storage, Elite Van Fitouts is also Dandenong and Rowville's premier commercial vehicle signage and fleet branding specialist. Turn your work van into a 24/7 lead generation machine. We only use premium, automotive-grade cast vinyl from Avery Dennison and 3M, guaranteeing your custom vehicle wrap conforms to deep panel recesses without shrinking, cracking, or peeling in the harsh Australian sun. We offer crisp computer-cut logo decals, high-visibility partial wraps, full custom vehicle color change wraps, vivid digital print graphics, perforated one-way vision window mesh (for rear barn doors and tailgates), custom ute tray branding decals, half wraps, bonnet protectors, and high-visibility Class 1 reflective tape installations (Chapter 8 compliance) for mine-spec and civil construction vehicles.</p>
+
+        <h2>Local Service Areas: South East Melbourne Dominance</h2>
+        <p>We proudly design, build, and install custom van racking, structural flooring, and vehicle wrapping to tradesmen, business owners, and corporate fleet managers across all major South East Melbourne suburbs including: Rowville, Dandenong, Dandenong South, Ferntree Gully, Knoxfield, Scoresby, Bayswater, Kilsyth, Braeside, Mordialloc, Carrum Downs, Seaford, Berwick, Narre Warren, Frankston, Pakenham, Cranbourne, Springvale, Clayton, Moorabbin, Cheltenham, Oakleigh, Ringwood, Croydon, Lilydale, Boronia, Wantirna, Lysterfield, Endeavour Hills, Hallam, Keysborough, Dingley Village, Mentone, Mornington, Mount Eliza, Officer, and Somerville. No matter where your daily job site is located, Elite Van Fitouts is your trusted local partner for complete vehicle optimization.</p>
+    </div>
+
+    <!-- STICKY ACTIVE MANIFEST BAR -->
+    <footer class="manifest-bar">
         <div>
             <p class="text-[10px] text-gray-500 mono uppercase tracking-widest">Active Manifest</p>
             <div class="flex flex-col md:flex-row md:gap-4 md:items-baseline">
-                <p class="text-xl font-bold text-white italic uppercase" id="summary-pkg">Drawer System + Essential Setup</p>
-                <p class="text-xs text-green-500 mono" id="summary-details">Rubber Surface Layer</p>
+                <p class="text-lg md:text-xl font-bold text-white italic uppercase" id="summary-pkg">Essential Setup</p>
+                <p class="text-xs text-green-500 mono" id="summary-details">Hex Ply (Black)</p>
             </div>
         </div>
         <button class="submit-btn" onclick="submitQuote()">
-            CONFIRM LOADOUT ->
+            CONFIRM LOADOUT -&gt;
         </button>
-    </div>
+    </footer>
 
+    <!-- LOGIC SCRIPT -->
     <script>
-        // --- PRELOADER ---
+        // Preloader Dismiss
         window.addEventListener('load', () => {
             const bootScreen = document.getElementById('boot-screen');
-            setTimeout(() => {
-                bootScreen.style.opacity = '0';
-                setTimeout(() => bootScreen.remove(), 500);
-            }, 800);
+            if (bootScreen) {
+                setTimeout(() => {
+                    bootScreen.style.opacity = '0';
+                    setTimeout(() => bootScreen.remove(), 500);
+                }, 800);
+            }
         });
 
-        // --- STATE MANAGEMENT ---
+        // Mobile Text Toggle
+        function toggleFitoutText() {
+            var text = document.getElementById("fitout-extra-text");
+            var btn = document.getElementById("fitout-read-more");
+            if (text.classList.contains("hidden")) {
+                text.classList.remove("hidden");
+                btn.innerText = "- Close Overview";
+            } else {
+                text.classList.add("hidden");
+                btn.innerText = "+ Read Overview";
+            }
+        }
+
+        // Global State
+        let systemType = 'drawers'; // 'drawers' or 'shelving'
         let state = {
-            system: 'drawer',
             pkg: 'Essential',
-            finish: 'Rubber Surface',
+            finish: 'Hex Ply (Black)',
             addons: {
                 'Crate Shelves': 0,
                 'Toolbox Shelves': 0,
@@ -670,103 +814,105 @@
             'Essential': 0,
             'Pro': 3,
             'Elite': 7,
+            'Single Wall Shelving': 3,
+            'Dual Wall Shelving': 6,
             'Custom': 0 
         };
 
-        // Select System Architecture
-        function selectSystem(sysType, elementId) {
-            state.system = sysType;
-            document.querySelectorAll('[id^="sys-"]').forEach(el => el.classList.remove('selected'));
-            document.getElementById(elementId).classList.add('selected');
-            updateFooter();
+        // Step 1: System Type Switcher (Drawers vs Shelving)
+        function setSystemType(type) {
+            systemType = type;
+            const btnDrawers = document.getElementById('system-drawers-btn');
+            const btnShelving = document.getElementById('system-shelving-btn');
+            const drawerCards = document.querySelectorAll('.pkg-drawers');
+            const shelvingCards = document.querySelectorAll('.pkg-shelving');
+
+            if (type === 'drawers') {
+                btnDrawers.classList.add('active');
+                btnShelving.classList.remove('active');
+                
+                drawerCards.forEach(el => el.classList.remove('hidden'));
+                shelvingCards.forEach(el => el.classList.add('hidden'));
+
+                // Default selection for Drawer system
+                selectItem('pkg', 'Essential', 'pkg-essential');
+            } else {
+                btnShelving.classList.add('active');
+                btnDrawers.classList.remove('active');
+                
+                drawerCards.forEach(el => el.classList.add('hidden'));
+                shelvingCards.forEach(el => el.classList.remove('hidden'));
+
+                // Default selection for Shelving system
+                selectItem('pkg', 'Single Wall Shelving', 'pkg-shelving-single');
+            }
         }
 
-        // Select Package or Finish
+        // Selection Handler
         function selectItem(category, value, elementId) {
-            if (category === 'pkg') {
-                state.pkg = value;
-                const modulesSec = document.getElementById('modules-section');
-                const modulesGrid = document.getElementById('modules-grid');
-                
-                if (value === 'Essential') {
-                    modulesSec.style.opacity = '0.4';
-                    modulesGrid.style.pointerEvents = 'none';
-                    // Reset addons
-                    Object.keys(state.addons).forEach(k => state.addons[k] = 0);
-                    updateAllAddonUI();
-                } else {
-                    modulesSec.style.opacity = '1';
-                    modulesGrid.style.pointerEvents = 'auto';
-                }
-            }
+            if (category === 'pkg') state.pkg = value;
             if (category === 'fin') state.finish = value;
 
             const prefix = elementId.split('-')[0];
-            document.querySelectorAll(`[id^="${prefix}-"]`).forEach(el => el.classList.remove('selected'));
-            document.getElementById(elementId).classList.add('selected');
+            document.querySelectorAll(`[id^="${prefix}-"]`).forEach(el => {
+                el.classList.remove('selected');
+                const prompt = el.querySelector('.select-prompt');
+                if (prompt) prompt.innerText = 'CLICK TO SELECT';
+            });
+
+            const selectedEl = document.getElementById(elementId);
+            if (selectedEl) {
+                selectedEl.classList.add('selected');
+                const prompt = selectedEl.querySelector('.select-prompt');
+                if (prompt) prompt.innerText = 'SELECTED';
+            }
+
             updateFooter();
         }
 
-        // Update Addon Quantity
+        // Add-on Counter
         function updateAddon(name, delta) {
             if (state.pkg === 'Custom') {
-                alert('Custom builds are fully bespoke. Let\'s map out your perfect loadout over the phone during your free design session.');
+                alert("Custom builds are 100% tailored from scratch. We will configure your exact module layout on the call.");
                 return;
             }
-            if (state.pkg === 'Essential') {
-                alert('Essential packages include core structural false flooring only. Select Pro or Elite to add storage shelving modules.');
-                return;
-            }
-
             let current = state.addons[name];
             let next = current + delta;
             if (next < 0) next = 0;
-
-            // Check limits for Pro / Elite
-            let limit = packageLimits[state.pkg];
-            let currentTotal = Object.keys(state.addons).reduce((sum, key) => sum + (key === name ? next : state.addons[key]), 0);
-            
-            if (limit > 0 && currentTotal > limit) {
-                alert(`Your selected package (${state.pkg}) allows a maximum of ${limit} shelving modules. Upgrade your package or select Custom for more.`);
-                return;
-            }
-
             state.addons[name] = next;
-            document.getElementById('qty-' + name.replace(/\s+/g, '')).innerText = next;
+            
+            const countDisplay = document.getElementById('qty-' + name.replace(/\s+/g, ''));
+            if (countDisplay) countDisplay.innerText = next;
+            
             updateFooter();
         }
 
-        function updateAllAddonUI() {
-            Object.keys(state.addons).forEach(name => {
-                const el = document.getElementById('qty-' + name.replace(/\s+/g, ''));
-                if(el) el.innerText = state.addons[name];
-            });
-        }
-
-        // Scroll to Specs
+        // Smooth Spec Scroller
         function scrollToSpec(id) {
             const element = document.getElementById(id);
             if(element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.style.borderColor = 'var(--elite-green)';
+                setTimeout(() => {
+                    element.style.borderColor = '#1f2937';
+                }, 2000);
             }
         }
 
-        // Update Footer Text dynamically
+        // Dynamic Footer Status
         function updateFooter() {
-            let sysLabel = state.system === 'drawer' ? 'Drawer System' : 'Only Shelving';
-            document.getElementById('summary-pkg').innerText = `${sysLabel} + ${state.pkg} Setup`;
-            
+            document.getElementById('summary-pkg').innerText = state.pkg + " Setup";
             const submitBtn = document.querySelector('.submit-btn');
 
             if(state.pkg === 'Custom') {
-                document.getElementById('summary-details').innerText = "Call for Free Design Session";
+                document.getElementById('summary-details').innerText = "Free Design & CAD Session";
                 submitBtn.innerText = "CALL TO BOOK ->";
                 submitBtn.setAttribute('onclick', "window.location.href='tel:0468086490'");
                 return;
             }
 
-            let totalShelves = Object.values(state.addons).reduce((a,b)=>a+b,0);
-            let limit = packageLimits[state.pkg];
+            let totalShelves = Object.values(state.addons).reduce((a,b)=>a+b, 0);
+            let limit = packageLimits[state.pkg] || 0;
             
             let detailText = state.finish;
             if (totalShelves > 0) {
@@ -774,9 +920,11 @@
                 if (limit > 0) {
                     let extra = totalShelves > limit ? (totalShelves - limit) : 0;
                     detailText += ` (${limit} included, ${extra} extra)`;
+                } else {
+                    detailText += ` (All additional)`;
                 }
             } else {
-                if (limit > 0) detailText += ` (Includes up to ${limit} Modules)`;
+                if (limit > 0) detailText += ` (Includes ${limit} modules to pick)`;
             }
             
             document.getElementById('summary-details').innerText = detailText;
@@ -784,18 +932,19 @@
             submitBtn.setAttribute('onclick', "submitQuote()");
         }
 
-        // Submit Logic (Passes Payload to URL and transitions to GHL / contact handoff)
+        // Submit & Payload URL Generator
         function submitQuote() {
             let addonStr = Object.keys(state.addons)
                 .filter(k => state.addons[k] > 0)
                 .map(k => `${state.addons[k]}x ${k}`)
                 .join(' | ');
             
-            const buildString = `System: ${state.system}, Package: ${state.pkg}, Finish: ${state.finish}, Addons: ${addonStr || 'None'}`;
-            window.location.href = `index.html?tab=fitout&pkg=${encodeURIComponent(buildString)}#contact`;
+            const buildString = `Type: ${systemType.toUpperCase()}, Package: ${state.pkg}, Finish: ${state.finish}, Modules: ${addonStr || 'Standard'}`;
+            window.location.href = `design-lab.html?tab=fitout&pkg=${encodeURIComponent(buildString)}`;
         }
     </script>
     
+    <!-- LEADCONNECTOR GHL LIVE CHAT -->
     <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69782dff572f85b3942d8c33"></script>
 
 </body>
