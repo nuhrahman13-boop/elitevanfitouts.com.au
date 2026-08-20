@@ -127,23 +127,24 @@
 </head>
 <body>
 
-    <!-- NAV -->
+  <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
             <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
+            
             <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
                 <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
                 <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
-                        MENU <span class="text-[10px]">▼</span>
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition font-bold tracking-widest text-sm border-b-2 border-green-500 pb-1">
+                        SERVICES <span class="text-[10px]">▼</span>
                     </button>
                     <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">DEPARTMENTS</div>
-                        <a href="fitouts.html" class="dropdown-item text-green-500 border-l-2 border-green-500">Van Fitouts <span>-></span></a>
-                        <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
+                        <a href="fitouts.html" class="dropdown-item text-green-500 bg-green-50/50">Drawers & Shelving <span>-></span></a>
+                        <a href="protection.html" class="dropdown-item">Protection & Ply Line Barriers <span>-></span></a>
+                        <a href="services.html" class="dropdown-item">Other Services <span>-></span></a>
                         <div class="dropdown-divider"></div>
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
+                        <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
                     </div>
                 </div>
             </div>
@@ -152,14 +153,14 @@
     </nav>
 
     <div id="mobile-menu">
-        <div class="flex flex-col gap-8 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
-            <a href="fitouts.html" class="text-black border-l-4 border-green-500 pl-4 transition">Van Fitouts</a>
-            <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
-            <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
+        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
+            <a href="index.html" class="text-gray-500 hover:text-green-500 transition">Home</a>
+            <a href="fitouts.html" class="text-black border-l-4 border-green-500 pl-4 transition">Drawers & Shelving Systems</a>
+            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">Protection & Ply Line Barriers</a>
+            <a href="services.html" class="text-gray-500 hover:text-green-500 transition">Other Services</a>
+            <a href="about.html" class="text-gray-500 hover:text-green-500 transition">About Us</a>
         </div>
     </div>
-    <div class="nav-spacer"></div>
 
     <!-- HERO -->
     <header class="hero-section">
@@ -213,13 +214,24 @@
                 <button id="fitout-read-more" class="md:hidden text-green-600 text-xs font-bold uppercase tracking-widest mb-6 border border-green-500 px-4 py-2 rounded text-center w-full block" onclick="document.getElementById('fitout-extra-text').classList.toggle('hidden'); this.style.display='none';">+ Read More</button>
             </div>
             
-            <div class="flex-1 flex justify-center w-full">
-                <div class="grid grid-cols-2 gap-2 w-full max-w-[320px] md:max-w-[400px] aspect-square">
-                    <div class="fade-img-wrap"><img src="drawer system and flooring melbourne.jpg" class="fade-img fade-delay-1"><img src="van tradie set up rowville.jpg" class="fade-img fade-delay-2"></div>
-                    <div class="fade-img-wrap"><img src="false floor and shelving bayswater.jpg" class="fade-img fade-delay-2"><img src="van shelving knox.jpg" class="fade-img fade-delay-1"></div>
-                    <div class="fade-img-wrap"><img src="van shelving and drawers rowville.jpg" class="fade-img fade-delay-1"><img src="van flooring dandenong.jpg" class="fade-img fade-delay-2"></div>
-                    <div class="fade-img-wrap"><img src="plumber van set up.jpeg" class="fade-img fade-delay-2"><img src="van drawers lysterfeild.jpeg" class="fade-img fade-delay-1"></div>
-                </div>
+     <div class="grid grid-cols-2 gap-2 w-full max-w-[320px] md:max-w-[400px] aspect-square">
+        <div class="fade-img-wrap">
+            <img src="van shelving melbourne.jpeg" class="fade-img fade-delay-1">
+            <img src="van slideout system.jpeg" class="fade-img fade-delay-2">
+        </div>
+        <div class="fade-img-wrap">
+            <img src="melbournes best van set ups.jpeg" class="fade-img fade-delay-2">
+            <img src="van drawers melbourne.jpeg" class="fade-img fade-delay-1">
+        </div>
+        <div class="fade-img-wrap">
+            <img src="better than van fitouts melbourne.jpeg" class="fade-img fade-delay-1">
+            <img src="ply lining and fooring .jpeg" class="fade-img fade-delay-2">
+        </div>
+        <div class="fade-img-wrap">
+            <img src="van slide out shelving.jpeg" class="fade-img fade-delay-2">
+            <img src="melbourne tradie set up.jpeg" class="fade-img fade-delay-1">
+        </div>
+    </div>
             </div>
         </div>
     </section>
@@ -523,39 +535,36 @@
         <button onclick="saveAndProceed()" class="btn-main w-full md:w-auto text-center justify-center">PROCEED TO CHECKOUT -></button>
     </div>
 
-    <script>
-        // --- STATE MANAGEMENT ---
-        let state = {
+  <script>
+        // --- STATE MANAGEMENT (WITH LOCALSTORAGE SYNC) ---
+        let state = JSON.parse(localStorage.getItem('elite_build_manifest')) || {
             systemType: 'Drawer System',
             pkg: 'Essential',
             maxModules: 0,
             finish: '12mm Hex (Base)',
-            addons: {
-                'Crate Shelves': 0,
-                'Toolbox Shelves': 0,
-                'Organiser Shelves': 0,
-                'Silicone Holder': 0
-            }
+            addons: { 'Crate Shelves': 0, 'Toolbox Shelves': 0, 'Organiser Shelves': 0, 'Silicone Holder': 0 }
         };
+
+        function autoSave() {
+            localStorage.setItem('elite_build_manifest', JSON.stringify(state));
+        }
 
         // --- 1. SYSTEM TYPE TOGGLE ---
         function setSystemType(type) {
             state.systemType = type;
-            
-            // UI Toggle Classes
             document.getElementById('btn-type-drawer').classList.toggle('active', type === 'Drawer System');
             document.getElementById('btn-type-shelving').classList.toggle('active', type === 'Shelving Only');
             
-            // Show/Hide Packages
             if (type === 'Drawer System') {
                 document.getElementById('packages-drawer').classList.remove('hidden');
                 document.getElementById('packages-shelving').classList.add('hidden');
-                setPackage('Essential', 0, 'pkg-essential'); // Default for Drawer
+                setPackage('Essential', 0, 'pkg-essential'); 
             } else {
                 document.getElementById('packages-drawer').classList.add('hidden');
                 document.getElementById('packages-shelving').classList.remove('hidden');
-                setPackage('Single Side Shelving', 3, 'pkg-shelf-basic'); // Default for Shelving
+                setPackage('Single Side Shelving', 3, 'pkg-shelf-basic'); 
             }
+            autoSave();
         }
 
         // --- 2. PACKAGE SELECTION ---
@@ -563,18 +572,16 @@
             state.pkg = pkgName;
             state.maxModules = maxMods;
             
-            // Remove 'selected' from all hex-cards
             document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
-            // Add 'selected' to clicked
             if(document.getElementById(elementId)) {
                 document.getElementById(elementId).classList.add('selected');
             }
 
-            // Reset addons when switching packages to keep logic clean
             for (let key in state.addons) { state.addons[key] = 0; }
             
             updateModuleUI();
             updateManifest();
+            autoSave();
         }
 
         // --- 3. FINISH SELECTION ---
@@ -583,18 +590,19 @@
             document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));
             document.getElementById(elementId).classList.add('selected');
             updateManifest();
+            autoSave();
         }
 
         // --- 4. MODULE LOGIC ---
         function updateAddon(name, change) {
             let currentTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
-            
-            if (change > 0 && currentTotal >= state.maxModules) return; // Reached limit
-            if (change < 0 && state.addons[name] <= 0) return; // Can't go below 0
+            if (change > 0 && currentTotal >= state.maxModules) return; 
+            if (change < 0 && state.addons[name] <= 0) return; 
             
             state.addons[name] += change;
             updateModuleUI();
             updateManifest();
+            autoSave();
         }
 
         function updateModuleUI() {
@@ -602,7 +610,6 @@
             let limitReached = currentTotal >= state.maxModules;
             let locked = state.maxModules === 0;
 
-            // Update Counter Text
             document.getElementById('mod-counter').innerText = `${currentTotal} / ${state.maxModules === 99 ? '∞' : state.maxModules}`;
             
             let helperText = document.getElementById('mod-helper-text');
@@ -614,7 +621,6 @@
                 helperText.innerText = `Select up to ${state.maxModules} modules for your ${state.pkg} setup.`;
             }
 
-            // Update DOM Values & Button States
             for (let key in state.addons) {
                 let safeKey = key.replace(/\s/g, '');
                 if (document.getElementById(`qty-${safeKey}`)) {
@@ -622,7 +628,6 @@
                 }
             }
 
-            // Lock/Unlock visual cards and plus buttons
             document.querySelectorAll('.spec-item').forEach(el => {
                 if (locked) el.classList.add('locked');
                 else el.classList.remove('locked');
@@ -645,16 +650,29 @@
         }
 
         function saveAndProceed() {
-            localStorage.setItem('elite_build_manifest', JSON.stringify(state));
-            // Usually this would go to a quote/checkout page. 
-            // Replace '#' with your actual GHL form page URL when ready.
+            autoSave();
             window.location.href = "#"; 
             alert("Manifest Saved! Ready to pass to GHL.\n\n" + JSON.stringify(state, null, 2));
         }
 
-        // Initialize on load
-        updateModuleUI();
-        updateManifest();
+        // --- 6. INITIALIZE UI ON LOAD BASED ON LOCALSTORAGE ---
+        function initializeUI() {
+            // Restore System Type styling
+            document.getElementById('btn-type-drawer').classList.toggle('active', state.systemType === 'Drawer System');
+            document.getElementById('btn-type-shelving').classList.toggle('active', state.systemType === 'Shelving Only');
+            
+            // Restore Finish styling
+            document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));
+            if(state.finish === 'Rubber Overlay') document.getElementById('mat-rubber').classList.add('selected');
+            else if(state.finish === 'Charcoal Carpet') document.getElementById('mat-carpet').classList.add('selected');
+            else document.getElementById('mat-hex').classList.add('selected');
+
+            updateModuleUI();
+            updateManifest();
+        }
+
+        // Run
+        initializeUI();
     </script>
 </body>
 </html>
