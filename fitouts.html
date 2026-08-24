@@ -116,10 +116,6 @@
         .step-title { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; color: #fff; margin-bottom: 5px; }
         .step-desc { font-size: 0.9rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
-        /* --- STICKY FOOTER --- */
-        .manifest-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--elite-green); padding: 15px 24px; z-index: 100; display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
-        @media (min-width: 768px) { .manifest-bar { flex-direction: row; } }
-        
         /* MOBILE MENU OVERRIDE */
         #mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px; }
         #mobile-menu.active { display: block; }
@@ -532,34 +528,26 @@
             </div>
         </div>
 
-    <!-- MANIFEST BAR -->
-    <div class="manifest-bar">
-        <div class="text-left w-full md:w-auto mb-4 md:mb-0">
-            <div class="text-[10px] text-green-500 mono font-bold uppercase mb-1">Current Manifest:</div>
-            <div class="text-white font-bold text-sm md:text-base flex items-center gap-3">
-                <span id="man-system">Drawer System</span>
-                <span class="text-gray-600">/</span>
-                <span id="man-pkg" class="text-green-400">Essential</span>
-                <span class="text-gray-600">/</span>
-                <span id="man-fin" class="text-gray-300">12mm Hex (Base)</span>
-            </div>
-            <div class="text-xs text-gray-500 mono mt-1" id="man-mods">Modules: 0</div>
-        </div>
-        <button onclick="saveAndProceed()" class="btn-main w-full md:w-auto text-center justify-center">PROCEED TO CHECKOUT -></button>
+    <div class="mb-24 max-w-5xl mx-auto text-center px-6">
+        <button onclick="saveAndProceed()" class="btn-main w-full md:w-auto text-center justify-center">SAVE FITOUT &amp; ADD PROTECTION →</button>
     </div>
 
-  <script>
+    <script src="build-tracker.js"></script>
+    <script>
         // --- STATE MANAGEMENT (WITH LOCALSTORAGE SYNC) ---
-        let state = JSON.parse(localStorage.getItem('elite_build_manifest')) || {
+        const defaultFitoutState = {
+            configured: false,
             systemType: 'Drawer System',
             pkg: 'Essential',
             maxModules: 0,
             finish: '12mm Hex (Base)',
             addons: { 'Crate Shelves': 0, 'Toolbox Shelves': 0, 'Organiser Shelves': 0, 'Silicone Holder': 0 }
         };
+        let state = window.EliteBuild ? window.EliteBuild.get().fitout : defaultFitoutState;
 
         function autoSave() {
-            localStorage.setItem('elite_build_manifest', JSON.stringify(state));
+            state.configured = true;
+            if (window.EliteBuild) window.EliteBuild.setFitout(state);
         }
 
         // --- 1. SYSTEM TYPE TOGGLE ---
@@ -653,19 +641,12 @@
 
         // --- 5. MANIFEST & SAVE ---
         function updateManifest() {
-            document.getElementById('man-system').innerText = state.systemType;
-            document.getElementById('man-pkg').innerText = state.pkg;
-            document.getElementById('man-fin').innerText = state.finish;
-            
-            let currentTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
-            let modString = currentTotal > 0 ? Object.entries(state.addons).filter(([_, v]) => v > 0).map(([k, v]) => `${v}x ${k}`).join(', ') : 'None Selected';
-            document.getElementById('man-mods').innerText = `Modules: ${modString}`;
+            if (window.EliteBuild) window.EliteBuild.render();
         }
 
         function saveAndProceed() {
             autoSave();
-            window.location.href = "#"; 
-            alert("Manifest Saved! Ready to pass to GHL.\n\n" + JSON.stringify(state, null, 2));
+            window.location.href = "protection.html";
         }
 
         // --- 6. INITIALIZE UI ON LOAD BASED ON LOCALSTORAGE ---
@@ -673,6 +654,23 @@
             // Restore System Type styling
             document.getElementById('btn-type-drawer').classList.toggle('active', state.systemType === 'Drawer System');
             document.getElementById('btn-type-shelving').classList.toggle('active', state.systemType === 'Shelving Only');
+
+            document.getElementById('packages-drawer').classList.toggle('hidden', state.systemType !== 'Drawer System');
+            document.getElementById('packages-shelving').classList.toggle('hidden', state.systemType !== 'Shelving Only');
+
+            const packageIds = {
+                'Essential': 'pkg-essential',
+                'Pro': 'pkg-pro',
+                'Elite': 'pkg-elite',
+                'Custom Design': 'pkg-custom-draw',
+                'Single Side Shelving': 'pkg-shelf-basic',
+                'Dual Side Shelving': 'pkg-shelf-pro',
+                'Custom Shelving': 'pkg-shelf-custom'
+            };
+            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
+            const fallbackPackage = state.systemType === 'Shelving Only' ? 'pkg-shelf-basic' : 'pkg-essential';
+            const selectedPackage = document.getElementById(packageIds[state.pkg] || fallbackPackage);
+            if (selectedPackage) selectedPackage.classList.add('selected');
             
             // Restore Finish styling
             document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));

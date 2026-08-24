@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Ply Lining, Flooring & Cargo Barriers Melbourne | ELITE</title>
+    <meta name="description" content="Configure custom van ply lining, heavy-duty flooring and ply cargo partitions in Melbourne. Choose Hex Ply, rubber flooring or charcoal carpet finishes.">
+    <link rel="canonical" href="https://www.elitevanfitouts.com.au/protection.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --elite-green: #22c55e;
+            --elite-green-glow: rgba(34, 197, 94, 0.38);
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; padding-bottom: 92px; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Navigation mirrors the homepage and fitouts page. */
+        .glass-nav { background: rgba(255,255,255,.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 80px; display: flex; align-items: center; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: -20px; background: #fff; min-width: 240px; box-shadow: 0 20px 40px rgba(0,0,0,.1); border: 1px solid #eee; border-radius: 0 0 8px 8px; z-index: 100; padding: 10px 0; }
+        .dropdown:hover .dropdown-menu { display: block; animation: dropIn .2s ease forwards; }
+        @keyframes dropIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .dropdown-item { display: flex; justify-content: space-between; padding: 12px 24px; color: #000; font: 700 .75rem/1.2 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .05em; transition: .2s; }
+        .dropdown-item:hover { background: #f8f9fa; color: var(--elite-green); padding-left: 28px; }
+        .dropdown-divider { height: 1px; background: #eee; margin: 8px 0; }
+        #mobile-menu { position: fixed; inset: 0; width: 100%; height: 100vh; background: #fff; z-index: 40; display: none; padding: 100px 40px 40px; }
+        #mobile-menu.active { display: block; }
+
+        /* Three-panel video hero. */
+        .hero-section { position: relative; height: 68vh; min-height: 560px; display: flex; align-items: flex-end; padding: 48px 6% 78px; overflow: hidden; background: #000; }
+        .hero-video-grid { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; background: #050505; }
+        .hero-video-panel { position: relative; min-width: 0; overflow: hidden; background: #080808; }
+        .hero-video-panel video { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .64; filter: saturate(.9) contrast(1.05); }
+        .hero-video-panel::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.05) 48%, rgba(0,0,0,.62)); }
+        .hero-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(90deg, rgba(0,0,0,.55), transparent 42%, rgba(0,0,0,.28)), linear-gradient(0deg, #000 0%, transparent 58%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 3; width: 100%; max-width: 1280px; margin: 0 auto; }
+        .hero-kicker { display: inline-flex; align-items: center; gap: 9px; color: #4ade80; font: 800 .7rem/1.2 'JetBrains Mono', monospace; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+        .hero-kicker::before { content: ''; width: 34px; height: 2px; background: var(--elite-green); box-shadow: 0 0 9px var(--elite-green); }
+        .glitch-text { font-size: clamp(2.9rem, 7.8vw, 6.6rem); font-weight: 900; line-height: .94; text-transform: uppercase; font-style: italic; letter-spacing: -.045em; text-shadow: 2px 2px 0 rgba(34,197,94,.45); max-width: 980px; }
+        .hero-sub { margin-top: 18px; max-width: 660px; color: #d1d5db; font: 500 clamp(.8rem, 1.6vw, 1rem)/1.65 'JetBrains Mono', monospace; }
+        @media (max-width: 640px) {
+            .hero-section { min-height: 610px; padding: 40px 24px 66px; }
+            .hero-video-grid { gap: 2px; }
+            .hero-video-panel video { object-position: 50% 50%; opacity: .58; }
+            .glitch-text { font-size: clamp(2.65rem, 15vw, 4.2rem); }
+        }
+
+        .led-wrap { background: #000; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 12px 0; overflow: hidden; }
+        .led-ticker { display: flex; width: max-content; animation: ticker 34s linear infinite; }
+        .led-item { color: #22c55e; margin: 0 30px; font: 700 .72rem/1.2 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; }
+        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .section-kicker { color: #16a34a; font: 800 .68rem/1.2 'JetBrains Mono', monospace; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; }
+        .section-title { color: #fff; font-size: clamp(2rem, 4.6vw, 4rem); font-weight: 900; font-style: italic; line-height: 1; text-transform: uppercase; letter-spacing: -.035em; }
+        .btn-main { background: var(--elite-green); color: #050505; border: 1px solid var(--elite-green); font: 800 .72rem/1.2 'JetBrains Mono', monospace; text-transform: uppercase; padding: 14px 26px; border-radius: 8px; transition: .25s; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--elite-green-glow); text-decoration: none; }
+        .btn-main:hover { background: #fff; border-color: #fff; transform: translateY(-2px); }
+        .btn-outline { color: #fff; border: 1px solid #3b3b3b; font: 800 .72rem/1.2 'JetBrains Mono', monospace; text-transform: uppercase; padding: 14px 26px; border-radius: 8px; transition: .25s; text-decoration: none; }
+        .btn-outline:hover { color: #050505; border-color: #fff; background: #fff; }
+
+        /* Protection configurator. */
+        .service-card { width: 100%; min-height: 100%; padding: 0; border: 1px solid #333; border-radius: 12px; overflow: hidden; background: #080808; color: #fff; text-align: left; cursor: pointer; transition: .25s; position: relative; }
+        .service-card:hover { transform: translateY(-4px); border-color: var(--elite-green); box-shadow: 0 15px 36px rgba(34,197,94,.18); }
+        .service-card.selected { background: #fff; color: #050505; border: 2px solid var(--elite-green); box-shadow: 0 17px 44px rgba(34,197,94,.25); }
+        .service-card.selected::before { content: 'SELECTED'; position: absolute; top: 0; right: 0; z-index: 4; color: #050505; background: var(--elite-green); padding: 7px 12px; border-radius: 0 0 0 8px; font: 800 .58rem/1.2 'JetBrains Mono', monospace; letter-spacing: .08em; }
+        .service-media { height: 210px; position: relative; overflow: hidden; background: #0e0e0e; border-bottom: 1px solid #252525; }
+        .placeholder-media { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #5b5b5b; background-image: linear-gradient(135deg, rgba(34,197,94,.07), transparent 38%), repeating-linear-gradient(135deg, transparent 0 12px, rgba(255,255,255,.025) 12px 13px); font: 700 .62rem/1.3 'JetBrains Mono', monospace; letter-spacing: .13em; text-align: center; text-transform: uppercase; }
+        .placeholder-media span { color: #9ca3af; font-size: .72rem; }
+        .placeholder-icon { width: 48px; height: 38px; border: 1px solid #3f3f3f; border-radius: 5px; position: relative; }
+        .placeholder-icon::after { content: ''; position: absolute; left: 8px; right: 8px; bottom: 8px; height: 13px; border-left: 1px solid #4b5563; border-bottom: 1px solid #4b5563; transform: skewY(-25deg); }
+        .service-copy { padding: 26px; }
+        .service-number { color: #22c55e; font: 800 .62rem/1.2 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; }
+        .service-title { margin-top: 8px; font-size: 1.7rem; font-weight: 900; font-style: italic; line-height: 1; text-transform: uppercase; }
+        .service-desc { margin-top: 12px; color: #8f8f8f; font-size: .86rem; line-height: 1.6; }
+        .service-card.selected .service-desc { color: #4b5563; }
+        .service-rule { margin-top: 18px; padding-top: 14px; border-top: 1px solid #292929; color: #4ade80; font: 700 .66rem/1.4 'JetBrains Mono', monospace; text-transform: uppercase; }
+        .service-card.selected .service-rule { border-top-color: #d1d5db; color: #15803d; }
+
+        .finish-panel { margin-top: 18px; padding: 26px; border: 1px solid #303030; background: #080808; border-radius: 12px; }
+        .finish-panel[hidden] { display: none; }
+        .finish-panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 18px; }
+        .finish-panel-title { font-size: 1.45rem; font-weight: 900; font-style: italic; text-transform: uppercase; }
+        .finish-panel-rule { color: #8b8b8b; font: 600 .67rem/1.45 'JetBrains Mono', monospace; }
+        .finish-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .finish-choice { position: relative; min-width: 0; overflow: hidden; padding: 0; border: 1px solid #353535; border-radius: 9px; background: #0d0d0d; color: #fff; text-align: left; cursor: pointer; transition: .22s; }
+        .finish-choice:hover { border-color: var(--elite-green); transform: translateY(-2px); }
+        .finish-choice img { width: 100%; height: 102px; object-fit: cover; display: block; opacity: .78; }
+        .finish-choice span { display: block; padding: 11px 12px; font: 800 .67rem/1.25 'JetBrains Mono', monospace; text-transform: uppercase; }
+        .finish-choice.selected { border: 2px solid var(--elite-green); background: #fff; color: #050505; box-shadow: 0 8px 24px rgba(34,197,94,.2); }
+        .finish-choice.selected::after { content: '✓'; position: absolute; right: 9px; top: 8px; width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; color: #050505; background: var(--elite-green); font-weight: 900; }
+        .finish-choice.disabled { cursor: not-allowed; opacity: .32; filter: grayscale(1); }
+        .finish-choice.disabled:hover { border-color: #353535; transform: none; }
+        .finish-choice.disabled::after { content: 'NOT AVAILABLE'; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; background: rgba(0,0,0,.72); font: 800 .55rem/1.2 'JetBrains Mono', monospace; letter-spacing: .08em; }
+        .finish-empty { padding: 24px; border: 1px dashed #383838; border-radius: 12px; color: #777; text-align: center; font: 600 .72rem/1.6 'JetBrains Mono', monospace; }
+        @media (max-width: 700px) {
+            .finish-grid { grid-template-columns: 1fr; }
+            .finish-choice { display: grid; grid-template-columns: 105px 1fr; align-items: center; }
+            .finish-choice img { height: 80px; }
+        }
+
+        .info-card { height: 100%; padding: 26px; border: 1px solid #292929; border-radius: 12px; background: #080808; transition: .25s; }
+        .info-card:hover { border-color: rgba(34,197,94,.7); transform: translateY(-3px); }
+        .info-card-number { color: #22c55e; font: 800 .65rem/1.2 'JetBrains Mono', monospace; }
+        .info-card h3 { margin-top: 12px; font-size: 1.15rem; font-weight: 900; font-style: italic; text-transform: uppercase; }
+        .info-card p { margin-top: 10px; color: #8f8f8f; font-size: .84rem; line-height: 1.6; }
+
+        .material-card { overflow: hidden; border: 1px solid #303030; border-radius: 12px; background: #080808; }
+        .material-card img { width: 100%; height: 210px; object-fit: cover; display: block; border-bottom: 1px solid #303030; }
+        .material-copy { padding: 24px; }
+        .material-copy h3 { font-size: 1.25rem; font-weight: 900; font-style: italic; text-transform: uppercase; }
+        .material-copy p { margin-top: 9px; color: #929292; font-size: .8rem; line-height: 1.55; }
+
+        .timeline { position: relative; margin-left: 10px; border-left: 2px solid #2c2c2c; padding-left: 30px; }
+        .timeline-step { position: relative; padding-bottom: 34px; }
+        .timeline-step:last-child { padding-bottom: 0; }
+        .timeline-dot { position: absolute; left: -40px; top: 0; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--elite-green); background: #000; box-shadow: 0 0 10px rgba(34,197,94,.55); }
+        .timeline-step h3 { font-size: 1.05rem; font-weight: 900; text-transform: uppercase; }
+        .timeline-step p { color: #8b8b8b; margin-top: 5px; font: 500 .77rem/1.55 'JetBrains Mono', monospace; }
+
+        details { border: 1px solid #292929; border-radius: 10px; background: #080808; padding: 18px 20px; }
+        details + details { margin-top: 10px; }
+        summary { cursor: pointer; font-size: .9rem; font-weight: 800; text-transform: uppercase; }
+        details p { color: #909090; padding-top: 12px; font-size: .82rem; line-height: 1.65; }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
+            <a href="index.html"><img src="logo.png" alt="Elite Van Fitouts" class="h-8 md:h-10 w-auto object-contain"></a>
+            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
+                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
+                <div class="relative dropdown">
+                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition font-bold tracking-widest text-sm border-b-2 border-green-500 pb-1">
+                        SERVICES <span class="text-[10px]">▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
+                        <a href="fitouts.html" class="dropdown-item">Drawers &amp; Shelving <span>→</span></a>
+                        <a href="protection.html" class="dropdown-item text-green-500 bg-green-50/50">Protection &amp; Ply Line Barriers <span>→</span></a>
+                        <a href="services.html" class="dropdown-item">Other Services <span>→</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="about.html" class="dropdown-item">About Us <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+            <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu">
+        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
+            <a href="index.html" class="text-gray-500 hover:text-green-500 transition">Home</a>
+            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Drawers &amp; Shelving Systems</a>
+            <a href="protection.html" class="text-black border-l-4 border-green-500 pl-4 transition">Protection &amp; Ply Line Barriers</a>
+            <a href="services.html" class="text-gray-500 hover:text-green-500 transition">Other Services</a>
+            <a href="about.html" class="text-gray-500 hover:text-green-500 transition">About Us</a>
+        </div>
+    </div>
+
+    <header class="hero-section">
+        <div class="hero-video-grid" aria-hidden="true">
+            <div class="hero-video-panel"><video autoplay muted loop playsinline preload="metadata"><source src="protection hero 1.mp4" type="video/mp4"></video></div>
+            <div class="hero-video-panel"><video autoplay muted loop playsinline preload="metadata"><source src="protection hero 2.mp4" type="video/mp4"></video></div>
+            <div class="hero-video-panel"><video autoplay muted loop playsinline preload="metadata"><source src="protection hero 3.mp4" type="video/mp4"></video></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-kicker">CNC-Cut Van Protection</div>
+            <h1 class="glitch-text">Protect the van.<br><span class="text-green-500">Control the load.</span></h1>
+            <p class="hero-sub">Precision ply lining, heavy-duty flooring and custom cargo partitions built around your exact van — with finishes selected for the way you work.</p>
+        </div>
+    </header>
+
+    <div class="led-wrap">
+        <div class="led-ticker">
+            <span class="led-item">PLY LINING MELBOURNE</span><span class="led-item">HEAVY-DUTY VAN FLOORING</span><span class="led-item">CUSTOM PLY CARGO PARTITIONS</span><span class="led-item">HEX PLY FINISH</span><span class="led-item">CHARCOAL CARPET</span><span class="led-item">RUBBER FLOORING</span>
+            <span class="led-item">PLY LINING MELBOURNE</span><span class="led-item">HEAVY-DUTY VAN FLOORING</span><span class="led-item">CUSTOM PLY CARGO PARTITIONS</span><span class="led-item">HEX PLY FINISH</span><span class="led-item">CHARCOAL CARPET</span><span class="led-item">RUBBER FLOORING</span>
+        </div>
+    </div>
+
+    <section class="bg-white text-black py-20 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-center">
+            <div>
+                <p class="section-kicker">Protect the working shell</p>
+                <h2 class="text-4xl md:text-6xl font-black italic uppercase leading-[.98] tracking-tight">Built to take the abuse<br><span class="text-green-500">so your van does not.</span></h2>
+            </div>
+            <div>
+                <p class="text-gray-700 leading-relaxed font-medium">Bare van panels dent, mark and become harder to keep organised. Our CNC-cut lining, floors and partitions create a tougher, cleaner load area that is easier to maintain and ready for a complete storage fitout.</p>
+                <div class="grid grid-cols-3 gap-3 mt-7">
+                    <div class="border-l-2 border-green-500 pl-3"><strong class="block text-xl font-black">CNC</strong><span class="mono text-[9px] text-gray-500 uppercase">Precision cut</span></div>
+                    <div class="border-l-2 border-green-500 pl-3"><strong class="block text-xl font-black">3</strong><span class="mono text-[9px] text-gray-500 uppercase">Finish systems</span></div>
+                    <div class="border-l-2 border-green-500 pl-3"><strong class="block text-xl font-black">100%</strong><span class="mono text-[9px] text-gray-500 uppercase">Custom fit</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        <section class="mb-24" aria-labelledby="protection-options-title">
+            <p class="section-kicker">Build Step 01</p>
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-9">
+                <h2 id="protection-options-title" class="section-title">Select your protection</h2>
+                <p class="max-w-lg text-gray-400 text-sm leading-relaxed">Choose one item or combine all three. Each selected component keeps its own finish in your saved build.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button type="button" class="service-card" id="service-plyLining" aria-pressed="false" onclick="toggleProtection('plyLining')">
+                    <div class="service-media"><div class="placeholder-media"><span class="placeholder-icon"></span>Project image placeholder<span>Ply Lining</span></div></div>
+                    <div class="service-copy">
+                        <span class="service-number">Protection 01</span>
+                        <h3 class="service-title">Ply Lining</h3>
+                        <p class="service-desc">CNC-cut wall and door panels protect the van's factory skin from shifting tools, materials and daily site wear.</p>
+                        <div class="service-rule">Available: Hex Ply or Carpet</div>
+                    </div>
+                </button>
+
+                <button type="button" class="service-card" id="service-flooring" aria-pressed="false" onclick="toggleProtection('flooring')">
+                    <div class="service-media"><div class="placeholder-media"><span class="placeholder-icon"></span>Project image placeholder<span>Van Flooring</span></div></div>
+                    <div class="service-copy">
+                        <span class="service-number">Protection 02</span>
+                        <h3 class="service-title">Flooring</h3>
+                        <p class="service-desc">A precision-cut floor creates a flat, durable load surface and a strong foundation for drawers, shelving and day-to-day cargo.</p>
+                        <div class="service-rule">Available: Hex, Rubber or Carpet</div>
+                    </div>
+                </button>
+
+                <button type="button" class="service-card" id="service-cargoBarrier" aria-pressed="false" onclick="toggleProtection('cargoBarrier')">
+                    <div class="service-media"><div class="placeholder-media"><span class="placeholder-icon"></span>Project image placeholder<span>Cargo Barrier</span></div></div>
+                    <div class="service-copy">
+                        <span class="service-number">Protection 03</span>
+                        <h3 class="service-title">Cargo Barrier</h3>
+                        <p class="service-desc">A custom ply partition helps separate the cab from the working load area, creates a cleaner layout and provides a mounting surface.</p>
+                        <div class="service-rule">Available: Hex Ply or Carpet</div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <section class="mb-24" aria-labelledby="finish-selector-title">
+            <p class="section-kicker">Build Step 02</p>
+            <h2 id="finish-selector-title" class="section-title mb-5">Choose each finish</h2>
+            <p class="max-w-3xl text-gray-400 text-sm leading-relaxed mb-8">Hex Ply is the default. Rubber is intentionally restricted to flooring because it is designed as a high-grip load surface, not a wall or barrier finish.</p>
+
+            <div id="finish-empty" class="finish-empty">Select Ply Lining, Flooring or Cargo Barrier above to configure its finish.</div>
+
+            <div class="finish-panel" id="finish-panel-plyLining" hidden>
+                <div class="finish-panel-head"><h3 class="finish-panel-title">Ply Lining Finish</h3><p class="finish-panel-rule">Hex Ply or Charcoal Carpet only</p></div>
+                <div class="finish-grid">
+                    <button type="button" class="finish-choice" data-service="plyLining" data-finish="Hex Ply" onclick="selectProtectionFinish('plyLining','Hex Ply')"><img src="hex ply.jpeg" alt="Hex Ply finish"><span>Hex Ply · Default</span></button>
+                    <button type="button" class="finish-choice disabled" aria-disabled="true" tabindex="-1"><img src="rubber finish.jpeg" alt="Rubber finish unavailable for ply lining"><span>Rubber Finish</span></button>
+                    <button type="button" class="finish-choice" data-service="plyLining" data-finish="Charcoal Carpet" onclick="selectProtectionFinish('plyLining','Charcoal Carpet')"><img src="carpet finish.jpeg" alt="Charcoal carpet finish"><span>Charcoal Carpet</span></button>
+                </div>
+            </div>
+
+            <div class="finish-panel" id="finish-panel-flooring" hidden>
+                <div class="finish-panel-head"><h3 class="finish-panel-title">Flooring Finish</h3><p class="finish-panel-rule">All three finishes available</p></div>
+                <div class="finish-grid">
+                    <button type="button" class="finish-choice" data-service="flooring" data-finish="Hex Ply" onclick="selectProtectionFinish('flooring','Hex Ply')"><img src="hex ply.jpeg" alt="Hex Ply flooring finish"><span>Hex Ply · Default</span></button>
+                    <button type="button" class="finish-choice" data-service="flooring" data-finish="Rubber Finish" onclick="selectProtectionFinish('flooring','Rubber Finish')"><img src="rubber finish.jpeg" alt="Heavy-duty rubber flooring finish"><span>Rubber Finish</span></button>
+                    <button type="button" class="finish-choice" data-service="flooring" data-finish="Charcoal Carpet" onclick="selectProtectionFinish('flooring','Charcoal Carpet')"><img src="carpet finish.jpeg" alt="Charcoal carpet flooring finish"><span>Charcoal Carpet</span></button>
+                </div>
+            </div>
+
+            <div class="finish-panel" id="finish-panel-cargoBarrier" hidden>
+                <div class="finish-panel-head"><h3 class="finish-panel-title">Cargo Barrier Finish</h3><p class="finish-panel-rule">Hex Ply or Charcoal Carpet only</p></div>
+                <div class="finish-grid">
+                    <button type="button" class="finish-choice" data-service="cargoBarrier" data-finish="Hex Ply" onclick="selectProtectionFinish('cargoBarrier','Hex Ply')"><img src="hex ply.jpeg" alt="Hex Ply cargo barrier finish"><span>Hex Ply · Default</span></button>
+                    <button type="button" class="finish-choice disabled" aria-disabled="true" tabindex="-1"><img src="rubber finish.jpeg" alt="Rubber finish unavailable for cargo barriers"><span>Rubber Finish</span></button>
+                    <button type="button" class="finish-choice" data-service="cargoBarrier" data-finish="Charcoal Carpet" onclick="selectProtectionFinish('cargoBarrier','Charcoal Carpet')"><img src="carpet finish.jpeg" alt="Charcoal carpet cargo barrier finish"><span>Charcoal Carpet</span></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <p class="section-kicker">What each system does</p>
+            <h2 class="section-title mb-9">Protection with a purpose</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="info-card"><span class="info-card-number">01 / BODYWORK</span><h3>Stops Daily Damage</h3><p>Wall, door and floor panels take the knocks from tools and cargo before the van's factory metal does.</p></div>
+                <div class="info-card"><span class="info-card-number">02 / CLEANING</span><h3>Easier to Maintain</h3><p>Wipeable Hex and rubber surfaces are made for dirty trade use, while carpet creates a cleaner premium cabin.</p></div>
+                <div class="info-card"><span class="info-card-number">03 / NOISE</span><h3>Quieter Load Area</h3><p>Adding fitted panels and carpet helps reduce loose-panel vibration and softens noise from everyday cargo movement.</p></div>
+                <div class="info-card"><span class="info-card-number">04 / FOUNDATION</span><h3>Fitout Ready</h3><p>A properly fitted floor and lining system creates the base for future drawers, shelving and electrical additions.</p></div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <p class="section-kicker">Material library</p>
+            <h2 class="section-title mb-9">Three proven finishes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="material-card"><img src="hex ply.jpeg" alt="Close-up of black Hex Ply finish" loading="lazy"><div class="material-copy"><h3>Hex Ply</h3><p>The default hard-wearing finish. Water resistant, easy to wipe down and suited to flooring, wall lining and ply partitions.</p></div></article>
+                <article class="material-card"><img src="rubber finish.jpeg" alt="Close-up of heavy-duty rubber finish" loading="lazy"><div class="material-copy"><h3>Rubber Finish</h3><p>A high-grip, impact-friendly overlay available for flooring only. Best where tools and heavy equipment move through the load bay.</p></div></article>
+                <article class="material-card"><img src="carpet finish.jpeg" alt="Close-up of charcoal automotive carpet" loading="lazy"><div class="material-copy"><h3>Charcoal Carpet</h3><p>A clean automotive finish available across flooring, lining and partitions. Ideal for fragile cargo and a quieter premium interior.</p></div></article>
+            </div>
+        </section>
+
+        <section class="grid lg:grid-cols-2 gap-12 items-start mb-24">
+            <div>
+                <p class="section-kicker">Installation path</p>
+                <h2 class="section-title mb-10">Measured. Cut. Fitted.</h2>
+                <div class="timeline">
+                    <div class="timeline-step"><span class="timeline-dot"></span><h3>1. Confirm the van</h3><p>We confirm model, wheelbase, roof height and how the load area is used.</p></div>
+                    <div class="timeline-step"><span class="timeline-dot"></span><h3>2. Lock the protection spec</h3><p>Select lining, flooring and/or cargo partition, then assign the correct finish to each component.</p></div>
+                    <div class="timeline-step"><span class="timeline-dot"></span><h3>3. CNC manufacture</h3><p>Panels are cut for a repeatable fit around the van's factory profile, doors, ribs and access points.</p></div>
+                    <div class="timeline-step"><span class="timeline-dot"></span><h3>4. Install & inspect</h3><p>We fit, finish and inspect the load area before handover or the next fitout stage.</p></div>
+                </div>
+            </div>
+            <div class="bg-[#080808] border border-[#303030] rounded-xl p-7 md:p-9">
+                <p class="section-kicker">Good to know</p>
+                <h2 class="text-3xl font-black italic uppercase mb-7">Protection FAQ</h2>
+                <details><summary>Can I combine all three options?</summary><p>Yes. Ply lining, flooring and a ply cargo partition can be selected together. Each component can have its own permitted finish.</p></details>
+                <details><summary>Why is rubber flooring-only?</summary><p>Rubber is designed as a durable, high-grip horizontal load surface. For walls and ply partitions, Hex Ply or carpet provides the cleaner and more practical finish.</p></details>
+                <details><summary>Can this be added before shelving and drawers?</summary><p>Yes. Installing the protective shell first creates a clean foundation for a complete storage fitout. Your saved tracker carries both page selections together.</p></details>
+                <details><summary>Is the ply partition an ADR-certified barrier?</summary><p>A custom ply partition and a certified safety cargo barrier are not automatically the same product. Tell us your load-restraint or compliance requirements so the correct solution can be specified in your quote.</p></details>
+            </div>
+        </section>
+
+        <section class="rounded-2xl border border-green-500/50 bg-gradient-to-br from-[#0d160f] to-[#050505] p-8 md:p-12 flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-center">
+            <div><p class="section-kicker">Complete the system</p><h2 class="text-3xl md:text-5xl font-black italic uppercase leading-none">Protection saved.<br><span class="text-green-500">Now build the storage.</span></h2><p class="mt-4 max-w-2xl text-gray-400 text-sm leading-relaxed">Your protection choices stay in the shared tracker when you move to the fitouts page.</p></div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto"><a class="btn-main" href="fitouts.html">CONFIGURE FITOUT →</a><a class="btn-outline" href="index.html">BACK HOME</a></div>
+        </section>
+    </main>
+
+    <footer class="bg-[#050505] border-t border-[#202020] py-12 px-6 text-gray-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div><img src="logo.png" alt="Elite Van Fitouts" class="h-8 mb-3 mx-auto md:mx-0"><p class="mono text-xs">© 2026 Elite Van Fitouts. All rights reserved.</p></div>
+            <div class="flex flex-wrap justify-center gap-6 mono text-xs uppercase font-bold"><a href="index.html" class="hover:text-green-500">Home</a><a href="fitouts.html" class="hover:text-green-500">Fitouts</a><a href="protection.html" class="text-green-500">Protection</a></div>
+        </div>
+    </footer>
+
+    <script src="build-tracker.js"></script>
+    <script>
+        const allowedFinishes = {
+            plyLining: ['Hex Ply', 'Charcoal Carpet'],
+            flooring: ['Hex Ply', 'Rubber Finish', 'Charcoal Carpet'],
+            cargoBarrier: ['Hex Ply', 'Charcoal Carpet']
+        };
+
+        const defaultProtection = {
+            plyLining: { selected: false, finish: 'Hex Ply' },
+            flooring: { selected: false, finish: 'Hex Ply' },
+            cargoBarrier: { selected: false, finish: 'Hex Ply' }
+        };
+
+        let protectionState = window.EliteBuild
+            ? window.EliteBuild.get().protection
+            : JSON.parse(JSON.stringify(defaultProtection));
+
+        function saveProtection() {
+            if (window.EliteBuild) window.EliteBuild.setProtection(protectionState);
+        }
+
+        function toggleProtection(service) {
+            const item = protectionState[service];
+            if (!item) return;
+            item.selected = !item.selected;
+            if (!allowedFinishes[service].includes(item.finish)) item.finish = 'Hex Ply';
+            saveProtection();
+            renderProtection();
+        }
+
+        function selectProtectionFinish(service, finish) {
+            if (!protectionState[service] || !allowedFinishes[service].includes(finish)) return;
+            protectionState[service].selected = true;
+            protectionState[service].finish = finish;
+            saveProtection();
+            renderProtection();
+        }
+
+        function renderProtection() {
+            let selectedCount = 0;
+            Object.keys(protectionState).forEach((service) => {
+                const item = protectionState[service];
+                const card = document.getElementById(`service-${service}`);
+                const panel = document.getElementById(`finish-panel-${service}`);
+                if (!card || !panel) return;
+
+                card.classList.toggle('selected', item.selected);
+                card.setAttribute('aria-pressed', String(item.selected));
+                panel.hidden = !item.selected;
+                if (item.selected) selectedCount += 1;
+
+                document.querySelectorAll(`.finish-choice[data-service="${service}"]`).forEach((choice) => {
+                    choice.classList.toggle('selected', choice.dataset.finish === item.finish);
+                    choice.setAttribute('aria-pressed', String(choice.dataset.finish === item.finish));
+                });
+            });
+            document.getElementById('finish-empty').hidden = selectedCount > 0;
+            if (window.EliteBuild) window.EliteBuild.render();
+        }
+
+        // Repair any stale or manually edited local state that violates the finish rules.
+        let repaired = false;
+        Object.keys(protectionState).forEach((service) => {
+            if (!allowedFinishes[service].includes(protectionState[service].finish)) {
+                protectionState[service].finish = 'Hex Ply';
+                repaired = true;
+            }
+        });
+        if (repaired) saveProtection();
+        renderProtection();
+    </script>
+</body>
+</html>
