@@ -10,12 +10,14 @@
         :root {
             --elite-green: #22c55e;
             --elite-green-glow: rgba(34, 197, 94, 0.4);
+            --elite-green-soft: rgba(34, 197, 94, 0.12);
+            --elite-panel: #080a09;
         }
-        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; padding-bottom: 90px; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 50% 35%, #0b120e 0, #030403 34%, #000 70%); color: #fff; overflow-x: hidden; padding-bottom: 90px; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         
         /* --- NAVIGATION --- */
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 80px; display: flex; align-items: center; }
+        .glass-nav { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px); border-bottom: 2px solid var(--elite-green); height: 80px; display: flex; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
         .dropdown { position: relative; display: inline-block; }
         .dropdown-menu {
             display: none; position: absolute; top: 100%; left: -20px; background: white; min-width: 240px;
@@ -29,9 +31,10 @@
         .nav-spacer { height: 80px; }
 
         /* --- HERO --- */
-        .hero-section { position: relative; height: 60vh; min-height: 500px; display: flex; align-items: flex-end; padding: 40px 6% 80px; overflow: hidden; background: #000; }
+        .hero-section { position: relative; height: 60vh; min-height: 500px; display: flex; align-items: flex-end; padding: 40px 6% 80px; overflow: hidden; background: #000; border-bottom: 1px solid rgba(34,197,94,.45); }
+        .hero-section::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(0,0,0,.35), transparent 46%, rgba(34,197,94,.06)), linear-gradient(0deg, #000 0%, transparent 52%); }
         .hero-video-wrapper { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: hidden; }
-        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; animation: heroDrift 16s ease-in-out infinite alternate; }
         .hero-content { position: relative; z-index: 10; max-w: 7xl; margin: 0 auto; width: 100%; }
         .glitch-text { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1; text-transform: uppercase; font-style: italic; text-shadow: 2px 2px 0px rgba(34,197,94,0.5); margin-bottom: 10px; }
         .hero-sub { font-family: 'JetBrains Mono', monospace; font-size: clamp(0.8rem, 2vw, 1.1rem); color: #ccc; max-width: 600px; line-height: 1.6; }
@@ -56,15 +59,16 @@
         .sys-btn:hover:not(.active) { color: white; border-color: #555; }
 
         .hex-card {
-            background-color: #080808; border: 1px solid #333; border-radius: 12px; position: relative; overflow: hidden; 
-            transition: 0.3s; height: 100%; display: flex; flex-direction: column; cursor: pointer;
+            background-color: #080808; border: 1px solid #363a37; border-radius: 14px; position: relative; overflow: hidden;
+            transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; height: 100%; display: flex; flex-direction: column; cursor: pointer;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z' fill='none' stroke='%231a1a1a' stroke-width='1'/%3E%3C/svg%3E");
             background-size: 40px 40px;
         }
-        .hex-card:hover { transform: translateY(-5px); border-color: var(--elite-green); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
+        .hex-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; border: 1px solid rgba(255,255,255,.035); pointer-events: none; z-index: 3; }
+        .hex-card:hover { transform: translateY(-7px); border-color: var(--elite-green); box-shadow: 0 18px 45px rgba(0,0,0,.5), 0 0 28px rgba(34, 197, 94, 0.2); }
         .hex-card .card-title { color: #ffffff; }
         
-        .hex-card.selected { background-color: #ffffff; background-image: none; border-width: 2px; border-color: var(--elite-green); box-shadow: 0 20px 50px rgba(34, 197, 94, 0.3); }
+        .hex-card.selected { background-color: #ffffff; background-image: none; border-width: 2px; border-color: var(--elite-green); box-shadow: 0 20px 55px rgba(34, 197, 94, 0.28), 0 0 0 5px rgba(34,197,94,.07); }
         .hex-card.selected::before {
             content: "SELECTED"; position: absolute; top: 0; right: 0; background: var(--elite-green); color: black; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
             padding: 6px 12px; font-weight: bold; z-index: 20; border-bottom-left-radius: 8px;
@@ -72,15 +76,22 @@
         .hex-card.selected .card-title { color: #000000; }
         .hex-card.selected .text-gray-400 { color: var(--elite-green) !important; font-weight: 700; }
 
-        .pkg-media { height: 200px; width: 100%; border-bottom: 1px solid #222; position: relative; background: black; display: flex; justify-content: center; align-items: center; }
-        .pkg-media video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
-        .hex-card:hover .pkg-media video, .hex-card.selected .pkg-media video { opacity: 1; }
+        .pkg-media { height: 200px; width: 100%; border-bottom: 1px solid #262a27; position: relative; background: black; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+        .pkg-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.48)); pointer-events: none; }
+        .pkg-media video, .pkg-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.82; transition: transform .7s ease, opacity .35s ease, filter .35s ease; }
+        #packages-shelving .pkg-media { height: 250px; }
+        .pkg-media img.shelf-single { object-position: center 59%; }
+        .pkg-media img.shelf-dual { object-position: center 48%; }
+        .hex-card:hover .pkg-media video, .hex-card.selected .pkg-media video,
+        .hex-card:hover .pkg-media img, .hex-card.selected .pkg-media img { opacity: 1; transform: scale(1.045); filter: saturate(1.05) contrast(1.03); }
         .card-inner { padding: 30px; display: flex; flex-direction: column; height: 100%; }
         .card-title { font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; margin-bottom: 5px; transition: 0.3s;}
 
         /* --- MATERIAL SELECTION --- */
-        .mat-card { background: #080808; border: 1px solid #333; padding: 25px; cursor: pointer; transition: 0.2s; position: relative; border-radius: 12px; }
-        .mat-card:hover { border-color: var(--elite-green); }
+        .mat-card { background: linear-gradient(145deg, #0b0c0b, #060706); border: 1px solid #343834; padding: 25px; cursor: pointer; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; position: relative; border-radius: 14px; overflow: hidden; }
+        .mat-card::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--elite-green); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+        .mat-card:hover { border-color: var(--elite-green); transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,.38); }
+        .mat-card:hover::after, .mat-card.selected::after { transform: scaleX(1); }
         .mat-card.selected { background: #ffffff; border: 2px solid var(--elite-green); box-shadow: 0 10px 40px rgba(34, 197, 94, 0.25); }
         .mat-card.selected::before { content: "✓"; position: absolute; top: 15px; right: 15px; color: var(--elite-green); font-weight: bold; font-size: 1.2rem; }
         .mat-card.selected .mat-title { color: #000000; }
@@ -89,10 +100,12 @@
         .mat-desc { font-size: 0.75rem; color: #888; font-family: 'JetBrains Mono', monospace; }
 
         /* --- RACKING & QUANTITY CONTROLS --- */
-        .spec-item { background: #080808; border: 1px solid #333; margin-bottom: 24px; overflow: hidden; border-radius: 12px; transition: 0.3s; }
+        .spec-item { background: linear-gradient(160deg, #0b0c0b, #060706); border: 1px solid #343834; margin-bottom: 24px; overflow: hidden; border-radius: 14px; transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+        .spec-item:not(.locked):hover { transform: translateY(-5px); border-color: rgba(34,197,94,.85); box-shadow: 0 15px 38px rgba(0,0,0,.45), 0 0 20px rgba(34,197,94,.12); }
         .spec-item.locked { opacity: 0.5; pointer-events: none; border-color: #222; }
         .spec-img-box { height: 220px; width: 100%; position: relative; border-bottom: 1px solid #333; }
-        .spec-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .spec-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.82; transition: transform .65s ease, opacity .35s ease; }
+        .spec-item:not(.locked):hover .spec-img-box img { transform: scale(1.05); opacity: 1; }
         .spec-content { padding: 30px; }
         .spec-actions { display: flex; gap: 10px; margin-top: 15px; align-items: center; }
         
@@ -119,6 +132,29 @@
         /* MOBILE MENU OVERRIDE */
         #mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; z-index: 40; display: none; padding-top: 100px; padding-left: 40px; }
         #mobile-menu.active { display: block; }
+
+        /* --- CONFIGURATOR POLISH & SCROLL REVEALS --- */
+        .config-shell { position: relative; isolation: isolate; }
+        .config-shell::before { content: ''; position: absolute; inset: 4rem -20vw auto; height: 520px; z-index: -1; pointer-events: none; background: radial-gradient(circle, rgba(34,197,94,.12), transparent 62%); filter: blur(25px); }
+        .config-section { position: relative; padding: clamp(24px, 4vw, 42px); border: 1px solid rgba(255,255,255,.11); border-radius: 22px; background: linear-gradient(145deg, rgba(16,18,16,.92), rgba(4,5,4,.96)); box-shadow: 0 28px 75px rgba(0,0,0,.34); overflow: hidden; }
+        .config-section::before { content: ''; position: absolute; top: 0; left: 0; width: 105px; height: 2px; background: linear-gradient(90deg, var(--elite-green), transparent); box-shadow: 0 0 16px rgba(34,197,94,.55); }
+        .section-heading::after { content: ''; height: 1px; flex: 1; margin-left: 14px; background: linear-gradient(90deg, rgba(34,197,94,.45), transparent); }
+        .polish-card { transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+        .polish-card:hover { transform: translateY(-4px); border-color: rgba(34,197,94,.7) !important; box-shadow: 0 18px 45px rgba(0,0,0,.36), 0 0 20px rgba(34,197,94,.1); }
+        .reveal-section { opacity: 1; transform: none; }
+        .reveal-section.will-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.25,1); }
+        .reveal-section.will-reveal.is-visible { opacity: 1; transform: none; }
+        @keyframes heroDrift { from { transform: scale(1.01); } to { transform: scale(1.07); } }
+        @media (max-width: 640px) {
+            .glass-nav { height: 60px; }
+            .hero-section { min-height: 460px; padding-bottom: 58px; }
+            .config-section { padding: 22px 16px; border-radius: 16px; }
+            .pkg-media { height: 190px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+            .reveal-section, .reveal-section.will-reveal { opacity: 1; transform: none; transition: none; }
+        }
     </style>
 </head>
 <body>
@@ -192,7 +228,7 @@
     </div>
 
     <!-- INTRO GRID -->
-    <section class="py-20 bg-white text-black border-b border-[#ddd]">
+    <section class="py-20 bg-white text-black border-b border-[#ddd] reveal-section">
         <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center">
             <div class="flex-1">
                 <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">100% Bespoke Systems</p>
@@ -229,14 +265,13 @@
         </div>
     </div>
             </div>
-        </div>
     </section>
 
     <!-- CONFIGURATOR -->
-    <div class="px-6 max-w-7xl mx-auto pt-20">
+    <div class="px-6 max-w-7xl mx-auto pt-20 config-shell">
 
         <!-- SYSTEM TYPE TOGGLE -->
-        <div class="mb-12 max-w-2xl mx-auto">
+        <div class="mb-12 max-w-2xl mx-auto config-section reveal-section">
             <h2 class="text-center font-black italic uppercase text-2xl mb-4">Select Build Architecture</h2>
             <div class="sys-toggle">
                 <button class="sys-btn active" id="btn-type-drawer" onclick="setSystemType('Drawer System')">Drawer System<br><span class="text-[10px] font-normal">(False Floor Included)</span></button>
@@ -245,8 +280,8 @@
         </div>
 
         <!-- 01. PACKAGES -->
-        <div class="mb-20">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+        <div class="mb-20 config-section reveal-section">
+            <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">01.</span> Select Base Configuration
             </h2>
             
@@ -308,7 +343,7 @@
             <!-- SHELVING ONLY PACKAGES (Hidden by default) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="packages-shelving">
                 <div class="hex-card" id="pkg-shelf-basic" onclick="setPackage('Single Side Shelving', 3, 'pkg-shelf-basic')">
-                    <div class="pkg-media"><span class="text-4xl">🗄️</span></div>
+                    <div class="pkg-media"><img class="shelf-single" src="single side shelving.jpeg" alt="Single-side custom van shelving system" loading="lazy" decoding="async"></div>
                     <div class="card-inner">
                         <h3 class="card-title text-2xl">Single Side</h3>
                         <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">DRIVER SIDE RACKING</p>
@@ -320,7 +355,7 @@
                     </div>
                 </div>
                 <div class="hex-card" id="pkg-shelf-pro" onclick="setPackage('Dual Side Shelving', 7, 'pkg-shelf-pro')">
-                    <div class="pkg-media"><span class="text-4xl">🗄️🗄️</span></div>
+                    <div class="pkg-media"><img class="shelf-dual" src="dual side shelving .jpeg" alt="Dual-side custom van shelving system" loading="lazy" decoding="async"></div>
                     <div class="card-inner">
                         <h3 class="card-title text-2xl">Dual Side</h3>
                         <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">MAXIMUM STORAGE</p>
@@ -346,8 +381,8 @@
         </div>
 
         <!-- 02. MATERIALS -->
-        <div class="mb-24">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+        <div class="mb-24 config-section reveal-section">
+            <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">02.</span> Select Finish
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -367,9 +402,9 @@
         </div>
 
         <!-- 03. MODULES -->
-        <div class="mb-24">
+        <div class="mb-24 config-section reveal-section">
             <div class="flex justify-between items-end mb-4">
-                <h2 class="text-2xl md:text-4xl font-black uppercase italic flex items-center gap-3">
+                <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic flex items-center gap-3">
                     <span class="text-green-500 text-sm mono">03.</span> Configure Modules
                 </h2>
             </div>
@@ -439,7 +474,7 @@
         </div>
 
         <!-- TIMELINE -->
-        <div class="mb-24">
+        <div class="mb-24 config-section reveal-section">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
                 Mission <span class="text-green-500">Timeline</span>
             </h2>
@@ -452,13 +487,13 @@
         </div>
 
         <!-- SPECS & FINISHES (Replacing Engineering) -->
-        <div class="mb-24 max-w-5xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
+        <div class="mb-24 max-w-5xl mx-auto config-section reveal-section">
+            <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
                 <span class="text-green-500 text-sm mono">04.</span> Specs & Finishes
             </h2>
             
             <!-- Video Section -->
-            <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden mb-12">
+            <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden mb-12 polish-card">
                 <video autoplay muted loop playsinline class="w-full h-64 md:h-96 object-cover border-b border-[#333]">
                     <source src="false floor.mov" type="video/mp4">
                 </video>
@@ -471,7 +506,7 @@
             <!-- Material Breakdowns -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- 12mm Hex -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden">
+                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden polish-card">
                     <div class="h-48 bg-[#111] relative">
                         <img src="hex ply.jpeg" alt="12mm hex anti-slip plywood finish close-up" class="w-full h-full object-cover object-center border-b border-[#333]" loading="lazy" decoding="async">
                     </div>
@@ -481,7 +516,7 @@
                     </div>
                 </div>
                 <!-- Rubber -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden">
+                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden polish-card">
                     <div class="h-48 bg-[#111] relative">
                         <img src="rubber finish.jpeg" alt="Heavy-duty rubber flooring finish close-up" class="w-full h-full object-cover object-center border-b border-[#333]" loading="lazy" decoding="async">
                     </div>
@@ -491,7 +526,7 @@
                     </div>
                 </div>
                 <!-- Carpet -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden">
+                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden polish-card">
                     <div class="h-48 bg-[#111] relative">
                         <img src="carpet finish.jpeg" alt="Charcoal automotive carpet finish close-up" class="w-full h-full object-cover object-center border-b border-[#333]" loading="lazy" decoding="async">
                     </div>
@@ -504,7 +539,7 @@
         </div>
 
        <!-- PROTECTION INVITE UPGRADE -->
-        <div class="mb-12 max-w-5xl mx-auto bg-black border border-[#333] hover:border-green-500/50 transition-colors duration-300 rounded-xl p-8 md:p-12 relative overflow-hidden group">
+        <div class="mb-12 max-w-5xl mx-auto bg-black border border-[#333] hover:border-green-500/50 transition-colors duration-300 rounded-xl p-8 md:p-12 relative overflow-hidden group reveal-section">
             <!-- Glow effect -->
             <div class="absolute -top-24 -right-24 w-64 h-64 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition duration-500"></div>
 
@@ -528,8 +563,9 @@
             </div>
         </div>
 
-    <div class="mb-24 max-w-5xl mx-auto text-center px-6">
+    <div class="mb-24 max-w-5xl mx-auto text-center px-6 reveal-section">
         <button onclick="saveAndProceed()" class="btn-main w-full md:w-auto text-center justify-center">SAVE FITOUT &amp; ADD PROTECTION →</button>
+    </div>
     </div>
 
     <script src="build-tracker.js"></script>
@@ -684,6 +720,27 @@
 
         // Run
         initializeUI();
+    </script>
+
+    <script>
+        // Presentation-only scroll reveals; configurator state and click logic remain unchanged.
+        (function initFitoutReveals() {
+            const sections = document.querySelectorAll('.reveal-section');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion || !('IntersectionObserver' in window)) {
+                sections.forEach(section => section.classList.add('is-visible'));
+                return;
+            }
+            sections.forEach(section => section.classList.add('will-reveal'));
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+            sections.forEach(section => observer.observe(section));
+        })();
     </script>
 </body>
 </html>

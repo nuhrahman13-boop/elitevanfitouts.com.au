@@ -194,10 +194,11 @@
             mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 90%, transparent);
         }
-        .marquee-track { display: flex; gap: 20px; padding-left: 20px; width: max-content; }
+        .marquee-track { display: flex; gap: 0; width: max-content; }
+        .marquee-group { display: flex; gap: 20px; padding-right: 20px; flex-shrink: 0; }
         
-        .track-slow { animation: scrollLeft 35s linear infinite; } 
-        .track-fast { animation: scrollRight 30s linear infinite; } 
+        .track-slow { animation: scrollLeft 96s linear infinite; }
+        .track-fast { animation: scrollRight 88s linear infinite; }
         
         @keyframes scrollLeft { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
         @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
@@ -205,10 +206,18 @@
         .marquee-img-card {
             display: inline-flex; width: auto; flex-shrink: 0; height: 180px;
             border: 2px solid var(--elite-green); border-radius: 8px; overflow: hidden; background: #ffffff;
-            box-shadow: 0 0 15px rgba(34,197,94,0.4); transition: transform 0.3s;
+            box-shadow: 0 0 15px rgba(34,197,94,0.4); transition: transform 0.3s, box-shadow .3s; text-decoration: none;
         }
         .marquee-img-card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(34,197,94,0.8); z-index: 10; position: relative; }
+        .marquee-img-card:focus-visible { outline: 3px solid #000; outline-offset: 3px; box-shadow: 0 0 0 6px var(--elite-green); z-index: 12; }
         .marquee-img { height: 100%; width: auto; object-fit: cover; background: #ffffff; }
+        .fitout-showcase:hover .marquee-track, .fitout-showcase:focus-within .marquee-track { animation-play-state: paused; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-wrapper { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+            .marquee-track { animation: none !important; transform: none !important; }
+            .marquee-group:nth-child(2) { display: none; }
+        }
 
         /* MOBILE HORIZONTAL SCROLL CONTAINERS */
         .mobile-scroll-row {
@@ -496,37 +505,98 @@
             <a href="about.html" class="btn-outline text-xs">LEARN MORE ABOUT OUR WORKSHOP →</a>
         </div>
         
-        <!-- Marquee Track 1 -->
+        <!-- Every gallery image opens the social-builds section on About. Each full set is duplicated for a seamless loop. -->
         <div class="marquee-wrapper">
             <div class="marquee-track track-slow">
-                <div class="marquee-img-card"><img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 1"></div>
-                <div class="marquee-img-card"><img src="melbournes best van set ups.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 2"></div>
-                <div class="marquee-img-card"><img src="better than van fitouts melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 3"></div>
-                <div class="marquee-img-card"><img src="van fitouts melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 4"></div>
-                <div class="marquee-img-card"><img src="melbourne van set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 5"></div>
-                <div class="marquee-img-card"><img src="van slideout system.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 6"></div>
-                <div class="marquee-img-card"><img src="van storage systems.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 7"></div>
-                <div class="marquee-img-card"><img src="van slide outs.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 8"></div>
-                <!-- Duplicate for seamless loop -->
-                <div class="marquee-img-card"><img src="van shelving melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 1"></div>
-                <div class="marquee-img-card"><img src="melbournes best van set ups.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 2"></div>
+                <div class="marquee-group">
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite van shelving builds"><img src="van shelving melbourne.jpeg" class="marquee-img" alt="Custom van shelving built in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite van fitout builds"><img src="melbournes best van set ups.jpeg" class="marquee-img" alt="Complete Melbourne tradie van setup" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite van fitout builds"><img src="better than van fitouts melbourne.jpeg" class="marquee-img" alt="Premium custom van fitout in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite van fitout builds"><img src="van fitouts melbourne.jpeg" class="marquee-img" alt="CNC-cut van fitout in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite van storage builds"><img src="melbourne van set ups.jpeg" class="marquee-img" alt="Melbourne work van storage setup" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite slide-out builds"><img src="van slideout system.jpeg" class="marquee-img" alt="Custom van slide-out storage system" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite van storage builds"><img src="van storage systems.jpeg" class="marquee-img" alt="Purpose-built tradie van storage system" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite slide-out builds"><img src="van slide outs.jpeg" class="marquee-img" alt="Heavy-duty van slide-out drawers" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See custom shelving system builds"><img src="custom shelving system .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom shelving system for a Melbourne work van" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See custom van storage builds"><img src="custom storage for vans.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom storage built for a trade van" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See custom tradie storage builds"><img src="custom tradie storage set ups.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom tradie storage setup in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See custom drawer storage builds"><img src="custome drawer storage for vans.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom drawer storage for a work van" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See tradie drawer setup builds"><img src="drawer setups for tadies.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Drawer setup built for Melbourne tradies" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See van drawer builds"><img src="drawers for vans melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom drawers for vans in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite Melbourne builds"><img src="elite van fitouts in melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Elite Van Fitouts completed build in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See single-side shelving builds"><img src="single side shelving.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Single-side shelving system for a tradie van" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See trade van storage builds"><img src="storage for traide vans.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Storage system for a trade van" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See work van storage builds"><img src="trade storage for vans .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Trade storage built for a work van" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See tradie racking builds"><img src="tradie racking for vans .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom tradie racking for vans" loading="lazy" decoding="async"></a>
+                </div>
+                <div class="marquee-group" aria-hidden="true">
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van shelving melbourne.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="melbournes best van set ups.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="better than van fitouts melbourne.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van fitouts melbourne.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="melbourne van set ups.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van slideout system.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van storage systems.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van slide outs.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="custom shelving system .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="custom storage for vans.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="custom tradie storage set ups.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="custome drawer storage for vans.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="drawer setups for tadies.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="drawers for vans melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="elite van fitouts in melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="single side shelving.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="storage for traide vans.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="trade storage for vans .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="tradie racking for vans .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                </div>
             </div>
         </div>
 
-        <!-- Marquee Track 2 -->
         <div class="marquee-wrapper">
             <div class="marquee-track track-fast">
-                <div class="marquee-img-card"><img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 9"></div>
-                <div class="marquee-img-card"><img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 10"></div>
-                <div class="marquee-img-card"><img src="campervan set up melbourne.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 11"></div>
-                <div class="marquee-img-card"><img src="ply lining and fooring .jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 12"></div>
-                <div class="marquee-img-card"><img src="signage and other services.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 13"></div>
-                <div class="marquee-img-card"><img src="melbourne tradie set up.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 14"></div>
-                <div class="marquee-img-card"><img src="melbourne tradie set ups.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 15"></div>
-                <div class="marquee-img-card"><img src="van slide out shelving.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 16"></div>
-                <!-- Duplicate for seamless loop -->
-                <div class="marquee-img-card"><img src="melbourne van storage.jpeg" onerror="this.src='fitouts.jpg'" class="marquee-img" alt="Fitout 9"></div>
-                <div class="marquee-img-card"><img src="van drawers melbourne.jpeg" onerror="this.src='fitouts2.jpg'" class="marquee-img" alt="Fitout 10"></div>
+                <div class="marquee-group">
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite van storage builds"><img src="melbourne van storage.jpeg" class="marquee-img" alt="Melbourne van storage fitout" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite drawer builds"><img src="van drawers melbourne.jpeg" class="marquee-img" alt="Custom van drawers built in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite van setup builds"><img src="campervan set up melbourne.jpeg" class="marquee-img" alt="Custom van setup completed in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite protection builds"><img src="ply lining and fooring .jpeg" class="marquee-img" alt="Van ply lining and flooring fitout" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See more Elite workshop builds"><img src="signage and other services.jpeg" class="marquee-img" alt="Elite Van Fitouts workshop services" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite tradie van builds"><img src="melbourne tradie set up.jpeg" class="marquee-img" alt="Melbourne tradie van setup" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite tradie van builds"><img src="melbourne tradie set ups.jpeg" class="marquee-img" alt="Custom tradie van storage setup" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Elite shelving builds"><img src="van slide out shelving.jpeg" class="marquee-img" alt="Van slide-out shelving system" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See tradie van drawer builds"><img src="tradie van drawers.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Tradie van drawer system" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See tradie van setup builds"><img src="tradie van setups melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Tradie van setup completed in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See tradie van storage ideas"><img src="tradie van storage ideas.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom tradie van storage idea" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Melbourne van storage builds"><img src="tradie van storage melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Tradie van storage built in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See Melbourne van drawer builds"><img src="van drawer set ups melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Van drawer setup in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See completed Melbourne van fitouts"><img src="van fitted out melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Van fitted out at the Elite Melbourne workshop" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See work van storage builds"><img src="van set up for storage melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Van setup for trade storage in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See van slide-out builds"><img src="van slide out sytems melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Van slide-out system built in Melbourne" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See van storage layout ideas"><img src="van storage layout ideas.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Custom van storage layout idea" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See trade van storage builds"><img src="van storage setups for trade.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Van storage setup built for trade use" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-label="See dual-side shelving builds"><img src="dual side shelving .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="Dual-side shelving system for a tradie van" loading="lazy" decoding="async"></a>
+                </div>
+                <div class="marquee-group" aria-hidden="true">
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="melbourne van storage.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van drawers melbourne.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="campervan set up melbourne.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="ply lining and fooring .jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="signage and other services.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="melbourne tradie set up.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="melbourne tradie set ups.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van slide out shelving.jpeg" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="tradie van drawers.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="tradie van setups melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="tradie van storage ideas.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="tradie van storage melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van drawer set ups melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van fitted out melbourne .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van set up for storage melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van slide out sytems melbourne.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van storage layout ideas.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="van storage setups for trade.jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                <a class="marquee-img-card" href="about.html#socials" aria-hidden="true" tabindex="-1"><img src="dual side shelving .jpeg" onerror="this.onerror=null;this.src='fitout.jpg'" class="marquee-img" alt="" loading="lazy" decoding="async"></a>
+                </div>
             </div>
         </div>
     </section>
