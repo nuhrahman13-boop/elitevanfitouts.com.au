@@ -167,7 +167,13 @@
                 border-radius: 7px; text-decoration: none; text-align: center;
                 font: 800 9px/1.2 'JetBrains Mono', monospace; letter-spacing: .05em; text-transform: uppercase;
             }
-            .elite-tracker-actions a:first-child { color: #050505; background: #22c55e; border: 1px solid #22c55e; }
+            .elite-tracker-actions .elite-tracker-primary { color: #050505; background: #22c55e; border: 1px solid #22c55e; }
+            .elite-tracker-actions .elite-tracker-secondary { color: #fff; background: #111; border: 1px solid #333; }
+            .elite-tracker-actions .elite-tracker-quote {
+                grid-column: 1 / -1; color: #050505; background: #22c55e; border: 1px solid #22c55e;
+                box-shadow: 0 0 14px rgba(34,197,94,.2);
+            }
+            .elite-tracker-actions .elite-tracker-quote:hover { background: #4ade80; border-color: #4ade80; }
             .elite-tracker-actions a:last-child { color: #fff; background: #111; border: 1px solid #333; }
             @media (max-width: 640px) {
                 #elite-build-tracker { right: 16px; bottom: 16px; }
@@ -246,8 +252,9 @@
             </div>
             ${extrasHtml}
             <div class="elite-tracker-actions">
-                <a href="fitouts.html">Configure Fitout</a>
-                <a href="protection.html">Add Protection</a>
+                <a class="elite-tracker-primary" href="fitouts.html">Configure Fitout</a>
+                <a class="elite-tracker-secondary" href="protection.html">Add Protection</a>
+                <a class="elite-tracker-quote" href="quote.html" onclick="window.passCartToForm()">Request Quote →</a>
             </div>
         `;
     }
