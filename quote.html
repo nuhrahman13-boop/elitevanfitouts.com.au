@@ -19,6 +19,17 @@
     </script>
     <!-- End OpenAI Ads Measurement Pixel -->
 
+    <!-- Arm one conversion for this quote-form visit. A successful GHL redirect consumes it. -->
+    <script>
+      try {
+        sessionStorage.setItem('elite_fitout_quote_pending', JSON.stringify({
+          id: 'fitout-' + (window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2)),
+          createdAt: Date.now()
+        }));
+      } catch (error) { /* The quote form remains usable if storage is unavailable. */ }
+    </script>
+
+
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

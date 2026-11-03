@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Quote Request Received | Elite Van Fitouts</title>
+    <!-- OpenAI Ads Measurement Pixel -->
+    <script>
+      (function (w, d, s, u) {
+        if (w.oaiq) return;
+        var q = function () { q.q.push(arguments); };
+        q.q = [];
+        w.oaiq = q;
+        var js = d.createElement(s);
+        js.async = true;
+        js.src = u;
+        var f = d.getElementsByTagName(s)[0];
+        f.parentNode.insertBefore(js, f);
+      })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+      oaiq("init", { pixelId: "MyDcXyDSWArubcYnBPAgwJ" });
+      oaiq("measure", "page_viewed", { type: "contents" });
+    </script>
+    <!-- End OpenAI Ads Measurement Pixel -->
+    <script>
+      (function () {
+        if (new URLSearchParams(location.search).get('source') !== 'ghl-fitout') return;
+        try {
+          var pending = JSON.parse(sessionStorage.getItem('elite_fitout_quote_pending') || 'null');
+          if (!pending || typeof pending.id !== 'string' || typeof pending.createdAt !== 'number') return;
+          var age = Date.now() - pending.createdAt;
+          if (age < 0 || age > 2 * 60 * 60 * 1000) return;
+          sessionStorage.removeItem('elite_fitout_quote_pending');
+          oaiq('measure', 'lead_created', { type: 'customer_action' }, {
+            event_id: pending.id,
+            opt_out: true
+          });
+        } catch (error) { /* Confirmation still displays when tracking is unavailable. */ }
+      })();
+    </script>
+    <style>
+      *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column}header{background:#fff;padding:20px 28px}header img{display:block;width:145px;height:auto}main{flex:1;display:grid;place-items:center;padding:64px 24px}.card{max-width:650px;width:100%;padding:44px;border:1px solid #252525;border-radius:20px;background:linear-gradient(145deg,#101b14,#0b0b0b 65%)}.check{width:56px;height:56px;display:grid;place-items:center;border:1px solid #22c55e;border-radius:50%;color:#4ade80;font-size:28px;margin-bottom:28px}.eyebrow{color:#4ade80;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase}h1{font-size:clamp(32px,6vw,48px);line-height:1.08;letter-spacing:-1.5px;margin:16px 0 22px}p{color:#b6beb9;line-height:1.7;font-size:16px}.next{border-top:1px solid #29322b;margin-top:28px;padding-top:20px}.next strong{color:#fff}a.button{display:inline-block;background:#22c55e;color:#050505;text-decoration:none;font-size:13px;font-weight:700;padding:16px 22px;border-radius:7px;margin-top:20px}a.button:focus-visible{outline:3px solid white;outline-offset:4px}footer{padding:24px;text-align:center;color:#747e77;font-size:12px}@media(max-width:480px){main{padding:32px 16px}.card{padding:28px}header{padding:16px 24px}}
+    </style>
+</head>
+<body>
+    <header><a href="index.html" aria-label="Elite Van Fitouts home" target="_top"><img src="logo.png" alt="Elite Van Fitouts"></a></header>
+    <main><section class="card" aria-labelledby="confirmation-title">
+      <div class="check" aria-hidden="true">✓</div>
+      <div class="eyebrow">Elite Van Fitouts · Rowville</div>
+      <h1 id="confirmation-title">Thanks. Your quote request is in.</h1>
+      <p>Our team will review your vehicle details and selected build, then get in touch to discuss your quote and booking.</p>
+      <p class="next"><strong>What happens next?</strong><br>Keep an eye on your phone and email for a reply from the Elite team.</p>
+      <a class="button" href="index.html" target="_top">BACK TO HOME →</a>
+    </section></main>
+    <footer>© 2026 Elite Van Fitouts · 8/8 Enterprise Drive, Rowville VIC 3178</footer>
+</body>
+</html>
