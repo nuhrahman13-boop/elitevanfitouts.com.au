@@ -63,6 +63,21 @@ header{background:#0e140f!important;border-bottom:2px solid #427f20;backdrop-fil
 </style><style id="online-form-styles">
 .online-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.online-form-grid label,.online-wide-label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#182a19}.online-form-grid label em{color:#39771b;font-style:normal}.online-form-grid input,.online-form-grid select,.online-wide-label textarea{width:100%;padding:13px 14px;background:#fff;border:1px solid #cdd9ca;border-radius:7px;color:#172318;font:500 14px Arial,sans-serif;outline:none}.online-form-grid input:focus,.online-form-grid select:focus,.online-wide-label textarea:focus{border-color:#4d9a29;box-shadow:0 0 0 3px rgba(69,146,34,.13)}.online-wide-label{margin:20px 0}.online-consent{display:flex;align-items:flex-start;gap:10px;margin:20px 0;color:#425541;font:500 13px/1.55 Arial,sans-serif}.online-consent input{margin-top:3px;width:17px;height:17px;accent-color:#4b9f2e}.shop-summary-banner{background:#f2f8ef;border:1px solid #d6e9cd;border-radius:7px;padding:14px;color:#264f19;font-size:13px}.shop-summary-banner strong{display:block;margin-bottom:5px}.shop-summary-banner span{display:block;white-space:pre-wrap;max-height:135px;overflow:auto;line-height:1.5}.online-form-status{font-size:13px;color:#815715}.secure-form-section form{margin-top:20px}.secure-form-section h4{margin-top:24px;font-size:17px;color:#27471d}#online-form-submit:disabled{opacity:.65;cursor:not-allowed}
 @media(max-width:640px){.online-form-grid{grid-template-columns:1fr}.online-form-grid label{min-width:0}}
+</style><style id="online-shop-ghl-embed">
+.shop-ghl-form-wrap{position:relative;border:1px solid #dce7d6;border-radius:10px;overflow:hidden;background:#fff;min-height:1110px}
+#inline-o0oXdsC9oE4Ywv3u710U{display:block;width:100%;height:1280px;min-height:1109px;border:0;background:#fff}
+.shop-ghl-loading{padding:20px;color:#4c6447;font-size:13px}
+.shop-build-review{background:#f4f8f2;border:1px solid #d9e7d2;border-radius:10px;padding:16px;margin:16px 0 22px}
+.shop-build-review-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.shop-build-review-head strong{color:#2b5223;font-size:12px;letter-spacing:.04em}
+.shop-build-review-head .secondary-button{font-size:11px;padding:9px 12px}
+.shop-build-review pre{font:12px/1.65 ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:245px;overflow-y:auto;color:#293c27;background:#fff;border:1px solid #dae8d1;border-radius:7px;padding:13px;margin:12px 0}
+.shop-build-review .hint{margin:0}
+.shop-form-help{font-size:12px;color:#52624e;line-height:1.6;margin-top:13px}
+.shop-form-help a{color:#24791f;text-decoration:underline}
+.shop-test-disclaimer{background:#f8f6f0;border:1px solid #e5dfd3;color:#534c3f;border-radius:8px;font-size:12px;line-height:1.6;margin:16px 0;padding:12px}
+.shop-test-disclaimer strong{font-weight:850}
+@media(max-width:600px){.shop-build-review{padding:12px}.shop-build-review-head{align-items:start}.shop-build-review-head .secondary-button{min-width:auto}#inline-o0oXdsC9oE4Ywv3u710U{height:1450px}}
 </style></head><body><a class="skip-link" href="#main-content">Skip to shop content</a>
 <header><div class="nav"><a aria-label="Elite Van Fitouts — Home" class="brandwordmark" href="index.html"><span class="brandtop"><span class="brandelite">ELITE</span><span class="brandname">VAN FITOUTS</span></span><span class="brandstrap">PRECISION CNC · ROWVILLE, MELBOURNE</span></a><nav class="navlinks" aria-label="Online shop navigation"><a href="index.html">Home</a><a class="active" href="#shop" aria-current="page">Online Shop</a><a href="#builder">Custom Builds</a><a href="#vehicle">Vehicle Finder</a></nav><button class="cartbtn" onclick="openCart()" aria-label="Open quote request">Your Quote <span class="cartcount" id="count">0</span></button></div></header>
 <main class="container" id="shop"><section class="shop-hero" id="main-content" aria-labelledby="shop-title"><div class="hero-content"><span class="hero-eyebrow">ELITE VAN FITOUTS / ONLINE QUOTE BUILDER</span><h1 id="shop-title">BUILD YOUR <em>VAN SETUP.</em></h1><p>Pick a product or customise your drawers and shelving. Review your choices, send us the details, and our Rowville team will confirm your final price, fitment and timeframe before you book.</p><div class="hero-actions"><a class="hero-primary" href="#builder">CUSTOMISE A BUILD <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#vehicle">BROWSE PRODUCTS <span aria-hidden="true">→</span></a></div></div><div class="hero-side"><span class="hero-serial">EVF / YOUR BUILD, YOUR WAY</span><span class="hero-accent" aria-hidden="true">E</span><span class="hero-side-caption">CUSTOM FITOUTS<br>PRECISION MANUFACTURING<br>MELBOURNE BUILT</span></div></section>
@@ -419,35 +434,41 @@ render();
  <p class="hint">This is not a final quote or checkout. Exact measurements, vehicle fitment, GST, installation and timing are confirmed by Elite before booking.</p>
  <div class="cart-actions"><button class="primary" id="requestQuoteBtn" type="button" onclick="openSecureQuoteForm()">CONTINUE TO YOUR DETAILS →</button><button class="secondary-button" type="button" onclick="copyEnquiry()">Copy your selection</button></div>
  <section id="secure-quote-panel" class="secure-form-section" hidden aria-labelledby="secure-title">
-<div class="secure-form-head"><span class="section-kicker">FINAL STEP · ONLINE SHOP ENQUIRY</span><h3 id="secure-title">Tell us where and how to reach you</h3><p>We will review your selections and confirm the final cost, vehicle fitment, delivery or installation details and available timeframe. No payment or booking today.</p></div>
-<form id="online-quote-form" novalidate>
- <div class="online-form-grid">
-  <label>Full name <em>*</em><input name="fullName" autocomplete="name" required maxlength="120" placeholder="Your full name"></label>
-  <label>Phone <em>*</em><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="35" placeholder="04xx xxx xxx"></label>
-  <label>Email address <em>*</em><input name="email" type="email" autocomplete="email" required maxlength="180" placeholder="you@business.com.au"></label>
-  <label>Business name (optional)<input name="businessName" autocomplete="organization" maxlength="150" placeholder="Your business name"></label>
-  <label>Vehicle make and model <em>*</em><input name="vehicle" required maxlength="160" placeholder="e.g. Toyota HiAce" id="shop-form-vehicle"></label>
-  <label>Vehicle year (if known)<input name="vehicleYear" type="text" inputmode="numeric" maxlength="4" placeholder="e.g. 2024" id="shop-form-year"></label>
-  <label>When do you need it? <em>*</em><select name="timeframe" required><option value="">Choose a timeframe</option><option>As soon as possible (Urgent)</option><option>within the next few weeks</option><option>with the next 2 months</option><option>just getting a quote</option></select></label>
-  <label>How would you like to receive your order? <em>*</em><select name="fulfilmentMethod" required id="shop-fulfilment-method"><option value="">Select an option</option><option value="Workshop installation">Installed at our Rowville workshop</option><option value="Workshop collection">Collect from Rowville (supply only)</option><option value="Delivery quote">Request delivery to my location</option></select></label>
+ <div class="secure-form-head">
+  <span class="section-kicker">FINAL STEP / SECURE ONLINE ENQUIRY</span>
+  <h3 id="secure-title">Almost there — send your request</h3>
+  <p>You've chosen your setup. Add your contact details using our secure form, and the Elite team will review fitment, final pricing and workshop timing before any booking or deposit.</p>
  </div>
- <div id="shop-delivery-fields" hidden>
-  <h4>Delivery location</h4><p class="hint">Tell us where the items need to go. We will confirm freight pricing and delivery availability separately.</p>
-  <div class="online-form-grid">
-   <label>Delivery address <em>*</em><input name="deliveryAddress" autocomplete="street-address" maxlength="250" placeholder="Street number and street name"></label>
-   <label>Suburb <em>*</em><input name="deliverySuburb" maxlength="110" placeholder="Suburb"></label>
-   <label>State <em>*</em><select name="deliveryState"><option value="">Choose state</option><option>VIC</option><option>NSW</option><option>ACT</option><option>QLD</option><option>SA</option><option>WA</option><option>TAS</option><option>NT</option></select></label>
-   <label>Postcode <em>*</em><input name="deliveryPostcode" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" placeholder="e.g. 3178"></label>
-  </div>
+ <div class="shop-build-review">
+  <div class="shop-build-review-head"><strong>YOUR BUILD SELECTION</strong><button class="secondary-button" type="button" onclick="copyEnquiry()">COPY DETAILS</button></div>
+  <pre id="shop-build-preview" aria-label="Full selected build specifications"></pre>
+  <p class="hint">These are the selections on this website. We are still verifying that all specifications transfer into GHL when the form is submitted.</p>
  </div>
- <label class="online-wide-label">Anything else we should know?<textarea name="customerNotes" maxlength="1800" rows="3" placeholder="Access points, measurements, load requirements, or questions for our team"></textarea></label>
- <div class="shop-summary-banner"><strong>Your build selection is attached</strong><span id="shop-summary-preview"></span></div>
- <label class="online-consent"><input type="checkbox" name="consent" required> <span>I understand this is a quote request, not a confirmed order. Elite will contact me about my enquiry and confirm final price, fitment and timing before any payment or booking.</span></label>
- <p class="online-form-status" id="online-form-status" role="status" aria-live="polite"></p>
- <button class="primary" id="online-form-submit" type="submit" disabled>SEND MY REQUEST — PREVIEW ONLY</button>
- <p class="hint">Preview build: submissions are disabled until the secure GHL connection is tested. No personal data is being sent from this demo.</p>
- </form>
- <button class="secondary-button" type="button" onclick="closeSecureQuoteForm()">← Edit your selections</button>
+ <div class="shop-ghl-form-wrap" id="shop-ghl-form-wrap">
+  <div id="shop-ghl-loading" class="shop-ghl-loading" role="status">Loading the secure Elite Van Fitouts enquiry form…</div>
+  <iframe
+    id="inline-o0oXdsC9oE4Ywv3u710U"
+    title="Elite Van Fitouts Online Shop Enquiry Form"
+    src="about:blank"
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Form 10"
+    data-height="1300"
+    data-layout-iframe-id="inline-o0oXdsC9oE4Ywv3u710U"
+    data-form-id="o0oXdsC9oE4Ywv3u710U"
+    data-cookie-consent="true"
+    data-cookie-consent-provider="auto"
+    referrerpolicy="strict-origin-when-cross-origin"
+  ></iframe>
+ </div>
+ <p class="shop-form-help">If the embedded form doesn't load, <a id="shop-form-fallback" href="https://links.elitebrandscaling.com/widget/form/o0oXdsC9oE4Ywv3u710U" rel="noopener noreferrer" target="_blank">open the secure form in a new tab</a>.</p>
+ <p class="shop-test-disclaimer"><strong>TEST PREVIEW.</strong> Submitting Form 10 can create a real GHL contact and trigger existing automations. The automatic transfer of your build selection has not yet been verified. Please don't use this for live customer orders.</p>
+ <button class="secondary-button" type="button" onclick="closeSecureQuoteForm()">← Back to your selected items</button>
 </section>
 <p id="copyStatus" class="hint" role="status" aria-live="polite"></p>
  </div></div>
@@ -537,40 +558,71 @@ function selectVehicle(){const make=$('make').value,model=$('model').value,year=
 function buildEnquirySummary(){
  const lines=cart.map((x,i)=>{
   const price=x.variant?'Price to confirm':fmt(cartPrice(x)*x.qty);
-  if(!x.custom)return (i+1)+'. '+cartName(x)+' x '+x.qty+' — '+price;
+  if(!x.custom)return (i+1)+'. '+cartName(x)+' × '+x.qty+' — '+price;
   const c=x.configuration||{},d=c.dimensions||{};
-  const dimensions=[d.width,d.depth,d.height].map(v=>Number.isFinite(v)?v:'check').join(' × ');
+  const dimensions=[d.width,d.depth,d.height].map(v=>Number.isFinite(v)?v:'To confirm').join(' × ');
   if(x.customType==='shelf'){
-   const sections=Array.isArray(c.sections)?c.sections.map(v=>'B'+v.bay+' L'+v.level+': '+v.style+' '+Math.round(v.usableWidth||0)+'W × '+Math.round(v.usableDepth||0)+'D').join('; '):'';
-   return (i+1)+'. '+cartName(x)+' x '+x.qty+' — '+price+'\n Dimensions W×D×H: '+dimensions+' mm; type: '+c.variant+'; slide-out: '+!!c.slideOut+'; levels: '+c.levels+'; bays: '+c.bays+'; tray: '+(c.trayStyle||'none')+'; finish: '+(c.finish||'TBC')+'; sections: '+sections;
+   const sections=Array.isArray(c.sections)?c.sections.map(v=>'Bay '+v.bay+' level '+v.level+': '+v.style+' '+Math.round(v.usableWidth||0)+'W × '+Math.round(v.usableDepth||0)+'D').join('; '):'';
+   return (i+1)+'. '+cartName(x)+' × '+x.qty+' — '+price+'\n Dimensions W×D×H: '+dimensions+' mm; type: '+(c.variant||'TBC')+'; slide-out: '+!!c.slideOut+'; levels: '+(c.levels||'TBC')+'; bays: '+(c.bays||'TBC')+'; tray: '+(c.trayStyle||'none')+'; finish: '+(c.finish||'TBC')+'; sections: '+sections;
   }
   const drawers=Array.isArray(c.drawers)?c.drawers.map(v=>'C'+v.column+' R'+v.row+': '+v.width+'W×'+v.height+'H×'+v.depth+'D '+v.divider).join('; '):'';
-  return (i+1)+'. Custom drawers x '+x.qty+' — '+price+'\n Dimensions W×D×H: '+dimensions+' mm; runner: '+c.runnerLength+' mm; drawer layout: '+drawers;
+  return (i+1)+'. '+cartName(x)+' × '+x.qty+' — '+price+'\n Dimensions W×D×H: '+dimensions+' mm; runner: '+(c.runnerLength||'TBC')+' mm; drawer layout: '+drawers;
  });
- const notes=$('enquiryNotes').value.trim();
- return 'ELITE VAN FITOUTS — ONLINE SHOP QUOTE REQUEST\\nVehicle: '+(selectedVan||'Not selected (please confirm vehicle in form)')+'\nSelections:\\n'+lines.join('\n')+'\nIndicative subtotal: '+$('total').textContent+'\nNotes: '+(notes||'None supplied')+'\nFinal pricing, GST, fitment, dimensions and workshop timing to be confirmed by Elite. No order or booking yet.';
+ return [
+  'ELITE VAN FITOUTS — ONLINE SHOP QUOTE REQUEST',
+  'Vehicle: '+(selectedVan||'Not selected — confirm vehicle with Elite'),
+  'Selections:',...lines,
+  'Indicative subtotal: '+$('total').textContent,
+  'Notes: '+($('enquiryNotes').value.trim()||'None supplied'),
+  'Final price, GST, fitment, delivery and workshop timing to be confirmed by Elite. Not a confirmed order.'
+ ].join('\n');
 }
 function copyEnquiry(){
- const msg=buildEnquirySummary();
  if(!cart.length){$('copyStatus').textContent='Choose a product or build first.';return;}
- if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(msg).then(()=>$('copyStatus').textContent='Your selection was copied.').catch(()=>$('copyStatus').textContent='Unable to copy automatically.')}else{const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');$('copyStatus').textContent='Your selection was copied.'}catch(e){$('copyStatus').textContent='Copy unavailable.'}ta.remove();}
+ const msg=buildEnquirySummary();
+ const writeText=navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(msg):Promise.reject(new Error('Unavailable'));
+ writeText.then(()=>$('copyStatus').textContent='Your selected build has been copied.').catch(()=>{
+  const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');$('copyStatus').textContent='Your selected build has been copied.';}catch(e){$('copyStatus').textContent='Copy unavailable. You can select the build details above.';}ta.remove();
+ });
 }
-function closeSecureQuoteForm(){const p=$('secure-quote-panel');if(p)p.hidden=true;}
+function closeSecureQuoteForm(){
+ $('secure-quote-panel').hidden=true;
+ const iframe=$('inline-o0oXdsC9oE4Ywv3u710U');
+ if(iframe)iframe.src='about:blank';
+}
 function openSecureQuoteForm(){
- if(!cart.length){$('copyStatus').textContent='Add at least one product or custom build first.';return;}
+ if(!cart.length){$('copyStatus').textContent='Choose at least one product or custom build first.';return;}
+ const summary=buildEnquirySummary();
+ if(summary.length>3000){
+  $('copyStatus').textContent='Your custom build is too detailed for the current form handoff. Please copy the details and contact Elite directly so nothing is missed.';
+  return;
+ }
+ $('shop-build-preview').textContent=summary;
+ const url=new URL('https://links.elitebrandscaling.com/widget/form/o0oXdsC9oE4Ywv3u710U');
+ url.searchParams.set('package_selection',summary);
+ url.searchParams.set('utm_source','elite-online-shop');
+ url.searchParams.set('utm_medium','website');
+ if(selectedVehicle){
+  url.searchParams.set('vehicle_make',[selectedVehicle.make,selectedVehicle.model].filter(Boolean).join(' '));
+  if(selectedVehicle.year)url.searchParams.set('vehicle_year',String(selectedVehicle.year));
+  if(selectedVehicle.wheelbase)url.searchParams.set('vehicle_wheelbase',String(selectedVehicle.wheelbase));
+ }
+ $('shop-form-fallback').href=url.toString();
  $('secure-quote-panel').hidden=false;
- const vehicle=$('shop-form-vehicle');if(selectedVehicle){vehicle.value=[selectedVehicle.make,selectedVehicle.model].filter(Boolean).join(' ');}else if(selectedVan){vehicle.value=selectedVan;}
- if(selectedVehicle?.year)$('shop-form-year').value=selectedVehicle.year;
- $('shop-summary-preview').textContent=buildEnquirySummary().slice(0,650);
- $('copyStatus').textContent='Please review your details. This is currently a preview-only form; submissions are disabled until GHL is configured.';
+ $('shop-ghl-loading').hidden=false;
+ const frame=$('inline-o0oXdsC9oE4Ywv3u710U');
+ frame.addEventListener('load',()=>{$('shop-ghl-loading').hidden=true;},{once:true});
+ frame.src=url.toString();
+ if(!window.eliteShopFormEmbedLoaded){
+  const embed=document.createElement('script');
+  embed.src='https://links.elitebrandscaling.com/js/form_embed.js';
+  embed.async=true;document.body.appendChild(embed);
+  window.eliteShopFormEmbedLoaded=true;
+ }
+ $('copyStatus').textContent='Review your build and complete the secure enquiry form. This test preview is not ready for real customer orders.';
  $('secure-quote-panel').scrollIntoView({behavior:'smooth',block:'start'});
 }
-const shopMethod=$('shop-fulfilment-method');
-shopMethod.addEventListener('change',()=>{const delivering=shopMethod.value==='Delivery quote';$('shop-delivery-fields').hidden=!delivering;for(const el of $('shop-delivery-fields').querySelectorAll('input,select'))el.required=delivering;});
-$('online-quote-form').addEventListener('submit',(event)=>{
- event.preventDefault();
- $('online-form-status').textContent='This is a preview only. We will activate submission after the dedicated GHL form and pipeline have been tested.';
-});
 $('search').addEventListener('input',renderProducts);renderFilters();renderProducts();renderCart();
 
 function openProduct(i){const p=products[i],d=productDetails[i];if(!p||!d||!availableProduct(p)){showShop();return;}document.querySelectorAll('main.container > :not(#productpage)').forEach(el=>el.hidden=true);const page=$('productpage');page.hidden=false;page.innerHTML=`<button class="backbtn" onclick="showShop()">← Back to all products</button><div class="productlayout"><div class="detailphoto"><img src="${p.image}" alt="${p.name}"></div><div class="detailcopy"><div class="hint">${p.category} / Elite Van Fitouts</div><h1>${p.name}</h1><div class="detailprice">${p.category==='Shelving'?'Configure your build':p.category==='Window Barriers'?'Price on enquiry':(p.name==='Silicone Holder'?'':'From ')+fmt(p.price)}</div><p>${p.category==='Window Barriers'?'Rear door window guards are currently available only for LDV Deliver 7, LDV Deliver 9 and the new-shape Toyota HiAce with barn rear doors.':d.summary}</p><h2>How it works</h2><p>${p.category==='Window Barriers'?'Choose the correct van and rear-door type. Fitment and pricing are confirmed before supply.':d.how}</p><h2>Product features</h2><ul>${(p.category==='Window Barriers'?['LDV Deliver 7 rear door windows','LDV Deliver 9 rear door windows','New-shape HiAce barn rear door windows','Rear doors only — confirm exact year and configuration']:d.features).map(f=>`<li>${f}</li>`).join('')}</ul>${p.category==='Drawers'?'<p class="detailnotice"><b>Vehicle fitment:</b> Drawer systems are available for all cargo vans. We confirm measurements, wheel arches, access direction and mounting before manufacture.</p>':''}<div class="detailnotice">Product visuals are illustrative. Prices are not final quotes; dimensions, vehicle fitment, installation, GST treatment and freight must be confirmed before purchase.</div>${p.category==='Window Barriers'?`<div class="variant-row"><label class="guardlabel" for="guardVariant">Choose your rear-door window guard</label><select id="guardVariant"><option value="">Select vehicle</option>${guardOptions.filter(v=>v===guardForVehicle()).map(v=>`<option value="${v}">${v}</option>`).join('')}</select><span id="guardMessage" class="hint">Available only for the three options above.</span></div><button class="primary detailadd" onclick="addGuard(${i})">Add window guard to enquiry</button>`:`<button class="primary detailadd" onclick="add(${i})">Add to enquiry cart</button>`}<p class="hint">Use the cart to copy an enquiry; online payment is not enabled.</p></div></div>`;window.scrollTo(0,0)}
