@@ -1,32 +1,22 @@
 ## Release status — 4 November 2026
 
-**NOT SAFE TO RELEASE AS FULLY FUNCTIONAL.** The shop now matches the Elite website navigation and footer. A desktop QA run validated make/model/year selection, adding a drawer product, cart and GHL Form 10 rendering. However, an end-to-end test using a reserved dummy contact did **not** produce a confirmed GHL submission: API `/forms/submissions?formId=o0oXdsC9oE4Ywv3u710U` returned zero submissions and contact lookup returned `null`. The form showed a spinner but no confirmed success message; GHL Form 10 has a CAPTCHA. **Do not assume the selected build reaches GHL.**
+**Owner-authorized production launch.** The business owner explicitly requested merging the finished shop to the live website despite the known integration issues. The live customer-facing website contains no demo-only or testing notices.
 
-The existing form also displays delivery address fields for non-delivery selections, a default US-style phone mask, placeholder terms links and generic submit button. Those GHL form-builder changes require an authenticated UI session.
+**Implemented:**
+- Unified Elite navigation, menus, homepage links, mobile menu and footer.
+- Customer-facing product catalogue, vehicle selection, custom drawer/shelving configurators, indicative quote basket.
+- Secure GHL Form 10 embedded in the quote journey.
+- Structured quote selection passed as `package_selection` URL parameter to GHL.
+- On-page copy-build and Instagram enquiry fallback if the form does not show submission confirmation.
 
-Latest safe preview: `https://elitevanfitouts-com-au-git-feature-onl-397cbb-elite-van-fitouts.vercel.app/shop.html` (protected by Vercel Auth).
+**Known issues requiring operational follow-up:**
+1. The automated dummy Form 10 submission did not produce a success confirmation or a GHL record; the form includes reCAPTCHA. A *human* with a real CAPTCHA should verify actual reception.
+2. The full build selection prefill has not been confirmed persisted in `contact.package_selection`. Do not depend on that data without checking customer enquiries.
+3. Form 10 still uses a US-style phone placeholder, delivery address fields do not conditionally hide for collection/installation, submit button is generic, and policy links still point to `example.com`. Those settings are owned by GHL's visual form editor.
+4. Online enquiry opportunity routing, deposit invoicing and production calendar are not verified.
+5. A dedicated mobile viewport test was not performed.
 
-**Production launch gate**:
-1. In GHL Form 10, fix validation, Australian phone defaults, conditional delivery fields, CAPTCHA and the success acknowledgement.
-2. Confirm `package selection` is prefilled from shop URL and persists in the GHL custom contact field, including product quantity and dimensional build options.
-3. Submit a manually CAPTCHA-verified dummy enquiry and confirm GHL Form 10 submission, contact data and selected build notes.
-4. Confirm online pipeline routing and test that customer communication / automations don't contact real customers.
-5. Test mobile viewport and custom shelf/drawer builders, including image/asset loading and quote totals.
-6. Only then merge draft PR #7 into the production branch and verify `https://elitevanfitouts.com.au/shop.html` plus homepage navigation and error logs.
-
-No production deploy, merge or customer communications have been made from this release work.
-
-# Elite Van Fitouts Online Shop — Launch checklist
-
-This branch is a **review build**. Do not merge or publish until the tests below pass.
-
-## Customer experience
-- Homepage's former "Other Services" navigation and third feature tile now take customers to `shop.html`.
-- Customer chooses a vehicle, reviews products, or configures a custom drawer/shelf system.
-- Customer opens **Your Quote** and reviews individual products, quantities, measurements, notes, and an **indicative** subtotal.
-- **Continue to Your Details** opens the existing secure **WEB - Fitout Config.** GoHighLevel form.
-- The product and custom-build summary is sent as the `package_selection` URL parameter, matching the existing `quote.html` approach.
-- No card collection, order capture, or booking takes place on this page. Elite reviews the fitment, final price (including tax where applicable), scope and likely completion date; only then a quote/deposit/booking can happen.
+**Operational safeguard:** Monitor GHL Form 10 submissions regularly. If customers report problems, use the visible Instagram backup, and promptly fix the GHL form builder configuration. Do not claim form automation is fully validated until end-to-end tests pass.
 
 ## Dedicated Online Shop form / GHL mapping
 The shared existing form `WEB - Fitout Config.` is **not suitable** for this workflow. The preview now shows a dedicated, responsive customer form **with submissions deliberately disabled**; it does not send details anywhere.
