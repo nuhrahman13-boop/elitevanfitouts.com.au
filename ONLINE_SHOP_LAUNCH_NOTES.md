@@ -1,3 +1,21 @@
+## Release status — 4 November 2026
+
+**NOT SAFE TO RELEASE AS FULLY FUNCTIONAL.** The shop now matches the Elite website navigation and footer. A desktop QA run validated make/model/year selection, adding a drawer product, cart and GHL Form 10 rendering. However, an end-to-end test using a reserved dummy contact did **not** produce a confirmed GHL submission: API `/forms/submissions?formId=o0oXdsC9oE4Ywv3u710U` returned zero submissions and contact lookup returned `null`. The form showed a spinner but no confirmed success message; GHL Form 10 has a CAPTCHA. **Do not assume the selected build reaches GHL.**
+
+The existing form also displays delivery address fields for non-delivery selections, a default US-style phone mask, placeholder terms links and generic submit button. Those GHL form-builder changes require an authenticated UI session.
+
+Latest safe preview: `https://elitevanfitouts-com-au-git-feature-onl-397cbb-elite-van-fitouts.vercel.app/shop.html` (protected by Vercel Auth).
+
+**Production launch gate**:
+1. In GHL Form 10, fix validation, Australian phone defaults, conditional delivery fields, CAPTCHA and the success acknowledgement.
+2. Confirm `package selection` is prefilled from shop URL and persists in the GHL custom contact field, including product quantity and dimensional build options.
+3. Submit a manually CAPTCHA-verified dummy enquiry and confirm GHL Form 10 submission, contact data and selected build notes.
+4. Confirm online pipeline routing and test that customer communication / automations don't contact real customers.
+5. Test mobile viewport and custom shelf/drawer builders, including image/asset loading and quote totals.
+6. Only then merge draft PR #7 into the production branch and verify `https://elitevanfitouts.com.au/shop.html` plus homepage navigation and error logs.
+
+No production deploy, merge or customer communications have been made from this release work.
+
 # Elite Van Fitouts Online Shop — Launch checklist
 
 This branch is a **review build**. Do not merge or publish until the tests below pass.
