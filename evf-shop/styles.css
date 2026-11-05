@@ -83,3 +83,20 @@ button{cursor:pointer}img{max-width:100%;display:block}
 @media(max-width:900px){.builder-panel,.summary-layout{grid-template-columns:1fr}.addon-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.builder-heading,.workspace-head{flex-direction:column}.builder-panel{padding:16px;gap:18px}.builder-form h3{font-size:27px}.builder-tabs{width:100%}.builder-tab{padding:12px 9px;flex:1;font-size:12px}.builder-fields{gap:10px}.builder-buttons .btn{width:100%}.addon-grid{gap:9px}.addon-card{padding:12px}.addon-card strong{font-size:13px}.addon-card p{font-size:10px}.build-workspace,.quote-step{padding:20px}.workspace-head h2,.quote-step h2{font-size:36px}.quote-grid{grid-template-columns:1fr}.quote-grid .wide{grid-column:auto}}
 
 .secure-title{font:italic 900 26px/1.1 Impact,Arial,sans-serif;color:#153b1b;margin:0 0 10px;text-transform:uppercase}.secure-note{color:#49624c;font-size:12px}.quote-summary-code{white-space:pre-wrap;overflow-wrap:anywhere;max-height:190px;overflow:auto;background:#ecf3e9;color:#25432a;padding:12px;border-radius:8px;font:11px/1.5 monospace}.secure-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.secure-link{font-size:12px;font-weight:750;color:#24762b;text-decoration:underline}.product-photo img{object-fit:contain}.site-header .logo-real{width:150px;max-height:47px;object-fit:contain}.gallery-slots{display:none}.product-page .product-photo{background:#fff}
+
+/* Original, unaltered installation images for the 3 Drawer System */
+.evf-real-installations{margin-top:28px}
+.evf-real-installations-head{padding:21px 22px;background:#13221a;border-left:4px solid #80c950;border-radius:11px;color:#fff}
+.evf-real-kicker{font:800 10px/1.4 system-ui,sans-serif;color:#aaf080;letter-spacing:2px;text-transform:uppercase}
+.evf-real-installations-head h2{font:italic 900 clamp(27px,3vw,38px)/1 Impact,"Arial Narrow",Arial,sans-serif;margin:9px 0 10px;letter-spacing:-.2px;color:#fff;text-transform:uppercase}
+.evf-real-installations-head h2 span{color:#a7f178}
+.evf-real-installations-head p{font-size:12px;line-height:1.65;color:#d6e7d7;margin:0;max-width:530px}
+.evf-real-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:14px}
+.evf-real-photo{margin:0;min-width:0;background:#fff;border:1px solid #d7e1d6;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px #0b1e0c0e;transition:transform .2s,border-color .2s}
+.evf-real-photo a{display:block;aspect-ratio:4/5;overflow:hidden;background:#eef2eb}
+.evf-real-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.evf-real-photo figcaption{font:800 10px/1.4 system-ui,sans-serif;letter-spacing:1.2px;color:#527151;padding:9px 12px}
+.evf-real-photo:hover,.evf-real-photo:focus-within{transform:translateY(-2px);border-color:#8bd064}
+.evf-real-photo a:focus-visible{outline:3px solid #64ba31;outline-offset:-3px}
+@media(max-width:650px){.evf-real-installations{margin-top:23px}.evf-real-installations-head{padding:19px}.evf-real-photo-grid{gap:10px}.evf-real-installations-head h2{font-size:29px}.evf-real-photo figcaption{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.evf-real-photo{transition:none}}
