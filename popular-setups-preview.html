@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Popular Setups — Elite Van Fitouts | Private Preview</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{--green:#4f9b2b;--green-hi:#79c948;--ink:#111811;--muted:#647267;--line:#dce5d9;--canvas:#f4f7f2;--white:#fff}
+*{box-sizing:border-box} html{scroll-behavior:smooth}body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.55 'Inter',Arial,sans-serif}button{font:inherit;cursor:pointer}a{text-decoration:none;color:inherit}
+.preview-alert{display:flex;align-items:center;justify-content:center;text-align:center;gap:9px;padding:9px 14px;background:#142519;color:#c0ebbb;font-size:10px;letter-spacing:1.45px;text-transform:uppercase;font-weight:800}
+.preview-alert i{display:inline-block;width:6px;height:6px;background:#83df59;border-radius:50%}
+.site-head{background:#fff;border-bottom:2px solid #6cb341;height:81px;position:relative;z-index:3}
+.site-head-in{max-width:1290px;margin:auto;height:100%;display:flex;align-items:center;gap:32px;padding:0 25px}
+.wordmark{display:flex;align-items:center;gap:15px;line-height:.85;white-space:nowrap}
+.wordmark-bars{display:flex;gap:4px;transform:skewX(-18deg)}.wordmark-bars b{display:block;width:7px;height:36px;background:#4b9526}.wordmark-bars b:nth-child(2){background:#79cd49}.wordmark-bars b:nth-child(3){background:#a1db79}
+.wordmark-main{display:block;font:italic 900 30px/.8 'Barlow Condensed',Impact,sans-serif;letter-spacing:-.3px}.wordmark-sub{display:block;font:800 9px/1.1 'Inter',Arial,sans-serif;letter-spacing:3.7px;margin-top:8px}
+.head-links{display:flex;gap:31px;margin-left:auto;align-items:center;font-size:11px;font-weight:800;letter-spacing:1.12px}
+.head-links .on{color:#3e8827}.head-cta{background:#141e15;color:#fff;border:0;border-radius:6px;padding:13px 16px;font-size:10px;font-weight:800;letter-spacing:.8px;white-space:nowrap}
+.wrapper{max-width:1290px;margin:0 auto;padding:70px 25px 108px}
+.kicker{font-size:10px;letter-spacing:2.3px;text-transform:uppercase;font-weight:900;color:#448a2c;display:flex;align-items:center;gap:10px}
+.kicker:before{content:'';display:block;width:23px;height:2px;background:#62af39}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:50px;margin:14px 0 38px}
+h1,h2,h3,p{margin-top:0}.hero h1{font:italic 900 clamp(48px,5.7vw,78px)/.93 'Barlow Condensed',Impact,sans-serif;letter-spacing:-.5px;margin:0;text-transform:uppercase}
+.hero h1 span{color:#438b24}.hero p{max-width:335px;margin:0 0 5px;color:#5e6c5f;font-size:13px;line-height:1.72}
+.section-sub{display:flex;align-items:center;gap:10px;margin:0 0 17px;color:#647267;font:800 10px/1.4 Inter,Arial,sans-serif;letter-spacing:1.55px;text-transform:uppercase}
+.section-sub span{width:8px;height:8px;background:#5fae3a;border-radius:50%}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px}
+.product-card{min-width:0;background:#fff;border:1px solid #e1e7de;border-radius:10px;overflow:hidden;box-shadow:0 8px 25px #2f4b2810;display:flex;flex-direction:column;transition:border-color .2s,transform .2s,box-shadow .2s}
+.product-card.ready{border:1px solid #c5dabd}.product-card.ready:hover{border-color:#69ad46;transform:translateY(-3px);box-shadow:0 14px 30px #32512920}
+.card-photo{height:199px;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;position:relative;border-bottom:1px solid #edf0eb}
+.card-photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(1.09)}
+.card-feature{position:absolute;top:11px;left:11px;background:#173a1a;color:#cefac2;font-size:9px;letter-spacing:.8px;font-weight:800;padding:6px 8px;border-radius:4px}
+.card-text{padding:18px 15px 17px;display:flex;flex-direction:column;flex:1}
+.card-count{font-size:9px;letter-spacing:1.4px;font-weight:900;color:#4a9234;text-transform:uppercase;margin-bottom:8px}
+.card-title{font:900 24px/.99 'Barlow Condensed',Impact,sans-serif;letter-spacing:.1px;text-transform:uppercase;min-height:48px;margin:0 0 9px}
+.card-desc{font-size:11px;color:#7b857a;line-height:1.55;min-height:52px;margin:0 0 15px}
+.price-line{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:6px;padding-bottom:14px}.price-line small{color:#8b968c;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;display:block}.price-line strong{font:900 24px 'Barlow Condensed',Impact,sans-serif;letter-spacing:-.1px}.price-line em{color:#92a098;font-size:9px;font-style:normal}
+.card-button{background:#4c962e;color:#fff;border:1px solid #4c962e;border-radius:5px;padding:12px 8px;min-height:41px;width:100%;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:900;transition:background .2s}
+.card-button:hover,.card-button:focus-visible{background:#347522;outline-offset:3px}
+.product-card.pending{opacity:.7;background:#f7f9f6;border-style:dashed;box-shadow:none}
+.product-card.pending .card-photo{background:linear-gradient(145deg,#f1f5ef,#e7ede5);border-bottom-color:#e0e9dd}
+.pending-placeholder{width:92px;height:87px;border:2px solid #d5e0d2;border-radius:7px;transform:rotate(-8deg);display:grid;place-items:center;color:#a9bba4;font:800 43px 'Barlow Condensed',sans-serif}
+.product-card.pending .card-count{color:#889888}.product-card.pending .card-title{color:#8c9b89}.product-card.pending .card-desc{color:#8c998a}.card-button.pending-btn{background:#edf1eb;color:#8a988a;border-color:#e2e9df;cursor:default}
+.grid-note{font-size:12px;color:#778476;margin:20px 0 0}
+.details-wrap{margin-top:76px;scroll-margin-top:24px}
+.details-head{display:flex;gap:30px;justify-content:space-between;align-items:end;margin-bottom:19px}.details-head h2{margin:6px 0 0;font:italic 900 44px/.95 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase}.details-head h2 span{color:#489632}.details-head p{margin:0;color:#738171;font-size:12px}
+.details{background:#fff;border:1px solid #dde5db;border-radius:15px;box-shadow:0 18px 42px #18301112;overflow:hidden;display:grid;grid-template-columns:1.08fr 1fr;min-height:565px}
+.details-visual{background:#fff;display:flex;justify-content:center;align-items:center;padding:25px;position:relative;min-height:450px;border-right:1px solid #edf1ec}
+.details-visual img{display:block;width:100%;max-height:570px;object-fit:contain}
+.details-tag{position:absolute;top:18px;left:18px;border:1px solid #dce9d6;background:#f7fbf5;color:#468f2a;border-radius:4px;padding:8px 10px;font-size:9px;letter-spacing:.9px;font-weight:850}
+.details-body{padding:clamp(30px,3vw,53px);display:flex;flex-direction:column;justify-content:center}
+.label{font-size:10px;font-weight:850;color:#42882e;letter-spacing:2px;text-transform:uppercase}
+.details-body h3{font:italic 900 clamp(44px,4.7vw,63px)/.9 'Barlow Condensed',Impact,sans-serif;margin:15px 0 15px;text-transform:uppercase}
+.details-intro{font-size:13px;color:#607060;line-height:1.72;margin:0 0 24px}
+.divider-feature{border:1px solid #bcdcaf;background:#eff8eb;border-left:4px solid #58a139;padding:15px 17px;border-radius:7px;margin-bottom:22px}
+.divider-feature strong{display:block;color:#235820;font-size:13px;font-weight:900;margin-bottom:5px}
+.divider-feature p{margin:0;font-size:12px;line-height:1.65;color:#52644d}
+.feature-list{margin:0 0 24px;padding:0;list-style:none;display:grid;gap:11px}
+.feature-list li{display:flex;gap:10px;align-items:flex-start;color:#344333;font-size:12px;font-weight:600}
+.feature-list li:before{content:'✓';flex:none;display:grid;place-items:center;width:18px;height:18px;background:#e4f1e0;color:#408c2f;border-radius:50%;font-size:11px;font-weight:900}
+.detail-bottom{border-top:1px solid #dce7d9;padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.details-price small{display:block;font-size:10px;letter-spacing:1.1px;color:#798579;font-weight:800;text-transform:uppercase}.details-price strong{font:900 42px/.96 'Barlow Condensed',sans-serif;letter-spacing:-.3px;color:#111c11}.details-price span{font-size:11px;color:#7c887a;margin-left:4px}
+.action-note{font-size:11px;line-height:1.5;color:#7a8777;margin:14px 0 0}
+.bottom-note{font-size:12px;color:#71806d;line-height:1.7;margin:19px 0 0}
+.placeholder-remaining{padding:34px 0 0;margin-top:70px;border-top:1px solid #d7e1d4}
+.placeholder-remaining h2{font:italic 900 39px/.94 'Barlow Condensed',Impact,sans-serif;margin:0 0 10px;text-transform:uppercase}.placeholder-remaining p{color:#697965;font-size:13px;margin:0}
+.footer{background:#111711;color:#b6c4b3;padding:28px 24px;text-align:center;font-size:11px;letter-spacing:.5px}
+@media(min-width:1000px) and (max-width:1320px){.grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.card-text{padding:16px 12px}.card-title{font-size:22px}}
+@media(max-width:999px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{align-items:start}.details{grid-template-columns:1fr 1fr}.details-body{padding:29px}.details-visual{padding:15px}}
+@media(max-width:720px){.site-head{height:66px}.site-head-in{padding:0 16px}.wordmark-main{font-size:26px}.wordmark-bars b{height:29px}.head-links{display:none}.head-cta{margin-left:auto;padding:11px 12px}.wrapper{padding:45px 15px 78px}.hero{display:block;margin-bottom:28px}.hero h1{font-size:60px}.hero p{margin-top:14px;max-width:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card-photo{height:160px}.card-text{padding:15px 12px}.card-title{font-size:21px;min-height:42px}.card-desc{min-height:68px}.details-wrap{margin-top:59px}.details{grid-template-columns:1fr}.details-visual{min-height:320px;border-right:0;border-bottom:1px solid #edf1ec}.details-visual img{max-height:420px}.details-head{display:block}.details-head h2{font-size:39px}.details-head p{margin-top:10px}.details-body{padding:28px 23px 31px}.details-body h3{font-size:53px}}
+@media(max-width:460px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card-photo{height:135px}.product-card{border-radius:8px}.card-text{padding:13px 10px}.card-title{font-size:19px}.card-desc{font-size:10px;min-height:80px}.price-line strong{font-size:22px}.card-button{font-size:9px;padding:9px 6px}.hero h1{font-size:49px}.details-visual{min-height:265px}.details-visual img{max-height:310px}.details-body h3{font-size:49px}}
+@media(max-width:355px){.grid{grid-template-columns:1fr}.card-photo{height:195px}.card-title{min-height:auto}.card-desc{min-height:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.product-card,.card-button{transition:none}}
+.price-line strong.tbc-price{display:block;font:900 14px/1.2 'Inter',Arial,sans-serif;color:#475b44;letter-spacing:-.3px;padding-top:7px;text-transform:uppercase}
+.details-price strong.tbc-detail-price{display:block;font:900 23px/1.1 'Barlow Condensed',Impact,sans-serif;color:#2c4730;text-transform:uppercase;letter-spacing:.2px}
+</style></head>
+<body>
+<div class="preview-alert"><i></i>PRIVATE DESIGN PREVIEW · NOT LIVE ON ELITEVANFITOUTS.COM.AU</div>
+<header class="site-head"><div class="site-head-in"><a href="#top" aria-label="Elite Van Fitouts preview home" class="wordmark"><span class="wordmark-bars" aria-hidden="true"><b></b><b></b><b></b></span><span><span class="wordmark-main">ELITE</span><span class="wordmark-sub">VAN FITOUTS</span></span></a><nav class="head-links" aria-label="Preview navigation"><a class="on" href="#popular">POPULAR SETUPS</a><a href="#build-details">BUILD DETAILS</a><a href="#more-builds">MORE BUILDS</a></nav><a href="#popular" class="head-cta">VIEW SETUPS</a></div></header>
+<main class="wrapper" id="top">
+<div class="kicker">Drawers &amp; Shelving / Elite Van Fitouts</div>
+<div class="hero"><h1>POPULAR <span>VAN SETUPS.</span></h1><p>Five of our most requested fitout styles, presented in a clean product collection. Choose a setup to explore its features and configuration.</p></div>
+<section id="popular" aria-label="Popular van fitout packages"><p class="section-sub"><span></span> 01 / Our popular build collection</p>
+<div class="grid">
+<article class="product-card ready" aria-labelledby="build1-name"><div class="card-photo"><img src="preview-assets/setup-1.webp" alt="3 Drawer System with two rear drawers, adjustable dividers and one side drawer, with black recessed latches"/><span class="card-feature">POPULAR #01</span></div><div class="card-text"><div class="card-count">01 / COMPLETE SYSTEM</div><h2 class="card-title" id="build1-name">3 Drawer System</h2><p class="card-desc">2 rear drawers + 1 passenger-side drawer. Adjustable internal dividers.</p><div class="price-line"><div><small>Package price</small><strong>$3,500</strong></div><em>AUD</em></div><button class="card-button" id="viewBuild">VIEW THIS BUILD ↗</button></div></article>
+<article class="product-card ready" aria-labelledby="build2-name">
+<div class="card-photo"><img src="preview-assets/setup-2.webp" alt="4 Drawer System with two rear drawers, one drawer on each sliding-door side, internal dividers and black recessed locking latches"/><span class="card-feature">POPULAR #02</span></div>
+<div class="card-text"><div class="card-count">02 / COMPLETE SYSTEM</div><h2 class="card-title" id="build2-name">4 Drawer System</h2><p class="card-desc">2 rear drawers + 1 drawer through each sliding door. Adjustable internal dividers.</p>
+<div class="price-line"><div><small>Package price</small><strong>$3,750</strong></div><em>AUD</em></div>
+<button class="card-button" id="viewBuild2" type="button">VIEW THIS BUILD ↗</button></div>
+</article><article class="product-card ready" aria-labelledby="build3-name">
+<div class="card-photo"><img src="preview-assets/setup-3.webp" alt="Triple Rear Drawer System studio product concept showing one large rear drawer and two stacked rear drawers beneath a black hex-finish false floor, with adjustable internal dividers and black recessed latches"/><span class="card-feature">POPULAR #03</span></div>
+<div class="card-text"><div class="card-count">03 / REAR ACCESS STORAGE</div><h2 class="card-title" id="build3-name">Triple Rear Drawer System</h2><p class="card-desc">Three rear-access drawers: one large and two stacked, with flexible compartments.</p>
+<div class="price-line"><div><small>Package price</small><strong>$4,100</strong></div><em>AUD</em></div>
+<button class="card-button" id="viewBuild3" type="button">VIEW THIS BUILD ↗</button></div>
+</article><article class="product-card ready" aria-labelledby="build4-name"><div class="card-photo"><img src="preview-assets/setup-4.png" alt="Pro Package product render: two large rear drawers with adjustable dividers, a side-access drawer and full-length driver-side shelving fixed above the false floor"/><span class="card-feature">POPULAR #04</span></div><div class="card-text"><div class="card-count">04 / DRAWERS + FULL-LENGTH SHELVING</div><h2 class="card-title" id="build4-name">Pro Package</h2><p class="card-desc">3 Drawer System with full-length driver-side shelving mounted on the false floor.</p><div class="price-line"><div><small>Package price</small><strong class="tbc-price">TO BE CONFIRMED</strong></div></div><button class="card-button" id="viewBuild4" type="button">VIEW THIS BUILD ↗</button></div></article><article class="product-card pending" aria-label="Popular build 5 to be provided"><div class="card-photo"><div class="pending-placeholder" aria-hidden="true">05</div></div><div class="card-text"><div class="card-count">05 / YOUR NEXT BUILD</div><h2 class="card-title">SETUP 05</h2><p class="card-desc">Awaiting your photo, package details and approved price.</p><div class="price-line"><div><small>Not yet specified</small><strong style="color:#91a28f">—</strong></div></div><span class="card-button pending-btn" aria-label="Build 5 coming soon">TO BE FINALISED</span></div></article>
+</div><p class="grid-note">Setups 01–04 are included in this private design preview. Setup 05 will be added once finalised.</p></section>
+<section class="details-wrap" id="build-details" aria-labelledby="detail-header"><div class="details-head"><div><span class="kicker">A closer look / Popular Setup 01</span><h2 id="detail-header">YOUR 3 DRAWER <span>SETUP.</span></h2></div><p>See the layout, materials and adjustable divider design.</p></div>
+<div class="details"><div class="details-visual"><div class="details-tag">3 DRAWERS · BLACK LOCKABLE LATCHES</div><img src="preview-assets/setup-1.webp" alt="Black hex plywood 3 Drawer System with two rear drawers extended, removable internal divider slots and a left side access drawer"/></div>
+<div class="details-body"><span class="label">POPULAR BUILD 01 · 3 DRAWERS</span><h3>3 DRAWER<br>SYSTEM.</h3><p class="details-intro">Two drawers opening at the rear of your van, plus one drawer accessible through the passenger sliding door. A durable flat false floor sits above the storage system.</p>
+<div class="divider-feature"><strong>Fully adjustable, hand-removable dividers</strong><p>Simply lift the dividers out by hand and reposition them to suit your tools, parts and equipment. No tools required to rearrange your storage compartments.</p></div>
+<ul class="feature-list"><li>2 drawers accessible from the rear</li><li>1 drawer accessed through the passenger sliding door</li><li>Black hex-textured plywood and a usable false floor</li><li>Black recessed locking latches</li></ul>
+<div class="detail-bottom"><div class="details-price"><small>3 Drawer System · Package price</small><strong>$3,500</strong><span>AUD</span></div></div><p class="action-note">Final vehicle fitment, installation details and GST treatment to be confirmed before an order is accepted.</p>
+</div></div><p class="bottom-note">Concept visual based on your drawer layout and product reference photo. Exact dimensions and fitment are confirmed against the customer's vehicle.</p></section>
+
+<section class="details-wrap" id="build-details-2" aria-labelledby="detail-header-2">
+  <div class="details-head"><div><span class="kicker">A closer look / Popular Setup 02</span><h2 id="detail-header-2">YOUR 4 DRAWER <span>SETUP.</span></h2></div><p>Same premium build family, with access from both sides of your van.</p></div>
+  <div class="details">
+   <div class="details-visual"><div class="details-tag">4 DRAWERS · BLACK LOCKABLE LATCHES</div><img src="preview-assets/setup-2.webp" alt="Black four-drawer system product render with two large divided rear drawers, left and right sliding-door drawers and black locks with subtle light-blue key centres"/></div>
+   <div class="details-body"><span class="label">POPULAR BUILD 02 · 4 DRAWERS</span><h3>4 DRAWER<br>SYSTEM.</h3>
+    <p class="details-intro">Two large drawers open at the rear of the van. Two additional drawers extend towards the sliding doors — one to the passenger side and one to the driver side — for convenient access from either side.</p>
+    <div class="divider-feature"><strong>Fully adjustable, hand-removable dividers</strong><p>Lift the internal dividers out by hand and move them to suit different tools, stock and equipment — no tools needed to rearrange the compartments.</p></div>
+    <ul class="feature-list"><li>2 large rear-access drawers</li><li>1 passenger-side sliding-door drawer</li><li>1 driver-side sliding-door drawer</li><li>Black hex-textured plywood and a flat false floor</li><li>Black recessed locking latches with subtle light-blue key centres</li></ul>
+    <div class="detail-bottom"><div class="details-price"><small>4 Drawer System · Package price</small><strong>$3,750</strong><span>AUD</span></div></div>
+    <p class="action-note">Suitable sliding-door layout and final vehicle fitment must be confirmed. Installation details and GST treatment will be confirmed before an order is accepted.</p>
+   </div>
+  </div>
+  <p class="bottom-note">Product concept render for design review. Drawer layout, dimensions and fitment are confirmed for each van.</p>
+</section>
+<section class="details-wrap" id="build-details-3" aria-labelledby="detail-header-3">
+  <div class="details-head"><div><span class="kicker">A closer look / Popular Setup 03</span><h2 id="detail-header-3">THREE DRAWERS. <span>REAR ACCESS.</span></h2></div><p>A versatile three-drawer layout for organised access from your van's rear doors.</p></div>
+  <div class="details">
+   <div class="details-visual"><div class="details-tag">3 REAR DRAWERS · BLACK LOCKABLE LATCHES</div><img src="preview-assets/setup-3.webp" alt="Triple Rear Drawer System concept with one large rear drawer on the left and two shorter rear-access drawers stacked vertically on the right"/></div>
+   <div class="details-body"><span class="label">POPULAR BUILD 03 · TRIPLE REAR DRAWERS</span><h3>TRIPLE REAR<br>DRAWER SYSTEM.</h3>
+    <p class="details-intro">All three drawers are accessed from the back of the van: one large drawer alongside two smaller drawers stacked vertically. A flat, hard-wearing platform sits above the storage system.</p>
+    <div class="divider-feature"><strong>Adjustable, removable internal dividers</strong><p>Organise tools and supplies with movable compartments. The dividers shown in the product concept can be repositioned by hand; final divider layout is confirmed with your build.</p></div>
+    <ul class="feature-list"><li>1 full-height rear-access drawer</li><li>2 stacked rear-access drawers</li><li>Black hex-textured finish with plywood edge detailing</li><li>Black recessed locking latches with subtle light-blue key accents</li><li>Three access points at the rear barn doors</li></ul>
+    <div class="detail-bottom"><div class="details-price"><small>Triple Rear Drawer System · Package price</small><strong>$4,100</strong><span>AUD</span></div></div>
+    <p class="action-note">This is a design-review concept, not a manufacturing drawing. Final drawer dimensions, side layout, vehicle fitment, installation and GST treatment will be confirmed before an order is accepted.</p>
+   </div>
+  </div>
+  <p class="bottom-note">Concept visualization based on the supplied Elite van photo. Website preview only; no checkout or customer submission.</p>
+</section>
+<section class="details-wrap" id="build-details-4" aria-labelledby="detail-header-4">
+  <div class="details-head"><div><span class="kicker">A closer look / Popular Setup 04</span><h2 id="detail-header-4">DRAWERS + <span>DRIVER-SIDE SHELVING.</span></h2></div><p>Our three-drawer layout with a complete full-length shelf upgrade.</p></div>
+  <div class="details">
+    <div class="details-visual"><div class="details-tag">PRO PACKAGE · DRAWERS + SHELVING</div><img src="preview-assets/setup-4.png" alt="Pro Package showing two divided rear drawers, passenger-side access drawer and full-length driver-side shelving resting on the false-floor top"/></div>
+    <div class="details-body"><span class="label">POPULAR BUILD 04 · PRO PACKAGE</span><h3>PRO<br>PACKAGE.</h3>
+      <p class="details-intro">The same practical three-drawer arrangement as Setup 01, now paired with a full-length shelving unit on the driver side. The shelving <strong>sits on top of the false floor</strong> so you retain a usable central loading platform.</p>
+      <div class="divider-feature"><strong>Fully adjustable, hand-removable dividers</strong><p>Lift out and reposition the drawer dividers by hand to organise your tools and supplies, without needing tools for the adjustment.</p></div>
+      <ul class="feature-list"><li>2 divided drawers opening from the rear</li><li>1 drawer accessed through the passenger-side sliding door</li><li>Full-length driver-side shelving mounted on the false floor</li><li>Black recessed lockable latches and durable hex-ply finish</li><li>Flat false floor above the drawer units</li></ul>
+      <div class="detail-bottom"><div class="details-price"><small>Pro Package · Package price</small><strong class="tbc-detail-price">TO BE CONFIRMED</strong></div></div>
+      <p class="action-note">Preview only. Final price, dimensions, installation, compatibility and GST treatment will be confirmed before release.</p>
+    </div>
+  </div>
+  <p class="bottom-note">This concept uses the exact Pro Package image you selected. It shows how the shelves and drawers relate; final fitment depends on the vehicle.</p>
+</section>
+
+<section id="more-builds" class="placeholder-remaining"><h2>FOUR BUILDS READY. <span style="color:#4d982e">ONE TO GO.</span></h2><p>Next we'll apply this same design system to Popular Build 05, with its own image, name, inclusions and price.</p></section>
+</main><footer class="footer">ELITE VAN FITOUTS &nbsp;·&nbsp; PRIVATE LAYOUT APPROVAL PREVIEW &nbsp;·&nbsp; NO CUSTOMER SUBMISSION OR CHECKOUT</footer>
+<script>
+document.getElementById('viewBuild').addEventListener('click',()=>document.getElementById('build-details').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+document.getElementById('viewBuild2').addEventListener('click',()=>document.getElementById('build-details-2').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+document.getElementById('viewBuild3').addEventListener('click',()=>document.getElementById('build-details-3').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+document.getElementById('viewBuild4').addEventListener('click',()=>document.getElementById('build-details-4').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+</script></body></html>
