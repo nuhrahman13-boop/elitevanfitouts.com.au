@@ -1,0 +1,65 @@
+
+// Single source of truth: at most one drawer system, with optional extras.
+const BUILDER_KEY='elite-fitout-builder-v3';
+const extras=[
+ {id:'cargo',icon:'▧',name:'Cargo barrier',description:'Safety barrier behind the front cabin.'},
+ {id:'fixed',icon:'▤',name:'Additional fixed shelving',description:'Extra shelving along a side wall.'},
+ {id:'slide',icon:'↔',name:'Slide-out shelving',description:'Slide-out shelving or mounted tray.'},
+ {id:'wall',icon:'▦',name:'Ply wall lining',description:'Protection for the vehicle walls.'},
+ {id:'floor',icon:'▰',name:'Rubber flooring',description:'Durable cargo-area floor finish.'},
+ {id:'divide',icon:'▥',name:'Extra organisers / dividers',description:'Request customised internal storage.'},
+ {id:'mount',icon:'⚒',name:'Mounting board',description:'Equipment or electrical mounting board.'},
+ {id:'other',icon:'✚',name:'Something else',description:'Tell us what you need in the quote notes.'}
+];
+function getBuild(){try{let x=JSON.parse(localStorage.getItem(BUILDER_KEY)||'{}');return {base:x.base||null,addons:Array.isArray(x.addons)?x.addons:[]};}catch(e){return{base:null,addons:[]}}}
+function setBuild(b){localStorage.setItem(BUILDER_KEY,JSON.stringify(b));if(document.getElementById('base-slot'))renderBuild();}
+function addDrawer(base){let b=getBuild();if(b.base && b.base.key!==base.key){if(!window.confirm('Your build already has '+b.base.name+'. You can only have one drawer system. Replace it with '+base.name+'?'))return false;}b.base=base;setBuild(b);toast('Drawer system added to your build');return true}
+function addExtra(item){let b=getBuild();if(!b.addons.some(x=>x.id===item.id))b.addons.push(item);setBuild(b);toast('Added '+item.name);}
+function removeExtra(id){let b=getBuild();b.addons=b.addons.filter(x=>x.id!==id);setBuild(b)}
+function delBase(){let b=getBuild();b.base=null;setBuild(b)}
+function toast(msg){document.querySelector('.notice-toast')?.remove();let n=document.createElement('div');n.className='notice-toast';n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),2900)}
+function addPackage(slug,doRoute=false){let p=PRODUCTS.find(x=>x.slug===slug);if(!p)return false;let accepted=addDrawer({key:p.slug,name:p.name,price:p.price,image:p.image,desc:p.desc,kind:'preset'});if(accepted&&doRoute)location.href=(document.body.dataset.product?'../../fitouts.html':'fitouts.html')+'?preset='+encodeURIComponent(slug)+'#build-summary';return accepted}
+function renderBuild(){let b=getBuild(),base=document.getElementById('base-slot'),addons=document.getElementById('addon-slot'),basePrice=document.getElementById('base-price-total');if(!base)return;
+base.innerHTML='<div class="slot-label">DRAWER SYSTEM · MAXIMUM 1</div>'+(b.base?`<div class="build-row">${b.base.image?`<img src="${prefix()}assets/${b.base.image}" alt="">`:''}<div class="build-row-info"><b>${safe(b.base.name)}</b><small>${safe(b.base.desc||'Custom measurements — reviewed by team')}</small></div><button type="button" data-remove-base>REMOVE</button></div>`:'<div class="build-row"><div class="build-row-info"><b>No drawer system selected</b><small>Choose a package above or create a custom drawer.</small></div></div>');
+addons.innerHTML='<div class="slot-label">OPTIONAL EXTRAS</div>'+(b.addons.length?b.addons.map(x=>`<div class="build-row"><div class="build-row-info"><b>${safe(x.name)}</b><small>${safe(x.desc||'To be priced in the formal quote')}</small></div><button type="button" data-remove-extra="${safe(x.id)}">REMOVE</button></div>`).join(''):'<div class="build-row"><div class="build-row-info"><b>No extras added</b><small>Extras are completely optional.</small></div></div>');
+basePrice.textContent=b.base?.price?money(b.base.price):'CUSTOM QUOTE';document.getElementById('total-explainer').textContent=b.base?.price?'Base package shown only. All additions, GST and service charges must be confirmed.':'We will prepare a tailored price after reviewing the dimensions and extras.';
+document.querySelector('[data-remove-base]')?.addEventListener('click',delBase);document.querySelectorAll('[data-remove-extra]').forEach(btn=>btn.addEventListener('click',()=>removeExtra(btn.dataset.removeExtra)));
+document.querySelectorAll('[data-addon-toggle]').forEach(el=>{let on=b.addons.some(x=>x.id===el.dataset.addonToggle);el.textContent=on?'✓ ADDED · REMOVE':'+ ADD TO BUILD';el.closest('.addon-card').classList.toggle('added',on)});
+}
+function safe(x){return String(x||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function int(id){return +document.getElementById(id)?.value||0}
+function specDrawers(){let w=int('drawer-width'),d=int('drawer-depth'),h=int('drawer-height'),columns=int('drawer-columns'),rows=int('drawer-rows');return {w,d,h,columns,rows,dividers:document.getElementById('drawer-dividers').value==='yes'?'Adjustable dividers':'Empty',valid:w>=500&&w<=2400&&d>=500&&d<=2400&&h>=180&&h<=900}}
+
+function getShelves(){let w=int('shelf-width'),d=int('shelf-depth'),h=int('shelf-height');return {w,d,h,type:document.getElementById('shelf-type').value,bays:int('shelf-bays'),levels:int('shelf-levels'),style:document.getElementById('shelf-style').value,tray:document.getElementById('shelf-tray').value,valid:w>=300&&w<=2300&&d>=200&&d<=600&&h>=110&&h<=2200};}
+function renderDrawerPreview(){let s=specDrawers(),grid=document.getElementById('drawer-sketch-grid');if(!grid)return;grid.style.gridTemplateColumns=`repeat(${s.columns},1fr)`;grid.innerHTML=Array.from({length:s.columns*s.rows},()=>'<div class="drawer-face">▣</div>').join('');document.getElementById('drawer-quick-spec').textContent=`${s.w} × ${s.d} × ${s.h} mm · ${s.columns} column${s.columns>1?'s':''}, ${s.rows} drawer${s.rows>1?'s':''} per column · ${s.dividers}`;}
+function renderShelfPreview(){let s=getShelves(),grid=document.getElementById('shelf-sketch');if(!grid)return;grid.style.gridTemplateColumns=`repeat(${s.bays},1fr)`;grid.style.gridTemplateRows=`repeat(${s.levels},1fr)`;grid.innerHTML=Array.from({length:s.bays*s.levels},()=>'<span></span>').join('');document.getElementById('shelf-quick-spec').textContent=`${s.type} · ${s.w} × ${s.d} × ${s.h} mm · ${s.bays} bays, ${s.levels} high · ${s.style}`;}
+function setupBuildPage(){if(!document.getElementById('custom-builder'))return;const preset=new URLSearchParams(location.search).get('preset');if(preset){const p=PRODUCTS.find(x=>x.slug===preset);if(p){let b=getBuild();if(!b.base || b.base.key===p.slug){b.base={key:p.slug,name:p.name,price:p.price,image:p.image,desc:p.desc,kind:'preset'};setBuild(b);}else{addDrawer({key:p.slug,name:p.name,price:p.price,image:p.image,desc:p.desc,kind:'preset'});}}}
+for(const el of document.querySelectorAll('[data-build-tab]'))el.addEventListener('click',()=>{let selected=el.dataset.buildTab;document.querySelectorAll('[data-build-tab]').forEach(t=>{t.classList.toggle('selected',t.dataset.buildTab===selected);t.setAttribute('aria-selected',String(t.dataset.buildTab===selected))});document.getElementById('drawers-pane').classList.toggle('hidden',selected!=='drawers');document.getElementById('shelves-pane').classList.toggle('hidden',selected!=='shelves')});
+for(const el of document.querySelectorAll('#drawers-pane input,#drawers-pane select'))el.addEventListener('input',renderDrawerPreview);
+for(const el of document.querySelectorAll('#shelves-pane input,#shelves-pane select'))el.addEventListener('input',renderShelfPreview);
+renderDrawerPreview();renderShelfPreview();
+document.getElementById('add-custom-drawer').addEventListener('click',()=>{let s=specDrawers();if(!s.valid)return alert('Please use valid drawer measurements.');addDrawer({key:'custom-drawers',name:'Custom Drawer System',desc:`${s.w} × ${s.d} × ${s.h} mm · ${s.columns} column(s) · ${s.rows} drawers per column · ${s.dividers}`,kind:'custom',price:null,config:s});document.getElementById('build-summary').scrollIntoView({behavior:'smooth'})});
+document.getElementById('quote-custom-drawer').addEventListener('click',()=>{let s=specDrawers();if(!s.valid){alert('Please use valid drawer measurements.');return;} if(addDrawer({key:'custom-drawers',name:'Custom Drawer System',desc:`${s.w} × ${s.d} × ${s.h} mm · ${s.columns} column(s) · ${s.rows} drawers per column · ${s.dividers}`,kind:'custom',price:null,config:s})){startQuote();}});
+function saveShelf(){let s=getShelves();if(!s.valid){alert('Please use valid shelving dimensions.');return false;}let b=getBuild();b.addons=b.addons.filter(x=>x.id!=='custom-shelves');b.addons.push({id:'custom-shelves',name:'Custom Shelving / Tray',desc:`${s.type} · ${s.w} × ${s.d} × ${s.h} mm · ${s.bays} bays, ${s.levels} levels · ${s.style}`,config:s});setBuild(b);toast('Custom shelving added');return true;}
+document.getElementById('add-custom-shelf').addEventListener('click',()=>{if(saveShelf())document.getElementById('build-summary').scrollIntoView({behavior:'smooth'});});document.getElementById('quote-custom-shelf').addEventListener('click',()=>{if(saveShelf())startQuote()});
+const grid=document.getElementById('addon-grid');grid.innerHTML=extras.map(x=>`<article class="addon-card"><span class="addon-icon">${x.icon}</span><strong>${safe(x.name)}</strong><p>${safe(x.description)}</p><button type="button" data-addon-toggle="${x.id}">+ ADD TO BUILD</button></article>`).join('');grid.querySelectorAll('[data-addon-toggle]').forEach(btn=>btn.addEventListener('click',()=>{let b=getBuild();let e=extras.find(x=>x.id===btn.dataset.addonToggle);if(b.addons.some(x=>x.id===e.id))removeExtra(e.id);else addExtra({id:e.id,name:e.name,desc:e.description});}));
+document.querySelectorAll('[data-add-package]').forEach(btn=>btn.addEventListener('click',()=>{if(addPackage(btn.dataset.addPackage))document.getElementById('build-summary').scrollIntoView({behavior:'smooth'})}));
+document.getElementById('clear-build').addEventListener('click',()=>{if(confirm('Clear your drawer system and all extras?'))setBuild({base:null,addons:[]})});document.getElementById('start-quote').addEventListener('click',startQuote);
+const mode=document.getElementById('builder-fulfilment'),form=document.getElementById('builder-quote-form'),gate=document.getElementById('builder-form-gate'),dyn=document.getElementById('dynamic-fields');mode.addEventListener('change',()=>{let val=mode.value;form.classList.toggle('hidden',!val);gate.classList.toggle('hidden',!!val);dyn.innerHTML=val==='shop'?'<label>Preferred workshop drop-off date<input type="date" name="dropoff"></label><label>Van used daily?<select name="used"><option>Yes</option><option>No</option></select></label>':val==='pickup'?'<label>Preferred pickup timing<select name="pickup"><option>As soon as ready</option><option>1–2 weeks</option><option>Flexible</option></select></label><label>Installer<select name="installer"><option>I will fit it</option><option>My own installer</option><option>Not sure</option></select></label>':val==='delivery'?'<label>Delivery suburb *<input name="suburb" required></label><label>Postcode *<input name="postcode" required pattern="[0-9]{4}" maxlength="4"></label>':'';});
+form.addEventListener('submit',e=>{
+ e.preventDefault();if(!form.reportValidity())return;
+ let selection=getBuild(),fd=Object.fromEntries(new FormData(form).entries());
+ const details={drawer_system:selection.base?{name:selection.base.name,price_aud:selection.base.price??'custom quote',spec:selection.base.desc,config:selection.base.config||null}:null,
+  extras:selection.addons.map(x=>({name:x.name,details:x.desc||'',config:x.config||null})),fulfilment:mode.options[mode.selectedIndex].text,
+  vehicle:{make:fd.vehicle_make,model:fd.vehicle_model,year:fd.year,variant:fd.variant},
+  special_requests:fd.notes||'',service_details:Object.fromEntries(Object.entries(fd).filter(([key])=>['dropoff','used','pickup','installer','suburb','postcode'].includes(key)))};
+ showSecureEnquiry(document.getElementById('quote-preview-result'),details);
+});
+
+renderBuild();}
+function startQuote(){let section=document.getElementById('quote-section');if(!section)return;section.classList.remove('hidden');section.scrollIntoView({behavior:'smooth',block:'start'});}
+setupBuildPage();
+function setupProductAdd(){let btn=document.getElementById('product-add-build'),quote=document.getElementById('product-quote-now');if(!btn)return;let slug=document.body.dataset.product;btn.addEventListener('click',()=>addPackage(slug,true));quote.addEventListener('click',()=>{if(addPackage(slug))document.getElementById('request')?.scrollIntoView({behavior:'smooth'});});}
+setupProductAdd();
+
+if(document.getElementById('custom-builder')){document.querySelectorAll('.product-card').forEach((c,i)=>{let p=PRODUCTS[i],bt=document.createElement('button');bt.type='button';bt.className='btn btn-outline';bt.dataset.addPackage=p.slug;bt.textContent='+ ADD TO BUILD';bt.style.cssText='width:100%;font-size:10px;margin-top:12px';c.querySelector('.card-content').append(bt);bt.addEventListener('click',()=>{if(addPackage(p.slug))document.getElementById('build-summary').scrollIntoView({behavior:'smooth'})})});}

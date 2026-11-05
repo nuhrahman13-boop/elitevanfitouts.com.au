@@ -183,8 +183,9 @@
 @media(max-width:767px){.evf-quick-call{margin-left:auto;margin-right:12px;min-height:38px;padding:9px 12px;font-size:10px;gap:6px}.evf-quick-call svg{width:14px;height:14px}}
 @media(max-width:390px){.evf-quick-call{margin-right:8px;padding:8px 9px;font-size:9px}}
 </style>
+<link rel="stylesheet" href="evf-shop/scoped.css">
 </head>
-<body>
+<body data-prefix="evf-shop/">
 
   <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 glass-nav px-6">
@@ -295,348 +296,20 @@
             </div>
     </section>
 
-    <!-- CONFIGURATOR -->
-    <div id="fitout-configurator" class="px-6 max-w-7xl mx-auto pt-20 config-shell">
+    <!-- NEW ELITE PACKAGE COLLECTION + BUILDER -->
+<div class="evf-stage" id="elite-fitout-products"><section class="collection-section" id="popular"><div class="wrap"><div class="section-heading"><div><div class="kicker">SELECT A PACKAGE</div><h2 style="margin:10px 0 0">START WITH A <span>DRAWER SYSTEM.</span></h2></div><span class="note">Only one drawer system can be added to a build.</span></div><div class="product-grid full" data-render-products=""></div></div>
+<div class="builder-separator" id="custom-builder">
+<div class="builder-heading"><div><div class="kicker">OPTION B · BUILD IT YOURSELF</div><h2>OR DESIGN YOUR <span>OWN SYSTEM.</span></h2><p class="section-intro">We've brought back the useful options from our original Online Shop builder — now without the extra complexity. Custom designs are reviewed before quoting.</p></div><span class="mini-pill">CUSTOM QUOTE · NO PAYMENT</span></div>
+<div aria-label="Custom build type" class="builder-tabs" role="tablist"><button aria-selected="true" class="builder-tab selected" data-build-tab="drawers" id="tab-drawers" type="button">▤ Custom Drawers</button><button aria-selected="false" class="builder-tab" data-build-tab="shelves" id="tab-shelves" type="button">▥ Custom Shelving &amp; Trays</button></div>
+<div class="builder-panel" id="drawers-pane"><div class="builder-form"><h3>CREATE YOUR DRAWER SYSTEM.</h3><p class="muted">One drawer system per build — this becomes your base setup.</p><div class="builder-fields"><label>Width (mm)<input id="drawer-width" max="2400" min="500" step="10" type="number" value="1100"/></label><label>Depth (mm)<input id="drawer-depth" max="2400" min="500" step="10" type="number" value="1500"/></label><label>Height (mm)<input id="drawer-height" max="900" min="180" step="10" type="number" value="380"/></label><label>Number of columns<select id="drawer-columns"><option value="1">1 column</option><option selected="" value="2">2 columns</option></select></label><label>Drawers in each column<select id="drawer-rows"><option selected="" value="1">1 drawer</option><option value="2">2 stacked drawers</option></select></label><label>Internal dividers<select id="drawer-dividers"><option selected="" value="yes">Adjustable dividers</option><option value="no">Empty drawers</option></select></label></div><p class="builder-note">12 mm black hex plywood • Black locking handles • Heavy-duty runners. Final sizing and specifications subject to workshop approval.</p><div class="builder-buttons"><button class="btn btn-green" id="add-custom-drawer" type="button">ADD DRAWER SYSTEM TO BUILD →</button><button class="btn btn-outline" id="quote-custom-drawer" type="button">REQUEST QUOTE NOW</button></div></div><div class="builder-preview"><div class="preview-kicker">CUSTOM DRAWER CONFIGURATION</div><div class="drawer-sketch"><div class="deck"></div><div class="drawer-sketch-grid" id="drawer-sketch-grid"><div class="drawer-face">▣</div><div class="drawer-face">▣</div></div></div><div class="build-summary-label">YOUR SPECIFICATION</div><div class="preview-specs" id="drawer-quick-spec">1100 × 1500 × 380 mm · 2 columns</div><small>Illustrative diagram only, not a workshop drawing</small></div></div>
+<div class="builder-panel hidden" id="shelves-pane"><div class="builder-form"><h3>BUILD CUSTOM SHELVING.</h3><p class="muted">Configure shelving or a slide-out tray. Add it as an optional extra, with or without a drawer system.</p><div class="builder-fields"><label class="wide">Build type<select id="shelf-type"><option value="Fixed shelving">Fixed shelving</option><option value="Complete slide-out shelving">Complete shelving on a slide-out tray</option><option value="Slide-out tray only">Slide-out tray only</option></select></label><label>Width (mm)<input id="shelf-width" max="2300" min="300" step="10" type="number" value="1000"/></label><label>Depth (mm)<input id="shelf-depth" max="600" min="200" step="10" type="number" value="400"/></label><label>Height (mm)<input id="shelf-height" max="2200" min="110" step="10" type="number" value="1050"/></label><label>Vertical bays<select id="shelf-bays"><option>1</option><option selected="">2</option><option>3</option></select></label><label>Sections high<select id="shelf-levels"><option>1</option><option>2</option><option selected="">3</option><option>4</option></select></label><label>Shelf section style<select id="shelf-style"><option>Open trays</option><option>Divided trays</option><option>Angled tool shelves</option></select></label><label>Tray construction<select id="shelf-tray"><option>Flat platform</option><option>Enclosed tray</option></select></label></div><p class="builder-note">12 mm black hex plywood. Slide-out configurations move together on their base tray. Dimensions, load ratings and hardware require workshop confirmation.</p><div class="builder-buttons"><button class="btn btn-green" id="add-custom-shelf" type="button">ADD SHELVING TO BUILD →</button><button class="btn btn-outline" id="quote-custom-shelf" type="button">REQUEST QUOTE NOW</button></div></div><div class="builder-preview"><div class="preview-kicker">SHELVING CONFIGURATION</div><div class="shelf-sketch" id="shelf-sketch"></div><div class="build-summary-label">YOUR SPECIFICATION</div><div class="preview-specs" id="shelf-quick-spec"></div><small>Indicative layout only — no exact engineering drawing</small></div></div>
+</div>
+<section class="extras-section" id="extras"><div class="section-heading"><div><div class="kicker">OPTIONAL EXTRAS</div><h2>MAKE IT <span>YOUR OWN.</span></h2><p class="section-intro">Add whatever else your van needs. No extra drawer system here — just accessories and enhancements.</p></div></div><div class="addon-grid" id="addon-grid"></div><p class="small-print">Add-on costs are not included in the package prices shown above. We'll price additions after reviewing your vehicle and specifications.</p></section>
+<section class="build-workspace" id="build-summary"><div class="workspace-head"><div><div class="kicker">YOUR FITOUT</div><h2>YOUR <span>BUILD SUMMARY.</span></h2><p>One drawer system maximum. Add extras or go straight to a quote.</p></div><span class="mini-pill">NO ORDER OR PAYMENT</span></div><div class="summary-layout"><div class="build-items"><div id="base-slot"></div><div id="addon-slot"></div><p class="summary-note" id="no-base-note">You can also request shelving-only or accessory-only work. No drawer system is required.</p></div><div class="summary-total"><span class="build-summary-label">INDICATIVE BASE PACKAGE</span><strong id="base-price-total">QUOTE REQUIRED</strong><p id="total-explainer">Extras, installation, delivery and final GST will be confirmed in your formal quote.</p><button class="btn btn-green" id="start-quote" type="button">REQUEST MY QUOTE →</button><button class="btn btn-outline" id="clear-build" type="button">CLEAR BUILD</button></div></div></section>
+<section class="quote-step hidden" id="quote-section"><div class="kicker">STEP 03 · REQUEST QUOTE</div><h2>HOW WOULD YOU <span>LIKE IT SUPPLIED?</span></h2><p class="section-intro">Choose how you want your fitout supplied, then complete the secure enquiry form.</p><div class="quote-grid"><label>Supply option<select id="builder-fulfilment"><option value="">Choose an option</option><option value="shop">Built in Shop — fitted at Rowville</option><option value="pickup">Pickup — collect from Rowville</option><option value="delivery">Delivery — sent to your address</option></select></label></div><div class="gate-hint" id="builder-form-gate">Choose Built in Shop, Pickup or Delivery to see your quote form.</div><form class="hidden" id="builder-quote-form"><div class="quote-grid"><label>Vehicle make *<input name="vehicle_make" placeholder="e.g. Toyota" required=""/></label><label>Vehicle model *<input name="vehicle_model" placeholder="e.g. HiAce" required=""/></label><label>Vehicle year<input inputmode="numeric" name="year" placeholder="e.g. 2023"/></label><label>Wheelbase or variant<input name="variant" placeholder="SWB / LWB / not sure"/></label><div class="quote-grid wide" id="dynamic-fields"></div><label class="wide">Notes / special requests<textarea name="notes" placeholder="Anything we should consider?"></textarea></label></div><button class="btn btn-green" style="margin-top:20px" type="submit">CONTINUE TO SECURE ENQUIRY →</button><p class="micro-note">Complete the secure GoHighLevel form to send your enquiry. No payment or booking occurs at this step.</p></form><div aria-live="polite" class="hidden form-result" id="quote-preview-result"></div></section>
+</section></div>
 
-        <!-- SYSTEM TYPE TOGGLE -->
-        <div class="mb-12 max-w-2xl mx-auto config-section reveal-section">
-            <h2 class="text-center font-black italic uppercase text-2xl mb-4">Select Build Architecture</h2>
-            <div class="sys-toggle">
-                <button class="sys-btn active" id="btn-type-drawer" onclick="setSystemType('Drawer System')">Drawer System<br><span class="text-[10px] font-normal">(False Floor Included)</span></button>
-                <button class="sys-btn" id="btn-type-shelving" onclick="setSystemType('Shelving Only')">Shelving Only<br><span class="text-[10px] font-normal">(No False Floor)</span></button>
-            </div>
-        </div>
-
-        <!-- 01. PACKAGES -->
-        <div class="mb-20 config-section reveal-section">
-            <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">01.</span> Select Base Configuration
-            </h2>
-            
-            <!-- DRAWER PACKAGES -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="packages-drawer">
-                <div class="hex-card selected" id="pkg-essential" onclick="setPackage('Essential', 0, 'pkg-essential')">
-                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="essential.mov" type="video/mp4"></video></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Essential</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">FALSE FLOOR + DRAWERS</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Custom False Floor</li>
-                            <li>> Rear HD Drawers</li>
-                            <li>> Side Sliding Drawers</li>
-                            <li>> Alum. Trim Protection</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-pro" onclick="setPackage('Pro', 3, 'pkg-pro')">
-                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="pro.mp4" type="video/mp4"></video></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Pro</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">INCLUDES 3 MODULES</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> <strong>Essential Setup</strong></li>
-                            <li>> Driver Side Racking</li>
-                            <li>> Adjustable Dividers</li>
-                            <li>> Choose up to 3 Shelves</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-elite" onclick="setPackage('Elite', 7, 'pkg-elite')">
-                    <div class="pkg-media"><video autoplay muted loop playsinline><source src="elite.mp4" type="video/mp4"></video></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Elite</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">INCLUDES 7 MODULES</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> <strong>Pro Setup</strong></li>
-                            <li>> Passenger Racking</li>
-                            <li>> Side Slide-Out Shelf</li>
-                            <li>> Choose up to 7 Shelves</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-custom-draw" onclick="setPackage('Custom Design', 99, 'pkg-custom-draw')">
-                    <div class="pkg-media"><span class="text-4xl">🛠️</span></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Custom</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">BESPOKE BUILD</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> 100% Tailored Layout</li>
-                            <li>> Unique Trade Needs</li>
-                            <li>> Auto Electrical</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SHELVING ONLY PACKAGES (Hidden by default) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="packages-shelving">
-                <div class="hex-card" id="pkg-shelf-basic" onclick="setPackage('Single Side Shelving', 3, 'pkg-shelf-basic')">
-                    <div class="pkg-media"><img class="shelf-single" src="single side shelving.jpeg" alt="Single-side custom van shelving system" loading="lazy" decoding="async"></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Single Side</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">DRIVER SIDE RACKING</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> CNC Cut Frame</li>
-                            <li>> Secure Wall Mounting</li>
-                            <li>> Choose up to 3 Shelves</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-shelf-pro" onclick="setPackage('Dual Side Shelving', 7, 'pkg-shelf-pro')">
-                    <div class="pkg-media"><img class="shelf-dual" src="dual side shelving .jpeg" alt="Dual-side custom van shelving system" loading="lazy" decoding="async"></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Dual Side</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">MAXIMUM STORAGE</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Driver & Passenger Racking</li>
-                            <li>> Heavy Duty Brackets</li>
-                            <li>> Choose up to 7 Shelves</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hex-card" id="pkg-shelf-custom" onclick="setPackage('Custom Shelving', 99, 'pkg-shelf-custom')">
-                    <div class="pkg-media"><span class="text-4xl">🛠️</span></div>
-                    <div class="card-inner">
-                        <h3 class="card-title text-2xl">Custom</h3>
-                        <p class="text-[10px] text-green-500 mono mb-4 font-bold tracking-widest">BESPOKE BUILD</p>
-                        <ul class="text-xs text-gray-400 space-y-2 mono mb-4 flex-grow">
-                            <li>> Slide out workbenches</li>
-                            <li>> Unique Configurations</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 02. MATERIALS -->
-        <div class="mb-24 config-section reveal-section">
-            <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">02.</span> Select Finish
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="mat-card selected" id="mat-hex" onclick="setFinish('12mm Hex (Base)', 'mat-hex')">
-                    <div class="mat-title">12mm Hex Base</div>
-                    <p class="mat-desc">Premium anti-scratch, anti-slip, waterproof gloss finish. The Elite Standard.</p>
-                </div>
-                <div class="mat-card" id="mat-rubber" onclick="setFinish('Rubber Overlay', 'mat-rubber')">
-                    <div class="mat-title">Rubber Finish</div>
-                    <p class="mat-desc">12mm Hex base topped with heavy-duty rubber for extreme grip and durability.</p>
-                </div>
-                <div class="mat-card" id="mat-carpet" onclick="setFinish('Charcoal Carpet', 'mat-carpet')">
-                    <div class="mat-title">Charcoal Carpet</div>
-                    <p class="mat-desc">12mm Hex base topped with automotive carpet. Best for fragile cargo & comfort.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- TIMELINE -->
-        <div class="mb-24 config-section reveal-section">
-            <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
-                Mission <span class="text-green-500">Timeline</span>
-            </h2>
-            <div class="max-w-4xl mx-auto px-4 flight-container">
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">1. Strategy Call</h4><p class="step-desc">Submit manifest. We confirm chassis & requirements.</p></div></div>
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">2. Drop Off</h4><p class="step-desc">Drop your empty van at our Rowville HQ.</p></div></div>
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">3. Rapid Deployment</h4><p class="step-desc">Our manufacturing team rapidly executes your build.</p></div></div>
-                <div class="flight-step"><div class="flight-dot"></div><div class="pl-4"><h4 class="step-title">4. Pick Up</h4><p class="step-desc">Pick up your fully outfitted vehicle. Ready for site.</p></div></div>
-            </div>
-        </div>
-
-        <!-- SPECS & FINISHES (Replacing Engineering) -->
-        <div class="mb-24 max-w-5xl mx-auto config-section reveal-section">
-            <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic mb-8 flex items-center gap-3">
-                <span class="text-green-500 text-sm mono">04.</span> Specs & Finishes
-            </h2>
-            
-            <!-- Video Section -->
-            <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden mb-12 polish-card">
-                <video autoplay muted loop playsinline class="w-full h-64 md:h-96 object-cover border-b border-[#333]">
-                    <source src="false floor.mov" type="video/mp4">
-                </video>
-                <div class="p-8">
-                    <h3 class="font-black text-2xl uppercase italic mb-4">Completely Customisable Floors</h3>
-                    <p class="text-gray-400 font-medium">Our false floors are completely customisable. Have empty massive storage cavities for long conduit and ladders, or seamlessly integrate stacked heavy-duty sliding drawers. It is all completely built to your exact workflow.</p>
-                </div>
-            </div>
-
-            <!-- Material Breakdowns -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 12mm Hex -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden polish-card">
-                    <div class="h-48 bg-[#111] relative">
-                        <img src="hex ply.jpeg" alt="12mm hex anti-slip plywood finish close-up" class="w-full h-full object-cover object-center border-b border-[#333]" loading="lazy" decoding="async">
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-black uppercase text-xl mb-2 text-white">12mm Hex Anti-Slip</h4>
-                        <p class="text-sm text-gray-400">Waterproof, fire-resistant, anti-scratch, and anti-slip. Finished in a premium gloss look that is easily wipeable and cleanable from any type of stain or chemical spill.</p>
-                    </div>
-                </div>
-                <!-- Rubber -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden polish-card">
-                    <div class="h-48 bg-[#111] relative">
-                        <img src="rubber finish.jpeg" alt="Heavy-duty rubber flooring finish close-up" class="w-full h-full object-cover object-center border-b border-[#333]" loading="lazy" decoding="async">
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-black uppercase text-xl mb-2 text-white">Rubber Finish</h4>
-                        <p class="text-sm text-gray-400">Layered on top of our sturdy hex base, this heavy-duty rubber finish provides unparalleled extreme grip and heavy impact durability for throwing in massive tools.</p>
-                    </div>
-                </div>
-                <!-- Carpet -->
-                <div class="bg-[#080808] border border-[#333] rounded-xl overflow-hidden polish-card">
-                    <div class="h-48 bg-[#111] relative">
-                        <img src="carpet finish.jpeg" alt="Charcoal automotive carpet finish close-up" class="w-full h-full object-cover object-center border-b border-[#333]" loading="lazy" decoding="async">
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-black uppercase text-xl mb-2 text-white">Charcoal Carpet</h4>
-                        <p class="text-sm text-gray-400">A premium automotive charcoal carpet lining. Perfect for fragile cargo, reducing road noise, and providing a clean, comfortable aesthetic to the rear cabin.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       <!-- PROTECTION INVITE UPGRADE -->
-        <div class="mb-12 max-w-5xl mx-auto bg-black border border-[#333] hover:border-green-500/50 transition-colors duration-300 rounded-xl p-8 md:p-12 relative overflow-hidden group reveal-section">
-            <!-- Glow effect -->
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition duration-500"></div>
-
-            <div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
-                <div class="flex-1 text-center md:text-left">
-                    <span class="mono text-xs text-green-500 font-bold tracking-widest uppercase mb-2 block">Defend Your Rig</span>
-                    <h3 class="text-3xl md:text-4xl font-black italic uppercase mb-4 text-white">Protect Your <span class="text-green-500">Investment</span></h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">Before dropping in a high-performance storage unit, secure the core of your chassis. Shield your van against aggressive daily site abuse, cargo impacts, and road noise.</p>
-                    
-                    <ul class="text-sm font-bold text-white mono mb-8 space-y-3">
-                        <li class="flex items-center gap-3 justify-center md:justify-start"><span class="text-green-500 text-lg">✓</span> CNC-Machined Ply Cargo Barrier Systems</li>
-                        <li class="flex items-center gap-3 justify-center md:justify-start"><span class="text-green-500 text-lg">✓</span> Precision Wall Ply Lining</li>
-                        <li class="flex items-center gap-3 justify-center md:justify-start"><span class="text-green-500 text-lg">✓</span> Heavy-Duty Marine-Grade Flooring</li>
-                    </ul>
-                    
-                    <a href="protection.html" class="btn-main">VIEW PROTECTION PACKAGES →</a>
-                </div>
-                <div class="w-full md:w-1/3 aspect-square border border-[#222] rounded-lg overflow-hidden bg-[#111] relative">
-                    <img src="ply lining and fooring .jpeg" alt="Ply Lining and Flooring" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-300">
-                </div>
-            </div>
-        </div>
-
-    <div class="mb-24 max-w-5xl mx-auto text-center px-6 reveal-section">
-        <button onclick="saveAndProceed()" class="btn-main w-full md:w-auto text-center justify-center">SAVE FITOUT &amp; ADD PROTECTION →</button>
-    </div>
-    </div>
-
-    <script src="build-tracker.js"></script>
-    <script>
-        // --- STATE MANAGEMENT (WITH LOCALSTORAGE SYNC) ---
-        const defaultFitoutState = {
-            configured: false,
-            systemType: 'Drawer System',
-            pkg: 'Essential',
-            maxModules: 0,
-            finish: '12mm Hex (Base)',
-            addons: { 'Crate Shelves': 0, 'Toolbox Shelves': 0, 'Organiser Shelves': 0, 'Silicone Holder': 0 }
-        };
-        let state = window.EliteBuild ? window.EliteBuild.get().fitout : defaultFitoutState;
-
-        function autoSave() {
-            state.configured = true;
-            if (window.EliteBuild) window.EliteBuild.setFitout(state);
-        }
-
-                // --- 1. SYSTEM TYPE TOGGLE ---
-        function setSystemType(type) {
-            state.systemType = type;
-            document.getElementById('btn-type-drawer').classList.toggle('active', type === 'Drawer System');
-            document.getElementById('btn-type-shelving').classList.toggle('active', type === 'Shelving Only');
-            
-            if (type === 'Drawer System') {
-                document.getElementById('packages-drawer').classList.remove('hidden');
-                document.getElementById('packages-shelving').classList.add('hidden');
-                setPackage('Essential', 0, 'pkg-essential'); 
-            } else {
-                document.getElementById('packages-drawer').classList.add('hidden');
-                document.getElementById('packages-shelving').classList.remove('hidden');
-                setPackage('Single Side Shelving', 3, 'pkg-shelf-basic'); 
-            }
-            autoSave();
-        }
-
-        // --- 2. PACKAGE SELECTION ---
-        function setPackage(pkgName, maxMods, elementId) {
-            state.pkg = pkgName;
-            state.maxModules = maxMods;
-            
-            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
-            if(document.getElementById(elementId)) {
-                document.getElementById(elementId).classList.add('selected');
-            }
-
-            for (let key in state.addons) { state.addons[key] = 0; }
-            updateManifest();
-            autoSave();
-        }
-
-        // --- 3. FINISH SELECTION ---
-        function setFinish(finishName, elementId) {
-            state.finish = finishName;
-            document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));
-            document.getElementById(elementId).classList.add('selected');
-            updateManifest();
-            autoSave();
-        }
-
-        // --- 5. MANIFEST & SAVE ---
-        function updateManifest() {
-            if (window.EliteBuild) window.EliteBuild.render();
-        }
-
-        function saveAndProceed() {
-            autoSave();
-            window.location.href = "protection.html";
-        }
-
-        // --- 6. INITIALIZE UI ON LOAD BASED ON LOCALSTORAGE ---
-        function initializeUI() {
-            // The former shelving module selector is no longer offered.
-            // Clear any selections saved before its removal so quote summaries
-            // never include add-ons that customers can no longer see or edit.
-            const removedModules = ['Crate Shelves', 'Toolbox Shelves', 'Organiser Shelves', 'Silicone Holder'];
-            const hadModuleSelection = removedModules.some(name => Number(state.addons?.[name] || 0) !== 0);
-            state.addons = Object.fromEntries(removedModules.map(name => [name, 0]));
-            if (hadModuleSelection && window.EliteBuild) {
-                window.EliteBuild.setFitout(state);
-            }
-            // Restore System Type styling
-            document.getElementById('btn-type-drawer').classList.toggle('active', state.systemType === 'Drawer System');
-            document.getElementById('btn-type-shelving').classList.toggle('active', state.systemType === 'Shelving Only');
-
-            document.getElementById('packages-drawer').classList.toggle('hidden', state.systemType !== 'Drawer System');
-            document.getElementById('packages-shelving').classList.toggle('hidden', state.systemType !== 'Shelving Only');
-
-            const packageIds = {
-                'Essential': 'pkg-essential',
-                'Pro': 'pkg-pro',
-                'Elite': 'pkg-elite',
-                'Custom Design': 'pkg-custom-draw',
-                'Single Side Shelving': 'pkg-shelf-basic',
-                'Dual Side Shelving': 'pkg-shelf-pro',
-                'Custom Shelving': 'pkg-shelf-custom'
-            };
-            document.querySelectorAll('.hex-card').forEach(el => el.classList.remove('selected'));
-            const fallbackPackage = state.systemType === 'Shelving Only' ? 'pkg-shelf-basic' : 'pkg-essential';
-            const selectedPackage = document.getElementById(packageIds[state.pkg] || fallbackPackage);
-            if (selectedPackage) selectedPackage.classList.add('selected');
-            
-            // Restore Finish styling
-            document.querySelectorAll('.mat-card').forEach(el => el.classList.remove('selected'));
-            if(state.finish === 'Rubber Overlay') document.getElementById('mat-rubber').classList.add('selected');
-            else if(state.finish === 'Charcoal Carpet') document.getElementById('mat-carpet').classList.add('selected');
-            else document.getElementById('mat-hex').classList.add('selected');
-            updateManifest();
-        }
-
-        // Run
-        initializeUI();
-    </script>
+    
 
     <script>
         // Presentation-only scroll reveals; configurator state and click logic remain unchanged.
@@ -658,5 +331,8 @@
             sections.forEach(section => observer.observe(section));
         })();
     </script>
+<script defer src="evf-shop/app.js"></script>
+<script defer src="evf-shop/secure-enquiry.js"></script>
+<script defer src="evf-shop/builder.js"></script>
 </body>
 </html>
