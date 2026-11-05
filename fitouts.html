@@ -428,78 +428,6 @@
             </div>
         </div>
 
-        <!-- 03. MODULES -->
-        <div class="mb-24 config-section reveal-section">
-            <div class="flex justify-between items-end mb-4">
-                <h2 class="section-heading text-2xl md:text-4xl font-black uppercase italic flex items-center gap-3">
-                    <span class="text-green-500 text-sm mono">03.</span> Configure Modules
-                </h2>
-            </div>
-            <div class="bg-gray-900 border border-green-500/50 p-4 rounded-lg mb-8 inline-block">
-                <p class="mono text-sm font-bold text-white">MODULE CAPACITY: <span id="mod-counter" class="text-green-500 text-lg">0 / 0</span></p>
-                <p class="text-gray-400 text-xs mt-1" id="mod-helper-text">Essential package selected. Shelving modules are locked.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Crate -->
-                <div class="spec-item locked" id="mod-card-crate">
-                    <div class="spec-img-box"><img src="euro crates shelf.jpg" alt="Euro Crate Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Crate Shelves</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Crate Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-CrateShelves">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Crate Shelves', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Toolbox -->
-                <div class="spec-item locked" id="mod-card-toolbox">
-                    <div class="spec-img-box"><img src="tool shelf1.jpg" alt="Toolbox Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Toolbox Shelves</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Toolbox Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-ToolboxShelves">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Toolbox Shelves', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Organiser -->
-                <div class="spec-item locked" id="mod-card-org">
-                    <div class="spec-img-box"><img src="seperator1.jpg" alt="Organiser Shelf"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Organiser Shelf</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Organiser Shelves', -1)">-</button>
-                                <span class="qty-val" id="qty-OrganiserShelves">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Organiser Shelves', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Silicone -->
-                <div class="spec-item locked" id="mod-card-silicone">
-                    <div class="spec-img-box"><img src="silicone.jpg" alt="Silicone Holder"></div>
-                    <div class="spec-content">
-                        <h4 class="text-xl font-black italic text-white uppercase mb-2">Silicone Holder</h4>
-                        <div class="spec-actions">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="updateAddon('Silicone Holder', -1)">-</button>
-                                <span class="qty-val" id="qty-SiliconeHolder">0</span>
-                                <button class="qty-btn btn-plus" onclick="updateAddon('Silicone Holder', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- TIMELINE -->
         <div class="mb-24 config-section reveal-section">
             <h2 class="text-2xl md:text-4xl font-black uppercase italic mb-12 text-center">
@@ -642,8 +570,6 @@
             }
 
             for (let key in state.addons) { state.addons[key] = 0; }
-            
-            updateModuleUI();
             updateManifest();
             autoSave();
         }
@@ -655,51 +581,6 @@
             document.getElementById(elementId).classList.add('selected');
             updateManifest();
             autoSave();
-        }
-
-        // --- 4. MODULE LOGIC ---
-        function updateAddon(name, change) {
-            let currentTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
-            if (change > 0 && currentTotal >= state.maxModules) return; 
-            if (change < 0 && state.addons[name] <= 0) return; 
-            
-            state.addons[name] += change;
-            updateModuleUI();
-            updateManifest();
-            autoSave();
-        }
-
-        function updateModuleUI() {
-            let currentTotal = Object.values(state.addons).reduce((a, b) => a + b, 0);
-            let limitReached = currentTotal >= state.maxModules;
-            let locked = state.maxModules === 0;
-
-            document.getElementById('mod-counter').innerText = `${currentTotal} / ${state.maxModules === 99 ? '∞' : state.maxModules}`;
-            
-            let helperText = document.getElementById('mod-helper-text');
-            if (locked) {
-                helperText.innerText = `${state.pkg} selected. Shelving modules are not included in this tier.`;
-            } else if (limitReached && state.maxModules !== 99) {
-                helperText.innerText = `Maximum module capacity (${state.maxModules}) reached for ${state.pkg}.`;
-            } else {
-                helperText.innerText = `Select up to ${state.maxModules} modules for your ${state.pkg} setup.`;
-            }
-
-            for (let key in state.addons) {
-                let safeKey = key.replace(/\s/g, '');
-                if (document.getElementById(`qty-${safeKey}`)) {
-                    document.getElementById(`qty-${safeKey}`).innerText = state.addons[key];
-                }
-            }
-
-            document.querySelectorAll('.spec-item').forEach(el => {
-                if (locked) el.classList.add('locked');
-                else el.classList.remove('locked');
-            });
-
-            document.querySelectorAll('.btn-plus').forEach(btn => {
-                btn.disabled = locked || limitReached;
-            });
         }
 
         // --- 5. MANIFEST & SAVE ---
@@ -714,6 +595,15 @@
 
         // --- 6. INITIALIZE UI ON LOAD BASED ON LOCALSTORAGE ---
         function initializeUI() {
+            // The former shelving module selector is no longer offered.
+            // Clear any selections saved before its removal so quote summaries
+            // never include add-ons that customers can no longer see or edit.
+            const removedModules = ['Crate Shelves', 'Toolbox Shelves', 'Organiser Shelves', 'Silicone Holder'];
+            const hadModuleSelection = removedModules.some(name => Number(state.addons?.[name] || 0) !== 0);
+            state.addons = Object.fromEntries(removedModules.map(name => [name, 0]));
+            if (hadModuleSelection && window.EliteBuild) {
+                window.EliteBuild.setFitout(state);
+            }
             // Restore System Type styling
             document.getElementById('btn-type-drawer').classList.toggle('active', state.systemType === 'Drawer System');
             document.getElementById('btn-type-shelving').classList.toggle('active', state.systemType === 'Shelving Only');
@@ -740,8 +630,6 @@
             if(state.finish === 'Rubber Overlay') document.getElementById('mat-rubber').classList.add('selected');
             else if(state.finish === 'Charcoal Carpet') document.getElementById('mat-carpet').classList.add('selected');
             else document.getElementById('mat-hex').classList.add('selected');
-
-            updateModuleUI();
             updateManifest();
         }
 
