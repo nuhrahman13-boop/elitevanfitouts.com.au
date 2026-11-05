@@ -147,6 +147,12 @@ main.container{max-width:1280px;padding:26px 24px 60px}
 @media(max-width:980px){.evf-sitebar-inner{gap:10px}.evf-site-links{gap:18px}.evf-site-actions{gap:8px}.evf-sitebar .evf-site-cart{padding:10px}.evf-call-now{padding:10px}}
 @media(max-width:760px){.evf-sitebar-inner{padding:0 10px}.evf-site-logo img{max-width:98px;height:32px}.evf-sitebar .evf-site-cart{font-size:9px;gap:5px;padding:8px}.evf-site-cart-cta{display:none}.evf-call-now{font-size:10px;padding:8px;min-height:39px}.evf-site-menu-button{font-size:10px;gap:4px}.evf-site-actions{gap:6px}}
 @media(max-width:390px){.evf-site-logo img{max-width:82px}.evf-call-now{font-size:9px;padding:7px 6px}.evf-sitebar .evf-site-cart{padding:7px 6px}.evf-sitebar .evf-site-cart .cartcount{min-width:19px;height:19px}.evf-site-menu-button{font-size:9px}}
+/* Refined call action: quiet secondary CTA next to the stronger Your Build button. */
+.evf-call-now{background:#f5f9f3;border:1px solid #d4dfd0;color:#1d3d21!important;border-radius:999px;padding:10px 14px;min-height:42px;gap:8px;font:800 11px 'Inter',Arial,sans-serif;letter-spacing:.055em;box-shadow:none}
+.evf-call-now svg{width:15px;height:15px;color:#248a36;flex-shrink:0}
+.evf-call-now:hover,.evf-call-now:focus-visible{background:#e5f5e3;border-color:#79bf74;color:#145823!important}
+@media(max-width:760px){.evf-call-now{padding:9px 10px;min-height:38px;gap:5px;font-size:10px}.evf-call-now svg{width:14px;height:14px}}
+@media(max-width:390px){.evf-call-now{padding:8px 7px;gap:4px;font-size:9px}}
 </style></head><body><a class="skip-link" href="#main-content">Skip to shop content</a>
 <div class="evf-sitebar" role="navigation" aria-label="Elite Van Fitouts main navigation">
  <div class="evf-sitebar-inner">
@@ -167,7 +173,7 @@ main.container{max-width:1280px;padding:26px 24px 60px}
   </nav>
   <div class="evf-site-actions">
    <button type="button" class="evf-site-cart cartbtn" onclick="openCart()" aria-label="Review your build and request a quote">YOUR BUILD <span class="evf-site-cart-cta">/ GET QUOTE</span> <span class="cartcount" id="count" aria-live="polite">0</span></button>
-   <a class="evf-call-now" href="tel:+61468086490" aria-label="Call Elite Van Fitouts on 0468 086 490">☎ <span>CALL NOW</span></a>
+   <a class="evf-call-now" href="tel:+61468086490" aria-label="Call Elite Van Fitouts on 0468 086 490"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.65 2.79a2 2 0 0 1-.45 2.11L9 10.91a16 16 0 0 0 4.09 4.09l1.29-1.28a2 2 0 0 1 2.11-.45c.89.31 1.83.53 2.79.65A2 2 0 0 1 22 16.92z"/></svg> <span>CALL NOW</span></a>
    <button type="button" class="evf-site-menu-button" id="evf-mobile-toggle" aria-expanded="false" aria-controls="evf-mobile-navigation" onclick="toggleEvfMobileMenu()">MENU <span aria-hidden="true">☰</span></button>
   </div>
  </div>
