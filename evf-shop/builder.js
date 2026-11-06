@@ -12,7 +12,22 @@ const extras=[
  {id:'other',icon:'✚',name:'Something else',description:'Tell us what you need in the quote notes.'}
 ];
 function getBuild(){try{let x=JSON.parse(localStorage.getItem(BUILDER_KEY)||'{}');return {base:x.base||null,addons:Array.isArray(x.addons)?x.addons:[]};}catch(e){return{base:null,addons:[]}}}
-function setBuild(b){localStorage.setItem(BUILDER_KEY,JSON.stringify(b));if(document.getElementById('base-slot'))renderBuild();}
+function setBuild(b){
+ localStorage.setItem(BUILDER_KEY,JSON.stringify(b));
+ if(document.getElementById('base-slot'))renderBuild();
+ // Prevent a previously opened GHL form from carrying outdated build details.
+ const supply=document.getElementById('builder-fulfilment');
+ if(supply && supply.value){
+   supply.value='';
+   const response=document.getElementById('quote-preview-result');
+   if(response){response.replaceChildren();response.classList.add('hidden');}
+   const hint=document.getElementById('builder-form-gate');
+   if(hint){
+     hint.textContent='Your build has changed. Please choose your supply method again so your updated quote request includes every selected item.';
+     hint.classList.remove('hidden');
+   }
+ }
+}
 function addDrawer(base){let b=getBuild();if(b.base && b.base.key!==base.key){if(!window.confirm('Your build already has '+b.base.name+'. You can only have one drawer system. Replace it with '+base.name+'?'))return false;}b.base=base;setBuild(b);toast('Drawer system added to your build');return true}
 function addExtra(item){let b=getBuild();if(!b.addons.some(x=>x.id===item.id))b.addons.push(item);setBuild(b);toast('Added '+item.name);}
 function removeExtra(id){let b=getBuild();b.addons=b.addons.filter(x=>x.id!==id);setBuild(b)}
