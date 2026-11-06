@@ -52,7 +52,7 @@ form.addEventListener('submit',e=>{
  const details={drawer_system:selection.base?{name:selection.base.name,price_aud:selection.base.price??'custom quote',spec:selection.base.desc,config:selection.base.config||null}:null,
   extras:selection.addons.map(x=>({name:x.name,details:x.desc||'',config:x.config||null})),fulfilment:mode.options[mode.selectedIndex].text,
   vehicle:{make:fd.vehicle_make,model:fd.vehicle_model,year:fd.year,variant:fd.variant},
-  special_requests:fd.notes||'',service_details:Object.fromEntries(Object.entries(fd).filter(([key])=>['dropoff','used','pickup','installer','suburb','postcode'].includes(key)))};
+  payment_preference:fd.payment_preference||'Standard payment',special_requests:fd.notes||'',service_details:Object.fromEntries(Object.entries(fd).filter(([key])=>['dropoff','used','pickup','installer','suburb','postcode'].includes(key)))};
  showSecureEnquiry(document.getElementById('quote-preview-result'),details);
 });
 

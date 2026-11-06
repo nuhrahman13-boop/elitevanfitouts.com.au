@@ -1,0 +1,54 @@
+/* Elite Van Fitouts flexible payment section — independent from live component CSS */
+.evf-stage .evf-zip-card{border-top:1px solid #e0e9df;margin-top:13px;padding-top:12px;display:grid;gap:3px;min-width:0}
+.evf-stage .evf-zip-tag{font:850 9px/1.4 system-ui,sans-serif;letter-spacing:1.1px;color:#6a5796}
+.evf-stage .evf-zip-card-week{font:900 22px/1.05 Impact,'Arial Narrow',Arial,sans-serif;color:#253b25}
+.evf-stage .evf-zip-card-week span{font:750 11px system-ui,sans-serif;color:#768177}
+.evf-stage .evf-zip-card-small{color:#6b766e;font:550 10px/1.45 system-ui,sans-serif}
+.evf-stage .evf-zip-card a{font:900 10px/1.5 system-ui,sans-serif;text-decoration:none;color:#358a36;letter-spacing:.35px;margin-top:7px;display:inline-block}
+.evf-stage .evf-zip-card a:hover{text-decoration:underline}
+.evf-zip-feature{background:#fff;color:#15251a;padding:58px 0 70px;font-family:Inter,Arial,Helvetica,sans-serif}
+.evf-zip-feature,.evf-zip-feature *{box-sizing:border-box}
+.evf-zip-feature .evf-zip-inner{width:min(1250px,calc(100% - 60px));margin:auto}
+.evf-zip-feature .evf-zip-grid{display:grid;grid-template-columns:minmax(0,.77fr) minmax(0,1.23fr);gap:24px;align-items:stretch}
+.evf-zip-feature .evf-zip-promo{background:linear-gradient(147deg,#17102e,#493580 94%);color:white;border-radius:16px;padding:clamp(22px,3.1vw,40px);min-width:0;display:flex;flex-direction:column}
+.evf-zip-feature .evf-zip-identity{font:950 64px/1 system-ui,Arial,sans-serif;letter-spacing:-6px;color:#b39afe;margin-bottom:18px}
+.evf-zip-feature .evf-zip-overline{font:900 10px/1.5 system-ui,sans-serif;letter-spacing:1.7px;text-transform:uppercase;color:#8bcb5b}
+.evf-zip-feature .evf-zip-promo .evf-zip-overline{color:#c7f19a}
+.evf-zip-feature .evf-zip-promo h2{font:italic 900 clamp(40px,4vw,62px)/.95 Impact,'Arial Narrow','Arial Black',sans-serif;text-transform:uppercase;color:white;margin:13px 0 24px}
+.evf-zip-feature .evf-zip-promo h2 em{font-style:inherit;color:#b6a2ff}
+.evf-zip-feature .evf-zip-promo p{font-size:13px;line-height:1.75;color:#f0edfa;margin:0 0 16px}
+.evf-zip-feature .evf-zip-promo .evf-zip-smalltext{color:#e1d9f4;font-size:11px;line-height:1.7}
+.evf-zip-feature .evf-zip-cta{display:inline-flex;align-self:flex-start;align-items:center;background:#bcfa88;color:#15230f;text-decoration:none;font:900 11px/1.4 system-ui,sans-serif;letter-spacing:.5px;padding:14px 18px;border-radius:7px;margin-top:auto}
+.evf-zip-feature .evf-zip-cta:hover{background:#e3ffcb;color:#112314}
+.evf-zip-feature .evf-zip-calculator{border:1px solid #d5e4d4;border-radius:16px;padding:clamp(20px,3vw,34px);min-width:0;background:white;box-shadow:0 8px 34px #173e1a0d}
+.evf-zip-feature .evf-zip-calculator h3{font:900 clamp(26px,3vw,36px)/1.1 Impact,'Arial Narrow',Arial,sans-serif;margin:8px 0 13px;text-transform:uppercase;color:#18311d}
+.evf-zip-feature .evf-zip-calculator p{font-size:12px;color:#5b705e;line-height:1.7;margin:0 0 20px}
+.evf-zip-feature .evf-zip-control{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:19px 0 16px}
+.evf-zip-feature .evf-zip-control label{font-weight:800;font-size:12px;color:#28412e}
+.evf-zip-feature .evf-zip-control select{min-height:42px;border:1px solid #b0c1b0;background:#fff;border-radius:7px;color:#1e3325;padding:9px 12px;font-size:12px;font-weight:800;max-width:100%}
+.evf-zip-feature .evf-zip-table-scroll{overflow:auto;border:1px solid #dae6d9;border-radius:9px}
+.evf-zip-feature .evf-zip-table{width:100%;min-width:505px;border-collapse:collapse;white-space:nowrap;text-align:left;font-family:Arial,sans-serif;font-size:12px}
+.evf-zip-feature .evf-zip-table thead th{background:#142d1b;color:white;padding:13px 10px;font-size:11px;text-align:left;letter-spacing:0}
+.evf-zip-feature .evf-zip-table tbody th,.evf-zip-feature .evf-zip-table td{padding:13px 10px;border-bottom:1px solid #e5eee5;font-size:12px;text-align:left;color:#2f4634;font-weight:500}
+.evf-zip-feature .evf-zip-table tbody th{font-weight:750}
+.evf-zip-feature .evf-zip-table tr:nth-child(even){background:#f5f9f5}
+.evf-zip-feature .evf-zip-table td b{color:#278537;font-size:14px}
+.evf-zip-feature .evf-zip-calculator p.evf-zip-legal{font-size:11px;color:#526356;line-height:1.65;margin:17px 0 0}
+.evf-zip-feature .evf-zip-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:17px}
+.evf-zip-feature .evf-zip-steps>div{padding:19px 20px;border:1px solid #dbe7dc;border-radius:11px;background:#f5f9f5;display:flex;flex-direction:column;gap:6px;min-width:0}
+.evf-zip-feature .evf-zip-steps b{color:#298b34;font-size:22px}
+.evf-zip-feature .evf-zip-steps strong{font-size:13px;color:#213b27}
+.evf-zip-feature .evf-zip-steps span{font-size:11px;line-height:1.6;color:#607064}
+.evf-zip-product{background:#f3eefc;border-left:4px solid #9e83ef;padding:14px 15px;border-radius:0 8px 8px 0;margin:12px 0 19px;font-family:Arial,Helvetica,sans-serif}
+.evf-zip-product>div{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.evf-zip-product .evf-zip-word{font-weight:950;letter-spacing:-1px;color:#785cd4;font-size:20px}
+.evf-zip-product b{font-weight:850;font-size:13px;color:#46385e}
+.evf-zip-product p{font-size:12px;color:#514660;line-height:1.55;margin:8px 0 5px}
+.evf-zip-product em{font-size:11px;font-style:normal;color:#725f78}
+.evf-zip-product a{font-size:11px;font-weight:850;color:#6a4bb5;text-decoration:underline}
+.evf-zip-preference{margin-top:13px;max-width:100%;font-family:Arial,sans-serif}
+.evf-zip-preference label{display:block;font-size:12px;font-weight:800;color:#375339;margin-bottom:7px}
+.evf-zip-preference select{display:block;width:100%;min-height:44px;border:1px solid #bbccba;border-radius:7px;background:white;color:#203a27;padding:9px 12px;font-size:13px}
+.evf-zip-preference small{display:block;font-size:10px;color:#6d7b6c;line-height:1.5;margin-top:6px}
+@media(max-width:880px){.evf-zip-feature .evf-zip-grid{grid-template-columns:1fr}.evf-zip-feature .evf-zip-promo{min-height:0}.evf-zip-feature .evf-zip-cta{margin-top:12px}}
+@media(max-width:650px){.evf-zip-feature{padding:36px 0 46px}.evf-zip-feature .evf-zip-inner{width:calc(100% - 30px)}.evf-zip-feature .evf-zip-promo,.evf-zip-feature .evf-zip-calculator{padding:21px 18px}.evf-zip-feature .evf-zip-promo h2{font-size:44px}.evf-zip-feature .evf-zip-steps{grid-template-columns:1fr}.evf-zip-feature .evf-zip-grid{gap:13px}.evf-stage .evf-zip-card-week{font-size:24px}}

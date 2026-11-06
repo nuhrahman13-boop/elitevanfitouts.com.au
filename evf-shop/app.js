@@ -30,7 +30,7 @@ form.addEventListener('submit',e=>{
   package:p.name,quoted_package_price_aud:p.price,fulfilment:modes[select.value].title,
   vehicle:{make:fd.vehicle_make,model:fd.vehicle_model,year:fd.vehicle_year,sliding_doors:fd.door_layout},
   finish:fd.finish,method_fields:Object.fromEntries(Object.entries(fd).filter(([k])=>['preferred_date','van_in_use','pickup_timeframe','install_plan','delivery_suburb','delivery_postcode','commercial_address'].includes(k))),
-  customisation:fd.custom_notes||'',extras:(selected.addons||[]).map(x=>({name:x.name,details:x.desc||''}))
+  payment_preference:fd.payment_preference||'Standard payment',customisation:fd.custom_notes||'',extras:(selected.addons||[]).map(x=>({name:x.name,details:x.desc||''}))
  };
  showSecureEnquiry(result,details);
 });
