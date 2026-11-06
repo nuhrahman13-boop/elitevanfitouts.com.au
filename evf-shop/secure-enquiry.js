@@ -37,6 +37,8 @@ function showSecureEnquiry(node,details){
   const url=new URL('https://links.elitebrandscaling.com/widget/form/'+config.id);
   // Request best-effort pre-fill. Some GHL custom fields may not accept URL parameters.
   url.searchParams.set('package_selection',summary.slice(0,2400));
+  // GHL contact field key verified in the Elite sub-account; pass both accepted alias forms.
+  url.searchParams.set('contact.package_selection',summary.slice(0,2400));
   url.searchParams.set('supply_method',String(details?.fulfilment||routeName));
   url.searchParams.set('utm_source','elite-van-fitouts');
   url.searchParams.set('utm_medium','website_quote');
@@ -59,7 +61,7 @@ function showSecureEnquiry(node,details){
     }catch(e){pre.focus();copy.textContent='SELECT AND COPY DETAILS ABOVE';}
   });
   const guide=document.createElement('p');guide.className='secure-note evf-ghl-guide';
-  guide.textContent='Important: check that the “package selection” field in the form contains your correct setup and extras. If it is blank, use Copy Build Details above and paste them there. This ensures we know exactly what you are requesting.';
+  guide.textContent='Your chosen setup and extras are included with the secure form link as package details. The form only asks you to enter your contact and vehicle information. Our team will double-check every specification with you before preparing the formal quote. Keep or copy the build summary above for reference.';
   node.appendChild(guide);
   const iframe=document.createElement('iframe');
   iframe.id='inline-'+config.id;
