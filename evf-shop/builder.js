@@ -45,16 +45,30 @@ document.getElementById('add-custom-shelf').addEventListener('click',()=>{if(sav
 const grid=document.getElementById('addon-grid');grid.innerHTML=extras.map(x=>`<article class="addon-card"><span class="addon-icon">${x.icon}</span><strong>${safe(x.name)}</strong><p>${safe(x.description)}</p><button type="button" data-addon-toggle="${x.id}">+ ADD TO BUILD</button></article>`).join('');grid.querySelectorAll('[data-addon-toggle]').forEach(btn=>btn.addEventListener('click',()=>{let b=getBuild();let e=extras.find(x=>x.id===btn.dataset.addonToggle);if(b.addons.some(x=>x.id===e.id))removeExtra(e.id);else addExtra({id:e.id,name:e.name,desc:e.description});}));
 document.querySelectorAll('[data-add-package]').forEach(btn=>btn.addEventListener('click',()=>{if(addPackage(btn.dataset.addPackage))document.getElementById('build-summary').scrollIntoView({behavior:'smooth'})}));
 document.getElementById('clear-build').addEventListener('click',()=>{if(confirm('Clear your drawer system and all extras?'))setBuild({base:null,addons:[]})});document.getElementById('start-quote').addEventListener('click',startQuote);
-const mode=document.getElementById('builder-fulfilment'),form=document.getElementById('builder-quote-form'),gate=document.getElementById('builder-form-gate'),dyn=document.getElementById('dynamic-fields');mode.addEventListener('change',()=>{let val=mode.value;form.classList.toggle('hidden',!val);gate.classList.toggle('hidden',!!val);dyn.innerHTML=val==='shop'?'<label>Preferred workshop drop-off date<input type="date" name="dropoff"></label><label>Van used daily?<select name="used"><option>Yes</option><option>No</option></select></label>':val==='pickup'?'<label>Preferred pickup timing<select name="pickup"><option>As soon as ready</option><option>1–2 weeks</option><option>Flexible</option></select></label><label>Installer<select name="installer"><option>I will fit it</option><option>My own installer</option><option>Not sure</option></select></label>':val==='delivery'?'<label>Delivery suburb *<input name="suburb" required></label><label>Postcode *<input name="postcode" required pattern="[0-9]{4}" maxlength="4"></label>':'';});
-form.addEventListener('submit',e=>{
- e.preventDefault();if(!form.reportValidity())return;
- let selection=getBuild(),fd=Object.fromEntries(new FormData(form).entries());
- const details={drawer_system:selection.base?{name:selection.base.name,price_aud:selection.base.price??'custom quote',spec:selection.base.desc,config:selection.base.config||null}:null,
-  extras:selection.addons.map(x=>({name:x.name,details:x.desc||'',config:x.config||null})),fulfilment:mode.options[mode.selectedIndex].text,
-  vehicle:{make:fd.vehicle_make,model:fd.vehicle_model,year:fd.year,variant:fd.variant},
-  payment_preference:fd.payment_preference||'Standard payment',special_requests:fd.notes||'',service_details:Object.fromEntries(Object.entries(fd).filter(([key])=>['dropoff','used','pickup','installer','suburb','postcode'].includes(key)))};
- showSecureEnquiry(document.getElementById('quote-preview-result'),details);
-});
+const mode=document.getElementById('builder-fulfilment');
+const legacyForm=document.getElementById('builder-quote-form');
+const gate=document.getElementById('builder-form-gate');
+const output=document.getElementById('quote-preview-result');
+if(legacyForm)legacyForm.classList.add('hidden'); // No duplicate contact/vehicle questionnaire.
+function showBuilderQuoteForm(){
+ const selectedMode=mode.value;
+ if(legacyForm)legacyForm.classList.add('hidden');
+ gate.classList.toggle('hidden',!!selectedMode);
+ if(!selectedMode){output.replaceChildren();output.classList.add('hidden');return;}
+ const build=getBuild();
+ const supply={
+   delivery:'Online Order — Delivery',
+   pickup:'Pickup — collect from Rowville',
+   shop:'Built in Shop — Rowville installation'
+ }[selectedMode];
+ const details={
+  drawer_system:build.base?{name:build.base.name,price_aud:build.base.price??'custom quote',spec:build.base.desc,config:build.base.config||null}:null,
+  extras:(build.addons||[]).map(x=>({name:x.name,details:x.desc||'',config:x.config||null})),
+  fulfilment:supply
+ };
+ showSecureEnquiry(output,details);
+}
+mode.addEventListener('change',showBuilderQuoteForm);
 
 renderBuild();}
 function startQuote(){let section=document.getElementById('quote-section');if(!section)return;section.classList.remove('hidden');section.scrollIntoView({behavior:'smooth',block:'start'});}

@@ -397,3 +397,19 @@
 .evf-stage .evf-weekly-disclaimer{font-size:11px;line-height:1.6;color:#687568;margin:14px 0 5px;max-width:950px}
 .evf-stage .evf-weekly-disclaimer a{color:#277b36;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:620px){.evf-stage .evf-price-options{gap:4px}.evf-stage .evf-weekly strong{font-size:22px}.evf-stage .evf-weekly-disclaimer{font-size:10.5px}}
+
+
+/* Elite quote-first GHL route forms. Hide superseded website questionnaires. */
+.evf-stage #builder-quote-form,.evf-stage #quote-form{display:none!important}
+.evf-stage .evf-ghl-handoff{background:#fff;border:1px solid #cde1c5;border-radius:12px;padding:clamp(15px,2vw,24px);margin-top:18px;box-shadow:0 9px 24px rgba(18,48,18,.07);max-width:100%;min-width:0}
+.evf-stage .evf-ghl-handoff .secure-title{font-size:clamp(20px,2.5vw,28px);color:#1a3b22;font-weight:900;line-height:1.15;text-transform:uppercase;margin:0 0 12px}
+.evf-stage .evf-ghl-handoff .secure-note{font-size:13px;line-height:1.65;color:#526b58;margin:9px 0}
+.evf-stage .evf-ghl-handoff .secure-note a{color:#276a2f;font-weight:850;text-decoration:underline}
+.evf-stage .evf-ghl-summary{background:#f5f8f2;border:1px solid #dce8d5;border-radius:9px;padding:14px;margin:16px 0}
+.evf-stage .evf-ghl-summary>strong{display:block;font-size:12px;color:#1d522c;margin:0 0 7px;text-transform:uppercase;letter-spacing:.6px}
+.evf-stage .quote-summary-code{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#2c4933;max-height:240px;overflow:auto;margin:0 0 12px}
+.evf-stage .evf-ghl-guide{background:#e7f4e1;border-left:4px solid #64b447;padding:12px 14px;border-radius:0 7px 7px 0}
+.evf-stage .evf-ghl-final{font-size:12px!important;color:#657065!important}
+.evf-stage .evf-ghl-copy{max-width:100%;white-space:normal}
+.evf-stage .evf-ghl-handoff iframe{max-width:100%;width:100%;display:block}
+@media(max-width:620px){.evf-stage .evf-ghl-handoff{padding:13px}.evf-stage .evf-ghl-handoff .secure-title{font-size:23px}.evf-stage .quote-summary-code{font-size:11px;max-height:170px}}

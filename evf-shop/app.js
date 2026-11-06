@@ -17,23 +17,34 @@ document.getElementById('product-eyebrow').textContent=p.eyebrow;
 document.getElementById('product-desc').textContent=p.short;
 document.getElementById('feature-note').textContent=p.feature_note;
 document.getElementById('spec-list').innerHTML=p.bullets.map(t=>'<li>'+t+'</li>').join('');
-const select=document.querySelector('#fulfilment');const shell=document.querySelector('#form-wrap');const hint=document.querySelector('#choose-hint');const result=document.querySelector('#form-result');const form=document.querySelector('#quote-form');
-const modes={shop:{title:'Built in Shop',desc:'Bring your van to our Rowville workshop for installation. We will confirm suitability and an installation date before booking.',extra:`<div class="form-section-title">Workshop installation</div><div class="field"><label for="pref-date">Preferred drop-off date</label><input id="pref-date" type="date" name="preferred_date"></div><div class="field"><label for="van-use">Van currently in use?</label><select id="van-use" name="van_in_use"><option value="">Select an option</option><option>Yes, daily</option><option>Sometimes</option><option>No</option></select></div>`},pickup:{title:'Pickup',desc:'Collect the package from our Rowville workshop. We will confirm kit availability, vehicle compatibility and collection arrangements in your quote.',extra:`<div class="form-section-title">Pickup details</div><div class="field"><label for="pickup-when">Preferred collection timeframe</label><select id="pickup-when" name="pickup_timeframe"><option value="">Select timeframe</option><option>As soon as available</option><option>Within 2 weeks</option><option>Within a month</option><option>Flexible</option></select></div><div class="field"><label for="install-plan">Who will install it?</label><select id="install-plan" name="install_plan"><option value="">Select an option</option><option>I'll install it</option><option>My own fitter</option><option>Not sure yet</option></select></div>`},delivery:{title:'Delivery',desc:'Have the package shipped to your location. Freight, fitment and packaging requirements will be confirmed before a final quote.',extra:`<div class="form-section-title">Delivery details</div><div class="field"><label for="ship-suburb">Delivery suburb *</label><input id="ship-suburb" name="delivery_suburb" placeholder="e.g. Dandenong" required></div><div class="field"><label for="ship-postcode">Postcode *</label><input id="ship-postcode" name="delivery_postcode" placeholder="e.g. 3175" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required></div><div class="field full"><label for="business-delivery">Commercial delivery address?</label><select id="business-delivery" name="commercial_address"><option value="">Select an option</option><option>Business / warehouse</option><option>Residential address</option><option>Not sure</option></select></div>`}};
-const galleryMsg=document.getElementById('route-summary');const header=document.getElementById('route-title');const special=document.getElementById('method-fields');
-select.addEventListener('change',()=>{let mode=modes[select.value];shell.classList.toggle('hidden',!mode);hint.classList.toggle('hidden',!!mode);result.classList.add('hidden');if(!mode)return;header.textContent='Request a quote — '+mode.title;galleryMsg.innerHTML='<strong>'+mode.title+'</strong><span>'+mode.desc+'</span>';special.innerHTML=mode.extra;document.querySelectorAll('[data-method-name]').forEach(x=>x.value=mode.title);});
-form.addEventListener('submit',e=>{
- e.preventDefault();
- if(!form.reportValidity())return;
- const fd=Object.fromEntries(new FormData(form).entries());
- const selected=typeof getBuild==='function'?getBuild():{base:null,addons:[]};
- const details={
-  package:p.name,quoted_package_price_aud:p.price,fulfilment:modes[select.value].title,
-  vehicle:{make:fd.vehicle_make,model:fd.vehicle_model,year:fd.vehicle_year,sliding_doors:fd.door_layout},
-  finish:fd.finish,method_fields:Object.fromEntries(Object.entries(fd).filter(([k])=>['preferred_date','van_in_use','pickup_timeframe','install_plan','delivery_suburb','delivery_postcode','commercial_address'].includes(k))),
-  payment_preference:fd.payment_preference||'Standard payment',customisation:fd.custom_notes||'',extras:(selected.addons||[]).map(x=>({name:x.name,details:x.desc||''}))
- };
- showSecureEnquiry(result,details);
-});
+const select=document.querySelector('#fulfilment');
+const shell=document.querySelector('#form-wrap');
+const hint=document.querySelector('#choose-hint');
+const result=document.querySelector('#form-result');
+const legacyForm=document.querySelector('#quote-form');
+if(legacyForm)legacyForm.classList.add('hidden'); // GHL now collects details once, directly.
+const modes={
+  shop:{title:'Built in Shop — Rowville installation',description:'We will contact you about vehicle fitment and a suitable workshop date.'},
+  pickup:{title:'Pickup — collect from Rowville',description:'We will confirm the right kit and pickup arrangements in your quote.'},
+  delivery:{title:'Online Order — Delivery',description:'Our team will check vehicle compatibility, delivery address and freight in the final quote.'}
+};
+function showProductQuoteForm(){
+ const mode=modes[select.value];
+ shell.classList.toggle('hidden',!mode);
+ hint.classList.toggle('hidden',!!mode);
+ if(!mode){result.replaceChildren();result.classList.add('hidden');return;}
+ document.getElementById('route-title').textContent='Request a quote — '+mode.title;
+ document.getElementById('route-summary').textContent=mode.description+' No order or payment is placed yet.';
+ const chosen=typeof getBuild==='function'?getBuild():{base:null,addons:[]};
+ const selectedExtras=chosen.base&&chosen.base.key===p.slug?(chosen.addons||[]):[];
+ showSecureEnquiry(result,{
+   package:p.name,
+   quoted_package_price_aud:p.price,
+   fulfilment:mode.title,
+   extras:selectedExtras.map(x=>({name:x.name,details:x.desc||'',config:x.config||null}))
+ });
+}
+select.addEventListener('change',showProductQuoteForm);
 
 }
 readyProduct();
