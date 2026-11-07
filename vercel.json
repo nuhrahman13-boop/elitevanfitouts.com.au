@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/launchpad.html",
+      "destination": "/fitouts.html",
+      "permanent": true
+    }
+  ]
+}

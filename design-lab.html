@@ -235,8 +235,6 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
                         <a href="fitouts.html" class="dropdown-item">Van Fitouts <span>-></span></a>
                         <a href="branding.html" class="dropdown-item">Signage <span>-></span></a>
                         <div class="dropdown-divider"></div>
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold">RESOURCES</div>
-                        <a href="launchpad.html" class="dropdown-item">The Launchpad <span>-></span></a>
                     </div>
                 </div>
             </div>
@@ -249,7 +247,6 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
             <a href="index.html" class="text-gray-800 hover:text-green-500 transition">Home</a>
             <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Van Fitouts</a>
             <a href="branding.html" class="text-gray-500 hover:text-green-500 transition">Signage</a>
-            <a href="launchpad.html" class="text-gray-500 hover:text-green-500 transition">The Launchpad</a>
         </div>
     </div>
 
@@ -272,7 +269,6 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         <div class="tab-container">
             <button id="btn-fitout" class="mission-tab" onclick="switchTab('fitout')">VAN FITOUT</button>
             <button id="btn-branding" class="mission-tab" onclick="switchTab('branding')">BRANDING</button>
-            <button id="btn-launchpad" class="mission-tab" onclick="switchTab('launchpad')">★ THE LAUNCHPAD</button>
         </div>
     </section>
 
@@ -326,31 +322,6 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
             ></iframe>
         </div>
 
-        <div id="form-launchpad" class="form-wrapper">
-            <div class="form-header">
-                <h3 class="text-xl font-black italic text-white uppercase tracking-widest">Incubation Application</h3>
-                <p class="text-green-500 mono text-[10px] mt-1">SYS_03_ACTIVE</p>
-            </div>
-            
-            <iframe
-                src="https://links.elitebrandscaling.com/widget/form/0OVCiqVakHInuwHfCZGp"
-                style="width:100%;height:100%;border:none;background:transparent; min-height: 800px;"
-                id="inline-0OVCiqVakHInuwHfCZGp" 
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="WEB - launchpad App"
-                data-height="1017"
-                data-layout-iframe-id="inline-0OVCiqVakHInuwHfCZGp"
-                data-form-id="0OVCiqVakHInuwHfCZGp"
-                title="WEB - launchpad App"
-            ></iframe>
-        </div>
-
     </div>
 
     <script src="https://links.elitebrandscaling.com/js/form_embed.js"></script>
@@ -369,7 +340,8 @@ src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1"
         window.onload = function() {
             // 1. Read URL Parameters
             const urlParams = new URLSearchParams(window.location.search);
-            const tab = urlParams.get('tab') || 'fitout'; // Default to fitout if empty
+            const requestedTab = urlParams.get('tab');
+            const tab = requestedTab === 'branding' ? 'branding' : 'fitout'; // Default to fitout if empty
             const pkg = urlParams.get('pkg');
 
             // 2. Activate Correct Tab
