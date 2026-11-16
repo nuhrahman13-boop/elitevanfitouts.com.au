@@ -46,6 +46,13 @@ if (selectedItems.length) {
 }
 
 const fulfilment = document.getElementById('quote-supply');
+const workshopSupply = 'Installed in our Rowville workshop';
+if (isProtection) {
+  fulfilment.value = 'shop';
+  const workshopNote = document.createElement('strong');
+  workshopNote.textContent = workshopSupply;
+  fulfilment.closest('.evf-quote-route').replaceChildren(workshopNote);
+}
 const formPanel = document.getElementById('quote-form-panel');
 const previewForm = document.getElementById('quote-preview-template');
 const isReviewDeployment = location.hostname.endsWith('-elite-van-fitouts.vercel.app')
@@ -64,7 +71,7 @@ function renderQuoteForm() {
   }
   showSecureEnquiry(formPanel, {
     ...details,
-    fulfilment: fulfilment.selectedOptions[0].textContent,
+    fulfilment: isProtection ? workshopSupply : fulfilment.selectedOptions[0].textContent,
     compact: true
   });
 }
