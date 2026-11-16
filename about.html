@@ -377,45 +377,19 @@
 @media(min-width:768px){nav.fixed.top-0 > div > div.hidden{margin-left:auto}}}
 @media(max-width:767px){.evf-quick-call{margin-left:auto;margin-right:12px;min-height:38px;padding:9px 12px;font-size:10px;gap:6px}.evf-quick-call svg{width:14px;height:14px}}
 @media(max-width:390px){.evf-quick-call{margin-right:8px;padding:8px 9px;font-size:9px}}
-</style></head>
-<body>
+</style><link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-1"></head>
+<body data-hide-build-tracker>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=953020550981020&ev=PageView&noscript=1" alt=""></noscript>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6" aria-label="Primary navigation">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
-            <a href="index.html" aria-label="Elite Van Fitouts home"><img src="logo.png" alt="Elite Van Fitouts" class="h-8 md:h-10 w-auto object-contain"></a>
-            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
-                <div class="dropdown">
-                    <button type="button" class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">Services <span class="text-[10px]">▼</span></button>
-                    <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">Solutions</div>
-                        <a href="fitouts.html" class="dropdown-item">Drawers &amp; Shelving <span>→</span></a>
-                        <a href="protection.html" class="dropdown-item">Protection &amp; Ply Line Barriers <span>→</span></a>
-                        
-                        <div class="dropdown-divider"></div>
-                        <a href="about.html" class="dropdown-item text-green-500 bg-green-50/50" aria-current="page">About Us <span>→</span></a>
-                    </div>
-                </div>
-                <a href="about.html" class="text-green-500 font-bold border-b-2 border-green-500 pb-1" aria-current="page">About</a>
-            </div>
-            <a href="tel:+61468086490" aria-label="Call Elite Van Fitouts on 0468 086 490" class="evf-quick-call"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.65 2.79a2 2 0 0 1-.45 2.11L9 10.91a16 16 0 0 0 4.09 4.09l1.29-1.28a2 2 0 0 1 2.11-.45c.89.31 1.83.53 2.79.65A2 2 0 0 1 22 16.92z"/></svg><span>CALL NOW</span></a>
-            <button type="button" id="menu-button" aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
-        </div>
-    </nav>
-
-    <div id="mobile-menu" aria-hidden="true">
-        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-gray-500 hover:text-green-500 transition">Home</a>
-            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Drawers &amp; Shelving Systems</a>
-            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">Protection &amp; Ply Line Barriers</a>
-            
-            <a href="about.html" class="text-black border-l-4 border-green-500 pl-4" aria-current="page">About Us</a>
-        </div>
-    </div>
-
-    <header class="hero" aria-labelledby="about-title">
+    <a class="evf-skip" href="#evf-main">Skip to content</a>
+<nav class="evf-nav" aria-label="Main navigation"><div class="evf-nav-inner">
+<a class="evf-brand" href="/"><img src="/logo.png" alt="Elite Van Fitouts" width="134" height="38"></a>
+<div class="evf-nav-links"><a href="/fitouts.html">Van Fitouts</a><a href="/protection.html">Van Protection</a><a href="/about.html" aria-current="page">About</a></div>
+<details class="evf-nav-menu"><summary>Menu</summary><div><a href="/fitouts.html">Van Fitouts</a><a href="/protection.html">Van Protection</a><a href="/about.html" aria-current="page">About</a></div></details>
+<a class="evf-action evf-primary evf-header-quote" href="/enquiry.html">Get a Quote</a>
+</div></nav>
+<header class="hero" aria-labelledby="about-title" id="evf-main" tabindex="-1">
         <div class="hero-media" id="hero-media"><img src="better than van fitouts melbourne.jpeg" alt="Custom black drawer and false-floor van fitout built by Elite Van Fitouts in Melbourne" fetchpriority="high"></div>
         <div class="hero-grid"></div>
         <div class="hero-content">
@@ -648,18 +622,9 @@
         </div>
     </footer>
 
-    <script src="build-tracker.js"></script>
+    <script src="build-tracker.js?v=20261116-1"></script>
     <script>
         (function () {
-            const menuButton = document.getElementById('menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            menuButton.addEventListener('click', function () {
-                const open = mobileMenu.classList.toggle('active');
-                menuButton.setAttribute('aria-expanded', String(open));
-                mobileMenu.setAttribute('aria-hidden', String(!open));
-                document.body.style.overflow = open ? 'hidden' : '';
-            });
-
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
             if (reducedMotion || !('IntersectionObserver' in window)) {
@@ -698,5 +663,6 @@
             }
         })();
     </script>
+<div class="evf-phone-actions" aria-label="Contact Elite"><a class="evf-action evf-secondary" href="tel:+61468086490">Call</a><a class="evf-action evf-primary" href="/enquiry.html">Get a Quote</a></div>
 </body>
 </html>

@@ -185,134 +185,42 @@
 </style>
 <link rel="stylesheet" href="evf-shop/scoped.css?v=optional-extras-cards-20261116">
 <link rel="stylesheet" href="evf-shop/zip-payments.css?v=20261106-1">
-</head>
+<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-1"></head>
 <body data-prefix="evf-shop/">
 
   <!-- NAV -->
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
-            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
-            
-            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold hover:text-green-500 transition">Home</a>
-                <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-green-500 transition font-bold tracking-widest text-sm border-b-2 border-green-500 pb-1">
-                        SERVICES <span class="text-[10px]">▼</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
-                        <a href="fitouts.html" class="dropdown-item text-green-500 bg-green-50/50">Drawers & Shelving <span>-></span></a>
-                        <a href="protection.html" class="dropdown-item">Protection & Ply Line Barriers <span>-></span></a>
-                        
-                        <div class="dropdown-divider"></div>
-                        <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
-                    </div>
-                </div>
-            </div>
-            <a href="tel:+61468086490" aria-label="Call Elite Van Fitouts on 0468 086 490" class="evf-quick-call"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.65 2.79a2 2 0 0 1-.45 2.11L9 10.91a16 16 0 0 0 4.09 4.09l1.29-1.28a2 2 0 0 1 2.11-.45c.89.31 1.83.53 2.79.65A2 2 0 0 1 22 16.92z"/></svg><span>CALL NOW</span></a>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
-        </div>
-    </nav>
+    <a class="evf-skip" href="#evf-main">Skip to content</a>
+<nav class="evf-nav" aria-label="Main navigation"><div class="evf-nav-inner">
+<a class="evf-brand" href="/"><img src="/logo.png" alt="Elite Van Fitouts" width="134" height="38"></a>
+<div class="evf-nav-links"><a href="/fitouts.html" aria-current="page">Van Fitouts</a><a href="/protection.html">Van Protection</a><a href="/about.html">About</a></div>
+<details class="evf-nav-menu"><summary>Menu</summary><div><a href="/fitouts.html" aria-current="page">Van Fitouts</a><a href="/protection.html">Van Protection</a><a href="/about.html">About</a></div></details>
+<a class="evf-action evf-primary evf-header-quote" href="/enquiry.html">Get a Quote</a>
+</div></nav>
+<header class="evf-hero" id="evf-main" tabindex="-1">
+<div class="evf-hero-inner"><div class="evf-hero-copy"><p class="evf-location">Rowville, Melbourne</p>
+<h1>Van drawers and shelving</h1><p>Compare five popular layouts for tool storage and a usable false floor.</p><div class="evf-hero-actions">
+<a class="evf-action evf-primary" href="/enquiry.html">Get a Quote</a>
+<a class="evf-action evf-secondary" href="#popular">View Fitout Packages</a>
+</div></div><img class="evf-hero-image" src="/evf-shop/assets/three-drawer-installation-03.jpg" alt="Rear drawer storage in a fitted van" fetchpriority="high" width="960" height="720"></div></header>
+<div class="evf-stage" id="elite-fitout-products"><section class="collection-section" id="popular"><div class="wrap"><div class="evf-section-title"><h2>Popular fitout packages</h2><p>Compare five drawer and shelving layouts for your van.</p></div><div class="product-grid full" data-render-products=""></div><p class="evf-weekly-disclaimer">*Approximate weekly budgeting example only, calculated as the advertised package price divided by 52 weeks and rounded to the nearest dollar. It is not a Zip repayment quote or fixed instalment offer. Actual repayments depend on your approved Zip account, credit limit, fees, interest (if applicable) and terms. GST treatment, installation and delivery are confirmed in the formal quote. <a href="https://zip.co/au/zip-money" target="_blank" rel="noopener noreferrer">Zip terms ↗</a></p></div>
 
-    <div id="mobile-menu">
-        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-gray-500 hover:text-green-500 transition">Home</a>
-            <a href="fitouts.html" class="text-black border-l-4 border-green-500 pl-4 transition">Drawers & Shelving Systems</a>
-            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">Protection & Ply Line Barriers</a>
-            
-            <a href="about.html" class="text-gray-500 hover:text-green-500 transition">About Us</a>
-        </div>
-    </div>
-
-    <!-- HERO -->
-    <header class="hero-section">
-        <div class="hero-video-wrapper">
-            <video autoplay muted loop playsinline class="hero-video"><source src="fitout hero.mp4" type="video/mp4"></video>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-0"></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="glitch-text mb-4">VAN <span class="text-green-500">FITOUTS</span></h1>
-            <p class="hero-sub">Turn your van into a mobile workshop. <br>Stop searching for tools. Start making money.</p>
-        </div>
-    </header>
-
-    <!-- TICKER -->
-    <div class="led-wrap">
-        <div class="led-ticker">
-            <div class="led-item">VAN RACKING MELBOURNE</div>
-            <div class="led-item">CUSTOM FALSE FLOORS</div>
-            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
-            <div class="led-item">COMMERCIAL VAN SHELVING</div>
-            <div class="led-item">TRADE VEHICLE FITOUTS</div>
-            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
-            <div class="led-item">TOOLBOX SHELVING</div>
-            <div class="led-item">PLYWOOD LINING</div>
-            <!-- Duplicated for smooth loop -->
-            <div class="led-item">VAN RACKING MELBOURNE</div>
-            <div class="led-item">CUSTOM FALSE FLOORS</div>
-            <div class="led-item">HEAVY DUTY VAN DRAWERS</div>
-            <div class="led-item">COMMERCIAL VAN SHELVING</div>
-            <div class="led-item">TRADE VEHICLE FITOUTS</div>
-            <div class="led-item">AUTO ELECTRICAL SETUPS</div>
-        </div>
-    </div>
-
-    <!-- INTRO GRID -->
-    <section class="py-20 bg-white text-black border-b border-[#ddd] reveal-section">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center">
-            <div class="flex-1">
-                <p class="mono text-green-600 text-xs tracking-[0.2em] uppercase mb-4 font-bold">100% Bespoke Systems</p>
-                <h2 class="text-3xl md:text-5xl font-black italic uppercase text-black mb-6 leading-tight">
-                    Custom to your <span class="text-green-500">Van.</span> <br> Custom to your <span class="text-green-500">Trade.</span>
-                </h2>
-                <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-6 font-medium">
-                    No two trades operate the same way. Elite Van Fitouts builds high-performance commercial storage tailored precisely to your specific vehicle chassis and daily workflow. 
-                </p>
-                <div id="fitout-extra-text" class="hidden md:block">
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
-                        Need a custom setup not listed below? We specialize in fully bespoke builds. Give our engineering team a call for a rapid, free design session over the phone to map out your perfect loadout.
-                    </p>
-                </div>
-                <button id="fitout-read-more" class="md:hidden text-green-600 text-xs font-bold uppercase tracking-widest mb-6 border border-green-500 px-4 py-2 rounded text-center w-full block" onclick="document.getElementById('fitout-extra-text').classList.toggle('hidden'); this.style.display='none';">+ Read More</button>
-            </div>
-            
-     <div class="grid grid-cols-2 gap-2 w-full max-w-[320px] md:max-w-[400px] aspect-square">
-        <div class="fade-img-wrap">
-            <img src="van shelving melbourne.jpeg" class="fade-img fade-delay-1">
-            <img src="van slideout system.jpeg" class="fade-img fade-delay-2">
-        </div>
-        <div class="fade-img-wrap">
-            <img src="melbournes best van set ups.jpeg" class="fade-img fade-delay-2">
-            <img src="van drawers melbourne.jpeg" class="fade-img fade-delay-1">
-        </div>
-        <div class="fade-img-wrap">
-            <img src="better than van fitouts melbourne.jpeg" class="fade-img fade-delay-1">
-            <img src="ply lining and fooring .jpeg" class="fade-img fade-delay-2">
-        </div>
-        <div class="fade-img-wrap">
-            <img src="van slide out shelving.jpeg" class="fade-img fade-delay-2">
-            <img src="melbourne tradie set up.jpeg" class="fade-img fade-delay-1">
-        </div>
-    </div>
-            </div>
-    </section>
-
-    <!-- NEW ELITE PACKAGE COLLECTION + BUILDER -->
-<div class="evf-stage" id="elite-fitout-products"><section class="collection-section" id="popular"><div class="wrap"><div class="section-heading evf-popular-banner"><div class="evf-popular-copy"><div class="kicker evf-popular-kicker">THE ELITE LINEUP <span class="evf-popular-badge" aria-label="Five popular fitouts">★ TOP 5 SETUPS</span></div><h2 class="evf-popular-title">MOST POPULAR <span>SETUPS.</span></h2></div><span class="note">Only one drawer system can be added to a build.</span></div><div class="product-grid full" data-render-products=""></div><p class="evf-weekly-disclaimer">*Approximate weekly budgeting example only, calculated as the advertised package price divided by 52 weeks and rounded to the nearest dollar. It is not a Zip repayment quote or fixed instalment offer. Actual repayments depend on your approved Zip account, credit limit, fees, interest (if applicable) and terms. GST treatment, installation and delivery are confirmed in the formal quote. <a href="https://zip.co/au/zip-money" target="_blank" rel="noopener noreferrer">Zip terms ↗</a></p></div>
-<section class="evf-zip-feature" id="zip-payment-options" data-zip-finance aria-label="Zip payment enquiries and budgeting examples"></section>
-<div class="builder-separator" id="custom-builder">
-<div class="builder-heading"><div><div class="kicker">OPTION B · BUILD IT YOURSELF</div><h2>OR DESIGN YOUR <span>OWN SYSTEM.</span></h2><p class="section-intro">We've brought back the useful options from our original Online Shop builder — now without the extra complexity. Custom designs are reviewed before quoting.</p></div><span class="mini-pill">CUSTOM QUOTE · NO PAYMENT</span></div>
+<section class="evf-help"><div><h2>Need a custom fitout?</h2><p>Tell us what you carry and how you use your van. We can help you choose a layout.</p></div><a class="evf-action evf-primary" href="/enquiry.html?help=1">Help Me Design My Fitout</a></section>
+<details class="evf-builder-disclosure"><summary>Design your own drawers or shelving</summary><div class="builder-separator" id="custom-builder">
+<div class="builder-heading"><div><div class="kicker">Custom configuration</div><h2>OR DESIGN YOUR <span>OWN SYSTEM.</span></h2><p class="section-intro">Enter your measurements if you know them. We’ll confirm fitment before quoting.</p></div><span class="mini-pill">CUSTOM QUOTE · NO PAYMENT</span></div>
 <div aria-label="Custom build type" class="builder-tabs" role="tablist"><button aria-selected="true" class="builder-tab selected" data-build-tab="drawers" id="tab-drawers" type="button">▤ Custom Drawers</button><button aria-selected="false" class="builder-tab" data-build-tab="shelves" id="tab-shelves" type="button">▥ Custom Shelving &amp; Trays</button></div>
 <div class="builder-panel" id="drawers-pane"><div class="builder-form"><h3>CREATE YOUR DRAWER SYSTEM.</h3><p class="muted">One drawer system per build — this becomes your base setup.</p><div class="builder-fields"><label>Width (mm)<input id="drawer-width" max="2400" min="500" step="10" type="number" value="1100"/></label><label>Depth (mm)<input id="drawer-depth" max="2400" min="500" step="10" type="number" value="1500"/></label><label>Height (mm)<input id="drawer-height" max="900" min="180" step="10" type="number" value="380"/></label><label>Number of columns<select id="drawer-columns"><option value="1">1 column</option><option selected="" value="2">2 columns</option></select></label><label>Drawers in each column<select id="drawer-rows"><option selected="" value="1">1 drawer</option><option value="2">2 stacked drawers</option></select></label><label>Internal dividers<select id="drawer-dividers"><option selected="" value="yes">Adjustable dividers</option><option value="no">Empty drawers</option></select></label></div><p class="builder-note">12 mm black hex plywood • Black locking handles • Heavy-duty runners. Final sizing and specifications subject to workshop approval.</p><div class="builder-buttons"><button class="btn btn-green" id="add-custom-drawer" type="button">ADD DRAWER SYSTEM TO BUILD →</button><button class="btn btn-outline" id="quote-custom-drawer" type="button">REQUEST QUOTE NOW</button></div></div><div class="builder-preview"><div class="preview-kicker">CUSTOM DRAWER CONFIGURATION</div><div class="drawer-sketch"><div class="deck"></div><div class="drawer-sketch-grid" id="drawer-sketch-grid"><div class="drawer-face">▣</div><div class="drawer-face">▣</div></div></div><div class="build-summary-label">YOUR SPECIFICATION</div><div class="preview-specs" id="drawer-quick-spec">1100 × 1500 × 380 mm · 2 columns</div><small>Illustrative diagram only, not a workshop drawing</small></div></div>
 <div class="builder-panel hidden" id="shelves-pane"><div class="builder-form"><h3>BUILD CUSTOM SHELVING.</h3><p class="muted">Configure shelving or a slide-out tray. Add it as an optional extra, with or without a drawer system.</p><div class="builder-fields"><label class="wide">Build type<select id="shelf-type"><option value="Fixed shelving">Fixed shelving</option><option value="Complete slide-out shelving">Complete shelving on a slide-out tray</option><option value="Slide-out tray only">Slide-out tray only</option></select></label><label>Width (mm)<input id="shelf-width" max="2300" min="300" step="10" type="number" value="1000"/></label><label>Depth (mm)<input id="shelf-depth" max="600" min="200" step="10" type="number" value="400"/></label><label>Height (mm)<input id="shelf-height" max="2200" min="110" step="10" type="number" value="1050"/></label><label>Vertical bays<select id="shelf-bays"><option>1</option><option selected="">2</option><option>3</option></select></label><label>Sections high<select id="shelf-levels"><option>1</option><option>2</option><option selected="">3</option><option>4</option></select></label><label>Shelf section style<select id="shelf-style"><option>Open trays</option><option>Divided trays</option><option>Angled tool shelves</option></select></label><label>Tray construction<select id="shelf-tray"><option>Flat platform</option><option>Enclosed tray</option></select></label></div><p class="builder-note">12 mm black hex plywood. Slide-out configurations move together on their base tray. Dimensions, load ratings and hardware require workshop confirmation.</p><div class="builder-buttons"><button class="btn btn-green" id="add-custom-shelf" type="button">ADD SHELVING TO BUILD →</button><button class="btn btn-outline" id="quote-custom-shelf" type="button">REQUEST QUOTE NOW</button></div></div><div class="builder-preview"><div class="preview-kicker">SHELVING CONFIGURATION</div><div class="shelf-sketch" id="shelf-sketch"></div><div class="build-summary-label">YOUR SPECIFICATION</div><div class="preview-specs" id="shelf-quick-spec"></div><small>Indicative layout only — no exact engineering drawing</small></div></div>
 </div>
-<section class="extras-section" id="extras"><div class="section-heading"><div><div class="kicker">OPTIONAL EXTRAS</div><h2>MAKE IT <span>YOUR OWN.</span></h2><p class="section-intro">Add whatever else your van needs. No extra drawer system here — just accessories and enhancements.</p></div></div><div class="addon-grid" id="addon-grid"></div><section class="evf-cargo-showcase" id="cargo-barrier-gallery" aria-labelledby="cargo-barrier-gallery-title"><div class="evf-cargo-showcase-head"><div><div class="kicker">ACTUAL ELITE WORK · OPTIONAL EXTRA</div><h3 id="cargo-barrier-gallery-title">CARGO BARRIER <span>INSTALLATIONS.</span></h3><p>See our fitted black hex-textured partition, viewing window and finish from different angles.</p></div><span class="evf-cargo-photo-count">4 REAL PHOTOS</span></div><div class="evf-cargo-photo-grid"><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-01.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 01: Window and hex-ply finish"><img src="evf-shop/assets/cargo-barrier-installation-01.jpg" alt="Installed black hex-textured cargo barrier with viewing window and Elite branding" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 01</span>Window and hex-ply finish</figcaption></figure><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-02.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 02: Sliding door close-up"><img src="evf-shop/assets/cargo-barrier-installation-02.jpg" alt="Close-up of a cargo partition and window from the sliding door" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 02</span>Sliding door close-up</figcaption></figure><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-03.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 03: Full rear installation"><img src="evf-shop/assets/cargo-barrier-installation-03.jpg" alt="Rear view showing windowed cargo partition fitted behind the front seats" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 03</span>Full rear installation</figcaption></figure><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-04.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 04: Barrier across cargo area"><img src="evf-shop/assets/cargo-barrier-installation-04.jpg" alt="Cargo-area view of fitted black cargo partition in white van" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 04</span>Barrier across cargo area</figcaption></figure></div><p class="evf-cargo-footnote">Real customer installations. Barrier dimensions, viewing windows and fitted extras may vary with the vehicle. Our team confirms specifications and final pricing after the quote request.</p></section><p class="small-print">Add-on costs are not included in the package prices shown above. We'll price additions after reviewing your vehicle and specifications.</p></section>
-<section class="build-workspace" id="build-summary"><div class="workspace-head"><div><div class="kicker">YOUR FITOUT</div><h2>YOUR <span>BUILD SUMMARY.</span></h2><p>One drawer system maximum. Add extras or go straight to a quote.</p></div><span class="mini-pill">NO ORDER OR PAYMENT</span></div><div class="summary-layout"><div class="build-items"><div id="base-slot"></div><div id="addon-slot"></div><p class="summary-note" id="no-base-note">You can also request shelving-only or accessory-only work. No drawer system is required.</p></div><div class="summary-total"><span class="build-summary-label">INDICATIVE BASE PACKAGE</span><strong id="base-price-total">QUOTE REQUIRED</strong><p id="total-explainer">Extras, installation, delivery and final GST will be confirmed in your formal quote.</p><button class="btn btn-green" id="start-quote" type="button">REQUEST MY QUOTE →</button><button class="btn btn-outline" id="clear-build" type="button">CLEAR BUILD</button></div></div></section>
-<section class="quote-step hidden" id="quote-section"><div class="kicker">STEP 03 · REQUEST QUOTE</div><h2>HOW WOULD YOU <span>LIKE IT SUPPLIED?</span></h2><p class="section-intro">Choose how you want your fitout supplied. The correct quote form opens immediately, without asking the same questions twice. Our team will review your selections, confirm specifications and final pricing, then contact you before any booking or payment.</p><div class="quote-grid"><label>Supply option<select id="builder-fulfilment"><option value="">Choose how you want your fitout</option><option value="delivery">Online Order — delivered to your address</option><option value="pickup">Pickup — collect from Rowville</option><option value="shop">Built in Shop — professionally fitted at Rowville</option></select></label></div><div class="gate-hint" id="builder-form-gate">Select an option above to open the matching secure quote form. Online Orders use our delivery form; Pickup and Built in Shop use our fitout form.</div><form class="hidden" id="builder-quote-form"><div class="quote-grid"><label>Vehicle make *<input name="vehicle_make" placeholder="e.g. Toyota" required=""/></label><label>Vehicle model *<input name="vehicle_model" placeholder="e.g. HiAce" required=""/></label><label>Vehicle year<input inputmode="numeric" name="year" placeholder="e.g. 2023"/></label><label>Wheelbase or variant<input name="variant" placeholder="SWB / LWB / not sure"/></label><div class="quote-grid wide" id="dynamic-fields"></div><label class="wide">Notes / special requests<textarea name="notes" placeholder="Anything we should consider?"></textarea></label></div><button class="btn btn-green" style="margin-top:20px" type="submit">CONTINUE TO SECURE ENQUIRY →</button><p class="micro-note">Complete the secure GoHighLevel form to send your enquiry. No payment or booking occurs at this step.</p></form><div aria-live="polite" class="hidden form-result" id="quote-preview-result"></div></section>
+</details>
+<section class="extras-section" id="extras"><div class="section-heading"><div><h2>Optional extras</h2><p class="section-intro">Add shelving, protection or other accessories to your quote.</p></div></div><div class="addon-grid" id="addon-grid"></div><section class="evf-cargo-showcase" id="cargo-barrier-gallery" aria-labelledby="cargo-barrier-gallery-title"><div class="evf-cargo-showcase-head"><div><div class="kicker">ACTUAL ELITE WORK · OPTIONAL EXTRA</div><h3 id="cargo-barrier-gallery-title">CARGO BARRIER <span>INSTALLATIONS.</span></h3><p>See our fitted black hex-textured partition, viewing window and finish from different angles.</p></div><span class="evf-cargo-photo-count">4 REAL PHOTOS</span></div><div class="evf-cargo-photo-grid"><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-01.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 01: Window and hex-ply finish"><img src="evf-shop/assets/cargo-barrier-installation-01.jpg" alt="Installed black hex-textured cargo barrier with viewing window and Elite branding" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 01</span>Window and hex-ply finish</figcaption></figure><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-02.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 02: Sliding door close-up"><img src="evf-shop/assets/cargo-barrier-installation-02.jpg" alt="Close-up of a cargo partition and window from the sliding door" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 02</span>Sliding door close-up</figcaption></figure><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-03.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 03: Full rear installation"><img src="evf-shop/assets/cargo-barrier-installation-03.jpg" alt="Rear view showing windowed cargo partition fitted behind the front seats" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 03</span>Full rear installation</figcaption></figure><figure class="evf-cargo-photo"><a href="evf-shop/assets/cargo-barrier-installation-04.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open cargo barrier photo 04: Barrier across cargo area"><img src="evf-shop/assets/cargo-barrier-installation-04.jpg" alt="Cargo-area view of fitted black cargo partition in white van" loading="lazy" decoding="async"></a><figcaption><span>PHOTO 04</span>Barrier across cargo area</figcaption></figure></div><p class="evf-cargo-footnote">Real customer installations. Barrier dimensions, viewing windows and fitted extras may vary with the vehicle. Our team confirms specifications and final pricing after the quote request.</p></section><p class="small-print">Add-on costs are not included in the package prices shown above. We'll price additions after reviewing your vehicle and specifications.</p></section>
+<section class="build-workspace" id="build-summary"><div class="workspace-head"><div><div class="kicker">YOUR FITOUT</div><h2>YOUR <span>BUILD SUMMARY.</span></h2><p>One drawer system maximum. Add extras or go straight to a quote.</p></div><span class="mini-pill">NO ORDER OR PAYMENT</span></div><div class="summary-layout"><div class="build-items"><div id="base-slot"></div><div id="addon-slot"></div><p class="summary-note" id="no-base-note">You can also request shelving-only or accessory-only work. No drawer system is required.</p></div><div class="summary-total"><span class="build-summary-label">INDICATIVE BASE PACKAGE</span><strong id="base-price-total">QUOTE REQUIRED</strong><p id="total-explainer">Extras, installation, delivery and final GST will be confirmed in your formal quote.</p><button class="btn btn-green" id="start-quote" type="button">Get a Quote for This Build</button><button class="btn btn-outline" id="clear-build" type="button">CLEAR BUILD</button></div></div></section>
+
 </section></div>
 
     
 
+<details class="evf-finance"><summary>Payment options and budgeting examples</summary><section class="evf-zip-feature" id="zip-payment-options" data-zip-finance aria-label="Zip payment options"></section></details>
+<footer class="evf-quote-footer"><a href="tel:+61468086490">0468 086 490</a><span>8/8 Enterprise Drive, Rowville VIC</span><a href="/protection.html">Van Protection</a></footer>
     <script>
         // Presentation-only scroll reveals; configurator state and click logic remain unchanged.
         (function initFitoutReveals() {
@@ -333,9 +241,10 @@
             sections.forEach(section => observer.observe(section));
         })();
     </script>
-<script defer src="evf-shop/app.js?v=ghl-quote-routing-20261106"></script>
-<script defer src="evf-shop/secure-enquiry.js?v=ghl-quote-routing-20261106"></script>
-<script defer src="evf-shop/builder.js?v=optional-extras-cards-20261116"></script>
+<script defer src="evf-shop/app.js?v=customer-preview-1"></script>
+
+<script defer src="evf-shop/builder.js?v=customer-preview-1"></script>
 <script defer src="evf-shop/zip-payments.js?v=ghl-quote-routing-20261106"></script>
+<div class="evf-phone-actions" aria-label="Contact Elite"><a class="evf-action evf-secondary" href="tel:+61468086490">Call</a><a class="evf-action evf-primary" href="/enquiry.html">Get a Quote</a></div>
 </body>
 </html>

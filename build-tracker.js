@@ -185,7 +185,7 @@
     }
 
     function mount() {
-        if (document.getElementById('elite-build-tracker')) return;
+        if (document.body.hasAttribute('data-hide-build-tracker') || document.getElementById('elite-build-tracker')) return;
         injectStyles();
         const tracker = document.createElement('aside');
         tracker.id = 'elite-build-tracker';

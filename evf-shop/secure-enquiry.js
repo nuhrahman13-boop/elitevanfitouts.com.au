@@ -45,6 +45,7 @@ function showSecureEnquiry(node,details){
   node.replaceChildren();
   node.classList.remove('hidden');
   node.classList.add('evf-ghl-handoff');
+  if(!details?.compact){
   const title=document.createElement('h3');title.className='secure-title';title.textContent='YOUR QUOTE REQUEST · '+routeName;node.appendChild(title);
   const explain=document.createElement('p');explain.className='secure-note';
   explain.textContent='Complete the secure form below to request a quote. Our team will contact you to confirm your van, layout, any extras, availability and final pricing. This does not place an order, reserve a fitting date or charge you.';
@@ -63,6 +64,7 @@ function showSecureEnquiry(node,details){
   const guide=document.createElement('p');guide.className='secure-note evf-ghl-guide';
   guide.textContent='Your chosen setup and extras are included with the secure form link as package details. The form only asks you to enter your contact and vehicle information. Our team will double-check every specification with you before preparing the formal quote. Keep or copy the build summary above for reference.';
   node.appendChild(guide);
+  }
   const iframe=document.createElement('iframe');
   iframe.id='inline-'+config.id;
   iframe.title=config.name+' — Elite Van Fitouts quote request';
@@ -83,11 +85,13 @@ function showSecureEnquiry(node,details){
   const backup=document.createElement('p');backup.className='secure-note';node.appendChild(backup);
   backup.append('Form not displaying? ');
   const link=document.createElement('a');link.href=url.toString();link.target='_blank';link.rel='noopener noreferrer';link.textContent='Open this same secure quote form in a new tab ↗';backup.appendChild(link);
+  if(!details?.compact){
   const final=document.createElement('p');final.className='secure-note evf-ghl-final';
   final.textContent='Zip is optional and can be discussed after your formal quote is reviewed and accepted. No finance application or payment takes place on this page.';
   node.appendChild(final);
+  }
   if(!document.getElementById('evf-ghl-embed-script')){
     const script=document.createElement('script');script.id='evf-ghl-embed-script';script.src='https://links.elitebrandscaling.com/js/form_embed.js';script.async=true;document.body.append(script);
   }
-  node.scrollIntoView({behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  if(!details?.compact)node.scrollIntoView({behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
 }

@@ -3,7 +3,12 @@ const PRODUCTS=[{"slug": "3-drawer-system", "name": "3 Drawer System", "price": 
 function money(n){return '$'+n.toLocaleString('en-AU');}
 function prefix(){return document.body.dataset.prefix||'';}
 function path(slug){return prefix()+'packages/'+slug+'.html';}
-function card(p){return `<article class="product-card"><a href="${path(p.slug)}" class="card-image" aria-label="View ${p.name}"><img src="${prefix()}assets/${p.image}" alt="${p.name} fitout design illustration" loading="lazy"></a><div class="card-content"><span class="card-no">SETUP ${String(p.number).padStart(2,'0')}</span><a href="${path(p.slug)}"><h3 class="card-name">${p.name}</h3></a><p class="card-description">${p.desc}</p><div class="card-bottom"><div class="evf-price-options"><div class="evf-price-full"><strong class="price">${money(p.price)}</strong><span class="evf-price-or">or</span></div><div class="evf-weekly"><strong>${money(Math.round(p.price/52))}</strong><span>/week*</span></div></div><a class="card-link" href="${path(p.slug)}">VIEW PACKAGE ↗</a></div></div></article>`;}
+function card(p){
+  return `<article class="product-card"><div class="card-image"><img src="${prefix()}assets/${p.image}" alt="${p.name} fitout illustration" loading="lazy" decoding="async"></div>
+  <div class="card-content"><h3 class="card-name">${p.name}</h3><p class="card-description">${p.desc}</p>
+  <div class="card-bottom"><div><strong class="price">${money(p.price)}</strong><small class="evf-price-note">Final price confirmed in quote</small></div>
+  <a class="evf-action evf-primary" href="${path(p.slug)}" aria-label="View package: ${p.name}">View Package</a></div></div></article>`;
+}
 document.querySelectorAll('[data-render-products]').forEach(el=>el.innerHTML=PRODUCTS.map(card).join(''));
 const menu=document.querySelector('.mobile-menu');if(menu){menu.addEventListener('click',()=>{const n=document.querySelector('.nav-links');const opened=n.classList.toggle('open');menu.setAttribute('aria-expanded',String(opened));});}
 function readyProduct(){const slug=document.body.dataset.product;if(!slug)return;const p=PRODUCTS.find(p=>p.slug===slug);if(!p)return;
@@ -18,6 +23,7 @@ document.getElementById('product-desc').textContent=p.short;
 document.getElementById('feature-note').textContent=p.feature_note;
 document.getElementById('spec-list').innerHTML=p.bullets.map(t=>'<li>'+t+'</li>').join('');
 const select=document.querySelector('#fulfilment');
+if(!select)return;
 const shell=document.querySelector('#form-wrap');
 const hint=document.querySelector('#choose-hint');
 const result=document.querySelector('#form-result');

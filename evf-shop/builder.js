@@ -15,18 +15,6 @@ function getBuild(){try{let x=JSON.parse(localStorage.getItem(BUILDER_KEY)||'{}'
 function setBuild(b){
  localStorage.setItem(BUILDER_KEY,JSON.stringify(b));
  if(document.getElementById('base-slot'))renderBuild();
- // Prevent a previously opened GHL form from carrying outdated build details.
- const supply=document.getElementById('builder-fulfilment');
- if(supply && supply.value){
-   supply.value='';
-   const response=document.getElementById('quote-preview-result');
-   if(response){response.replaceChildren();response.classList.add('hidden');}
-   const hint=document.getElementById('builder-form-gate');
-   if(hint){
-     hint.textContent='Your build has changed. Please choose your supply method again so your updated quote request includes every selected item.';
-     hint.classList.remove('hidden');
-   }
- }
 }
 function addDrawer(base){let b=getBuild();if(b.base && b.base.key!==base.key){if(!window.confirm('Your build already has '+b.base.name+'. You can only have one drawer system. Replace it with '+base.name+'?'))return false;}b.base=base;setBuild(b);toast('Drawer system added to your build');return true}
 function addExtra(item){let b=getBuild();if(!b.addons.some(x=>x.id===item.id))b.addons.push(item);setBuild(b);toast('Added '+item.name);}
@@ -60,35 +48,11 @@ document.getElementById('add-custom-shelf').addEventListener('click',()=>{if(sav
 const grid=document.getElementById('addon-grid');grid.innerHTML=extras.map(x=>`<article class="addon-card${x.id==='cargo'?' evf-cargo-addon':''}"><span class="addon-icon">${x.icon}</span><strong>${safe(x.name)}</strong><p>${safe(x.description)}</p>${x.id==='cargo'?'<a class="evf-cargo-teaser" href="#cargo-barrier-gallery" aria-label="View real cargo barrier installation photos"><img src="evf-shop/assets/cargo-barrier-card-cover.jpg" alt="Installed Elite cargo barrier viewed from the rear of a white van" loading="lazy" decoding="async"><span>VIEW REAL INSTALLATIONS ↘</span></a>':x.id==='fixed'?'<div class="evf-extra-image"><img src="evf-shop/assets/fixed-shelving-card-cover.jpg" alt="Black fixed van shelving system with organised compartments" loading="lazy" decoding="async"></div>':x.id==='slide'?'<div class="evf-extra-image"><img src="evf-shop/assets/slideout-shelving-card-cover.jpg" alt="Black hex-ply slide-out shelving extended from the rear of a van" loading="lazy" decoding="async"></div>':''}<button type="button" data-addon-toggle="${x.id}">+ ADD TO BUILD</button></article>`).join('');grid.querySelectorAll('[data-addon-toggle]').forEach(btn=>btn.addEventListener('click',()=>{let b=getBuild();let e=extras.find(x=>x.id===btn.dataset.addonToggle);if(b.addons.some(x=>x.id===e.id))removeExtra(e.id);else addExtra({id:e.id,name:e.name,desc:e.description});}));
 document.querySelectorAll('[data-add-package]').forEach(btn=>btn.addEventListener('click',()=>{if(addPackage(btn.dataset.addPackage))document.getElementById('build-summary').scrollIntoView({behavior:'smooth'})}));
 document.getElementById('clear-build').addEventListener('click',()=>{if(confirm('Clear your drawer system and all extras?'))setBuild({base:null,addons:[]})});document.getElementById('start-quote').addEventListener('click',startQuote);
-const mode=document.getElementById('builder-fulfilment');
-const legacyForm=document.getElementById('builder-quote-form');
-const gate=document.getElementById('builder-form-gate');
-const output=document.getElementById('quote-preview-result');
-if(legacyForm)legacyForm.classList.add('hidden'); // No duplicate contact/vehicle questionnaire.
-function showBuilderQuoteForm(){
- const selectedMode=mode.value;
- if(legacyForm)legacyForm.classList.add('hidden');
- gate.classList.toggle('hidden',!!selectedMode);
- if(!selectedMode){output.replaceChildren();output.classList.add('hidden');return;}
- const build=getBuild();
- const supply={
-   delivery:'Online Order — Delivery',
-   pickup:'Pickup — collect from Rowville',
-   shop:'Built in Shop — Rowville installation'
- }[selectedMode];
- const details={
-  drawer_system:build.base?{name:build.base.name,price_aud:build.base.price??'custom quote',spec:build.base.desc,config:build.base.config||null}:null,
-  extras:(build.addons||[]).map(x=>({name:x.name,details:x.desc||'',config:x.config||null})),
-  fulfilment:supply
- };
- showSecureEnquiry(output,details);
-}
-mode.addEventListener('change',showBuilderQuoteForm);
-
 renderBuild();}
-function startQuote(){let section=document.getElementById('quote-section');if(!section)return;section.classList.remove('hidden');section.scrollIntoView({behavior:'smooth',block:'start'});}
+function startQuote(){location.assign('/enquiry.html?build=1');}
 setupBuildPage();
-function setupProductAdd(){let btn=document.getElementById('product-add-build'),quote=document.getElementById('product-quote-now');if(!btn)return;let slug=document.body.dataset.product;btn.addEventListener('click',()=>addPackage(slug,true));quote.addEventListener('click',()=>{if(addPackage(slug))document.getElementById('request')?.scrollIntoView({behavior:'smooth'});});}
-setupProductAdd();
 
-if(document.getElementById('custom-builder')){document.querySelectorAll('.product-card').forEach((c,i)=>{let p=PRODUCTS[i],bt=document.createElement('button');bt.type='button';bt.className='btn btn-outline';bt.dataset.addPackage=p.slug;bt.textContent='+ ADD TO BUILD';bt.style.cssText='width:100%;font-size:10px;margin-top:12px';c.querySelector('.card-content').append(bt);bt.addEventListener('click',()=>{if(addPackage(p.slug))document.getElementById('build-summary').scrollIntoView({behavior:'smooth'})})});}
+const productAddButton=document.getElementById('product-add-build');
+if(productAddButton){
+ productAddButton.addEventListener('click',()=>addPackage(document.body.dataset.product,true));
+}

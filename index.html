@@ -50,7 +50,7 @@
     <!-- End Meta Pixel Code -->
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>Elite Van Fitouts | Custom van floors, drawers and shelving Melbourne</title>
     <meta name="description" content="The #1 Van Fitout workshop in Rowville. We build custom precision plywood racking, false floors, heavy-duty drawers, and ply lining for Tradies in Dandenong & South East Melbourne.">
@@ -152,7 +152,7 @@
         
         @media (max-width: 1023px) {
             .nav-spacer { display: none; }
-            body { padding-top: var(--nav-height-mobile); } 
+             
             .hero-section { display: flex; flex-direction: column; height: auto; }
             .hero-video-wrapper { position: relative; width: 100%; height: 50vh; }
             .hero-video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 60% top; filter: brightness(0.7); }
@@ -375,8 +375,8 @@
 @media(max-width:390px){.evf-quick-call{margin-right:8px;padding:8px 9px;font-size:9px}}
 </style><link rel="stylesheet" href="evf-shop/scoped.css?v=ghl-quote-routing-20261106">
 <link rel="stylesheet" href="evf-shop/zip-payments.css?v=20261106-1">
-</head>
-<body data-prefix="evf-shop/">
+<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-1"></head>
+<body data-hide-build-tracker data-prefix="evf-shop/">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
@@ -388,79 +388,24 @@
     </div>
 
     <!-- NAV WITH CLEAN DROPDOWN CATEGORIES (NO NUMBERS) -->
-    <nav class="fixed top-0 w-full z-50 glass-nav px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative w-full">
-            <a href="index.html"><img src="logo.png" alt="ELITE" class="h-8 md:h-10 w-auto object-contain"></a>
-            
-            <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-widest text-gray-500 items-center">
-                <a href="index.html" class="text-black font-bold border-b-2 border-green-500 pb-1">Home</a>
-                <div class="relative dropdown">
-                    <button class="flex items-center gap-2 py-2 cursor-pointer text-black hover:text-green-500 transition font-bold tracking-widest text-sm">
-                        SERVICES <span class="text-[10px]">▼</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="text-[10px] text-gray-400 px-4 py-2 font-bold mt-2">SOLUTIONS</div>
-                        <a href="fitouts.html" class="dropdown-item">Drawers & Shelving <span>-></span></a>
-                        <a href="protection.html" class="dropdown-item">Protection & Ply Line Barriers <span>-></span></a>
-                        
-                        <div class="dropdown-divider"></div>
-                        <a href="about.html" class="dropdown-item">About Us <span>-></span></a>
-                    </div>
-                </div>
-            </div>
-            <a href="tel:+61468086490" aria-label="Call Elite Van Fitouts on 0468 086 490" class="evf-quick-call"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.65 2.79a2 2 0 0 1-.45 2.11L9 10.91a16 16 0 0 0 4.09 4.09l1.29-1.28a2 2 0 0 1 2.11-.45c.89.31 1.83.53 2.79.65A2 2 0 0 1 22 16.92z"/></svg><span>CALL NOW</span></a>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('active')" class="md:hidden text-black text-sm tracking-widest font-bold z-50 relative hover:text-green-500 transition">MENU ▼</button>
-        </div>
-    </nav>
+    <a class="evf-skip" href="#evf-main">Skip to content</a>
+<nav class="evf-nav" aria-label="Main navigation"><div class="evf-nav-inner">
+<a class="evf-brand" href="/"><img src="/logo.png" alt="Elite Van Fitouts" width="134" height="38"></a>
+<div class="evf-nav-links"><a href="/fitouts.html">Van Fitouts</a><a href="/protection.html">Van Protection</a><a href="/about.html">About</a></div>
+<details class="evf-nav-menu"><summary>Menu</summary><div><a href="/fitouts.html">Van Fitouts</a><a href="/protection.html">Van Protection</a><a href="/about.html">About</a></div></details>
+<a class="evf-action evf-primary evf-header-quote" href="/enquiry.html">Get a Quote</a>
+</div></nav>
 
-    <div id="mobile-menu">
-        <div class="flex flex-col gap-6 text-xl font-black italic uppercase tracking-wide">
-            <a href="index.html" class="text-black border-l-4 border-green-500 pl-4 transition">Home</a>
-            <a href="fitouts.html" class="text-gray-500 hover:text-green-500 transition">Drawers & Shelving Systems</a>
-            <a href="protection.html" class="text-gray-500 hover:text-green-500 transition">Protection & Ply Line Barriers</a>
-            
-            <a href="about.html" class="text-gray-500 hover:text-green-500 transition">About Us</a>
-        </div>
-    </div>
-
-    <div class="nav-spacer"></div>
 
     <!-- HERO SECTION -->
-    <header class="hero-section">
-        <div class="hero-video-wrapper">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="hero.mp4" type="video/mp4">
-            </video>
-            <div class="hero-fade"></div>
-        </div>
-        
-        <div class="hero-content">
-            <h1 class="glitch-text">
-                ENGINEERED<br>FOR THE <strong>ELITE.</strong>
-            </h1>
-            <p class="hero-sub mb-8 mt-4">
-                We build the vehicles that power Australia's top-tier trades. Drawers, shelving, and heavy-duty protection. <br>
-                <span class="font-bold text-white">Get Organized. Get Paid.</span>
-            </p>
-            <div class="hero-btns mt-8 flex gap-4">
-                <a href="fitouts.html" class="btn-main">EXPLORE FITOUTS</a>
-                <a href="about.html" class="btn-outline">ABOUT US</a>
-            </div>
-        </div>
-    </header>
+    <header class="evf-hero" id="evf-main" tabindex="-1">
+<div class="evf-hero-inner"><div class="evf-hero-copy"><p class="evf-location">Rowville, Melbourne</p>
+<h1>Custom van fitouts in Melbourne</h1><p>Drawers, shelving, flooring and van protection built around your vehicle and the way you work.</p><div class="evf-hero-actions">
+<a class="evf-action evf-primary" href="/enquiry.html">Get a Quote</a>
+<a class="evf-action evf-secondary" href="#popular-fitout-packages">View Fitout Packages</a>
+</div></div><img class="evf-hero-image" src="/evf-shop/assets/three-drawer-installation-01-updated.jpg" alt="Real Elite fitout with a drawer and false floor" fetchpriority="high" width="960" height="720"></div></header>
+<section class="evf-stage evf-home-popular" id="popular-fitout-packages" aria-label="Popular van fitout packages"><div class="wrap"><div class="evf-section-title"><h2>Popular fitout packages</h2><p>Compare five drawer and shelving layouts for your van.</p></div><div class="product-grid" data-render-products></div><p class="evf-weekly-disclaimer">*Approximate weekly budgeting example only, calculated as the advertised package price divided by 52 weeks and rounded to the nearest dollar. It is not a Zip repayment quote or fixed instalment offer. Actual repayments depend on your approved Zip account, credit limit, fees, interest (if applicable) and terms. GST treatment, installation and delivery are confirmed in the formal quote. <a href="https://zip.co/au/zip-money" target="_blank" rel="noopener noreferrer">Zip terms ↗</a></p><p class="note">Indicative AUD package prices. Vehicle compatibility, GST treatment, installation or delivery and any changes are confirmed in the formal quote.</p></div></section>
 
-    <!-- SEO TICKER -->
-    <div class="led-wrap">
-        <div class="led-ticker">
-            <div class="led-item">CUSTOM VAN RACKING • CNC FALSE FLOORS • COMMERCIAL SHELVING • PLY LINING • CARGO BARRIERS • ROWVILLE WORKSHOP • FAST TURNAROUND • DANDENONG SOUTH • MELBOURNE TRADIE SETUPS • </div>
-            <div class="led-item">CUSTOM VAN RACKING • CNC FALSE FLOORS • COMMERCIAL SHELVING • PLY LINING • CARGO BARRIERS • ROWVILLE WORKSHOP • FAST TURNAROUND • DANDENONG SOUTH • MELBOURNE TRADIE SETUPS • </div>
-        </div>
-    </div>
-
-    
-<!-- Elite Popular Fitout Packages: preserved live hero/tactical layout -->
-<section class="evf-stage evf-home-popular" id="popular-fitout-packages" aria-label="Popular van fitout packages"><div class="wrap"><div class="section-heading evf-popular-banner"><div class="evf-popular-copy"><div class="kicker evf-popular-kicker">THE ELITE LINEUP <span class="evf-popular-badge" aria-label="Five popular fitouts">★ TOP 5 SETUPS</span></div><h2 class="evf-popular-title">MOST POPULAR <span>SETUPS.</span></h2><p class="section-intro">Five ready-made drawer systems, one simple way to customise. Select a package to see details, then request a quote or add extras.</p></div><a class="view-all" href="fitouts.html">EXPLORE CUSTOM FITOUTS →</a></div><div class="product-grid" data-render-products></div><p class="evf-weekly-disclaimer">*Approximate weekly budgeting example only, calculated as the advertised package price divided by 52 weeks and rounded to the nearest dollar. It is not a Zip repayment quote or fixed instalment offer. Actual repayments depend on your approved Zip account, credit limit, fees, interest (if applicable) and terms. GST treatment, installation and delivery are confirmed in the formal quote. <a href="https://zip.co/au/zip-money" target="_blank" rel="noopener noreferrer">Zip terms ↗</a></p><p class="note">Indicative AUD package prices. Vehicle compatibility, GST treatment, installation or delivery and any changes are confirmed in the formal quote.</p></div></section>
-<section class="evf-zip-feature" id="zip-payment-options" data-zip-finance aria-label="Zip payment enquiries and budgeting examples"></section>
 <!-- TACTICAL TILES (UPDATED WITH REQUESTED IMAGES) -->
     <section class="py-20 px-6 max-w-7xl mx-auto">
         <div class="text-center mb-16">
@@ -679,7 +624,7 @@
             <!-- Real GHL Review Widget Integration -->
             <div class="mb-8">
                 <script type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js"></script>
-                <iframe class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/Im9YMPbjBNSaUJy5qIeg?widgetId=69acee42cc4984200173e2a9" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
+                <iframe loading="lazy" class="lc_reviews_widget" src="https://reputationhub.site/reputation/widgets/review_widget/Im9YMPbjBNSaUJy5qIeg?widgetId=69acee42cc4984200173e2a9" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
             </div>
         </div>
     </section>
@@ -708,13 +653,14 @@
             </div>
             <div class="radar-container rounded-xl border border-gray-800">
                 <div class="radar-overlay"></div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d145.243000!3d-37.915000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d3d65c368d5%3A0x5045675218ce520!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d145.243000!3d-37.915000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad63d3d65c368d5%3A0x5045675218ce520!2s8%2F8%20Enterprise%20Dr%2C%20Rowville%20VIC%203178!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
 
     <!-- FOOTER WITH FIXED SOCIAL LINKS -->
-    <footer class="bg-[#050505] text-gray-400 py-12 px-6 border-t border-gray-900">
+    <details class="evf-finance"><summary>Payment options and budgeting examples</summary><section class="evf-zip-feature" id="zip-payment-options" data-zip-finance aria-label="Zip payment enquiries and budgeting examples"></section></details>
+<footer class="bg-[#050505] text-gray-400 py-12 px-6 border-t border-gray-900">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
             <div>
                 <img src="logo.png" alt="Elite Van Fitouts" class="h-8 mb-3 mx-auto md:mx-0">
@@ -740,7 +686,7 @@
         </div>
     </footer>
 
-    <script src="build-tracker.js"></script>
+    <script src="build-tracker.js?v=20261116-1"></script>
 
     <!-- SCRIPT LOGIC -->
     <script>
@@ -763,7 +709,8 @@
         })();
 
     </script>
-<script defer src="evf-shop/app.js?v=ghl-quote-routing-20261106"></script>
+<script defer src="evf-shop/app.js?v=customer-preview-1"></script>
 <script defer src="evf-shop/zip-payments.js?v=ghl-quote-routing-20261106"></script>
+<div class="evf-phone-actions" aria-label="Contact Elite"><a class="evf-action evf-secondary" href="tel:+61468086490">Call</a><a class="evf-action evf-primary" href="/enquiry.html">Get a Quote</a></div>
 </body>
 </html>
