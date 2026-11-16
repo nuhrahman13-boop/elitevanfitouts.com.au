@@ -171,3 +171,8 @@ body:not(.evf-quote-page) .evf-quote-footer a { color: #bee9a5; }
 @media (max-width: 520px) {
   .evf-preview-fields { grid-template-columns: minmax(0,1fr); }
 }
+
+.evf-top-socials{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 14px;padding:0 12px;background:#f3f6f1;color:#405047;font:600 .8rem/1.3 Inter,system-ui,sans-serif}
+.evf-top-socials a{display:inline-flex;align-items:center;min-height:44px;color:#235931;text-decoration:underline;text-underline-offset:3px}
+.evf-top-socials a:first-of-type{font-weight:850}
+@media(max-width:360px){.evf-top-socials span{display:none}}
