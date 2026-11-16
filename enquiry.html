@@ -10,7 +10,7 @@
 <script defer src="/evf-shop/builder.js?v=customer-preview-1"></script>
 <script defer src="/build-tracker.js?v=20261116-1"></script>
 <script defer src="/evf-shop/secure-enquiry.js?v=customer-preview-1"></script>
-<script defer src="/evf-shop/customer-quote.js?v=20261116-3"></script>
+<script defer src="/evf-shop/customer-quote.js?v=20261116-4"></script>
 </head>
 <body data-hide-build-tracker class="evf-quote-page" data-prefix="/evf-shop/">
 <a class="evf-skip" href="#evf-main">Skip to content</a>
@@ -31,15 +31,7 @@
 <h1 id="quote-title">Get a fitout quote</h1>
 <p class="evf-quote-intro">Tell us about your van and what you need. Our Rowville team will confirm the layout and price with you before you book.</p>
 <div class="evf-quote-selection" id="quote-selection" hidden></div>
-<div class="evf-quote-route">
-<label for="quote-supply">How would you like your fitout supplied?</label>
-<select id="quote-supply">
-<option value="shop">Installed in Rowville</option>
-<option value="pickup">Pickup in Rowville</option>
-<option value="delivery">Delivery</option>
-<option value="unsure">I’m not sure yet</option>
-</select>
-</div>
+<div class="evf-quote-route"><strong>Installed in our Rowville workshop</strong></div>
 <div id="quote-form-panel" aria-label="Quote enquiry"></div>
 <template id="quote-preview-template">
 <form class="evf-preview-form" autocomplete="off">
@@ -50,7 +42,7 @@
 <label>Mobile number<input type="tel" name="phone"></label>
 <label>Van make and model<input type="text" name="vehicle" placeholder="e.g. Toyota HiAce"></label>
 <label>Van year<input type="text" inputmode="numeric" name="vehicle-year" placeholder="e.g. 2024"></label>
-<label data-preview-delivery hidden>Delivery postcode<input type="text" inputmode="numeric" name="postcode"></label>
+
 <label class="evf-preview-notes">What do you need in your van?<textarea rows="3" name="notes"></textarea></label>
 </div>
 <button class="evf-action evf-primary" type="button" disabled>Submit Quote Request</button>
