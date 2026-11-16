@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Get a Quote | Elite Van Fitouts</title>
 <meta name="robots" content="noindex,follow">
-<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-1">
+<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-2">
 <script defer src="/evf-shop/app.js?v=customer-preview-1"></script>
 <script defer src="/evf-shop/builder.js?v=customer-preview-1"></script>
 <script defer src="/build-tracker.js?v=20261116-1"></script>
 <script defer src="/evf-shop/secure-enquiry.js?v=customer-preview-1"></script>
-<script defer src="/evf-shop/customer-quote.js?v=20261116-1"></script>
+<script defer src="/evf-shop/customer-quote.js?v=20261116-2"></script>
 </head>
 <body data-hide-build-tracker class="evf-quote-page" data-prefix="/evf-shop/">
 <a class="evf-skip" href="#evf-main">Skip to content</a>
@@ -35,6 +35,21 @@
 </select>
 </div>
 <div id="quote-form-panel" aria-label="Quote enquiry"></div>
+<template id="quote-preview-template">
+<form class="evf-preview-form" autocomplete="off">
+<p class="evf-preview-message">Preview only. This example form does not send enquiries.</p>
+<h2 data-preview-route>Workshop enquiry</h2>
+<div class="evf-preview-fields">
+<label>Full name<input type="text" name="name"></label>
+<label>Mobile number<input type="tel" name="phone"></label>
+<label>Van make and model<input type="text" name="vehicle" placeholder="e.g. Toyota HiAce"></label>
+<label>Van year<input type="text" inputmode="numeric" name="vehicle-year" placeholder="e.g. 2024"></label>
+<label data-preview-delivery hidden>Delivery postcode<input type="text" inputmode="numeric" name="postcode"></label>
+<label class="evf-preview-notes">What do you need in your van?<textarea rows="3" name="notes"></textarea></label>
+</div>
+<button class="evf-action evf-primary" type="button" disabled>Submit Quote Request</button>
+</form>
+</template>
 <noscript><p>Call <a href="tel:+61468086490">0468 086 490</a> to request a quote.</p></noscript>
 </main>
 <footer class="evf-quote-footer"><a href="tel:+61468086490">0468 086 490</a><span>8/8 Enterprise Drive, Rowville VIC</span></footer>

@@ -160,3 +160,14 @@ body:not(.evf-quote-page) .evf-quote-footer a { color: #bee9a5; }
   .evf-hero-actions .evf-action { flex: 1 1 125px; padding-inline: 10px; }
   .evf-help .evf-action { width: 100%; }
 }
+.evf-preview-form { margin-top: 14px; padding: clamp(16px, 4vw, 26px); border: 1px solid #dce5d8; border-radius: 12px; background: #fff; }
+.evf-preview-message { margin: 0 0 14px; color: #46594b; font-size: .88rem; }
+.evf-preview-form h2 { margin: 0 0 14px; font-size: 1.3rem; }
+.evf-preview-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.evf-preview-fields label { min-width: 0; font-weight: 650; }
+.evf-preview-fields input, .evf-preview-fields textarea { display: block; margin-top: 5px; padding: 10px; width: 100%; min-height: 44px; border: 1px solid #889889; border-radius: 7px; font: inherit; color: inherit; background: #fff; }
+.evf-preview-notes { grid-column: 1/-1; }
+.evf-preview-form button { margin-top: 16px; opacity: .65; }
+@media (max-width: 520px) {
+  .evf-preview-fields { grid-template-columns: minmax(0,1fr); }
+}

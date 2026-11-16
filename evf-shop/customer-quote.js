@@ -47,7 +47,21 @@ if (selectedItems.length) {
 
 const fulfilment = document.getElementById('quote-supply');
 const formPanel = document.getElementById('quote-form-panel');
+const previewForm = document.getElementById('quote-preview-template');
+const isReviewDeployment = location.hostname.endsWith('-elite-van-fitouts.vercel.app')
+  && location.hostname !== 'elitevanfitouts-com-au-elite-van-fitouts.vercel.app';
+if (isReviewDeployment) {
+  formPanel.append(previewForm.content.cloneNode(true));
+  formPanel.querySelector('form').addEventListener('submit', event => event.preventDefault());
+}
+
 function renderQuoteForm() {
+  if (isReviewDeployment) {
+    const mode = fulfilment.value;
+    formPanel.querySelector('[data-preview-delivery]').hidden = mode !== 'delivery';
+    formPanel.querySelector('[data-preview-route]').textContent = mode === 'delivery' ? 'Delivery enquiry' : 'Workshop enquiry';
+    return;
+  }
   showSecureEnquiry(formPanel, {
     ...details,
     fulfilment: fulfilment.selectedOptions[0].textContent,

@@ -375,18 +375,11 @@
 @media(max-width:390px){.evf-quick-call{margin-right:8px;padding:8px 9px;font-size:9px}}
 </style><link rel="stylesheet" href="evf-shop/scoped.css?v=ghl-quote-routing-20261106">
 <link rel="stylesheet" href="evf-shop/zip-payments.css?v=20261106-1">
-<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-1"></head>
-<body data-hide-build-tracker data-prefix="evf-shop/">
+<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-2"></head>
+<body data-simple-package-cards data-hide-build-tracker data-prefix="evf-shop/">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
-    <div id="boot-screen">
-        <img src="logo.png" alt="ELITE" class="loader-logo">
-        <div class="loader-container">
-            <div class="loader-bar"></div>
-        </div>
-    </div>
-
     <!-- NAV WITH CLEAN DROPDOWN CATEGORIES (NO NUMBERS) -->
     <a class="evf-skip" href="#evf-main">Skip to content</a>
 <nav class="evf-nav" aria-label="Main navigation"><div class="evf-nav-inner">
@@ -688,29 +681,9 @@
 
     <script src="build-tracker.js?v=20261116-1"></script>
 
-    <!-- SCRIPT LOGIC -->
-    <script>
-        (function() {
-            const bootScreen = document.getElementById('boot-screen');
-            if (!bootScreen) return;
-            let dismissed = false;
-            function dismissPreloader() {
-                if (dismissed) return;
-                dismissed = true;
-                bootScreen.style.opacity = '0';
-                setTimeout(() => { bootScreen.style.display = 'none'; }, 400);
-            }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-                setTimeout(dismissPreloader, 400);
-            } else {
-                window.addEventListener('DOMContentLoaded', () => setTimeout(dismissPreloader, 400));
-            }
-            setTimeout(dismissPreloader, 1500);
-        })();
 
-    </script>
 <script defer src="evf-shop/app.js?v=customer-preview-1"></script>
-<script defer src="evf-shop/zip-payments.js?v=ghl-quote-routing-20261106"></script>
+<script defer src="evf-shop/zip-payments.js?v=customer-preview-2"></script>
 <div class="evf-phone-actions" aria-label="Contact Elite"><a class="evf-action evf-secondary" href="tel:+61468086490">Call</a><a class="evf-action evf-primary" href="/enquiry.html">Get a Quote</a></div>
 </body>
 </html>
