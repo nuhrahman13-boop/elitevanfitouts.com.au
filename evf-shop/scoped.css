@@ -435,3 +435,9 @@
 .evf-stage .evf-cargo-footnote{font-size:11px;color:#6b796c;line-height:1.65;margin:13px 0 0}
 @media(max-width:870px){.evf-stage .evf-cargo-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.evf-stage .evf-cargo-photo img{height:260px}}
 @media(max-width:550px){.evf-stage .evf-cargo-showcase-head{flex-wrap:wrap}.evf-stage .evf-cargo-photo-grid{gap:9px}.evf-stage .evf-cargo-photo img{height:210px}.evf-stage .evf-cargo-photo figcaption{padding:9px;font-size:10px}}
+
+/* Approved Optional Extras photo cards (November 2026) */
+.evf-stage .evf-cargo-teaser img{height:180px;object-fit:contain;object-position:center;background:#eff3ed}
+.evf-stage .evf-extra-image{margin:4px 0 6px;border:1px solid #d5e2d0;border-radius:8px;overflow:hidden;background:#f5f9f3}
+.evf-stage .evf-extra-image img{display:block;width:100%;height:214px;object-fit:contain;object-position:center;background:#f7f9f6}
+@media(max-width:620px){.evf-stage .evf-extra-image img{height:200px}}
