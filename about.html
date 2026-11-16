@@ -168,12 +168,15 @@
         #mobile-menu.active { display: block; }
         @keyframes drop-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .hero { position: relative; min-height: 740px; height: 86vh; display: flex; align-items: flex-end; overflow: hidden; padding: 70px 6% 86px; background: #050505; }
-        .hero-media { position: absolute; inset: 0; transform: scale(1.04); will-change: transform; }
-        .hero-media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 69%; filter: saturate(.8) contrast(1.07); }
-        .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.91) 0%, rgba(0,0,0,.68) 42%, rgba(0,0,0,.2) 74%), linear-gradient(0deg, #000 0%, transparent 54%), radial-gradient(circle at 78% 30%, transparent, rgba(0,0,0,.35)); }
-        .hero-grid { position: absolute; inset: 0; z-index: 1; opacity: .18; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(90deg, #000, transparent 78%); }
-        .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1280px; margin: 0 auto; }
+        .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 72px); padding: clamp(28px, 5vw, 72px) max(24px, calc((100% - 1280px) / 2)); background: #f3f6f1; color: #142419; }
+        .hero-media { order: 2; margin: 0; }
+        .hero-media img { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: center 61%; border-radius: 16px; }
+        .hero-content { min-width: 0; }
+        .hero .eyebrow { color: #236435; }
+        .hero .hero-title { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; text-shadow: none; }
+        .hero .hero-title span { color: #236435; }
+        .hero .hero-copy { color: #405047; }
+        .hero .btn-outline { color: #193d24; background: transparent; border-color: #698271; }
         .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; color: var(--elite-green-light); font: 800 .68rem/1.3 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .2em; }
         .eyebrow::before { content: ''; width: 36px; height: 2px; background: var(--elite-green); box-shadow: 0 0 12px var(--elite-green); }
         .hero-title { max-width: 1040px; font-size: clamp(3.2rem, 8vw, 7.6rem); font-weight: 900; font-style: italic; line-height: .88; text-transform: uppercase; letter-spacing: -.055em; text-shadow: 3px 3px 0 rgba(34,197,94,.28); }
@@ -333,9 +336,8 @@
         }
         @media (max-width: 720px) {
             .glass-nav { height: 64px; }
-            .hero { min-height: 690px; height: 90svh; padding: 96px 24px 70px; }
-            .hero-media img { object-position: 48% 65%; }
-            .hero-media::after { background: linear-gradient(0deg, #000 0%, rgba(0,0,0,.58) 60%, rgba(0,0,0,.2)), linear-gradient(90deg, rgba(0,0,0,.75), transparent); }
+            .hero { grid-template-columns: minmax(0, 1fr); height: auto; min-height: 0; padding: 30px 20px; }
+            .hero-media img { object-position: center 60%; }
             .hero-title { font-size: clamp(3rem, 15vw, 4.7rem); }
             .hero-copy { max-width: 94%; font-size: .78rem; }
             .scroll-cue { display: none; }
@@ -390,8 +392,7 @@
 <a class="evf-action evf-primary evf-header-quote" href="/enquiry.html">Get a Quote</a>
 </div></nav>
 <header class="hero" aria-labelledby="about-title" id="evf-main" tabindex="-1">
-        <div class="hero-media" id="hero-media"><img src="/evf-shop/assets/about-hero-extended-drawer.jpg" alt="Elite van fitout with an extended rear drawer, adjustable dividers and a black false floor" fetchpriority="high"></div>
-        <div class="hero-grid"></div>
+        <div class="hero-media" id="hero-media"><img src="/evf-shop/assets/about-hero-workshop-fitout.jpg" alt="White work van outside the Elite workshop with rear and side drawers extended" fetchpriority="high"></div>
         <div class="hero-content">
             <p class="eyebrow">About Elite · Rowville, Melbourne</p>
             <h1 id="about-title" class="hero-title">Built for work.<br><span>Designed to perform.</span></h1>
@@ -401,7 +402,6 @@
                 <a href="#why-elite" class="btn-outline">Why Choose Elite</a>
             </div>
         </div>
-        <span class="scroll-cue" aria-hidden="true">Explore</span>
     </header>
 
     <div class="proof-rail" aria-label="Elite Van Fitouts key benefits">
@@ -641,18 +641,6 @@
             }
 
             if (!reducedMotion) {
-                const heroMedia = document.getElementById('hero-media');
-                let scheduled = false;
-                window.addEventListener('scroll', function () {
-                    if (scheduled) return;
-                    scheduled = true;
-                    window.requestAnimationFrame(function () {
-                        const offset = Math.min(window.scrollY * .09, 55);
-                        heroMedia.style.transform = 'scale(1.04) translateY(' + offset + 'px)';
-                        scheduled = false;
-                    });
-                }, { passive: true });
-
                 document.querySelectorAll('.reason-card').forEach(function (card) {
                     card.addEventListener('pointermove', function (event) {
                         const rect = card.getBoundingClientRect();
