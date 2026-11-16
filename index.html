@@ -375,7 +375,15 @@
 @media(max-width:390px){.evf-quick-call{margin-right:8px;padding:8px 9px;font-size:9px}}
 </style><link rel="stylesheet" href="evf-shop/scoped.css?v=ghl-quote-routing-20261106">
 <link rel="stylesheet" href="evf-shop/zip-payments.css?v=20261106-1">
-<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-2"><style>.evf-hero .evf-hero-image{object-position:center 62%}@media(max-width:740px){.evf-hero .evf-hero-image{aspect-ratio:4/3}}</style></head>
+<link rel="stylesheet" href="/evf-shop/customer.css?v=20261116-2"><style>.evf-hero .evf-hero-image{object-position:center 62%}@media(max-width:740px){.evf-hero .evf-hero-image{aspect-ratio:4/3}}</style><style>
+.evf-social-proof{width:min(1140px,calc(100% - 32px));margin:32px auto;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:24px;padding:clamp(18px,4vw,38px);background:#f3f6f1;color:#142419;border-radius:16px}
+.evf-social-proof h2{font-size:clamp(1.6rem,4vw,2.65rem);font-weight:800;line-height:1.1}
+.evf-social-proof p{margin:12px 0 18px;max-width:47ch}
+.evf-social-links{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}
+.evf-social-links a:not(.evf-action){display:inline-flex;align-items:center;min-height:44px;color:#235931;text-decoration:underline;text-underline-offset:3px}
+.evf-social-proof img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center 58%;border-radius:12px}
+@media(max-width:740px){.evf-social-proof{grid-template-columns:minmax(0,1fr)}}
+</style></head>
 <body data-simple-package-cards data-hide-build-tracker data-prefix="evf-shop/">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -652,7 +660,17 @@
     </section>
 
     <!-- FOOTER WITH FIXED SOCIAL LINKS -->
-    <details class="evf-finance"><summary>Payment options and budgeting examples</summary><section class="evf-zip-feature" id="zip-payment-options" data-zip-finance aria-label="Zip payment enquiries and budgeting examples"></section></details>
+    <section class="evf-social-proof" aria-labelledby="evf-social-title">
+<div><h2 id="evf-social-title">See real Elite fitouts</h2>
+<p>See how the drawers open, how the shelving fits and what finished vans look like. Find walkthroughs and recent installs on our socials.</p>
+<div class="evf-social-links">
+<a class="evf-action evf-primary" href="https://www.instagram.com/elitevanfitouts/" target="_blank" rel="noopener noreferrer">See Builds on Instagram ↗</a>
+<a href="https://www.tiktok.com/@elitevanfitouts" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+<a href="https://www.facebook.com/p/Elite-Van-Fitouts-61572133991242/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+</div></div>
+<img src="/evf-shop/assets/fitouts-hero-slideout-shelving.jpg" alt="Finished Elite van fitout with its slide-out shelving extended" width="768" height="1024" loading="lazy" decoding="async">
+</section>
+<details class="evf-finance"><summary>Payment options and budgeting examples</summary><section class="evf-zip-feature" id="zip-payment-options" data-zip-finance aria-label="Zip payment enquiries and budgeting examples"></section></details>
 <footer class="bg-[#050505] text-gray-400 py-12 px-6 border-t border-gray-900">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
             <div>
