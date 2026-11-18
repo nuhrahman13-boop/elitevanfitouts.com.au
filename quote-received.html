@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <title>Quote Request Received | Elite Van Fitouts</title>
+    <!-- Google Tag Manager: make the successful quote confirmation measurable. -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NDKGGJ22');</script>
     <!-- OpenAI Ads Measurement Pixel -->
     <script>
       (function (w, d, s, u) {
@@ -31,6 +37,10 @@
           var age = Date.now() - pending.createdAt;
           if (age < 0 || age > 2 * 60 * 60 * 1000) return;
           sessionStorage.removeItem('elite_fitout_quote_pending');
+          // Fire only on a valid, same-session GHL quote confirmation.
+          // GTM can route this event to GA4 / Google Ads as a lead conversion.
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'evf_quote_submitted', form_source: 'ghl_fitout' });
           oaiq('measure', 'lead_created', { type: 'customer_action' }, {
             event_id: pending.id,
             opt_out: true
@@ -43,6 +53,7 @@
     </style>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDKGGJ22" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <header><a href="index.html" aria-label="Elite Van Fitouts home" target="_top"><img src="logo.png" alt="Elite Van Fitouts"></a></header>
     <main><section class="card" aria-labelledby="confirmation-title">
       <div class="check" aria-hidden="true">✓</div>
